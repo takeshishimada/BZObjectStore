@@ -269,7 +269,7 @@
 
 - (id)valueWithResultSet:(FMResultSet*)resultSet
 {
-    return [self.osclazz valueWithResultSet:resultSet colunmName:self.columnName];
+    return [self.osclazz valueWithResultSet:resultSet attribute:self];
 }
 
 

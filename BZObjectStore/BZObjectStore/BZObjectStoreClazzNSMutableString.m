@@ -24,6 +24,7 @@
 #import "BZObjectStoreClazzNSMutableString.h"
 #import "FMResultSet.h"
 #import "BZObjectStoreConst.h"
+#import "BZObjectStoreRuntimeProperty.h"
 
 @implementation BZObjectStoreClazzNSMutableString
 
@@ -59,9 +60,9 @@
     return [self storeValueWithValue:[object valueForKey:name]];
 }
 
-- (id)valueWithResultSet:(FMResultSet*)resultSet colunmName:(NSString*)columnName
+- (id)valueWithResultSet:(FMResultSet*)resultSet attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    return [self valueWithStoreValue:[resultSet stringForColumn:columnName]];
+    return [self valueWithStoreValue:[resultSet stringForColumn:attribute.columnName]];
 }
 
 - (NSString*)sqliteDataTypeName

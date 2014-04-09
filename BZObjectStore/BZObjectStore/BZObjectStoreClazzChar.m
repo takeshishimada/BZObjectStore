@@ -24,6 +24,7 @@
 #import "BZObjectStoreClazzChar.h"
 #import "FMResultSet.h"
 #import "BZObjectStoreConst.h"
+#import "BZObjectStoreRuntimeProperty.h"
 
 @implementation BZObjectStoreClazzChar
 
@@ -59,9 +60,9 @@
     return [self storeValueWithValue:number];
 }
 
-- (id)valueWithResultSet:(FMResultSet*)resultSet colunmName:(NSString*)columnName
+- (id)valueWithResultSet:(FMResultSet*)resultSet attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    NSObject *value = [resultSet objectForColumnName:columnName];
+    NSObject *value = [resultSet objectForColumnName:attribute.columnName];
     return [self valueWithStoreValue:value];
 }
 

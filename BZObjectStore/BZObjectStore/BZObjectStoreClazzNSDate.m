@@ -24,6 +24,7 @@
 #import "BZObjectStoreClazzNSDate.h"
 #import "FMResultSet.h"
 #import "BZObjectStoreConst.h"
+#import "BZObjectStoreRuntimeProperty.h"
 
 @implementation BZObjectStoreClazzNSDate
 
@@ -66,9 +67,9 @@
     return [self storeValueWithValue:[object valueForKey:name]];
 }
 
-- (id)valueWithResultSet:(FMResultSet*)resultSet colunmName:(NSString*)columnName
+- (id)valueWithResultSet:(FMResultSet*)resultSet attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    return [self valueWithStoreValue:[resultSet dateForColumn:columnName]];
+    return [self valueWithStoreValue:[resultSet dateForColumn:attribute.columnName]];
 }
 
 - (NSString*)sqliteDataTypeName

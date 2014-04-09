@@ -44,7 +44,8 @@
 - (id)valueWithStoreValue:(id)value;
 - (id)storeValueWithValue:(id)value;
 - (id)storeValueWithObject:(NSObject*)object name:(NSString*)name;
-- (id)valueWithResultSet:(FMResultSet*)resultSet colunmName:(NSString*)columnName;
+- (id)valueWithResultSet:(FMResultSet*)resultSet attribute:(BZObjectStoreRuntimeProperty*)attribute;
+
 - (NSString*)sqliteDataTypeName;
 
 // constractor
