@@ -262,9 +262,9 @@
 
 #pragma mark mapping methods
 
-- (id)storeValueWithObject:(NSObject*)object
+- (NSArray*)storeValuesWithObject:(NSObject*)object
 {
-    return [self.osclazz storeValueWithObject:object attributeName:self.name];
+    return [self.osclazz storeValuesWithObject:object attributeName:self.name];
 }
 
 - (id)valueWithResultSet:(FMResultSet*)resultSet

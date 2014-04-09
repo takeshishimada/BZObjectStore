@@ -66,7 +66,7 @@
 @property (nonatomic,strong) NSString *sqliteDataTypeName;
 
 // mapper methods
-- (id)storeValueWithObject:(NSObject*)object;
+- (NSArray*)storeValuesWithObject:(NSObject*)object;
 - (id)valueWithResultSet:(FMResultSet*)resultSet;
 
 // statement methods

@@ -51,13 +51,13 @@
     }
 }
 
-- (id)storeValueWithObject:(NSObject*)object attributeName:(NSString*)attributeName
+- (NSArray*)storeValuesWithObject:(NSObject*)object attributeName:(NSString*)attributeName
 {
     NSNumber *value = [object valueForKey:attributeName];
     // Fixed me
     // NSNumber contains char always be saved as 0 or 1...
     NSNumber *number = [NSNumber numberWithInt:[value intValue]];
-    return [self storeValueWithValue:number];
+    return @[[self storeValueWithValue:number]];
 }
 
 - (id)valueWithResultSet:(FMResultSet*)resultSet attribute:(BZObjectStoreRuntimeProperty*)attribute

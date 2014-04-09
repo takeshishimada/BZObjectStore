@@ -43,7 +43,7 @@
 - (NSArray*)keysWithObject:(id)object;
 - (id)valueWithStoreValue:(id)value;
 - (id)storeValueWithValue:(id)value;
-- (id)storeValueWithObject:(NSObject*)object attributeName:(NSString*)attributeName;
+- (NSArray*)storeValuesWithObject:(NSObject*)object attributeName:(NSString*)attributeName;
 - (id)valueWithResultSet:(FMResultSet*)resultSet attribute:(BZObjectStoreRuntimeProperty*)attribute;
 - (NSString*)sqliteDataTypeName;
 

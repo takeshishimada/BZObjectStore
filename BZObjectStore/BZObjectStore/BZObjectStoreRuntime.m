@@ -274,9 +274,11 @@
     if (self.hasNotUpdateIfValueIsNullAttribute) {
         NSMutableArray *attributes = [NSMutableArray array];
         for (BZObjectStoreRuntimeProperty *attribute in self.updateAttributes) {
-            id value = [attribute storeValueWithObject:object];
-            if (value != [NSNull null]) {
-                [attributes addObject:attribute];
+            NSArray *values = [attribute storeValuesWithObject:object];
+            for (id value in values) {
+                if (value != [NSNull null]) {
+                    [attributes addObject:attribute];
+                }
             }
         }
         NSMutableString *sql = [NSMutableString string];
@@ -356,7 +358,7 @@
 {
     NSMutableArray *parameters = [NSMutableArray array];
     for (BZObjectStoreRuntimeProperty *attribute in self.insertAttributes) {
-        [parameters addObject:[attribute storeValueWithObject:object]];
+        [parameters addObjectsFromArray:[attribute storeValuesWithObject:object]];
     }
     return parameters;
 }
@@ -365,7 +367,7 @@
 {
     NSMutableArray *parameters = [NSMutableArray array];
     for (BZObjectStoreRuntimeProperty *attribute in self.insertAttributes) {
-        [parameters addObject:[attribute storeValueWithObject:object]];
+        [parameters addObjectsFromArray:[attribute storeValuesWithObject:object]];
     }
     return parameters;
 }
@@ -374,7 +376,7 @@
 {
     NSMutableArray *parameters = [NSMutableArray array];
     for (BZObjectStoreRuntimeProperty *attribute in self.attributes) {
-        [parameters addObject:[attribute storeValueWithObject:object]];
+        [parameters addObjectsFromArray:[attribute storeValuesWithObject:object]];
     }
     return parameters;
 }
@@ -384,14 +386,16 @@
     NSMutableArray *parameters = [NSMutableArray array];
     if (self.hasNotUpdateIfValueIsNullAttribute) {
         for (BZObjectStoreRuntimeProperty *attribute in self.updateAttributes) {
-            id value = [attribute storeValueWithObject:object];
-            if (value != [NSNull null]) {
-                [parameters addObject:value];
+            NSArray *values = [attribute storeValuesWithObject:object];
+            for (id value in values) {
+                if (value != [NSNull null]) {
+                    [parameters addObject:value];
+                }
             }
         }
     } else {
         for (BZObjectStoreRuntimeProperty *attribute in self.updateAttributes) {
-            [parameters addObject:[attribute storeValueWithObject:object]];
+            [parameters addObjectsFromArray:[attribute storeValuesWithObject:object]];
         }
     }
     return parameters;
@@ -401,7 +405,7 @@
 {
     NSMutableArray *parameters = [NSMutableArray array];
     for (BZObjectStoreRuntimeProperty *attribute in self.identificationAttributes) {
-        [parameters addObject:[attribute storeValueWithObject:object]];
+        [parameters addObjectsFromArray:[attribute storeValuesWithObject:object]];
     }
     return parameters;
 }
@@ -409,7 +413,7 @@
 - (NSMutableArray*)rowidAttributeParameter:(NSObject*)object
 {
     NSMutableArray *parameters = [NSMutableArray array];
-    [parameters addObject:[self.attributes.firstObject storeValueWithObject:object]];
+    [parameters addObjectsFromArray:[self.attributes.firstObject storeValuesWithObject:object]];
     return parameters;
 }
 

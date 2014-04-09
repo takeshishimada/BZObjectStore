@@ -51,10 +51,10 @@
     }
 }
 
-- (id)storeValueWithObject:(NSObject*)object attributeName:(NSString*)attributeName
+- (NSArray*)storeValuesWithObject:(NSObject*)object attributeName:(NSString*)attributeName
 {
     NSObject *value = [object valueForKey:attributeName];
-    return [self storeValueWithValue:value];
+    return @[[self storeValueWithValue:value]];
 }
 
 - (id)valueWithResultSet:(FMResultSet*)resultSet attribute:(BZObjectStoreRuntimeProperty*)attribute
