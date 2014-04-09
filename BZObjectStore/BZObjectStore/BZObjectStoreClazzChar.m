@@ -51,9 +51,9 @@
     }
 }
 
-- (id)storeValueWithObject:(NSObject*)object name:(NSString*)name
+- (id)storeValueWithObject:(NSObject*)object attributeName:(NSString*)attributeName
 {
-    NSNumber *value = [object valueForKey:name];
+    NSNumber *value = [object valueForKey:attributeName];
     // Fixed me
     // NSNumber contains char always be saved as 0 or 1...
     NSNumber *number = [NSNumber numberWithInt:[value intValue]];

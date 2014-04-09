@@ -76,9 +76,9 @@
     return nil;
 }
 
-- (id)storeValueWithObject:(NSObject*)object name:(NSString*)name
+- (id)storeValueWithObject:(NSObject*)object attributeName:(NSString*)attributeName
 {
-    return [self storeValueWithValue:[object valueForKey:name]];
+    return [self storeValueWithValue:[object valueForKey:attributeName]];
 }
 
 - (id)valueWithResultSet:(FMResultSet*)resultSet attribute:(BZObjectStoreRuntimeProperty*)attribute

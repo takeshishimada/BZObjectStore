@@ -51,9 +51,9 @@
     }
 }
 
-- (id)storeValueWithObject:(NSObject*)object name:(NSString*)name
+- (id)storeValueWithObject:(NSObject*)object attributeName:(NSString*)attributeName
 {
-    NSObject *value = [object valueForKey:name];
+    NSObject *value = [object valueForKey:attributeName];
     return [self storeValueWithValue:value];
 }
 
