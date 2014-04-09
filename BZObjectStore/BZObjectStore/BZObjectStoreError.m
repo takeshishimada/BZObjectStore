@@ -43,5 +43,13 @@ NSString* const BZObjectStoreErrorDomain = @"info.bonzoo.ObjectStore";
                                     userInfo:@{NSLocalizedDescriptionKey:message}];
 }
 
++ (id)errorInvalidColumnName:(NSString*)message
+{
+	message = [NSString stringWithFormat:@"Invalid column name exists: %@", message];
+    return [BZObjectStoreError errorWithDomain:BZObjectStoreErrorDomain
+                                          code:kBZObjectStoreErrorInvalidAttribute
+                                      userInfo:@{NSLocalizedDescriptionKey:message}];
+}
+
 
 @end

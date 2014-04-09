@@ -224,10 +224,11 @@
 }
 
 // attribute with name
-- (BZObjectStoreRuntimeProperty*)attributeWithName:(NSString*)name
+- (BZObjectStoreRuntimeProperty*)attributeWithColumnName:(NSString*)columnName
 {
+    // todo
     for (BZObjectStoreRuntimeProperty *attribute in self.attributes) {
-        if ([attribute.name isEqualToString:name]) {
+        if ([attribute.name isEqualToString:columnName]) {
             return attribute;
         }
     }

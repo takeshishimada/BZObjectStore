@@ -46,11 +46,11 @@
 
 @interface BZObjectStoreReferenceMapper (Protected)
 - (NSNumber*)existsObject:(NSObject*)object db:(FMDatabase*)db error:(NSError**)error;
-- (NSNumber*)max:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error;
-- (NSNumber*)min:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error;
-- (NSNumber*)avg:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error;
-- (NSNumber*)total:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error;
-- (NSNumber*)sum:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error;
+- (NSNumber*)max:(NSString*)columnName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error;
+- (NSNumber*)min:(NSString*)columnName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error;
+- (NSNumber*)avg:(NSString*)columnName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error;
+- (NSNumber*)total:(NSString*)columnName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error;
+- (NSNumber*)sum:(NSString*)columnName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error;
 - (NSNumber*)count:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error;
 - (NSNumber*)referencedCount:(NSObject*)object db:(FMDatabase*)db error:(NSError**)error;
 - (NSMutableArray*)fetchReferencingObjectsWithToObject:(NSObject*)object db:(FMDatabase*)db error:(NSError**)error;
@@ -181,12 +181,12 @@
     return value;
 }
 
-- (NSNumber*)max:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition error:(NSError**)error
+- (NSNumber*)max:(NSString*)columnName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition error:(NSError**)error
 {
     __block NSError *err = nil;
     __block id value = nil;
     [self inDatabaseWithBlock:^(FMDatabase *db) {
-        value = [self max:attributeName class:clazz condition:condition db:db error:&err];
+        value = [self max:columnName class:clazz condition:condition db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
         }
@@ -197,12 +197,12 @@
     return value;
 }
 
-- (NSNumber*)min:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition error:(NSError**)error
+- (NSNumber*)min:(NSString*)columnName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition error:(NSError**)error
 {
     __block NSError *err = nil;
     __block id value = nil;
     [self inDatabaseWithBlock:^(FMDatabase *db) {
-        value = [self min:attributeName class:clazz condition:condition db:db error:&err];
+        value = [self min:columnName class:clazz condition:condition db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
         }
@@ -213,12 +213,12 @@
     return value;
 }
 
-- (NSNumber*)total:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition error:(NSError**)error
+- (NSNumber*)total:(NSString*)columnName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition error:(NSError**)error
 {
     __block NSError *err = nil;
     __block id value = nil;
     [self inDatabaseWithBlock:^(FMDatabase *db) {
-        value = [self total:attributeName class:clazz condition:condition db:db error:&err];
+        value = [self total:columnName class:clazz condition:condition db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
         }
@@ -229,12 +229,12 @@
     return value;
 }
 
-- (NSNumber*)sum:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition error:(NSError**)error
+- (NSNumber*)sum:(NSString*)columnName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition error:(NSError**)error
 {
     __block NSError *err = nil;
     __block id value = nil;
     [self inDatabaseWithBlock:^(FMDatabase *db) {
-        value = [self sum:attributeName class:clazz condition:condition db:db error:&err];
+        value = [self sum:columnName class:clazz condition:condition db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
         }
@@ -245,12 +245,12 @@
     return value;
 }
 
-- (NSNumber*)avg:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition error:(NSError**)error
+- (NSNumber*)avg:(NSString*)columnName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition error:(NSError**)error
 {
     __block NSError *err = nil;
     __block id value = nil;
     [self inDatabaseWithBlock:^(FMDatabase *db) {
-        value = [self avg:attributeName class:clazz condition:condition db:db error:&err];
+        value = [self avg:columnName class:clazz condition:condition db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
         }

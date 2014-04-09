@@ -48,37 +48,37 @@
 
 @implementation BZObjectStoreModelMapper
 
-- (NSNumber*)avg:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreFetchConditionModel*)condition db:(FMDatabase*)db
+- (NSNumber*)avg:(NSString*)columnName attribute:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreFetchConditionModel*)condition db:(FMDatabase*)db
 {
-    NSString *sql = [attribute avgStatementWithCondition:condition];
+    NSString *sql = [attribute avgStatementWithColumnName:columnName condition:condition];
     NSNumber *value = [self groupWithStatement:sql attribute:attribute condition:condition db:db];
     return value;
 }
 
-- (NSNumber*)total:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreFetchConditionModel*)condition db:(FMDatabase*)db
+- (NSNumber*)total:(NSString*)columnName attribute:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreFetchConditionModel*)condition db:(FMDatabase*)db
 {
-    NSString *sql = [attribute totalStatementWithCondition:condition];
+    NSString *sql = [attribute totalStatementWithColumnName:columnName condition:condition];
     NSNumber *value = [self groupWithStatement:sql attribute:attribute condition:condition db:db];
     return value;
 }
 
-- (NSNumber*)sum:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreFetchConditionModel*)condition db:(FMDatabase*)db
+- (NSNumber*)sum:(NSString*)columnName attribute:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreFetchConditionModel*)condition db:(FMDatabase*)db
 {
-    NSString *sql = [attribute sumStatementWithCondition:condition];
+    NSString *sql = [attribute sumStatementWithColumnName:columnName condition:condition];
     NSNumber *value = [self groupWithStatement:sql attribute:attribute condition:condition db:db];
     return value;
 }
 
-- (NSNumber*)min:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreFetchConditionModel*)condition db:(FMDatabase*)db
+- (NSNumber*)min:(NSString*)columnName attribute:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreFetchConditionModel*)condition db:(FMDatabase*)db
 {
-    NSString *sql = [attribute minStatementWithCondition:condition];
+    NSString *sql = [attribute minStatementWithColumnName:columnName condition:condition];
     NSNumber *value = [self groupWithStatement:sql attribute:attribute condition:condition db:db];
     return value;
 }
 
-- (NSNumber*)max:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreFetchConditionModel*)condition db:(FMDatabase*)db
+- (NSNumber*)max:(NSString*)columnName attribute:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreFetchConditionModel*)condition db:(FMDatabase*)db
 {
-    NSString *sql = [attribute maxStatementWithCondition:condition];
+    NSString *sql = [attribute maxStatementWithColumnName:columnName condition:condition];
     NSNumber *value = [self groupWithStatement:sql attribute:attribute condition:condition db:db];
     return value;
 }

@@ -63,7 +63,6 @@
 {
     // name
     self.name  = bzproperty.name;
-//    self.tableName = [runtime.nameBuilder tableName:runtime.clazz];
     self.columnName = [runtime.nameBuilder columnName:bzproperty.name clazz:runtime.clazz];
     
     // data type
@@ -235,27 +234,27 @@
     return self.alterTableAddColumnTemplateStatement;
 }
 
-- (NSString*)minStatementWithCondition:(BZObjectStoreFetchConditionModel*)condition
+- (NSString*)minStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreFetchConditionModel*)condition
 {
     return self.minTemplateStatement;
 }
 
-- (NSString*)maxStatementWithCondition:(BZObjectStoreFetchConditionModel*)condition
+- (NSString*)maxStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreFetchConditionModel*)condition
 {
     return self.maxTemplateStatement;
 }
 
-- (NSString*)avgStatementWithCondition:(BZObjectStoreFetchConditionModel*)condition
+- (NSString*)avgStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreFetchConditionModel*)condition
 {
     return self.avgTemplateStatement;
 }
 
-- (NSString*)totalStatementWithCondition:(BZObjectStoreFetchConditionModel*)condition
+- (NSString*)totalStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreFetchConditionModel*)condition
 {
     return self.totalTemplateStatement;
 }
 
-- (NSString*)sumStatementWithCondition:(BZObjectStoreFetchConditionModel*)condition
+- (NSString*)sumStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreFetchConditionModel*)condition
 {
     return self.sumTemplateStatement;
 }

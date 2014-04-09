@@ -35,6 +35,7 @@
 #import "BZRelationshipItemModel.h"
 #import "BZResponseModel.h"
 #import "BZCircularReferenceModel.h"
+#import "BZSQLiteGroupConditionModel.h"
 
 @interface BZObjectStoreTests : XCTestCase
 
@@ -62,6 +63,7 @@
     [self testBZRelationshipHeaderModel:disk];
     [self testBZResponseModel:disk];
     [self testCircularReference:disk];
+    [self testSQLiteGroupCondition:disk];
     
     BZObjectStore *memory = [BZObjectStoreOnMemory sharedInstance];
     [self testBZVarietyValuesModel:memory];
@@ -69,6 +71,8 @@
     [self testBZRelationshipHeaderModel:memory];
     [self testBZResponseModel:memory];
     [self testCircularReference:memory];
+    [self testSQLiteGroupCondition:memory];
+    
 }
 
 - (void)testBZVarietyValuesModel:(BZObjectStore*)os
@@ -511,4 +515,59 @@
     
 }
 
+- (void)testSQLiteGroupCondition:(BZObjectStore*)os
+{
+    NSError *error = nil;
+    
+    BZSQLiteGroupConditionModel *item1 = [[BZSQLiteGroupConditionModel alloc]initWithNo:@"10" name:@"apple" price:100];
+    BZSQLiteGroupConditionModel *item2 = [[BZSQLiteGroupConditionModel alloc]initWithNo:@"20" name:@"banana" price:140];
+    BZSQLiteGroupConditionModel *item3 = [[BZSQLiteGroupConditionModel alloc]initWithNo:@"30" name:@"orange" price:200];
+    BZSQLiteGroupConditionModel *item4 = [[BZSQLiteGroupConditionModel alloc]initWithNo:@"40" name:@"pineapple" price:400];
+    
+    [os saveObjects:@[item1,item2,item3,item4] error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    
+    NSNumber *max = [os max:@"price" class:[BZSQLiteGroupConditionModel class] condition:nil error:nil];
+    if (error) {
+        XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    } else {
+        XCTAssertTrue([max isEqualToNumber:@400],"error");
+    }
+    
+    NSNumber *min = [os min:@"price" class:[BZSQLiteGroupConditionModel class] condition:nil error:nil];
+    if (error) {
+        XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    } else {
+        XCTAssertTrue([min isEqualToNumber:@100],"error");
+    }
+    
+    NSNumber *avg = [os avg:@"price" class:[BZSQLiteGroupConditionModel class] condition:nil error:nil];
+    if (error) {
+        XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    } else {
+        XCTAssertTrue([avg isEqualToNumber:@210],"error");
+    }
+    
+    NSNumber *sum = [os sum:@"price" class:[BZSQLiteGroupConditionModel class] condition:nil error:nil];
+    if (error) {
+        XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    } else {
+        XCTAssertTrue([sum integerValue] == 840,"error");
+    }
+
+    NSNumber *total = [os total:@"price" class:[BZSQLiteGroupConditionModel class] condition:nil error:nil];
+    if (error) {
+        XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    } else {
+        XCTAssertTrue([total integerValue] == 840,"error");
+    }
+
+    NSNumber *count = [os count:[BZSQLiteGroupConditionModel class] condition:nil error:nil];
+    if (error) {
+        XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    } else {
+        XCTAssertTrue([count integerValue] == 4,"error");
+    }
+    
+}
 @end

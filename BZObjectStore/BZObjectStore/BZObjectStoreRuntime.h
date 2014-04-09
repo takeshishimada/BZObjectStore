@@ -91,7 +91,7 @@
 - (NSMutableArray*)updateAttributesParameters:(NSObject*)object;
 
 // attribute with name
-- (BZObjectStoreRuntimeProperty*)attributeWithName:(NSString*)name;
+- (BZObjectStoreRuntimeProperty*)attributeWithColumnName:(NSString*)columnName;
 
 // for value in array
 - (NSString*)initializingOptionsWithObject:(NSObject*)object;

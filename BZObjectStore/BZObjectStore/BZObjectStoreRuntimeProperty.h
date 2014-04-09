@@ -71,10 +71,10 @@
 
 // statement methods
 - (NSString*)alterTableAddColumnStatement;
-- (NSString*)minStatementWithCondition:(BZObjectStoreFetchConditionModel*)condition;
-- (NSString*)maxStatementWithCondition:(BZObjectStoreFetchConditionModel*)condition;
-- (NSString*)avgStatementWithCondition:(BZObjectStoreFetchConditionModel*)condition;
-- (NSString*)totalStatementWithCondition:(BZObjectStoreFetchConditionModel*)condition;
-- (NSString*)sumStatementWithCondition:(BZObjectStoreFetchConditionModel*)condition;
+- (NSString*)minStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreFetchConditionModel*)condition;
+- (NSString*)maxStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreFetchConditionModel*)condition;
+- (NSString*)avgStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreFetchConditionModel*)condition;
+- (NSString*)totalStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreFetchConditionModel*)condition;
+- (NSString*)sumStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreFetchConditionModel*)condition;
 
 @end

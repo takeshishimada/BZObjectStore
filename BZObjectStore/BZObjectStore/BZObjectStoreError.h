@@ -32,4 +32,5 @@ typedef NS_ENUM(int, kJSONModelErrorTypes)
 @interface BZObjectStoreError : NSError
 + (id)errorInvalidObject:(NSString*)message;
 + (id)errorInvalidAttribute:(NSString*)message;
++ (id)errorInvalidColumnName:(NSString*)message;
 @end
