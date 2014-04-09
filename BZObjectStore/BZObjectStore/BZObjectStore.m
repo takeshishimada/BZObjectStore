@@ -25,7 +25,7 @@
 #import "BZObjectStoreAttributeInterface.h"
 #import "BZObjectStoreRelationshipModel.h"
 #import "BZObjectStoreAttributeModel.h"
-#import "BZObjectStoreConditionModel.h"
+#import "BZObjectStoreFetchConditionModel.h"
 #import "BZObjectStoreRuntime.h"
 #import "BZObjectStoreRuntimeProperty.h"
 #import "BZObjectStoreNameBuilder.h"
@@ -46,19 +46,19 @@
 
 @interface BZObjectStoreReferenceMapper (Protected)
 - (NSNumber*)existsObject:(NSObject*)object db:(FMDatabase*)db error:(NSError**)error;
-- (NSNumber*)max:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error;
-- (NSNumber*)min:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error;
-- (NSNumber*)avg:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error;
-- (NSNumber*)total:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error;
-- (NSNumber*)sum:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error;
-- (NSNumber*)count:(Class)clazz condition:(BZObjectStoreConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error;
+- (NSNumber*)max:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error;
+- (NSNumber*)min:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error;
+- (NSNumber*)avg:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error;
+- (NSNumber*)total:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error;
+- (NSNumber*)sum:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error;
+- (NSNumber*)count:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error;
 - (NSNumber*)referencedCount:(NSObject*)object db:(FMDatabase*)db error:(NSError**)error;
 - (NSMutableArray*)fetchReferencingObjectsWithToObject:(NSObject*)object db:(FMDatabase*)db error:(NSError**)error;
 - (NSArray*)refreshObject:(NSObject*)object db:(FMDatabase*)db error:(NSError**)error;
-- (NSMutableArray*)fetchObjects:(Class)clazz condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db error:(NSError**)error;
+- (NSMutableArray*)fetchObjects:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition db:(FMDatabase*)db error:(NSError**)error;
 - (BOOL)saveObjects:(NSArray*)objects db:(FMDatabase*)db error:(NSError**)error;
 - (BOOL)removeObjects:(NSArray*)objects db:(FMDatabase*)db error:(NSError**)error;
-- (BOOL)removeObjects:(Class)clazz condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db error:(NSError**)error;
+- (BOOL)removeObjects:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition db:(FMDatabase*)db error:(NSError**)error;
 @end
 
 
@@ -165,7 +165,7 @@
     return exists;
 }
 
-- (NSNumber*)count:(Class)clazz condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error
+- (NSNumber*)count:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition error:(NSError**)error
 {
     __block NSError *err = nil;
     __block NSNumber *value = nil;
@@ -181,7 +181,7 @@
     return value;
 }
 
-- (NSNumber*)max:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error
+- (NSNumber*)max:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition error:(NSError**)error
 {
     __block NSError *err = nil;
     __block id value = nil;
@@ -197,7 +197,7 @@
     return value;
 }
 
-- (NSNumber*)min:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error
+- (NSNumber*)min:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition error:(NSError**)error
 {
     __block NSError *err = nil;
     __block id value = nil;
@@ -213,7 +213,7 @@
     return value;
 }
 
-- (NSNumber*)total:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error
+- (NSNumber*)total:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition error:(NSError**)error
 {
     __block NSError *err = nil;
     __block id value = nil;
@@ -229,7 +229,7 @@
     return value;
 }
 
-- (NSNumber*)sum:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error
+- (NSNumber*)sum:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition error:(NSError**)error
 {
     __block NSError *err = nil;
     __block id value = nil;
@@ -245,7 +245,7 @@
     return value;
 }
 
-- (NSNumber*)avg:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error
+- (NSNumber*)avg:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition error:(NSError**)error
 {
     __block NSError *err = nil;
     __block id value = nil;
@@ -299,7 +299,7 @@
 
 #pragma mark fetch methods
 
-- (NSMutableArray*)fetchObjects:(Class)clazz condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error
+- (NSMutableArray*)fetchObjects:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition error:(NSError**)error
 {
     __block NSError *err = nil;
     __block NSMutableArray *value = nil;
@@ -383,7 +383,7 @@
 
 #pragma mark remove methods
 
-- (BOOL)removeObjects:(Class)clazz condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error
+- (BOOL)removeObjects:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition error:(NSError**)error
 {
     __block NSError *err = nil;
     __block BOOL ret = NO;

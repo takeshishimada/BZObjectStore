@@ -27,7 +27,7 @@
 #import "BZObjectStoreConst.h"
 #import "BZObjectStoreNameBuilder.h"
 #import "BZObjectStoreRelationshipModel.h"
-#import "BZObjectStoreConditionModel.h"
+#import "BZObjectStoreFetchConditionModel.h"
 #import "NSObject+BZObjectStore.h"
 
 @implementation BZObjectStoreQueryBuilder
@@ -368,79 +368,79 @@
 
 #pragma mark condition
 
-+ (NSString*)selectConditionStatement:(BZObjectStoreConditionModel*)condition
++ (NSString*)selectConditionStatement:(BZObjectStoreFetchConditionModel*)condition
 {
     NSMutableString *sql = [NSMutableString string];
     [sql appendString:@" where "];
-    if (condition.where) {
+    if (condition.sqliteCondition.where) {
         [sql appendString:@" ("];
-        [sql appendString:condition.where];
+        [sql appendString:condition.sqliteCondition.where];
         [sql appendString:@" )"];
     }
     return [NSString stringWithString:sql];
 }
 
-+ (NSString*)deleteConditionStatement:(BZObjectStoreConditionModel*)condition
++ (NSString*)deleteConditionStatement:(BZObjectStoreFetchConditionModel*)condition
 {
     NSMutableString *sql = [NSMutableString string];
     [sql appendString:@" where "];
-    if (condition.where) {
+    if (condition.sqliteCondition.where) {
         [sql appendString:@" ("];
-        [sql appendString:condition.where];
+        [sql appendString:condition.sqliteCondition.where];
         [sql appendString:@" )"];
     }
     return [NSString stringWithString:sql];
 }
 
-+ (NSString*)updateConditionStatement:(BZObjectStoreConditionModel*)condition
++ (NSString*)updateConditionStatement:(BZObjectStoreFetchConditionModel*)condition
 {
     NSMutableString *sql = [NSMutableString string];
     [sql appendString:@" where "];
-    if (condition.where) {
+    if (condition.sqliteCondition.where) {
         [sql appendString:@" ("];
-        [sql appendString:condition.where];
+        [sql appendString:condition.sqliteCondition.where];
         [sql appendString:@" )"];
     }
     return [NSString stringWithString:sql];
 }
 
-+ (NSString*)selectConditionStatement:(BZObjectStoreConditionModel*)condition runtime:(BZObjectStoreRuntime*)runtime
++ (NSString*)selectConditionStatement:(BZObjectStoreFetchConditionModel*)condition runtime:(BZObjectStoreRuntime*)runtime
 {
     NSMutableString *sql = [NSMutableString string];
-    if ( condition.where || condition.referencingObject || condition.containtsObject) {
+    if ( condition.sqliteCondition.where || condition.referenceCondition.from || condition.referenceCondition.to) {
         BOOL firstCondition = YES;
         [sql appendString:@" where "];
-        if (condition.where) {
+        if (condition.sqliteCondition.where) {
             [sql appendString:@" ("];
-            [sql appendString:condition.where];
+            [sql appendString:condition.sqliteCondition.where];
             [sql appendString:@" )"];
             firstCondition = NO;
         }
         BZObjectStoreRelationshipModel *relationship = [[BZObjectStoreRelationshipModel alloc]init];
-        if (condition.referencingObject) {
+        if (condition.referenceCondition.from) {
             if (!firstCondition) {
                 [sql appendString:@" AND "];
                 firstCondition = NO;
             }
             NSString *relationshipTableName = [runtime.nameBuilder tableName:[BZObjectStoreRelationshipModel class]];
             NSString *toTableName = runtime.tableName;
-            NSString *fromTableName = [runtime.nameBuilder tableName:[condition.referencingObject class]];
-            NSString *fromRowid = [condition.referencingObject.rowid stringValue];
-            if ([NSNull null] == condition.referencingObject) {
+            NSString *fromTableName = [runtime.nameBuilder tableName:[condition.referenceCondition.from class]];
+            NSString *fromRowid = [condition.referenceCondition.from.rowid stringValue];
+            if ([NSNull null] == condition.referenceCondition.from) {
                 [sql appendString:[NSString stringWithFormat:@" NOT EXISTS (SELECT * FROM %@ r1 WHERE r1.toRowid = %@.rowid AND r1.toTableName = '%@' )",relationshipTableName,toTableName,toTableName]];
             } else {
                 [sql appendString:[NSString stringWithFormat:@" EXISTS (SELECT * FROM %@ r1 WHERE r1.fromTableName = '%@' and r1.fromRowid = %@ and r1.toRowid = %@.rowid AND r1.toTableName = '%@' )",relationshipTableName,fromTableName,fromRowid,toTableName,toTableName]];
             }
         }
-        if (condition.containtsObject) {
+        if (condition.referenceCondition.to) {
             if (!firstCondition) {
                 [sql appendString:@" AND "];
             }
             NSString *relationshipTableName = [runtime.nameBuilder tableName:[relationship class]];
             NSString *fromTableName = runtime.tableName;
-            NSString *toTableName = [runtime.nameBuilder tableName:[condition.containtsObject class]];
-            NSString *toRowid = [condition.containtsObject.rowid stringValue];
-            if ([NSNull null] == condition.containtsObject) {
+            NSString *toTableName = [runtime.nameBuilder tableName:[condition.referenceCondition.to class]];
+            NSString *toRowid = [condition.referenceCondition.to.rowid stringValue];
+            if ([NSNull null] == condition.referenceCondition.to) {
                 [sql appendString:[NSString stringWithFormat:@" NOT EXISTS (SELECT * FROM %@ r1 WHERE r1.fromRowid = %@.rowid AND r1.fromTableName = '%@' )",relationshipTableName,fromTableName,fromTableName]];
             } else {
                 [sql appendString:[NSString stringWithFormat:@" EXISTS (SELECT * FROM %@ r1 WHERE r1.toTableName = '%@' and r1.toRowid = %@ and r1.fromRowid = %@.rowid AND r1.fromTableName = '%@' )",relationshipTableName,toTableName,toRowid,fromTableName,fromTableName]];
@@ -450,22 +450,22 @@
     return [NSString stringWithString:sql];
 }
 
-+ (NSString*)selectConditionOptionStatement:(BZObjectStoreConditionModel*)condition
++ (NSString*)selectConditionOptionStatement:(BZObjectStoreFetchConditionModel*)condition
 {
     NSMutableString *sql = [NSMutableString string];
-    if ( condition.orderBy ) {
+    if ( condition.sqliteCondition.orderBy ) {
         [sql appendString:@" order by "];
-        [sql appendString:condition.orderBy];
+        [sql appendString:condition.sqliteCondition.orderBy];
         [sql appendString:@" "];
     }
-    if ( condition.limit ) {
+    if ( condition.sqliteCondition.limit ) {
         [sql appendString:@" limit "];
-        [sql appendString:[condition.limit stringValue]];
+        [sql appendString:[condition.sqliteCondition.limit stringValue]];
         [sql appendString:@" "];
     }
-    if ( condition.offset ) {
+    if ( condition.sqliteCondition.offset ) {
         [sql appendString:@" offset "];
-        [sql appendString:[condition.offset stringValue]];
+        [sql appendString:[condition.sqliteCondition.offset stringValue]];
         [sql appendString:@" "];
     }
     return [NSString stringWithString:sql];

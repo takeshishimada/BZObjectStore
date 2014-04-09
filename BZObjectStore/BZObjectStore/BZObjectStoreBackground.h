@@ -30,19 +30,19 @@
 
 - (void)removeObjectInBackground:(NSObject*)object completionBlock:(void(^)(NSError *error))completionBlock;
 - (void)removeObjectsInBackground:(NSArray*)objects completionBlock:(void(^)(NSError *error))completionBlock;
-- (void)removeObjectsInBackground:(Class)clazz condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSError *error))completionBlock;
+- (void)removeObjectsInBackground:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition completionBlock:(void(^)(NSError *error))completionBlock;
 
 - (void)refreshObjectInBackground:(NSObject*)object completionBlock:(void(^)(NSObject *object,NSError *error))completionBlock;
-- (void)fetchObjectsInBackground:(Class)clazz condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSArray *objects,NSError *error))completionBlock;
+- (void)fetchObjectsInBackground:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition completionBlock:(void(^)(NSArray *objects,NSError *error))completionBlock;
 - (void)fetchReferencingObjectsWithToObject:(NSObject*)object completionBlock:(void(^)(NSArray *objects,NSError *error))completionBlock;
 
-- (void)countInBackground:(Class)clazz condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock;
+- (void)countInBackground:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock;
 
 - (void)referencedCountInBackground:(NSObject*)object completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock;
-- (void)maxInBackground:(NSString*)attributeName clazz:(Class)clazz condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock;
-- (void)minInBackground:(NSString*)attributeName clazz:(Class)clazz condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock;
-- (void)sumInBackground:(NSString*)attributeName clazz:(Class)clazz condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock;
-- (void)totalInBackground:(NSString*)attributeName clazz:(Class)clazz condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock;
-- (void)avgInBackground:(NSString*)attributeName clazz:(Class)clazz condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock;
+- (void)maxInBackground:(NSString*)attributeName clazz:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock;
+- (void)minInBackground:(NSString*)attributeName clazz:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock;
+- (void)sumInBackground:(NSString*)attributeName clazz:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock;
+- (void)totalInBackground:(NSString*)attributeName clazz:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock;
+- (void)avgInBackground:(NSString*)attributeName clazz:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock;
 
 @end

@@ -457,7 +457,7 @@
 {
     NSError *error = nil;
     NSMutableArray *list = [NSMutableArray array];
-    for (NSInteger i = 0; i < 100000; i++ ) {
+    for (NSInteger i = 0; i < 1000; i++ ) {
         BZResponseModel *model = [[BZResponseModel alloc]init];
         model.code = [NSString stringWithFormat:@"%d",i];
         model.name = [NSString stringWithFormat:@"name %d",i];

@@ -25,7 +25,7 @@
 
 @class BZObjectStoreRuntime;
 @class BZObjectStoreRuntimeProperty;
-@class BZObjectStoreConditionModel;
+@class BZObjectStoreFetchConditionModel;
 @class BZObjectStoreNameBuilder;
 
 @interface BZObjectStoreQueryBuilder : NSObject
@@ -46,11 +46,11 @@
 + (NSString*)referencedCountStatement:(BZObjectStoreRuntime*)runtime;
 + (NSString*)countStatement:(BZObjectStoreRuntime*)runtime;
 
-+ (NSString*)selectConditionStatement:(BZObjectStoreConditionModel*)condition;
-+ (NSString*)selectConditionStatement:(BZObjectStoreConditionModel*)condition runtime:(BZObjectStoreRuntime*)runtime;
-+ (NSString*)selectConditionOptionStatement:(BZObjectStoreConditionModel*)condition;
-+ (NSString*)deleteConditionStatement:(BZObjectStoreConditionModel*)condition;
-+ (NSString*)updateConditionStatement:(BZObjectStoreConditionModel*)condition;
++ (NSString*)selectConditionStatement:(BZObjectStoreFetchConditionModel*)condition;
++ (NSString*)selectConditionStatement:(BZObjectStoreFetchConditionModel*)condition runtime:(BZObjectStoreRuntime*)runtime;
++ (NSString*)selectConditionOptionStatement:(BZObjectStoreFetchConditionModel*)condition;
++ (NSString*)deleteConditionStatement:(BZObjectStoreFetchConditionModel*)condition;
++ (NSString*)updateConditionStatement:(BZObjectStoreFetchConditionModel*)condition;
 
 + (NSString*)rowidConditionStatement;
 + (NSString*)uniqueConditionStatement:(BZObjectStoreRuntime*)runtime;

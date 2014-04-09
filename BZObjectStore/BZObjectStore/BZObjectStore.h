@@ -22,8 +22,8 @@
 // THE SOFTWARE.
 
 #import "BZObjectStoreReferenceMapper.h"
-#import "BZObjectStoreConditionModel.h"
 #import "BZObjectStoreAttributeInterface.h"
+#import "BZObjectStoreFetchConditionModel.h"
 
 @class FMDatabaseQueue;
 
@@ -38,21 +38,21 @@
 
 - (BOOL)removeObject:(NSObject*)object error:(NSError**)error;
 - (BOOL)removeObjects:(NSArray *)objects error:(NSError**)error;
-- (BOOL)removeObjects:(Class)clazz condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error;
+- (BOOL)removeObjects:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition error:(NSError**)error;
 
 - (id)refreshObject:(NSObject*)object error:(NSError**)error;
-- (NSMutableArray*)fetchObjects:(Class)clazz condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error;
+- (NSMutableArray*)fetchObjects:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition error:(NSError**)error;
 - (NSMutableArray*)fetchReferencingObjectsWithToObject:(NSObject*)object error:(NSError**)error;
 
-- (NSNumber*)count:(Class)clazz condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error;
+- (NSNumber*)count:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition error:(NSError**)error;
 - (NSNumber*)referencedCount:(NSObject*)object error:(NSError**)error;
 - (NSNumber*)existsObject:(NSObject*)object error:(NSError**)error;
 
-- (NSNumber*)max:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error;
-- (NSNumber*)min:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error;
-- (NSNumber*)sum:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error;
-- (NSNumber*)total:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error;
-- (NSNumber*)avg:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error;
+- (NSNumber*)max:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition error:(NSError**)error;
+- (NSNumber*)min:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition error:(NSError**)error;
+- (NSNumber*)sum:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition error:(NSError**)error;
+- (NSNumber*)total:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition error:(NSError**)error;
+- (NSNumber*)avg:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition error:(NSError**)error;
 
 - (BOOL)registerClazz:(Class)clazz error:(NSError**)error;
 

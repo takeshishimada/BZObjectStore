@@ -235,27 +235,27 @@
     return self.alterTableAddColumnTemplateStatement;
 }
 
-- (NSString*)minStatementWithCondition:(BZObjectStoreConditionModel*)condition
+- (NSString*)minStatementWithCondition:(BZObjectStoreFetchConditionModel*)condition
 {
     return self.minTemplateStatement;
 }
 
-- (NSString*)maxStatementWithCondition:(BZObjectStoreConditionModel*)condition
+- (NSString*)maxStatementWithCondition:(BZObjectStoreFetchConditionModel*)condition
 {
     return self.maxTemplateStatement;
 }
 
-- (NSString*)avgStatementWithCondition:(BZObjectStoreConditionModel*)condition
+- (NSString*)avgStatementWithCondition:(BZObjectStoreFetchConditionModel*)condition
 {
     return self.avgTemplateStatement;
 }
 
-- (NSString*)totalStatementWithCondition:(BZObjectStoreConditionModel*)condition
+- (NSString*)totalStatementWithCondition:(BZObjectStoreFetchConditionModel*)condition
 {
     return self.totalTemplateStatement;
 }
 
-- (NSString*)sumStatementWithCondition:(BZObjectStoreConditionModel*)condition
+- (NSString*)sumStatementWithCondition:(BZObjectStoreFetchConditionModel*)condition
 {
     return self.sumTemplateStatement;
 }

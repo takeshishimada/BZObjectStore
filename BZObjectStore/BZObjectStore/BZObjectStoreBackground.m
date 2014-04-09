@@ -77,7 +77,7 @@
     }];
 }
 
-- (void)removeObjectsInBackground:(Class)clazz condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSError *error))completionBlock
+- (void)removeObjectsInBackground:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition completionBlock:(void(^)(NSError *error))completionBlock
 {
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     [queue addOperationWithBlock:^{
@@ -103,7 +103,7 @@
     }];
 }
 
-- (void)fetchObjectsInBackground:(Class)clazz condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSArray *objects,NSError *error))completionBlock
+- (void)fetchObjectsInBackground:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition completionBlock:(void(^)(NSArray *objects,NSError *error))completionBlock
 {
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     [queue addOperationWithBlock:^{
@@ -142,7 +142,7 @@
     }];
 }
 
-- (void)countInBackground:(Class)clazz condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock
+- (void)countInBackground:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock
 {
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     [queue addOperationWithBlock:^{
@@ -155,7 +155,7 @@
     }];
 }
 
-- (void)maxInBackground:(NSString*)attributeName clazz:(Class)clazz condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock
+- (void)maxInBackground:(NSString*)attributeName clazz:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock
 {
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     [queue addOperationWithBlock:^{
@@ -168,7 +168,7 @@
     }];
 }
 
-- (void)minInBackground:(NSString*)attributeName clazz:(Class)clazz condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock
+- (void)minInBackground:(NSString*)attributeName clazz:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock
 {
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     [queue addOperationWithBlock:^{
@@ -181,7 +181,7 @@
     }];
 }
 
-- (void)sumInBackground:(NSString*)attributeName clazz:(Class)clazz condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock
+- (void)sumInBackground:(NSString*)attributeName clazz:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock
 {
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     [queue addOperationWithBlock:^{
@@ -194,7 +194,7 @@
     }];
 }
 
-- (void)totalInBackground:(NSString*)attributeName clazz:(Class)clazz condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock
+- (void)totalInBackground:(NSString*)attributeName clazz:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock
 {
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     [queue addOperationWithBlock:^{
@@ -207,7 +207,7 @@
     }];
 }
 
-- (void)avgInBackground:(NSString*)attributeName clazz:(Class)clazz condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock
+- (void)avgInBackground:(NSString*)attributeName clazz:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock
 {
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     [queue addOperationWithBlock:^{

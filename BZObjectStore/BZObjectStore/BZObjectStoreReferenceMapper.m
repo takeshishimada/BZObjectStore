@@ -25,7 +25,7 @@
 #import "BZObjectStoreAttributeInterface.h"
 #import "BZObjectStoreRelationshipModel.h"
 #import "BZObjectStoreAttributeModel.h"
-#import "BZObjectStoreConditionModel.h"
+#import "BZObjectStoreFetchConditionModel.h"
 #import "BZObjectStoreRuntime.h"
 #import "BZObjectStoreRuntimeProperty.h"
 #import "BZObjectStoreNameBuilder.h"
@@ -45,17 +45,17 @@
 @end
 
 @interface BZObjectStoreModelMapper (Protected)
-- (NSNumber*)avg:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db;
-- (NSNumber*)total:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db;
-- (NSNumber*)sum:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db;
-- (NSNumber*)min:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db;
-- (NSNumber*)max:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db;
-- (NSNumber*)groupWithStatement:(NSString*)statement attribute:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db;
-- (NSNumber*)count:(BZObjectStoreRuntime*)runtime condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db;
+- (NSNumber*)avg:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreFetchConditionModel*)condition db:(FMDatabase*)db;
+- (NSNumber*)total:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreFetchConditionModel*)condition db:(FMDatabase*)db;
+- (NSNumber*)sum:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreFetchConditionModel*)condition db:(FMDatabase*)db;
+- (NSNumber*)min:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreFetchConditionModel*)condition db:(FMDatabase*)db;
+- (NSNumber*)max:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreFetchConditionModel*)condition db:(FMDatabase*)db;
+- (NSNumber*)groupWithStatement:(NSString*)statement attribute:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreFetchConditionModel*)condition db:(FMDatabase*)db;
+- (NSNumber*)count:(BZObjectStoreRuntime*)runtime condition:(BZObjectStoreFetchConditionModel*)condition db:(FMDatabase*)db;
 - (BOOL)insertOrReplace:(NSObject*)object db:(FMDatabase*)db;
 - (BOOL)deleteFrom:(NSObject*)object db:(FMDatabase*)db;
-- (BOOL)deleteFrom:(BZObjectStoreRuntime*)runtime condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db;
-- (FMResultSet*)resultSet:(BZObjectStoreRuntime*)runtime condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db;
+- (BOOL)deleteFrom:(BZObjectStoreRuntime*)runtime condition:(BZObjectStoreFetchConditionModel*)condition db:(FMDatabase*)db;
+- (FMResultSet*)resultSet:(BZObjectStoreRuntime*)runtime condition:(BZObjectStoreFetchConditionModel*)condition db:(FMDatabase*)db;
 - (FMResultSet*)resultSet:(NSObject*)object db:(FMDatabase*)db;
 - (NSNumber*)referencedCount:(NSObject*)object db:(FMDatabase*)db;
 - (NSMutableArray*)relationshipObjectsWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute db:(FMDatabase*)db;
@@ -90,7 +90,7 @@
 
 #pragma mark group methods
 
-- (NSNumber*)max:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error
+- (NSNumber*)max:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error
 {
     BZObjectStoreRuntimeProperty *attribute = [self groupFunctionAttributeWithName:attributeName clazz:clazz db:db error:error];
     if (*error) {
@@ -103,7 +103,7 @@
     return value;
 }
 
-- (NSNumber*)min:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error
+- (NSNumber*)min:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error
 {
     BZObjectStoreRuntimeProperty *attribute = [self groupFunctionAttributeWithName:attributeName clazz:clazz db:db error:error];
     if (*error) {
@@ -116,7 +116,7 @@
     return value;
 }
 
-- (NSNumber*)avg:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error
+- (NSNumber*)avg:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error
 {
     BZObjectStoreRuntimeProperty *attribute = [self groupFunctionAttributeWithName:attributeName clazz:clazz db:db error:error];
     if (*error) {
@@ -129,7 +129,7 @@
     return value;
 }
 
-- (NSNumber*)total:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error
+- (NSNumber*)total:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error
 {
     BZObjectStoreRuntimeProperty *attribute = [self groupFunctionAttributeWithName:attributeName clazz:clazz db:db error:error];
     if (*error) {
@@ -142,7 +142,7 @@
     return value;
 }
 
-- (NSNumber*)sum:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error
+- (NSNumber*)sum:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error
 {
     BZObjectStoreRuntimeProperty *attribute = [self groupFunctionAttributeWithName:attributeName clazz:clazz db:db error:error];
     if (*error) {
@@ -167,7 +167,7 @@
     if (*error) {
         return nil;
     }
-    BZObjectStoreConditionModel *condition = nil;
+    BZObjectStoreFetchConditionModel *condition = nil;
     if (object.rowid) {
         condition = [object.runtime rowidCondition:object];
     } else if (object.runtime.hasIdentificationAttributes) {
@@ -191,7 +191,7 @@
 
 #pragma mark count methods
 
-- (NSNumber*)count:(Class)clazz condition:(BZObjectStoreConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error
+- (NSNumber*)count:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error
 {
     BZObjectStoreRuntime *runtime = [self runtimeWithClazz:clazz db:db];
     [self isValidRuntime:runtime error:error];
@@ -237,7 +237,7 @@
 
 - (NSObject*)refreshObjectSub:(NSObject*)object db:(FMDatabase*)db error:(NSError**)error
 {
-    BZObjectStoreConditionModel *condition = nil;
+    BZObjectStoreFetchConditionModel *condition = nil;
     if (object.rowid) {
         condition = [object.runtime rowidCondition:object];
     } else if (object.runtime.hasIdentificationAttributes) {
@@ -264,7 +264,7 @@
     return list.firstObject;
 }
 
-- (NSMutableArray*)fetchObjects:(Class)clazz condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db error:(NSError**)error
+- (NSMutableArray*)fetchObjects:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition db:(FMDatabase*)db error:(NSError**)error
 {
     BZObjectStoreRuntime *runtime = [self runtimeWithClazz:clazz db:db];
     [self isValidRuntime:runtime error:error];
@@ -690,7 +690,7 @@
 
 #pragma mark remove methods
 
-- (BOOL)removeObjects:(Class)clazz condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db error:(NSError**)error
+- (BOOL)removeObjects:(Class)clazz condition:(BZObjectStoreFetchConditionModel*)condition db:(FMDatabase*)db error:(NSError**)error
 {
     BZObjectStoreRuntime *runtime = [self runtimeWithClazz:clazz db:db];
     [self isValidRuntime:runtime error:error];

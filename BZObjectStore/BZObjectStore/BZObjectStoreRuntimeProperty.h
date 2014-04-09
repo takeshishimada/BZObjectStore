@@ -23,7 +23,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class BZObjectStoreConditionModel;
+@class BZObjectStoreFetchConditionModel;
 @class BZObjectStoreRuntime;
 @class BZObjectStoreNameBuilder;
 @class BZObjectStoreClazz;
@@ -70,10 +70,10 @@
 
 // statement methods
 - (NSString*)alterTableAddColumnStatement;
-- (NSString*)minStatementWithCondition:(BZObjectStoreConditionModel*)condition;
-- (NSString*)maxStatementWithCondition:(BZObjectStoreConditionModel*)condition;
-- (NSString*)avgStatementWithCondition:(BZObjectStoreConditionModel*)condition;
-- (NSString*)totalStatementWithCondition:(BZObjectStoreConditionModel*)condition;
-- (NSString*)sumStatementWithCondition:(BZObjectStoreConditionModel*)condition;
+- (NSString*)minStatementWithCondition:(BZObjectStoreFetchConditionModel*)condition;
+- (NSString*)maxStatementWithCondition:(BZObjectStoreFetchConditionModel*)condition;
+- (NSString*)avgStatementWithCondition:(BZObjectStoreFetchConditionModel*)condition;
+- (NSString*)totalStatementWithCondition:(BZObjectStoreFetchConditionModel*)condition;
+- (NSString*)sumStatementWithCondition:(BZObjectStoreFetchConditionModel*)condition;
 
 @end

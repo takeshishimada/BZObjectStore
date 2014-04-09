@@ -25,7 +25,7 @@
 #import "BZObjectStoreAttributeInterface.h"
 #import "BZObjectStoreRelationshipModel.h"
 #import "BZObjectStoreAttributeModel.h"
-#import "BZObjectStoreConditionModel.h"
+#import "BZObjectStoreFetchConditionModel.h"
 #import "BZObjectStoreRuntime.h"
 #import "BZObjectStoreRuntimeProperty.h"
 #import "BZObjectStoreNameBuilder.h"
@@ -179,11 +179,11 @@
         return YES;
     }
     BZObjectStoreRuntime *attributeRuntime = [self runtime:[BZObjectStoreAttributeModel class]];
-    BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
-    condition.where = @"className = ?";
-    condition.parameters = @[runtime.clazzName];
+    BZObjectStoreFetchConditionModel *condition = [BZObjectStoreFetchConditionModel condition];
+    condition.sqliteCondition.where = @"className = ?";
+    condition.sqliteCondition.parameters = @[runtime.clazzName];
     NSString *deletesql = [attributeRuntime deleteFromStatementWithCondition:condition];
-    [db executeUpdate:deletesql withArgumentsInArray:condition.parameters];
+    [db executeUpdate:deletesql withArgumentsInArray:condition.sqliteCondition.parameters];
     if ([self hadError:db]) {
         return NO;
     }

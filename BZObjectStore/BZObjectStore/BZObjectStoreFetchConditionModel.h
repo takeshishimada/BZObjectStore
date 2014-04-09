@@ -22,15 +22,12 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import "BZObjectStoreSQLiteConditionModel.h"
+#import "BZObjectStoreSQLiteReferenceConditionModel.h"
 
-@interface BZObjectStoreConditionModel : NSObject
+@interface BZObjectStoreFetchConditionModel : NSObject
 + (instancetype)condition;
-+ (instancetype)conditionWithWhere:(NSString*)where parameters:(NSArray*)parameters orderBy:(NSString*)orderBy limit:(NSNumber*)limit offset:(NSNumber*)offset;
-@property (nonatomic,strong) NSNumber *limit;
-@property (nonatomic,strong) NSNumber *offset;
-@property (nonatomic,strong) NSString *where;
-@property (nonatomic,strong) NSArray *parameters;
-@property (nonatomic,strong) NSString *orderBy;
-@property (nonatomic,strong) NSObject *referencingObject;
-@property (nonatomic,strong) NSObject *containtsObject;
+@property (nonatomic,strong) NSPredicate *predicate;
+@property (nonatomic,strong) BZObjectStoreSQLiteConditionModel *sqliteCondition;
+@property (nonatomic,strong) BZObjectStoreSQLiteReferenceConditionModel *referenceCondition;
 @end

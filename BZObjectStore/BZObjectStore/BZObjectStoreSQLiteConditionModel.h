@@ -21,24 +21,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "BZObjectStoreConditionModel.h"
+#import <Foundation/Foundation.h>
 
-@implementation BZObjectStoreConditionModel
-
-+ (instancetype)condition
-{
-    return [[self alloc]init];
-}
-
-+ (instancetype)conditionWithWhere:(NSString*)where parameters:(NSArray*)parameters orderBy:(NSString*)orderBy limit:(NSNumber*)limit offset:(NSNumber*)offset
-{
-    BZObjectStoreConditionModel *condition = [[self alloc]init];
-    condition.where = where;
-    condition.parameters = parameters;
-    condition.orderBy = orderBy;
-    condition.limit = limit;
-    condition.offset = offset;
-    return condition;
-}
-
+@interface BZObjectStoreSQLiteConditionModel : NSObject
+@property (nonatomic,strong) NSNumber *limit;
+@property (nonatomic,strong) NSNumber *offset;
+@property (nonatomic,strong) NSString *where;
+@property (nonatomic,strong) NSArray *parameters;
+@property (nonatomic,strong) NSString *orderBy;
 @end
