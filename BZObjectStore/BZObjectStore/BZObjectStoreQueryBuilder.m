@@ -293,9 +293,9 @@
 
 #pragma mark per attribute
 
-+ (NSString*)alterTableAddColumnStatement:(BZObjectStoreRuntimeProperty*)attribute
++ (NSString*)alterTableAddColumnStatement:(BZObjectStoreRuntime*)runtime attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    NSString *tableName = attribute.tableName;
+    NSString *tableName = runtime.tableName;
     NSString *columnName = attribute.columnName;
     NSMutableString *sql = [NSMutableString string];
     [sql appendString:@"ALTER TABLE "];
@@ -307,37 +307,37 @@
     return [NSString stringWithString:sql];
 }
 
-+ (NSString*)maxStatement:(BZObjectStoreRuntimeProperty*)attribute
++ (NSString*)maxStatement:(BZObjectStoreRuntime*)runtime attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    NSString *tableName = attribute.tableName;
+    NSString *tableName = runtime.tableName;
     NSMutableString *sql = [NSMutableString stringWithFormat:@"SELECT MAX(%@) %@ FROM %@",attribute.columnName,attribute.columnName,tableName];
     return [NSString stringWithString:sql];
 }
 
-+ (NSString*)minStatement:(BZObjectStoreRuntimeProperty*)attribute
++ (NSString*)minStatement:(BZObjectStoreRuntime*)runtime attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    NSString *tableName = attribute.tableName;
+    NSString *tableName = runtime.tableName;
     NSMutableString *sql = [NSMutableString stringWithFormat:@"SELECT MIN(%@) %@ FROM %@",attribute.columnName,attribute.columnName,tableName];
     return [NSString stringWithString:sql];
 }
 
-+ (NSString*)avgStatement:(BZObjectStoreRuntimeProperty*)attribute
++ (NSString*)avgStatement:(BZObjectStoreRuntime*)runtime attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    NSString *tableName = attribute.tableName;
+    NSString *tableName = runtime.tableName;
     NSMutableString *sql = [NSMutableString stringWithFormat:@"SELECT AVG(%@) %@ FROM %@",attribute.columnName,attribute.columnName,tableName];
     return [NSString stringWithString:sql];
 }
 
-+ (NSString*)totalStatement:(BZObjectStoreRuntimeProperty*)attribute
++ (NSString*)totalStatement:(BZObjectStoreRuntime*)runtime attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    NSString *tableName = attribute.tableName;
+    NSString *tableName = runtime.tableName;
     NSMutableString *sql = [NSMutableString stringWithFormat:@"SELECT TOTAL(%@) %@ FROM %@",attribute.columnName,attribute.columnName,tableName];
     return [NSString stringWithString:sql];
 }
 
-+ (NSString*)sumStatement:(BZObjectStoreRuntimeProperty*)attribute
++ (NSString*)sumStatement:(BZObjectStoreRuntime*)runtime attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    NSString *tableName = attribute.tableName;
+    NSString *tableName = runtime.tableName;
     NSMutableString *sql = [NSMutableString stringWithFormat:@"SELECT SUM(%@) %@ FROM %@",attribute.columnName,attribute.columnName,tableName];
     return [NSString stringWithString:sql];
 }

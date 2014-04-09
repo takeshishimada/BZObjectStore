@@ -63,7 +63,7 @@
 {
     // name
     self.name  = bzproperty.name;
-    self.tableName = [runtime.nameBuilder tableName:runtime.clazz];
+//    self.tableName = [runtime.nameBuilder tableName:runtime.clazz];
     self.columnName = [runtime.nameBuilder columnName:bzproperty.name clazz:runtime.clazz];
     
     // data type
@@ -178,12 +178,12 @@
     }
     
     // sql template statement
-    self.alterTableAddColumnTemplateStatement = [BZObjectStoreQueryBuilder alterTableAddColumnStatement:self];
-    self.minTemplateStatement = [BZObjectStoreQueryBuilder minStatement:self];
-    self.maxTemplateStatement = [BZObjectStoreQueryBuilder maxStatement:self];
-    self.avgTemplateStatement = [BZObjectStoreQueryBuilder avgStatement:self];
-    self.totalTemplateStatement = [BZObjectStoreQueryBuilder totalStatement:self];
-    self.sumTemplateStatement = [BZObjectStoreQueryBuilder sumStatement:self];
+    self.alterTableAddColumnTemplateStatement = [BZObjectStoreQueryBuilder alterTableAddColumnStatement:runtime attribute:self];
+    self.minTemplateStatement = [BZObjectStoreQueryBuilder minStatement:runtime attribute:self];
+    self.maxTemplateStatement = [BZObjectStoreQueryBuilder maxStatement:runtime attribute:self];
+    self.avgTemplateStatement = [BZObjectStoreQueryBuilder avgStatement:runtime attribute:self];
+    self.totalTemplateStatement = [BZObjectStoreQueryBuilder totalStatement:runtime attribute:self];
+    self.sumTemplateStatement = [BZObjectStoreQueryBuilder sumStatement:runtime attribute:self];
     
 }
 

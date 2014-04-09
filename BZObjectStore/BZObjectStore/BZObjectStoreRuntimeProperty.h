@@ -38,8 +38,6 @@
 // name informations
 @property (nonatomic,strong) NSString *name;
 @property (nonatomic,strong) NSString *clazzName;
-@property (nonatomic,strong) NSString *tableName;
-@property (nonatomic,strong) NSString *columnName;
 @property (nonatomic,strong) NSString *attributeType;
 
 // class type information
@@ -62,6 +60,9 @@
 // data type information
 @property (nonatomic,assign) BOOL isGroupFunctionClazz;
 @property (nonatomic,assign) BOOL isRelationshipClazz;
+
+// sqlite information
+@property (nonatomic,strong) NSString *columnName;
 @property (nonatomic,strong) NSString *sqliteDataTypeName;
 
 // mapper methods

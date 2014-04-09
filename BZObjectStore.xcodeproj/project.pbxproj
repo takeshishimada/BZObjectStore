@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		3C01BC65477147389CF16CB0 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 11CB3F3E43BB4976B6E3EF2E /* libPods.a */; };
+		72170BE518F5862400C9A4C1 /* BZObjectStoreSQLiteColumnModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72170BE418F5862400C9A4C1 /* BZObjectStoreSQLiteColumnModel.m */; };
 		7259F7F418F44F04002A3416 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7259F7F318F44F04002A3416 /* Foundation.framework */; };
 		7259F7F618F44F04002A3416 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7259F7F518F44F04002A3416 /* CoreGraphics.framework */; };
 		7259F7F818F44F04002A3416 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7259F7F718F44F04002A3416 /* UIKit.framework */; };
@@ -93,6 +94,8 @@
 
 /* Begin PBXFileReference section */
 		11CB3F3E43BB4976B6E3EF2E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		72170BE318F5862400C9A4C1 /* BZObjectStoreSQLiteColumnModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreSQLiteColumnModel.h; sourceTree = "<group>"; };
+		72170BE418F5862400C9A4C1 /* BZObjectStoreSQLiteColumnModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreSQLiteColumnModel.m; sourceTree = "<group>"; };
 		7259F7F018F44F04002A3416 /* BZObjectStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BZObjectStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7259F7F318F44F04002A3416 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7259F7F518F44F04002A3416 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -443,6 +446,8 @@
 				72BEE87518F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.m */,
 				72BEE87718F57A4400A7D742 /* BZObjectStoreSQLiteReferenceConditionModel.h */,
 				72BEE87818F57A4400A7D742 /* BZObjectStoreSQLiteReferenceConditionModel.m */,
+				72170BE318F5862400C9A4C1 /* BZObjectStoreSQLiteColumnModel.h */,
+				72170BE418F5862400C9A4C1 /* BZObjectStoreSQLiteColumnModel.m */,
 				72BEE87A18F57A8000A7D742 /* BZObjectStoreFetchConditionModel.h */,
 				72BEE87B18F57A8000A7D742 /* BZObjectStoreFetchConditionModel.m */,
 				72BEE87D18F57AF600A7D742 /* BZObjectStoreRemoveConditionModel.h */,
@@ -592,6 +597,7 @@
 				7259F89B18F44FCA002A3416 /* BZObjectStoreClazzNSValue.m in Sources */,
 				7259F8A118F44FCA002A3416 /* BZObjectStoreModelMapper.m in Sources */,
 				7259F87F18F44FCA002A3416 /* BZObjectStore.m in Sources */,
+				72170BE518F5862400C9A4C1 /* BZObjectStoreSQLiteColumnModel.m in Sources */,
 				7259F89518F44FCA002A3416 /* BZObjectStoreClazzNSObject.m in Sources */,
 				7259F89A18F44FCA002A3416 /* BZObjectStoreClazzNSURL.m in Sources */,
 				7259F89618F44FCA002A3416 /* BZObjectStoreClazzNSOrderedSet.m in Sources */,

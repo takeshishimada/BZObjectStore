@@ -55,12 +55,12 @@
 + (NSString*)rowidConditionStatement;
 + (NSString*)uniqueConditionStatement:(BZObjectStoreRuntime*)runtime;
 
-+ (NSString*)alterTableAddColumnStatement:(BZObjectStoreRuntimeProperty*)attribute;
-+ (NSString*)maxStatement:(BZObjectStoreRuntimeProperty*)attribute;
-+ (NSString*)minStatement:(BZObjectStoreRuntimeProperty*)attribute;
-+ (NSString*)avgStatement:(BZObjectStoreRuntimeProperty*)attribute;
-+ (NSString*)totalStatement:(BZObjectStoreRuntimeProperty*)attribute;
-+ (NSString*)sumStatement:(BZObjectStoreRuntimeProperty*)attribute;
++ (NSString*)alterTableAddColumnStatement:(BZObjectStoreRuntime*)runtime attribute:(BZObjectStoreRuntimeProperty*)attribute;
++ (NSString*)maxStatement:(BZObjectStoreRuntime*)runtime attribute:(BZObjectStoreRuntimeProperty*)attribute;
++ (NSString*)minStatement:(BZObjectStoreRuntime*)runtime attribute:(BZObjectStoreRuntimeProperty*)attribute;
++ (NSString*)avgStatement:(BZObjectStoreRuntime*)runtime attribute:(BZObjectStoreRuntimeProperty*)attribute;
++ (NSString*)totalStatement:(BZObjectStoreRuntime*)runtime attribute:(BZObjectStoreRuntimeProperty*)attribute;
++ (NSString*)sumStatement:(BZObjectStoreRuntime*)runtime attribute:(BZObjectStoreRuntimeProperty*)attribute;
 
 
 @end
