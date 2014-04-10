@@ -683,6 +683,14 @@
         }
     }
     
+//    for (NSObject *targetObject in allValues) {
+//        if ([targetObject conformsToProtocol:@protocol(OSModelInterface)]) {
+//            if ([targetObject respondsToSelector:@selector(OSModelDidSave)]) {
+//                [targetObject performSelector:@selector(OSModelDidSave) withObject:nil];
+//            }
+//        }
+//    }
+
     return YES;
 }
 
