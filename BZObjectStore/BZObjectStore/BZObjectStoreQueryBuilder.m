@@ -143,7 +143,7 @@
     [sql appendString:tableName];
     NSMutableString *sqlNames = [NSMutableString stringWithFormat:@" ("];
     NSMutableString *sqlValues = [NSMutableString stringWithFormat:@" ("];
-    NSArray *attributes = runtime.attributes;
+    NSArray *attributes = runtime.insertAttributes;
     NSArray *sqliteColumns = [self sqliteColumnsWithAttributes:attributes];
     for (BZObjectStoreSQLiteColumnModel *sqliteColumn in sqliteColumns) {
         [sqlNames appendString:@""];
@@ -169,7 +169,7 @@
 {
     NSString *tableName = runtime.tableName;
     NSMutableString *sql = [NSMutableString string];
-    [sql appendString:@"INSERT OR IGNORE INTO "];
+    [sql appendString:@"INSERT INTO "];
     [sql appendString:tableName];
     NSMutableString *sqlNames = [NSMutableString stringWithFormat:@" ("];
     NSMutableString *sqlValues = [NSMutableString stringWithFormat:@" ("];

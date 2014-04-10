@@ -36,6 +36,7 @@
 #import "BZResponseModel.h"
 #import "BZCircularReferenceModel.h"
 #import "BZSQLiteGroupConditionModel.h"
+#import "BZUpdateExistsObjectWithNoRowIdModel.h"
 
 @interface BZObjectStoreTests : XCTestCase
 
@@ -58,20 +59,22 @@
 - (void)test
 {
     BZObjectStore *disk = [BZObjectStoreOnDisk sharedInstance];
-    [self testBZVarietyValuesModel:disk];
-    [self testBZInvalidValuesModel:disk];
-    [self testBZRelationshipHeaderModel:disk];
-    [self testBZResponseModel:disk];
-    [self testCircularReference:disk];
-    [self testSQLiteGroupCondition:disk];
+//    [self testBZVarietyValuesModel:disk];
+//    [self testBZInvalidValuesModel:disk];
+//    [self testBZRelationshipHeaderModel:disk];
+//    [self testBZResponseModel:disk];
+//    [self testCircularReference:disk];
+//    [self testSQLiteGroupCondition:disk];
+    [self testBZUpdateExistsObjectWithNoRowIdModel:disk];
     
-    BZObjectStore *memory = [BZObjectStoreOnMemory sharedInstance];
-    [self testBZVarietyValuesModel:memory];
-    [self testBZInvalidValuesModel:memory];
-    [self testBZRelationshipHeaderModel:memory];
-    [self testBZResponseModel:memory];
-    [self testCircularReference:memory];
-    [self testSQLiteGroupCondition:memory];
+//    BZObjectStore *memory = [BZObjectStoreOnMemory sharedInstance];
+//    [self testBZVarietyValuesModel:memory];
+//    [self testBZInvalidValuesModel:memory];
+//    [self testBZRelationshipHeaderModel:memory];
+//    [self testBZResponseModel:memory];
+//    [self testCircularReference:memory];
+//    [self testSQLiteGroupCondition:memory];
+//    [self testBZUpdateExistsObjectWithNoRowIdModel:memory];
     
 }
 
@@ -461,7 +464,7 @@
 {
     NSError *error = nil;
     NSMutableArray *list = [NSMutableArray array];
-    for (NSInteger i = 0; i < 100000; i++ ) {
+    for (NSInteger i = 0; i < 50000; i++ ) {
         BZResponseModel *model = [[BZResponseModel alloc]init];
         model.code = [NSString stringWithFormat:@"%d",i];
         model.name = [NSString stringWithFormat:@"name %d",i];
@@ -470,11 +473,29 @@
         [list addObject:model];
     }
     
-    NSDate *now = [NSDate date];
+    NSDate *savenow = [NSDate date];
     [os saveObjects:list error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-    NSDate *then = [NSDate date];
-    NSLog(@"reponse then - now: %1.3fsec", [then timeIntervalSinceDate:now]);
+    NSDate *savethen = [NSDate date];
+    NSLog(@"save reponse then - now: %1.3fsec", [savethen timeIntervalSinceDate:savenow]);
+
+    NSDate *fetchnow = [NSDate date];
+    NSArray *fetchObjects = [os fetchObjects:[BZResponseModel class] condition:nil error:&error];
+    XCTAssertTrue(fetchObjects.count == 50000, @"fetch error");
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    NSDate *fetchthen = [NSDate date];
+    NSLog(@"fetch reponse then - now: %1.3fsec", [fetchthen timeIntervalSinceDate:fetchnow]);
+
+    NSDate *removenow = [NSDate date];
+    [os removeObjects:[BZResponseModel class] condition:nil error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    NSDate *removethen = [NSDate date];
+    NSLog(@"remove reponse then - now: %1.3fsec", [removethen timeIntervalSinceDate:removenow]);
+
+
+    NSNumber *count = [os count:[BZResponseModel class] condition:nil error:&error];
+    XCTAssertTrue([count integerValue] == 0, @"fetch error");
+
 }
 
 - (void)testCircularReference:(BZObjectStore*)os
@@ -570,4 +591,31 @@
     }
     
 }
+
+- (void)testBZUpdateExistsObjectWithNoRowIdModel:(BZObjectStore*)os
+{
+    NSError *error = nil;
+    
+    BZUpdateExistsObjectWithNoRowIdModel *first = [[BZUpdateExistsObjectWithNoRowIdModel alloc]init];
+    first.no1 = @"01";
+    first.no2 = @"01";
+    first.name = @"first";
+    
+    BZUpdateExistsObjectWithNoRowIdModel *second = [[BZUpdateExistsObjectWithNoRowIdModel alloc]init];
+    second.no1 = @"01";
+    second.no2 = @"01";
+    second.name = @"second";
+    
+    [os saveObject:first error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    
+    [os saveObject:second error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    
+    NSArray *objects = [os fetchObjects:[BZUpdateExistsObjectWithNoRowIdModel class] condition:nil error:&error];
+    BZUpdateExistsObjectWithNoRowIdModel *object = objects.firstObject;
+    XCTAssertTrue([object.name isEqualToString:@"second"],"error");
+    
+}
+
 @end

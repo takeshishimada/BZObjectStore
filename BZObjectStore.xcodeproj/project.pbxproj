@@ -10,6 +10,7 @@
 		3C01BC65477147389CF16CB0 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 11CB3F3E43BB4976B6E3EF2E /* libPods.a */; };
 		72170BE518F5862400C9A4C1 /* BZObjectStoreSQLiteColumnModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72170BE418F5862400C9A4C1 /* BZObjectStoreSQLiteColumnModel.m */; };
 		72170BE818F5950D00C9A4C1 /* BZSQLiteGroupConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72170BE718F5950D00C9A4C1 /* BZSQLiteGroupConditionModel.m */; };
+		72170BEB18F6E9D200C9A4C1 /* BZUpdateExistsObjectWithNoRowIdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72170BEA18F6E9D200C9A4C1 /* BZUpdateExistsObjectWithNoRowIdModel.m */; };
 		7259F7F418F44F04002A3416 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7259F7F318F44F04002A3416 /* Foundation.framework */; };
 		7259F7F618F44F04002A3416 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7259F7F518F44F04002A3416 /* CoreGraphics.framework */; };
 		7259F7F818F44F04002A3416 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7259F7F718F44F04002A3416 /* UIKit.framework */; };
@@ -100,6 +101,8 @@
 		72170BE418F5862400C9A4C1 /* BZObjectStoreSQLiteColumnModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreSQLiteColumnModel.m; sourceTree = "<group>"; };
 		72170BE618F5950D00C9A4C1 /* BZSQLiteGroupConditionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZSQLiteGroupConditionModel.h; sourceTree = "<group>"; };
 		72170BE718F5950D00C9A4C1 /* BZSQLiteGroupConditionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZSQLiteGroupConditionModel.m; sourceTree = "<group>"; };
+		72170BE918F6E9D200C9A4C1 /* BZUpdateExistsObjectWithNoRowIdModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZUpdateExistsObjectWithNoRowIdModel.h; sourceTree = "<group>"; };
+		72170BEA18F6E9D200C9A4C1 /* BZUpdateExistsObjectWithNoRowIdModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZUpdateExistsObjectWithNoRowIdModel.m; sourceTree = "<group>"; };
 		7259F7F018F44F04002A3416 /* BZObjectStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BZObjectStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7259F7F318F44F04002A3416 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7259F7F518F44F04002A3416 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -344,6 +347,8 @@
 				7259F8C118F45014002A3416 /* BZVarietyValuesModel.m */,
 				72170BE618F5950D00C9A4C1 /* BZSQLiteGroupConditionModel.h */,
 				72170BE718F5950D00C9A4C1 /* BZSQLiteGroupConditionModel.m */,
+				72170BE918F6E9D200C9A4C1 /* BZUpdateExistsObjectWithNoRowIdModel.h */,
+				72170BEA18F6E9D200C9A4C1 /* BZUpdateExistsObjectWithNoRowIdModel.m */,
 				7259F8AC18F45014002A3416 /* AppleLogo.png */,
 				7259F81318F44F04002A3416 /* Supporting Files */,
 			);
@@ -669,6 +674,7 @@
 				7259F8CC18F45014002A3416 /* BZRelationshipHeaderModel.m in Sources */,
 				7259F8D018F45014002A3416 /* BZVarietyValuesModel.m in Sources */,
 				7259F8C718F45014002A3416 /* BZInvalidValuesModel.m in Sources */,
+				72170BEB18F6E9D200C9A4C1 /* BZUpdateExistsObjectWithNoRowIdModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

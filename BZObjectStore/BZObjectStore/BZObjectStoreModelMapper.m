@@ -118,26 +118,24 @@
         NSString *sql = [object.runtime insertOrIgnoreIntoStatement];
         NSMutableArray *parameters = [object.runtime insertOrIgnoreAttributesParameters:object];
         [db executeUpdate:sql withArgumentsInArray:parameters];
-        if ([self hadError:db]) {
-            return NO;
-        }
-        sqlite_int64 lastInsertRowid = [db lastInsertRowId];
-        if (lastInsertRowid != 0) {
+        if ([db lastErrorCode] == 19) {
+            [self updateRowid:object db:db];
+        } else {
+            if ([self hadError:db]) {
+                return NO;
+            }
             sqlite_int64 lastInsertRowid = [db lastInsertRowId];
             object.rowid = [NSNumber numberWithLongLong:lastInsertRowid];
             return YES;
         }
-        // insertOrReplace statement always change rowid...
-        // should use update statement in order to keep it.
-        [self updateRowid:object db:db];
     }
     
     if (object.rowid) {
         BZObjectStoreFetchConditionModel *condition = [object.runtime rowidCondition:object];
         NSString *sql = [object.runtime updateStatementWithObject:object condition:condition];
         NSMutableArray *parameters = [NSMutableArray array];
-        [parameters addObjectsFromArray:condition.sqliteCondition.parameters];
         [parameters addObjectsFromArray:[object.runtime updateAttributesParameters:object]];
+        [parameters addObjectsFromArray:condition.sqliteCondition.parameters];
         [db executeUpdate:sql withArgumentsInArray:parameters];
         if ([self hadError:db]) {
             return NO;
