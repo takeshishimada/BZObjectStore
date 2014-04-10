@@ -56,11 +56,11 @@
 + (NSString*)uniqueConditionStatement:(BZObjectStoreRuntime*)runtime;
 
 + (NSString*)alterTableAddColumnStatement:(BZObjectStoreRuntime*)runtime attribute:(BZObjectStoreRuntimeProperty*)attribute;
-+ (NSString*)maxStatement:(BZObjectStoreRuntime*)runtime attribute:(BZObjectStoreRuntimeProperty*)attribute;
-+ (NSString*)minStatement:(BZObjectStoreRuntime*)runtime attribute:(BZObjectStoreRuntimeProperty*)attribute;
-+ (NSString*)avgStatement:(BZObjectStoreRuntime*)runtime attribute:(BZObjectStoreRuntimeProperty*)attribute;
-+ (NSString*)totalStatement:(BZObjectStoreRuntime*)runtime attribute:(BZObjectStoreRuntimeProperty*)attribute;
-+ (NSString*)sumStatement:(BZObjectStoreRuntime*)runtime attribute:(BZObjectStoreRuntimeProperty*)attribute;
++ (NSString*)maxStatement:(BZObjectStoreRuntime*)runtime columnName:(NSString*)columnName;
++ (NSString*)minStatement:(BZObjectStoreRuntime*)runtime columnName:(NSString*)columnName;
++ (NSString*)avgStatement:(BZObjectStoreRuntime*)runtime columnName:(NSString*)columnName;
++ (NSString*)totalStatement:(BZObjectStoreRuntime*)runtime columnName:(NSString*)columnName;
++ (NSString*)sumStatement:(BZObjectStoreRuntime*)runtime columnName:(NSString*)columnName;
 
 
 @end

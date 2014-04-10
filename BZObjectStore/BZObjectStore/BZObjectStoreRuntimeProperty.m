@@ -32,11 +32,7 @@
 
 @interface BZObjectStoreRuntimeProperty ()
 @property (nonatomic,strong) BZObjectStoreClazz *osclazz;
-@property (nonatomic,strong) NSString *minTemplateStatement;
-@property (nonatomic,strong) NSString *maxTemplateStatement;
-@property (nonatomic,strong) NSString *avgTemplateStatement;
-@property (nonatomic,strong) NSString *totalTemplateStatement;
-@property (nonatomic,strong) NSString *sumTemplateStatement;
+@property (nonatomic,weak) BZObjectStoreRuntime *osruntime;
 @property (nonatomic,strong) NSString *alterTableAddColumnTemplateStatement;
 @property (nonatomic,assign) BOOL isPrimitive;
 @property (nonatomic,assign) BOOL isStructure;
@@ -63,7 +59,8 @@
 {
     // name
     self.name  = bzproperty.name;
-    self.columnName = [runtime.nameBuilder columnName:bzproperty.name clazz:runtime.clazz];
+    self.osruntime = runtime;
+    self.columnName = [self.osruntime.nameBuilder columnName:bzproperty.name clazz:self.osruntime.clazz];
     
     // data type
     if (bzproperty.propertyEncoding.isObject) {
@@ -104,8 +101,8 @@
     if (bzproperty.propertyType.isWeakReference) {
         self.weakReferenceAttribute = YES;
     }
-    if ([runtime.clazz conformsToProtocol:@protocol(BZObjectStoreModelInterface)]) {
-        Class clazz = runtime.clazz;
+    if ([self.osruntime.clazz conformsToProtocol:@protocol(BZObjectStoreModelInterface)]) {
+        Class clazz = self.osruntime.clazz;
         if ([clazz respondsToSelector:@selector(attributeIsOSIdenticalAttribute:)]) {
             self.identicalAttribute = (BOOL)[clazz performSelector:@selector(attributeIsOSIdenticalAttribute:)withObject:self.name];
         }
@@ -177,12 +174,7 @@
     }
     
     // sql template statement
-    self.alterTableAddColumnTemplateStatement = [BZObjectStoreQueryBuilder alterTableAddColumnStatement:runtime attribute:self];
-    self.minTemplateStatement = [BZObjectStoreQueryBuilder minStatement:runtime attribute:self];
-    self.maxTemplateStatement = [BZObjectStoreQueryBuilder maxStatement:runtime attribute:self];
-    self.avgTemplateStatement = [BZObjectStoreQueryBuilder avgStatement:runtime attribute:self];
-    self.totalTemplateStatement = [BZObjectStoreQueryBuilder totalStatement:runtime attribute:self];
-    self.sumTemplateStatement = [BZObjectStoreQueryBuilder sumStatement:runtime attribute:self];
+    self.alterTableAddColumnTemplateStatement = [BZObjectStoreQueryBuilder alterTableAddColumnStatement:self.osruntime attribute:self];
     
 }
 
@@ -236,27 +228,27 @@
 
 - (NSString*)minStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreFetchConditionModel*)condition
 {
-    return self.minTemplateStatement;
+    return [BZObjectStoreQueryBuilder minStatement:self.osruntime columnName:columnName];
 }
 
 - (NSString*)maxStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreFetchConditionModel*)condition
 {
-    return self.maxTemplateStatement;
+    return [BZObjectStoreQueryBuilder maxStatement:self.osruntime columnName:columnName];
 }
 
 - (NSString*)avgStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreFetchConditionModel*)condition
 {
-    return self.avgTemplateStatement;
+    return [BZObjectStoreQueryBuilder avgStatement:self.osruntime columnName:columnName];
 }
 
 - (NSString*)totalStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreFetchConditionModel*)condition
 {
-    return self.totalTemplateStatement;
+    return [BZObjectStoreQueryBuilder totalStatement:self.osruntime columnName:columnName];
 }
 
 - (NSString*)sumStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreFetchConditionModel*)condition
 {
-    return self.sumTemplateStatement;
+    return [BZObjectStoreQueryBuilder sumStatement:self.osruntime columnName:columnName];
 }
 
 

@@ -307,38 +307,38 @@
     return [NSString stringWithString:sql];
 }
 
-+ (NSString*)maxStatement:(BZObjectStoreRuntime*)runtime attribute:(BZObjectStoreRuntimeProperty*)attribute
++ (NSString*)maxStatement:(BZObjectStoreRuntime*)runtime columnName:(NSString*)columnName
 {
     NSString *tableName = runtime.tableName;
-    NSMutableString *sql = [NSMutableString stringWithFormat:@"SELECT MAX(%@) %@ FROM %@",attribute.columnName,attribute.columnName,tableName];
+    NSMutableString *sql = [NSMutableString stringWithFormat:@"SELECT MAX(%@) %@ FROM %@",columnName,columnName,tableName];
     return [NSString stringWithString:sql];
 }
 
-+ (NSString*)minStatement:(BZObjectStoreRuntime*)runtime attribute:(BZObjectStoreRuntimeProperty*)attribute
++ (NSString*)minStatement:(BZObjectStoreRuntime*)runtime columnName:(NSString*)columnName
 {
     NSString *tableName = runtime.tableName;
-    NSMutableString *sql = [NSMutableString stringWithFormat:@"SELECT MIN(%@) %@ FROM %@",attribute.columnName,attribute.columnName,tableName];
+    NSMutableString *sql = [NSMutableString stringWithFormat:@"SELECT MIN(%@) %@ FROM %@",columnName,columnName,tableName];
     return [NSString stringWithString:sql];
 }
 
-+ (NSString*)avgStatement:(BZObjectStoreRuntime*)runtime attribute:(BZObjectStoreRuntimeProperty*)attribute
++ (NSString*)avgStatement:(BZObjectStoreRuntime*)runtime columnName:(NSString*)columnName
 {
     NSString *tableName = runtime.tableName;
-    NSMutableString *sql = [NSMutableString stringWithFormat:@"SELECT AVG(%@) %@ FROM %@",attribute.columnName,attribute.columnName,tableName];
+    NSMutableString *sql = [NSMutableString stringWithFormat:@"SELECT AVG(%@) %@ FROM %@",columnName,columnName,tableName];
     return [NSString stringWithString:sql];
 }
 
-+ (NSString*)totalStatement:(BZObjectStoreRuntime*)runtime attribute:(BZObjectStoreRuntimeProperty*)attribute
++ (NSString*)totalStatement:(BZObjectStoreRuntime*)runtime columnName:(NSString*)columnName
 {
     NSString *tableName = runtime.tableName;
-    NSMutableString *sql = [NSMutableString stringWithFormat:@"SELECT TOTAL(%@) %@ FROM %@",attribute.columnName,attribute.columnName,tableName];
+    NSMutableString *sql = [NSMutableString stringWithFormat:@"SELECT TOTAL(%@) %@ FROM %@",columnName,columnName,tableName];
     return [NSString stringWithString:sql];
 }
 
-+ (NSString*)sumStatement:(BZObjectStoreRuntime*)runtime attribute:(BZObjectStoreRuntimeProperty*)attribute
++ (NSString*)sumStatement:(BZObjectStoreRuntime*)runtime columnName:(NSString*)columnName
 {
     NSString *tableName = runtime.tableName;
-    NSMutableString *sql = [NSMutableString stringWithFormat:@"SELECT SUM(%@) %@ FROM %@",attribute.columnName,attribute.columnName,tableName];
+    NSMutableString *sql = [NSMutableString stringWithFormat:@"SELECT SUM(%@) %@ FROM %@",columnName,columnName,tableName];
     return [NSString stringWithString:sql];
 }
 
