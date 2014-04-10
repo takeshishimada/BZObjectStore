@@ -422,8 +422,8 @@
 
     
     // fetch objects
-    NSArray *targetObjects = processedObjects.allValues;
-    for (NSObject *targetObject in targetObjects) {
+    NSArray *allValues = processedObjects.allValues;
+    for (NSObject *targetObject in allValues) {
         FMResultSet *rs = [self resultSet:targetObject db:db];
         if ([self hadError:db error:error]) {
             return nil;
@@ -437,6 +437,12 @@
         [rs close];
     }
     
+    for (NSObject *targetObject in allValues) {
+        if (targetObject.runtime.modelDidLoad) {
+            [targetObject performSelector:@selector(modelDidLoad) withObject:nil];
+        }
+    }
+
     return [NSMutableArray arrayWithArray:objects];
 }
 
@@ -683,13 +689,11 @@
         }
     }
     
-//    for (NSObject *targetObject in allValues) {
-//        if ([targetObject conformsToProtocol:@protocol(OSModelInterface)]) {
-//            if ([targetObject respondsToSelector:@selector(OSModelDidSave)]) {
-//                [targetObject performSelector:@selector(OSModelDidSave) withObject:nil];
-//            }
-//        }
-//    }
+    for (NSObject *targetObject in allValues) {
+        if (targetObject.runtime.modelDidSave) {
+            [targetObject performSelector:@selector(modelDidSave) withObject:nil];
+        }
+    }
 
     return YES;
 }
@@ -803,6 +807,12 @@
         }
     }
     
+    for (NSObject *targetObject in allValues) {
+        if (targetObject.runtime.modelDidRemove) {
+            [targetObject performSelector:@selector(modelDidRemove) withObject:nil];
+        }
+    }
+
     return YES;
 }
 

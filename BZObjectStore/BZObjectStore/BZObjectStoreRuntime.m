@@ -188,7 +188,18 @@
     // class options
     self.fullTextSearch =  [self.clazz conformsToProtocol:@protocol(OSFullTextSearch)];
     self.temporary = [self.clazz conformsToProtocol:@protocol(OSTemporary)];
-    
+    if ([self.clazz conformsToProtocol:@protocol(OSModelInterface)]) {
+        if ([self.clazz respondsToSelector:@selector(OSModelDidSave)]) {
+            self.modelDidSave = YES;
+        }
+        if ([self.clazz respondsToSelector:@selector(OSModelDidRemove)]) {
+            self.modelDidRemove = YES;
+        }
+        if ([self.clazz respondsToSelector:@selector(OSModelDidLoad)]) {
+            self.modelDidLoad = YES;
+        }
+    }
+
     // response
     if (self.identificationAttributes.count > 0) {
         self.hasIdentificationAttributes = YES;
