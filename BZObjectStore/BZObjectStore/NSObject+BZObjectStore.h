@@ -27,7 +27,6 @@
 
 @interface NSObject (BZObjectStore)
 @property (nonatomic,strong) NSNumber *rowid;
-// todo
 @property (nonatomic,strong) BZObjectStoreRuntime *runtime;
 @property (nonatomic,readonly) NSString *objectStoreHashForSave;
 @property (nonatomic,readonly) NSString *objectStoreHashForFetch;

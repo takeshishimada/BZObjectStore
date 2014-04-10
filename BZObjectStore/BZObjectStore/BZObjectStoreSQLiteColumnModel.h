@@ -25,5 +25,5 @@
 
 @interface BZObjectStoreSQLiteColumnModel : NSObject
 @property (nonatomic,strong) NSString *columnName;
-@property (nonatomic,strong) NSString *columnType;
+@property (nonatomic,strong) NSString *dataTypeName;
 @end

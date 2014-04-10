@@ -52,6 +52,7 @@
 #import "BZObjectStoreClazzNSOrderedSet.h"
 #import "BZObjectStoreConst.h"
 #import "BZObjectStoreRuntimeProperty.h"
+#import "BZObjectStoreSQLiteColumnModel.h"
 
 #import "FMResultSet.h"
 

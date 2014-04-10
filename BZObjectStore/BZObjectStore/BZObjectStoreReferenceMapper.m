@@ -870,16 +870,14 @@
 - (BZObjectStoreRuntimeProperty*)groupFunctionAttributeWithColumnName:(NSString*)columnName clazz:(Class)clazz db:(FMDatabase*)db error:(NSError**)error
 {
     BZObjectStoreRuntime *runtime = [self runtimeWithClazz:clazz db:db];
-    // todo
     BZObjectStoreRuntimeProperty *attribute = [runtime attributeWithColumnName:columnName];
     if (attribute.isGroupFunctionClazz) {
         return attribute;
-    }
-    if (error != NULL) {
+    } else {
         NSString *message = [NSString stringWithFormat:@"%@ %@",columnName,NSStringFromClass(runtime.clazz)];
         *error = [BZObjectStoreError errorInvalidColumnName:message];
+        return nil;
     }
-    return nil;
 }
 
 - (BOOL)hadError:(FMDatabase*)db error:(NSError**)error
