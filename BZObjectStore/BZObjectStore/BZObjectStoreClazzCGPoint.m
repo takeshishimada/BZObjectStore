@@ -25,6 +25,7 @@
 #import "FMResultSet.h"
 #import "BZObjectStoreConst.h"
 #import "BZObjectStoreRuntimeProperty.h"
+#import "BZObjectStoreSQLiteColumnModel.h"
 
 @implementation BZObjectStoreClazzCGPoint
 
@@ -53,17 +54,44 @@
 
 - (NSArray*)storeValuesWithObject:(NSObject*)object attributeName:(NSString*)attributeName
 {
-    return @[[self storeValueWithValue:[object valueForKey:attributeName]]];
+    NSValue *value = [object valueForKey:attributeName];
+    if (value) {
+        CGPoint point = [value CGPointValue];
+        NSNumber *x = [NSNumber numberWithDouble:point.x];
+        NSNumber *y = [NSNumber numberWithDouble:point.y];
+        return @[x,y];
+    } else {
+        return @[[NSNull null],[NSNull null]];
+    }
+}
+
+- (NSArray*)sqliteColumnsWithAttribute:(BZObjectStoreRuntimeProperty *)attribute
+{
+    BZObjectStoreSQLiteColumnModel *x = [[BZObjectStoreSQLiteColumnModel alloc]init];
+    x.columnName = [NSString stringWithFormat:@"%@_x",attribute.columnName];
+    x.dataTypeName = [self sqliteDataTypeName];
+    
+    BZObjectStoreSQLiteColumnModel *y = [[BZObjectStoreSQLiteColumnModel alloc]init];
+    y.columnName = [NSString stringWithFormat:@"%@_y",attribute.columnName];
+    y.dataTypeName = [self sqliteDataTypeName];
+    
+    return @[x,y];
 }
 
 - (id)valueWithResultSet:(FMResultSet*)resultSet attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    return [self valueWithStoreValue:[resultSet stringForColumn:attribute.columnName]];
+    NSString *columnNameX = [NSString stringWithFormat:@"%@_x",attribute.columnName];
+    NSString *columnNameY = [NSString stringWithFormat:@"%@_y",attribute.columnName];
+    CGPoint point;
+    point.x = [resultSet doubleForColumn:columnNameX];
+    point.y = [resultSet doubleForColumn:columnNameY];
+    return [NSValue valueWithCGPoint:point];
+    
 }
 
 - (NSString*)sqliteDataTypeName
 {
-    return SQLITE_DATA_TYPE_TEXT;
+    return SQLITE_DATA_TYPE_INTEGER;
 }
 
 @end

@@ -28,22 +28,34 @@
 #import "BZObjectStoreNameBuilder.h"
 #import "BZObjectStoreRelationshipModel.h"
 #import "BZObjectStoreFetchConditionModel.h"
+#import "BZObjectStoreSQLiteColumnModel.h"
 #import "NSObject+BZObjectStore.h"
 
 @implementation BZObjectStoreQueryBuilder
 
 #pragma mark per runtime
 
++ (NSArray*)sqliteColumnsWithAttributes:(NSArray*)attributes
+{
+    NSMutableArray *sqliteColumns = [NSMutableArray array];
+    for (BZObjectStoreRuntimeProperty *attribute in attributes) {
+        [sqliteColumns addObjectsFromArray:attribute.sqliteColumns];
+    }
+    return sqliteColumns;
+}
+
 + (NSString*)selectStatement:(BZObjectStoreRuntime*)runtime
 {
     NSString *tableName = runtime.tableName;
     NSMutableString *sql = [NSMutableString string];
     [sql appendString:@"SELECT "];
-    for ( BZObjectStoreRuntimeProperty *attribute in runtime.attributes) {
+    NSArray *attributes = runtime.attributes;
+    NSArray *sqliteColumns = [self sqliteColumnsWithAttributes:attributes];
+    for (BZObjectStoreSQLiteColumnModel *sqliteColumn in sqliteColumns) {
         [sql appendString:@""];
-        [sql appendString:attribute.columnName];
+        [sql appendString:sqliteColumn.columnName];
         [sql appendString:@""];
-        if ([runtime.attributes lastObject] != attribute) {
+        if ([sqliteColumns lastObject] != sqliteColumn) {
             [sql appendString:@","];
         }
     }
@@ -56,11 +68,12 @@
 
 + (NSString*)selectRowidStatement:(BZObjectStoreRuntime*)runtime
 {
+    BZObjectStoreSQLiteColumnModel *sqliteColumn = runtime.rowidAttribute.sqliteColumns.firstObject;
     NSString *tableName = runtime.tableName;
     NSMutableString *sql = [NSMutableString string];
     [sql appendString:@"SELECT "];
     [sql appendString:@""];
-    [sql appendString:runtime.rowidAttribute.columnName];
+    [sql appendString:sqliteColumn.columnName];
     [sql appendString:@""];
     [sql appendString:@" FROM "];
     [sql appendString:@""];
@@ -80,9 +93,10 @@
     [sql appendString:@"UPDATE "];
     [sql appendString:tableName];
     [sql appendString:@" SET "];
-    for ( BZObjectStoreRuntimeProperty *attribute in attributes) {
+    NSArray *sqliteColumns = [self sqliteColumnsWithAttributes:attributes];
+    for (BZObjectStoreSQLiteColumnModel *sqliteColumn in sqliteColumns) {
         [sql appendString:@""];
-        [sql appendString:attribute.columnName];
+        [sql appendString:sqliteColumn.columnName];
         [sql appendString:@""];
         [sql appendString:@" = ?"];
         [sql appendString:@","];
@@ -99,9 +113,11 @@
     [sql appendString:tableName];
     NSMutableString *sqlNames = [NSMutableString stringWithFormat:@" ("];
     NSMutableString *sqlValues = [NSMutableString stringWithFormat:@" ("];
-    for ( BZObjectStoreRuntimeProperty *attribute in runtime.insertAttributes) {
+    NSArray *attributes = runtime.insertAttributes;
+    NSArray *sqliteColumns = [self sqliteColumnsWithAttributes:attributes];
+    for (BZObjectStoreSQLiteColumnModel *sqliteColumn in sqliteColumns) {
         [sqlNames appendString:@""];
-        [sqlNames appendString:attribute.columnName];
+        [sqlNames appendString:sqliteColumn.columnName];
         [sqlNames appendString:@""];
         [sqlValues appendString:@"?"];
         [sqlNames appendString:@","];
@@ -127,9 +143,11 @@
     [sql appendString:tableName];
     NSMutableString *sqlNames = [NSMutableString stringWithFormat:@" ("];
     NSMutableString *sqlValues = [NSMutableString stringWithFormat:@" ("];
-    for ( BZObjectStoreRuntimeProperty *attribute in runtime.attributes) {
+    NSArray *attributes = runtime.attributes;
+    NSArray *sqliteColumns = [self sqliteColumnsWithAttributes:attributes];
+    for (BZObjectStoreSQLiteColumnModel *sqliteColumn in sqliteColumns) {
         [sqlNames appendString:@""];
-        [sqlNames appendString:attribute.columnName];
+        [sqlNames appendString:sqliteColumn.columnName];
         [sqlNames appendString:@""];
         [sqlValues appendString:@"?"];
         [sqlNames appendString:@","];
@@ -155,9 +173,11 @@
     [sql appendString:tableName];
     NSMutableString *sqlNames = [NSMutableString stringWithFormat:@" ("];
     NSMutableString *sqlValues = [NSMutableString stringWithFormat:@" ("];
-    for ( BZObjectStoreRuntimeProperty *attribute in runtime.insertAttributes) {
+    NSArray *attributes = runtime.insertAttributes;
+    NSArray *sqliteColumns = [self sqliteColumnsWithAttributes:attributes];
+    for (BZObjectStoreSQLiteColumnModel *sqliteColumn in sqliteColumns) {
         [sqlNames appendString:@""];
-        [sqlNames appendString:attribute.columnName];
+        [sqlNames appendString:sqliteColumn.columnName];
         [sqlNames appendString:@""];
         [sqlValues appendString:@"?"];
         [sqlNames appendString:@","];
@@ -199,10 +219,11 @@
         [sql appendString:@" USING fts4 "];
     }
     [sql appendString:@" ("];
-    for ( BZObjectStoreRuntimeProperty *attribute in attributes) {
-        [sql appendString:attribute.columnName];
+    NSArray *sqliteColumns = [self sqliteColumnsWithAttributes:attributes];
+    for (BZObjectStoreSQLiteColumnModel *sqliteColumn in sqliteColumns) {
+        [sql appendString:sqliteColumn.columnName];
         [sql appendString:@" "];
-        [sql appendString:attribute.sqliteDataTypeName];
+        [sql appendString:sqliteColumn.dataTypeName ];
         [sql appendString:@","];
     }
     [sql appendString:@"__createdAt__ "];
@@ -248,9 +269,10 @@
     [sql appendString:@"_IDX ON "];
     [sql appendString:tableName];
     [sql appendString:@" ("];
-    for (BZObjectStoreRuntimeProperty *attribute in attributes) {
-        [sql appendString:attribute.columnName];
-        if ([attributes lastObject] != attribute) {
+    NSArray *sqliteColumns = [self sqliteColumnsWithAttributes:attributes];
+    for (BZObjectStoreSQLiteColumnModel *sqliteColumn in sqliteColumns) {
+        [sql appendString:sqliteColumn.columnName];
+        if (sqliteColumns.lastObject != sqliteColumn) {
             [sql appendString:@","];
         }
     }
@@ -293,17 +315,15 @@
 
 #pragma mark per attribute
 
-+ (NSString*)alterTableAddColumnStatement:(BZObjectStoreRuntime*)runtime attribute:(BZObjectStoreRuntimeProperty*)attribute
++ (NSString*)alterTableAddColumnStatement:(BZObjectStoreRuntime*)runtime sqliteColumn:(BZObjectStoreSQLiteColumnModel*)sqliteColumn
 {
-    NSString *tableName = runtime.tableName;
-    NSString *columnName = attribute.columnName;
     NSMutableString *sql = [NSMutableString string];
     [sql appendString:@"ALTER TABLE "];
-    [sql appendString:tableName];
+    [sql appendString:runtime.tableName];
     [sql appendString:@" ADD COLUMN "];
-    [sql appendString:columnName];
+    [sql appendString:sqliteColumn.columnName];
     [sql appendString:@" "];
-    [sql appendString:attribute.sqliteDataTypeName];
+    [sql appendString:sqliteColumn.dataTypeName];
     return [NSString stringWithString:sql];
 }
 
@@ -355,10 +375,12 @@
 {
     NSMutableString *sql = [NSMutableString string];
     [sql appendString:@""];
-    for (BZObjectStoreRuntimeProperty *attribute in runtime.identificationAttributes) {
-        [sql appendString:attribute.columnName];
+    NSArray *attributes = runtime.identificationAttributes;
+    NSArray *sqliteColumns = [self sqliteColumnsWithAttributes:attributes];
+    for (BZObjectStoreSQLiteColumnModel *sqliteColumn in sqliteColumns) {
+        [sql appendString:sqliteColumn.columnName];
         [sql appendString:@" = ?"];
-        if (attribute != runtime.identificationAttributes.lastObject) {
+        if (sqliteColumn != sqliteColumns.lastObject) {
             [sql appendString:@" AND "];
         }
     }

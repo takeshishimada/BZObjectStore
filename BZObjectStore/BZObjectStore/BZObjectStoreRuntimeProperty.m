@@ -29,6 +29,7 @@
 #import "BZObjectStoreQueryBuilder.h"
 #import "BZRuntimeProperty.h"
 #import "BZRuntimePropertyEncoding.h"
+#import "BZObjectStoreSQLiteColumnModel.h"
 
 @interface BZObjectStoreRuntimeProperty ()
 @property (nonatomic,strong) BZObjectStoreClazz *osclazz;
@@ -219,10 +220,9 @@
 
 #pragma mark statement
 
-
-- (NSString*)alterTableAddColumnStatement
+- (NSString*)alterTableAddColumnStatement:(BZObjectStoreSQLiteColumnModel*)sqliteColumn
 {
-    return [BZObjectStoreQueryBuilder alterTableAddColumnStatement:self.osruntime attribute:self];
+    return [BZObjectStoreQueryBuilder alterTableAddColumnStatement:self.osruntime sqliteColumn:sqliteColumn];
 }
 
 - (NSString*)minStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreFetchConditionModel*)condition

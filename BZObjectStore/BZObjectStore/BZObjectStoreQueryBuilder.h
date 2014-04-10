@@ -27,6 +27,7 @@
 @class BZObjectStoreRuntimeProperty;
 @class BZObjectStoreFetchConditionModel;
 @class BZObjectStoreNameBuilder;
+@class BZObjectStoreSQLiteColumnModel;
 
 @interface BZObjectStoreQueryBuilder : NSObject
 
@@ -55,7 +56,7 @@
 + (NSString*)rowidConditionStatement;
 + (NSString*)uniqueConditionStatement:(BZObjectStoreRuntime*)runtime;
 
-+ (NSString*)alterTableAddColumnStatement:(BZObjectStoreRuntime*)runtime attribute:(BZObjectStoreRuntimeProperty*)attribute;
++ (NSString*)alterTableAddColumnStatement:(BZObjectStoreRuntime*)runtime sqliteColumn:(BZObjectStoreSQLiteColumnModel*)sqliteColumn;
 + (NSString*)maxStatement:(BZObjectStoreRuntime*)runtime columnName:(NSString*)columnName;
 + (NSString*)minStatement:(BZObjectStoreRuntime*)runtime columnName:(NSString*)columnName;
 + (NSString*)avgStatement:(BZObjectStoreRuntime*)runtime columnName:(NSString*)columnName;

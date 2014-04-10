@@ -29,6 +29,7 @@
 #import "BZObjectStoreRuntime.h"
 #import "BZObjectStoreRuntimeProperty.h"
 #import "BZObjectStoreNameBuilder.h"
+#import "BZObjectStoreSQLiteColumnModel.h"
 #import "BZObjectStoreError.h"
 #import "FMDatabaseQueue.h"
 #import "FMDatabase.h"
@@ -139,13 +140,17 @@
     } else {
         BOOL addedColumns = NO;
         for (BZObjectStoreRuntimeProperty *attribute in runtime.insertAttributes) {
-            if (![db columnExists:attribute.columnName inTableWithName:runtime.tableName]) {
-                [db executeUpdate:[attribute alterTableAddColumnStatement]];
-                if ([self hadError:db]) {
-                    return NO;
+            for (BZObjectStoreSQLiteColumnModel *sqliteColumn in attribute.sqliteColumns) {
+                if (![db columnExists:sqliteColumn.columnName inTableWithName:runtime.tableName]) {
+                    NSString *sql = [attribute alterTableAddColumnStatement:sqliteColumn];
+                    [db executeUpdate:sql];
+                    if ([self hadError:db]) {
+                        return NO;
+                    }
+                    addedColumns = YES;
                 }
-                addedColumns = YES;
             }
+            
         }
         if ( addedColumns ) {
             if (!runtime.fullTextSearch) {

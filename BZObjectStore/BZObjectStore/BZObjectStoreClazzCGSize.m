@@ -25,6 +25,7 @@
 #import "FMResultSet.h"
 #import "BZObjectStoreConst.h"
 #import "BZObjectStoreRuntimeProperty.h"
+#import "BZObjectStoreSQLiteColumnModel.h"
 
 @implementation BZObjectStoreClazzCGSize
 
@@ -53,12 +54,38 @@
 
 - (NSArray*)storeValuesWithObject:(NSObject*)object attributeName:(NSString*)attributeName
 {
-    return @[[self storeValueWithValue:[object valueForKey:attributeName]]];
+    NSValue *value = [object valueForKey:attributeName];
+    if (value) {
+        CGSize size = [value CGSizeValue];
+        NSNumber *width = [NSNumber numberWithDouble:size.width];
+        NSNumber *height = [NSNumber numberWithDouble:size.height];
+        return @[width,height];
+    } else {
+        return @[[NSNull null],[NSNull null]];
+    }
+}
+
+- (NSArray*)sqliteColumnsWithAttribute:(BZObjectStoreRuntimeProperty *)attribute
+{
+    BZObjectStoreSQLiteColumnModel *width = [[BZObjectStoreSQLiteColumnModel alloc]init];
+    width.columnName = [NSString stringWithFormat:@"%@_width",attribute.columnName];
+    width.dataTypeName = [self sqliteDataTypeName];
+    
+    BZObjectStoreSQLiteColumnModel *height = [[BZObjectStoreSQLiteColumnModel alloc]init];
+    height.columnName = [NSString stringWithFormat:@"%@_height",attribute.columnName];
+    height.dataTypeName = [self sqliteDataTypeName];
+    
+    return @[width,height];
 }
 
 - (id)valueWithResultSet:(FMResultSet*)resultSet attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    return [self valueWithStoreValue:[resultSet stringForColumn:attribute.columnName]];
+    NSString *columnNameWidth = [NSString stringWithFormat:@"%@_width",attribute.columnName];
+    NSString *columnNameHeight = [NSString stringWithFormat:@"%@_height",attribute.columnName];
+    CGSize size;
+    size.width = [resultSet doubleForColumn:columnNameWidth];
+    size.height = [resultSet doubleForColumn:columnNameHeight];
+    return [NSValue valueWithCGSize:size];
 }
 
 - (NSString*)sqliteDataTypeName

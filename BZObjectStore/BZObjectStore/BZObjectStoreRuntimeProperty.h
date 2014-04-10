@@ -28,6 +28,7 @@
 @class BZObjectStoreNameBuilder;
 @class BZObjectStoreClazz;
 @class BZObjectStoreClazzUtil;
+@class BZObjectStoreSQLiteColumnModel;
 @class BZRuntimeProperty;
 @class FMResultSet;
 
@@ -71,7 +72,7 @@
 - (id)valueWithResultSet:(FMResultSet*)resultSet;
 
 // statement methods
-- (NSString*)alterTableAddColumnStatement;
+- (NSString*)alterTableAddColumnStatement:(BZObjectStoreSQLiteColumnModel*)sqliteColumn;
 - (NSString*)minStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreFetchConditionModel*)condition;
 - (NSString*)maxStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreFetchConditionModel*)condition;
 - (NSString*)avgStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreFetchConditionModel*)condition;
