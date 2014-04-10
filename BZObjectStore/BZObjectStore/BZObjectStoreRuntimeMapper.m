@@ -22,7 +22,7 @@
 // THE SOFTWARE.
 
 #import "BZObjectStoreRuntimeMapper.h"
-#import "BZObjectStoreAttributeInterface.h"
+#import "BZObjectStoreModelInterface.h"
 #import "BZObjectStoreRelationshipModel.h"
 #import "BZObjectStoreAttributeModel.h"
 #import "BZObjectStoreFetchConditionModel.h"

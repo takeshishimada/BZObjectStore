@@ -117,7 +117,7 @@
 		7259F81618F44F04002A3416 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7259F82318F44FCA002A3416 /* BZObjectStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStore.h; sourceTree = "<group>"; };
 		7259F82418F44FCA002A3416 /* BZObjectStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStore.m; sourceTree = "<group>"; };
-		7259F82518F44FCA002A3416 /* BZObjectStoreAttributeInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreAttributeInterface.h; sourceTree = "<group>"; };
+		7259F82518F44FCA002A3416 /* BZObjectStoreModelInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreModelInterface.h; sourceTree = "<group>"; };
 		7259F82618F44FCA002A3416 /* BZObjectStoreAttributeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreAttributeModel.h; sourceTree = "<group>"; };
 		7259F82718F44FCA002A3416 /* BZObjectStoreAttributeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreAttributeModel.m; sourceTree = "<group>"; };
 		7259F82818F44FCA002A3416 /* BZObjectStoreBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreBackground.h; sourceTree = "<group>"; };
@@ -364,7 +364,7 @@
 			children = (
 				7259F82318F44FCA002A3416 /* BZObjectStore.h */,
 				7259F82418F44FCA002A3416 /* BZObjectStore.m */,
-				7259F82518F44FCA002A3416 /* BZObjectStoreAttributeInterface.h */,
+				7259F82518F44FCA002A3416 /* BZObjectStoreModelInterface.h */,
 				7259F82618F44FCA002A3416 /* BZObjectStoreAttributeModel.h */,
 				7259F82718F44FCA002A3416 /* BZObjectStoreAttributeModel.m */,
 				7259F82818F44FCA002A3416 /* BZObjectStoreBackground.h */,
@@ -718,6 +718,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -756,6 +757,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;

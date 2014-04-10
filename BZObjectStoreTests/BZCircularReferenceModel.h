@@ -22,7 +22,7 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import "BZObjectStoreAttributeInterface.h"
+#import "BZObjectStoreModelInterface.h"
 
 @interface BZCircularReferenceModel : NSObject
 - (instancetype)initWithId:(NSString*)id name:(NSString*)name birthday:(NSDate*)birthday;

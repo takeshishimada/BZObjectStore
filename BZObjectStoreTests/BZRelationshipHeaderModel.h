@@ -22,7 +22,7 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import "BZObjectStoreAttributeInterface.h"
+#import "BZObjectStoreModelInterface.h"
 
 @interface BZRelationshipHeaderModel : NSObject
 @property (nonatomic,strong) NSString<OSIdenticalAttribute> *code;

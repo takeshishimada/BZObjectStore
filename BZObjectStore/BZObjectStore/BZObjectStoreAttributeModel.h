@@ -22,9 +22,9 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import "BZObjectStoreAttributeInterface.h"
+#import "BZObjectStoreModelInterface.h"
 
-@interface BZObjectStoreAttributeModel : NSObject<BZObjectStoreModelInterface>
+@interface BZObjectStoreAttributeModel : NSObject<OSModelInterface>
 @property (nonatomic,strong) NSString *tableName;
 @property (nonatomic,strong) NSString *className;
 @property (nonatomic,strong) NSString *attributeName;

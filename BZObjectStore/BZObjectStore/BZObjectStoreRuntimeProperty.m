@@ -22,7 +22,7 @@
 // THE SOFTWARE.
 
 #import "BZObjectStoreRuntimeProperty.h"
-#import "BZObjectStoreAttributeInterface.h"
+#import "BZObjectStoreModelInterface.h"
 #import "BZObjectStoreClazz.h"
 #import "BZObjectStoreRuntime.h"
 #import "BZObjectStoreNameBuilder.h"
@@ -100,7 +100,7 @@
     if (bzproperty.propertyType.isWeakReference) {
         self.weakReferenceAttribute = YES;
     }
-    if ([self.osruntime.clazz conformsToProtocol:@protocol(BZObjectStoreModelInterface)]) {
+    if ([self.osruntime.clazz conformsToProtocol:@protocol(OSModelInterface)]) {
         Class clazz = self.osruntime.clazz;
         if ([clazz respondsToSelector:@selector(attributeIsOSIdenticalAttribute:)]) {
             self.identicalAttribute = (BOOL)[clazz performSelector:@selector(attributeIsOSIdenticalAttribute:)withObject:self.name];

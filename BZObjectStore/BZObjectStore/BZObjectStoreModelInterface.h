@@ -53,7 +53,7 @@
 @protocol OSOnceUpdateAttribute
 @end
 
-@protocol BZObjectStoreModelInterface <NSObject>
+@protocol OSModelInterface <NSObject>
 @optional
 + (NSString*)OSTableName;
 + (NSString*)OSColumnName:(NSString*)attributeName;
@@ -64,10 +64,13 @@
 + (BOOL)attributeIsOSNotUpdateIfValueIsNullAttribute:(NSString*)attributeName;
 + (BOOL)attributeIsOSSerializableAttribute:(NSString*)attributeName;
 + (BOOL)attributeIsOSOnceUpdateAttribute:(NSString*)attributeName;
+- (void)OSModelDidLoad;
+- (void)OSModelDidSave;
+- (void)OSModelDidRemove;
 @end
 
-@interface NSObject (BZObjectStoreAttributeProtocol)
+@interface NSObject (OSAttributeProtocol)
 <OSIdenticalAttribute,OSIgnoreAttribute,OSSerializableAttribute,OSWeakReferenceAttribute,OSFetchOnRefreshingAttribute,OSNotUpdateIfValueIsNullAttribute,OSOnceUpdateAttribute>
 @end
-@implementation NSString (BZObjectStoreAttributeProtocol)
+@implementation NSString (OSAttributeProtocol)
 @end

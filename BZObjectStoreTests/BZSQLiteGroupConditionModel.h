@@ -7,7 +7,7 @@
 //
 
 #import <Foundation/Foundation.h>
-#import "BZObjectStoreAttributeInterface.h"
+#import "BZObjectStoreModelInterface.h"
 
 @interface BZSQLiteGroupConditionModel : NSObject
 - (instancetype)initWithNo:(NSString*)no name:(NSString*)name price:(NSInteger)price;

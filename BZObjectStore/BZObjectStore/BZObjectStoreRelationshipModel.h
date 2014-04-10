@@ -22,12 +22,12 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import "BZObjectStoreAttributeInterface.h"
+#import "BZObjectStoreModelInterface.h"
 
 @class BZObjectStoreRuntimeProperty;
 @class BZObjectStoreRuntime;
 
-@interface BZObjectStoreRelationshipModel : NSObject<BZObjectStoreModelInterface>
+@interface BZObjectStoreRelationshipModel : NSObject<OSModelInterface>
 @property (nonatomic,strong) NSString *fromClassName;
 @property (nonatomic,strong) NSString *fromTableName;
 @property (nonatomic,strong) NSString *fromAttributeName;

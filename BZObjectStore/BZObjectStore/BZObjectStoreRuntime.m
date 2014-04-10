@@ -24,7 +24,7 @@
 #import "BZObjectStoreRuntime.h"
 #import "BZObjectStoreClazz.h"
 #import "BZObjectStoreRuntimeProperty.h"
-#import "BZObjectStoreAttributeInterface.h"
+#import "BZObjectStoreModelInterface.h"
 #import "BZObjectStoreNameBuilder.h"
 #import "BZObjectStoreConst.h"
 #import "BZObjectStoreFetchConditionModel.h"

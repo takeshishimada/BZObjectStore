@@ -22,14 +22,14 @@
 // THE SOFTWARE.
 
 #import "BZObjectStoreNameBuilder.h"
-#import "BZObjectStoreAttributeInterface.h"
+#import "BZObjectStoreModelInterface.h"
 
 @implementation BZObjectStoreNameBuilder
 
 - (NSString*)tableName:(Class)clazz
 {
     NSString *tableName = nil;
-    if ([clazz conformsToProtocol:@protocol(BZObjectStoreModelInterface)]) {
+    if ([clazz conformsToProtocol:@protocol(OSModelInterface)]) {
         if ([clazz respondsToSelector:@selector(OSTableName)]) {
             tableName = (NSString*)[clazz performSelector:@selector(OSTableName) withObject:nil];
         }

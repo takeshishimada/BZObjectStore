@@ -22,7 +22,7 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import "BZObjectStoreAttributeInterface.h"
+#import "BZObjectStoreModelInterface.h"
 #import "BZVarietyValuesItemModel.h"
 
 typedef struct {

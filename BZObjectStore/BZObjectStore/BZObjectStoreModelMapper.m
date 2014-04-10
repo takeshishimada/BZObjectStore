@@ -23,7 +23,7 @@
 
 #import "BZObjectStoreModelMapper.h"
 #import "BZObjectStoreFetchConditionModel.h"
-#import "BZObjectStoreAttributeInterface.h"
+#import "BZObjectStoreModelInterface.h"
 #import "BZObjectStoreRelationshipModel.h"
 #import "BZObjectStoreAttributeModel.h"
 #import "BZObjectStoreRuntime.h"
