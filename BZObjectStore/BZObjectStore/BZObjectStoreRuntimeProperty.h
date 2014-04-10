@@ -64,6 +64,7 @@
 // sqlite information
 @property (nonatomic,strong) NSString *columnName;
 @property (nonatomic,strong) NSString *sqliteDataTypeName;
+@property (nonatomic,strong) NSArray *sqliteColumns;
 
 // mapper methods
 - (NSArray*)storeValuesWithObject:(NSObject*)object;

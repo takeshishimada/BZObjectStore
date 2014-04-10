@@ -33,7 +33,6 @@
 @interface BZObjectStoreRuntimeProperty ()
 @property (nonatomic,strong) BZObjectStoreClazz *osclazz;
 @property (nonatomic,weak) BZObjectStoreRuntime *osruntime;
-@property (nonatomic,strong) NSString *alterTableAddColumnTemplateStatement;
 @property (nonatomic,assign) BOOL isPrimitive;
 @property (nonatomic,assign) BOOL isStructure;
 @property (nonatomic,assign) BOOL isObject;
@@ -60,7 +59,6 @@
     // name
     self.name  = bzproperty.name;
     self.osruntime = runtime;
-    self.columnName = [self.osruntime.nameBuilder columnName:bzproperty.name clazz:self.osruntime.clazz];
     
     // data type
     if (bzproperty.propertyEncoding.isObject) {
@@ -144,7 +142,6 @@
     self.isObjectClazz = self.osclazz.isObjectClazz;
     self.isStringNumberClazz = self.osclazz.isStringNumberClazz;
     self.attributeType = self.osclazz.attributeType;
-    self.sqliteDataTypeName = self.osclazz.sqliteDataTypeName;
 
     // identicalAttribute
     if (!self.isStringNumberClazz) {
@@ -173,8 +170,10 @@
         self.isRelationshipClazz = YES;
     }
     
-    // sql template statement
-    self.alterTableAddColumnTemplateStatement = [BZObjectStoreQueryBuilder alterTableAddColumnStatement:self.osruntime attribute:self];
+    // sqlite
+    self.columnName = [self.osruntime.nameBuilder columnName:bzproperty.name clazz:self.osruntime.clazz];
+    self.sqliteDataTypeName = self.osclazz.sqliteDataTypeName;
+    self.sqliteColumns = [self.osclazz sqliteColumnsWithAttribute:self];
     
 }
 
@@ -223,7 +222,7 @@
 
 - (NSString*)alterTableAddColumnStatement
 {
-    return self.alterTableAddColumnTemplateStatement;
+    return [BZObjectStoreQueryBuilder alterTableAddColumnStatement:self.osruntime attribute:self];
 }
 
 - (NSString*)minStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreFetchConditionModel*)condition

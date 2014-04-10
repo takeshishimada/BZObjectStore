@@ -46,6 +46,7 @@
 - (NSArray*)storeValuesWithObject:(NSObject*)object attributeName:(NSString*)attributeName;
 - (id)valueWithResultSet:(FMResultSet*)resultSet attribute:(BZObjectStoreRuntimeProperty*)attribute;
 - (NSString*)sqliteDataTypeName;
+- (NSArray*)sqliteColumnsWithAttribute:(BZObjectStoreRuntimeProperty*)attribute;
 
 // constractor
 + (BZObjectStoreClazz*)osclazzWithClazz:(Class)clazz;

@@ -136,6 +136,13 @@
     return @"";
 }
 
+- (NSArray*)sqliteColumnsWithAttribute:(BZObjectStoreRuntimeProperty*)attribute
+{
+    BZObjectStoreSQLiteColumnModel *sqliteColumn = [[BZObjectStoreSQLiteColumnModel alloc]init];
+    sqliteColumn.columnName = attribute.columnName;
+    sqliteColumn.dataTypeName = [self sqliteDataTypeName];
+    return @[sqliteColumn];
+}
 
 
 #pragma mark constractor
