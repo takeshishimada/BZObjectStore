@@ -59,22 +59,22 @@
 - (void)test
 {
     BZObjectStore *disk = [BZObjectStoreOnDisk sharedInstance];
-//    [self testBZVarietyValuesModel:disk];
-//    [self testBZInvalidValuesModel:disk];
-//    [self testBZRelationshipHeaderModel:disk];
-//    [self testBZResponseModel:disk];
-//    [self testCircularReference:disk];
-//    [self testSQLiteGroupCondition:disk];
+    [self testBZVarietyValuesModel:disk];
+    [self testBZInvalidValuesModel:disk];
+    [self testBZRelationshipHeaderModel:disk];
+    [self testBZResponseModel:disk];
+    [self testCircularReference:disk];
+    [self testSQLiteGroupCondition:disk];
     [self testBZUpdateExistsObjectWithNoRowIdModel:disk];
     
-//    BZObjectStore *memory = [BZObjectStoreOnMemory sharedInstance];
-//    [self testBZVarietyValuesModel:memory];
-//    [self testBZInvalidValuesModel:memory];
-//    [self testBZRelationshipHeaderModel:memory];
-//    [self testBZResponseModel:memory];
-//    [self testCircularReference:memory];
-//    [self testSQLiteGroupCondition:memory];
-//    [self testBZUpdateExistsObjectWithNoRowIdModel:memory];
+    BZObjectStore *memory = [BZObjectStoreOnMemory sharedInstance];
+    [self testBZVarietyValuesModel:memory];
+    [self testBZInvalidValuesModel:memory];
+    [self testBZRelationshipHeaderModel:memory];
+    [self testBZResponseModel:memory];
+    [self testCircularReference:memory];
+    [self testSQLiteGroupCondition:memory];
+    [self testBZUpdateExistsObjectWithNoRowIdModel:memory];
     
 }
 

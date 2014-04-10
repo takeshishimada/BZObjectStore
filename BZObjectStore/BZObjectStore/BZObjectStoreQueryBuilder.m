@@ -169,7 +169,7 @@
 {
     NSString *tableName = runtime.tableName;
     NSMutableString *sql = [NSMutableString string];
-    [sql appendString:@"INSERT INTO "];
+    [sql appendString:@"INSERT OR IGNORE INTO "];
     [sql appendString:tableName];
     NSMutableString *sqlNames = [NSMutableString stringWithFormat:@" ("];
     NSMutableString *sqlValues = [NSMutableString stringWithFormat:@" ("];

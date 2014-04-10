@@ -114,21 +114,7 @@
 
 - (BOOL)insertOrReplace:(NSObject*)object db:(FMDatabase*)db
 {
-    if (object.runtime.hasIdentificationAttributes && !object.rowid) {
-        NSString *sql = [object.runtime insertOrIgnoreIntoStatement];
-        NSMutableArray *parameters = [object.runtime insertOrIgnoreAttributesParameters:object];
-        [db executeUpdate:sql withArgumentsInArray:parameters];
-        if ([db lastErrorCode] == 19) {
-            [self updateRowid:object db:db];
-        } else {
-            if ([self hadError:db]) {
-                return NO;
-            }
-            sqlite_int64 lastInsertRowid = [db lastInsertRowId];
-            object.rowid = [NSNumber numberWithLongLong:lastInsertRowid];
-            return YES;
-        }
-    }
+    [self updateRowid:object db:db];
     
     if (object.rowid) {
         BZObjectStoreFetchConditionModel *condition = [object.runtime rowidCondition:object];
@@ -215,8 +201,6 @@
     }
     BZObjectStoreFetchConditionModel *condition = [object.runtime uniqueCondition:object];
     NSString *sql = [object.runtime selectStatementWithCondition:condition];
-    NSMutableArray *parameters = [NSMutableArray array];
-    [parameters addObjectsFromArray:condition.sqliteCondition.parameters];
     FMResultSet *rs = [db executeQuery:sql withArgumentsInArray:condition.sqliteCondition.parameters];
     while (rs.next) {
         object.rowid = [object.runtime.rowidAttribute valueWithResultSet:rs];
