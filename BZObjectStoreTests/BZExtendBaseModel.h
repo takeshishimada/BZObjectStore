@@ -24,8 +24,6 @@
 #import <Foundation/Foundation.h>
 #import "BZObjectStoreModelInterface.h"
 
-@interface BZUpdateExistsObjectWithNoRowIdModel : NSObject
-@property (nonatomic,strong) NSString<OSIdenticalAttribute> *no1;
-@property (nonatomic,strong) NSString<OSIdenticalAttribute> *no2;
-@property (nonatomic,strong) NSString *name;
+@interface BZExtendBaseModel : NSObject
+@property (nonatomic,strong) NSString<OSIdenticalAttribute> *code;
 @end

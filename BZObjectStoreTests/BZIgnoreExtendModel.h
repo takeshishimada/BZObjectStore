@@ -21,11 +21,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import "BZExtendBaseModel.h"
 #import "BZObjectStoreModelInterface.h"
 
-@interface BZUpdateExistsObjectWithNoRowIdModel : NSObject
-@property (nonatomic,strong) NSString<OSIdenticalAttribute> *no1;
-@property (nonatomic,strong) NSString<OSIdenticalAttribute> *no2;
+@interface BZIgnoreExtendModel : BZExtendBaseModel<OSIgnoreSuperClass>
 @property (nonatomic,strong) NSString *name;
 @end

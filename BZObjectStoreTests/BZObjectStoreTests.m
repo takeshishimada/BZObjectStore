@@ -34,9 +34,15 @@
 #import "BZRelationshipDetailModel.h"
 #import "BZRelationshipItemModel.h"
 #import "BZInsertResponseModel.h"
+#import "BZUpdateResponseModel.h"
 #import "BZCircularReferenceModel.h"
 #import "BZSQLiteGroupConditionModel.h"
 #import "BZUpdateExistsObjectWithNoRowIdModel.h"
+#import "BZOnDemandHeaderModel.h"
+#import "BZOnDemandDetailModel.h"
+#import "BZOnDemanItemModel.h"
+#import "BZExtendModel.h"
+#import "BZIgnoreExtendModel.h"
 
 @interface BZObjectStoreTests : XCTestCase
 
@@ -62,20 +68,27 @@
 //    [self testBZVarietyValuesModel:disk];
 //    [self testBZInvalidValuesModel:disk];
 //    [self testBZRelationshipHeaderModel:disk];
-//    [self testBZResponseModel:disk];
+//    [self testBZInsertResponseModel:disk];
+//    [self testBZUpdateResponseModel:disk];
 //    [self testCircularReference:disk];
 //    [self testSQLiteGroupCondition:disk];
-    [self testBZUpdateExistsObjectWithNoRowIdModel:disk];
+//    [self testBZUpdateExistsObjectWithNoRowIdModel:disk];
+//    [self testBZOnDemanItemModel:disk];
+//    [self testBZExtendModel:disk];
+    [self testBZIgnoreExtendModel:disk];
     
 //    BZObjectStore *memory = [BZObjectStoreOnMemory sharedInstance];
 //    [self testBZVarietyValuesModel:memory];
 //    [self testBZInvalidValuesModel:memory];
 //    [self testBZRelationshipHeaderModel:memory];
-//    [self testBZResponseModel:memory];
+//    [self testBZInsertResponseModel:memory];
+//    [self testBZUpdateResponseModel:memory];
 //    [self testCircularReference:memory];
 //    [self testSQLiteGroupCondition:memory];
 //    [self testBZUpdateExistsObjectWithNoRowIdModel:memory];
-    
+//    [self testBZOnDemanItemModel:memory];
+//    [self testBZExtendModel:memory];
+//    [self testBZIgnoreExtendModel:memory];
 }
 
 - (void)testBZVarietyValuesModel:(BZObjectStore*)os
@@ -460,7 +473,7 @@
 
 }
 
-- (void)testBZResponseModel:(BZObjectStore*)os
+- (void)testBZInsertResponseModel:(BZObjectStore*)os
 {
     NSError *error = nil;
     NSMutableArray *list = [NSMutableArray array];
@@ -492,10 +505,46 @@
     NSDate *removethen = [NSDate date];
     NSLog(@"remove reponse then - now: %1.3fsec", [removethen timeIntervalSinceDate:removenow]);
 
-
     NSNumber *count = [os count:[BZInsertResponseModel class] condition:nil error:&error];
     XCTAssertTrue([count integerValue] == 0, @"fetch error");
 
+}
+
+- (void)testBZUpdateResponseModel:(BZObjectStore*)os
+{
+    NSError *error = nil;
+    NSMutableArray *list = [NSMutableArray array];
+    for (NSInteger i = 0; i < 50000; i++ ) {
+        BZUpdateResponseModel *model = [[BZUpdateResponseModel alloc]init];
+        model.code = [NSString stringWithFormat:@"%d",i];
+        model.name = [NSString stringWithFormat:@"name %d",i];
+        model.address = [NSString stringWithFormat:@"address %d",i];
+        model.birthday = [NSDate date];
+        [list addObject:model];
+    }
+    
+    NSDate *savenow = [NSDate date];
+    [os saveObjects:list error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    NSDate *savethen = [NSDate date];
+    NSLog(@"save reponse then - now: %1.3fsec", [savethen timeIntervalSinceDate:savenow]);
+    
+    NSDate *fetchnow = [NSDate date];
+    NSArray *fetchObjects = [os fetchObjects:[BZUpdateResponseModel class] condition:nil error:&error];
+    XCTAssertTrue(fetchObjects.count == 50000, @"fetch error");
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    NSDate *fetchthen = [NSDate date];
+    NSLog(@"fetch reponse then - now: %1.3fsec", [fetchthen timeIntervalSinceDate:fetchnow]);
+    
+    NSDate *removenow = [NSDate date];
+    [os removeObjects:[BZUpdateResponseModel class] condition:nil error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    NSDate *removethen = [NSDate date];
+    NSLog(@"remove reponse then - now: %1.3fsec", [removethen timeIntervalSinceDate:removenow]);
+    
+    NSNumber *count = [os count:[BZUpdateResponseModel class] condition:nil error:&error];
+    XCTAssertTrue([count integerValue] == 0, @"fetch error");
+    
 }
 
 - (void)testCircularReference:(BZObjectStore*)os
@@ -628,6 +677,87 @@
     BZUpdateExistsObjectWithNoRowIdModel *object = objects.firstObject;
     XCTAssertTrue([object.name isEqualToString:@""],"error");
     
+}
+
+
+- (void)testBZOnDemanItemModel:(BZObjectStore*)os
+{
+    NSError *error = nil;
+    
+    BZOnDemanItemModel *item = [[BZOnDemanItemModel alloc]init];
+    item.code = @"01";
+    item.name = @"itemname";
+    
+    BZOnDemandDetailModel *detail = [[BZOnDemandDetailModel alloc]init];
+    detail.code = @"01";
+    detail.items = [NSMutableArray array];
+    [detail.items addObject:item];
+    
+    BZOnDemandHeaderModel *header = [[BZOnDemandHeaderModel alloc]init];
+    header.code = @"01";
+    header.details = [NSMutableArray array];
+    [header.details addObject:detail];
+    
+    [os saveObject:header error:nil];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    
+    NSMutableArray *headers = [os fetchObjects:[BZOnDemandHeaderModel class] condition:nil error:nil];
+    if (error) {
+        XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    } else {
+        XCTAssertTrue(headers.count == 1,"object error");
+    }
+    
+    BZOnDemandHeaderModel *headerLatest = headers.firstObject;
+    XCTAssertTrue(!headerLatest.details,"object error");
+    
+    headerLatest = [os refreshObject:headerLatest error:nil];
+    if (error) {
+        XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    } else {
+        XCTAssertTrue(headerLatest.details.count == 1,"object error");
+    }
+    
+}
+
+- (void)testBZExtendModel:(BZObjectStore*)os
+{
+    NSError *error = nil;
+    
+    BZExtendModel *saveObject = [[BZExtendModel alloc]init];
+    saveObject.code = @"01";
+    saveObject.name = @"name";
+    
+    [os saveObject:saveObject error:nil];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    
+    NSArray *objects = [os fetchObjects:[BZExtendModel class] condition:nil error:&error];
+    if (error) {
+        XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    } else {
+        BZExtendModel *fetchObject = objects.firstObject;
+        XCTAssertTrue([fetchObject.code isEqualToString:@"01"],"object error");
+    }
+}
+
+- (void)testBZIgnoreExtendModel:(BZObjectStore*)os
+{
+    NSError *error = nil;
+    
+    BZIgnoreExtendModel *saveObject = [[BZIgnoreExtendModel alloc]init];
+    saveObject.code = @"01";
+    saveObject.name = @"name";
+    
+    [os saveObject:saveObject error:nil];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    
+    NSArray *objects = [os fetchObjects:[BZIgnoreExtendModel class] condition:nil error:&error];
+    if (error) {
+        XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    } else {
+        BZIgnoreExtendModel *fetchObject = objects.firstObject;
+        XCTAssertTrue(fetchObject.code == nil,"object error");
+    }
 }
 
 @end
