@@ -22,12 +22,11 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import "BZObjectStoreSQLiteConditionModel.h"
-#import "BZObjectStoreSQLiteReferenceConditionModel.h"
+#import "BZObjectStoreModelInterface.h"
 
-@interface BZObjectStoreFetchConditionModel : NSObject
-+ (instancetype)condition;
-@property (nonatomic,strong) NSPredicate *predicate;
-@property (nonatomic,strong) BZObjectStoreSQLiteConditionModel *sqliteCondition;
-@property (nonatomic,strong) BZObjectStoreSQLiteReferenceConditionModel *referenceCondition;
+@interface BZInsertResponseModel : NSObject<OSInsertPerformance>
+@property (nonatomic,strong) NSString<OSIdenticalAttribute> *code;
+@property (nonatomic,strong) NSString *name;
+@property (nonatomic,strong) NSString *address;
+@property (nonatomic,strong) NSDate *birthday;
 @end

@@ -21,12 +21,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "BZObjectStoreFetchConditionModel.h"
+#import "BZObjectStoreConditionModel.h"
 
-@implementation BZObjectStoreFetchConditionModel
+@implementation BZObjectStoreConditionModel
 + (instancetype)condition
 {
-    BZObjectStoreFetchConditionModel *condition = [[self alloc]init];
+    BZObjectStoreConditionModel *condition = [[self alloc]init];
     condition.sqliteCondition = [[BZObjectStoreSQLiteConditionModel alloc]init];
     condition.referenceCondition = [[BZObjectStoreSQLiteReferenceConditionModel alloc]init];
     return condition;

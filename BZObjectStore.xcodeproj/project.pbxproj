@@ -75,13 +75,12 @@
 		7259F8CB18F45014002A3416 /* BZRelationshipDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F8B718F45014002A3416 /* BZRelationshipDetailModel.m */; };
 		7259F8CC18F45014002A3416 /* BZRelationshipHeaderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F8B918F45014002A3416 /* BZRelationshipHeaderModel.m */; };
 		7259F8CD18F45014002A3416 /* BZRelationshipItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F8BB18F45014002A3416 /* BZRelationshipItemModel.m */; };
-		7259F8CE18F45014002A3416 /* BZResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F8BD18F45014002A3416 /* BZResponseModel.m */; };
+		7259F8CE18F45014002A3416 /* BZInsertResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F8BD18F45014002A3416 /* BZInsertResponseModel.m */; };
 		7259F8CF18F45014002A3416 /* BZVarietyValuesItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F8BF18F45014002A3416 /* BZVarietyValuesItemModel.m */; };
 		7259F8D018F45014002A3416 /* BZVarietyValuesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F8C118F45014002A3416 /* BZVarietyValuesModel.m */; };
 		72BEE87618F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72BEE87518F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.m */; };
 		72BEE87918F57A4400A7D742 /* BZObjectStoreSQLiteReferenceConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72BEE87818F57A4400A7D742 /* BZObjectStoreSQLiteReferenceConditionModel.m */; };
-		72BEE87C18F57A8000A7D742 /* BZObjectStoreFetchConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72BEE87B18F57A8000A7D742 /* BZObjectStoreFetchConditionModel.m */; };
-		72BEE87F18F57AF600A7D742 /* BZObjectStoreRemoveConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72BEE87E18F57AF600A7D742 /* BZObjectStoreRemoveConditionModel.m */; };
+		72BEE87C18F57A8000A7D742 /* BZObjectStoreConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72BEE87B18F57A8000A7D742 /* BZObjectStoreConditionModel.m */; };
 		82F55B5F18F63E49003A1136 /* AppleLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7259F8AC18F45014002A3416 /* AppleLogo.png */; };
 /* End PBXBuildFile section */
 
@@ -224,8 +223,8 @@
 		7259F8B918F45014002A3416 /* BZRelationshipHeaderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZRelationshipHeaderModel.m; sourceTree = "<group>"; };
 		7259F8BA18F45014002A3416 /* BZRelationshipItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZRelationshipItemModel.h; sourceTree = "<group>"; };
 		7259F8BB18F45014002A3416 /* BZRelationshipItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZRelationshipItemModel.m; sourceTree = "<group>"; };
-		7259F8BC18F45014002A3416 /* BZResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZResponseModel.h; sourceTree = "<group>"; };
-		7259F8BD18F45014002A3416 /* BZResponseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZResponseModel.m; sourceTree = "<group>"; };
+		7259F8BC18F45014002A3416 /* BZInsertResponseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZInsertResponseModel.h; sourceTree = "<group>"; };
+		7259F8BD18F45014002A3416 /* BZInsertResponseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZInsertResponseModel.m; sourceTree = "<group>"; };
 		7259F8BE18F45014002A3416 /* BZVarietyValuesItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZVarietyValuesItemModel.h; sourceTree = "<group>"; };
 		7259F8BF18F45014002A3416 /* BZVarietyValuesItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZVarietyValuesItemModel.m; sourceTree = "<group>"; };
 		7259F8C018F45014002A3416 /* BZVarietyValuesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZVarietyValuesModel.h; sourceTree = "<group>"; };
@@ -234,10 +233,8 @@
 		72BEE87518F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreSQLiteConditionModel.m; sourceTree = "<group>"; };
 		72BEE87718F57A4400A7D742 /* BZObjectStoreSQLiteReferenceConditionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreSQLiteReferenceConditionModel.h; sourceTree = "<group>"; };
 		72BEE87818F57A4400A7D742 /* BZObjectStoreSQLiteReferenceConditionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreSQLiteReferenceConditionModel.m; sourceTree = "<group>"; };
-		72BEE87A18F57A8000A7D742 /* BZObjectStoreFetchConditionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreFetchConditionModel.h; sourceTree = "<group>"; };
-		72BEE87B18F57A8000A7D742 /* BZObjectStoreFetchConditionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreFetchConditionModel.m; sourceTree = "<group>"; };
-		72BEE87D18F57AF600A7D742 /* BZObjectStoreRemoveConditionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreRemoveConditionModel.h; sourceTree = "<group>"; };
-		72BEE87E18F57AF600A7D742 /* BZObjectStoreRemoveConditionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreRemoveConditionModel.m; sourceTree = "<group>"; };
+		72BEE87A18F57A8000A7D742 /* BZObjectStoreConditionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreConditionModel.h; sourceTree = "<group>"; };
+		72BEE87B18F57A8000A7D742 /* BZObjectStoreConditionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreConditionModel.m; sourceTree = "<group>"; };
 		73A736836B224E7BB841BEB0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -339,8 +336,8 @@
 				7259F8B918F45014002A3416 /* BZRelationshipHeaderModel.m */,
 				7259F8BA18F45014002A3416 /* BZRelationshipItemModel.h */,
 				7259F8BB18F45014002A3416 /* BZRelationshipItemModel.m */,
-				7259F8BC18F45014002A3416 /* BZResponseModel.h */,
-				7259F8BD18F45014002A3416 /* BZResponseModel.m */,
+				7259F8BC18F45014002A3416 /* BZInsertResponseModel.h */,
+				7259F8BD18F45014002A3416 /* BZInsertResponseModel.m */,
 				7259F8BE18F45014002A3416 /* BZVarietyValuesItemModel.h */,
 				7259F8BF18F45014002A3416 /* BZVarietyValuesItemModel.m */,
 				7259F8C018F45014002A3416 /* BZVarietyValuesModel.h */,
@@ -457,10 +454,8 @@
 				72BEE87818F57A4400A7D742 /* BZObjectStoreSQLiteReferenceConditionModel.m */,
 				72170BE318F5862400C9A4C1 /* BZObjectStoreSQLiteColumnModel.h */,
 				72170BE418F5862400C9A4C1 /* BZObjectStoreSQLiteColumnModel.m */,
-				72BEE87A18F57A8000A7D742 /* BZObjectStoreFetchConditionModel.h */,
-				72BEE87B18F57A8000A7D742 /* BZObjectStoreFetchConditionModel.m */,
-				72BEE87D18F57AF600A7D742 /* BZObjectStoreRemoveConditionModel.h */,
-				72BEE87E18F57AF600A7D742 /* BZObjectStoreRemoveConditionModel.m */,
+				72BEE87A18F57A8000A7D742 /* BZObjectStoreConditionModel.h */,
+				72BEE87B18F57A8000A7D742 /* BZObjectStoreConditionModel.m */,
 				7259F87918F44FCA002A3416 /* FMDatabase+TemporaryTable.h */,
 				7259F87A18F44FCA002A3416 /* FMDatabase+TemporaryTable.m */,
 				7259F87B18F44FCA002A3416 /* NSObject+BZObjectStore.h */,
@@ -633,7 +628,7 @@
 				7259F88B18F44FCA002A3416 /* BZObjectStoreClazzNSData.m in Sources */,
 				7259F8A018F44FCA002A3416 /* BZObjectStoreError.m in Sources */,
 				7259F88C18F44FCA002A3416 /* BZObjectStoreClazzNSDate.m in Sources */,
-				72BEE87C18F57A8000A7D742 /* BZObjectStoreFetchConditionModel.m in Sources */,
+				72BEE87C18F57A8000A7D742 /* BZObjectStoreConditionModel.m in Sources */,
 				7259F88818F44FCA002A3416 /* BZObjectStoreClazzFloat.m in Sources */,
 				7259F89918F44FCA002A3416 /* BZObjectStoreClazzNSString.m in Sources */,
 				7259F89D18F44FCA002A3416 /* BZObjectStoreClazzUIColor.m in Sources */,
@@ -646,7 +641,6 @@
 				7259F88118F44FCA002A3416 /* BZObjectStoreBackground.m in Sources */,
 				7259F80418F44F04002A3416 /* BZObjectStoreAppDelegate.m in Sources */,
 				7259F88E18F44FCA002A3416 /* BZObjectStoreClazzNSMutableArray.m in Sources */,
-				72BEE87F18F57AF600A7D742 /* BZObjectStoreRemoveConditionModel.m in Sources */,
 				7259F89818F44FCA002A3416 /* BZObjectStoreClazzNSSet.m in Sources */,
 				7259F88218F44FCA002A3416 /* BZObjectStoreClazz.m in Sources */,
 				7259F88F18F44FCA002A3416 /* BZObjectStoreClazzNSMutableDictionary.m in Sources */,
@@ -668,7 +662,7 @@
 				72170BE818F5950D00C9A4C1 /* BZSQLiteGroupConditionModel.m in Sources */,
 				7259F8CA18F45014002A3416 /* BZObjectStoreTests.m in Sources */,
 				7259F8C918F45014002A3416 /* BZObjectStoreOnMemory.m in Sources */,
-				7259F8CE18F45014002A3416 /* BZResponseModel.m in Sources */,
+				7259F8CE18F45014002A3416 /* BZInsertResponseModel.m in Sources */,
 				7259F8CF18F45014002A3416 /* BZVarietyValuesItemModel.m in Sources */,
 				7259F8CB18F45014002A3416 /* BZRelationshipDetailModel.m in Sources */,
 				7259F8CC18F45014002A3416 /* BZRelationshipHeaderModel.m in Sources */,

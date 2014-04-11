@@ -33,7 +33,7 @@
 #import "BZRelationshipHeaderModel.h"
 #import "BZRelationshipDetailModel.h"
 #import "BZRelationshipItemModel.h"
-#import "BZResponseModel.h"
+#import "BZInsertResponseModel.h"
 #import "BZCircularReferenceModel.h"
 #import "BZSQLiteGroupConditionModel.h"
 #import "BZUpdateExistsObjectWithNoRowIdModel.h"
@@ -465,7 +465,7 @@
     NSError *error = nil;
     NSMutableArray *list = [NSMutableArray array];
     for (NSInteger i = 0; i < 50000; i++ ) {
-        BZResponseModel *model = [[BZResponseModel alloc]init];
+        BZInsertResponseModel *model = [[BZInsertResponseModel alloc]init];
         model.code = [NSString stringWithFormat:@"%d",i];
         model.name = [NSString stringWithFormat:@"name %d",i];
         model.address = [NSString stringWithFormat:@"address %d",i];
@@ -480,20 +480,20 @@
     NSLog(@"save reponse then - now: %1.3fsec", [savethen timeIntervalSinceDate:savenow]);
 
     NSDate *fetchnow = [NSDate date];
-    NSArray *fetchObjects = [os fetchObjects:[BZResponseModel class] condition:nil error:&error];
+    NSArray *fetchObjects = [os fetchObjects:[BZInsertResponseModel class] condition:nil error:&error];
     XCTAssertTrue(fetchObjects.count == 50000, @"fetch error");
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     NSDate *fetchthen = [NSDate date];
     NSLog(@"fetch reponse then - now: %1.3fsec", [fetchthen timeIntervalSinceDate:fetchnow]);
 
     NSDate *removenow = [NSDate date];
-    [os removeObjects:[BZResponseModel class] condition:nil error:&error];
+    [os removeObjects:[BZInsertResponseModel class] condition:nil error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     NSDate *removethen = [NSDate date];
     NSLog(@"remove reponse then - now: %1.3fsec", [removethen timeIntervalSinceDate:removenow]);
 
 
-    NSNumber *count = [os count:[BZResponseModel class] condition:nil error:&error];
+    NSNumber *count = [os count:[BZInsertResponseModel class] condition:nil error:&error];
     XCTAssertTrue([count integerValue] == 0, @"fetch error");
 
 }

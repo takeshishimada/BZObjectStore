@@ -26,7 +26,7 @@
 @class BZObjectStoreClazzUtil;
 @class BZObjectStoreNameBuilder;
 @class BZObjectStoreRuntimeProperty;
-@class BZObjectStoreFetchConditionModel;
+@class BZObjectStoreConditionModel;
 @class BZObjectStoreClazz;
 @class FMResultSet;
 
@@ -78,16 +78,16 @@
 - (NSString*)insertIntoStatement;
 - (NSString*)insertOrReplaceIntoStatement;
 - (NSString*)insertOrIgnoreIntoStatement;
-- (NSString*)updateStatementWithObject:(NSObject*)object condition:(BZObjectStoreFetchConditionModel*)condition;
-- (NSString*)selectRowidStatement:(BZObjectStoreFetchConditionModel*)condition;
-- (NSString*)selectStatementWithCondition:(BZObjectStoreFetchConditionModel*)condition;
-- (NSString*)deleteFromStatementWithCondition:(BZObjectStoreFetchConditionModel*)condition;
-- (NSString*)referencedCountStatementWithCondition:(BZObjectStoreFetchConditionModel*)condition;
-- (NSString*)countStatementWithCondition:(BZObjectStoreFetchConditionModel*)condition;
+- (NSString*)updateStatementWithObject:(NSObject*)object condition:(BZObjectStoreConditionModel*)condition;
+- (NSString*)selectRowidStatement:(BZObjectStoreConditionModel*)condition;
+- (NSString*)selectStatementWithCondition:(BZObjectStoreConditionModel*)condition;
+- (NSString*)deleteFromStatementWithCondition:(BZObjectStoreConditionModel*)condition;
+- (NSString*)referencedCountStatementWithCondition:(BZObjectStoreConditionModel*)condition;
+- (NSString*)countStatementWithCondition:(BZObjectStoreConditionModel*)condition;
 
 // condition methods
-- (BZObjectStoreFetchConditionModel*)rowidCondition:(NSObject*)object;
-- (BZObjectStoreFetchConditionModel*)uniqueCondition:(NSObject*)object;
+- (BZObjectStoreConditionModel*)rowidCondition:(NSObject*)object;
+- (BZObjectStoreConditionModel*)uniqueCondition:(NSObject*)object;
 
 // parameter methods
 - (NSMutableArray*)insertOrIgnoreAttributesParameters:(NSObject*)object;

@@ -22,7 +22,7 @@
 // THE SOFTWARE.
 
 #import "BZObjectStoreModelMapper.h"
-#import "BZObjectStoreFetchConditionModel.h"
+#import "BZObjectStoreConditionModel.h"
 #import "BZObjectStoreModelInterface.h"
 #import "BZObjectStoreRelationshipModel.h"
 #import "BZObjectStoreAttributeModel.h"
@@ -48,42 +48,42 @@
 
 @implementation BZObjectStoreModelMapper
 
-- (NSNumber*)avg:(NSString*)columnName attribute:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreFetchConditionModel*)condition db:(FMDatabase*)db
+- (NSNumber*)avg:(NSString*)columnName attribute:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db
 {
     NSString *sql = [attribute avgStatementWithColumnName:columnName condition:condition];
     NSNumber *value = [self groupWithStatement:sql attribute:attribute condition:condition db:db];
     return value;
 }
 
-- (NSNumber*)total:(NSString*)columnName attribute:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreFetchConditionModel*)condition db:(FMDatabase*)db
+- (NSNumber*)total:(NSString*)columnName attribute:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db
 {
     NSString *sql = [attribute totalStatementWithColumnName:columnName condition:condition];
     NSNumber *value = [self groupWithStatement:sql attribute:attribute condition:condition db:db];
     return value;
 }
 
-- (NSNumber*)sum:(NSString*)columnName attribute:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreFetchConditionModel*)condition db:(FMDatabase*)db
+- (NSNumber*)sum:(NSString*)columnName attribute:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db
 {
     NSString *sql = [attribute sumStatementWithColumnName:columnName condition:condition];
     NSNumber *value = [self groupWithStatement:sql attribute:attribute condition:condition db:db];
     return value;
 }
 
-- (NSNumber*)min:(NSString*)columnName attribute:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreFetchConditionModel*)condition db:(FMDatabase*)db
+- (NSNumber*)min:(NSString*)columnName attribute:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db
 {
     NSString *sql = [attribute minStatementWithColumnName:columnName condition:condition];
     NSNumber *value = [self groupWithStatement:sql attribute:attribute condition:condition db:db];
     return value;
 }
 
-- (NSNumber*)max:(NSString*)columnName attribute:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreFetchConditionModel*)condition db:(FMDatabase*)db
+- (NSNumber*)max:(NSString*)columnName attribute:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db
 {
     NSString *sql = [attribute maxStatementWithColumnName:columnName condition:condition];
     NSNumber *value = [self groupWithStatement:sql attribute:attribute condition:condition db:db];
     return value;
 }
 
-- (NSNumber*)groupWithStatement:(NSString*)statement attribute:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreFetchConditionModel*)condition db:(FMDatabase*)db
+- (NSNumber*)groupWithStatement:(NSString*)statement attribute:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db
 {
     NSNumber *value = nil;
     FMResultSet *rs = [db executeQuery:statement withArgumentsInArray:condition.sqliteCondition.parameters];
@@ -97,7 +97,7 @@
     return value;
 }
 
-- (NSNumber*)count:(BZObjectStoreRuntime*)runtime condition:(BZObjectStoreFetchConditionModel*)condition db:(FMDatabase*)db
+- (NSNumber*)count:(BZObjectStoreRuntime*)runtime condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db
 {
     NSNumber *value = nil;
     NSString *sql = [runtime countStatementWithCondition:condition];
@@ -115,7 +115,7 @@
 - (BOOL)insertOrReplace:(NSObject*)object db:(FMDatabase*)db
 {
     if (object.rowid) {
-        BZObjectStoreFetchConditionModel *condition = [object.runtime rowidCondition:object];
+        BZObjectStoreConditionModel *condition = [object.runtime rowidCondition:object];
         NSString *sql = [object.runtime updateStatementWithObject:object condition:condition];
         NSMutableArray *parameters = [NSMutableArray array];
         [parameters addObjectsFromArray:[object.runtime updateAttributesParameters:object]];
@@ -175,7 +175,7 @@
 
 - (BOOL)updateByIdentificationAttributes:(NSObject*)object db:(FMDatabase*)db
 {
-    BZObjectStoreFetchConditionModel *condition = [object.runtime uniqueCondition:object];
+    BZObjectStoreConditionModel *condition = [object.runtime uniqueCondition:object];
     NSString *sql = [object.runtime updateStatementWithObject:object condition:condition];
     NSMutableArray *parameters = [NSMutableArray array];
     [parameters addObjectsFromArray:[object.runtime updateAttributesParameters:object]];
@@ -204,7 +204,7 @@
 - (BOOL)deleteFrom:(NSObject*)object db:(FMDatabase*)db
 {
     if (object.rowid) {
-        BZObjectStoreFetchConditionModel *condition = [object.runtime rowidCondition:object];
+        BZObjectStoreConditionModel *condition = [object.runtime rowidCondition:object];
         NSMutableArray *parameters = [NSMutableArray array];
         [parameters addObjectsFromArray:condition.sqliteCondition.parameters];
         NSString *sql = [object.runtime deleteFromStatementWithCondition:condition];
@@ -215,7 +215,7 @@
         return YES;
         
     } else if (object.runtime.hasIdentificationAttributes) {
-        BZObjectStoreFetchConditionModel *condition = [object.runtime uniqueCondition:object];
+        BZObjectStoreConditionModel *condition = [object.runtime uniqueCondition:object];
         NSMutableArray *parameters = [NSMutableArray array];
         [parameters addObjectsFromArray:condition.sqliteCondition.parameters];
         NSString *sql = [object.runtime deleteFromStatementWithCondition:condition];
@@ -229,7 +229,7 @@
     
 }
 
-- (BOOL)deleteFrom:(BZObjectStoreRuntime*)runtime condition:(BZObjectStoreFetchConditionModel*)condition db:(FMDatabase*)db
+- (BOOL)deleteFrom:(BZObjectStoreRuntime*)runtime condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db
 {
     NSString *sql = [runtime deleteFromStatementWithCondition:condition];
     NSMutableArray *parameters = [NSMutableArray array];
@@ -241,7 +241,7 @@
     return YES;
 }
 
-- (FMResultSet*)resultSet:(BZObjectStoreRuntime*)runtime condition:(BZObjectStoreFetchConditionModel*)condition db:(FMDatabase*)db
+- (FMResultSet*)resultSet:(BZObjectStoreRuntime*)runtime condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db
 {
     NSString *sql = [runtime selectStatementWithCondition:condition];
     NSMutableArray *parameters = [NSMutableArray array];
@@ -257,7 +257,7 @@
     } else if (!object.runtime.hasIdentificationAttributes) {
         return;
     }
-    BZObjectStoreFetchConditionModel *condition = [object.runtime uniqueCondition:object];
+    BZObjectStoreConditionModel *condition = [object.runtime uniqueCondition:object];
     NSString *sql = [object.runtime selectStatementWithCondition:condition];
     FMResultSet *rs = [db executeQuery:sql withArgumentsInArray:condition.sqliteCondition.parameters];
     while (rs.next) {
@@ -270,7 +270,7 @@
 - (FMResultSet*)resultSet:(NSObject*)object db:(FMDatabase*)db
 {
     if (object.rowid) {
-        BZObjectStoreFetchConditionModel *condition = [object.runtime rowidCondition:object];
+        BZObjectStoreConditionModel *condition = [object.runtime rowidCondition:object];
         NSMutableArray *parameters = [NSMutableArray array];
         [parameters addObjectsFromArray:condition.sqliteCondition.parameters];
         NSString *sql = [object.runtime selectStatementWithCondition:condition];
@@ -278,7 +278,7 @@
         return rs;
         
     } else if (object.runtime.hasIdentificationAttributes) {
-        BZObjectStoreFetchConditionModel *condition = [object.runtime uniqueCondition:object];
+        BZObjectStoreConditionModel *condition = [object.runtime uniqueCondition:object];
         NSMutableArray *parameters = [NSMutableArray array];
         [parameters addObjectsFromArray:condition.sqliteCondition.parameters];
         NSString *sql = [object.runtime selectStatementWithCondition:condition];
@@ -298,7 +298,7 @@
     if (!object.rowid) {
         return nil;
     }
-    BZObjectStoreFetchConditionModel *condition = [BZObjectStoreFetchConditionModel condition];
+    BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
     condition.sqliteCondition.where = @"toTableName = ? and toRowid = ?";
     condition.sqliteCondition.parameters = @[object.runtime.tableName,object.rowid];
     NSString *sql = [object.runtime referencedCountStatementWithCondition:condition];
@@ -324,7 +324,7 @@
     NSString *fromAttributeName = attribute.name;
     NSNumber *fromRowid = object.rowid;
     NSArray *parameters = @[fromClassName,fromAttributeName,fromRowid];
-    BZObjectStoreFetchConditionModel *condition = [BZObjectStoreFetchConditionModel condition];
+    BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
     condition.sqliteCondition.where = @"fromClassName = ? and fromAttributeName = ? and fromRowid = ?";
     condition.sqliteCondition.orderBy = @"attributeLevel desc,attributeSequence asc,attributeParentLevel desc,attributeParentSequence asc";
     condition.sqliteCondition.parameters = parameters;
@@ -333,14 +333,14 @@
 
 - (NSMutableArray*)relationshipObjectsWithToObject:(NSObject*)toObject db:(FMDatabase*)db
 {
-    BZObjectStoreFetchConditionModel *condition = [BZObjectStoreFetchConditionModel condition];
+    BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
     condition.sqliteCondition.where = @"toClassName = ? and toRowid = ?";
     condition.sqliteCondition.orderBy = @"toClassName,toRowid";
     condition.sqliteCondition.parameters = @[NSStringFromClass([toObject class]),toObject.rowid];
     return [self relationshipObjectsWithCondition:condition db:db];
 }
 
-- (NSMutableArray*)relationshipObjectsWithCondition:(BZObjectStoreFetchConditionModel*)condition db:(FMDatabase*)db
+- (NSMutableArray*)relationshipObjectsWithCondition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db
 {
     BZObjectStoreRuntime *runtime = [self runtime:[BZObjectStoreRelationshipModel class]];
     NSMutableArray *list = [NSMutableArray array];
@@ -387,7 +387,7 @@
     NSString *className = NSStringFromClass([object class]);
     NSString *attributeName = attribute.name;
     NSNumber *rowid = object.rowid;
-    BZObjectStoreFetchConditionModel *condition = [BZObjectStoreFetchConditionModel condition];
+    BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
     condition.sqliteCondition.where = @"fromClassName = ? and fromAttributeName = ? and fromRowid = ?";
     condition.sqliteCondition.parameters = @[className,attributeName,rowid];
     [self deleteFrom:runtime condition:condition db:db];
@@ -399,7 +399,7 @@
 
 - (BOOL)deleteRelationshipObjectsWithRelationshipObject:(BZObjectStoreRelationshipModel*)relationshipObject db:(FMDatabase*)db
 {
-    BZObjectStoreFetchConditionModel *condition = [BZObjectStoreFetchConditionModel condition];
+    BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
     condition.sqliteCondition.where = @"fromClassName = ? and fromAttributeName = ? and fromRowid = ? and toClassName = ? and toRowid = ?";
     condition.sqliteCondition.parameters = @[relationshipObject.fromClassName,relationshipObject.fromAttributeName,relationshipObject.fromRowid,relationshipObject.toClassName,relationshipObject.toRowid];
     [self deleteFrom:relationshipObject.runtime condition:condition db:db];
@@ -413,7 +413,7 @@
 {
     BZObjectStoreRuntime *runtime = [self runtime:[BZObjectStoreRelationshipModel class]];
     NSString *className = NSStringFromClass([object class]);
-    BZObjectStoreFetchConditionModel *condition = [BZObjectStoreFetchConditionModel condition];
+    BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
     condition.sqliteCondition.where = @"fromClassName = ? or toClassName = ?";
     condition.sqliteCondition.parameters = @[className,className];
     [self deleteFrom:runtime condition:condition db:db];

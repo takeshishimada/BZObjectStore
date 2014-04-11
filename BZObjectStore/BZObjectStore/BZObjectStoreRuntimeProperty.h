@@ -23,7 +23,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class BZObjectStoreFetchConditionModel;
+@class BZObjectStoreConditionModel;
 @class BZObjectStoreRuntime;
 @class BZObjectStoreNameBuilder;
 @class BZObjectStoreClazz;
@@ -73,10 +73,10 @@
 
 // statement methods
 - (NSString*)alterTableAddColumnStatement:(BZObjectStoreSQLiteColumnModel*)sqliteColumn;
-- (NSString*)minStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreFetchConditionModel*)condition;
-- (NSString*)maxStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreFetchConditionModel*)condition;
-- (NSString*)avgStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreFetchConditionModel*)condition;
-- (NSString*)totalStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreFetchConditionModel*)condition;
-- (NSString*)sumStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreFetchConditionModel*)condition;
+- (NSString*)minStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition;
+- (NSString*)maxStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition;
+- (NSString*)avgStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition;
+- (NSString*)totalStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition;
+- (NSString*)sumStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition;
 
 @end

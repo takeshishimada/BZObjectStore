@@ -27,7 +27,7 @@
 #import "BZObjectStoreModelInterface.h"
 #import "BZObjectStoreNameBuilder.h"
 #import "BZObjectStoreConst.h"
-#import "BZObjectStoreFetchConditionModel.h"
+#import "BZObjectStoreConditionModel.h"
 #import "BZObjectStoreQueryBuilder.h"
 #import "BZRuntime.h"
 #import "NSObject+BZObjectStore.h"
@@ -286,7 +286,7 @@
 {
     return self.insertOrReplaceIntoTemplateStatement;
 }
-- (NSString*)updateStatementWithObject:(NSObject*)object condition:(BZObjectStoreFetchConditionModel*)condition
+- (NSString*)updateStatementWithObject:(NSObject*)object condition:(BZObjectStoreConditionModel*)condition
 {
     if (self.hasNotUpdateIfValueIsNullAttribute) {
         NSMutableArray *attributes = [NSMutableArray array];
@@ -309,7 +309,7 @@
         return [NSString stringWithString:sql];
     }
 }
-- (NSString*)selectStatementWithCondition:(BZObjectStoreFetchConditionModel*)condition
+- (NSString*)selectStatementWithCondition:(BZObjectStoreConditionModel*)condition
 {
     NSMutableString *sql = [NSMutableString string];
     [sql appendString:self.selectTemplateStatement];
@@ -318,7 +318,7 @@
     return [NSString stringWithString:sql];
 }
 
-- (NSString*)selectRowidStatement:(BZObjectStoreFetchConditionModel*)condition
+- (NSString*)selectRowidStatement:(BZObjectStoreConditionModel*)condition
 {
     NSMutableString *sql = [NSMutableString string];
     [sql appendString:self.selectRowidTemplateStatement];
@@ -327,7 +327,7 @@
 }
 
 
-- (NSString*)deleteFromStatementWithCondition:(BZObjectStoreFetchConditionModel*)condition
+- (NSString*)deleteFromStatementWithCondition:(BZObjectStoreConditionModel*)condition
 {
     NSMutableString *sql = [NSMutableString string];
     [sql appendString:self.deleteFromTemplateStatement];
@@ -335,7 +335,7 @@
     return [NSString stringWithString:sql];
 }
 
-- (NSString*)referencedCountStatementWithCondition:(BZObjectStoreFetchConditionModel*)condition
+- (NSString*)referencedCountStatementWithCondition:(BZObjectStoreConditionModel*)condition
 {
     NSString *conditionStatement = [BZObjectStoreQueryBuilder selectConditionStatement:condition runtime:self];
     NSString *sql = self.referencedCountTemplateStatement;
@@ -343,7 +343,7 @@
     return sql;
 }
 
-- (NSString*)countStatementWithCondition:(BZObjectStoreFetchConditionModel*)condition
+- (NSString*)countStatementWithCondition:(BZObjectStoreConditionModel*)condition
 {
     NSMutableString *sql = [NSMutableString string];
     [sql appendString:self.countTemplateStatement];
@@ -353,17 +353,17 @@
 
 #pragma marks unique condition
 
-- (BZObjectStoreFetchConditionModel*)rowidCondition:(NSObject*)object
+- (BZObjectStoreConditionModel*)rowidCondition:(NSObject*)object
 {
-    BZObjectStoreFetchConditionModel *condition = [BZObjectStoreFetchConditionModel condition];
+    BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
     condition.sqliteCondition.where = [BZObjectStoreQueryBuilder rowidConditionStatement];
     condition.sqliteCondition.parameters = [self rowidAttributeParameter:object];
     return condition;
 }
 
-- (BZObjectStoreFetchConditionModel*)uniqueCondition:(NSObject*)object
+- (BZObjectStoreConditionModel*)uniqueCondition:(NSObject*)object
 {
-    BZObjectStoreFetchConditionModel *condition = [BZObjectStoreFetchConditionModel condition];
+    BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
     condition.sqliteCondition.where = [BZObjectStoreQueryBuilder uniqueConditionStatement:self];
     condition.sqliteCondition.parameters = [self identificationAttributesParameters:object];
     return condition;

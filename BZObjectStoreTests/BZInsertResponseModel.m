@@ -21,8 +21,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "BZResponseModel.h"
+#import "BZInsertResponseModel.h"
 
-@implementation BZResponseModel
+@implementation BZInsertResponseModel
 
 @end

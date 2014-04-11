@@ -27,7 +27,7 @@
 #import "BZObjectStoreConst.h"
 #import "BZObjectStoreNameBuilder.h"
 #import "BZObjectStoreRelationshipModel.h"
-#import "BZObjectStoreFetchConditionModel.h"
+#import "BZObjectStoreConditionModel.h"
 #import "BZObjectStoreSQLiteColumnModel.h"
 #import "NSObject+BZObjectStore.h"
 
@@ -390,7 +390,7 @@
 
 #pragma mark condition
 
-+ (NSString*)selectConditionStatement:(BZObjectStoreFetchConditionModel*)condition
++ (NSString*)selectConditionStatement:(BZObjectStoreConditionModel*)condition
 {
     NSMutableString *sql = [NSMutableString string];
     [sql appendString:@" where "];
@@ -402,7 +402,7 @@
     return [NSString stringWithString:sql];
 }
 
-+ (NSString*)deleteConditionStatement:(BZObjectStoreFetchConditionModel*)condition
++ (NSString*)deleteConditionStatement:(BZObjectStoreConditionModel*)condition
 {
     NSMutableString *sql = [NSMutableString string];
     [sql appendString:@" where "];
@@ -414,7 +414,7 @@
     return [NSString stringWithString:sql];
 }
 
-+ (NSString*)updateConditionStatement:(BZObjectStoreFetchConditionModel*)condition
++ (NSString*)updateConditionStatement:(BZObjectStoreConditionModel*)condition
 {
     NSMutableString *sql = [NSMutableString string];
     [sql appendString:@" where "];
@@ -426,7 +426,7 @@
     return [NSString stringWithString:sql];
 }
 
-+ (NSString*)selectConditionStatement:(BZObjectStoreFetchConditionModel*)condition runtime:(BZObjectStoreRuntime*)runtime
++ (NSString*)selectConditionStatement:(BZObjectStoreConditionModel*)condition runtime:(BZObjectStoreRuntime*)runtime
 {
     NSMutableString *sql = [NSMutableString string];
     if ( condition.sqliteCondition.where || condition.referenceCondition.from || condition.referenceCondition.to) {
@@ -472,7 +472,7 @@
     return [NSString stringWithString:sql];
 }
 
-+ (NSString*)selectConditionOptionStatement:(BZObjectStoreFetchConditionModel*)condition
++ (NSString*)selectConditionOptionStatement:(BZObjectStoreConditionModel*)condition
 {
     NSMutableString *sql = [NSMutableString string];
     if ( condition.sqliteCondition.orderBy ) {
