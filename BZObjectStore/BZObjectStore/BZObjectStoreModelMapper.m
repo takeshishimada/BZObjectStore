@@ -114,8 +114,6 @@
 
 - (BOOL)insertOrReplace:(NSObject*)object db:(FMDatabase*)db
 {
-    [self updateRowid:object db:db];
-    
     if (object.rowid) {
         BZObjectStoreFetchConditionModel *condition = [object.runtime rowidCondition:object];
         NSString *sql = [object.runtime updateStatementWithObject:object condition:condition];
@@ -126,8 +124,31 @@
         if ([self hadError:db]) {
             return NO;
         }
-        
-    } else if (!object.rowid) {
+    }
+
+    if (object.runtime.hasIdentificationAttributes && !object.rowid) {
+        if (object.runtime.insertPerformance) {
+            [self insertByIdentificationAttributes:object db:db];
+            if ([self changes:object db:db] > 0) {
+                return YES;
+            }
+            [self updateByIdentificationAttributes:object db:db];
+            if ([self changes:object db:db] > 0) {
+                return YES;
+            }
+        } else {
+            [self updateByIdentificationAttributes:object db:db];
+            if ([self changes:object db:db] > 0) {
+                return YES;
+            }
+            [self insertByIdentificationAttributes:object db:db];
+            if ([self changes:object db:db] > 0) {
+                return YES;
+            }
+        }
+    }
+    
+    if (!object.rowid) {
         NSString *sql = [object.runtime insertIntoStatement];
         NSMutableArray *parameters = [object.runtime insertAttributesParameters:object];
         [db executeUpdate:sql withArgumentsInArray:parameters];
@@ -137,11 +158,48 @@
         sqlite_int64 lastInsertRowid = [db lastInsertRowId];
         object.rowid = [NSNumber numberWithLongLong:lastInsertRowid];
     }
+    
     return YES;
 }
 
+- (BOOL)insertByIdentificationAttributes:(NSObject*)object db:(FMDatabase*)db
+{
+    NSString *sql = [object.runtime insertOrIgnoreIntoStatement];
+    NSMutableArray *parameters = [object.runtime insertOrIgnoreAttributesParameters:object];
+    [db executeUpdate:sql withArgumentsInArray:parameters];
+    if ([self hadError:db]) {
+        return NO;
+    }
+    return YES;
+}
 
+- (BOOL)updateByIdentificationAttributes:(NSObject*)object db:(FMDatabase*)db
+{
+    BZObjectStoreFetchConditionModel *condition = [object.runtime uniqueCondition:object];
+    NSString *sql = [object.runtime updateStatementWithObject:object condition:condition];
+    NSMutableArray *parameters = [NSMutableArray array];
+    [parameters addObjectsFromArray:[object.runtime updateAttributesParameters:object]];
+    [parameters addObjectsFromArray:condition.sqliteCondition.parameters];
+    [db executeUpdate:sql withArgumentsInArray:parameters];
+    if ([self hadError:db]) {
+        return NO;
+    }
+    return YES;
+}
 
+- (int)changes:(NSObject*)object db:(FMDatabase*)db
+{
+    int changes = [db changes];
+    if (changes > 0) {
+        sqlite_int64 lastInsertRowid = [db lastInsertRowId];
+        if (lastInsertRowid != 0) {
+            sqlite_int64 lastInsertRowid = [db lastInsertRowId];
+            object.rowid = [NSNumber numberWithLongLong:lastInsertRowid];
+            return changes;
+        }
+    }
+    return 0;
+}
 
 - (BOOL)deleteFrom:(NSObject*)object db:(FMDatabase*)db
 {

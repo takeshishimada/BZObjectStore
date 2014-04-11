@@ -214,6 +214,12 @@
     if (self.attributes.count == 0 && self.isObjectClazz) {
         self.isObjectClazz = NO;
     }
+    self.insertPerformance = [self.clazz conformsToProtocol:@protocol(OSInsertPerformance)];
+    self.updatePerformance = [self.clazz conformsToProtocol:@protocol(OSUpdatePerformance)];
+    
+    if (self.insertPerformance == NO && self.updatePerformance == NO) {
+        self.insertPerformance = YES;
+    }
     
     // query
     self.selectTemplateStatement = [BZObjectStoreQueryBuilder selectStatement:self];

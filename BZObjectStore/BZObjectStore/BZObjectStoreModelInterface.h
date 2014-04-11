@@ -32,6 +32,12 @@
 @protocol OSTemporary
 @end
 
+@protocol OSInsertPerformance
+@end
+
+@protocol OSUpdatePerformance
+@end
+
 @protocol OSIdenticalAttribute
 @end
 

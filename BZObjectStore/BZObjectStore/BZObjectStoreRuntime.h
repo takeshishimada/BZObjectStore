@@ -66,6 +66,8 @@
 // for response
 @property (nonatomic,assign) BOOL hasIdentificationAttributes;
 @property (nonatomic,assign) BOOL hasRelationshipAttributes;
+@property (nonatomic,assign) BOOL insertPerformance;
+@property (nonatomic,assign) BOOL updatePerformance;
 
 // statement methods
 - (NSString*)createTableStatement;
