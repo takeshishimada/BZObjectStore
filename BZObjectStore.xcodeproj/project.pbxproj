@@ -104,6 +104,8 @@
 		72C2684818F98B890070C2E5 /* BZReferenceFromConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2684718F98B890070C2E5 /* BZReferenceFromConditionModel.m */; };
 		72C2684B18F98B950070C2E5 /* BZReferenceToConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2684A18F98B950070C2E5 /* BZReferenceToConditionModel.m */; };
 		72C2684E18F9944D0070C2E5 /* BZObjectStoreTestsObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2684D18F9944D0070C2E5 /* BZObjectStoreTestsObserver.m */; };
+		72C2685118F9FC400070C2E5 /* BZOSIdenticalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2685018F9FC400070C2E5 /* BZOSIdenticalModel.m */; };
+		72C2685418F9FDF20070C2E5 /* BZOSIdenticalItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2685318F9FDF20070C2E5 /* BZOSIdenticalItemModel.m */; };
 		82F55B5F18F63E49003A1136 /* AppleLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7259F8AC18F45014002A3416 /* AppleLogo.png */; };
 /* End PBXBuildFile section */
 
@@ -304,6 +306,10 @@
 		72C2684A18F98B950070C2E5 /* BZReferenceToConditionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZReferenceToConditionModel.m; sourceTree = "<group>"; };
 		72C2684C18F9944D0070C2E5 /* BZObjectStoreTestsObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreTestsObserver.h; sourceTree = "<group>"; };
 		72C2684D18F9944D0070C2E5 /* BZObjectStoreTestsObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreTestsObserver.m; sourceTree = "<group>"; };
+		72C2684F18F9FC400070C2E5 /* BZOSIdenticalModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZOSIdenticalModel.h; sourceTree = "<group>"; };
+		72C2685018F9FC400070C2E5 /* BZOSIdenticalModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZOSIdenticalModel.m; sourceTree = "<group>"; };
+		72C2685218F9FDF20070C2E5 /* BZOSIdenticalItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZOSIdenticalItemModel.h; sourceTree = "<group>"; };
+		72C2685318F9FDF20070C2E5 /* BZOSIdenticalItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZOSIdenticalItemModel.m; sourceTree = "<group>"; };
 		73A736836B224E7BB841BEB0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -424,6 +430,10 @@
 		72170C1118F8D3B600C9A4C1 /* OSIdenticalAttribute */ = {
 			isa = PBXGroup;
 			children = (
+				72C2684F18F9FC400070C2E5 /* BZOSIdenticalModel.h */,
+				72C2685018F9FC400070C2E5 /* BZOSIdenticalModel.m */,
+				72C2685218F9FDF20070C2E5 /* BZOSIdenticalItemModel.h */,
+				72C2685318F9FDF20070C2E5 /* BZOSIdenticalItemModel.m */,
 				72170BE918F6E9D200C9A4C1 /* BZUpdateExistsObjectWithNoRowIdModel.h */,
 				72170BEA18F6E9D200C9A4C1 /* BZUpdateExistsObjectWithNoRowIdModel.m */,
 			);
@@ -909,6 +919,7 @@
 				72170BEE18F8327700C9A4C1 /* BZUpdateResponseModel.m in Sources */,
 				7259F8CF18F45014002A3416 /* BZVarietyValuesItemModel.m in Sources */,
 				72C2683F18F96D480070C2E5 /* BZOffSetLimitModel.m in Sources */,
+				72C2685118F9FC400070C2E5 /* BZOSIdenticalModel.m in Sources */,
 				72C2684B18F98B950070C2E5 /* BZReferenceToConditionModel.m in Sources */,
 				72C2684218F97D290070C2E5 /* BZFullTextModel.m in Sources */,
 				72C2682C18F907BA0070C2E5 /* BZAttributeIsModel.m in Sources */,
@@ -924,6 +935,7 @@
 				7259F8C718F45014002A3416 /* BZInvalidValuesModel.m in Sources */,
 				72C2683918F962340070C2E5 /* BZOrderByModel.m in Sources */,
 				72C2684818F98B890070C2E5 /* BZReferenceFromConditionModel.m in Sources */,
+				72C2685418F9FDF20070C2E5 /* BZOSIdenticalItemModel.m in Sources */,
 				72170BF618F8368200C9A4C1 /* BZOnDemandHeaderModel.m in Sources */,
 				72C2684E18F9944D0070C2E5 /* BZObjectStoreTestsObserver.m in Sources */,
 				72170BEB18F6E9D200C9A4C1 /* BZUpdateExistsObjectWithNoRowIdModel.m in Sources */,

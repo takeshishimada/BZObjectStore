@@ -36,6 +36,14 @@
 {
     return NSStringFromClass([self superClazz]);
 }
+- (BOOL)isSimpleValueClazz
+{
+    return YES;
+}
+- (BOOL)isStringNumberClazz
+{
+    return YES;
+}
 
 - (id)storeValueWithValue:(NSObject*)value
 {
