@@ -54,6 +54,7 @@
 #import "BZAttributeIsSerializeModel.h"
 #import "BZAttributeIsWeakReferenceModel.h"
 #import "BZAttributeIsfetchOnRefreshingModel.h"
+#import "BZOrderByModel.h"
 
 @interface BZObjectStoreTests : XCTestCase
 @end
@@ -923,6 +924,33 @@
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     XCTAssertTrue(count.integerValue == 1,"object error");
 
+}
+
+- (void)testBZOrderByModel:(BZObjectStore*)os
+{
+    NSError *error = nil;
+    
+    BZOrderByModel *first = [[BZOrderByModel alloc]initWithCode:@"01" name:@"name1" price:10.12345 point:CGPointMake(19.87654321, 1.23456789)];
+    BZOrderByModel *second = [[BZOrderByModel alloc]initWithCode:@"01" name:@"name1" price:20.12345 point:CGPointMake(59.87654321, 11.23456789)];
+    BZOrderByModel *third = [[BZOrderByModel alloc]initWithCode:@"01" name:@"name2" price:30.12345 point:CGPointMake(49.87654321, 12.23456789)];
+    BZOrderByModel *fourth = [[BZOrderByModel alloc]initWithCode:@"01" name:@"name2" price:24.12345 point:CGPointMake(39.87654321, 13.23456789)];
+    BZOrderByModel *fifth = [[BZOrderByModel alloc]initWithCode:@"02" name:@"name2" price:26.12345 point:CGPointMake(19.87654321, 14.23456789)];
+    BZOrderByModel *sixth = [[BZOrderByModel alloc]initWithCode:@"02" name:@"name2" price:27.12345 point:CGPointMake(19.87654321, 14.23456789)];
+    BZOrderByModel *seventh = [[BZOrderByModel alloc]initWithCode:@"02" name:@"name2" price:27.12345 point:CGPointMake(39.87654321, 14.23456789)];
+    [os saveObjects:@[first,second,third,fourth,fifth,sixth,seventh] error:&error];
+
+    BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
+    condition.sqliteCondition.orderBy = @"code desc,name desc,price desc,point_x desc";
+    NSArray *objects = [os fetchObjects:[BZOrderByModel class] condition:condition error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    
+    BZOrderByModel *firstFetch = objects.firstObject;
+    BZOrderByModel *lastFetch = objects.lastObject;
+    XCTAssertTrue([firstFetch.code isEqualToString:@"02"],"object error");
+    XCTAssertTrue(firstFetch.point.x == 39.87654321,"object error");
+    XCTAssertTrue([lastFetch.code isEqualToString:@"01"],"object error");
+    XCTAssertTrue(lastFetch.point.x == 59.87654321,"object error");
+    
 }
 
 @end

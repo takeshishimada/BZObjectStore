@@ -96,6 +96,7 @@
 		72C2682F18F9413F0070C2E5 /* BZAttributeIsSerializeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2682E18F9413F0070C2E5 /* BZAttributeIsSerializeModel.m */; };
 		72C2683218F942130070C2E5 /* BZAttributeIsWeakReferenceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2683118F942130070C2E5 /* BZAttributeIsWeakReferenceModel.m */; };
 		72C2683518F9432A0070C2E5 /* BZAttributeIsfetchOnRefreshingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2683418F9432A0070C2E5 /* BZAttributeIsfetchOnRefreshingModel.m */; };
+		72C2683918F962340070C2E5 /* BZOrderByModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2683818F962340070C2E5 /* BZOrderByModel.m */; };
 		82F55B5F18F63E49003A1136 /* AppleLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7259F8AC18F45014002A3416 /* AppleLogo.png */; };
 /* End PBXBuildFile section */
 
@@ -280,6 +281,8 @@
 		72C2683118F942130070C2E5 /* BZAttributeIsWeakReferenceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZAttributeIsWeakReferenceModel.m; sourceTree = "<group>"; };
 		72C2683318F9432A0070C2E5 /* BZAttributeIsfetchOnRefreshingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZAttributeIsfetchOnRefreshingModel.h; sourceTree = "<group>"; };
 		72C2683418F9432A0070C2E5 /* BZAttributeIsfetchOnRefreshingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZAttributeIsfetchOnRefreshingModel.m; sourceTree = "<group>"; };
+		72C2683718F962340070C2E5 /* BZOrderByModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZOrderByModel.h; sourceTree = "<group>"; };
+		72C2683818F962340070C2E5 /* BZOrderByModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZOrderByModel.m; sourceTree = "<group>"; };
 		73A736836B224E7BB841BEB0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -358,13 +361,13 @@
 			name = ObjectStore;
 			sourceTree = "<group>";
 		};
-		72170C0E18F8D2DE00C9A4C1 /* SQLiteFunction */ = {
+		72170C0E18F8D2DE00C9A4C1 /* GroupFunction */ = {
 			isa = PBXGroup;
 			children = (
 				72170BE618F5950D00C9A4C1 /* BZSQLiteGroupFunctionModel.h */,
 				72170BE718F5950D00C9A4C1 /* BZSQLiteGroupFunctionModel.m */,
 			);
-			name = SQLiteFunction;
+			name = GroupFunction;
 			sourceTree = "<group>";
 		};
 		72170C0F18F8D30C00C9A4C1 /* ModelInterface */ = {
@@ -499,7 +502,8 @@
 				72170C0A18F8D21D00C9A4C1 /* Relationship */,
 				72170C0B18F8D25F00C9A4C1 /* VarietyValues */,
 				72170C0C18F8D27600C9A4C1 /* Response */,
-				72170C0E18F8D2DE00C9A4C1 /* SQLiteFunction */,
+				72170C0E18F8D2DE00C9A4C1 /* GroupFunction */,
+				72C2683618F945CF0070C2E5 /* Condition */,
 				72170C0F18F8D30C00C9A4C1 /* ModelInterface */,
 				7259F81318F44F04002A3416 /* Supporting Files */,
 			);
@@ -651,6 +655,15 @@
 				72C2683418F9432A0070C2E5 /* BZAttributeIsfetchOnRefreshingModel.m */,
 			);
 			name = AttributeIs;
+			sourceTree = "<group>";
+		};
+		72C2683618F945CF0070C2E5 /* Condition */ = {
+			isa = PBXGroup;
+			children = (
+				72C2683718F962340070C2E5 /* BZOrderByModel.h */,
+				72C2683818F962340070C2E5 /* BZOrderByModel.m */,
+			);
+			name = Condition;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -869,6 +882,7 @@
 				72C2683218F942130070C2E5 /* BZAttributeIsWeakReferenceModel.m in Sources */,
 				7259F8D018F45014002A3416 /* BZVarietyValuesModel.m in Sources */,
 				7259F8C718F45014002A3416 /* BZInvalidValuesModel.m in Sources */,
+				72C2683918F962340070C2E5 /* BZOrderByModel.m in Sources */,
 				72170BF618F8368200C9A4C1 /* BZOnDemandHeaderModel.m in Sources */,
 				72170BEB18F6E9D200C9A4C1 /* BZUpdateExistsObjectWithNoRowIdModel.m in Sources */,
 			);
