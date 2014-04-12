@@ -29,7 +29,7 @@ NSString* const BZObjectStoreErrorDomain = @"info.bonzoo.ObjectStore";
 
 + (id)errorInvalidObject:(NSString*)message
 {
-	message = [NSString stringWithFormat:@"Invalid object exists: %@", message];
+	message = [NSString stringWithFormat:@"Invalid object exists : %@", message];
     return [BZObjectStoreError errorWithDomain:BZObjectStoreErrorDomain
                                           code:kBZObjectStoreErrorInvalidObject
                                       userInfo:@{NSLocalizedDescriptionKey:message}];
@@ -37,7 +37,7 @@ NSString* const BZObjectStoreErrorDomain = @"info.bonzoo.ObjectStore";
 
 + (id)errorInvalidAttribute:(NSString*)message
 {
-	message = [NSString stringWithFormat:@"Invalid attribute exists: %@", message];
+	message = [NSString stringWithFormat:@"Invalid attribute exists : %@", message];
     return [BZObjectStoreError errorWithDomain:BZObjectStoreErrorDomain
                                         code:kBZObjectStoreErrorInvalidAttribute
                                     userInfo:@{NSLocalizedDescriptionKey:message}];
@@ -45,9 +45,9 @@ NSString* const BZObjectStoreErrorDomain = @"info.bonzoo.ObjectStore";
 
 + (id)errorInvalidColumnName:(NSString*)message
 {
-	message = [NSString stringWithFormat:@"Invalid column name exists: %@", message];
+	message = [NSString stringWithFormat:@"Invalid column name exists : %@", message];
     return [BZObjectStoreError errorWithDomain:BZObjectStoreErrorDomain
-                                          code:kBZObjectStoreErrorInvalidAttribute
+                                          code:kBZObjectStoreErrorInvalidColumnName
                                       userInfo:@{NSLocalizedDescriptionKey:message}];
 }
 

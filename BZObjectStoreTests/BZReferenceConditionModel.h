@@ -22,16 +22,13 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import "BZObjectStoreModelInterface.h"
 
-typedef NS_ENUM(int, kBZObjectStoreErrorTypes)
-{
-    kBZObjectStoreErrorInvalidObject = 10001,
-    kBZObjectStoreErrorInvalidAttribute,
-    kBZObjectStoreErrorInvalidColumnName
-};
+@class BZReferenceToConditionModel;
 
-@interface BZObjectStoreError : NSError
-+ (id)errorInvalidObject:(NSString*)message;
-+ (id)errorInvalidAttribute:(NSString*)message;
-+ (id)errorInvalidColumnName:(NSString*)message;
+@interface BZReferenceConditionModel : NSObject<OSModelInterface>
+@property (nonatomic,strong) NSNumber<OSIdenticalAttribute> *code;
+@property (nonatomic,strong) NSString *name;
+@property (nonatomic,strong) BZReferenceToConditionModel *to;
+@property (nonatomic,strong) NSArray *tos;
 @end

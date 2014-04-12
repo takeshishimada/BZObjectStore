@@ -21,17 +21,15 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import "BZReferenceFromConditionModel.h"
 
-typedef NS_ENUM(int, kBZObjectStoreErrorTypes)
+@implementation BZReferenceFromConditionModel
++ (NSString*)OSColumnName:(NSString *)attributeName
 {
-    kBZObjectStoreErrorInvalidObject = 10001,
-    kBZObjectStoreErrorInvalidAttribute,
-    kBZObjectStoreErrorInvalidColumnName
-};
+    if ([attributeName isEqualToString:@"to"]) {
+        return @"toObjects";
+    }
+    return attributeName;
+}
 
-@interface BZObjectStoreError : NSError
-+ (id)errorInvalidObject:(NSString*)message;
-+ (id)errorInvalidAttribute:(NSString*)message;
-+ (id)errorInvalidColumnName:(NSString*)message;
 @end

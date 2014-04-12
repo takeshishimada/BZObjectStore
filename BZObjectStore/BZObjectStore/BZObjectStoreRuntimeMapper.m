@@ -208,7 +208,6 @@
 - (BOOL)hadError:(FMDatabase*)db
 {
     if ([db hadError]) {
-        NSLog(@"%@",[db lastError]);
         return YES;
     } else {
         return NO;

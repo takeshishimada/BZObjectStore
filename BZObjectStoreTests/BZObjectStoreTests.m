@@ -57,6 +57,10 @@
 #import "BZOrderByModel.h"
 #import "BZWhereModel.h"
 #import "BZOffSetLimitModel.h"
+#import "BZFullTextModel.h"
+#import "BZReferenceConditionModel.h"
+#import "BZReferenceFromConditionModel.h"
+#import "BZReferenceToConditionModel.h"
 
 @interface BZObjectStoreTests : XCTestCase
 @end
@@ -78,22 +82,24 @@
 - (void)testOnDisk
 {
     BZObjectStore *disk = [BZObjectStoreOnDisk sharedInstance];
-    [self testBZVarietyValuesModel:disk];
-    [self testBZInvalidValuesModel:disk];
-    [self testBZRelationshipHeaderModel:disk];
-    [self testBZInsertResponseModel:disk];
-    [self testBZUpdateResponseModel:disk];
-    [self testCircularReference:disk];
-    [self testSQLiteGroupCondition:disk];
-    [self testBZUpdateExistsObjectWithNoRowIdModel:disk];
-    [self testBZOnDemanItemModel:disk];
-    [self testBZExtendModel:disk];
-    [self testBZIgnoreExtendModel:disk];
-    [self testUpdateAttributeModel:disk];
-    [self testBZIgnoreAttribute:disk];
-    [self testAttributesModel:disk];
-    [self testBZOrderByModel:disk];
-    [self testBZOffSetLimitModel:disk];
+//    [self testBZVarietyValuesModel:disk];
+//    [self testBZInvalidValuesModel:disk];
+//    [self testBZRelationshipHeaderModel:disk];
+//    [self testBZInsertResponseModel:disk];
+//    [self testBZUpdateResponseModel:disk];
+//    [self testCircularReference:disk];
+//    [self testSQLiteGroupCondition:disk];
+//    [self testBZUpdateExistsObjectWithNoRowIdModel:disk];
+//    [self testBZOnDemanItemModel:disk];
+//    [self testBZExtendModel:disk];
+//    [self testBZIgnoreExtendModel:disk];
+//    [self testUpdateAttributeModel:disk];
+//    [self testBZIgnoreAttribute:disk];
+//    [self testAttributesModel:disk];
+//    [self testBZOrderByModel:disk];
+//    [self testBZOffSetLimitModel:disk];
+//    [self testBZFullTextModel:disk];
+    [self testBZReferenceConditionModel:disk];
 }
 
 - (void)testOnMemory
@@ -115,6 +121,9 @@
 //    [self testBZNameModel:memory];
 //    [self testAttributesModel:memory];
 //    [self testBZOrderByModel:memory];
+//    [self testBZFullTextModel:memory];
+//    [self testBZReferenceConditionModel:memory];
+
 }
 
 - (void)testBZVarietyValuesModel:(BZObjectStore*)os
@@ -1010,8 +1019,89 @@
     BZOffSetLimitModel *first = objects.firstObject;
     XCTAssertTrue([first.code isEqualToString:@"04"],"object error");
     
-    
+}
 
+- (void)testBZFullTextModel:(BZObjectStore*)os
+{
+    NSError *error = nil;
+    
+    NSMutableArray *objects = [NSMutableArray array];
+    for (NSInteger i = 0; i < 100000; i++) {
+        BZFullTextModel *saveObject = [[BZFullTextModel alloc]init];
+        saveObject.address = [NSString stringWithFormat:@"test address%d test",i];
+        [objects addObject:saveObject];
+    }
+    
+    [os saveObjects:objects error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    
+    BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
+    condition.sqliteCondition.where = @"address MATCH 'address5555'";
+    
+    NSDate *now = [NSDate date];
+    objects = [os fetchObjects:[BZFullTextModel class] condition:condition error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    NSDate *then = [NSDate date];
+    NSLog(@"fulltext fetch reponse then - now: %1.3fsec", [then timeIntervalSinceDate:now]);
+    
+    
+}
+
+- (void)testBZReferenceConditionModel:(BZObjectStore*)os
+{
+    NSError *error = nil;
+
+    BZReferenceToConditionModel *to1 = [[BZReferenceToConditionModel alloc]init];
+    to1.code = @1;
+    to1.name = @"to1";
+
+    BZReferenceToConditionModel *to2 = [[BZReferenceToConditionModel alloc]init];
+    to2.code = @2;
+    to2.name = @"to2";
+    
+    BZReferenceConditionModel *item1 = [[BZReferenceConditionModel alloc]init];
+    item1.code = @1;
+    item1.name = @"item 1";
+    item1.to = to1;
+    item1.tos = @[to1,to2];
+    
+    BZReferenceConditionModel *item2 = [[BZReferenceConditionModel alloc]init];
+    item2.code = @2;
+    item2.name = @"item 2";
+    item2.to = to2;
+
+    BZReferenceConditionModel *item3 = [[BZReferenceConditionModel alloc]init];
+    item3.code = @3;
+    item3.name = @"item 3";
+
+    BZReferenceFromConditionModel *from1 = [[BZReferenceFromConditionModel alloc]init];
+    from1.code = @1;
+    from1.name = @"to1";
+    from1.to = item1;
+    
+    BZReferenceFromConditionModel *from2 = [[BZReferenceFromConditionModel alloc]init];
+    from2.code = @2;
+    from2.name = @"to2";
+    from2.to = item2;
+    
+    [os saveObjects:@[to1,to2,item1,item2,item3,from1,from2] error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    
+    BZObjectStoreConditionModel *fromCondition = [BZObjectStoreConditionModel condition];
+    fromCondition.referenceCondition.from = from1;
+    
+    NSArray *fromObjects = [os fetchObjects:[BZReferenceConditionModel class] condition:fromCondition error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertTrue(fromObjects.count == 1, @"error");
+
+    BZObjectStoreConditionModel *toCondition = [BZObjectStoreConditionModel condition];
+    toCondition.referenceCondition.to = to2;
+
+    NSArray *toObjects = [os fetchObjects:[BZReferenceConditionModel class] condition:toCondition error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertTrue(toObjects.count == 2, @"error");
+    
+    
 }
 
 @end
