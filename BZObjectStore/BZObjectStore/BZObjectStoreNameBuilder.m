@@ -34,7 +34,7 @@
             tableName = (NSString*)[clazz performSelector:@selector(OSTableName) withObject:nil];
         }
     }
-    if (!tableName) {
+    if (!tableName || [tableName isEqualToString:@""]) {
         tableName = NSStringFromClass(clazz);
         NSString *ignorePrefixName = self.ignorePrefixName;
         if (ignorePrefixName) {
@@ -54,7 +54,16 @@
 
 - (NSString*)columnName:(NSString*)name clazz:(Class)clazz
 {
-    return name;
+    NSString *columnName = name;
+    if ([clazz conformsToProtocol:@protocol(OSModelInterface)]) {
+        if ([clazz respondsToSelector:@selector(OSColumnName:)]) {
+            columnName = (NSString*)[clazz performSelector:@selector(OSColumnName:) withObject:name];
+        }
+    }
+    if (!columnName || [columnName isEqualToString:@""]) {
+        columnName = name;
+    }
+    return columnName;
 }
 
 @end

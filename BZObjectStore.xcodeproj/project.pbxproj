@@ -91,6 +91,7 @@
 		72BEE87918F57A4400A7D742 /* BZObjectStoreSQLiteReferenceConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72BEE87818F57A4400A7D742 /* BZObjectStoreSQLiteReferenceConditionModel.m */; };
 		72BEE87C18F57A8000A7D742 /* BZObjectStoreConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72BEE87B18F57A8000A7D742 /* BZObjectStoreConditionModel.m */; };
 		72C2682318F8ED320070C2E5 /* BZDelegateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2682218F8ED320070C2E5 /* BZDelegateModel.m */; };
+		72C2682818F8F8380070C2E5 /* BZNameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2682718F8F8380070C2E5 /* BZNameModel.m */; };
 		82F55B5F18F63E49003A1136 /* AppleLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7259F8AC18F45014002A3416 /* AppleLogo.png */; };
 /* End PBXBuildFile section */
 
@@ -265,6 +266,8 @@
 		72BEE87B18F57A8000A7D742 /* BZObjectStoreConditionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreConditionModel.m; sourceTree = "<group>"; };
 		72C2682118F8ED320070C2E5 /* BZDelegateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZDelegateModel.h; sourceTree = "<group>"; };
 		72C2682218F8ED320070C2E5 /* BZDelegateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZDelegateModel.m; sourceTree = "<group>"; };
+		72C2682618F8F8380070C2E5 /* BZNameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZNameModel.h; sourceTree = "<group>"; };
+		72C2682718F8F8380070C2E5 /* BZNameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZNameModel.m; sourceTree = "<group>"; };
 		73A736836B224E7BB841BEB0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -484,6 +487,7 @@
 				72170C0E18F8D2DE00C9A4C1 /* SQLiteFunction */,
 				72C2682418F8ED3A0070C2E5 /* Delegate */,
 				72170C0F18F8D30C00C9A4C1 /* AttributeOptions */,
+				72C2682518F8F8110070C2E5 /* TableNameColumnName */,
 				7259F81318F44F04002A3416 /* Supporting Files */,
 			);
 			path = BZObjectStoreTests;
@@ -610,6 +614,15 @@
 				72C2682218F8ED320070C2E5 /* BZDelegateModel.m */,
 			);
 			name = Delegate;
+			sourceTree = "<group>";
+		};
+		72C2682518F8F8110070C2E5 /* TableNameColumnName */ = {
+			isa = PBXGroup;
+			children = (
+				72C2682618F8F8380070C2E5 /* BZNameModel.h */,
+				72C2682718F8F8380070C2E5 /* BZNameModel.m */,
+			);
+			name = TableNameColumnName;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -816,6 +829,7 @@
 				72170BEE18F8327700C9A4C1 /* BZUpdateResponseModel.m in Sources */,
 				7259F8CF18F45014002A3416 /* BZVarietyValuesItemModel.m in Sources */,
 				72170BF718F8368200C9A4C1 /* BZOnDemanItemModel.m in Sources */,
+				72C2682818F8F8380070C2E5 /* BZNameModel.m in Sources */,
 				7259F8CB18F45014002A3416 /* BZRelationshipDetailModel.m in Sources */,
 				72170C0018F83C2800C9A4C1 /* BZIgnoreExtendModel.m in Sources */,
 				72170BFD18F8397D00C9A4C1 /* BZExtendModel.m in Sources */,

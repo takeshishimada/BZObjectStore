@@ -49,9 +49,9 @@
 #import "BZUpdateAttributeModel.h"
 #import "BZIgnoreAttribute.h"
 #import "BZDelegateModel.h"
+#import "BZNameModel.h"
 
 @interface BZObjectStoreTests : XCTestCase
-
 @end
 
 @implementation BZObjectStoreTests
@@ -99,7 +99,7 @@
     [self testBZIgnoreExtendModel:memory];
     [self testUpdateAttributeModel:memory];
     [self testBZIgnoreAttribute:memory];
-
+    [self testBZNameModel:memory];
 }
 
 - (void)testBZVarietyValuesModel:(BZObjectStore*)os
@@ -835,6 +835,16 @@
     XCTAssertTrue(saveObject.modelDidRemove,"object error");
     XCTAssertTrue(saveObject.modelDidSave,"object error");
     
+}
+
+- (void)testBZNameModel:(BZObjectStore*)os
+{
+    BZNameModel *saveObject = [[BZNameModel alloc]init];
+    saveObject.group = 100;
+    
+    NSError *error = nil;
+    [os saveObject:saveObject error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
 }
 
 @end
