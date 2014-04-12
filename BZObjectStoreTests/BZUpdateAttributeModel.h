@@ -24,7 +24,7 @@
 #import <Foundation/Foundation.h>
 #import "BZObjectStoreModelInterface.h"
 
-@interface BZUpdateAttributeModel : NSObject
+@interface BZUpdateAttributeModel : NSObject<OSModelInterface>
 @property (nonatomic,strong) NSString<OSOnceUpdateAttribute> *onceUpdateAttribute;
 @property (nonatomic,strong) NSString<OSNotUpdateIfValueIsNullAttribute> *notUpdateIfValueIsNullAttribute;
 @end

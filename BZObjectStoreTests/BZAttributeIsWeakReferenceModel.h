@@ -21,37 +21,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "BZObjectStoreOnDisk.h"
+#import <Foundation/Foundation.h>
+#import "BZObjectStoreModelInterface.h"
 
-@implementation BZObjectStoreOnDisk
-+ (instancetype)sharedInstance
-{
-    static id _sharedInstance;
-    @synchronized(self) {
-        if (!_sharedInstance) {
-            NSError *error = nil;
-            NSString *path = [self databasePath:@"database.sqlite"];
-            NSFileManager *manager = [NSFileManager defaultManager];
-            if ([manager fileExistsAtPath:path]) {
-                [manager removeItemAtPath:path error:&error];
-                if (error) {
-                    NSLog(@"%@",error);
-                }
-            }
-            _sharedInstance = [BZObjectStore openWithPath:path error:&error];
-            NSAssert(error == nil,@"objectstore is nil");
-        }
-        return _sharedInstance;
-    }
-}
-
-+ (NSString*)databasePath:(NSString*)path
-{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
-    NSString *dir = [paths objectAtIndex:0];
-    dir = [dir stringByAppendingPathComponent:[[NSBundle mainBundle] bundleIdentifier]];
-    path = [dir stringByAppendingPathComponent:path];
-    return path;
-}
-
+@interface BZAttributeIsWeakReferenceModel : NSObject
+@property (nonatomic,strong) NSString<OSIdenticalAttribute> *no;
 @end

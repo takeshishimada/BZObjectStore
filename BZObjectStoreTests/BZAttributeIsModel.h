@@ -21,37 +21,20 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "BZObjectStoreOnDisk.h"
+#import <Foundation/Foundation.h>
+#import "BZObjectStoreModelInterface.h"
 
-@implementation BZObjectStoreOnDisk
-+ (instancetype)sharedInstance
-{
-    static id _sharedInstance;
-    @synchronized(self) {
-        if (!_sharedInstance) {
-            NSError *error = nil;
-            NSString *path = [self databasePath:@"database.sqlite"];
-            NSFileManager *manager = [NSFileManager defaultManager];
-            if ([manager fileExistsAtPath:path]) {
-                [manager removeItemAtPath:path error:&error];
-                if (error) {
-                    NSLog(@"%@",error);
-                }
-            }
-            _sharedInstance = [BZObjectStore openWithPath:path error:&error];
-            NSAssert(error == nil,@"objectstore is nil");
-        }
-        return _sharedInstance;
-    }
-}
+@class BZAttributeIsSerializeModel;
+@class BZAttributeIsWeakReferenceModel;
+@class BZAttributeIsfetchOnRefreshingModel;
 
-+ (NSString*)databasePath:(NSString*)path
-{
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
-    NSString *dir = [paths objectAtIndex:0];
-    dir = [dir stringByAppendingPathComponent:[[NSBundle mainBundle] bundleIdentifier]];
-    path = [dir stringByAppendingPathComponent:path];
-    return path;
-}
-
+@interface BZAttributeIsModel : NSObject<OSModelInterface>
+@property (nonatomic,strong) NSString *name;
+@property (nonatomic,strong) NSString *identicalAttribute;
+@property (nonatomic,strong) NSString *ignoreAttribute;
+@property (nonatomic,strong) NSString *notUpdateIfValueIsNullAttribute;
+@property (nonatomic,strong) NSString *onceUpdateAttribute;
+@property (nonatomic,strong) BZAttributeIsSerializeModel *serializableAttribute;
+@property (nonatomic,strong) BZAttributeIsfetchOnRefreshingModel *fetchOnRefreshingAttribute;
+@property (nonatomic,strong) BZAttributeIsWeakReferenceModel *weakReferenceAttribute;
 @end

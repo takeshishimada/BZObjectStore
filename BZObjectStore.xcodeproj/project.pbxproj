@@ -92,6 +92,10 @@
 		72BEE87C18F57A8000A7D742 /* BZObjectStoreConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72BEE87B18F57A8000A7D742 /* BZObjectStoreConditionModel.m */; };
 		72C2682318F8ED320070C2E5 /* BZDelegateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2682218F8ED320070C2E5 /* BZDelegateModel.m */; };
 		72C2682818F8F8380070C2E5 /* BZNameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2682718F8F8380070C2E5 /* BZNameModel.m */; };
+		72C2682C18F907BA0070C2E5 /* BZAttributeIsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2682B18F907BA0070C2E5 /* BZAttributeIsModel.m */; };
+		72C2682F18F9413F0070C2E5 /* BZAttributeIsSerializeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2682E18F9413F0070C2E5 /* BZAttributeIsSerializeModel.m */; };
+		72C2683218F942130070C2E5 /* BZAttributeIsWeakReferenceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2683118F942130070C2E5 /* BZAttributeIsWeakReferenceModel.m */; };
+		72C2683518F9432A0070C2E5 /* BZAttributeIsfetchOnRefreshingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2683418F9432A0070C2E5 /* BZAttributeIsfetchOnRefreshingModel.m */; };
 		82F55B5F18F63E49003A1136 /* AppleLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7259F8AC18F45014002A3416 /* AppleLogo.png */; };
 /* End PBXBuildFile section */
 
@@ -268,6 +272,14 @@
 		72C2682218F8ED320070C2E5 /* BZDelegateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZDelegateModel.m; sourceTree = "<group>"; };
 		72C2682618F8F8380070C2E5 /* BZNameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZNameModel.h; sourceTree = "<group>"; };
 		72C2682718F8F8380070C2E5 /* BZNameModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZNameModel.m; sourceTree = "<group>"; };
+		72C2682A18F907BA0070C2E5 /* BZAttributeIsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZAttributeIsModel.h; sourceTree = "<group>"; };
+		72C2682B18F907BA0070C2E5 /* BZAttributeIsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZAttributeIsModel.m; sourceTree = "<group>"; };
+		72C2682D18F9413F0070C2E5 /* BZAttributeIsSerializeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZAttributeIsSerializeModel.h; sourceTree = "<group>"; };
+		72C2682E18F9413F0070C2E5 /* BZAttributeIsSerializeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZAttributeIsSerializeModel.m; sourceTree = "<group>"; };
+		72C2683018F942130070C2E5 /* BZAttributeIsWeakReferenceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZAttributeIsWeakReferenceModel.h; sourceTree = "<group>"; };
+		72C2683118F942130070C2E5 /* BZAttributeIsWeakReferenceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZAttributeIsWeakReferenceModel.m; sourceTree = "<group>"; };
+		72C2683318F9432A0070C2E5 /* BZAttributeIsfetchOnRefreshingModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZAttributeIsfetchOnRefreshingModel.h; sourceTree = "<group>"; };
+		72C2683418F9432A0070C2E5 /* BZAttributeIsfetchOnRefreshingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZAttributeIsfetchOnRefreshingModel.m; sourceTree = "<group>"; };
 		73A736836B224E7BB841BEB0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -355,7 +367,7 @@
 			name = SQLiteFunction;
 			sourceTree = "<group>";
 		};
-		72170C0F18F8D30C00C9A4C1 /* AttributeOptions */ = {
+		72170C0F18F8D30C00C9A4C1 /* ModelInterface */ = {
 			isa = PBXGroup;
 			children = (
 				72170C1118F8D3B600C9A4C1 /* OSIdenticalAttribute */,
@@ -363,8 +375,11 @@
 				72170C1218F8D3E000C9A4C1 /* OSFetchOnRefreshingAttribute */,
 				72170C1518F8D9F200C9A4C1 /* OSIgnoreAttribute */,
 				72170C1318F8D3FC00C9A4C1 /* OSOnceUpdateAttribute */,
+				72C2682518F8F8110070C2E5 /* TableNameColumnName */,
+				72C2682418F8ED3A0070C2E5 /* modelDidSaveLoadRemove */,
+				72C2682918F907980070C2E5 /* AttributeIs */,
 			);
-			name = AttributeOptions;
+			name = ModelInterface;
 			sourceTree = "<group>";
 		};
 		72170C1018F8D39400C9A4C1 /* OSIgnoreSuperClass */ = {
@@ -485,9 +500,7 @@
 				72170C0B18F8D25F00C9A4C1 /* VarietyValues */,
 				72170C0C18F8D27600C9A4C1 /* Response */,
 				72170C0E18F8D2DE00C9A4C1 /* SQLiteFunction */,
-				72C2682418F8ED3A0070C2E5 /* Delegate */,
-				72170C0F18F8D30C00C9A4C1 /* AttributeOptions */,
-				72C2682518F8F8110070C2E5 /* TableNameColumnName */,
+				72170C0F18F8D30C00C9A4C1 /* ModelInterface */,
 				7259F81318F44F04002A3416 /* Supporting Files */,
 			);
 			path = BZObjectStoreTests;
@@ -607,13 +620,13 @@
 			path = BZObjectStore;
 			sourceTree = "<group>";
 		};
-		72C2682418F8ED3A0070C2E5 /* Delegate */ = {
+		72C2682418F8ED3A0070C2E5 /* modelDidSaveLoadRemove */ = {
 			isa = PBXGroup;
 			children = (
 				72C2682118F8ED320070C2E5 /* BZDelegateModel.h */,
 				72C2682218F8ED320070C2E5 /* BZDelegateModel.m */,
 			);
-			name = Delegate;
+			name = modelDidSaveLoadRemove;
 			sourceTree = "<group>";
 		};
 		72C2682518F8F8110070C2E5 /* TableNameColumnName */ = {
@@ -623,6 +636,21 @@
 				72C2682718F8F8380070C2E5 /* BZNameModel.m */,
 			);
 			name = TableNameColumnName;
+			sourceTree = "<group>";
+		};
+		72C2682918F907980070C2E5 /* AttributeIs */ = {
+			isa = PBXGroup;
+			children = (
+				72C2682A18F907BA0070C2E5 /* BZAttributeIsModel.h */,
+				72C2682B18F907BA0070C2E5 /* BZAttributeIsModel.m */,
+				72C2682D18F9413F0070C2E5 /* BZAttributeIsSerializeModel.h */,
+				72C2682E18F9413F0070C2E5 /* BZAttributeIsSerializeModel.m */,
+				72C2683018F942130070C2E5 /* BZAttributeIsWeakReferenceModel.h */,
+				72C2683118F942130070C2E5 /* BZAttributeIsWeakReferenceModel.m */,
+				72C2683318F9432A0070C2E5 /* BZAttributeIsfetchOnRefreshingModel.h */,
+				72C2683418F9432A0070C2E5 /* BZAttributeIsfetchOnRefreshingModel.m */,
+			);
+			name = AttributeIs;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -816,6 +844,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7259F8C818F45014002A3416 /* BZObjectStoreOnDisk.m in Sources */,
+				72C2683518F9432A0070C2E5 /* BZAttributeIsfetchOnRefreshingModel.m in Sources */,
 				7259F8CD18F45014002A3416 /* BZRelationshipItemModel.m in Sources */,
 				7259F8C618F45014002A3416 /* BZCircularReferenceModel.m in Sources */,
 				72170BE818F5950D00C9A4C1 /* BZSQLiteGroupFunctionModel.m in Sources */,
@@ -826,8 +855,10 @@
 				7259F8C918F45014002A3416 /* BZObjectStoreOnMemory.m in Sources */,
 				7259F8CE18F45014002A3416 /* BZInsertResponseModel.m in Sources */,
 				72170C1818F8DA1400C9A4C1 /* BZIgnoreAttribute.m in Sources */,
+				72C2682F18F9413F0070C2E5 /* BZAttributeIsSerializeModel.m in Sources */,
 				72170BEE18F8327700C9A4C1 /* BZUpdateResponseModel.m in Sources */,
 				7259F8CF18F45014002A3416 /* BZVarietyValuesItemModel.m in Sources */,
+				72C2682C18F907BA0070C2E5 /* BZAttributeIsModel.m in Sources */,
 				72170BF718F8368200C9A4C1 /* BZOnDemanItemModel.m in Sources */,
 				72C2682818F8F8380070C2E5 /* BZNameModel.m in Sources */,
 				7259F8CB18F45014002A3416 /* BZRelationshipDetailModel.m in Sources */,
@@ -835,6 +866,7 @@
 				72170BFD18F8397D00C9A4C1 /* BZExtendModel.m in Sources */,
 				7259F8CC18F45014002A3416 /* BZRelationshipHeaderModel.m in Sources */,
 				72C2682318F8ED320070C2E5 /* BZDelegateModel.m in Sources */,
+				72C2683218F942130070C2E5 /* BZAttributeIsWeakReferenceModel.m in Sources */,
 				7259F8D018F45014002A3416 /* BZVarietyValuesModel.m in Sources */,
 				7259F8C718F45014002A3416 /* BZInvalidValuesModel.m in Sources */,
 				72170BF618F8368200C9A4C1 /* BZOnDemandHeaderModel.m in Sources */,

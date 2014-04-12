@@ -24,7 +24,7 @@
 #import <Foundation/Foundation.h>
 #import "BZObjectStoreModelInterface.h"
 
-@interface BZIgnoreAttribute : NSObject
+@interface BZIgnoreAttribute : NSObject<OSModelInterface>
 @property (nonatomic,strong) NSNumber<OSIgnoreAttribute> *ignoreNo;
 @property (nonatomic,strong) NSNumber *notIgnoreNo;
 @end

@@ -117,6 +117,20 @@
     self.nameBuilder = nameBuilder;
     self.tableName = [self.nameBuilder tableName:self.clazz];
 
+    // class options
+    self.fullTextSearch =  [self.clazz conformsToProtocol:@protocol(OSFullTextSearch)];
+    if ([self.clazz conformsToProtocol:@protocol(OSModelInterface)]) {
+        if ([self.clazz respondsToSelector:@selector(OSModelDidSave)]) {
+            self.modelDidSave = YES;
+        }
+        if ([self.clazz respondsToSelector:@selector(OSModelDidRemove)]) {
+            self.modelDidRemove = YES;
+        }
+        if ([self.clazz respondsToSelector:@selector(OSModelDidLoad)]) {
+            self.modelDidLoad = YES;
+        }
+    }
+    
     // attributes
     BZRuntime *bzruntime = nil;
     if ([self.clazz conformsToProtocol:@protocol(OSIgnoreSuperClass)]) {
@@ -184,20 +198,6 @@
     self.identificationAttributes = [NSArray arrayWithArray:identicalAttributes];
     self.relationshipAttributes = [NSArray arrayWithArray:relationshipAttributes];
     self.notRelationshipAttributes = [NSArray arrayWithArray:notRelationshipAttributes];
-
-    // class options
-    self.fullTextSearch =  [self.clazz conformsToProtocol:@protocol(OSFullTextSearch)];
-    if ([self.clazz conformsToProtocol:@protocol(OSModelInterface)]) {
-        if ([self.clazz respondsToSelector:@selector(OSModelDidSave)]) {
-            self.modelDidSave = YES;
-        }
-        if ([self.clazz respondsToSelector:@selector(OSModelDidRemove)]) {
-            self.modelDidRemove = YES;
-        }
-        if ([self.clazz respondsToSelector:@selector(OSModelDidLoad)]) {
-            self.modelDidLoad = YES;
-        }
-    }
 
     // response
     if (self.identificationAttributes.count > 0) {

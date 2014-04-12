@@ -24,7 +24,7 @@
 #import "BZVarietyValuesModel.h"
 #import "BZObjectStoreModelInterface.h"
 
-@interface BZCircularReferenceModel : BZVarietyValuesModel
+@interface BZCircularReferenceModel : BZVarietyValuesModel<OSModelInterface>
 - (instancetype)initWithId:(NSString*)id name:(NSString*)name birthday:(NSDate*)birthday;
 @property (nonatomic,strong) NSString<OSIdenticalAttribute> *id;
 @property (nonatomic,strong) NSString *name;

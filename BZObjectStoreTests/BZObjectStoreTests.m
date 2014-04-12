@@ -50,6 +50,10 @@
 #import "BZIgnoreAttribute.h"
 #import "BZDelegateModel.h"
 #import "BZNameModel.h"
+#import "BZAttributeIsModel.h"
+#import "BZAttributeIsSerializeModel.h"
+#import "BZAttributeIsWeakReferenceModel.h"
+#import "BZAttributeIsfetchOnRefreshingModel.h"
 
 @interface BZObjectStoreTests : XCTestCase
 @end
@@ -68,7 +72,7 @@
     [super tearDown];
 }
 
-- (void)test
+- (void)testOnDisk
 {
 //    BZObjectStore *disk = [BZObjectStoreOnDisk sharedInstance];
 //    [self testBZVarietyValuesModel:disk];
@@ -84,7 +88,11 @@
 //    [self testBZIgnoreExtendModel:disk];
 //    [self testUpdateAttributeModel:disk];
 //    [self testBZIgnoreAttribute:disk];
-    
+//    [self testAttributesModel:disk];
+}
+
+- (void)testOnMemory
+{
     BZObjectStore *memory = [BZObjectStoreOnMemory sharedInstance];
     [self testBZVarietyValuesModel:memory];
     [self testBZInvalidValuesModel:memory];
@@ -100,6 +108,7 @@
     [self testUpdateAttributeModel:memory];
     [self testBZIgnoreAttribute:memory];
     [self testBZNameModel:memory];
+    [self testAttributesModel:memory];
 }
 
 - (void)testBZVarietyValuesModel:(BZObjectStore*)os
@@ -845,6 +854,75 @@
     NSError *error = nil;
     [os saveObject:saveObject error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+}
+
+- (void)testAttributesModel:(BZObjectStore*)os
+{
+    NSError *error = nil;
+
+    BZAttributeIsSerializeModel *serializeObject = [[BZAttributeIsSerializeModel alloc]init];
+    BZAttributeIsWeakReferenceModel *weakReferenceObject = [[BZAttributeIsWeakReferenceModel alloc]init];
+    BZAttributeIsfetchOnRefreshingModel *fetchOnRefreshingModel = [[BZAttributeIsfetchOnRefreshingModel alloc]init];
+    
+    BZAttributeIsModel *saveObject1 = [[BZAttributeIsModel alloc]init];
+    saveObject1.identicalAttribute = @"01";
+    saveObject1.ignoreAttribute = @"01";
+    saveObject1.notUpdateIfValueIsNullAttribute = @"01";
+    saveObject1.onceUpdateAttribute = @"01";
+    saveObject1.name = @"name1";
+    saveObject1.weakReferenceAttribute = weakReferenceObject;
+    saveObject1.serializableAttribute = serializeObject;
+    saveObject1.fetchOnRefreshingAttribute = fetchOnRefreshingModel;
+    
+    [os saveObject:saveObject1 error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    
+    BZAttributeIsModel *saveObject2 = [[BZAttributeIsModel alloc]init];
+    saveObject2.identicalAttribute = @"01";
+    saveObject2.name = @"name2";
+    saveObject2.notUpdateIfValueIsNullAttribute = nil;
+    saveObject2.onceUpdateAttribute = @"02";
+    [os saveObject:saveObject2 error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    
+    NSArray *objects = [os fetchObjects:[BZAttributeIsModel class] condition:nil error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertTrue(objects.count == 1,"object error");
+    
+    BZAttributeIsModel *fetchObject = objects.firstObject;
+    XCTAssertTrue([fetchObject.name isEqualToString:@"name2"],"object error");
+    XCTAssertTrue([fetchObject.notUpdateIfValueIsNullAttribute isEqualToString:@"01"],"object error");
+    XCTAssertTrue([fetchObject.onceUpdateAttribute isEqualToString:@"01"],"object error");
+    XCTAssertTrue(fetchObject.fetchOnRefreshingAttribute == nil,@"error") ;
+
+    BZAttributeIsModel *refreshObject = [os refreshObject:fetchObject error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertTrue(refreshObject.fetchOnRefreshingAttribute != nil,@"error") ;
+    
+    [os.FMDBQueue inDatabase:^(FMDatabase *db) {
+        FMResultSet *rs = [db getTableSchema:@"BZAttributeIsModel"];
+        while (rs.next) {
+            NSString *columnName = [rs stringForColumnIndex:1];
+            XCTAssertTrue(![columnName isEqualToString:@"ignoreAttribute"],"object error");
+        }
+        [rs close];
+    }];
+
+    NSNumber *count = [os count:[BZAttributeIsSerializeModel class] condition:nil error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertTrue(count.integerValue == 0,"object error");
+    
+    count = [os count:[BZAttributeIsWeakReferenceModel class] condition:nil error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertTrue(count.integerValue == 1,"object error");
+    
+    [os removeObjects:[BZAttributeIsModel class] condition:nil error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+
+    count = [os count:[BZAttributeIsWeakReferenceModel class] condition:nil error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertTrue(count.integerValue == 1,"object error");
+
 }
 
 @end

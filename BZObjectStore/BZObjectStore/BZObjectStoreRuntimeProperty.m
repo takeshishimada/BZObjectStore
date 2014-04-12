@@ -95,12 +95,9 @@
     self.serializableAttribute = [self boolWithProtocol:@protocol(OSSerializableAttribute) bzproperty:bzproperty];
     self.fetchOnRefreshingAttribute = [self boolWithProtocol:@protocol(OSFetchOnRefreshingAttribute) bzproperty:bzproperty];
     self.onceUpdateAttribute = [self boolWithProtocol:@protocol(OSOnceUpdateAttribute) bzproperty:bzproperty];
-
-    // weak property will be weak reference attribute
-    if (bzproperty.propertyType.isWeakReference) {
-        self.weakReferenceAttribute = YES;
-    }
+    
     if ([self.osruntime.clazz conformsToProtocol:@protocol(OSModelInterface)]) {
+
         Class clazz = self.osruntime.clazz;
         if ([clazz respondsToSelector:@selector(attributeIsOSIdenticalAttribute:)]) {
             self.identicalAttribute = (BOOL)[clazz performSelector:@selector(attributeIsOSIdenticalAttribute:)withObject:self.name];
@@ -123,6 +120,11 @@
         if ([clazz respondsToSelector:@selector(attributeIsOSOnceUpdateAttribute:)]) {
             self.onceUpdateAttribute = (BOOL)[clazz performSelector:@selector(attributeIsOSOnceUpdateAttribute:)withObject:self.name];
         }
+    }
+    
+    // weak property will be weak reference attribute
+    if (bzproperty.propertyType.isWeakReference) {
+        self.weakReferenceAttribute = YES;
     }
     
     // structureName

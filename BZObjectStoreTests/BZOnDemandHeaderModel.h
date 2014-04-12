@@ -24,7 +24,7 @@
 #import <Foundation/Foundation.h>
 #import "BZObjectStoreModelInterface.h"
 
-@interface BZOnDemandHeaderModel : NSObject
+@interface BZOnDemandHeaderModel : NSObject<OSModelInterface>
 @property (nonatomic,strong) NSString<OSIdenticalAttribute> *code;
 @property (nonatomic,strong) NSMutableArray<OSFetchOnRefreshingAttribute> *details;
 @end
