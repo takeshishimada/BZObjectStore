@@ -21,10 +21,10 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import "BZVarietyValuesModel.h"
 #import "BZObjectStoreModelInterface.h"
 
-@interface BZRelationshipHeaderModel : NSObject
+@interface BZRelationshipHeaderModel : BZVarietyValuesModel
 @property (nonatomic,strong) NSString<OSIdenticalAttribute> *code;
 @property (nonatomic,strong) NSArray *details;
 @end

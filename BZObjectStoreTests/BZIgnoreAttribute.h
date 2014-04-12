@@ -24,9 +24,7 @@
 #import <Foundation/Foundation.h>
 #import "BZObjectStoreModelInterface.h"
 
-@interface BZSQLiteGroupConditionModel : NSObject
-- (instancetype)initWithNo:(NSString*)no name:(NSString*)name price:(NSInteger)price;
-@property (nonatomic,strong) NSString<OSIdenticalAttribute> *no;
-@property (nonatomic,strong) NSString *name;
-@property (nonatomic,assign) NSInteger price;
+@interface BZIgnoreAttribute : NSObject
+@property (nonatomic,strong) NSNumber<OSIgnoreAttribute> *ignoreNo;
+@property (nonatomic,strong) NSNumber *notIgnoreNo;
 @end

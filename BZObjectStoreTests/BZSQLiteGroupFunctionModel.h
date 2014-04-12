@@ -21,16 +21,12 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "BZSQLiteGroupConditionModel.h"
+#import <Foundation/Foundation.h>
+#import "BZObjectStoreModelInterface.h"
 
-@implementation BZSQLiteGroupConditionModel
-- (instancetype)initWithNo:(NSString*)no name:(NSString*)name price:(NSInteger)price
-{
-    if ( self = [super init]) {
-        self.no = no;
-        self.name = name;
-        self.price = price;
-    }
-    return self;
-}
+@interface BZSQLiteGroupFunctionModel : NSObject
+- (instancetype)initWithNo:(NSString*)no name:(NSString*)name price:(NSInteger)price;
+@property (nonatomic,strong) NSString<OSIdenticalAttribute> *no;
+@property (nonatomic,strong) NSString *name;
+@property (nonatomic,assign) NSInteger price;
 @end

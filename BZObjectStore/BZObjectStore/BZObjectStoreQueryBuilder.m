@@ -209,8 +209,6 @@
     NSMutableString *sql = [NSMutableString string];
     if (runtime.fullTextSearch) {
         [sql appendString:@"CREATE VIRTUAL TABLE IF NOT EXISTS "];
-    } else if (runtime.temporary) {
-        [sql appendString:@"CREATE TEMP TABLE IF NOT EXISTS "];
     } else {
         [sql appendString:@"CREATE TABLE IF NOT EXISTS "];
     }

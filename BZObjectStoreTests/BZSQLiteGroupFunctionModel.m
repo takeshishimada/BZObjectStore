@@ -21,13 +21,16 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "BZVarietyValuesModel.h"
-#import "BZObjectStoreModelInterface.h"
-#import "BZRelationshipItemModel.h"
+#import "BZSQLiteGroupFunctionModel.h"
 
-@interface BZRelationshipDetailModel : BZVarietyValuesModel
-@property (nonatomic,strong) NSString<OSIdenticalAttribute> *code;
-@property (nonatomic,strong) BZRelationshipItemModel *item;
-@property (nonatomic,assign) NSInteger count;
+@implementation BZSQLiteGroupFunctionModel
+- (instancetype)initWithNo:(NSString*)no name:(NSString*)name price:(NSInteger)price
+{
+    if ( self = [super init]) {
+        self.no = no;
+        self.name = name;
+        self.price = price;
+    }
+    return self;
+}
 @end
-

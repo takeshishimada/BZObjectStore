@@ -761,27 +761,29 @@
             
             // each object-attribute
             for (BZObjectStoreRuntimeProperty *attribute in targetObject.runtime.relationshipAttributes) {
-                NSObject *firstAttributeObject = [targetObject valueForKey:attribute.name];
-                if (firstAttributeObject) {
-                    NSMutableArray *objectAttributeStuck = [NSMutableArray array];
-                    [objectAttributeStuck addObject:firstAttributeObject];
-                    
-                    while (objectAttributeStuck.count > 0) {
-                        NSObject *attributeObject = [objectAttributeStuck lastObject];
-                        [objectAttributeStuck removeLastObject];
-                        [self updateRuntime:attributeObject db:db];
-                        if ([self hadError:db error:error]) {
-                            return NO;
-                        }
-                        if (attributeObject.runtime.isRelationshipClazz) {
-                            NSEnumerator *enumerator = [attributeObject.runtime objectEnumeratorWithObject:attributeObject];
-                            for (NSObject *attributeObjectInEnumerator in enumerator) {
-                                BZObjectStoreRuntime *runtime = [self runtimeWithClazz:[attributeObjectInEnumerator class] db:db];
-                                if (runtime.isObjectClazz) {
-                                    attributeObjectInEnumerator.runtime = runtime;
-                                    [objectStuck addObject:attributeObjectInEnumerator];
-                                } else if (runtime.isArrayClazz) {
-                                    [objectAttributeStuck addObject:attributeObjectInEnumerator];
+                if (!attribute.weakReferenceAttribute) {
+                    NSObject *firstAttributeObject = [targetObject valueForKey:attribute.name];
+                    if (firstAttributeObject) {
+                        NSMutableArray *objectAttributeStuck = [NSMutableArray array];
+                        [objectAttributeStuck addObject:firstAttributeObject];
+                        
+                        while (objectAttributeStuck.count > 0) {
+                            NSObject *attributeObject = [objectAttributeStuck lastObject];
+                            [objectAttributeStuck removeLastObject];
+                            [self updateRuntime:attributeObject db:db];
+                            if ([self hadError:db error:error]) {
+                                return NO;
+                            }
+                            if (attributeObject.runtime.isRelationshipClazz) {
+                                NSEnumerator *enumerator = [attributeObject.runtime objectEnumeratorWithObject:attributeObject];
+                                for (NSObject *attributeObjectInEnumerator in enumerator) {
+                                    BZObjectStoreRuntime *runtime = [self runtimeWithClazz:[attributeObjectInEnumerator class] db:db];
+                                    if (runtime.isObjectClazz) {
+                                        attributeObjectInEnumerator.runtime = runtime;
+                                        [objectStuck addObject:attributeObjectInEnumerator];
+                                    } else if (runtime.isArrayClazz) {
+                                        [objectAttributeStuck addObject:attributeObjectInEnumerator];
+                                    }
                                 }
                             }
                         }

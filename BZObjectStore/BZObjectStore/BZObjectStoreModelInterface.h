@@ -29,9 +29,6 @@
 @protocol OSFullTextSearch
 @end
 
-@protocol OSTemporary
-@end
-
 @protocol OSInsertPerformance
 @end
 

@@ -25,6 +25,9 @@
 #import <float.h>
 #import <limits.h>
 #import "ColorUtils.h"
+#import "FMDatabase.h"
+#import "FMDatabaseQueue.h"
+#import "FMDatabaseAdditions.h"
 #import "BZObjectStoreOnDisk.h"
 #import "BZObjectStoreOnMemory.h"
 #import "BZVarietyValuesModel.h"
@@ -36,7 +39,7 @@
 #import "BZInsertResponseModel.h"
 #import "BZUpdateResponseModel.h"
 #import "BZCircularReferenceModel.h"
-#import "BZSQLiteGroupConditionModel.h"
+#import "BZSQLiteGroupFunctionModel.h"
 #import "BZUpdateExistsObjectWithNoRowIdModel.h"
 #import "BZOnDemandHeaderModel.h"
 #import "BZOnDemandDetailModel.h"
@@ -44,6 +47,7 @@
 #import "BZExtendModel.h"
 #import "BZIgnoreExtendModel.h"
 #import "BZUpdateAttributeModel.h"
+#import "BZIgnoreAttribute.h"
 
 @interface BZObjectStoreTests : XCTestCase
 
@@ -65,7 +69,7 @@
 
 - (void)test
 {
-    BZObjectStore *disk = [BZObjectStoreOnDisk sharedInstance];
+//    BZObjectStore *disk = [BZObjectStoreOnDisk sharedInstance];
 //    [self testBZVarietyValuesModel:disk];
 //    [self testBZInvalidValuesModel:disk];
 //    [self testBZRelationshipHeaderModel:disk];
@@ -77,21 +81,23 @@
 //    [self testBZOnDemanItemModel:disk];
 //    [self testBZExtendModel:disk];
 //    [self testBZIgnoreExtendModel:disk];
-    [self testUpdateAttributeModel:disk];
+//    [self testUpdateAttributeModel:disk];
+//    [self testBZIgnoreAttribute:disk];
     
-//    BZObjectStore *memory = [BZObjectStoreOnMemory sharedInstance];
-//    [self testBZVarietyValuesModel:memory];
-//    [self testBZInvalidValuesModel:memory];
-//    [self testBZRelationshipHeaderModel:memory];
-//    [self testBZInsertResponseModel:memory];
-//    [self testBZUpdateResponseModel:memory];
-//    [self testCircularReference:memory];
-//    [self testSQLiteGroupCondition:memory];
-//    [self testBZUpdateExistsObjectWithNoRowIdModel:memory];
-//    [self testBZOnDemanItemModel:memory];
-//    [self testBZExtendModel:memory];
-//    [self testBZIgnoreExtendModel:memory];
-//    [self testBZIgnoreExtendModel:memory];
+    BZObjectStore *memory = [BZObjectStoreOnMemory sharedInstance];
+    [self testBZVarietyValuesModel:memory];
+    [self testBZInvalidValuesModel:memory];
+    [self testBZRelationshipHeaderModel:memory];
+    [self testBZInsertResponseModel:memory];
+    [self testBZUpdateResponseModel:memory];
+    [self testCircularReference:memory];
+    [self testSQLiteGroupCondition:memory];
+    [self testBZUpdateExistsObjectWithNoRowIdModel:memory];
+    [self testBZOnDemanItemModel:memory];
+    [self testBZExtendModel:memory];
+    [self testBZIgnoreExtendModel:memory];
+    [self testUpdateAttributeModel:memory];
+    [self testBZIgnoreAttribute:memory];
 
 }
 
@@ -481,7 +487,7 @@
 {
     NSError *error = nil;
     NSMutableArray *list = [NSMutableArray array];
-    for (NSInteger i = 0; i < 50000; i++ ) {
+    for (NSInteger i = 0; i < 20000; i++ ) {
         BZInsertResponseModel *model = [[BZInsertResponseModel alloc]init];
         model.code = [NSString stringWithFormat:@"%d",i];
         model.name = [NSString stringWithFormat:@"name %d",i];
@@ -498,7 +504,7 @@
 
     NSDate *fetchnow = [NSDate date];
     NSArray *fetchObjects = [os fetchObjects:[BZInsertResponseModel class] condition:nil error:&error];
-    XCTAssertTrue(fetchObjects.count == 50000, @"fetch error");
+    XCTAssertTrue(fetchObjects.count == 20000, @"fetch error");
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     NSDate *fetchthen = [NSDate date];
     NSLog(@"fetch reponse then - now: %1.3fsec", [fetchthen timeIntervalSinceDate:fetchnow]);
@@ -518,7 +524,7 @@
 {
     NSError *error = nil;
     NSMutableArray *list = [NSMutableArray array];
-    for (NSInteger i = 0; i < 50000; i++ ) {
+    for (NSInteger i = 0; i < 20000; i++ ) {
         BZUpdateResponseModel *model = [[BZUpdateResponseModel alloc]init];
         model.code = [NSString stringWithFormat:@"%d",i];
         model.name = [NSString stringWithFormat:@"name %d",i];
@@ -535,7 +541,7 @@
     
     NSDate *fetchnow = [NSDate date];
     NSArray *fetchObjects = [os fetchObjects:[BZUpdateResponseModel class] condition:nil error:&error];
-    XCTAssertTrue(fetchObjects.count == 50000, @"fetch error");
+    XCTAssertTrue(fetchObjects.count == 20000, @"fetch error");
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     NSDate *fetchthen = [NSDate date];
     NSLog(@"fetch reponse then - now: %1.3fsec", [fetchthen timeIntervalSinceDate:fetchnow]);
@@ -580,12 +586,18 @@
     
     NSArray *list = [os fetchObjects:[BZCircularReferenceModel class] condition:nil error:nil];
     XCTAssertTrue(list.count == 5,"object error");
-    
+
+    [os removeObject:p3 error:nil];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+
+    NSNumber *count1 = [os count:[BZCircularReferenceModel class] condition:nil error:nil];
+    XCTAssertTrue([count1 isEqualToNumber:@4],"object error");
+
     [os removeObject:p1 error:nil];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     
-    NSNumber *count = [os count:[BZCircularReferenceModel class] condition:nil error:nil];
-    XCTAssertTrue([count isEqualToNumber:@0],"object error");
+    NSNumber *count2 = [os count:[BZCircularReferenceModel class] condition:nil error:nil];
+    XCTAssertTrue([count2 isEqualToNumber:@2],"object error");
     
 }
 
@@ -593,50 +605,50 @@
 {
     NSError *error = nil;
     
-    BZSQLiteGroupConditionModel *item1 = [[BZSQLiteGroupConditionModel alloc]initWithNo:@"10" name:@"apple" price:100];
-    BZSQLiteGroupConditionModel *item2 = [[BZSQLiteGroupConditionModel alloc]initWithNo:@"20" name:@"banana" price:140];
-    BZSQLiteGroupConditionModel *item3 = [[BZSQLiteGroupConditionModel alloc]initWithNo:@"30" name:@"orange" price:200];
-    BZSQLiteGroupConditionModel *item4 = [[BZSQLiteGroupConditionModel alloc]initWithNo:@"40" name:@"pineapple" price:400];
+    BZSQLiteGroupFunctionModel *item1 = [[BZSQLiteGroupFunctionModel alloc]initWithNo:@"10" name:@"apple" price:100];
+    BZSQLiteGroupFunctionModel *item2 = [[BZSQLiteGroupFunctionModel alloc]initWithNo:@"20" name:@"banana" price:140];
+    BZSQLiteGroupFunctionModel *item3 = [[BZSQLiteGroupFunctionModel alloc]initWithNo:@"30" name:@"orange" price:200];
+    BZSQLiteGroupFunctionModel *item4 = [[BZSQLiteGroupFunctionModel alloc]initWithNo:@"40" name:@"pineapple" price:400];
     
     [os saveObjects:@[item1,item2,item3,item4] error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     
-    NSNumber *max = [os max:@"price" class:[BZSQLiteGroupConditionModel class] condition:nil error:nil];
+    NSNumber *max = [os max:@"price" class:[BZSQLiteGroupFunctionModel class] condition:nil error:nil];
     if (error) {
         XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     } else {
         XCTAssertTrue([max isEqualToNumber:@400],"error");
     }
     
-    NSNumber *min = [os min:@"price" class:[BZSQLiteGroupConditionModel class] condition:nil error:nil];
+    NSNumber *min = [os min:@"price" class:[BZSQLiteGroupFunctionModel class] condition:nil error:nil];
     if (error) {
         XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     } else {
         XCTAssertTrue([min isEqualToNumber:@100],"error");
     }
     
-    NSNumber *avg = [os avg:@"price" class:[BZSQLiteGroupConditionModel class] condition:nil error:nil];
+    NSNumber *avg = [os avg:@"price" class:[BZSQLiteGroupFunctionModel class] condition:nil error:nil];
     if (error) {
         XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     } else {
         XCTAssertTrue([avg isEqualToNumber:@210],"error");
     }
     
-    NSNumber *sum = [os sum:@"price" class:[BZSQLiteGroupConditionModel class] condition:nil error:nil];
+    NSNumber *sum = [os sum:@"price" class:[BZSQLiteGroupFunctionModel class] condition:nil error:nil];
     if (error) {
         XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     } else {
         XCTAssertTrue([sum integerValue] == 840,"error");
     }
 
-    NSNumber *total = [os total:@"price" class:[BZSQLiteGroupConditionModel class] condition:nil error:nil];
+    NSNumber *total = [os total:@"price" class:[BZSQLiteGroupFunctionModel class] condition:nil error:nil];
     if (error) {
         XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     } else {
         XCTAssertTrue([total integerValue] == 840,"error");
     }
 
-    NSNumber *count = [os count:[BZSQLiteGroupConditionModel class] condition:nil error:nil];
+    NSNumber *count = [os count:[BZSQLiteGroupFunctionModel class] condition:nil error:nil];
     if (error) {
         XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     } else {
@@ -787,5 +799,27 @@
         XCTAssertTrue([fetchObject.notUpdateIfValueIsNullAttribute isEqualToString:@"notUpdateIfValueIsNullAttribute 1"],"object error");
     }
 }
+
+- (void)testBZIgnoreAttribute:(BZObjectStore*)os
+{
+    BZIgnoreAttribute *saveObject = [[BZIgnoreAttribute alloc]init];
+    saveObject.ignoreNo = @01;
+    saveObject.notIgnoreNo = @02;
+    
+    NSError *error = nil;
+    [os saveObject:saveObject error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    
+    [os.FMDBQueue inDatabase:^(FMDatabase *db) {
+        FMResultSet *rs = [db getTableSchema:@"BZIgnoreAttribute"];
+        while (rs.next) {
+            NSString *columnName = [rs stringForColumnIndex:1];
+            XCTAssertTrue(![columnName isEqualToString:@"ignoreNo"],"object error");
+        }
+        [rs close];
+    }];
+    
+}
+
 
 @end

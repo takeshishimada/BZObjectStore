@@ -187,7 +187,6 @@
 
     // class options
     self.fullTextSearch =  [self.clazz conformsToProtocol:@protocol(OSFullTextSearch)];
-    self.temporary = [self.clazz conformsToProtocol:@protocol(OSTemporary)];
     if ([self.clazz conformsToProtocol:@protocol(OSModelInterface)]) {
         if ([self.clazz respondsToSelector:@selector(OSModelDidSave)]) {
             self.modelDidSave = YES;

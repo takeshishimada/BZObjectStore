@@ -121,7 +121,7 @@
 
 #pragma mark inDatabase,inTransaction
 
-- (FMDatabaseQueue*)fmDatabaseQueue
+- (FMDatabaseQueue*)FMDBQueue
 {
     return self.dbQueue;
 }

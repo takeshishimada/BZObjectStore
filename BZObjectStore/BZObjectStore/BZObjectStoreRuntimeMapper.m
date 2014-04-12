@@ -117,11 +117,7 @@
 - (BOOL)createTable:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db
 {
     BOOL tableExists = NO;
-    if (!runtime.temporary) {
-        tableExists = [db tableExists:runtime.tableName];
-    } else {
-        tableExists = [db temporaryTableExists:runtime.tableName];
-    }
+    tableExists = [db tableExists:runtime.tableName];
     if (!tableExists) {
         [db executeUpdate:[runtime createTableStatement]];
         if ([self hadError:db]) {

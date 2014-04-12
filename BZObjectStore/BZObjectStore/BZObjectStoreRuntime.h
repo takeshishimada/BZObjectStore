@@ -58,7 +58,6 @@
 
 // class options
 @property (nonatomic,assign) BOOL fullTextSearch;
-@property (nonatomic,assign) BOOL temporary;
 @property (nonatomic,assign) BOOL modelDidLoad;
 @property (nonatomic,assign) BOOL modelDidSave;
 @property (nonatomic,assign) BOOL modelDidRemove;

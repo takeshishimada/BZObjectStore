@@ -31,7 +31,7 @@
 
 + (instancetype)openWithPath:(NSString*)path error:(NSError**)error;
 
-- (FMDatabaseQueue*)fmDatabaseQueue;
+- (FMDatabaseQueue*)FMDBQueue;
 
 - (BOOL)saveObject:(NSObject*)object error:(NSError**)error;
 - (BOOL)saveObjects:(NSArray*)objects error:(NSError**)error;
