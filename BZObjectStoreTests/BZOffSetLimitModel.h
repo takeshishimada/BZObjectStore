@@ -23,14 +23,9 @@
 
 #import <Foundation/Foundation.h>
 
-typedef NS_ENUM(int, kBZObjectStoreErrorTypes)
-{
-    kBZObjectStoreErrorInvalidObject = 1,
-    kBZObjectStoreErrorInvalidAttribute
-};
-
-@interface BZObjectStoreError : NSError
-+ (id)errorInvalidObject:(NSString*)message;
-+ (id)errorInvalidAttribute:(NSString*)message;
-+ (id)errorInvalidColumnName:(NSString*)message;
+@interface BZOffSetLimitModel : NSObject
+- (instancetype)initWithCode:(NSString*)code name:(NSString*)name price:(CGFloat)price;
+@property (nonatomic,strong) NSString *code;
+@property (nonatomic,strong) NSString *name;
+@property (nonatomic,assign) CGFloat price;
 @end

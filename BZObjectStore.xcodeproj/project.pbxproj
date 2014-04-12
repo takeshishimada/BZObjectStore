@@ -97,6 +97,8 @@
 		72C2683218F942130070C2E5 /* BZAttributeIsWeakReferenceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2683118F942130070C2E5 /* BZAttributeIsWeakReferenceModel.m */; };
 		72C2683518F9432A0070C2E5 /* BZAttributeIsfetchOnRefreshingModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2683418F9432A0070C2E5 /* BZAttributeIsfetchOnRefreshingModel.m */; };
 		72C2683918F962340070C2E5 /* BZOrderByModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2683818F962340070C2E5 /* BZOrderByModel.m */; };
+		72C2683C18F968D90070C2E5 /* BZWhereModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2683B18F968D90070C2E5 /* BZWhereModel.m */; };
+		72C2683F18F96D480070C2E5 /* BZOffSetLimitModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2683E18F96D480070C2E5 /* BZOffSetLimitModel.m */; };
 		82F55B5F18F63E49003A1136 /* AppleLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7259F8AC18F45014002A3416 /* AppleLogo.png */; };
 /* End PBXBuildFile section */
 
@@ -283,6 +285,10 @@
 		72C2683418F9432A0070C2E5 /* BZAttributeIsfetchOnRefreshingModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZAttributeIsfetchOnRefreshingModel.m; sourceTree = "<group>"; };
 		72C2683718F962340070C2E5 /* BZOrderByModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZOrderByModel.h; sourceTree = "<group>"; };
 		72C2683818F962340070C2E5 /* BZOrderByModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZOrderByModel.m; sourceTree = "<group>"; };
+		72C2683A18F968D90070C2E5 /* BZWhereModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZWhereModel.h; sourceTree = "<group>"; };
+		72C2683B18F968D90070C2E5 /* BZWhereModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZWhereModel.m; sourceTree = "<group>"; };
+		72C2683D18F96D480070C2E5 /* BZOffSetLimitModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZOffSetLimitModel.h; sourceTree = "<group>"; };
+		72C2683E18F96D480070C2E5 /* BZOffSetLimitModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZOffSetLimitModel.m; sourceTree = "<group>"; };
 		73A736836B224E7BB841BEB0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -662,6 +668,10 @@
 			children = (
 				72C2683718F962340070C2E5 /* BZOrderByModel.h */,
 				72C2683818F962340070C2E5 /* BZOrderByModel.m */,
+				72C2683A18F968D90070C2E5 /* BZWhereModel.h */,
+				72C2683B18F968D90070C2E5 /* BZWhereModel.m */,
+				72C2683D18F96D480070C2E5 /* BZOffSetLimitModel.h */,
+				72C2683E18F96D480070C2E5 /* BZOffSetLimitModel.m */,
 			);
 			name = Condition;
 			sourceTree = "<group>";
@@ -865,12 +875,14 @@
 				7259F8CA18F45014002A3416 /* BZObjectStoreTests.m in Sources */,
 				72170BF518F8368200C9A4C1 /* BZOnDemandDetailModel.m in Sources */,
 				72170BFA18F8394400C9A4C1 /* BZExtendBaseModel.m in Sources */,
+				72C2683C18F968D90070C2E5 /* BZWhereModel.m in Sources */,
 				7259F8C918F45014002A3416 /* BZObjectStoreOnMemory.m in Sources */,
 				7259F8CE18F45014002A3416 /* BZInsertResponseModel.m in Sources */,
 				72170C1818F8DA1400C9A4C1 /* BZIgnoreAttribute.m in Sources */,
 				72C2682F18F9413F0070C2E5 /* BZAttributeIsSerializeModel.m in Sources */,
 				72170BEE18F8327700C9A4C1 /* BZUpdateResponseModel.m in Sources */,
 				7259F8CF18F45014002A3416 /* BZVarietyValuesItemModel.m in Sources */,
+				72C2683F18F96D480070C2E5 /* BZOffSetLimitModel.m in Sources */,
 				72C2682C18F907BA0070C2E5 /* BZAttributeIsModel.m in Sources */,
 				72170BF718F8368200C9A4C1 /* BZOnDemanItemModel.m in Sources */,
 				72C2682818F8F8380070C2E5 /* BZNameModel.m in Sources */,

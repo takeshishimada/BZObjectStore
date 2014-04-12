@@ -55,6 +55,8 @@
 #import "BZAttributeIsWeakReferenceModel.h"
 #import "BZAttributeIsfetchOnRefreshingModel.h"
 #import "BZOrderByModel.h"
+#import "BZWhereModel.h"
+#import "BZOffSetLimitModel.h"
 
 @interface BZObjectStoreTests : XCTestCase
 @end
@@ -75,41 +77,44 @@
 
 - (void)testOnDisk
 {
-//    BZObjectStore *disk = [BZObjectStoreOnDisk sharedInstance];
-//    [self testBZVarietyValuesModel:disk];
-//    [self testBZInvalidValuesModel:disk];
-//    [self testBZRelationshipHeaderModel:disk];
-//    [self testBZInsertResponseModel:disk];
-//    [self testBZUpdateResponseModel:disk];
-//    [self testCircularReference:disk];
-//    [self testSQLiteGroupCondition:disk];
-//    [self testBZUpdateExistsObjectWithNoRowIdModel:disk];
-//    [self testBZOnDemanItemModel:disk];
-//    [self testBZExtendModel:disk];
-//    [self testBZIgnoreExtendModel:disk];
-//    [self testUpdateAttributeModel:disk];
-//    [self testBZIgnoreAttribute:disk];
-//    [self testAttributesModel:disk];
+    BZObjectStore *disk = [BZObjectStoreOnDisk sharedInstance];
+    [self testBZVarietyValuesModel:disk];
+    [self testBZInvalidValuesModel:disk];
+    [self testBZRelationshipHeaderModel:disk];
+    [self testBZInsertResponseModel:disk];
+    [self testBZUpdateResponseModel:disk];
+    [self testCircularReference:disk];
+    [self testSQLiteGroupCondition:disk];
+    [self testBZUpdateExistsObjectWithNoRowIdModel:disk];
+    [self testBZOnDemanItemModel:disk];
+    [self testBZExtendModel:disk];
+    [self testBZIgnoreExtendModel:disk];
+    [self testUpdateAttributeModel:disk];
+    [self testBZIgnoreAttribute:disk];
+    [self testAttributesModel:disk];
+    [self testBZOrderByModel:disk];
+    [self testBZOffSetLimitModel:disk];
 }
 
 - (void)testOnMemory
 {
-    BZObjectStore *memory = [BZObjectStoreOnMemory sharedInstance];
-    [self testBZVarietyValuesModel:memory];
-    [self testBZInvalidValuesModel:memory];
-    [self testBZRelationshipHeaderModel:memory];
-    [self testBZInsertResponseModel:memory];
-    [self testBZUpdateResponseModel:memory];
-    [self testCircularReference:memory];
-    [self testSQLiteGroupCondition:memory];
-    [self testBZUpdateExistsObjectWithNoRowIdModel:memory];
-    [self testBZOnDemanItemModel:memory];
-    [self testBZExtendModel:memory];
-    [self testBZIgnoreExtendModel:memory];
-    [self testUpdateAttributeModel:memory];
-    [self testBZIgnoreAttribute:memory];
-    [self testBZNameModel:memory];
-    [self testAttributesModel:memory];
+//    BZObjectStore *memory = [BZObjectStoreOnMemory sharedInstance];
+//    [self testBZVarietyValuesModel:memory];
+//    [self testBZInvalidValuesModel:memory];
+//    [self testBZRelationshipHeaderModel:memory];
+//    [self testBZInsertResponseModel:memory];
+//    [self testBZUpdateResponseModel:memory];
+//    [self testCircularReference:memory];
+//    [self testSQLiteGroupCondition:memory];
+//    [self testBZUpdateExistsObjectWithNoRowIdModel:memory];
+//    [self testBZOnDemanItemModel:memory];
+//    [self testBZExtendModel:memory];
+//    [self testBZIgnoreExtendModel:memory];
+//    [self testUpdateAttributeModel:memory];
+//    [self testBZIgnoreAttribute:memory];
+//    [self testBZNameModel:memory];
+//    [self testAttributesModel:memory];
+//    [self testBZOrderByModel:memory];
 }
 
 - (void)testBZVarietyValuesModel:(BZObjectStore*)os
@@ -930,13 +935,13 @@
 {
     NSError *error = nil;
     
-    BZOrderByModel *first = [[BZOrderByModel alloc]initWithCode:@"01" name:@"name1" price:10.12345 point:CGPointMake(19.87654321, 1.23456789)];
-    BZOrderByModel *second = [[BZOrderByModel alloc]initWithCode:@"01" name:@"name1" price:20.12345 point:CGPointMake(59.87654321, 11.23456789)];
-    BZOrderByModel *third = [[BZOrderByModel alloc]initWithCode:@"01" name:@"name2" price:30.12345 point:CGPointMake(49.87654321, 12.23456789)];
-    BZOrderByModel *fourth = [[BZOrderByModel alloc]initWithCode:@"01" name:@"name2" price:24.12345 point:CGPointMake(39.87654321, 13.23456789)];
-    BZOrderByModel *fifth = [[BZOrderByModel alloc]initWithCode:@"02" name:@"name2" price:26.12345 point:CGPointMake(19.87654321, 14.23456789)];
-    BZOrderByModel *sixth = [[BZOrderByModel alloc]initWithCode:@"02" name:@"name2" price:27.12345 point:CGPointMake(19.87654321, 14.23456789)];
-    BZOrderByModel *seventh = [[BZOrderByModel alloc]initWithCode:@"02" name:@"name2" price:27.12345 point:CGPointMake(39.87654321, 14.23456789)];
+    BZOrderByModel *first = [[BZOrderByModel alloc]initWithCode:@"01" name:@"name1" price:10.12345f point:CGPointMake(59.87654321f, 1.23456789f)];
+    BZOrderByModel *second = [[BZOrderByModel alloc]initWithCode:@"01" name:@"name1" price:10.12345f point:CGPointMake(19.87654321f, 11.23456789f)];
+    BZOrderByModel *third = [[BZOrderByModel alloc]initWithCode:@"01" name:@"name2" price:30.12345f point:CGPointMake(49.87654321f, 12.23456789f)];
+    BZOrderByModel *fourth = [[BZOrderByModel alloc]initWithCode:@"01" name:@"name2" price:24.12345f point:CGPointMake(39.87654321f, 13.23456789f)];
+    BZOrderByModel *fifth = [[BZOrderByModel alloc]initWithCode:@"02" name:@"name2" price:26.12345f point:CGPointMake(19.87654321f, 14.23456789f)];
+    BZOrderByModel *sixth = [[BZOrderByModel alloc]initWithCode:@"02" name:@"name2" price:27.12345f point:CGPointMake(19.87654321f, 14.23456789f)];
+    BZOrderByModel *seventh = [[BZOrderByModel alloc]initWithCode:@"02" name:@"name2" price:27.12345f point:CGPointMake(39.87654321f, 14.23456789f)];
     [os saveObjects:@[first,second,third,fourth,fifth,sixth,seventh] error:&error];
 
     BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
@@ -946,11 +951,67 @@
     
     BZOrderByModel *firstFetch = objects.firstObject;
     BZOrderByModel *lastFetch = objects.lastObject;
-    XCTAssertTrue([firstFetch.code isEqualToString:@"02"],"object error");
-    XCTAssertTrue(firstFetch.point.x == 39.87654321,"object error");
-    XCTAssertTrue([lastFetch.code isEqualToString:@"01"],"object error");
-    XCTAssertTrue(lastFetch.point.x == 59.87654321,"object error");
+    XCTAssertTrue([firstFetch.code isEqualToString:seventh.code],"object error");
+    XCTAssertTrue(CGPointEqualToPoint(firstFetch.point,seventh.point) ,"object error");
+    XCTAssertTrue([lastFetch.code isEqualToString:second.code],"object error");
+    XCTAssertTrue(CGPointEqualToPoint(lastFetch.point,second.point) ,"object error");
     
+}
+
+- (void)testBZWhereModel:(BZObjectStore*)os
+{
+    NSError *error = nil;
+    
+    BZWhereModel *item01 = [[BZWhereModel alloc]initWithCode:@"01" name:@"item01"];
+    BZWhereModel *item02 = [[BZWhereModel alloc]initWithCode:@"02" name:@"item02"];
+    BZWhereModel *item03 = [[BZWhereModel alloc]initWithCode:@"03" name:@"item03"];
+    BZWhereModel *item04 = [[BZWhereModel alloc]initWithCode:@"04" name:@"item04"];
+    BZWhereModel *item05 = [[BZWhereModel alloc]initWithCode:@"05" name:@"item05"];
+    
+    [os saveObjects:@[item01,item02,item03,item04,item05] error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    
+    BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
+    condition.sqliteCondition.where = @"code in ('03','04')";
+    condition.sqliteCondition.orderBy = @"code desc";
+    
+    NSArray *objects = [os fetchObjects:[BZWhereModel class] condition:condition error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    
+    BZWhereModel *fetchObject = objects.firstObject;
+    XCTAssertTrue([fetchObject.code isEqualToString:item04.code],"object error");
+    XCTAssertTrue([fetchObject.name isEqualToString:item04.name],"object error");
+    
+}
+
+- (void)testBZOffSetLimitModel:(BZObjectStore*)os
+{
+    NSError *error = nil;
+
+    BZOffSetLimitModel *item01 = [[BZOffSetLimitModel alloc]initWithCode:@"01" name:@"name01" price:1.0f];
+    BZOffSetLimitModel *item02 = [[BZOffSetLimitModel alloc]initWithCode:@"02" name:@"name02" price:2.0f];
+    BZOffSetLimitModel *item03 = [[BZOffSetLimitModel alloc]initWithCode:@"03" name:@"name03" price:3.0f];
+    BZOffSetLimitModel *item04 = [[BZOffSetLimitModel alloc]initWithCode:@"04" name:@"name04" price:4.0f];
+    BZOffSetLimitModel *item05 = [[BZOffSetLimitModel alloc]initWithCode:@"05" name:@"name05" price:5.0f];
+    BZOffSetLimitModel *item06 = [[BZOffSetLimitModel alloc]initWithCode:@"06" name:@"name06" price:6.0f];
+
+    [os saveObjects:@[item01,item02,item03,item04,item05,item06] error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+
+    BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
+    condition.sqliteCondition.orderBy = @"price desc";
+    condition.sqliteCondition.limit = @3;
+    condition.sqliteCondition.offset = @2;
+    
+    NSArray *objects = [os fetchObjects:[BZOffSetLimitModel class] condition:condition error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertTrue(objects.count == 3,"object error");
+
+    BZOffSetLimitModel *first = objects.firstObject;
+    XCTAssertTrue([first.code isEqualToString:@"04"],"object error");
+    
+    
+
 }
 
 @end

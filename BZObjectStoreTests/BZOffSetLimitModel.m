@@ -21,16 +21,16 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import "BZOffSetLimitModel.h"
 
-typedef NS_ENUM(int, kBZObjectStoreErrorTypes)
+@implementation BZOffSetLimitModel
+- (instancetype)initWithCode:(NSString*)code name:(NSString*)name price:(CGFloat)price
 {
-    kBZObjectStoreErrorInvalidObject = 1,
-    kBZObjectStoreErrorInvalidAttribute
-};
-
-@interface BZObjectStoreError : NSError
-+ (id)errorInvalidObject:(NSString*)message;
-+ (id)errorInvalidAttribute:(NSString*)message;
-+ (id)errorInvalidColumnName:(NSString*)message;
+    if (self = [super init]) {
+        self.code = code;
+        self.name = name;
+        self.price = price;
+    }
+    return self;
+}
 @end

@@ -21,16 +21,15 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
+#import "BZWhereModel.h"
 
-typedef NS_ENUM(int, kBZObjectStoreErrorTypes)
+@implementation BZWhereModel
+- (instancetype)initWithCode:(NSString*)code name:(NSString*)name
 {
-    kBZObjectStoreErrorInvalidObject = 1,
-    kBZObjectStoreErrorInvalidAttribute
-};
-
-@interface BZObjectStoreError : NSError
-+ (id)errorInvalidObject:(NSString*)message;
-+ (id)errorInvalidAttribute:(NSString*)message;
-+ (id)errorInvalidColumnName:(NSString*)message;
+    if (self = [super init]) {
+        self.code = code;
+        self.name = name;
+    }
+    return self;
+}
 @end
