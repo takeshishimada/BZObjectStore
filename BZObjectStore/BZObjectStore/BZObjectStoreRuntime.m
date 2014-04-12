@@ -355,16 +355,16 @@
 - (BZObjectStoreConditionModel*)rowidCondition:(NSObject*)object
 {
     BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
-    condition.sqliteCondition.where = [BZObjectStoreQueryBuilder rowidConditionStatement];
-    condition.sqliteCondition.parameters = [self rowidAttributeParameter:object];
+    condition.sqlite.where = [BZObjectStoreQueryBuilder rowidConditionStatement];
+    condition.sqlite.parameters = [self rowidAttributeParameter:object];
     return condition;
 }
 
 - (BZObjectStoreConditionModel*)uniqueCondition:(NSObject*)object
 {
     BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
-    condition.sqliteCondition.where = [BZObjectStoreQueryBuilder uniqueConditionStatement:self];
-    condition.sqliteCondition.parameters = [self identificationAttributesParameters:object];
+    condition.sqlite.where = [BZObjectStoreQueryBuilder uniqueConditionStatement:self];
+    condition.sqlite.parameters = [self identificationAttributesParameters:object];
     return condition;
 }
 

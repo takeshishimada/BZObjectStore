@@ -181,10 +181,10 @@
     }
     BZObjectStoreRuntime *attributeRuntime = [self runtime:[BZObjectStoreAttributeModel class]];
     BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
-    condition.sqliteCondition.where = @"className = ?";
-    condition.sqliteCondition.parameters = @[runtime.clazzName];
+    condition.sqlite.where = @"className = ?";
+    condition.sqlite.parameters = @[runtime.clazzName];
     NSString *deletesql = [attributeRuntime deleteFromStatementWithCondition:condition];
-    [db executeUpdate:deletesql withArgumentsInArray:condition.sqliteCondition.parameters];
+    [db executeUpdate:deletesql withArgumentsInArray:condition.sqlite.parameters];
     if ([self hadError:db]) {
         return NO;
     }

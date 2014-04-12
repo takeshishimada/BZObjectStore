@@ -27,8 +27,8 @@
 + (instancetype)condition
 {
     BZObjectStoreConditionModel *condition = [[self alloc]init];
-    condition.sqliteCondition = [[BZObjectStoreSQLiteConditionModel alloc]init];
-    condition.referenceCondition = [[BZObjectStoreReferenceConditionModel alloc]init];
+    condition.sqlite = [[BZObjectStoreSQLiteConditionModel alloc]init];
+    condition.reference = [[BZObjectStoreReferenceConditionModel alloc]init];
     return condition;
 }
 @end

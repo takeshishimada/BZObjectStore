@@ -954,7 +954,7 @@
     [os saveObjects:@[first,second,third,fourth,fifth,sixth,seventh] error:&error];
 
     BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
-    condition.sqliteCondition.orderBy = @"code desc,name desc,price desc,point_x desc";
+    condition.sqlite.orderBy = @"code desc,name desc,price desc,point_x desc";
     NSArray *objects = [os fetchObjects:[BZOrderByModel class] condition:condition error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     
@@ -981,8 +981,8 @@
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     
     BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
-    condition.sqliteCondition.where = @"code in ('03','04')";
-    condition.sqliteCondition.orderBy = @"code desc";
+    condition.sqlite.where = @"code in ('03','04')";
+    condition.sqlite.orderBy = @"code desc";
     
     NSArray *objects = [os fetchObjects:[BZWhereModel class] condition:condition error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
@@ -1008,9 +1008,9 @@
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
 
     BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
-    condition.sqliteCondition.orderBy = @"price desc";
-    condition.sqliteCondition.limit = @3;
-    condition.sqliteCondition.offset = @2;
+    condition.sqlite.orderBy = @"price desc";
+    condition.sqlite.limit = @3;
+    condition.sqlite.offset = @2;
     
     NSArray *objects = [os fetchObjects:[BZOffSetLimitModel class] condition:condition error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
@@ -1036,7 +1036,7 @@
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     
     BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
-    condition.sqliteCondition.where = @"address MATCH 'address5555'";
+    condition.sqlite.where = @"address MATCH 'address5555'";
     
     NSDate *now = [NSDate date];
     objects = [os fetchObjects:[BZFullTextModel class] condition:condition error:&error];
@@ -1088,14 +1088,14 @@
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     
     BZObjectStoreConditionModel *fromCondition = [BZObjectStoreConditionModel condition];
-    fromCondition.referenceCondition.from = from1;
+    fromCondition.reference.from = from1;
     
     NSArray *fromObjects = [os fetchObjects:[BZReferenceConditionModel class] condition:fromCondition error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     XCTAssertTrue(fromObjects.count == 1, @"error");
 
     BZObjectStoreConditionModel *toCondition = [BZObjectStoreConditionModel condition];
-    toCondition.referenceCondition.to = to2;
+    toCondition.reference.to = to2;
 
     NSArray *toObjects = [os fetchObjects:[BZReferenceConditionModel class] condition:toCondition error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
