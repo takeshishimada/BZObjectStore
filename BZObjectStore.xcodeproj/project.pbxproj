@@ -90,6 +90,7 @@
 		72BEE87618F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72BEE87518F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.m */; };
 		72BEE87918F57A4400A7D742 /* BZObjectStoreSQLiteReferenceConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72BEE87818F57A4400A7D742 /* BZObjectStoreSQLiteReferenceConditionModel.m */; };
 		72BEE87C18F57A8000A7D742 /* BZObjectStoreConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72BEE87B18F57A8000A7D742 /* BZObjectStoreConditionModel.m */; };
+		72C2682318F8ED320070C2E5 /* BZDelegateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2682218F8ED320070C2E5 /* BZDelegateModel.m */; };
 		82F55B5F18F63E49003A1136 /* AppleLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7259F8AC18F45014002A3416 /* AppleLogo.png */; };
 /* End PBXBuildFile section */
 
@@ -262,6 +263,8 @@
 		72BEE87818F57A4400A7D742 /* BZObjectStoreSQLiteReferenceConditionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreSQLiteReferenceConditionModel.m; sourceTree = "<group>"; };
 		72BEE87A18F57A8000A7D742 /* BZObjectStoreConditionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreConditionModel.h; sourceTree = "<group>"; };
 		72BEE87B18F57A8000A7D742 /* BZObjectStoreConditionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreConditionModel.m; sourceTree = "<group>"; };
+		72C2682118F8ED320070C2E5 /* BZDelegateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZDelegateModel.h; sourceTree = "<group>"; };
+		72C2682218F8ED320070C2E5 /* BZDelegateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZDelegateModel.m; sourceTree = "<group>"; };
 		73A736836B224E7BB841BEB0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -473,13 +476,14 @@
 			isa = PBXGroup;
 			children = (
 				7259F8B518F45014002A3416 /* BZObjectStoreTests.m */,
+				7259F8AC18F45014002A3416 /* AppleLogo.png */,
 				72170C0D18F8D2AB00C9A4C1 /* ObjectStore */,
 				72170C0A18F8D21D00C9A4C1 /* Relationship */,
 				72170C0B18F8D25F00C9A4C1 /* VarietyValues */,
 				72170C0C18F8D27600C9A4C1 /* Response */,
 				72170C0E18F8D2DE00C9A4C1 /* SQLiteFunction */,
+				72C2682418F8ED3A0070C2E5 /* Delegate */,
 				72170C0F18F8D30C00C9A4C1 /* AttributeOptions */,
-				7259F8AC18F45014002A3416 /* AppleLogo.png */,
 				7259F81318F44F04002A3416 /* Supporting Files */,
 			);
 			path = BZObjectStoreTests;
@@ -597,6 +601,15 @@
 				7259F87E18F44FCA002A3416 /* UIColor+BZObjectStore.m */,
 			);
 			path = BZObjectStore;
+			sourceTree = "<group>";
+		};
+		72C2682418F8ED3A0070C2E5 /* Delegate */ = {
+			isa = PBXGroup;
+			children = (
+				72C2682118F8ED320070C2E5 /* BZDelegateModel.h */,
+				72C2682218F8ED320070C2E5 /* BZDelegateModel.m */,
+			);
+			name = Delegate;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -807,6 +820,7 @@
 				72170C0018F83C2800C9A4C1 /* BZIgnoreExtendModel.m in Sources */,
 				72170BFD18F8397D00C9A4C1 /* BZExtendModel.m in Sources */,
 				7259F8CC18F45014002A3416 /* BZRelationshipHeaderModel.m in Sources */,
+				72C2682318F8ED320070C2E5 /* BZDelegateModel.m in Sources */,
 				7259F8D018F45014002A3416 /* BZVarietyValuesModel.m in Sources */,
 				7259F8C718F45014002A3416 /* BZInvalidValuesModel.m in Sources */,
 				72170BF618F8368200C9A4C1 /* BZOnDemandHeaderModel.m in Sources */,

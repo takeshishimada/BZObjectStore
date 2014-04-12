@@ -48,6 +48,7 @@
 #import "BZIgnoreExtendModel.h"
 #import "BZUpdateAttributeModel.h"
 #import "BZIgnoreAttribute.h"
+#import "BZDelegateModel.h"
 
 @interface BZObjectStoreTests : XCTestCase
 
@@ -821,5 +822,19 @@
     
 }
 
+- (void)testBZDelegateModel:(BZObjectStore*)os
+{
+    BZDelegateModel *saveObject = [[BZDelegateModel alloc]init];
+    XCTAssertTrue(!saveObject.modelDidLoad,"object error");
+    XCTAssertTrue(!saveObject.modelDidRemove,"object error");
+    XCTAssertTrue(!saveObject.modelDidSave,"object error");
+    
+    NSError *error = nil;
+    [os saveObject:saveObject error:&error];
+    XCTAssertTrue(saveObject.modelDidLoad,"object error");
+    XCTAssertTrue(saveObject.modelDidRemove,"object error");
+    XCTAssertTrue(saveObject.modelDidSave,"object error");
+    
+}
 
 @end
