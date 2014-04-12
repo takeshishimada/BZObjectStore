@@ -43,6 +43,7 @@
 #import "BZOnDemanItemModel.h"
 #import "BZExtendModel.h"
 #import "BZIgnoreExtendModel.h"
+#import "BZUpdateAttributeModel.h"
 
 @interface BZObjectStoreTests : XCTestCase
 
@@ -75,7 +76,8 @@
 //    [self testBZUpdateExistsObjectWithNoRowIdModel:disk];
 //    [self testBZOnDemanItemModel:disk];
 //    [self testBZExtendModel:disk];
-    [self testBZIgnoreExtendModel:disk];
+//    [self testBZIgnoreExtendModel:disk];
+    [self testUpdateAttributeModel:disk];
     
 //    BZObjectStore *memory = [BZObjectStoreOnMemory sharedInstance];
 //    [self testBZVarietyValuesModel:memory];
@@ -89,6 +91,8 @@
 //    [self testBZOnDemanItemModel:memory];
 //    [self testBZExtendModel:memory];
 //    [self testBZIgnoreExtendModel:memory];
+//    [self testBZIgnoreExtendModel:memory];
+
 }
 
 - (void)testBZVarietyValuesModel:(BZObjectStore*)os
@@ -757,6 +761,30 @@
     } else {
         BZIgnoreExtendModel *fetchObject = objects.firstObject;
         XCTAssertTrue(fetchObject.code == nil,"object error");
+    }
+}
+
+- (void)testUpdateAttributeModel:(BZObjectStore*)os
+{
+    BZUpdateAttributeModel *saveObject = [[BZUpdateAttributeModel alloc]init];
+    saveObject.onceUpdateAttribute = @"onceUpdateAttribute 1";
+    saveObject.notUpdateIfValueIsNullAttribute = @"notUpdateIfValueIsNullAttribute 1";
+    
+    NSError *error = nil;
+    [os saveObject:saveObject error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    
+    saveObject.onceUpdateAttribute = @"onceUpdateAttribute 2";
+    saveObject.notUpdateIfValueIsNullAttribute = nil;
+    [os saveObject:saveObject error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    
+    BZUpdateAttributeModel *fetchObject = [os refreshObject:saveObject error:&error];
+    if (error) {
+        XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    } else {
+        XCTAssertTrue([fetchObject.onceUpdateAttribute isEqualToString:@"onceUpdateAttribute 1"],"object error");
+        XCTAssertTrue([fetchObject.notUpdateIfValueIsNullAttribute isEqualToString:@"notUpdateIfValueIsNullAttribute 1"],"object error");
     }
 }
 

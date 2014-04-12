@@ -21,21 +21,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "BZObjectStoreOnDisk.h"
+#import "BZUpdateAttributeModel.h"
 
-@implementation BZObjectStoreOnDisk
-+ (instancetype)sharedInstance
-{
-    static id _sharedInstance;
-    @synchronized(self) {
-        if (!_sharedInstance) {
-            NSError *error = nil;
-            _sharedInstance = [BZObjectStore openWithPath:@"database.sqlite" error:&error];
-            NSAssert(error == nil,@"objectstore is nil");
-        }
-        return _sharedInstance;
-    }
-}
-
+@implementation BZUpdateAttributeModel
 
 @end

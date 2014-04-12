@@ -18,6 +18,7 @@
 		72170BFA18F8394400C9A4C1 /* BZExtendBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72170BF918F8394400C9A4C1 /* BZExtendBaseModel.m */; };
 		72170BFD18F8397D00C9A4C1 /* BZExtendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72170BFC18F8397D00C9A4C1 /* BZExtendModel.m */; };
 		72170C0018F83C2800C9A4C1 /* BZIgnoreExtendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72170BFF18F83C2800C9A4C1 /* BZIgnoreExtendModel.m */; };
+		72170C0318F8CEBD00C9A4C1 /* BZUpdateAttributeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72170C0218F8CEBD00C9A4C1 /* BZUpdateAttributeModel.m */; };
 		7259F7F418F44F04002A3416 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7259F7F318F44F04002A3416 /* Foundation.framework */; };
 		7259F7F618F44F04002A3416 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7259F7F518F44F04002A3416 /* CoreGraphics.framework */; };
 		7259F7F818F44F04002A3416 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7259F7F718F44F04002A3416 /* UIKit.framework */; };
@@ -123,6 +124,8 @@
 		72170BFC18F8397D00C9A4C1 /* BZExtendModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZExtendModel.m; sourceTree = "<group>"; };
 		72170BFE18F83C2800C9A4C1 /* BZIgnoreExtendModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZIgnoreExtendModel.h; sourceTree = "<group>"; };
 		72170BFF18F83C2800C9A4C1 /* BZIgnoreExtendModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZIgnoreExtendModel.m; sourceTree = "<group>"; };
+		72170C0118F8CEBD00C9A4C1 /* BZUpdateAttributeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZUpdateAttributeModel.h; sourceTree = "<group>"; };
+		72170C0218F8CEBD00C9A4C1 /* BZUpdateAttributeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZUpdateAttributeModel.m; sourceTree = "<group>"; };
 		7259F7F018F44F04002A3416 /* BZObjectStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BZObjectStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7259F7F318F44F04002A3416 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7259F7F518F44F04002A3416 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -381,6 +384,8 @@
 				72170BFC18F8397D00C9A4C1 /* BZExtendModel.m */,
 				72170BFE18F83C2800C9A4C1 /* BZIgnoreExtendModel.h */,
 				72170BFF18F83C2800C9A4C1 /* BZIgnoreExtendModel.m */,
+				72170C0118F8CEBD00C9A4C1 /* BZUpdateAttributeModel.h */,
+				72170C0218F8CEBD00C9A4C1 /* BZUpdateAttributeModel.m */,
 				7259F8AC18F45014002A3416 /* AppleLogo.png */,
 				7259F81318F44F04002A3416 /* Supporting Files */,
 			);
@@ -695,6 +700,7 @@
 				7259F8CD18F45014002A3416 /* BZRelationshipItemModel.m in Sources */,
 				7259F8C618F45014002A3416 /* BZCircularReferenceModel.m in Sources */,
 				72170BE818F5950D00C9A4C1 /* BZSQLiteGroupConditionModel.m in Sources */,
+				72170C0318F8CEBD00C9A4C1 /* BZUpdateAttributeModel.m in Sources */,
 				7259F8CA18F45014002A3416 /* BZObjectStoreTests.m in Sources */,
 				72170BF518F8368200C9A4C1 /* BZOnDemandDetailModel.m in Sources */,
 				72170BFA18F8394400C9A4C1 /* BZExtendBaseModel.m in Sources */,
