@@ -82,23 +82,23 @@
 - (void)testOnDisk
 {
     BZObjectStore *disk = [BZObjectStoreOnDisk sharedInstance];
-//    [self testBZVarietyValuesModel:disk];
-//    [self testBZInvalidValuesModel:disk];
-//    [self testBZRelationshipHeaderModel:disk];
-//    [self testBZInsertResponseModel:disk];
-//    [self testBZUpdateResponseModel:disk];
-//    [self testCircularReference:disk];
-//    [self testSQLiteGroupCondition:disk];
-//    [self testBZUpdateExistsObjectWithNoRowIdModel:disk];
-//    [self testBZOnDemanItemModel:disk];
-//    [self testBZExtendModel:disk];
-//    [self testBZIgnoreExtendModel:disk];
-//    [self testUpdateAttributeModel:disk];
-//    [self testBZIgnoreAttribute:disk];
-//    [self testAttributesModel:disk];
-//    [self testBZOrderByModel:disk];
-//    [self testBZOffSetLimitModel:disk];
-//    [self testBZFullTextModel:disk];
+    [self testBZVarietyValuesModel:disk];
+    [self testBZInvalidValuesModel:disk];
+    [self testBZRelationshipHeaderModel:disk];
+    [self testBZInsertResponseModel:disk];
+    [self testBZUpdateResponseModel:disk];
+    [self testCircularReference:disk];
+    [self testSQLiteGroupCondition:disk];
+    [self testBZUpdateExistsObjectWithNoRowIdModel:disk];
+    [self testBZOnDemanItemModel:disk];
+    [self testBZExtendModel:disk];
+    [self testBZIgnoreExtendModel:disk];
+    [self testUpdateAttributeModel:disk];
+    [self testBZIgnoreAttribute:disk];
+    [self testAttributesModel:disk];
+    [self testBZOrderByModel:disk];
+    [self testBZOffSetLimitModel:disk];
+    [self testBZFullTextModel:disk];
     [self testBZReferenceConditionModel:disk];
 }
 

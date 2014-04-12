@@ -103,6 +103,7 @@
 		72C2684518F98B220070C2E5 /* BZReferenceConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2684418F98B220070C2E5 /* BZReferenceConditionModel.m */; };
 		72C2684818F98B890070C2E5 /* BZReferenceFromConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2684718F98B890070C2E5 /* BZReferenceFromConditionModel.m */; };
 		72C2684B18F98B950070C2E5 /* BZReferenceToConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2684A18F98B950070C2E5 /* BZReferenceToConditionModel.m */; };
+		72C2684E18F9944D0070C2E5 /* BZObjectStoreTestsObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2684D18F9944D0070C2E5 /* BZObjectStoreTestsObserver.m */; };
 		82F55B5F18F63E49003A1136 /* AppleLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7259F8AC18F45014002A3416 /* AppleLogo.png */; };
 /* End PBXBuildFile section */
 
@@ -301,6 +302,8 @@
 		72C2684718F98B890070C2E5 /* BZReferenceFromConditionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZReferenceFromConditionModel.m; sourceTree = "<group>"; };
 		72C2684918F98B950070C2E5 /* BZReferenceToConditionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZReferenceToConditionModel.h; sourceTree = "<group>"; };
 		72C2684A18F98B950070C2E5 /* BZReferenceToConditionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZReferenceToConditionModel.m; sourceTree = "<group>"; };
+		72C2684C18F9944D0070C2E5 /* BZObjectStoreTestsObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreTestsObserver.h; sourceTree = "<group>"; };
+		72C2684D18F9944D0070C2E5 /* BZObjectStoreTestsObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreTestsObserver.m; sourceTree = "<group>"; };
 		73A736836B224E7BB841BEB0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -517,6 +520,8 @@
 			isa = PBXGroup;
 			children = (
 				7259F8B518F45014002A3416 /* BZObjectStoreTests.m */,
+				72C2684C18F9944D0070C2E5 /* BZObjectStoreTestsObserver.h */,
+				72C2684D18F9944D0070C2E5 /* BZObjectStoreTestsObserver.m */,
 				7259F8AC18F45014002A3416 /* AppleLogo.png */,
 				72170C0D18F8D2AB00C9A4C1 /* ObjectStore */,
 				72170C0A18F8D21D00C9A4C1 /* Relationship */,
@@ -920,6 +925,7 @@
 				72C2683918F962340070C2E5 /* BZOrderByModel.m in Sources */,
 				72C2684818F98B890070C2E5 /* BZReferenceFromConditionModel.m in Sources */,
 				72170BF618F8368200C9A4C1 /* BZOnDemandHeaderModel.m in Sources */,
+				72C2684E18F9944D0070C2E5 /* BZObjectStoreTestsObserver.m in Sources */,
 				72170BEB18F6E9D200C9A4C1 /* BZUpdateExistsObjectWithNoRowIdModel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -975,6 +981,8 @@
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_OPTIMIZATION_LEVEL = 0;
 				GCC_PREPROCESSOR_DEFINITIONS = (
 					"DEBUG=1",
@@ -1014,6 +1022,8 @@
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_GENERATE_TEST_COVERAGE_FILES = YES;
+				GCC_INSTRUMENT_PROGRAM_FLOW_ARCS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
 				GCC_WARN_UNDECLARED_SELECTOR = YES;
