@@ -74,6 +74,15 @@
 
 + (instancetype)openWithPath:(NSString*)path error:(NSError**)error
 {
+    if (path) {
+        if ([path isEqualToString:[path lastPathComponent]]) {
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+            NSString *dir = [paths objectAtIndex:0];
+            dir = [dir stringByAppendingPathComponent:[[NSBundle mainBundle] bundleIdentifier]];
+            path = [dir stringByAppendingPathComponent:path];
+        }
+    }
+    
     FMDatabaseQueue *dbQueue = [self dbQueueWithPath:path];
     if (!dbQueue) {
         return nil;
