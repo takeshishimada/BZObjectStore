@@ -88,7 +88,7 @@
 		7259F8CF18F45014002A3416 /* BZVarietyValuesItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F8BF18F45014002A3416 /* BZVarietyValuesItemModel.m */; };
 		7259F8D018F45014002A3416 /* BZVarietyValuesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F8C118F45014002A3416 /* BZVarietyValuesModel.m */; };
 		72BEE87618F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72BEE87518F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.m */; };
-		72BEE87918F57A4400A7D742 /* BZObjectStoreSQLiteReferenceConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72BEE87818F57A4400A7D742 /* BZObjectStoreSQLiteReferenceConditionModel.m */; };
+		72BEE87918F57A4400A7D742 /* BZObjectStoreReferenceConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72BEE87818F57A4400A7D742 /* BZObjectStoreReferenceConditionModel.m */; };
 		72BEE87C18F57A8000A7D742 /* BZObjectStoreConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72BEE87B18F57A8000A7D742 /* BZObjectStoreConditionModel.m */; };
 		72C2682318F8ED320070C2E5 /* BZDelegateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2682218F8ED320070C2E5 /* BZDelegateModel.m */; };
 		72C2682818F8F8380070C2E5 /* BZNameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2682718F8F8380070C2E5 /* BZNameModel.m */; };
@@ -272,8 +272,8 @@
 		7259F8C118F45014002A3416 /* BZVarietyValuesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZVarietyValuesModel.m; sourceTree = "<group>"; };
 		72BEE87418F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreSQLiteConditionModel.h; sourceTree = "<group>"; };
 		72BEE87518F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreSQLiteConditionModel.m; sourceTree = "<group>"; };
-		72BEE87718F57A4400A7D742 /* BZObjectStoreSQLiteReferenceConditionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreSQLiteReferenceConditionModel.h; sourceTree = "<group>"; };
-		72BEE87818F57A4400A7D742 /* BZObjectStoreSQLiteReferenceConditionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreSQLiteReferenceConditionModel.m; sourceTree = "<group>"; };
+		72BEE87718F57A4400A7D742 /* BZObjectStoreReferenceConditionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreReferenceConditionModel.h; sourceTree = "<group>"; };
+		72BEE87818F57A4400A7D742 /* BZObjectStoreReferenceConditionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreReferenceConditionModel.m; sourceTree = "<group>"; };
 		72BEE87A18F57A8000A7D742 /* BZObjectStoreConditionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreConditionModel.h; sourceTree = "<group>"; };
 		72BEE87B18F57A8000A7D742 /* BZObjectStoreConditionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreConditionModel.m; sourceTree = "<group>"; };
 		72C2682118F8ED320070C2E5 /* BZDelegateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZDelegateModel.h; sourceTree = "<group>"; };
@@ -554,6 +554,12 @@
 				7259F82718F44FCA002A3416 /* BZObjectStoreAttributeModel.m */,
 				7259F82818F44FCA002A3416 /* BZObjectStoreBackground.h */,
 				7259F82918F44FCA002A3416 /* BZObjectStoreBackground.m */,
+				72BEE87A18F57A8000A7D742 /* BZObjectStoreConditionModel.h */,
+				72BEE87B18F57A8000A7D742 /* BZObjectStoreConditionModel.m */,
+				72BEE87418F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.h */,
+				72BEE87518F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.m */,
+				72BEE87718F57A4400A7D742 /* BZObjectStoreReferenceConditionModel.h */,
+				72BEE87818F57A4400A7D742 /* BZObjectStoreReferenceConditionModel.m */,
 				7259F82A18F44FCA002A3416 /* BZObjectStoreClazz.h */,
 				7259F82B18F44FCA002A3416 /* BZObjectStoreClazz.m */,
 				7259F82C18F44FCA002A3416 /* BZObjectStoreClazzCGPoint.h */,
@@ -612,33 +618,27 @@
 				7259F86118F44FCA002A3416 /* BZObjectStoreClazzUIColor.m */,
 				7259F86218F44FCA002A3416 /* BZObjectStoreClazzUIImage.h */,
 				7259F86318F44FCA002A3416 /* BZObjectStoreClazzUIImage.m */,
-				7259F86618F44FCA002A3416 /* BZObjectStoreConst.h */,
-				7259F86718F44FCA002A3416 /* BZObjectStoreError.h */,
-				7259F86818F44FCA002A3416 /* BZObjectStoreError.m */,
+				7259F86F18F44FCA002A3416 /* BZObjectStoreReferenceMapper.h */,
+				7259F87018F44FCA002A3416 /* BZObjectStoreReferenceMapper.m */,
 				7259F86918F44FCA002A3416 /* BZObjectStoreModelMapper.h */,
 				7259F86A18F44FCA002A3416 /* BZObjectStoreModelMapper.m */,
+				7259F87518F44FCA002A3416 /* BZObjectStoreRuntimeMapper.h */,
+				7259F87618F44FCA002A3416 /* BZObjectStoreRuntimeMapper.m */,
+				7259F87318F44FCA002A3416 /* BZObjectStoreRuntime.h */,
+				7259F87418F44FCA002A3416 /* BZObjectStoreRuntime.m */,
+				7259F87718F44FCA002A3416 /* BZObjectStoreRuntimeProperty.h */,
+				7259F87818F44FCA002A3416 /* BZObjectStoreRuntimeProperty.m */,
 				7259F86B18F44FCA002A3416 /* BZObjectStoreNameBuilder.h */,
 				7259F86C18F44FCA002A3416 /* BZObjectStoreNameBuilder.m */,
 				7259F86D18F44FCA002A3416 /* BZObjectStoreQueryBuilder.h */,
 				7259F86E18F44FCA002A3416 /* BZObjectStoreQueryBuilder.m */,
-				7259F86F18F44FCA002A3416 /* BZObjectStoreReferenceMapper.h */,
-				7259F87018F44FCA002A3416 /* BZObjectStoreReferenceMapper.m */,
 				7259F87118F44FCA002A3416 /* BZObjectStoreRelationshipModel.h */,
 				7259F87218F44FCA002A3416 /* BZObjectStoreRelationshipModel.m */,
-				7259F87318F44FCA002A3416 /* BZObjectStoreRuntime.h */,
-				7259F87418F44FCA002A3416 /* BZObjectStoreRuntime.m */,
-				7259F87518F44FCA002A3416 /* BZObjectStoreRuntimeMapper.h */,
-				7259F87618F44FCA002A3416 /* BZObjectStoreRuntimeMapper.m */,
-				7259F87718F44FCA002A3416 /* BZObjectStoreRuntimeProperty.h */,
-				7259F87818F44FCA002A3416 /* BZObjectStoreRuntimeProperty.m */,
-				72BEE87418F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.h */,
-				72BEE87518F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.m */,
-				72BEE87718F57A4400A7D742 /* BZObjectStoreSQLiteReferenceConditionModel.h */,
-				72BEE87818F57A4400A7D742 /* BZObjectStoreSQLiteReferenceConditionModel.m */,
 				72170BE318F5862400C9A4C1 /* BZObjectStoreSQLiteColumnModel.h */,
 				72170BE418F5862400C9A4C1 /* BZObjectStoreSQLiteColumnModel.m */,
-				72BEE87A18F57A8000A7D742 /* BZObjectStoreConditionModel.h */,
-				72BEE87B18F57A8000A7D742 /* BZObjectStoreConditionModel.m */,
+				7259F86618F44FCA002A3416 /* BZObjectStoreConst.h */,
+				7259F86718F44FCA002A3416 /* BZObjectStoreError.h */,
+				7259F86818F44FCA002A3416 /* BZObjectStoreError.m */,
 				7259F87918F44FCA002A3416 /* FMDatabase+TemporaryTable.h */,
 				7259F87A18F44FCA002A3416 /* FMDatabase+TemporaryTable.m */,
 				7259F87B18F44FCA002A3416 /* NSObject+BZObjectStore.h */,
@@ -881,7 +881,7 @@
 				7259F88F18F44FCA002A3416 /* BZObjectStoreClazzNSMutableDictionary.m in Sources */,
 				7259F89718F44FCA002A3416 /* BZObjectStoreClazzNSRange.m in Sources */,
 				7259F89418F44FCA002A3416 /* BZObjectStoreClazzNSNumber.m in Sources */,
-				72BEE87918F57A4400A7D742 /* BZObjectStoreSQLiteReferenceConditionModel.m in Sources */,
+				72BEE87918F57A4400A7D742 /* BZObjectStoreReferenceConditionModel.m in Sources */,
 				7259F89218F44FCA002A3416 /* BZObjectStoreClazzNSMutableString.m in Sources */,
 				7259F88618F44FCA002A3416 /* BZObjectStoreClazzChar.m in Sources */,
 			);

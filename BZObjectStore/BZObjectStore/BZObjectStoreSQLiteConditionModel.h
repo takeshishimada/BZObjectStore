@@ -24,9 +24,9 @@
 #import <Foundation/Foundation.h>
 
 @interface BZObjectStoreSQLiteConditionModel : NSObject
-@property (nonatomic,strong) NSNumber *limit;
-@property (nonatomic,strong) NSNumber *offset;
 @property (nonatomic,strong) NSString *where;
 @property (nonatomic,strong) NSArray *parameters;
 @property (nonatomic,strong) NSString *orderBy;
+@property (nonatomic,strong) NSNumber *limit;
+@property (nonatomic,strong) NSNumber *offset;
 @end

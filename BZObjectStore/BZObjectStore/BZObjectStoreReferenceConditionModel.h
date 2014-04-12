@@ -21,8 +21,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "BZObjectStoreSQLiteReferenceConditionModel.h"
+#import <Foundation/Foundation.h>
 
-@implementation BZObjectStoreSQLiteReferenceConditionModel
-
+@interface BZObjectStoreReferenceConditionModel : NSObject
+@property (nonatomic,strong) NSObject *from;
+@property (nonatomic,strong) NSObject *to;
 @end

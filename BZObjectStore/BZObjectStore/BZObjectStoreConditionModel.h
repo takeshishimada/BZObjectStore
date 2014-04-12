@@ -23,10 +23,10 @@
 
 #import <Foundation/Foundation.h>
 #import "BZObjectStoreSQLiteConditionModel.h"
-#import "BZObjectStoreSQLiteReferenceConditionModel.h"
+#import "BZObjectStoreReferenceConditionModel.h"
 
 @interface BZObjectStoreConditionModel : NSObject
 + (instancetype)condition;
 @property (nonatomic,strong) BZObjectStoreSQLiteConditionModel *sqliteCondition;
-@property (nonatomic,strong) BZObjectStoreSQLiteReferenceConditionModel *referenceCondition;
+@property (nonatomic,strong) BZObjectStoreReferenceConditionModel *referenceCondition;
 @end
