@@ -408,7 +408,18 @@
                         NSObject *value = [runtime objectWithObjects:objects keys:keys initializingOptions:relationshipObject.attributeKey];
                         relationshipObject.attributeFromObject = targetObject;
                         relationshipObject.attributeValue = value;
+                    } else if (runtime.isSimpleValueClazz ) {
+                        Class clazz = NSClassFromString(relationshipObject.toClassName);
+                        if (clazz) {
+                            BZObjectStoreRuntime *simpleValueRuntime = [super runtime:clazz];
+                            NSObject *value = [simpleValueRuntime valueWithStoreValue:relationshipObject.attributeValue];
+                            relationshipObject.attributeFromObject = targetObject;
+                            relationshipObject.attributeValue = value;
+                        } else {
+                            relationshipObject.attributeValue = nil;
+                        }
                     }
+                    
                     if (runtime) {
                         if (relationshipObject == objectAttibute.relationshipObjects.lastObject) {
                             [targetObject setValue:relationshipObject.attributeValue forKey:attribute.name];
@@ -488,12 +499,12 @@
                     NSMutableArray *objectAttributeStuck = [NSMutableArray array];
                     NSMutableArray *allRelationshipObjects = [NSMutableArray array];
                     
-                    if (attribute.clazz == NULL) {
-                        attribute.clazz = [firstStuckAttributeObject class];
-                        attribute.clazzName = NSStringFromClass(attribute.clazz);
+                    BZObjectStoreRuntime *runtime;
+                    if (attribute.clazz ) {
+                        runtime = [self runtimeWithClazz:attribute.clazz db:db];
+                    } else {
+                        runtime = [self runtimeWithClazz:[firstStuckAttributeObject class] db:db];
                     }
-                    
-                    BZObjectStoreRuntime *runtime = [self runtimeWithClazz:attribute.clazz db:db];
                     if (runtime.isArrayClazz) {
                         BZObjectStoreRelationshipModel *topRelationshipObject = [[BZObjectStoreRelationshipModel alloc]init];
                         topRelationshipObject.fromClassName = targetObject.runtime.clazzName;
@@ -525,6 +536,11 @@
                         firstStuck.attributeObject = firstStuckAttributeObject;
                         [objectAttributeStuck addObject:firstStuck];
                         
+                    } else if (runtime.isSimpleValueClazz ) {
+                        BZObjectStoreObjectAttributeStuckObject *firstStuck = [[BZObjectStoreObjectAttributeStuckObject alloc]init];
+                        firstStuck.parentRelationship = nil;
+                        firstStuck.attributeObject = firstStuckAttributeObject;
+                        [objectAttributeStuck addObject:firstStuck];
                     }
                     
                     while (objectAttributeStuck.count > 0) {
@@ -549,11 +565,8 @@
                         if ([self hadError:db error:error]) {
                             return NO;
                         }
-                        if (stuck.attributeObject.runtime.isRelationshipClazz) {
-                            enumerator = [stuck.attributeObject.runtime objectEnumeratorWithObject:stuck.attributeObject];
-                            keys = [stuck.attributeObject.runtime keysWithObject:stuck.attributeObject];
-                        }
-                        
+                        enumerator = [stuck.attributeObject.runtime objectEnumeratorWithObject:stuck.attributeObject];
+                        keys = [stuck.attributeObject.runtime keysWithObject:stuck.attributeObject];
                         for (NSObject *attributeObjectInEnumerator in enumerator) {
                             Class attributeClazzInEnumerator = [attributeObjectInEnumerator class];
                             BZObjectStoreRuntime *attributeRuntimeInEnumerator = [self runtimeWithClazz:attributeClazzInEnumerator db:db];
@@ -573,7 +586,7 @@
                                 } else if (attributeRuntimeInEnumerator.isSimpleValueClazz) {
                                     attributeObject = attributeObjectInEnumerator;
                                     attributeObjectClassName = attributeRuntimeInEnumerator.clazzName;
-                                    attributeValue = attributeObjectInEnumerator;
+                                    attributeValue = [attributeRuntimeInEnumerator storeValueWithValue:attributeObjectInEnumerator];
                                 }
                                 BZObjectStoreRelationshipModel *relationshipObject = [[BZObjectStoreRelationshipModel alloc]init];
                                 relationshipObject.fromClassName = targetObject.runtime.clazzName;

@@ -21,27 +21,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
-#import "BZObjectStoreModelInterface.h"
+#import "BZObjectStoreClazz.h"
 
-@class BZObjectStoreRuntimeProperty;
-@class BZObjectStoreRuntime;
+@interface BZObjectStoreClazzID : BZObjectStoreClazz
 
-@interface BZObjectStoreRelationshipModel : NSObject<OSModelInterface>
-@property (nonatomic,strong) NSString *fromClassName;
-@property (nonatomic,strong) NSString *fromTableName;
-@property (nonatomic,strong) NSString *fromAttributeName;
-@property (nonatomic,strong) NSNumber *fromRowid;
-@property (nonatomic,strong) NSString *toClassName;
-@property (nonatomic,strong) NSString *toTableName;
-@property (nonatomic,strong) NSNumber *toRowid;
-@property (nonatomic,strong) NSNumber *attributeLevel;
-@property (nonatomic,assign) NSNumber *attributeSequence;
-@property (nonatomic,strong) NSNumber *attributeParentLevel;
-@property (nonatomic,strong) NSNumber *attributeParentSequence;
-@property (nonatomic,strong) NSString *attributeKey;
-@property (nonatomic,strong) id attributeValue;
-@property (nonatomic,strong) NSObject<OSIgnoreAttribute> *attributeFromObject;
-@property (nonatomic,strong) NSObject<OSIgnoreAttribute> *attributeToObject;
-+ (NSString*)OSTableName;
 @end

@@ -86,12 +86,6 @@
             self.isPrimitive = NO;
             self.isValid = NO;
         }
-    } else {
-        self.isObject = YES;
-        self.isStructure = NO;
-        self.isPrimitive = NO;
-        self.isValid = YES;
-        return;
     }
 
     // attribute options

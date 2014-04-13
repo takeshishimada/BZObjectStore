@@ -351,16 +351,7 @@
     while (rs.next) {
         BZObjectStoreRelationshipModel *object = [[BZObjectStoreRelationshipModel alloc]init];
         for (BZObjectStoreRuntimeProperty *attribute in runtime.attributes) {
-            id value = nil;
-            if ([attribute.name isEqualToString:@"attributeValue"]) {
-                Class clazz = NSClassFromString([rs stringForColumn:@"toClassName"]);
-                BZObjectStoreRuntime *runtime = [super runtime:clazz];
-                if (runtime) {
-                    value = [runtime valueWithStoreValue:[rs objectForColumnName:@"attributeValue"]];
-                }
-            } else {
-                value = [attribute valueWithResultSet:rs];
-            }
+            id value = [attribute valueWithResultSet:rs];
             [object setValue:value forKey:attribute.name];
         }
         [list addObject:object];
@@ -372,7 +363,6 @@
 - (BOOL)insertRelationshipObjectsWithRelationshipObjects:(NSArray*)relationshipObjects db:(FMDatabase*)db
 {
     for (BZObjectStoreRelationshipModel *relationshipObject in relationshipObjects) {
-        relationshipObject.attributeValue = [relationshipObject.attributeValue.runtime storeValueWithValue:relationshipObject.attributeValue];
         [self insertOrReplace:relationshipObject db:db];
         if ([self hadError:db]) {
             return NO;

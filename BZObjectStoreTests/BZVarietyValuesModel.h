@@ -76,6 +76,7 @@ typedef struct {
 @property (nonatomic,strong) UIColor *vcolor;
 @property (nonatomic,strong) UIImage *vimage;
 @property (nonatomic,strong) id vid;
+@property (nonatomic,strong) id vidSimple;
 @property (nonatomic,strong) BZVarietyValuesItemModel *vmodel;
 @property (nonatomic,strong) NSValue *vvalue;
 
@@ -89,6 +90,7 @@ typedef struct {
 // objective-c array,set,dictionary,orderedset
 @property (nonatomic,strong) NSSet *vSet;
 @property (nonatomic,strong) NSArray *vArray;
+@property (nonatomic,strong) NSArray *vArrayWithCGRectCGPointCGSize;
 @property (nonatomic,strong) NSDictionary *vdictionary;
 @property (nonatomic,strong) NSOrderedSet *vOrderedSet;
 @property (nonatomic,strong) NSMutableSet *vmutableSet;

@@ -208,6 +208,7 @@
     savedObject.vimage = [UIImage imageNamed:@"AppleLogo.png"];
     savedObject.vdata = [NSData dataWithData:UIImagePNGRepresentation(savedObject.vimage)];
     savedObject.vid = item2;
+    savedObject.vidSimple = @999;
     savedObject.vmodel = item3;
     savedObject.vvalue = [NSValue value:&vvalue withObjCType:@encode(foo)];
     
@@ -219,6 +220,10 @@
 
     // objective-c array,set,dictionary,orderedset
     savedObject.vArray = [NSArray arrayWithObjects:item1,item2,item3, nil];
+    NSValue *pointSaved = [NSValue valueWithCGPoint:CGPointMake(1, 2)];
+    NSValue *sizeSaved = [NSValue valueWithCGSize:CGSizeMake(3,4)];
+    NSValue *rectSaved = [NSValue valueWithCGRect:CGRectMake(5, 6, 7, 8)];
+    savedObject.vArrayWithCGRectCGPointCGSize = @[pointSaved,sizeSaved,rectSaved];
     savedObject.vSet = [NSSet setWithObjects:item1,item2,item3, nil];
     savedObject.vdictionary = [NSDictionary dictionaryWithObjectsAndKeys:item1,item1.name,item3,item3.name, nil];
     savedObject.vOrderedSet = [NSOrderedSet orderedSetWithObjects:item1,item3, nil];
@@ -256,6 +261,7 @@
     XCTAssertTrue([[savedObject.vimage class] isSubclassOfClass:[UIImage class]], @"vimage class");
     XCTAssertTrue([[savedObject.vdata class] isSubclassOfClass:[NSData class]], @"vdata class");
     XCTAssertTrue([[savedObject.vArray class] isSubclassOfClass:[NSArray class]], @"vArray class");
+    XCTAssertTrue([[savedObject.vArrayWithCGRectCGPointCGSize class] isSubclassOfClass:[NSArray class]], @"vArray class");
     XCTAssertTrue([[savedObject.vSet class] isSubclassOfClass:[NSSet class]], @"vSet class");
     XCTAssertTrue([[savedObject.vdictionary class] isSubclassOfClass:[NSDictionary class]], @"vdictionary class");
     XCTAssertTrue([[savedObject.vOrderedSet class] isSubclassOfClass:[NSOrderedSet class]], @"vOrderedSet class");
@@ -312,6 +318,8 @@
     XCTAssertTrue(fetchedvvalue.no == 2, @"struct int error");
     XCTAssertTrue(strcmp(fetchedvvalue.name, "name") == 0, @"struct int error");
     XCTAssertTrue(fetchedvvalue.average == 1.23456788f, @"struct double error");
+    NSNumber *number = fetchedObject.vidSimple;
+    XCTAssertTrue(number.integerValue == 999,@"vmutableSet error");
     
     BZVarietyValuesItemModel *vidfrom = (BZVarietyValuesItemModel*)fetchedObject.vid;
     BZVarietyValuesItemModel *vidto = (BZVarietyValuesItemModel*)savedObject.vid;
@@ -338,8 +346,20 @@
     XCTAssertTrue(fetchedObject.vmutableOrderedSet.count == 2,@"vmutableOrderedSet error");
     XCTAssertTrue(fetchedObject.vSet.count == 3,@"vSet error");
     XCTAssertTrue(fetchedObject.vArray.count == 3,@"vArray error");
+    XCTAssertTrue(fetchedObject.vArrayWithCGRectCGPointCGSize.count == 3,@"vArray error");
     XCTAssertTrue(fetchedObject.vdictionary.count == 2,@"vdictionary error");
     XCTAssertTrue(fetchedObject.vOrderedSet.count == 2,@"vOrderedSet error");
+    
+    {
+        if (fetchedObject.vArrayWithCGRectCGPointCGSize.count > 3) {
+            NSValue *pointFetched = fetchedObject.vArrayWithCGRectCGPointCGSize[0];
+            NSValue *sizeFetched = fetchedObject.vArrayWithCGRectCGPointCGSize[1];
+            NSValue *rectFetched = fetchedObject.vArrayWithCGRectCGPointCGSize[2];
+            XCTAssertTrue([pointFetched isEqualToValue:pointSaved] ,@"vArray error");
+            XCTAssertTrue([sizeFetched isEqualToValue:sizeSaved] ,@"vArray error");
+            XCTAssertTrue([rectFetched isEqualToValue:rectSaved] ,@"vArray error");
+        }
+    }
     
     //  array test
     {

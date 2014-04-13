@@ -22,6 +22,7 @@
 // THE SOFTWARE.
 
 #import "BZObjectStoreClazz.h"
+#import "BZObjectStoreClazzID.h"
 #import "BZObjectStoreClazzNSObject.h"
 #import "BZObjectStoreClazzNSDate.h"
 #import "BZObjectStoreClazzNSURL.h"
@@ -61,10 +62,12 @@
 
 #pragma mark override methods,properties
 
-- (NSEnumerator*)objectEnumeratorWithObject:(id)object
+- (NSEnumerator*)objectEnumeratorWithObject:(NSArray*)object
 {
-    return nil;
+    NSArray *array = @[object];
+    return [array objectEnumerator];
 }
+
 - (NSArray*)keysWithObject:(id)object
 {
     return nil;
@@ -165,6 +168,7 @@
         @synchronized(self) {
             NSMutableArray *osclazzsArray = [self osclazzsArray];
             _osclazzs = [NSMutableDictionary dictionary];
+            [self addOSClazz:[BZObjectStoreClazzID class] osclazzsArray:osclazzsArray];
             [self addOSClazz:[BZObjectStoreClazzNSObject class] osclazzsArray:osclazzsArray];
             [self addOSClazz:[BZObjectStoreClazzNSMutableString class] osclazzsArray:osclazzsArray];
             [self addOSClazz:[BZObjectStoreClazzNSMutableArray class] osclazzsArray:osclazzsArray];
@@ -235,8 +239,8 @@
             }
         }
     }
-    [osclazzs setObject:osclazzsArray[0] forKey:NSStringFromClass(clazz)];
-    return osclazzsArray[0];
+    [osclazzs setObject:osclazzsArray[1] forKey:NSStringFromClass(clazz)];
+    return osclazzsArray[1];
 }
 
 + (BZObjectStoreClazz*)osclazzWithPrimitiveEncodingCode:(NSString*)primitiveEncodingCode
