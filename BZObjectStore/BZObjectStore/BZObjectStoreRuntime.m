@@ -119,13 +119,14 @@
     // class options
     self.fullTextSearch =  [self.clazz conformsToProtocol:@protocol(OSFullTextSearch)];
     if ([self.clazz conformsToProtocol:@protocol(OSModelInterface)]) {
-        if ([self.clazz respondsToSelector:@selector(OSModelDidSave)]) {
+        NSObject *object = [[self.clazz alloc]init];
+        if ([object respondsToSelector:@selector(OSModelDidSave)]) {
             self.modelDidSave = YES;
         }
-        if ([self.clazz respondsToSelector:@selector(OSModelDidRemove)]) {
+        if ([object respondsToSelector:@selector(OSModelDidRemove)]) {
             self.modelDidRemove = YES;
         }
-        if ([self.clazz respondsToSelector:@selector(OSModelDidLoad)]) {
+        if ([object respondsToSelector:@selector(OSModelDidLoad)]) {
             self.modelDidLoad = YES;
         }
     }
@@ -209,9 +210,6 @@
     } else {
         self.hasRelationshipAttributes = NO;
     }
-//    if (self.attributes.count == 0 && self.isObjectClazz) {
-//        self.isObjectClazz = NO;
-//    }
     self.insertPerformance = [self.clazz conformsToProtocol:@protocol(OSInsertPerformance)];
     self.updatePerformance = [self.clazz conformsToProtocol:@protocol(OSUpdatePerformance)];
     
@@ -288,11 +286,9 @@
     if (self.hasNotUpdateIfValueIsNullAttribute) {
         NSMutableArray *attributes = [NSMutableArray array];
         for (BZObjectStoreRuntimeProperty *attribute in self.updateAttributes) {
-            NSArray *values = [attribute storeValuesWithObject:object];
-            for (id value in values) {
-                if (value != [NSNull null]) {
-                    [attributes addObject:attribute];
-                }
+            NSValue *value = [object valueForKey:attribute.name];
+            if (value) {
+                [attributes addObject:attribute];
             }
         }
         NSMutableString *sql = [NSMutableString string];
@@ -400,11 +396,9 @@
     NSMutableArray *parameters = [NSMutableArray array];
     if (self.hasNotUpdateIfValueIsNullAttribute) {
         for (BZObjectStoreRuntimeProperty *attribute in self.updateAttributes) {
-            NSArray *values = [attribute storeValuesWithObject:object];
-            for (id value in values) {
-                if (value != [NSNull null]) {
-                    [parameters addObject:value];
-                }
+            NSObject *value = [object valueForKey:attribute.name];
+            if (value) {
+                [parameters addObjectsFromArray:[attribute storeValuesWithObject:object]];
             }
         }
     } else {

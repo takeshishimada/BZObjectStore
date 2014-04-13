@@ -63,22 +63,9 @@
     }
 }
 
-- (id)valueWithStoreValue:(NSObject*)value
-{
-    if ([[value class] isSubclassOfClass:[NSNumber class]]) {
-        return  value;
-    }
-    return nil;
-}
-
 - (NSArray*)storeValuesWithObject:(NSObject*)object attributeName:(NSString*)attributeName
 {
     return @[[self storeValueWithValue:[object valueForKey:attributeName]]];
-}
-
-- (id)valueWithResultSet:(FMResultSet*)resultSet attribute:(BZObjectStoreRuntimeProperty*)attribute
-{
-    return [self valueWithStoreValue:[resultSet objectForColumnName:attribute.columnName]];
 }
 
 - (NSString*)sqliteDataTypeName

@@ -248,12 +248,6 @@
     return [NSString stringWithString:sql];
 }
 
-+ (NSString*)createIndexStatement:(BZObjectStoreRuntime*)runtime
-{
-    NSMutableString *sql = [self createIndexStatementSub:runtime unique:NO attributes:runtime.indexAttributes];
-    return [NSString stringWithString:sql];
-}
-
 + (NSMutableString*)createIndexStatementSub:(BZObjectStoreRuntime*)runtime unique:(BOOL)unique attributes:(NSArray*)attributes
 {
     NSString *tableName = runtime.tableName;

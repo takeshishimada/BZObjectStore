@@ -90,6 +90,9 @@
 		727926A618FA15DB00A564AA /* BZAddColumnsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 727926A518FA15DB00A564AA /* BZAddColumnsModel.m */; };
 		727926A918FA162A00A564AA /* BZAddColumnsAddModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 727926A818FA162A00A564AA /* BZAddColumnsAddModel.m */; };
 		727926AC18FA169700A564AA /* BZAddColumnsAddItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 727926AB18FA169700A564AA /* BZAddColumnsAddItemModel.m */; };
+		727926B018FA265C00A564AA /* BZTypeMissMatchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 727926AF18FA265C00A564AA /* BZTypeMissMatchModel.m */; };
+		727926B318FA268C00A564AA /* BZTypeMissMatchMissMatchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 727926B218FA268C00A564AA /* BZTypeMissMatchMissMatchModel.m */; };
+		727926B618FA26F200A564AA /* BZTypeMissMatchItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 727926B518FA26F200A564AA /* BZTypeMissMatchItemModel.m */; };
 		72BEE87618F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72BEE87518F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.m */; };
 		72BEE87918F57A4400A7D742 /* BZObjectStoreReferenceConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72BEE87818F57A4400A7D742 /* BZObjectStoreReferenceConditionModel.m */; };
 		72BEE87C18F57A8000A7D742 /* BZObjectStoreConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72BEE87B18F57A8000A7D742 /* BZObjectStoreConditionModel.m */; };
@@ -282,6 +285,12 @@
 		727926A818FA162A00A564AA /* BZAddColumnsAddModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZAddColumnsAddModel.m; sourceTree = "<group>"; };
 		727926AA18FA169700A564AA /* BZAddColumnsAddItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZAddColumnsAddItemModel.h; sourceTree = "<group>"; };
 		727926AB18FA169700A564AA /* BZAddColumnsAddItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZAddColumnsAddItemModel.m; sourceTree = "<group>"; };
+		727926AE18FA265C00A564AA /* BZTypeMissMatchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZTypeMissMatchModel.h; sourceTree = "<group>"; };
+		727926AF18FA265C00A564AA /* BZTypeMissMatchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZTypeMissMatchModel.m; sourceTree = "<group>"; };
+		727926B118FA268C00A564AA /* BZTypeMissMatchMissMatchModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZTypeMissMatchMissMatchModel.h; sourceTree = "<group>"; };
+		727926B218FA268C00A564AA /* BZTypeMissMatchMissMatchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZTypeMissMatchMissMatchModel.m; sourceTree = "<group>"; };
+		727926B418FA26F200A564AA /* BZTypeMissMatchItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZTypeMissMatchItemModel.h; sourceTree = "<group>"; };
+		727926B518FA26F200A564AA /* BZTypeMissMatchItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZTypeMissMatchItemModel.m; sourceTree = "<group>"; };
 		72BEE87418F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreSQLiteConditionModel.h; sourceTree = "<group>"; };
 		72BEE87518F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreSQLiteConditionModel.m; sourceTree = "<group>"; };
 		72BEE87718F57A4400A7D742 /* BZObjectStoreReferenceConditionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreReferenceConditionModel.h; sourceTree = "<group>"; };
@@ -424,6 +433,7 @@
 				72C2682918F907980070C2E5 /* isAttributeIs */,
 				72C2685518FA097D0070C2E5 /* WeakProperty */,
 				727926A318FA15B700A564AA /* AddColumns */,
+				727926AD18FA264500A564AA /* TypeMissMatch */,
 			);
 			name = ModelInterface;
 			sourceTree = "<group>";
@@ -602,12 +612,12 @@
 				7259F83918F44FCA002A3416 /* BZObjectStoreClazzInt.m */,
 				7259F83A18F44FCA002A3416 /* BZObjectStoreClazzNSArray.h */,
 				7259F83B18F44FCA002A3416 /* BZObjectStoreClazzNSArray.m */,
-				7259F83C18F44FCA002A3416 /* BZObjectStoreClazzNSData.h */,
-				7259F83D18F44FCA002A3416 /* BZObjectStoreClazzNSData.m */,
-				7259F83E18F44FCA002A3416 /* BZObjectStoreClazzNSDate.h */,
-				7259F83F18F44FCA002A3416 /* BZObjectStoreClazzNSDate.m */,
 				7259F84018F44FCA002A3416 /* BZObjectStoreClazzNSDictionary.h */,
 				7259F84118F44FCA002A3416 /* BZObjectStoreClazzNSDictionary.m */,
+				7259F85618F44FCA002A3416 /* BZObjectStoreClazzNSSet.h */,
+				7259F85718F44FCA002A3416 /* BZObjectStoreClazzNSSet.m */,
+				7259F85218F44FCA002A3416 /* BZObjectStoreClazzNSOrderedSet.h */,
+				7259F85318F44FCA002A3416 /* BZObjectStoreClazzNSOrderedSet.m */,
 				7259F84218F44FCA002A3416 /* BZObjectStoreClazzNSMutableArray.h */,
 				7259F84318F44FCA002A3416 /* BZObjectStoreClazzNSMutableArray.m */,
 				7259F84418F44FCA002A3416 /* BZObjectStoreClazzNSMutableDictionary.h */,
@@ -616,6 +626,10 @@
 				7259F84718F44FCA002A3416 /* BZObjectStoreClazzNSMutableOrderedSet.m */,
 				7259F84818F44FCA002A3416 /* BZObjectStoreClazzNSMutableSet.h */,
 				7259F84918F44FCA002A3416 /* BZObjectStoreClazzNSMutableSet.m */,
+				7259F83C18F44FCA002A3416 /* BZObjectStoreClazzNSData.h */,
+				7259F83D18F44FCA002A3416 /* BZObjectStoreClazzNSData.m */,
+				7259F83E18F44FCA002A3416 /* BZObjectStoreClazzNSDate.h */,
+				7259F83F18F44FCA002A3416 /* BZObjectStoreClazzNSDate.m */,
 				7259F84A18F44FCA002A3416 /* BZObjectStoreClazzNSMutableString.h */,
 				7259F84B18F44FCA002A3416 /* BZObjectStoreClazzNSMutableString.m */,
 				7259F84C18F44FCA002A3416 /* BZObjectStoreClazzNSNull.h */,
@@ -624,12 +638,8 @@
 				7259F84F18F44FCA002A3416 /* BZObjectStoreClazzNSNumber.m */,
 				7259F85018F44FCA002A3416 /* BZObjectStoreClazzNSObject.h */,
 				7259F85118F44FCA002A3416 /* BZObjectStoreClazzNSObject.m */,
-				7259F85218F44FCA002A3416 /* BZObjectStoreClazzNSOrderedSet.h */,
-				7259F85318F44FCA002A3416 /* BZObjectStoreClazzNSOrderedSet.m */,
 				7259F85418F44FCA002A3416 /* BZObjectStoreClazzNSRange.h */,
 				7259F85518F44FCA002A3416 /* BZObjectStoreClazzNSRange.m */,
-				7259F85618F44FCA002A3416 /* BZObjectStoreClazzNSSet.h */,
-				7259F85718F44FCA002A3416 /* BZObjectStoreClazzNSSet.m */,
 				7259F85818F44FCA002A3416 /* BZObjectStoreClazzNSString.h */,
 				7259F85918F44FCA002A3416 /* BZObjectStoreClazzNSString.m */,
 				7259F85A18F44FCA002A3416 /* BZObjectStoreClazzNSURL.h */,
@@ -684,6 +694,19 @@
 				727926AB18FA169700A564AA /* BZAddColumnsAddItemModel.m */,
 			);
 			name = AddColumns;
+			sourceTree = "<group>";
+		};
+		727926AD18FA264500A564AA /* TypeMissMatch */ = {
+			isa = PBXGroup;
+			children = (
+				727926AE18FA265C00A564AA /* BZTypeMissMatchModel.h */,
+				727926AF18FA265C00A564AA /* BZTypeMissMatchModel.m */,
+				727926B118FA268C00A564AA /* BZTypeMissMatchMissMatchModel.h */,
+				727926B218FA268C00A564AA /* BZTypeMissMatchMissMatchModel.m */,
+				727926B418FA26F200A564AA /* BZTypeMissMatchItemModel.h */,
+				727926B518FA26F200A564AA /* BZTypeMissMatchItemModel.m */,
+			);
+			name = TypeMissMatch;
 			sourceTree = "<group>";
 		};
 		72C2682418F8ED3A0070C2E5 /* modelDidSaveLoadRemove */ = {
@@ -952,10 +975,12 @@
 				72170BFA18F8394400C9A4C1 /* BZExtendBaseModel.m in Sources */,
 				72C2683C18F968D90070C2E5 /* BZWhereModel.m in Sources */,
 				7259F8C918F45014002A3416 /* BZObjectStoreOnMemory.m in Sources */,
+				727926B618FA26F200A564AA /* BZTypeMissMatchItemModel.m in Sources */,
 				7259F8CE18F45014002A3416 /* BZInsertResponseModel.m in Sources */,
 				72170C1818F8DA1400C9A4C1 /* BZIgnoreAttribute.m in Sources */,
 				72C2682F18F9413F0070C2E5 /* BZAttributeIsSerializeModel.m in Sources */,
 				72170BEE18F8327700C9A4C1 /* BZUpdateResponseModel.m in Sources */,
+				727926B018FA265C00A564AA /* BZTypeMissMatchModel.m in Sources */,
 				7259F8CF18F45014002A3416 /* BZVarietyValuesItemModel.m in Sources */,
 				72C2683F18F96D480070C2E5 /* BZOffSetLimitModel.m in Sources */,
 				72C2685118F9FC400070C2E5 /* BZOSIdenticalModel.m in Sources */,
@@ -963,6 +988,7 @@
 				72C2684218F97D290070C2E5 /* BZFullTextModel.m in Sources */,
 				72C2682C18F907BA0070C2E5 /* BZAttributeIsModel.m in Sources */,
 				72170BF718F8368200C9A4C1 /* BZOnDemanItemModel.m in Sources */,
+				727926B318FA268C00A564AA /* BZTypeMissMatchMissMatchModel.m in Sources */,
 				72C2682818F8F8380070C2E5 /* BZNameModel.m in Sources */,
 				7259F8CB18F45014002A3416 /* BZRelationshipDetailModel.m in Sources */,
 				727926A918FA162A00A564AA /* BZAddColumnsAddModel.m in Sources */,

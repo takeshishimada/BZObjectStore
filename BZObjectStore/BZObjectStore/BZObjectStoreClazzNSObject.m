@@ -33,10 +33,6 @@
     NSArray *array = @[object];
     return [array objectEnumerator];
 }
-- (id)objectWithObjects:(NSArray*)objects keys:(NSArray*)keys initializingOptions:(NSString*)initializingOptions
-{
-    return nil;
-}
 
 - (id)objectWithClazz:(Class)clazz
 {

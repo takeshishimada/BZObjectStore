@@ -52,7 +52,6 @@
 @property (nonatomic,strong) NSArray *identificationAttributes;
 @property (nonatomic,strong) NSArray *insertAttributes;
 @property (nonatomic,strong) NSArray *updateAttributes;
-@property (nonatomic,strong) NSArray *indexAttributes;
 @property (nonatomic,strong) NSArray *relationshipAttributes;
 @property (nonatomic,strong) NSArray *notRelationshipAttributes;
 

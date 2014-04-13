@@ -439,7 +439,7 @@
     
     for (NSObject *targetObject in allValues) {
         if (targetObject.runtime.modelDidLoad) {
-            [targetObject performSelector:@selector(modelDidLoad) withObject:nil];
+            [targetObject performSelector:@selector(OSModelDidLoad) withObject:nil];
         }
     }
 
@@ -691,7 +691,7 @@
     
     for (NSObject *targetObject in allValues) {
         if (targetObject.runtime.modelDidSave) {
-            [targetObject performSelector:@selector(modelDidSave) withObject:nil];
+            [targetObject performSelector:@selector(OSModelDidSave) withObject:nil];
         }
     }
 
@@ -811,7 +811,7 @@
     
     for (NSObject *targetObject in allValues) {
         if (targetObject.runtime.modelDidRemove) {
-            [targetObject performSelector:@selector(modelDidRemove) withObject:nil];
+            [targetObject performSelector:@selector(OSModelDidRemove) withObject:nil];
         }
     }
 

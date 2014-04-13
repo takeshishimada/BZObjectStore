@@ -21,54 +21,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "BZObjectStoreClazzPrimitive.h"
-#import "FMResultSet.h"
-#import "BZObjectStoreConst.h"
-#import "BZObjectStoreRuntimeProperty.h"
+#import "BZTypeMissMatchModel.h"
 
-@implementation BZObjectStoreClazzPrimitive
-
-- (NSString*)attributeType
-{
-    return @"Primitive";
-}
-
-- (BOOL)isPrimitiveClazz
-{
-    return YES;
-}
-
-- (id)storeValueWithValue:(NSObject*)value
-{
-    if ([[value class] isSubclassOfClass:[NSNumber class]]) {
-        return value;
-    } else {
-        return [NSNull null];
-    }
-}
-
-- (id)valueWithStoreValue:(NSObject*)value
-{
-    if ([[value class] isSubclassOfClass:[NSNumber class]]) {
-        return value;
-    } else {
-        return [NSNumber numberWithInt:0];
-    }
-}
-
-- (NSArray*)storeValuesWithObject:(NSObject*)object attributeName:(NSString*)attributeName
-{
-    return @[[self storeValueWithValue:[object valueForKey:attributeName]]];
-}
-
-- (id)valueWithResultSet:(FMResultSet*)resultSet attribute:(BZObjectStoreRuntimeProperty*)attribute
-{
-    return [self valueWithStoreValue:[resultSet objectForColumnName:attribute.columnName]];
-}
-
-- (NSString*)sqliteDataTypeName
-{
-    return SQLITE_DATA_TYPE_NUMERIC;
-}
+@implementation BZTypeMissMatchModel
 
 @end

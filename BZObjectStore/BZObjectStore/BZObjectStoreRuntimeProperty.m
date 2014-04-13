@@ -74,16 +74,23 @@
         self.isStructure = YES;
         self.isPrimitive = NO;
         self.isValid = YES;
-    } else if ([self isPrimitiveWithBZPropertyEncoding:bzproperty.propertyEncoding]) {
-        self.isObject = NO;
-        self.isStructure = NO;
-        self.isPrimitive = YES;
-        self.isValid = YES;
+    } else if (bzproperty.propertyEncoding) {
+        if ([self isPrimitiveWithBZPropertyEncoding:bzproperty.propertyEncoding]) {
+            self.isObject = NO;
+            self.isStructure = NO;
+            self.isPrimitive = YES;
+            self.isValid = YES;
+        } else {
+            self.isObject = NO;
+            self.isStructure = NO;
+            self.isPrimitive = NO;
+            self.isValid = NO;
+        }
     } else {
-        self.isObject = NO;
+        self.isObject = YES;
         self.isStructure = NO;
         self.isPrimitive = NO;
-        self.isValid = NO;
+        self.isValid = YES;
         return;
     }
 
@@ -149,6 +156,8 @@
     // identicalAttribute
     if (!self.isStringNumberClazz) {
         self.identicalAttribute = NO;
+    } else if (self.serializableAttribute) {
+        self.identicalAttribute = NO;
     }
 
     // group function attribute
@@ -163,12 +172,12 @@
     // relationship attribute
     if (self.serializableAttribute) {
         self.isRelationshipClazz = NO;
-    } else if (self.isSimpleValueClazz) {
-        self.isRelationshipClazz = NO;
     } else if (self.isArrayClazz ) {
         self.isRelationshipClazz = YES;
     } else if (self.isObjectClazz) {
         self.isRelationshipClazz = YES;
+    } else {
+        self.isRelationshipClazz = NO;
     }
     
     // sqlite
@@ -256,11 +265,19 @@
 - (NSArray*)storeValuesWithObject:(NSObject*)object
 {
     return [self.osclazz storeValuesWithObject:object attributeName:self.name];
+//    if (self.serializableAttribute) {
+//        return [NSArray array];
+//    } else {
+//    }
 }
 
 - (id)valueWithResultSet:(FMResultSet*)resultSet
 {
     return [self.osclazz valueWithResultSet:resultSet attribute:self];
+//    if (self.serializableAttribute) {
+//        return nil;
+//    } else {
+//    }
 }
 
 

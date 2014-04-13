@@ -147,40 +147,52 @@
 
 #pragma mark constractor
 
++ (NSMutableArray*)osclazzsArray
+{
+    static NSMutableArray *_osclazzs = nil;
+    if (!_osclazzs) {
+        @synchronized(self) {
+            _osclazzs = [NSMutableArray array];
+        }
+    }
+    return _osclazzs;
+}
+
 + (NSMutableDictionary*)osclazzs
 {
     static NSMutableDictionary *_osclazzs = nil;
     if (!_osclazzs) {
         @synchronized(self) {
+            NSMutableArray *osclazzsArray = [self osclazzsArray];
             _osclazzs = [NSMutableDictionary dictionary];
-            [self addOSClazz:[BZObjectStoreClazzNSMutableString class] osclazzs:_osclazzs];
-            [self addOSClazz:[BZObjectStoreClazzNSMutableArray class] osclazzs:_osclazzs];
-            [self addOSClazz:[BZObjectStoreClazzNSMutableDictionary class] osclazzs:_osclazzs];
-            [self addOSClazz:[BZObjectStoreClazzNSMutableSet class] osclazzs:_osclazzs];
-            [self addOSClazz:[BZObjectStoreClazzNSMutableOrderedSet class] osclazzs:_osclazzs];
-            [self addOSClazz:[BZObjectStoreClazzNSDate class] osclazzs:_osclazzs];
-            [self addOSClazz:[BZObjectStoreClazzNSURL class] osclazzs:_osclazzs];
-            [self addOSClazz:[BZObjectStoreClazzNSString class] osclazzs:_osclazzs];
-            [self addOSClazz:[BZObjectStoreClazzNSNumber class] osclazzs:_osclazzs];
-            [self addOSClazz:[BZObjectStoreClazzNSData class] osclazzs:_osclazzs];
-            [self addOSClazz:[BZObjectStoreClazzUIColor class] osclazzs:_osclazzs];
-            [self addOSClazz:[BZObjectStoreClazzUIImage class] osclazzs:_osclazzs];
-            [self addOSClazz:[BZObjectStoreClazzNSValue class] osclazzs:_osclazzs];
-            [self addOSClazz:[BZObjectStoreClazzNSNull class] osclazzs:_osclazzs];
-            [self addOSClazz:[BZObjectStoreClazzNSArray class] osclazzs:_osclazzs];
-            [self addOSClazz:[BZObjectStoreClazzNSDictionary class] osclazzs:_osclazzs];
-            [self addOSClazz:[BZObjectStoreClazzNSSet class] osclazzs:_osclazzs];
-            [self addOSClazz:[BZObjectStoreClazzNSOrderedSet class] osclazzs:_osclazzs];
-            [self addOSClazz:[BZObjectStoreClazzNSObject class] osclazzs:_osclazzs];
-            [self addOSClazz:[BZObjectStoreClazzPrimitive class] osclazzs:_osclazzs];
-            [self addOSClazz:[BZObjectStoreClazzInt class] osclazzs:_osclazzs];
-            [self addOSClazz:[BZObjectStoreClazzChar class] osclazzs:_osclazzs];
-            [self addOSClazz:[BZObjectStoreClazzFloat class] osclazzs:_osclazzs];
-            [self addOSClazz:[BZObjectStoreClazzDouble class] osclazzs:_osclazzs];
-            [self addOSClazz:[BZObjectStoreClazzCGRect class] osclazzs:_osclazzs];
-            [self addOSClazz:[BZObjectStoreClazzCGSize class] osclazzs:_osclazzs];
-            [self addOSClazz:[BZObjectStoreClazzCGPoint class] osclazzs:_osclazzs];
-            [self addOSClazz:[BZObjectStoreClazzNSRange class] osclazzs:_osclazzs];
+            [self addOSClazz:[BZObjectStoreClazzNSObject class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzNSMutableString class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzNSMutableArray class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzNSMutableDictionary class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzNSMutableSet class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzNSMutableOrderedSet class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzNSDate class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzNSURL class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzNSString class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzNSNumber class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzNSData class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzUIColor class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzUIImage class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzNSValue class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzNSNull class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzNSArray class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzNSDictionary class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzNSSet class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzNSOrderedSet class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzPrimitive class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzInt class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzChar class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzFloat class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzDouble class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzCGRect class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzCGSize class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzCGPoint class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzNSRange class] osclazzsArray:osclazzsArray];
         }
     }
     return _osclazzs;
@@ -192,16 +204,17 @@
         return;
     }
     @synchronized(self) {
-        NSMutableDictionary *osclazzs = [self osclazzs];
-        [self addOSClazz:clazz osclazzs:osclazzs];
+        NSMutableArray *osclazzsArray = [self osclazzsArray];
+        [self addOSClazz:clazz osclazzsArray:osclazzsArray];
     }
 }
 
-+ (void)addOSClazz:(Class)clazz osclazzs:(NSMutableDictionary*)osclazzs
++ (void)addOSClazz:(Class)clazz osclazzsArray:(NSMutableArray*)osclazzsArray
 {
     BZObjectStoreClazz *osclazz = [[clazz alloc]init];
-    [osclazzs setObject:osclazz forKey:osclazz.attributeType];
+    [osclazzsArray addObject:osclazz];
 }
+
 
 + (BZObjectStoreClazz*)osclazzWithClazz:(Class)clazz
 {
@@ -210,14 +223,20 @@
     if (osclazz) {
         return osclazz;
     }
-    for (BZObjectStoreClazz *osclazz in osclazzs.allValues) {
-        if (osclazz.superClazz && osclazz.superClazz != [NSObject class]) {
+    NSMutableArray *osclazzsArray = [self osclazzsArray];
+    if (!clazz) {
+        return osclazzsArray[0];
+    }
+    for (BZObjectStoreClazz *osclazz in osclazzsArray) {
+        if ( osclazz.superClazz != [NSObject class]) {
             if ([clazz isSubclassOfClass:osclazz.superClazz]) {
+                [osclazzs setObject:osclazz forKey:NSStringFromClass(clazz)];
                 return osclazz;
             }
         }
     }
-    return [osclazzs objectForKey:NSStringFromClass([NSObject class])];
+    [osclazzs setObject:osclazzsArray[0] forKey:NSStringFromClass(clazz)];
+    return osclazzsArray[0];
 }
 
 + (BZObjectStoreClazz*)osclazzWithPrimitiveEncodingCode:(NSString*)primitiveEncodingCode
@@ -226,8 +245,19 @@
     NSMutableDictionary *osclazzs = [self osclazzs];
     BZObjectStoreClazz* osclazz = [osclazzs objectForKey:key];
     if (!osclazz) {
-        osclazz = [[BZObjectStoreClazzPrimitive alloc]init];
-        [osclazzs setObject:osclazz forKey:primitiveEncodingCode];
+        NSMutableArray *osclazzsArray = [self osclazzsArray];
+        for (BZObjectStoreClazz *newosclazz in osclazzsArray) {
+            if ([newosclazz.attributeType isEqualToString:key]) {
+                osclazz = newosclazz;
+                break;
+            }
+        }
+        if (!osclazz) {
+            osclazz = [[BZObjectStoreClazzPrimitive alloc]init];
+        }
+        if (osclazz) {
+            [osclazzs setObject:osclazz forKey:key];
+        }
     }
     return osclazz;
 }
@@ -238,8 +268,19 @@
     NSMutableDictionary *osclazzs = [self osclazzs];
     BZObjectStoreClazz* osclazz = [osclazzs objectForKey:key];
     if (!osclazz) {
-        osclazz = [[BZObjectStoreClazzNSValue alloc]init];
-        [osclazzs setObject:osclazz forKey:StructureName];
+        NSMutableArray *osclazzsArray = [self osclazzsArray];
+        for (BZObjectStoreClazz *newosclazz in osclazzsArray) {
+            if ([newosclazz.attributeType isEqualToString:key]) {
+                osclazz = newosclazz;
+                break;
+            }
+        }
+        if (!osclazz) {
+            osclazz = [[BZObjectStoreClazzNSValue alloc]init];
+        }
+        if (osclazz) {
+            [osclazzs setObject:osclazz forKey:key];
+        }
     }
     return osclazz;
 }
