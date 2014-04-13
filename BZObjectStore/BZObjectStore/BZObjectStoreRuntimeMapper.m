@@ -152,7 +152,7 @@
             if (!runtime.fullTextSearch) {
                 NSArray *attributes = runtime.identificationAttributes;
                 if (attributes.count > 0) {
-                    [db executeUpdate:[runtime dropIndexStatement]];
+                    [db executeUpdate:[runtime dropUniqueIndexStatement]];
                     if ([self hadError:db]) {
                         return NO;
                     }

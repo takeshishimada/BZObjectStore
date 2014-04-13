@@ -42,7 +42,6 @@
 + (NSString*)createTableStatement:(BZObjectStoreRuntime*)runtime;
 + (NSString*)dropTableStatement:(BZObjectStoreRuntime*)runtime;
 + (NSString*)createUniqueIndexStatement:(BZObjectStoreRuntime*)runtime;
-+ (NSString*)createIndexStatement:(BZObjectStoreRuntime*)runtime;
 + (NSString*)dropIndexStatement:(BZObjectStoreRuntime*)runtime;
 + (NSString*)referencedCountStatement:(BZObjectStoreRuntime*)runtime;
 + (NSString*)countStatement:(BZObjectStoreRuntime*)runtime;

@@ -73,7 +73,7 @@
 - (NSString*)createIndexStatement;
 - (NSString*)createUniqueIndexStatement;
 - (NSString*)dropTableStatement;
-- (NSString*)dropIndexStatement;
+- (NSString*)dropUniqueIndexStatement;
 - (NSString*)insertIntoStatement;
 - (NSString*)insertOrReplaceIntoStatement;
 - (NSString*)insertOrIgnoreIntoStatement;

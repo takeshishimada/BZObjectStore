@@ -87,6 +87,9 @@
 		7259F8CE18F45014002A3416 /* BZInsertResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F8BD18F45014002A3416 /* BZInsertResponseModel.m */; };
 		7259F8CF18F45014002A3416 /* BZVarietyValuesItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F8BF18F45014002A3416 /* BZVarietyValuesItemModel.m */; };
 		7259F8D018F45014002A3416 /* BZVarietyValuesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F8C118F45014002A3416 /* BZVarietyValuesModel.m */; };
+		727926A618FA15DB00A564AA /* BZAddColumnsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 727926A518FA15DB00A564AA /* BZAddColumnsModel.m */; };
+		727926A918FA162A00A564AA /* BZAddColumnsAddModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 727926A818FA162A00A564AA /* BZAddColumnsAddModel.m */; };
+		727926AC18FA169700A564AA /* BZAddColumnsAddItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 727926AB18FA169700A564AA /* BZAddColumnsAddItemModel.m */; };
 		72BEE87618F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72BEE87518F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.m */; };
 		72BEE87918F57A4400A7D742 /* BZObjectStoreReferenceConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72BEE87818F57A4400A7D742 /* BZObjectStoreReferenceConditionModel.m */; };
 		72BEE87C18F57A8000A7D742 /* BZObjectStoreConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72BEE87B18F57A8000A7D742 /* BZObjectStoreConditionModel.m */; };
@@ -273,6 +276,12 @@
 		7259F8BF18F45014002A3416 /* BZVarietyValuesItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZVarietyValuesItemModel.m; sourceTree = "<group>"; };
 		7259F8C018F45014002A3416 /* BZVarietyValuesModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZVarietyValuesModel.h; sourceTree = "<group>"; };
 		7259F8C118F45014002A3416 /* BZVarietyValuesModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZVarietyValuesModel.m; sourceTree = "<group>"; };
+		727926A418FA15DB00A564AA /* BZAddColumnsModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZAddColumnsModel.h; sourceTree = "<group>"; };
+		727926A518FA15DB00A564AA /* BZAddColumnsModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZAddColumnsModel.m; sourceTree = "<group>"; };
+		727926A718FA162A00A564AA /* BZAddColumnsAddModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZAddColumnsAddModel.h; sourceTree = "<group>"; };
+		727926A818FA162A00A564AA /* BZAddColumnsAddModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZAddColumnsAddModel.m; sourceTree = "<group>"; };
+		727926AA18FA169700A564AA /* BZAddColumnsAddItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZAddColumnsAddItemModel.h; sourceTree = "<group>"; };
+		727926AB18FA169700A564AA /* BZAddColumnsAddItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZAddColumnsAddItemModel.m; sourceTree = "<group>"; };
 		72BEE87418F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreSQLiteConditionModel.h; sourceTree = "<group>"; };
 		72BEE87518F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreSQLiteConditionModel.m; sourceTree = "<group>"; };
 		72BEE87718F57A4400A7D742 /* BZObjectStoreReferenceConditionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreReferenceConditionModel.h; sourceTree = "<group>"; };
@@ -414,6 +423,7 @@
 				72C2682418F8ED3A0070C2E5 /* modelDidSaveLoadRemove */,
 				72C2682918F907980070C2E5 /* isAttributeIs */,
 				72C2685518FA097D0070C2E5 /* WeakProperty */,
+				727926A318FA15B700A564AA /* AddColumns */,
 			);
 			name = ModelInterface;
 			sourceTree = "<group>";
@@ -661,6 +671,19 @@
 				7259F87E18F44FCA002A3416 /* UIColor+BZObjectStore.m */,
 			);
 			path = BZObjectStore;
+			sourceTree = "<group>";
+		};
+		727926A318FA15B700A564AA /* AddColumns */ = {
+			isa = PBXGroup;
+			children = (
+				727926A418FA15DB00A564AA /* BZAddColumnsModel.h */,
+				727926A518FA15DB00A564AA /* BZAddColumnsModel.m */,
+				727926A718FA162A00A564AA /* BZAddColumnsAddModel.h */,
+				727926A818FA162A00A564AA /* BZAddColumnsAddModel.m */,
+				727926AA18FA169700A564AA /* BZAddColumnsAddItemModel.h */,
+				727926AB18FA169700A564AA /* BZAddColumnsAddItemModel.m */,
+			);
+			name = AddColumns;
 			sourceTree = "<group>";
 		};
 		72C2682418F8ED3A0070C2E5 /* modelDidSaveLoadRemove */ = {
@@ -916,9 +939,11 @@
 			files = (
 				7259F8C818F45014002A3416 /* BZObjectStoreOnDisk.m in Sources */,
 				72C2683518F9432A0070C2E5 /* BZAttributeIsfetchOnRefreshingModel.m in Sources */,
+				727926AC18FA169700A564AA /* BZAddColumnsAddItemModel.m in Sources */,
 				7259F8CD18F45014002A3416 /* BZRelationshipItemModel.m in Sources */,
 				72C2684518F98B220070C2E5 /* BZReferenceConditionModel.m in Sources */,
 				7259F8C618F45014002A3416 /* BZCircularReferenceModel.m in Sources */,
+				727926A618FA15DB00A564AA /* BZAddColumnsModel.m in Sources */,
 				72C2685818FA09A50070C2E5 /* BZWeakPropertyModel.m in Sources */,
 				72170BE818F5950D00C9A4C1 /* BZSQLiteGroupFunctionModel.m in Sources */,
 				72170C0318F8CEBD00C9A4C1 /* BZUpdateAttributeModel.m in Sources */,
@@ -940,6 +965,7 @@
 				72170BF718F8368200C9A4C1 /* BZOnDemanItemModel.m in Sources */,
 				72C2682818F8F8380070C2E5 /* BZNameModel.m in Sources */,
 				7259F8CB18F45014002A3416 /* BZRelationshipDetailModel.m in Sources */,
+				727926A918FA162A00A564AA /* BZAddColumnsAddModel.m in Sources */,
 				72170C0018F83C2800C9A4C1 /* BZIgnoreExtendModel.m in Sources */,
 				72170BFD18F8397D00C9A4C1 /* BZExtendModel.m in Sources */,
 				7259F8CC18F45014002A3416 /* BZRelationshipHeaderModel.m in Sources */,

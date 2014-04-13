@@ -282,7 +282,7 @@
 {
     NSString *tableName = runtime.tableName;
     NSMutableString *sql = [NSMutableString string];
-    [sql appendString:@"DROP INDEX "];
+    [sql appendString:@"DROP INDEX IF EXISTS "];
     [sql appendString:tableName];
     [sql appendString:@"_IDX"];
     return [NSString stringWithString:sql];

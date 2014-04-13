@@ -64,6 +64,9 @@
 #import "BZOSIdenticalModel.h"
 #import "BZOSIdenticalItemModel.h"
 #import "BZWeakPropertyModel.h"
+#import "BZAddColumnsModel.h"
+#import "BZAddColumnsAddModel.h"
+#import "BZAddColumnsAddItemModel.h"
 
 @interface BZObjectStoreTests : XCTestCase
 @end
@@ -105,7 +108,7 @@
     [self testBZReferenceConditionModel:disk];
     [self testBZOSIdenticalModel:disk];
     [self testBZWeakPropertyModel:disk];
-    
+    [self testBZAddColumnsModel:disk];
 }
 
 - (void)testOnMemory
@@ -131,6 +134,7 @@
     [self testBZReferenceConditionModel:memory];
     [self testBZOSIdenticalModel:memory];
     [self testBZWeakPropertyModel:memory];
+    [self testBZAddColumnsModel:memory];
 
 }
 
@@ -1297,6 +1301,158 @@
 
     NSNumber *count = [os count:[BZWeakPropertyModel class] condition:nil error:&error];
     XCTAssertTrue(count.integerValue == 1, @"error");
+
+}
+
+- (void)testBZAddColumnsModel:(BZObjectStore*)os
+{
+    NSError *error = nil;
+
+    // setup models
+    BZAddColumnsAddItemModel *item1 = [[BZAddColumnsAddItemModel alloc]init];
+    item1.code = @"01";
+    item1.name = @"apple";
+    
+    BZAddColumnsAddItemModel *item2 = [[BZAddColumnsAddItemModel alloc]init];
+    item2.code = @"02";
+    item2.name = @"orange";
+    
+    BZAddColumnsAddItemModel *item3 = [[BZAddColumnsAddItemModel alloc]init];
+    item3.code = @"03";
+    item3.name = @"banana";
+
+    
+    //
+    BZAddColumnsModel *noColumnObject = [[BZAddColumnsModel alloc]init];
+    noColumnObject.code = @"01";
+    [os saveObject:noColumnObject error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    NSNumber *count = [os count:[BZAddColumnsModel class] condition:nil error:&error];
+    XCTAssertTrue(count.integerValue == 1, @"error");
+    
+    
+    poo vvalue = {2,"name",1.23456788f};
+    BZAddColumnsAddModel *columnObject = [[BZAddColumnsAddModel alloc]init];
+    // POD types
+    columnObject.code = @"01";
+    columnObject.vbool_max = YES;
+    columnObject.vdouble_max = DBL_MAX;
+    columnObject.vfloat_max = FLT_MAX;
+    columnObject.vchar_max = CHAR_MAX;
+    columnObject.vint_max = INT_MAX;
+    columnObject.vshort_max = SHRT_MAX;
+    columnObject.vlong_max = LONG_MAX;
+    columnObject.vlonglong_max = LLONG_MAX;
+    columnObject.vunsignedchar_max = UCHAR_MAX;
+    columnObject.vunsignedint_max = UINT_MAX;
+    columnObject.vunsignedshort_max = USHRT_MAX;
+    columnObject.vunsignedlong_max = ULONG_MAX;
+    columnObject.vunsignedlonglong_max = ULLONG_MAX;
+    columnObject.vbool_min = NO;
+    columnObject.vdouble_min = DBL_MIN;
+    columnObject.vfloat_min = FLT_MIN;
+    columnObject.vchar_min = CHAR_MIN;
+    columnObject.vint_min = INT_MIN;
+    columnObject.vshort_min = SHRT_MIN;
+    columnObject.vlong_min = LONG_MIN;
+    columnObject.vlonglong_min = LLONG_MIN;
+    columnObject.vunsignedchar_min = 0;
+    columnObject.vunsignedint_min = 0;
+    columnObject.vunsignedshort_min = 0;
+    columnObject.vunsignedlong_min = 0;
+    columnObject.vunsignedlonglong_min = 0;
+    columnObject.vfoo = vvalue;
+    
+    // objective-c
+    columnObject.vnsinteger = 99;
+    columnObject.vstring = @"string";
+    columnObject.vrange = NSMakeRange(1, 2);
+    columnObject.vmutableString = [NSMutableString stringWithString:@"mutableString"];
+    columnObject.vnumber = [NSNumber numberWithBool:YES];
+    columnObject.vurl = [NSURL URLWithString:@"http://wwww.yahoo.com"];
+    columnObject.vnull = [NSNull null];
+    columnObject.vcolor = [UIColor redColor];
+    columnObject.vimage = [UIImage imageNamed:@"AppleLogo.png"];
+    columnObject.vdata = [NSData dataWithData:UIImagePNGRepresentation(columnObject.vimage)];
+    columnObject.vid = item2;
+    columnObject.vmodel = item3;
+    columnObject.vvalue = [NSValue value:&vvalue withObjCType:@encode(foo)];
+    
+    // objective-c core graphics
+    columnObject.vcgfloat = 44.342334f;
+    columnObject.vrect = CGRectMake(4.123456f,1.123456f,2.123456f,3.123456f);
+    columnObject.vpoint = CGPointMake(4.123456f, 5.123456f);
+    columnObject.vsize = CGSizeMake(6.123456f, 7.123456f);
+    
+    // objective-c array,set,dictionary,orderedset
+    columnObject.vArray = [NSArray arrayWithObjects:item1,item2,item3, nil];
+    columnObject.vSet = [NSSet setWithObjects:item1,item2,item3, nil];
+    columnObject.vdictionary = [NSDictionary dictionaryWithObjectsAndKeys:item1,item1.name,item3,item3.name, nil];
+    columnObject.vOrderedSet = [NSOrderedSet orderedSetWithObjects:item1,item3, nil];
+    columnObject.vmutableArray = [NSMutableArray arrayWithObjects:item1,item2,item3, nil];
+    columnObject.vmutableSet = [NSMutableSet setWithObjects:item1,item2,item3, nil];
+    columnObject.vmutabledictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:item1,item1.name,item3,item3.name, nil];
+    columnObject.vmutableOrderedSet = [NSMutableOrderedSet orderedSetWithObjects:item1,item3, nil];
+    
+    
+    [os saveObject:columnObject error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+
+    NSNumber *count2 = [os count:[BZAddColumnsAddModel class] condition:nil error:&error];
+    XCTAssertTrue(count2.integerValue == 1, @"error");
+
+    NSArray *objects = [os fetchObjects:[BZAddColumnsModel class] condition:nil error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    noColumnObject = objects.firstObject;
+    XCTAssertTrue(objects.count == 1, @"error");
+
+    objects = [os fetchObjects:[BZAddColumnsAddModel class] condition:nil error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    BZAddColumnsAddModel *fetchedObject = objects.firstObject;
+    XCTAssertTrue(objects.count == 1, @"error");
+
+    BZAddColumnsAddModel *savedObject = columnObject;
+    XCTAssertTrue(fetchedObject.vdouble_max == savedObject.vdouble_max,"vdouble_max error");
+    XCTAssertTrue(fetchedObject.vbool_max == savedObject.vbool_max,"vdouble_max error");
+    XCTAssertTrue(fetchedObject.vfloat_max == savedObject.vfloat_max,"vfloat_max error");
+    XCTAssertTrue(fetchedObject.vchar_max == savedObject.vchar_max,"vchar_max error");
+    XCTAssertTrue(fetchedObject.vint_max == savedObject.vint_max,"vint_max error");
+    XCTAssertTrue(fetchedObject.vshort_max == savedObject.vshort_max,"vshort_max error");
+    XCTAssertTrue(fetchedObject.vlong_max == savedObject.vlong_max,"vlong_max error");
+    XCTAssertTrue(fetchedObject.vlonglong_max == savedObject.vlonglong_max,"vlonglong_max error");
+    XCTAssertTrue(fetchedObject.vunsignedchar_max == savedObject.vunsignedchar_max,"vunsignedchar_max error");
+    XCTAssertTrue(fetchedObject.vunsignedint_max == savedObject.vunsignedint_max,"vunsignedint_max error");
+    XCTAssertTrue(fetchedObject.vunsignedshort_max == savedObject.vunsignedshort_max,"vunsignedshort_max error");
+    XCTAssertTrue(fetchedObject.vunsignedlong_max == savedObject.vunsignedlong_max,"vunsignedlong_max error");
+    XCTAssertTrue(fetchedObject.vunsignedlonglong_max == savedObject.vunsignedlonglong_max,"vunsignedlonglong_max error");
+    XCTAssertTrue(fetchedObject.vdouble_min == savedObject.vdouble_min,"vdouble_min error");
+    XCTAssertTrue(fetchedObject.vbool_min == savedObject.vbool_min,"vbool_min error");
+    XCTAssertTrue(fetchedObject.vfloat_min == savedObject.vfloat_min,"vfloat_min error");
+    XCTAssertTrue(fetchedObject.vchar_min == savedObject.vchar_min,"vchar_min error");
+    XCTAssertTrue(fetchedObject.vint_min == savedObject.vint_min,"vint_min error");
+    XCTAssertTrue(fetchedObject.vshort_min == savedObject.vshort_min,"vshort_min error");
+    XCTAssertTrue(fetchedObject.vlong_min == savedObject.vlong_min,"vlong_min error");
+    XCTAssertTrue(fetchedObject.vlonglong_min == savedObject.vlonglong_min,"vlonglong_min error");
+    XCTAssertTrue(fetchedObject.vunsignedchar_min == savedObject.vunsignedchar_min,"vunsignedchar_min error");
+    XCTAssertTrue(fetchedObject.vunsignedint_min == savedObject.vunsignedint_min,"vunsignedint_min error");
+    XCTAssertTrue(fetchedObject.vunsignedshort_min == savedObject.vunsignedshort_min,"vunsignedshort_min error");
+    XCTAssertTrue(fetchedObject.vunsignedlong_min == savedObject.vunsignedlong_min,"vunsignedlong_min error");
+    XCTAssertTrue(fetchedObject.vunsignedlonglong_min == savedObject.vunsignedlonglong_min,"vunsignedlonglong_min error");
+    XCTAssertTrue(fetchedObject.vfoo.no == 2, @"struct int error");
+    XCTAssertTrue(strcmp(fetchedObject.vfoo.name, "name") == 0, @"struct int error");
+    XCTAssertTrue(fetchedObject.vfoo.average == 1.23456788f, @"struct double error");
+    
+    // objective-c
+    XCTAssertTrue(fetchedObject.vnsinteger == savedObject.vnsinteger,"vinteger error");
+    XCTAssertTrue([fetchedObject.vstring isEqualToString:savedObject.vstring],"vstring error");
+    XCTAssertTrue(fetchedObject.vrange.length == savedObject.vrange.length,"vrange error");
+    XCTAssertTrue(fetchedObject.vrange.location == savedObject.vrange.location,"vrange error");
+    XCTAssertTrue([fetchedObject.vmutableString isEqualToString:savedObject.vmutableString],"vmutableString error");
+    XCTAssertTrue([fetchedObject.vnumber isEqualToNumber:savedObject.vnumber],"vnumber error");
+    XCTAssertTrue([fetchedObject.vcolor RGBAValue] == [[UIColor redColor] RGBAValue],@"vcolor error");
+    XCTAssertTrue([[fetchedObject.vurl absoluteString] isEqualToString:[savedObject.vurl absoluteString]],@"vurl error");
+    XCTAssertTrue(fetchedObject.vnull == [NSNull null],@"vmutableSet error");
+    XCTAssertTrue([fetchedObject.vdata isEqualToData:[NSData dataWithData:UIImagePNGRepresentation(fetchedObject.vimage)]],@"vdata,vimage error");
 
 }
 
