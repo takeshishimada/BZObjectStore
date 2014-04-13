@@ -34,24 +34,6 @@
     return @"CGRect";
 }
 
-- (id)storeValueWithValue:(NSObject*)value
-{
-    if ([[value class] isSubclassOfClass:[NSValue class]]) {
-        return NSStringFromCGRect([(NSValue*)value CGRectValue]);
-    } else {
-        return [NSNull null];
-    }
-}
-
-- (id)valueWithStoreValue:(NSObject*)value
-{
-    if ([[value class] isSubclassOfClass:[NSString class]]) {
-        return [NSValue valueWithCGRect:CGRectFromString((NSString*)value)];
-    } else {
-        return [NSValue valueWithCGRect:CGRectZero];
-    }
-}
-
 - (NSArray*)storeValuesWithObject:(NSObject*)object attributeName:(NSString*)attributeName
 {
     NSValue *value = [object valueForKey:attributeName];

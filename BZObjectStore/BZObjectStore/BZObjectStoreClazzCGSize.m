@@ -34,24 +34,6 @@
     return @"CGSize";
 }
 
-- (id)storeValueWithValue:(NSObject*)value
-{
-    if ([[value class] isSubclassOfClass:[NSValue class]]) {
-        return NSStringFromCGSize([(NSValue*)value CGSizeValue]);
-    } else {
-        return [NSNull null];
-    }
-}
-
-- (id)valueWithStoreValue:(NSObject*)value
-{
-    if ([[value class] isSubclassOfClass:[NSString class]]) {
-        return [NSValue valueWithCGSize:CGSizeFromString((NSString*)value)];
-    } else {
-        return [NSValue valueWithCGSize:CGSizeZero];
-    }
-}
-
 - (NSArray*)storeValuesWithObject:(NSObject*)object attributeName:(NSString*)attributeName
 {
     NSValue *value = [object valueForKey:attributeName];

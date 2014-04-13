@@ -34,24 +34,6 @@
     return @"CGPoint";
 }
 
-- (id)storeValueWithValue:(NSObject*)value
-{
-    if ([[value class] isSubclassOfClass:[NSValue class]]) {
-        return NSStringFromCGPoint([(NSValue*)value CGPointValue]);
-    } else {
-        return [NSNull null];
-    }
-}
-
-- (id)valueWithStoreValue:(NSObject*)value
-{
-    if ([[value class] isSubclassOfClass:[NSString class]]) {
-        return [NSValue valueWithCGPoint:CGPointFromString((NSString*)value)];
-    } else {
-        return [NSValue valueWithCGPoint:CGPointZero];
-    }
-}
-
 - (NSArray*)storeValuesWithObject:(NSObject*)object attributeName:(NSString*)attributeName
 {
     NSValue *value = [object valueForKey:attributeName];
