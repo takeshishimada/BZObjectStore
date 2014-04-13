@@ -23,6 +23,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BZObjectStoreModelInterface.h"
+#import "AutoCoding.h"
 
 @interface BZIgnoreAttribute : NSObject<OSModelInterface>
 @property (nonatomic,strong) NSNumber<OSIgnoreAttribute> *ignoreNo;

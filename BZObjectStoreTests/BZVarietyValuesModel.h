@@ -24,6 +24,7 @@
 #import <Foundation/Foundation.h>
 #import "BZObjectStoreModelInterface.h"
 #import "BZVarietyValuesItemModel.h"
+#import "AutoCoding.h"
 
 typedef struct {
 	int no;

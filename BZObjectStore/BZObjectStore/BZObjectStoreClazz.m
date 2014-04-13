@@ -51,10 +51,10 @@
 #import "BZObjectStoreClazzNSDictionary.h"
 #import "BZObjectStoreClazzNSSet.h"
 #import "BZObjectStoreClazzNSOrderedSet.h"
+#import "BZObjectStoreClazzSerialize.h"
 #import "BZObjectStoreConst.h"
 #import "BZObjectStoreRuntimeProperty.h"
 #import "BZObjectStoreSQLiteColumnModel.h"
-
 #import "FMResultSet.h"
 
 @implementation BZObjectStoreClazz
@@ -197,6 +197,7 @@
             [self addOSClazz:[BZObjectStoreClazzCGSize class] osclazzsArray:osclazzsArray];
             [self addOSClazz:[BZObjectStoreClazzCGPoint class] osclazzsArray:osclazzsArray];
             [self addOSClazz:[BZObjectStoreClazzNSRange class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzSerialize class] osclazzsArray:osclazzsArray];
         }
     }
     return _osclazzs;

@@ -23,6 +23,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BZObjectStoreModelInterface.h"
+#import "AutoCoding.h"
 
 @interface BZWeakPropertyModel : NSObject
 @property (nonatomic,weak) NSArray *objects;

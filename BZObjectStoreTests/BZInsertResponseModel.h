@@ -23,6 +23,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BZObjectStoreModelInterface.h"
+#import "AutoCoding.h"
 
 @interface BZInsertResponseModel : NSObject<OSInsertPerformance>
 @property (nonatomic,strong) NSString<OSIdenticalAttribute> *code;

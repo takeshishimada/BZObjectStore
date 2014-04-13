@@ -23,6 +23,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BZObjectStoreModelInterface.h"
+#import "AutoCoding.h"
 
 @interface BZDelegateModel : NSObject<OSModelInterface>
 @property (nonatomic,readonly) BOOL modelDidLoad;

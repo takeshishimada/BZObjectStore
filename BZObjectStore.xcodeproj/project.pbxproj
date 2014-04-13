@@ -94,6 +94,7 @@
 		727926B318FA268C00A564AA /* BZTypeMissMatchMissMatchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 727926B218FA268C00A564AA /* BZTypeMissMatchMissMatchModel.m */; };
 		727926B618FA26F200A564AA /* BZTypeMissMatchItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 727926B518FA26F200A564AA /* BZTypeMissMatchItemModel.m */; };
 		72B9ABBC18FAA51300CA6216 /* BZObjectStoreClazzID.m in Sources */ = {isa = PBXBuildFile; fileRef = 72B9ABBB18FAA51300CA6216 /* BZObjectStoreClazzID.m */; };
+		72B9ABBF18FAC7A100CA6216 /* BZObjectStoreClazzSerialize.m in Sources */ = {isa = PBXBuildFile; fileRef = 72B9ABBE18FAC7A100CA6216 /* BZObjectStoreClazzSerialize.m */; };
 		72BEE87618F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72BEE87518F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.m */; };
 		72BEE87918F57A4400A7D742 /* BZObjectStoreReferenceConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72BEE87818F57A4400A7D742 /* BZObjectStoreReferenceConditionModel.m */; };
 		72BEE87C18F57A8000A7D742 /* BZObjectStoreConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72BEE87B18F57A8000A7D742 /* BZObjectStoreConditionModel.m */; };
@@ -294,6 +295,8 @@
 		727926B518FA26F200A564AA /* BZTypeMissMatchItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZTypeMissMatchItemModel.m; sourceTree = "<group>"; };
 		72B9ABBA18FAA51300CA6216 /* BZObjectStoreClazzID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzID.h; sourceTree = "<group>"; };
 		72B9ABBB18FAA51300CA6216 /* BZObjectStoreClazzID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzID.m; sourceTree = "<group>"; };
+		72B9ABBD18FAC7A100CA6216 /* BZObjectStoreClazzSerialize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzSerialize.h; sourceTree = "<group>"; };
+		72B9ABBE18FAC7A100CA6216 /* BZObjectStoreClazzSerialize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzSerialize.m; sourceTree = "<group>"; };
 		72BEE87418F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreSQLiteConditionModel.h; sourceTree = "<group>"; };
 		72BEE87518F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreSQLiteConditionModel.m; sourceTree = "<group>"; };
 		72BEE87718F57A4400A7D742 /* BZObjectStoreReferenceConditionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreReferenceConditionModel.h; sourceTree = "<group>"; };
@@ -599,6 +602,8 @@
 				72BEE87818F57A4400A7D742 /* BZObjectStoreReferenceConditionModel.m */,
 				7259F82A18F44FCA002A3416 /* BZObjectStoreClazz.h */,
 				7259F82B18F44FCA002A3416 /* BZObjectStoreClazz.m */,
+				72B9ABBD18FAC7A100CA6216 /* BZObjectStoreClazzSerialize.h */,
+				72B9ABBE18FAC7A100CA6216 /* BZObjectStoreClazzSerialize.m */,
 				7259F82C18F44FCA002A3416 /* BZObjectStoreClazzCGPoint.h */,
 				7259F82D18F44FCA002A3416 /* BZObjectStoreClazzCGPoint.m */,
 				7259F82E18F44FCA002A3416 /* BZObjectStoreClazzCGRect.h */,
@@ -908,6 +913,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				72B9ABBF18FAC7A100CA6216 /* BZObjectStoreClazzSerialize.m in Sources */,
 				7259F89B18F44FCA002A3416 /* BZObjectStoreClazzNSValue.m in Sources */,
 				7259F8A118F44FCA002A3416 /* BZObjectStoreModelMapper.m in Sources */,
 				7259F87F18F44FCA002A3416 /* BZObjectStore.m in Sources */,

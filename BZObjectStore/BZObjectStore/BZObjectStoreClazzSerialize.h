@@ -21,10 +21,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
-#import "BZObjectStoreModelInterface.h"
-#import "AutoCoding.h"
+#import "BZObjectStoreClazz.h"
 
-@interface BZNameModel : NSObject<OSModelInterface>
-@property (nonatomic,assign) NSInteger group;
+@interface BZObjectStoreClazzSerialize : BZObjectStoreClazz
+
 @end

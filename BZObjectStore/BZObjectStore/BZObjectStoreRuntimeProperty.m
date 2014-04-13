@@ -134,7 +134,9 @@
     }
 
     // clazz
-    if (self.isStructure) {
+    if (self.serializableAttribute) {
+        self.osclazz = [BZObjectStoreClazz osclazzWithPrimitiveEncodingCode:@"Serialize"];
+    } else if (self.isStructure) {
         self.osclazz = [BZObjectStoreClazz osclazzWithStructureName:self.structureName];
     } else if (self.isPrimitive) {
         self.osclazz = [BZObjectStoreClazz osclazzWithPrimitiveEncodingCode:bzproperty.propertyEncoding.code];
@@ -259,19 +261,11 @@
 - (NSArray*)storeValuesWithObject:(NSObject*)object
 {
     return [self.osclazz storeValuesWithObject:object attributeName:self.name];
-//    if (self.serializableAttribute) {
-//        return [NSArray array];
-//    } else {
-//    }
 }
 
 - (id)valueWithResultSet:(FMResultSet*)resultSet
 {
     return [self.osclazz valueWithResultSet:resultSet attribute:self];
-//    if (self.serializableAttribute) {
-//        return nil;
-//    } else {
-//    }
 }
 
 

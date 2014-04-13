@@ -22,6 +22,7 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import "AutoCoding.h"
 
 @interface BZInvalidValuesModel : NSObject
 @property (nonatomic,assign) Class vclass;

@@ -21,10 +21,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "BZVarietyValuesModel.h"
+#import <Foundation/Foundation.h>
 #import "BZObjectStoreModelInterface.h"
+#import "AutoCoding.h"
 
-@interface BZCircularReferenceModel : BZVarietyValuesModel<OSModelInterface>
+@interface BZCircularReferenceModel : NSObject<OSModelInterface>
 - (instancetype)initWithId:(NSString*)id name:(NSString*)name birthday:(NSDate*)birthday;
 @property (nonatomic,strong) NSString<OSIdenticalAttribute> *id;
 @property (nonatomic,strong) NSString *name;
