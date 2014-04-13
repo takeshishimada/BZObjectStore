@@ -149,8 +149,6 @@
     // identicalAttribute
     if (!self.isStringNumberClazz) {
         self.identicalAttribute = NO;
-    } else if (self.isStructure) {
-        self.identicalAttribute = NO;
     }
 
     // group function attribute

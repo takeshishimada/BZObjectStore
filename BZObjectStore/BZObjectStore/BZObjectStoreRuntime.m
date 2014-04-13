@@ -210,9 +210,9 @@
     } else {
         self.hasRelationshipAttributes = NO;
     }
-    if (self.attributes.count == 0 && self.isObjectClazz) {
-        self.isObjectClazz = NO;
-    }
+//    if (self.attributes.count == 0 && self.isObjectClazz) {
+//        self.isObjectClazz = NO;
+//    }
     self.insertPerformance = [self.clazz conformsToProtocol:@protocol(OSInsertPerformance)];
     self.updatePerformance = [self.clazz conformsToProtocol:@protocol(OSUpdatePerformance)];
     

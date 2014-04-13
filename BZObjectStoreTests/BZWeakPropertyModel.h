@@ -21,11 +21,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "BZOSIdenticalModel.h"
+#import <Foundation/Foundation.h>
+#import "BZObjectStoreModelInterface.h"
 
-@implementation BZOSIdenticalModel
-+ (BOOL)attributeIsOSIdenticalAttribute:(NSString *)attributeName
-{
-    return YES;
-}
+@interface BZWeakPropertyModel : NSObject
+@property (nonatomic,weak) NSArray *objects;
 @end

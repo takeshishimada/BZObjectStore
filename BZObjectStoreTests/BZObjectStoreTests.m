@@ -63,6 +63,7 @@
 #import "BZReferenceToConditionModel.h"
 #import "BZOSIdenticalModel.h"
 #import "BZOSIdenticalItemModel.h"
+#import "BZWeakPropertyModel.h"
 
 @interface BZObjectStoreTests : XCTestCase
 @end
@@ -84,50 +85,52 @@
 - (void)testOnDisk
 {
     BZObjectStore *disk = [BZObjectStoreOnDisk sharedInstance];
-//    [self testBZVarietyValuesModel:disk];
-//    [self testBZInvalidValuesModel:disk];
-//    [self testBZRelationshipHeaderModel:disk];
+    [self testBZVarietyValuesModel:disk];
+    [self testBZInvalidValuesModel:disk];
+    [self testBZRelationshipHeaderModel:disk];
 //    [self testBZInsertResponseModel:disk];
 //    [self testBZUpdateResponseModel:disk];
-//    [self testCircularReference:disk];
-//    [self testSQLiteGroupCondition:disk];
-//    [self testBZUpdateExistsObjectWithNoRowIdModel:disk];
-//    [self testBZOnDemanItemModel:disk];
-//    [self testBZExtendModel:disk];
-//    [self testBZIgnoreExtendModel:disk];
-//    [self testUpdateAttributeModel:disk];
-//    [self testBZIgnoreAttribute:disk];
-//    [self testAttributesModel:disk];
-//    [self testBZOrderByModel:disk];
-//    [self testBZOffSetLimitModel:disk];
-//    [self testBZFullTextModel:disk];
-//    [self testBZReferenceConditionModel:disk];
+    [self testCircularReference:disk];
+    [self testSQLiteGroupCondition:disk];
+    [self testBZUpdateExistsObjectWithNoRowIdModel:disk];
+    [self testBZOnDemanItemModel:disk];
+    [self testBZExtendModel:disk];
+    [self testBZIgnoreExtendModel:disk];
+    [self testUpdateAttributeModel:disk];
+    [self testBZIgnoreAttribute:disk];
+    [self testAttributesModel:disk];
+    [self testBZOrderByModel:disk];
+    [self testBZOffSetLimitModel:disk];
+    [self testBZFullTextModel:disk];
+    [self testBZReferenceConditionModel:disk];
     [self testBZOSIdenticalModel:disk];
+    [self testBZWeakPropertyModel:disk];
     
 }
 
 - (void)testOnMemory
 {
-//    BZObjectStore *memory = [BZObjectStoreOnMemory sharedInstance];
-//    [self testBZVarietyValuesModel:memory];
-//    [self testBZInvalidValuesModel:memory];
-//    [self testBZRelationshipHeaderModel:memory];
+    BZObjectStore *memory = [BZObjectStoreOnMemory sharedInstance];
+    [self testBZVarietyValuesModel:memory];
+    [self testBZInvalidValuesModel:memory];
+    [self testBZRelationshipHeaderModel:memory];
 //    [self testBZInsertResponseModel:memory];
 //    [self testBZUpdateResponseModel:memory];
-//    [self testCircularReference:memory];
-//    [self testSQLiteGroupCondition:memory];
-//    [self testBZUpdateExistsObjectWithNoRowIdModel:memory];
-//    [self testBZOnDemanItemModel:memory];
-//    [self testBZExtendModel:memory];
-//    [self testBZIgnoreExtendModel:memory];
-//    [self testUpdateAttributeModel:memory];
-//    [self testBZIgnoreAttribute:memory];
-//    [self testBZNameModel:memory];
-//    [self testAttributesModel:memory];
-//    [self testBZOrderByModel:memory];
-//    [self testBZFullTextModel:memory];
-//    [self testBZReferenceConditionModel:memory];
-//    [self testBZOSIdenticalModel:memory];
+    [self testCircularReference:memory];
+    [self testSQLiteGroupCondition:memory];
+    [self testBZUpdateExistsObjectWithNoRowIdModel:memory];
+    [self testBZOnDemanItemModel:memory];
+    [self testBZExtendModel:memory];
+    [self testBZIgnoreExtendModel:memory];
+    [self testUpdateAttributeModel:memory];
+    [self testBZIgnoreAttribute:memory];
+    [self testBZNameModel:memory];
+    [self testAttributesModel:memory];
+    [self testBZOrderByModel:memory];
+    [self testBZFullTextModel:memory];
+    [self testBZReferenceConditionModel:memory];
+    [self testBZOSIdenticalModel:memory];
+    [self testBZWeakPropertyModel:memory];
 
 }
 
@@ -1031,7 +1034,7 @@
     NSError *error = nil;
     
     NSMutableArray *objects = [NSMutableArray array];
-    for (NSInteger i = 0; i < 100000; i++) {
+    for (NSInteger i = 0; i < 2000; i++) {
         BZFullTextModel *saveObject = [[BZFullTextModel alloc]init];
         saveObject.address = [NSString stringWithFormat:@"test address%d test",i];
         [objects addObject:saveObject];
@@ -1126,21 +1129,60 @@
     item3.name = @"banana";
     
     
-    foo vvalue = {2,"name",1.23456788f};
+    hoo vvalue = {2,"name",1.23456788f};
     
     BZOSIdenticalModel *savedObject = [[BZOSIdenticalModel alloc]init];
+    // POD types
+    savedObject.vbool_max = YES;
+    savedObject.vdouble_max = DBL_MAX;
+    savedObject.vfloat_max = FLT_MAX;
+    savedObject.vchar_max = CHAR_MAX;
+    savedObject.vint_max = INT_MAX;
+    savedObject.vshort_max = SHRT_MAX;
+    savedObject.vlong_max = LONG_MAX;
+    savedObject.vlonglong_max = LLONG_MAX;
+    savedObject.vunsignedchar_max = UCHAR_MAX;
+    savedObject.vunsignedint_max = UINT_MAX;
+    savedObject.vunsignedshort_max = USHRT_MAX;
+    savedObject.vunsignedlong_max = ULONG_MAX;
+    savedObject.vunsignedlonglong_max = ULLONG_MAX;
+    savedObject.vbool_min = NO;
+    savedObject.vdouble_min = DBL_MIN;
+    savedObject.vfloat_min = FLT_MIN;
+    savedObject.vchar_min = CHAR_MIN;
+    savedObject.vint_min = INT_MIN;
+    savedObject.vshort_min = SHRT_MIN;
+    savedObject.vlong_min = LONG_MIN;
+    savedObject.vlonglong_min = LLONG_MIN;
+    savedObject.vunsignedchar_min = 0;
+    savedObject.vunsignedint_min = 0;
+    savedObject.vunsignedshort_min = 0;
+    savedObject.vunsignedlong_min = 0;
+    savedObject.vunsignedlonglong_min = 0;
+    savedObject.vfoo = vvalue;
+    
+    // objective-c
+    savedObject.vnsinteger = 99;
     savedObject.vstring = @"string";
+    savedObject.vrange = NSMakeRange(1, 2);
     savedObject.vmutableString = [NSMutableString stringWithString:@"mutableString"];
     savedObject.vnumber = [NSNumber numberWithBool:YES];
     savedObject.vurl = [NSURL URLWithString:@"http://wwww.yahoo.com"];
-    savedObject.vcolor = [UIColor redColor];
-    
     savedObject.vnull = [NSNull null];
+    savedObject.vcolor = [UIColor redColor];
     savedObject.vimage = [UIImage imageNamed:@"AppleLogo.png"];
     savedObject.vdata = [NSData dataWithData:UIImagePNGRepresentation(savedObject.vimage)];
     savedObject.vid = item2;
     savedObject.vmodel = item3;
     savedObject.vvalue = [NSValue value:&vvalue withObjCType:@encode(foo)];
+    
+    // objective-c core graphics
+    savedObject.vcgfloat = 44.342334f;
+    savedObject.vrect = CGRectMake(4.123456f,1.123456f,2.123456f,3.123456f);
+    savedObject.vpoint = CGPointMake(4.123456f, 5.123456f);
+    savedObject.vsize = CGSizeMake(6.123456f, 7.123456f);
+    
+    // objective-c array,set,dictionary,orderedset
     savedObject.vArray = [NSArray arrayWithObjects:item1,item2,item3, nil];
     savedObject.vSet = [NSSet setWithObjects:item1,item2,item3, nil];
     savedObject.vdictionary = [NSDictionary dictionaryWithObjectsAndKeys:item1,item1.name,item3,item3.name, nil];
@@ -1149,6 +1191,7 @@
     savedObject.vmutableSet = [NSMutableSet setWithObjects:item1,item2,item3, nil];
     savedObject.vmutabledictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:item1,item1.name,item3,item3.name, nil];
     savedObject.vmutableOrderedSet = [NSMutableOrderedSet orderedSetWithObjects:item1,item3, nil];
+
     
     [os saveObject:savedObject error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
@@ -1234,6 +1277,26 @@
     
     NSNumber *count7 = [os count:[BZOSIdenticalModel class] condition:nil error:&error];
     XCTAssertTrue(count7.integerValue == 6, @"error");
+
+}
+
+- (void)testBZWeakPropertyModel:(BZObjectStore*)os
+{
+    NSError *error = nil;
+    
+    BZWeakPropertyModel *item1 = [[BZWeakPropertyModel alloc]init];
+    BZWeakPropertyModel *item2 = [[BZWeakPropertyModel alloc]init];
+    NSArray *objects = @[item1,item2];
+    item1.objects = objects;
+    
+    [os saveObject:item1 error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+
+    [os removeObject:item1 error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+
+    NSNumber *count = [os count:[BZWeakPropertyModel class] condition:nil error:&error];
+    XCTAssertTrue(count.integerValue == 1, @"error");
 
 }
 

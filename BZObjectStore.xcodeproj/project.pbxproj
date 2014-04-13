@@ -106,6 +106,7 @@
 		72C2684E18F9944D0070C2E5 /* BZObjectStoreTestsObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2684D18F9944D0070C2E5 /* BZObjectStoreTestsObserver.m */; };
 		72C2685118F9FC400070C2E5 /* BZOSIdenticalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2685018F9FC400070C2E5 /* BZOSIdenticalModel.m */; };
 		72C2685418F9FDF20070C2E5 /* BZOSIdenticalItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2685318F9FDF20070C2E5 /* BZOSIdenticalItemModel.m */; };
+		72C2685818FA09A50070C2E5 /* BZWeakPropertyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2685718FA09A50070C2E5 /* BZWeakPropertyModel.m */; };
 		82F55B5F18F63E49003A1136 /* AppleLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7259F8AC18F45014002A3416 /* AppleLogo.png */; };
 /* End PBXBuildFile section */
 
@@ -310,6 +311,8 @@
 		72C2685018F9FC400070C2E5 /* BZOSIdenticalModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZOSIdenticalModel.m; sourceTree = "<group>"; };
 		72C2685218F9FDF20070C2E5 /* BZOSIdenticalItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZOSIdenticalItemModel.h; sourceTree = "<group>"; };
 		72C2685318F9FDF20070C2E5 /* BZOSIdenticalItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZOSIdenticalItemModel.m; sourceTree = "<group>"; };
+		72C2685618FA09A50070C2E5 /* BZWeakPropertyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZWeakPropertyModel.h; sourceTree = "<group>"; };
+		72C2685718FA09A50070C2E5 /* BZWeakPropertyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZWeakPropertyModel.m; sourceTree = "<group>"; };
 		73A736836B224E7BB841BEB0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -409,7 +412,8 @@
 				72170C1318F8D3FC00C9A4C1 /* OSOnceUpdateAttribute */,
 				72C2682518F8F8110070C2E5 /* TableNameColumnName */,
 				72C2682418F8ED3A0070C2E5 /* modelDidSaveLoadRemove */,
-				72C2682918F907980070C2E5 /* AttributeIs */,
+				72C2682918F907980070C2E5 /* isAttributeIs */,
+				72C2685518FA097D0070C2E5 /* WeakProperty */,
 			);
 			name = ModelInterface;
 			sourceTree = "<group>";
@@ -677,7 +681,7 @@
 			name = TableNameColumnName;
 			sourceTree = "<group>";
 		};
-		72C2682918F907980070C2E5 /* AttributeIs */ = {
+		72C2682918F907980070C2E5 /* isAttributeIs */ = {
 			isa = PBXGroup;
 			children = (
 				72C2682A18F907BA0070C2E5 /* BZAttributeIsModel.h */,
@@ -689,7 +693,7 @@
 				72C2683318F9432A0070C2E5 /* BZAttributeIsfetchOnRefreshingModel.h */,
 				72C2683418F9432A0070C2E5 /* BZAttributeIsfetchOnRefreshingModel.m */,
 			);
-			name = AttributeIs;
+			name = isAttributeIs;
 			sourceTree = "<group>";
 		};
 		72C2683618F945CF0070C2E5 /* Condition */ = {
@@ -709,6 +713,15 @@
 				72C2684A18F98B950070C2E5 /* BZReferenceToConditionModel.m */,
 			);
 			name = Condition;
+			sourceTree = "<group>";
+		};
+		72C2685518FA097D0070C2E5 /* WeakProperty */ = {
+			isa = PBXGroup;
+			children = (
+				72C2685618FA09A50070C2E5 /* BZWeakPropertyModel.h */,
+				72C2685718FA09A50070C2E5 /* BZWeakPropertyModel.m */,
+			);
+			name = WeakProperty;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -906,6 +919,7 @@
 				7259F8CD18F45014002A3416 /* BZRelationshipItemModel.m in Sources */,
 				72C2684518F98B220070C2E5 /* BZReferenceConditionModel.m in Sources */,
 				7259F8C618F45014002A3416 /* BZCircularReferenceModel.m in Sources */,
+				72C2685818FA09A50070C2E5 /* BZWeakPropertyModel.m in Sources */,
 				72170BE818F5950D00C9A4C1 /* BZSQLiteGroupFunctionModel.m in Sources */,
 				72170C0318F8CEBD00C9A4C1 /* BZUpdateAttributeModel.m in Sources */,
 				7259F8CA18F45014002A3416 /* BZObjectStoreTests.m in Sources */,
