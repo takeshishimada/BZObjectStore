@@ -121,7 +121,7 @@
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     [queue addOperationWithBlock:^{
         NSError *error = nil;
-        NSArray *objets = [self fetchReferencingObjectsWithToObject:object error:&error];
+        NSArray *objets = [self fetchReferencingFromObjectsWithObject:object error:&error];
         NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];
         [mainQueue addOperationWithBlock:^{
             completionBlock(objets,error);

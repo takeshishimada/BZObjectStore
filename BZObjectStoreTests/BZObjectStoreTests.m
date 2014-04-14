@@ -116,6 +116,7 @@
     [self testBZWeakPropertyModel:disk];
     [self testBZAddColumnsModel:disk];
     [self testBZTypeMissMatchModel:disk];
+    [disk close];
 }
 
 - (void)testOnMemory
@@ -146,6 +147,7 @@
     [self testBZWeakPropertyModel:memory];
     [self testBZAddColumnsModel:memory];
     [self testBZTypeMissMatchModel:memory];
+    [memory close];
 }
 
 - (void)testBZVarietyValuesModel:(BZObjectStore*)os
@@ -981,7 +983,7 @@
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     XCTAssertTrue(count.integerValue == 1,"object error");
     
-    [os removeObjects:[BZAttributeIsModel class] condition:nil error:&error];
+    [os removeObjects:@[saveObject1,saveObject2] error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
 
     count = [os count:[BZAttributeIsWeakReferenceModel class] condition:nil error:&error];
@@ -1126,14 +1128,19 @@
 
     BZReferenceFromConditionModel *from1 = [[BZReferenceFromConditionModel alloc]init];
     from1.code = @1;
-    from1.name = @"to1";
+    from1.name = @"from1";
     from1.to = item1;
     
     BZReferenceFromConditionModel *from2 = [[BZReferenceFromConditionModel alloc]init];
     from2.code = @2;
-    from2.name = @"to2";
+    from2.name = @"from2";
     from2.to = item2;
-    
+
+    BZReferenceFromConditionModel *from3 = [[BZReferenceFromConditionModel alloc]init];
+    from2.code = @3;
+    from2.name = @"from3";
+    from2.to = item2;
+
     [os saveObjects:@[to1,to2,item1,item2,item3,from1,from2] error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     
@@ -1151,6 +1158,18 @@
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     XCTAssertTrue(toObjects.count == 2, @"error");
     
+    NSNumber *referencedCount = [os referencedCount:to2 error:&error];
+    XCTAssertTrue(referencedCount.integerValue == 2, @"error");
+    
+    NSNumber *existsObject1 = [os existsObject:item1 error:&error];
+    XCTAssertTrue(existsObject1.boolValue, @"error");
+
+    NSNumber *existsObject2 = [os existsObject:from3 error:&error];
+    XCTAssertTrue(!existsObject2.boolValue, @"error");
+
+    NSArray *referencingObjects = [os fetchReferencingFromObjectsWithObject:item1 error:&error];
+    BZReferenceConditionModel *referencingObject = referencingObjects.firstObject;
+    XCTAssertTrue([referencingObject.name isEqualToString:@"from1"], @"error");
     
 }
 
@@ -1604,21 +1623,6 @@
     XCTAssertTrue(!fetchedObject.vnull,@"vmutableSet error");
     XCTAssertTrue(!fetchedObject.vdata,@"vdata,vimage error");
     
-//    XCTAssertTrue(!fetchedObject.vnsinteger,"vinteger error");
-//    XCTAssertTrue(!fetchedObject.vstring,"vstring error");
-//    XCTAssertTrue(!fetchedObject.vrange,"vrange error");
-//    XCTAssertTrue(!fetchedObject.vmutableString,"vmutableString error");
-//    XCTAssertTrue(!fetchedObject.vnumber,"vnumber error");
-//    XCTAssertTrue(!fetchedObject.vshort_max,"vshort_max error");
-//    XCTAssertTrue(!fetchedObject.vlong_max,"vlong_max error");
-//    XCTAssertTrue(!fetchedObject.vlonglong_max,"vlonglong_max error");
-//    XCTAssertTrue(!fetchedObject.vunsignedchar_max,"vunsignedchar_max error");
-//    XCTAssertTrue(!fetchedObject.vunsignedint_max,"vunsignedint_max error");
-//    XCTAssertTrue(!fetchedObject.vunsignedshort_max,"vunsignedshort_max error");
-//    XCTAssertTrue(!fetchedObject.vunsignedlong_max,"vunsignedlong_max error");
-//    XCTAssertTrue(!fetchedObject.vunsignedlonglong_max,"vunsignedlonglong_max error");
-//    XCTAssertTrue(!fetchedObject.vurl,@"vurl error");
-//    XCTAssertTrue(!fetchedObject.vvalue, @"struct int error");
 }
 
 @end
