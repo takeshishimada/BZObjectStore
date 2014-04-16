@@ -92,62 +92,62 @@
 {
     BZObjectStore *disk = [BZObjectStoreOnDisk sharedInstance];
     [self testBZVarietyValuesModel:disk];
-    [self testBZInvalidValuesModel:disk];
-    [self testBZRelationshipHeaderModel:disk];
-    [self testBZInsertResponseModel:disk];
-    [self testBZUpdateResponseModel:disk];
-    [self testCircularReference:disk];
-    [self testSQLiteGroupCondition:disk];
-    [self testBZUpdateExistsObjectWithNoRowIdModel:disk];
-    [self testBZOnDemanItemModel:disk];
-    [self testBZExtendModel:disk];
-    [self testBZIgnoreExtendModel:disk];
-    [self testUpdateAttributeModel:disk];
-    [self testBZIgnoreAttribute:disk];
-    [self testBZDelegateModel:disk];
-    [self testBZNameModel:disk];
-    [self testAttributesModel:disk];
-    [self testBZOrderByModel:disk];
-    [self testBZWhereModel:disk];
-    [self testBZOffSetLimitModel:disk];
-    [self testBZFullTextModel:disk];
-    [self testBZReferenceConditionModel:disk];
-    [self testBZOSIdenticalModel:disk];
-    [self testBZWeakPropertyModel:disk];
-    [self testBZAddColumnsModel:disk];
-    [self testBZTypeMissMatchModel:disk];
+//    [self testBZInvalidValuesModel:disk];
+//    [self testBZRelationshipHeaderModel:disk];
+//    [self testBZInsertResponseModel:disk];
+//    [self testBZUpdateResponseModel:disk];
+//    [self testCircularReference:disk];
+//    [self testSQLiteGroupCondition:disk];
+//    [self testBZUpdateExistsObjectWithNoRowIdModel:disk];
+//    [self testBZOnDemanItemModel:disk];
+//    [self testBZExtendModel:disk];
+//    [self testBZIgnoreExtendModel:disk];
+//    [self testUpdateAttributeModel:disk];
+//    [self testBZIgnoreAttribute:disk];
+//    [self testBZDelegateModel:disk];
+//    [self testBZNameModel:disk];
+//    [self testAttributesModel:disk];
+//    [self testBZOrderByModel:disk];
+//    [self testBZWhereModel:disk];
+//    [self testBZOffSetLimitModel:disk];
+//    [self testBZFullTextModel:disk];
+//    [self testBZReferenceConditionModel:disk];
+//    [self testBZOSIdenticalModel:disk];
+//    [self testBZWeakPropertyModel:disk];
+//    [self testBZAddColumnsModel:disk];
+//    [self testBZTypeMissMatchModel:disk];
     [disk close];
 }
 
 - (void)testOnMemory
 {
-    BZObjectStore *memory = [BZObjectStoreOnMemory sharedInstance];
-    [self testBZVarietyValuesModel:memory];
-    [self testBZInvalidValuesModel:memory];
-    [self testBZRelationshipHeaderModel:memory];
-    [self testBZInsertResponseModel:memory];
-    [self testBZUpdateResponseModel:memory];
-    [self testCircularReference:memory];
-    [self testSQLiteGroupCondition:memory];
-    [self testBZUpdateExistsObjectWithNoRowIdModel:memory];
-    [self testBZOnDemanItemModel:memory];
-    [self testBZExtendModel:memory];
-    [self testBZIgnoreExtendModel:memory];
-    [self testUpdateAttributeModel:memory];
-    [self testBZIgnoreAttribute:memory];
-    [self testBZDelegateModel:memory];
-    [self testBZNameModel:memory];
-    [self testAttributesModel:memory];
-    [self testBZOrderByModel:memory];
-    [self testBZWhereModel:memory];
-    [self testBZOffSetLimitModel:memory];
-    [self testBZFullTextModel:memory];
-    [self testBZReferenceConditionModel:memory];
-    [self testBZOSIdenticalModel:memory];
-    [self testBZWeakPropertyModel:memory];
-    [self testBZAddColumnsModel:memory];
-    [self testBZTypeMissMatchModel:memory];
-    [memory close];
+//    BZObjectStore *memory = [BZObjectStoreOnMemory sharedInstance];
+//    [self testBZVarietyValuesModel:memory];
+//    [self testBZInvalidValuesModel:memory];
+//    [self testBZRelationshipHeaderModel:memory];
+//    [self testBZInsertResponseModel:memory];
+//    [self testBZUpdateResponseModel:memory];
+//    [self testCircularReference:memory];
+//    [self testSQLiteGroupCondition:memory];
+//    [self testBZUpdateExistsObjectWithNoRowIdModel:memory];
+//    [self testBZOnDemanItemModel:memory];
+//    [self testBZExtendModel:memory];
+//    [self testBZIgnoreExtendModel:memory];
+//    [self testUpdateAttributeModel:memory];
+//    [self testBZIgnoreAttribute:memory];
+//    [self testBZDelegateModel:memory];
+//    [self testBZNameModel:memory];
+//    [self testAttributesModel:memory];
+//    [self testBZOrderByModel:memory];
+//    [self testBZWhereModel:memory];
+//    [self testBZOffSetLimitModel:memory];
+//    [self testBZFullTextModel:memory];
+//    [self testBZReferenceConditionModel:memory];
+//    [self testBZOSIdenticalModel:memory];
+//    [self testBZWeakPropertyModel:memory];
+//    [self testBZAddColumnsModel:memory];
+//    [self testBZTypeMissMatchModel:memory];
+//    [memory close];
 }
 
 - (void)testBZVarietyValuesModel:(BZObjectStore*)os
@@ -1339,6 +1339,19 @@
     NSNumber *count7 = [os count:[BZOSIdenticalModel class] condition:nil error:&error];
     XCTAssertTrue(count7.integerValue == 6, @"error");
 
+    BZOSIdenticalModel *savedObject8 = [[BZOSIdenticalModel alloc]init];
+    savedObject8.vstring = @"string";
+    savedObject8.vmutableString = [NSMutableString stringWithString:@"mutableString"];
+    savedObject8.vnumber = [NSNumber numberWithBool:YES];
+    savedObject8.vurl = [NSURL URLWithString:@"http://wwww.yahoo.com"];
+    savedObject8.vcolor = [UIColor clearColor];
+
+    [os removeObject:savedObject8 error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+
+    NSNumber *count8 = [os count:[BZOSIdenticalModel class] condition:nil error:&error];
+    XCTAssertTrue(count8.integerValue == 5, @"error");
+    
 }
 
 - (void)testBZWeakPropertyModel:(BZObjectStore*)os
@@ -1418,7 +1431,7 @@
     columnObject.vunsignedshort_min = 0;
     columnObject.vunsignedlong_min = 0;
     columnObject.vunsignedlonglong_min = 0;
-    columnObject.vfoo = vvalue;
+    columnObject.vpoo = vvalue;
     
     // objective-c
     columnObject.vnsinteger = 99;
@@ -1495,9 +1508,9 @@
     XCTAssertTrue(fetchedObject.vunsignedshort_min == savedObject.vunsignedshort_min,"vunsignedshort_min error");
     XCTAssertTrue(fetchedObject.vunsignedlong_min == savedObject.vunsignedlong_min,"vunsignedlong_min error");
     XCTAssertTrue(fetchedObject.vunsignedlonglong_min == savedObject.vunsignedlonglong_min,"vunsignedlonglong_min error");
-    XCTAssertTrue(fetchedObject.vfoo.no == 2, @"struct int error");
-    XCTAssertTrue(strcmp(fetchedObject.vfoo.name, "name") == 0, @"struct int error");
-    XCTAssertTrue(fetchedObject.vfoo.average == 1.23456788f, @"struct double error");
+    XCTAssertTrue(fetchedObject.vpoo.no == 2, @"struct int error");
+    XCTAssertTrue(strcmp(fetchedObject.vpoo.name, "name") == 0, @"struct int error");
+    XCTAssertTrue(fetchedObject.vpoo.average == 1.23456788f, @"struct double error");
     
     // objective-c
     XCTAssertTrue(fetchedObject.vnsinteger == savedObject.vnsinteger,"vinteger error");

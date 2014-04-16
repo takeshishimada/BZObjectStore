@@ -32,6 +32,10 @@
 {
     return @"Primitive";
 }
+- (BOOL)isSimpleValueClazz
+{
+    return YES;
+}
 
 - (BOOL)isPrimitiveClazz
 {

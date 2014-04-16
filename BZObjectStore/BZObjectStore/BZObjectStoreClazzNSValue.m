@@ -119,7 +119,7 @@
     if ([[value class] isSubclassOfClass:[NSData class]]) {
         return [NSValueConverter valueWithConvertedData:(NSData*)value];
     }
-    return nil;
+    return [NSValue valueWithNonretainedObject:nil];
 }
 
 - (NSArray*)storeValuesWithObject:(NSObject*)object attributeName:(NSString*)attributeName

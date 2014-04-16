@@ -55,6 +55,10 @@
 {
     return YES;
 }
+- (BOOL)isSimpleValueClazz
+{
+    return YES;
+}
 - (id)storeValueWithValue:(NSObject*)value
 {
     if (value) {
@@ -76,6 +80,9 @@
 
 - (id)valueWithResultSet:(FMResultSet*)resultSet attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
+    if ([attribute.name isEqualToString:@"vid"]) {
+        NSLog(@"test");
+    }
     return [self valueWithStoreValue:[resultSet objectForColumnName:attribute.columnName]];
 }
 

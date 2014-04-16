@@ -33,6 +33,10 @@
 {
     return @"CGRect";
 }
+- (BOOL)isSimpleValueClazz
+{
+    return YES;
+}
 
 - (NSArray*)storeValuesWithObject:(NSObject*)object attributeName:(NSString*)attributeName
 {

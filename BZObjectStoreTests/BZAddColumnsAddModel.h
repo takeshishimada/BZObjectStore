@@ -66,7 +66,7 @@ typedef struct {
 @property (nonatomic,assign) unsigned long vunsignedlong_max;
 @property (nonatomic,assign) unsigned long long vunsignedlonglong_max;
 
-@property (nonatomic,assign) poo vfoo;
+@property (nonatomic,assign) poo vpoo;
 
 // objective-c
 @property (nonatomic,assign) NSInteger vnsinteger;

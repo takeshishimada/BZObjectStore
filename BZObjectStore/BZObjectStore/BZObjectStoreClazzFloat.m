@@ -32,6 +32,10 @@
 {
     return [NSString stringWithFormat:@"%s",@encode(float)];
 }
+- (BOOL)isSimpleValueClazz
+{
+    return YES;
+}
 
 - (id)storeValueWithValue:(NSObject*)value
 {

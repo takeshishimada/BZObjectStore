@@ -32,6 +32,10 @@
 {
     return @"_NSRange";
 }
+- (BOOL)isSimpleValueClazz
+{
+    return YES;
+}
 
 - (id)storeValueWithValue:(NSObject*)value
 {

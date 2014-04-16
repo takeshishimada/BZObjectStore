@@ -55,7 +55,7 @@
 - (BOOL)insertOrReplace:(NSObject*)object db:(FMDatabase*)db;
 - (BOOL)deleteFrom:(NSObject*)object db:(FMDatabase*)db;
 - (BOOL)deleteFrom:(BZObjectStoreRuntime*)runtime condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db;
-- (FMResultSet*)resultSet:(BZObjectStoreRuntime*)runtime condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db;
+- (NSMutableArray*)objectsWithRuntime:(BZObjectStoreRuntime*)runtime condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db;
 - (FMResultSet*)resultSet:(NSObject*)object db:(FMDatabase*)db;
 - (NSNumber*)referencedCount:(NSObject*)object db:(FMDatabase*)db;
 - (NSMutableArray*)relationshipObjectsWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute db:(FMDatabase*)db;
@@ -64,7 +64,8 @@
 - (BOOL)deleteRelationshipObjectsWithRelationshipObject:(BZObjectStoreRelationshipModel*)relationshipObject db:(FMDatabase*)db;
 - (BOOL)deleteRelationshipObjectsWithObject:(NSObject*)object db:(FMDatabase*)db;
 - (NSMutableArray*)relationshipObjectsWithToObject:(NSObject*)toObject db:(FMDatabase*)db;
-- (void)updateRowid:(NSObject*)object db:(FMDatabase*)db;
+- (void)updateObjectRowid:(NSObject*)object db:(FMDatabase*)db;
+- (void)updateObjectsRowid:(NSArray*)objects db:(FMDatabase*)db;
 @end
 
 @interface BZObjectStoreRuntimeMapper()
@@ -246,21 +247,14 @@
         // toerror
         return nil;
     }
-    NSMutableArray *list = [NSMutableArray array];
-    FMResultSet *rs = [self resultSet:object.runtime condition:condition db:db];
+    NSMutableArray *list = [self objectsWithRuntime:object.runtime condition:condition db:db];
     if ([self hadError:db error:error]) {
         return nil;
     }
-    while ([rs next]) {
-        NSObject *targetObject = [object.runtime object];
-        targetObject.runtime = object.runtime;
-        for (BZObjectStoreRuntimeProperty *attribute in targetObject.runtime.notRelationshipAttributes) {
-            NSObject *value = [attribute valueWithResultSet:rs];
-            [targetObject setValue:value forKey:attribute.name];
-        }
-        [list addObject:targetObject];
-    }
     list = [self fetchObjectsSub:list refreshing:YES db:db error:error];
+    if ([self hadError:db error:error]) {
+        return nil;
+    }
     return list.firstObject;
 }
 
@@ -271,22 +265,15 @@
     if ( *error ) {
         return NO;
     }
-    
-    NSMutableArray *list = [NSMutableArray array];
-    FMResultSet *rs = [self resultSet:runtime condition:condition db:db];
+    NSMutableArray *list = [self objectsWithRuntime:runtime condition:condition db:db];
     if ([self hadError:db error:error]) {
         return nil;
     }
-    while ([rs next]) {
-        NSObject *object = [runtime object];
-        object.runtime = runtime;
-        for (BZObjectStoreRuntimeProperty *attribute in runtime.notRelationshipAttributes) {
-            NSObject *value = [attribute valueWithResultSet:rs];
-            [object setValue:value forKey:attribute.name];
-        }
-        [list addObject:object];
+    list = [self fetchObjectsSub:list refreshing:NO db:db error:error];
+    if ([self hadError:db error:error]) {
+        return nil;
     }
-    return [self fetchObjectsSub:list refreshing:NO db:db error:error];
+    return list;
 }
 
 - (NSMutableArray*)fetchReferencingObjectsWithToObject:(NSObject*)object db:(FMDatabase*)db error:(NSError**)error
@@ -298,7 +285,7 @@
     if (*error) {
         return nil;
     }
-    [self updateRowid:object db:db];
+    [self updateObjectRowid:object db:db];
     if ([db hadError]) {
         return nil;
     }
@@ -440,7 +427,7 @@
             return nil;
         }
         while ([rs next]) {
-            for (BZObjectStoreRuntimeProperty *attribute in targetObject.runtime.notRelationshipAttributes) {
+            for (BZObjectStoreRuntimeProperty *attribute in targetObject.runtime.simpleValueAttributes) {
                 NSObject *value = [attribute valueWithResultSet:rs];
                 [targetObject setValue:value forKey:attribute.name];
             }
@@ -741,6 +728,10 @@
     if (![self isValidObjects:objects error:error]) {
         return NO;
     }
+    [self updateObjectsRowid:objects db:db];
+    if ([self hadError:db error:error]) {
+        return NO;
+    }
     objects = [self fetchObjectsSub:objects refreshing:YES db:db error:error];
     if ([self hadError:db error:error]) {
         return NO;
@@ -757,12 +748,16 @@
     NSMutableDictionary *processedObjects = [NSMutableDictionary dictionary];
     NSMutableArray *objectStuck = [NSMutableArray array];
     for (NSObject *object in objects) {
-        if (object.runtime.hasRelationshipAttributes) {
-            [objectStuck addObjectsFromArray:objects];
-        } else {
-            if (![processedObjects valueForKey:object.objectStoreHashForSave]) {
-                [processedObjects setValue:object forKey:object.objectStoreHashForSave];
+        if (object.rowid) {
+            if (object.runtime.hasRelationshipAttributes) {
+                [objectStuck addObjectsFromArray:objects];
+            } else {
+                if (![processedObjects valueForKey:object.objectStoreHashForSave]) {
+                    [processedObjects setValue:object forKey:object.objectStoreHashForSave];
+                }
             }
+        } else {
+            NSLog(@"test");
         }
     }
     while (objectStuck.count > 0) {

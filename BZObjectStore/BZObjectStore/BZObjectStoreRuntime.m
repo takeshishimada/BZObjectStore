@@ -159,7 +159,7 @@
     NSMutableArray *identicalAttributes = [NSMutableArray array];
     NSMutableArray *updateAttributes = [NSMutableArray array];
     NSMutableArray *relationshipAttributes = [NSMutableArray array];
-    NSMutableArray *notRelationshipAttributes = [NSMutableArray array];
+    NSMutableArray *simpleValueAttributes = [NSMutableArray array];
     for (BZRuntimeProperty *property in propertyList) {
         BZObjectStoreRuntimeProperty *objectStoreAttribute = [BZObjectStoreRuntimeProperty propertyWithBZProperty:property runtime:self];
         if (objectStoreAttribute.isValid) {
@@ -177,8 +177,9 @@
                 }
                 if (objectStoreAttribute.isRelationshipClazz) {
                     [relationshipAttributes addObject:objectStoreAttribute];
-                } else {
-                    [notRelationshipAttributes addObject:objectStoreAttribute];
+                }
+                if (objectStoreAttribute.isSimpleValueClazz) {
+                    [simpleValueAttributes addObject:objectStoreAttribute];
                 }
             }
         }
@@ -189,7 +190,7 @@
     NSMutableArray *attributes = [NSMutableArray array];
     [attributes addObject:rowidAttribute];
     [attributes addObjectsFromArray:insertAttributes];
-    [notRelationshipAttributes addObject:rowidAttribute];
+    [simpleValueAttributes addObject:rowidAttribute];
     
     self.rowidAttribute = rowidAttribute;
     self.attributes = [NSArray arrayWithArray:attributes];
@@ -197,7 +198,7 @@
     self.updateAttributes = [NSArray arrayWithArray:updateAttributes];
     self.identificationAttributes = [NSArray arrayWithArray:identicalAttributes];
     self.relationshipAttributes = [NSArray arrayWithArray:relationshipAttributes];
-    self.notRelationshipAttributes = [NSArray arrayWithArray:notRelationshipAttributes];
+    self.simpleValueAttributes = [NSArray arrayWithArray:simpleValueAttributes];
 
     // response
     if (self.identificationAttributes.count > 0) {

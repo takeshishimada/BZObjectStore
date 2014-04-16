@@ -242,16 +242,28 @@
     return YES;
 }
 
-- (FMResultSet*)resultSet:(BZObjectStoreRuntime*)runtime condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db
+- (NSMutableArray*)objectsWithRuntime:(BZObjectStoreRuntime*)runtime condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db
 {
     NSString *sql = [runtime selectStatementWithCondition:condition];
     NSMutableArray *parameters = [NSMutableArray array];
     [parameters addObjectsFromArray:condition.sqlite.parameters];
+    
+    NSMutableArray *list = [NSMutableArray array];
     FMResultSet *rs = [db executeQuery:sql withArgumentsInArray:condition.sqlite.parameters];
-    return rs;
+    while ([rs next]) {
+        NSObject *targetObject = [runtime object];
+        targetObject.runtime = runtime;
+        for (BZObjectStoreRuntimeProperty *attribute in targetObject.runtime.simpleValueAttributes) {
+            NSObject *value = [attribute valueWithResultSet:rs];
+            [targetObject setValue:value forKey:attribute.name];
+        }
+        [list addObject:targetObject];
+    }
+    [rs close];
+    return list;
 }
 
-- (void)updateRowid:(NSObject*)object db:(FMDatabase*)db
+- (void)updateObjectRowid:(NSObject*)object db:(FMDatabase*)db
 {
     if (object.rowid) {
         return;
@@ -264,6 +276,14 @@
     while (rs.next) {
         object.rowid = [object.runtime.rowidAttribute valueWithResultSet:rs];
         break;
+    }
+    [rs close];
+}
+
+- (void)updateObjectsRowid:(NSArray*)objects db:(FMDatabase*)db
+{
+    for (NSObject *object in objects) {
+        [self updateObjectRowid:object db:db];
     }
     return;
 }
@@ -292,7 +312,7 @@
 
 - (NSNumber*)referencedCount:(NSObject*)object db:(FMDatabase*)db
 {
-    [self updateRowid:object db:db];
+    [self updateObjectRowid:object db:db];
     if (!object.rowid) {
         return nil;
     }
@@ -344,20 +364,24 @@
 - (NSMutableArray*)relationshipObjectsWithCondition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db
 {
     BZObjectStoreRuntime *runtime = [self runtime:[BZObjectStoreRelationshipModel class]];
-    NSMutableArray *list = [NSMutableArray array];
-    FMResultSet *rs = [self resultSet:runtime condition:condition db:db];
+    NSMutableArray *list = [self objectsWithRuntime:runtime condition:condition db:db];
     if ([self hadError:db]) {
         return NO;
     }
-    while (rs.next) {
-        BZObjectStoreRelationshipModel *object = [[BZObjectStoreRelationshipModel alloc]init];
-        for (BZObjectStoreRuntimeProperty *attribute in runtime.attributes) {
-            id value = [attribute valueWithResultSet:rs];
-            [object setValue:value forKey:attribute.name];
-        }
-        [list addObject:object];
-    }
-    [rs close];
+//    NSMutableArray *list = [NSMutableArray array];
+//    FMResultSet *rs = [self resultSet:runtime condition:condition db:db];
+//    if ([self hadError:db]) {
+//        return NO;
+//    }
+//    while (rs.next) {
+//        BZObjectStoreRelationshipModel *object = [[BZObjectStoreRelationshipModel alloc]init];
+//        for (BZObjectStoreRuntimeProperty *attribute in runtime.attributes) {
+//            id value = [attribute valueWithResultSet:rs];
+//            [object setValue:value forKey:attribute.name];
+//        }
+//        [list addObject:object];
+//    }
+//    [rs close];
     return list;
 }
 

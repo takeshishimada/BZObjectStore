@@ -53,7 +53,7 @@
 @property (nonatomic,strong) NSArray *insertAttributes;
 @property (nonatomic,strong) NSArray *updateAttributes;
 @property (nonatomic,strong) NSArray *relationshipAttributes;
-@property (nonatomic,strong) NSArray *notRelationshipAttributes;
+@property (nonatomic,strong) NSArray *simpleValueAttributes;
 
 // class options
 @property (nonatomic,assign) BOOL fullTextSearch;

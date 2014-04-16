@@ -162,10 +162,13 @@
 {
     __block NSError *err = nil;
     __block NSNumber *exists = nil;
-    [self inDatabaseWithBlock:^(FMDatabase *db) {
+    [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
         exists = [self existsObject:object db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
+        }
+        if (err) {
+            *rollback = YES;
         }
     }];
     if (error) {
@@ -178,10 +181,13 @@
 {
     __block NSError *err = nil;
     __block NSNumber *value = nil;
-    [self inDatabaseWithBlock:^(FMDatabase *db) {
+    [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
         value = [self count:clazz condition:condition db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
+        }
+        if (err) {
+            *rollback = YES;
         }
     }];
     if (error) {
@@ -194,10 +200,13 @@
 {
     __block NSError *err = nil;
     __block id value = nil;
-    [self inDatabaseWithBlock:^(FMDatabase *db) {
+    [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
         value = [self max:columnName class:clazz condition:condition db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
+        }
+        if (err) {
+            *rollback = YES;
         }
     }];
     if (error) {
@@ -210,10 +219,13 @@
 {
     __block NSError *err = nil;
     __block id value = nil;
-    [self inDatabaseWithBlock:^(FMDatabase *db) {
+    [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
         value = [self min:columnName class:clazz condition:condition db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
+        }
+        if (err) {
+            *rollback = YES;
         }
     }];
     if (error) {
@@ -226,10 +238,13 @@
 {
     __block NSError *err = nil;
     __block id value = nil;
-    [self inDatabaseWithBlock:^(FMDatabase *db) {
+    [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
         value = [self total:columnName class:clazz condition:condition db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
+        }
+        if (err) {
+            *rollback = YES;
         }
     }];
     if (error) {
@@ -242,10 +257,13 @@
 {
     __block NSError *err = nil;
     __block id value = nil;
-    [self inDatabaseWithBlock:^(FMDatabase *db) {
+    [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
         value = [self sum:columnName class:clazz condition:condition db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
+        }
+        if (err) {
+            *rollback = YES;
         }
     }];
     if (error) {
@@ -258,10 +276,13 @@
 {
     __block NSError *err = nil;
     __block id value = nil;
-    [self inDatabaseWithBlock:^(FMDatabase *db) {
+    [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
         value = [self avg:columnName class:clazz condition:condition db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
+        }
+        if (err) {
+            *rollback = YES;
         }
     }];
     if (error) {
@@ -277,10 +298,13 @@
 {
     __block NSError *err = nil;
     __block NSNumber *value = nil;
-    [self inDatabaseWithBlock:^(FMDatabase *db) {
+    [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
         value = [self referencedCount:object db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
+        }
+        if (err) {
+            *rollback = YES;
         }
     }];
     if (error) {
@@ -293,10 +317,13 @@
 {
     __block NSError *err = nil;
     __block NSMutableArray *list = nil;
-    [self inDatabaseWithBlock:^(FMDatabase *db) {
+    [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
         list = [self fetchReferencingObjectsWithToObject:object db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
+        }
+        if (err) {
+            *rollback = YES;
         }
     }];
     if (error) {
@@ -312,10 +339,13 @@
 {
     __block NSError *err = nil;
     __block NSMutableArray *value = nil;
-    [self inDatabaseWithBlock:^(FMDatabase *db) {
+    [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
         value = [self fetchObjects:clazz condition:condition db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
+        }
+        if (err) {
+            *rollback = YES;
         }
     }];
     if (error) {
@@ -328,10 +358,13 @@
 {
     __block NSError *err = nil;
     __block NSObject *latestObject = nil;
-    [self inDatabaseWithBlock:^(FMDatabase *db) {
+    [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
         latestObject = [self refreshObject:object db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
+        }
+        if (err) {
+            *rollback = YES;
         }
     }];
     if (error) {
