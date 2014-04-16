@@ -289,7 +289,7 @@
     return value;
 }
 
-- (NSMutableArray*)fetchReferencingObjectsWithToObject:(NSObject*)object error:(NSError**)error
+- (NSMutableArray*)fetchReferencingFromObjectsWithObject:(NSObject*)object error:(NSError**)error
 {
     __block NSError *err = nil;
     __block NSMutableArray *list = nil;

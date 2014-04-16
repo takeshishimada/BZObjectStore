@@ -124,6 +124,7 @@
         if ([self hadError:db]) {
             return NO;
         }
+        return YES;
     }
 
     if (object.runtime.hasIdentificationAttributes && !object.rowid) {
@@ -258,7 +259,7 @@
         return;
     }
     BZObjectStoreConditionModel *condition = [object.runtime uniqueCondition:object];
-    NSString *sql = [object.runtime selectStatementWithCondition:condition];
+    NSString *sql = [object.runtime selectRowidStatement:condition];
     FMResultSet *rs = [db executeQuery:sql withArgumentsInArray:condition.sqlite.parameters];
     while (rs.next) {
         object.rowid = [object.runtime.rowidAttribute valueWithResultSet:rs];

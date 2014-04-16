@@ -30,14 +30,15 @@
     @synchronized(self) {
         if (!_sharedInstance) {
             NSError *error = nil;
-            NSString *path = [self databasePath:@"database.sqlite"];
+            NSString *deletePath = [self databasePath:@"database.sqlite"];
             NSFileManager *manager = [NSFileManager defaultManager];
-            if ([manager fileExistsAtPath:path]) {
-                [manager removeItemAtPath:path error:&error];
+            if ([manager fileExistsAtPath:deletePath]) {
+                [manager removeItemAtPath:deletePath error:&error];
                 if (error) {
                     NSLog(@"%@",error);
                 }
             }
+            NSString *path = @"database.sqlite";
             _sharedInstance = [BZObjectStore openWithPath:path error:&error];
             NSAssert(error == nil,@"objectstore is nil");
         }
