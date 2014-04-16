@@ -23,6 +23,10 @@
 
 #import "BZObjectStore.h"
 
+@interface BZObjectStore (BZObjectStoreOnMemory)
+- (FMDatabaseQueue*)FMDBQueue;
+@end
+
 @interface BZObjectStoreOnMemory : BZObjectStore
 + (instancetype)sharedInstance;
 @end
