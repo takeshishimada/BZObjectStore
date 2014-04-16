@@ -588,18 +588,12 @@
 			isa = PBXGroup;
 			children = (
 				7259F82318F44FCA002A3416 /* BZObjectStore.h */,
-				7259F82418F44FCA002A3416 /* BZObjectStore.m */,
 				7259F82518F44FCA002A3416 /* BZObjectStoreModelInterface.h */,
 				7259F82818F44FCA002A3416 /* BZObjectStoreBackground.h */,
-				7259F82918F44FCA002A3416 /* BZObjectStoreBackground.m */,
 				72BEE87A18F57A8000A7D742 /* BZObjectStoreConditionModel.h */,
-				72BEE87B18F57A8000A7D742 /* BZObjectStoreConditionModel.m */,
 				72BEE87418F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.h */,
-				72BEE87518F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.m */,
 				72BEE87718F57A4400A7D742 /* BZObjectStoreReferenceConditionModel.h */,
-				72BEE87818F57A4400A7D742 /* BZObjectStoreReferenceConditionModel.m */,
 				7259F86718F44FCA002A3416 /* BZObjectStoreError.h */,
-				7259F86818F44FCA002A3416 /* BZObjectStoreError.m */,
 				823138BF18FCE0A100C212EB /* Classes */,
 			);
 			path = BZObjectStore;
@@ -695,6 +689,12 @@
 		823138BF18FCE0A100C212EB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				7259F82418F44FCA002A3416 /* BZObjectStore.m */,
+				7259F82918F44FCA002A3416 /* BZObjectStoreBackground.m */,
+				72BEE87B18F57A8000A7D742 /* BZObjectStoreConditionModel.m */,
+				72BEE87518F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.m */,
+				72BEE87818F57A4400A7D742 /* BZObjectStoreReferenceConditionModel.m */,
+				7259F86818F44FCA002A3416 /* BZObjectStoreError.m */,
 				7259F86F18F44FCA002A3416 /* BZObjectStoreReferenceMapper.h */,
 				7259F87018F44FCA002A3416 /* BZObjectStoreReferenceMapper.m */,
 				7259F86918F44FCA002A3416 /* BZObjectStoreModelMapper.h */,
