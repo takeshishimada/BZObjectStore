@@ -686,21 +686,9 @@
 			name = WeakProperty;
 			sourceTree = "<group>";
 		};
-		823138BF18FCE0A100C212EB /* Classes */ = {
+		72C3EC6719001F54002FFDC5 /* Clazz */ = {
 			isa = PBXGroup;
 			children = (
-				7259F82418F44FCA002A3416 /* BZObjectStore.m */,
-				7259F82918F44FCA002A3416 /* BZObjectStoreBackground.m */,
-				72BEE87B18F57A8000A7D742 /* BZObjectStoreConditionModel.m */,
-				72BEE87518F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.m */,
-				72BEE87818F57A4400A7D742 /* BZObjectStoreReferenceConditionModel.m */,
-				7259F86818F44FCA002A3416 /* BZObjectStoreError.m */,
-				7259F86F18F44FCA002A3416 /* BZObjectStoreReferenceMapper.h */,
-				7259F87018F44FCA002A3416 /* BZObjectStoreReferenceMapper.m */,
-				7259F86918F44FCA002A3416 /* BZObjectStoreModelMapper.h */,
-				7259F86A18F44FCA002A3416 /* BZObjectStoreModelMapper.m */,
-				7259F87518F44FCA002A3416 /* BZObjectStoreRuntimeMapper.h */,
-				7259F87618F44FCA002A3416 /* BZObjectStoreRuntimeMapper.m */,
 				7259F82A18F44FCA002A3416 /* BZObjectStoreClazz.h */,
 				7259F82B18F44FCA002A3416 /* BZObjectStoreClazz.m */,
 				72B9ABBD18FAC7A100CA6216 /* BZObjectStoreClazzSerialize.h */,
@@ -763,27 +751,87 @@
 				7259F86118F44FCA002A3416 /* BZObjectStoreClazzUIColor.m */,
 				7259F86218F44FCA002A3416 /* BZObjectStoreClazzUIImage.h */,
 				7259F86318F44FCA002A3416 /* BZObjectStoreClazzUIImage.m */,
+			);
+			name = Clazz;
+			sourceTree = "<group>";
+		};
+		72C3EC6819001F67002FFDC5 /* Runtime */ = {
+			isa = PBXGroup;
+			children = (
 				7259F87318F44FCA002A3416 /* BZObjectStoreRuntime.h */,
 				7259F87418F44FCA002A3416 /* BZObjectStoreRuntime.m */,
 				7259F87718F44FCA002A3416 /* BZObjectStoreRuntimeProperty.h */,
 				7259F87818F44FCA002A3416 /* BZObjectStoreRuntimeProperty.m */,
+			);
+			name = Runtime;
+			sourceTree = "<group>";
+		};
+		72C3EC6919001F7C002FFDC5 /* Builder */ = {
+			isa = PBXGroup;
+			children = (
 				7259F86B18F44FCA002A3416 /* BZObjectStoreNameBuilder.h */,
 				7259F86C18F44FCA002A3416 /* BZObjectStoreNameBuilder.m */,
 				7259F86D18F44FCA002A3416 /* BZObjectStoreQueryBuilder.h */,
 				7259F86E18F44FCA002A3416 /* BZObjectStoreQueryBuilder.m */,
+			);
+			name = Builder;
+			sourceTree = "<group>";
+		};
+		72C3EC6A19001F8A002FFDC5 /* Model */ = {
+			isa = PBXGroup;
+			children = (
 				7259F82618F44FCA002A3416 /* BZObjectStoreAttributeModel.h */,
 				7259F82718F44FCA002A3416 /* BZObjectStoreAttributeModel.m */,
 				7259F87118F44FCA002A3416 /* BZObjectStoreRelationshipModel.h */,
 				7259F87218F44FCA002A3416 /* BZObjectStoreRelationshipModel.m */,
 				72170BE318F5862400C9A4C1 /* BZObjectStoreSQLiteColumnModel.h */,
 				72170BE418F5862400C9A4C1 /* BZObjectStoreSQLiteColumnModel.m */,
+			);
+			name = Model;
+			sourceTree = "<group>";
+		};
+		72C3EC6B19001FA4002FFDC5 /* Mapper */ = {
+			isa = PBXGroup;
+			children = (
+				7259F86F18F44FCA002A3416 /* BZObjectStoreReferenceMapper.h */,
+				7259F87018F44FCA002A3416 /* BZObjectStoreReferenceMapper.m */,
+				7259F86918F44FCA002A3416 /* BZObjectStoreModelMapper.h */,
+				7259F86A18F44FCA002A3416 /* BZObjectStoreModelMapper.m */,
+				7259F87518F44FCA002A3416 /* BZObjectStoreRuntimeMapper.h */,
+				7259F87618F44FCA002A3416 /* BZObjectStoreRuntimeMapper.m */,
 				7259F86618F44FCA002A3416 /* BZObjectStoreConst.h */,
+			);
+			name = Mapper;
+			sourceTree = "<group>";
+		};
+		72C3EC6C19001FB6002FFDC5 /* Category */ = {
+			isa = PBXGroup;
+			children = (
 				7259F87918F44FCA002A3416 /* FMDatabase+TemporaryTable.h */,
 				7259F87A18F44FCA002A3416 /* FMDatabase+TemporaryTable.m */,
 				7259F87B18F44FCA002A3416 /* NSObject+BZObjectStore.h */,
 				7259F87C18F44FCA002A3416 /* NSObject+BZObjectStore.m */,
 				7259F87D18F44FCA002A3416 /* UIColor+BZObjectStore.h */,
 				7259F87E18F44FCA002A3416 /* UIColor+BZObjectStore.m */,
+			);
+			name = Category;
+			sourceTree = "<group>";
+		};
+		823138BF18FCE0A100C212EB /* Classes */ = {
+			isa = PBXGroup;
+			children = (
+				7259F82418F44FCA002A3416 /* BZObjectStore.m */,
+				7259F82918F44FCA002A3416 /* BZObjectStoreBackground.m */,
+				72BEE87B18F57A8000A7D742 /* BZObjectStoreConditionModel.m */,
+				72BEE87518F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.m */,
+				72BEE87818F57A4400A7D742 /* BZObjectStoreReferenceConditionModel.m */,
+				7259F86818F44FCA002A3416 /* BZObjectStoreError.m */,
+				72C3EC6B19001FA4002FFDC5 /* Mapper */,
+				72C3EC6919001F7C002FFDC5 /* Builder */,
+				72C3EC6819001F67002FFDC5 /* Runtime */,
+				72C3EC6719001F54002FFDC5 /* Clazz */,
+				72C3EC6A19001F8A002FFDC5 /* Model */,
+				72C3EC6C19001FB6002FFDC5 /* Category */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
