@@ -80,6 +80,16 @@
             NSString *dir = [paths objectAtIndex:0];
             dir = [dir stringByAppendingPathComponent:[[NSBundle mainBundle] bundleIdentifier]];
             path = [dir stringByAppendingPathComponent:path];
+            NSFileManager *manager = [NSFileManager defaultManager];
+            BOOL isDirectory = NO;
+            if (![manager fileExistsAtPath:dir isDirectory:&isDirectory]) {
+                if (![manager createDirectoryAtPath:dir withIntermediateDirectories:YES attributes:nil error:error]) {
+                    return nil;
+                }
+            }
+#ifdef DEBUG
+            NSLog(@"database path = %@",path);
+#endif
         }
     }
     
