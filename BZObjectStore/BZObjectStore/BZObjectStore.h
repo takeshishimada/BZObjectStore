@@ -22,8 +22,7 @@
 // THE SOFTWARE.
 
 #import "BZObjectStoreReferenceMapper.h"
-
-@class BZObjectStoreConditionModel;
+#import "BZObjectStoreConditionModel.h"
 
 @interface BZObjectStore : BZObjectStoreReferenceMapper
 
@@ -36,7 +35,7 @@
 - (BOOL)removeObjects:(NSArray *)objects error:(NSError**)error;
 - (BOOL)removeObjects:(Class)clazz condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error;
 
-- (NSObject*)refreshObject:(NSObject*)object error:(NSError**)error;
+- (id)refreshObject:(NSObject*)object error:(NSError**)error;
 - (NSMutableArray*)fetchObjects:(Class)clazz condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error;
 - (NSMutableArray*)fetchReferencingFromObjectsWithObject:(NSObject*)object error:(NSError**)error;
 

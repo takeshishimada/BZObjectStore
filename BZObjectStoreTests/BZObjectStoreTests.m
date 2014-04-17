@@ -70,6 +70,7 @@
 #import "BZTypeMissMatchModel.h"
 #import "BZTypeMissMatchMissMatchModel.h"
 #import "BZTypeMissMatchItemModel.h"
+#import "BZObjectStoreConditionModel.h"
 
 @interface BZObjectStoreTests : XCTestCase
 @end

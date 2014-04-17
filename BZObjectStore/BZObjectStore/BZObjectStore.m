@@ -364,7 +364,7 @@
     return value;
 }
 
-- (NSObject*)refreshObject:(NSObject*)object error:(NSError**)error
+- (id)refreshObject:(NSObject*)object error:(NSError**)error
 {
     __block NSError *err = nil;
     __block NSObject *latestObject = nil;
