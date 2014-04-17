@@ -36,6 +36,7 @@
 #import "FMResultSet.h"
 #import "FMDatabaseAdditions.h"
 #import "FMDatabase+TemporaryTable.h"
+#import "FMDatabase+indexInfo.h"
 #import "NSObject+BZObjectStore.h"
 
 @interface BZObjectStoreRuntimeMapper()
@@ -116,8 +117,7 @@
 
 - (BOOL)createTable:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db
 {
-    BOOL tableExists = NO;
-    tableExists = [db tableExists:runtime.tableName];
+    BOOL tableExists = [db tableExists:runtime.tableName];
     if (!tableExists) {
         [db executeUpdate:[runtime createTableStatement]];
         if ([self hadError:db]) {
@@ -149,9 +149,44 @@
             
         }
         if ( addedColumns ) {
-            if (!runtime.fullTextSearch) {
-                NSArray *attributes = runtime.identificationAttributes;
-                if (attributes.count > 0) {
+            [self createAtributeTable:runtime db:db];
+            if ([self hadError:db]) {
+                return NO;
+            }
+        }
+        if (!runtime.hasIdentificationAttributes || runtime.fullTextSearch) {
+            BOOL indexExists = [db indexExists:runtime.uniqueIndexName];
+            if (indexExists) {
+                [db executeUpdate:[runtime dropUniqueIndexStatement]];
+                if ([self hadError:db]) {
+                    return NO;
+                }
+            }
+            
+        } else {
+            BOOL indexExists = [db indexExists:runtime.uniqueIndexName];
+            if (!indexExists) {
+                [db executeUpdate:[runtime createUniqueIndexStatement]];
+                if ([self hadError:db]) {
+                    return NO;
+                }
+            } else {
+                BOOL changed = NO;
+                NSArray *columnNames = [db columnNamesWithIndexName:runtime.uniqueIndexName];
+                if (columnNames.count != runtime.identificationAttributes.count) {
+                    changed = YES;
+                } else {
+                    for (NSInteger i = 0; i < columnNames.count; i++) {
+                        BZObjectStoreRuntimeProperty *attribute = runtime.identificationAttributes[i];
+                        NSString *columnNameFrom = columnNames[i];
+                        NSString *columnNameTo = attribute.name;
+                        if (![columnNameFrom isEqualToString:columnNameTo]) {
+                            changed = YES;
+                            break;
+                        }
+                    }
+                }
+                if (changed) {
                     [db executeUpdate:[runtime dropUniqueIndexStatement]];
                     if ([self hadError:db]) {
                         return NO;
@@ -161,10 +196,6 @@
                         return NO;
                     }
                 }
-            }
-            [self createAtributeTable:runtime db:db];
-            if ([self hadError:db]) {
-                return NO;
             }
         }
     }

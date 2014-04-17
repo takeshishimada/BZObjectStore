@@ -53,6 +53,7 @@
 @property (nonatomic,strong) NSString *dropIndexTemplateStatement;
 @property (nonatomic,strong) NSString *countTemplateStatement;
 @property (nonatomic,strong) NSString *referencedCountTemplateStatement;
+@property (nonatomic,strong) NSString *uniqueIndexNameTemplateStatement;
 @property (nonatomic,assign) BOOL hasNotUpdateIfValueIsNullAttribute;
 @end
 
@@ -232,7 +233,7 @@
     self.dropIndexTemplateStatement = [BZObjectStoreQueryBuilder dropIndexStatement:self];
     self.countTemplateStatement = [BZObjectStoreQueryBuilder countStatement:self];
     self.referencedCountTemplateStatement = [BZObjectStoreQueryBuilder referencedCountStatement:self];
-
+    self.uniqueIndexNameTemplateStatement = [BZObjectStoreQueryBuilder uniqueIndexName:self];
     
 }
 
@@ -250,6 +251,10 @@
 
 #pragma mark statement methods
 
+- (NSString*)uniqueIndexName
+{
+    return self.uniqueIndexNameTemplateStatement;
+}
 - (NSString*)createTableStatement
 {
     return self.createTableTemplateStatement;

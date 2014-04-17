@@ -82,6 +82,7 @@
 - (NSString*)deleteFromStatementWithCondition:(BZObjectStoreConditionModel*)condition;
 - (NSString*)referencedCountStatementWithCondition:(BZObjectStoreConditionModel*)condition;
 - (NSString*)countStatementWithCondition:(BZObjectStoreConditionModel*)condition;
+- (NSString*)uniqueIndexName;
 
 // condition methods
 - (BZObjectStoreConditionModel*)rowidCondition:(NSObject*)object;

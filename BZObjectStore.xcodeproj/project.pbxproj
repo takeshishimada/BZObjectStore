@@ -115,6 +115,7 @@
 		72C2685118F9FC400070C2E5 /* BZOSIdenticalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2685018F9FC400070C2E5 /* BZOSIdenticalModel.m */; };
 		72C2685418F9FDF20070C2E5 /* BZOSIdenticalItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2685318F9FDF20070C2E5 /* BZOSIdenticalItemModel.m */; };
 		72C2685818FA09A50070C2E5 /* BZWeakPropertyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2685718FA09A50070C2E5 /* BZWeakPropertyModel.m */; };
+		72C3EC6F190028C0002FFDC5 /* FMDatabase+indexInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C3EC6E190028C0002FFDC5 /* FMDatabase+indexInfo.m */; };
 		82F55B5F18F63E49003A1136 /* AppleLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7259F8AC18F45014002A3416 /* AppleLogo.png */; };
 /* End PBXBuildFile section */
 
@@ -337,6 +338,8 @@
 		72C2685318F9FDF20070C2E5 /* BZOSIdenticalItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZOSIdenticalItemModel.m; sourceTree = "<group>"; };
 		72C2685618FA09A50070C2E5 /* BZWeakPropertyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZWeakPropertyModel.h; sourceTree = "<group>"; };
 		72C2685718FA09A50070C2E5 /* BZWeakPropertyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZWeakPropertyModel.m; sourceTree = "<group>"; };
+		72C3EC6D190028C0002FFDC5 /* FMDatabase+indexInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FMDatabase+indexInfo.h"; sourceTree = "<group>"; };
+		72C3EC6E190028C0002FFDC5 /* FMDatabase+indexInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FMDatabase+indexInfo.m"; sourceTree = "<group>"; };
 		73A736836B224E7BB841BEB0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -809,6 +812,8 @@
 			children = (
 				7259F87918F44FCA002A3416 /* FMDatabase+TemporaryTable.h */,
 				7259F87A18F44FCA002A3416 /* FMDatabase+TemporaryTable.m */,
+				72C3EC6D190028C0002FFDC5 /* FMDatabase+indexInfo.h */,
+				72C3EC6E190028C0002FFDC5 /* FMDatabase+indexInfo.m */,
 				7259F87B18F44FCA002A3416 /* NSObject+BZObjectStore.h */,
 				7259F87C18F44FCA002A3416 /* NSObject+BZObjectStore.m */,
 				7259F87D18F44FCA002A3416 /* UIColor+BZObjectStore.h */,
@@ -981,6 +986,7 @@
 				7259F88518F44FCA002A3416 /* BZObjectStoreClazzCGSize.m in Sources */,
 				7259F88918F44FCA002A3416 /* BZObjectStoreClazzInt.m in Sources */,
 				7259F8A818F44FCA002A3416 /* BZObjectStoreRuntimeProperty.m in Sources */,
+				72C3EC6F190028C0002FFDC5 /* FMDatabase+indexInfo.m in Sources */,
 				7259F88D18F44FCA002A3416 /* BZObjectStoreClazzNSDictionary.m in Sources */,
 				7259F88418F44FCA002A3416 /* BZObjectStoreClazzCGRect.m in Sources */,
 				7259F88018F44FCA002A3416 /* BZObjectStoreAttributeModel.m in Sources */,

@@ -46,6 +46,7 @@
 + (NSString*)referencedCountStatement:(BZObjectStoreRuntime*)runtime;
 + (NSString*)countStatement:(BZObjectStoreRuntime*)runtime;
 
++ (NSString*)uniqueIndexName:(BZObjectStoreRuntime*)runtime;
 + (NSString*)selectConditionStatement:(BZObjectStoreConditionModel*)condition;
 + (NSString*)selectConditionStatement:(BZObjectStoreConditionModel*)condition runtime:(BZObjectStoreRuntime*)runtime;
 + (NSString*)selectConditionOptionStatement:(BZObjectStoreConditionModel*)condition;

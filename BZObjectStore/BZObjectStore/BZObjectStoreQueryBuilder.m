@@ -242,6 +242,11 @@
     return [NSString stringWithString:sql];
 }
 
++ (NSString*)uniqueIndexName:(BZObjectStoreRuntime*)runtime
+{
+    return [NSString stringWithFormat:@"%@_IDX",runtime.tableName];
+}
+
 + (NSString*)createUniqueIndexStatement:(BZObjectStoreRuntime*)runtime
 {
     NSMutableString *sql = [self createIndexStatementSub:runtime unique:YES attributes:runtime.identificationAttributes];
@@ -257,8 +262,8 @@
         [sql appendString:@"UNIQUE "];
     }
     [sql appendString:@"INDEX "];
-    [sql appendString:tableName];
-    [sql appendString:@"_IDX ON "];
+    [sql appendString:[self uniqueIndexName:runtime]];
+    [sql appendString:@" ON "];
     [sql appendString:tableName];
     [sql appendString:@" ("];
     NSArray *sqliteColumns = [self sqliteColumnsWithAttributes:attributes];
