@@ -196,10 +196,9 @@
         if (lastInsertRowid != 0) {
             sqlite_int64 lastInsertRowid = [db lastInsertRowId];
             object.rowid = [NSNumber numberWithLongLong:lastInsertRowid];
-            return changes;
         }
     }
-    return 0;
+    return changes;
 }
 
 - (BOOL)deleteFrom:(NSObject*)object db:(FMDatabase*)db
