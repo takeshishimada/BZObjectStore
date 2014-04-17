@@ -22,10 +22,8 @@
 // THE SOFTWARE.
 
 #import "BZObjectStoreReferenceMapper.h"
-#import "BZObjectStoreModelInterface.h"
-#import "BZObjectStoreConditionModel.h"
 
-@class FMDatabaseQueue;
+@class BZObjectStoreConditionModel;
 
 @interface BZObjectStore : BZObjectStoreReferenceMapper
 
