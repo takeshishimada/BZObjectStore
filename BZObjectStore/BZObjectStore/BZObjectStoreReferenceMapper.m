@@ -428,8 +428,10 @@
         }
         while ([rs next]) {
             for (BZObjectStoreRuntimeProperty *attribute in targetObject.runtime.simpleValueAttributes) {
-                NSObject *value = [attribute valueWithResultSet:rs];
-                [targetObject setValue:value forKey:attribute.name];
+                if (!attribute.isRelationshipClazz) {
+                    NSObject *value = [attribute valueWithResultSet:rs];
+                    [targetObject setValue:value forKey:attribute.name];
+                }
             }
         }
         [rs close];
@@ -756,8 +758,6 @@
                     [processedObjects setValue:object forKey:object.objectStoreHashForSave];
                 }
             }
-        } else {
-            NSLog(@"test");
         }
     }
     while (objectStuck.count > 0) {
