@@ -57,8 +57,9 @@
 }
 - (id)storeValueWithValue:(NSObject*)value
 {
-    if (value) {
-        return value;
+    BZObjectStoreClazz *osclazz = [BZObjectStoreClazz osclazzWithClazz:[value class]];
+    if (osclazz && [osclazz class] != [self class]) {
+        return [osclazz storeValueWithValue:value];
     } else {
         return [NSNull null];
     }
@@ -66,7 +67,12 @@
 
 - (id)valueWithStoreValue:(NSObject*)value
 {
-    return value;
+    BZObjectStoreClazz *osclazz = [BZObjectStoreClazz osclazzWithClazz:[value class]];
+    if (osclazz && [osclazz class] != [self class]) {
+        return [osclazz valueWithStoreValue:value];
+    } else {
+        return [NSNull null];
+    }
 }
 
 - (NSArray*)storeValuesWithObject:(NSObject*)object attributeName:(NSString*)attributeName
