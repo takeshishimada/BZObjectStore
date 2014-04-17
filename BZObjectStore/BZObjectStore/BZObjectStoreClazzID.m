@@ -86,9 +86,6 @@
 
 - (id)valueWithResultSet:(FMResultSet*)resultSet attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    if ([attribute.name isEqualToString:@"vid"]) {
-        NSLog(@"test");
-    }
     return [self valueWithStoreValue:[resultSet objectForColumnName:attribute.columnName]];
 }
 
