@@ -1,7 +1,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2014 BONZOO LLC
+// Copyright (c) 2014 BONZOO.LLC
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -74,7 +74,7 @@
 
 + (instancetype)openWithPath:(NSString*)path error:(NSError**)error
 {
-    if (path) {
+    if (path && ![path isEqualToString:@""]) {
         if ([path isEqualToString:[path lastPathComponent]]) {
             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
             NSString *dir = [paths objectAtIndex:0];

@@ -1,7 +1,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2014 BONZOO LLC
+// Copyright (c) 2014 BONZOO.LLC
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -71,8 +71,12 @@
 #import "BZTypeMissMatchMissMatchModel.h"
 #import "BZTypeMissMatchItemModel.h"
 #import "BZObjectStoreConditionModel.h"
+#import "BZOSIdenticalAttributeOSSerializeAttributeModel.h"
 
-@interface BZObjectStoreTests : XCTestCase
+@interface BZObjectStoreTests : XCTestCase {
+    BZObjectStore *_disk;
+    BZObjectStore *_memory;
+}
 @end
 
 @implementation BZObjectStoreTests
@@ -80,7 +84,10 @@
 - (void)setUp
 {
     [super setUp];
+    
     // Put setup code here. This method is called before the invocation of each test method in the class.
+    _disk = [BZObjectStoreOnDisk sharedInstance];
+    _memory = [BZObjectStoreOnMemory sharedInstance];
 }
 
 - (void)tearDown
@@ -91,64 +98,64 @@
 
 - (void)testOnDisk
 {
-    BZObjectStore *disk = [BZObjectStoreOnDisk sharedInstance];
-    [self testBZVarietyValuesModel:disk];
-    [self testBZInvalidValuesModel:disk];
-    [self testBZRelationshipHeaderModel:disk];
-    [self testBZInsertResponseModel:disk];
-    [self testBZUpdateResponseModel:disk];
-    [self testCircularReference:disk];
-    [self testSQLiteGroupCondition:disk];
-    [self testBZUpdateExistsObjectWithNoRowIdModel:disk];
-    [self testBZOnDemanItemModel:disk];
-    [self testBZExtendModel:disk];
-    [self testBZIgnoreExtendModel:disk];
-    [self testUpdateAttributeModel:disk];
-    [self testBZIgnoreAttribute:disk];
-    [self testBZDelegateModel:disk];
-    [self testBZNameModel:disk];
-    [self testAttributesModel:disk];
-    [self testBZOrderByModel:disk];
-    [self testBZWhereModel:disk];
-    [self testBZOffSetLimitModel:disk];
-    [self testBZFullTextModel:disk];
-    [self testBZReferenceConditionModel:disk];
-    [self testBZOSIdenticalModel:disk];
-    [self testBZWeakPropertyModel:disk];
-    [self testBZAddColumnsModel:disk];
-    [self testBZTypeMissMatchModel:disk];
-    [disk close];
+    [self testBZVarietyValuesModel:_disk];
+    [self testBZInvalidValuesModel:_disk];
+    [self testBZRelationshipHeaderModel:_disk];
+//    [self testBZInsertResponseModel:_disk];
+//    [self testBZUpdateResponseModel:_disk];
+    [self testCircularReference:_disk];
+    [self testSQLiteGroupCondition:_disk];
+    [self testBZUpdateExistsObjectWithNoRowIdModel:_disk];
+    [self testBZOnDemanItemModel:_disk];
+    [self testBZExtendModel:_disk];
+    [self testBZIgnoreExtendModel:_disk];
+    [self testUpdateAttributeModel:_disk];
+    [self testBZIgnoreAttribute:_disk];
+    [self testBZDelegateModel:_disk];
+    [self testBZNameModel:_disk];
+    [self testAttributesModel:_disk];
+    [self testBZOrderByModel:_disk];
+    [self testBZWhereModel:_disk];
+    [self testBZOffSetLimitModel:_disk];
+    [self testBZFullTextModel:_disk];
+    [self testBZReferenceConditionModel:_disk];
+    [self testBZOSIdenticalModel:_disk];
+    [self testBZWeakPropertyModel:_disk];
+    [self testBZAddColumnsModel:_disk];
+    [self testBZTypeMissMatchModel:_disk];
+    [self testBZOSIdenticalAttributeOSSerializeAttributeModel:_disk];
 }
+
+
 
 - (void)testOnMemory
 {
-    BZObjectStore *memory = [BZObjectStoreOnMemory sharedInstance];
-    [self testBZVarietyValuesModel:memory];
-    [self testBZInvalidValuesModel:memory];
-    [self testBZRelationshipHeaderModel:memory];
-    [self testBZInsertResponseModel:memory];
-    [self testBZUpdateResponseModel:memory];
-    [self testCircularReference:memory];
-    [self testSQLiteGroupCondition:memory];
-    [self testBZUpdateExistsObjectWithNoRowIdModel:memory];
-    [self testBZOnDemanItemModel:memory];
-    [self testBZExtendModel:memory];
-    [self testBZIgnoreExtendModel:memory];
-    [self testUpdateAttributeModel:memory];
-    [self testBZIgnoreAttribute:memory];
-    [self testBZDelegateModel:memory];
-    [self testBZNameModel:memory];
-    [self testAttributesModel:memory];
-    [self testBZOrderByModel:memory];
-    [self testBZWhereModel:memory];
-    [self testBZOffSetLimitModel:memory];
-    [self testBZFullTextModel:memory];
-    [self testBZReferenceConditionModel:memory];
-    [self testBZOSIdenticalModel:memory];
-    [self testBZWeakPropertyModel:memory];
-    [self testBZAddColumnsModel:memory];
-    [self testBZTypeMissMatchModel:memory];
-    [memory close];
+    [self testBZVarietyValuesModel:_memory];
+    [self testBZInvalidValuesModel:_memory];
+    [self testBZRelationshipHeaderModel:_memory];
+//    [self testBZInsertResponseModel:_memory];
+//    [self testBZUpdateResponseModel:_memory];
+    [self testCircularReference:_memory];
+    [self testSQLiteGroupCondition:_memory];
+    [self testBZUpdateExistsObjectWithNoRowIdModel:_memory];
+    [self testBZOnDemanItemModel:_memory];
+    [self testBZExtendModel:_memory];
+    [self testBZIgnoreExtendModel:_memory];
+    [self testUpdateAttributeModel:_memory];
+    [self testBZIgnoreAttribute:_memory];
+    [self testBZDelegateModel:_memory];
+    [self testBZNameModel:_memory];
+    [self testAttributesModel:_memory];
+    [self testBZOrderByModel:_memory];
+    [self testBZWhereModel:_memory];
+    [self testBZOffSetLimitModel:_memory];
+    [self testBZFullTextModel:_memory];
+    [self testBZReferenceConditionModel:_memory];
+    [self testBZOSIdenticalModel:_memory];
+    [self testBZWeakPropertyModel:_memory];
+    [self testBZAddColumnsModel:_memory];
+    [self testBZTypeMissMatchModel:_memory];
+    [self testBZOSIdenticalAttributeOSSerializeAttributeModel:_memory];
 }
 
 - (void)testBZVarietyValuesModel:(BZObjectStore*)os
@@ -1636,6 +1643,27 @@
     XCTAssertTrue(!fetchedObject.vcolor,@"vcolor error");
     XCTAssertTrue(!fetchedObject.vnull,@"vmutableSet error");
     XCTAssertTrue(!fetchedObject.vdata,@"vdata,vimage error");
+    
+}
+
+- (void)testBZOSIdenticalAttributeOSSerializeAttributeModel:(BZObjectStore*)os
+{
+    NSError *error = nil;
+    BZOSIdenticalAttributeOSSerializeAttributeModel *savedObject01 = [[BZOSIdenticalAttributeOSSerializeAttributeModel alloc]init];
+    savedObject01.code = @"01";
+    savedObject01.name = @"name01";
+    [os saveObject:savedObject01 error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+
+    BZOSIdenticalAttributeOSSerializeAttributeModel *savedObject02 = [[BZOSIdenticalAttributeOSSerializeAttributeModel alloc]init];
+    savedObject02.code = @"01";
+    savedObject02.name = @"name02";
+    [os saveObject:savedObject02 error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+
+    NSNumber *count = [os count:[BZOSIdenticalAttributeOSSerializeAttributeModel class] condition:nil error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertTrue(count.integerValue == 2,@"vdata,vimage error");
     
 }
 
