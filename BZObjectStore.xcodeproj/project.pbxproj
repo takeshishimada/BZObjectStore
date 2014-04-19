@@ -747,6 +747,8 @@
 		7294512519025C6A007C610E /* Objective-c Arrangement */ = {
 			isa = PBXGroup;
 			children = (
+				72B9ABBA18FAA51300CA6216 /* BZObjectStoreClazzID.h */,
+				72B9ABBB18FAA51300CA6216 /* BZObjectStoreClazzID.m */,
 				7259F85018F44FCA002A3416 /* BZObjectStoreClazzNSObject.h */,
 				7259F85118F44FCA002A3416 /* BZObjectStoreClazzNSObject.m */,
 				7259F83A18F44FCA002A3416 /* BZObjectStoreClazzNSArray.h */,
@@ -772,8 +774,6 @@
 		7294512619025D15007C610E /* Objective-c */ = {
 			isa = PBXGroup;
 			children = (
-				72B9ABBA18FAA51300CA6216 /* BZObjectStoreClazzID.h */,
-				72B9ABBB18FAA51300CA6216 /* BZObjectStoreClazzID.m */,
 				72B9ABBD18FAC7A100CA6216 /* BZObjectStoreClazzSerialize.h */,
 				72B9ABBE18FAC7A100CA6216 /* BZObjectStoreClazzSerialize.m */,
 				7259F83C18F44FCA002A3416 /* BZObjectStoreClazzNSData.h */,

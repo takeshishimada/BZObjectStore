@@ -103,8 +103,6 @@
 - (NSArray*)keysWithObject:(id)object;
 - (id)objectWithObjects:(NSArray*)objects keys:(NSArray*)keys initializingOptions:(NSString*)initializingOptions;
 - (id)object;
-- (id)storeValueWithValue:(NSObject*)value;
-- (id)valueWithStoreValue:(NSObject*)value;
 
 // internal
 @property (nonatomic,strong) BZObjectStoreClazz *osclazz;

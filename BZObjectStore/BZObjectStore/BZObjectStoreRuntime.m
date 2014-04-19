@@ -430,13 +430,5 @@
 {
     return [self.osclazz objectWithObjects:objects keys:keys initializingOptions:initializingOptions];
 }
-- (id)storeValueWithValue:(NSObject*)value
-{
-    return [self.osclazz storeValueWithValue:value];
-}
-- (id)valueWithStoreValue:(NSObject*)value
-{
-    return [self.osclazz valueWithStoreValue:value];
-}
 
 @end

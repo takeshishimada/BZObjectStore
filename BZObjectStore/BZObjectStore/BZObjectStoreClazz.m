@@ -70,38 +70,38 @@
 
 #pragma mark override methods,properties
 
-- (NSEnumerator*)objectEnumeratorWithObject:(NSArray*)object
-{
-    NSArray *array = @[object];
-    return [array objectEnumerator];
-}
-
-- (NSArray*)keysWithObject:(id)object
-{
-    return nil;
-}
-- (NSString*)initializingOptionsWithObject:(NSObject*)object
-{
-    return nil;
-}
-- (id)objectWithObjects:(NSArray*)objects keys:(NSArray*)keys initializingOptions:(NSString*)initializingOptions
-{
-    return nil;
-}
-- (id)objectWithClazz:(Class)clazz
-{
-    return nil;
-}
+//- (NSEnumerator*)objectEnumeratorWithObject:(NSArray*)object
+//{
+//    NSArray *array = @[object];
+//    return [array objectEnumerator];
+//}
+//
+//- (NSArray*)keysWithObject:(id)object
+//{
+//    return nil;
+//}
+//- (NSString*)initializingOptionsWithObject:(NSObject*)object
+//{
+//    return nil;
+//}
+//- (id)objectWithObjects:(NSArray*)objects keys:(NSArray*)keys initializingOptions:(NSString*)initializingOptions
+//{
+//    return nil;
+//}
+//- (id)objectWithClazz:(Class)clazz
+//{
+//    return nil;
+//}
 
 - (Class)superClazz
 {
     return nil;
 }
 
-- (NSString*)attributeType
-{
-    return @"";
-}
+//- (NSString*)attributeType
+//{
+//    return @"";
+//}
 - (BOOL)isSimpleValueClazz
 {
     return NO;
@@ -121,30 +121,6 @@
 - (BOOL)isStringNumberClazz
 {
     return NO;
-}
-- (id)storeValueWithValue:(id)value
-{
-    if (!value) {
-        return [NSNull null];
-    } else {
-        return value;
-    }
-}
-- (id)valueWithStoreValue:(id)value
-{
-    return value;
-}
-- (NSArray*)storeValuesWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute
-{
-    return @[[self storeValueWithValue:[object valueForKey:attribute.name]]];
-}
-- (id)valueWithResultSet:(FMResultSet*)resultSet attribute:(BZObjectStoreRuntimeProperty*)attribute
-{
-    return [self valueWithStoreValue:[resultSet stringForColumn:attribute.columnName]];
-}
-- (NSString*)sqliteDataTypeName
-{
-    return @"";
 }
 
 - (NSArray*)sqliteColumnsWithAttribute:(BZObjectStoreRuntimeProperty*)attribute

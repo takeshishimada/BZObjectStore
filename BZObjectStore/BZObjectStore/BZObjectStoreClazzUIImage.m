@@ -41,34 +41,22 @@
     return YES;
 }
 
-- (id)storeValueWithValue:(NSObject*)value
-{
-    UIImage *image = (UIImage*)value;
-    if (image) {
-        return [NSData dataWithData:UIImagePNGRepresentation(image)];
-    } else {
-        return [NSNull null];
-    }
-}
-
-- (id)valueWithStoreValue:(NSObject*)value
-{
-    NSData *data = (NSData*)value;
-    if ([[data class] isSubclassOfClass:[NSData class]]) {
-        return [[UIImage alloc] initWithData:data];
-    }
-    return nil;
-}
-
 - (NSArray*)storeValuesWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    return @[[self storeValueWithValue:[object valueForKey:attribute.name]]];
+    UIImage *image = [object valueForKey:attribute.name];
+    if (image) {
+        return @[[NSData dataWithData:UIImagePNGRepresentation(image)]];
+    } else {
+        return @[[NSNull null]];
+    }
 }
 
 - (id)valueWithResultSet:(FMResultSet*)resultSet attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    return [self valueWithStoreValue:[resultSet objectForColumnName:attribute.columnName]];
+    NSData *data = [resultSet dataForColumn:attribute.columnName];
+    return [[UIImage alloc] initWithData:data];
 }
+
 
 - (NSString*)sqliteDataTypeName
 {

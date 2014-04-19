@@ -32,6 +32,10 @@
 {
     return [object objectEnumerator];
 }
+- (NSArray*)keysWithObject:(id)object
+{
+    return nil;
+}
 - (id)objectWithObjects:(NSArray*)objects keys:(NSArray*)keys initializingOptions:(NSString*)initializingOptions
 {
     return [NSMutableOrderedSet orderedSetWithArray:objects];
@@ -53,19 +57,15 @@
     return YES;
 }
 
-- (id)storeValueWithValue:(NSObject*)value
-{
-    if ([[value class] isSubclassOfClass:[NSMutableOrderedSet class]]) {
-        NSMutableOrderedSet *orderedSet = (NSMutableOrderedSet*)value;
-        return [NSNumber numberWithInteger:orderedSet.count];
-    } else {
-        return [NSNull null];
-    }
-}
-
 - (NSArray*)storeValuesWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    return @[[self storeValueWithValue:[object valueForKey:attribute.name]]];
+    NSObject *value = [object valueForKey:attribute.name];
+    if ([[value class] isSubclassOfClass:[NSMutableOrderedSet class]]) {
+        NSMutableOrderedSet *orderedSet = (NSMutableOrderedSet*)value;
+        return @[[NSNumber numberWithInteger:orderedSet.count]];
+    } else {
+        return @[[NSNull null]];
+    }
 }
 
 - (NSString*)sqliteDataTypeName

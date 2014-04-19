@@ -32,6 +32,11 @@
 {
     return [object objectEnumerator];
 }
+- (NSArray*)keysWithObject:(id)object
+{
+    return nil;
+}
+
 - (id)objectWithObjects:(NSArray*)objects keys:(NSArray*)keys initializingOptions:(NSString*)initializingOptions
 {
     return [NSMutableArray arrayWithArray:objects];

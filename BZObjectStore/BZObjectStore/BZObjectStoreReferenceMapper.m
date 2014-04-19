@@ -396,10 +396,7 @@
                     } else if (runtime.isSimpleValueClazz ) {
                         Class clazz = NSClassFromString(relationshipObject.toClassName);
                         if (clazz) {
-                            BZObjectStoreRuntime *simpleValueRuntime = [super runtime:clazz];
-                            NSObject *value = [simpleValueRuntime valueWithStoreValue:relationshipObject.attributeValue];
                             relationshipObject.attributeFromObject = targetObject;
-                            relationshipObject.attributeValue = value;
                         } else {
                             relationshipObject.attributeValue = nil;
                         }
@@ -543,8 +540,10 @@
                         if ([self hadError:db error:error]) {
                             return NO;
                         }
-                        enumerator = [stuck.attributeObject.runtime objectEnumeratorWithObject:stuck.attributeObject];
-                        keys = [stuck.attributeObject.runtime keysWithObject:stuck.attributeObject];
+                        if (stuck.attributeObject.runtime.isRelationshipClazz) {
+                            enumerator = [stuck.attributeObject.runtime objectEnumeratorWithObject:stuck.attributeObject];
+                            keys = [stuck.attributeObject.runtime keysWithObject:stuck.attributeObject];
+                        }
                         for (NSObject *attributeObjectInEnumerator in enumerator) {
                             Class attributeClazzInEnumerator = [attributeObjectInEnumerator class];
                             BZObjectStoreRuntime *attributeRuntimeInEnumerator = [self runtimeWithClazz:attributeClazzInEnumerator db:db];
@@ -564,7 +563,7 @@
                                 } else if (attributeRuntimeInEnumerator.isSimpleValueClazz) {
                                     attributeObject = attributeObjectInEnumerator;
                                     attributeObjectClassName = attributeRuntimeInEnumerator.clazzName;
-                                    attributeValue = [attributeRuntimeInEnumerator storeValueWithValue:attributeObjectInEnumerator];
+                                    attributeValue = attributeObjectInEnumerator;
                                 }
                                 BZObjectStoreRelationshipModel *relationshipObject = [[BZObjectStoreRelationshipModel alloc]init];
                                 relationshipObject.fromClassName = targetObject.runtime.clazzName;

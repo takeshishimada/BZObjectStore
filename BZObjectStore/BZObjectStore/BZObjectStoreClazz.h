@@ -26,29 +26,28 @@
 @class BZObjectStoreRuntimeProperty;
 @class FMResultSet;
 
-@interface BZObjectStoreClazz : NSObject
-
-// overraide methods,properties
-@property (nonatomic,readonly) Class superClazz;
-@property (nonatomic,readonly) BOOL isSimpleValueClazz;
-@property (nonatomic,readonly) BOOL isArrayClazz;
-@property (nonatomic,readonly) BOOL isObjectClazz;
-@property (nonatomic,readonly) BOOL isRelationshipClazz;
-@property (nonatomic,readonly) BOOL isStringNumberClazz;
-@property (nonatomic,readonly) NSString *attributeType;
+@protocol BZObjectStoreClazzProtocol <NSObject>
+@optional
+- (Class)superClazz;
+- (BOOL)isSimpleValueClazz;
+- (BOOL)isArrayClazz;
+- (BOOL)isObjectClazz;
+- (BOOL)isRelationshipClazz;
+- (BOOL)isStringNumberClazz;
+- (NSString*)attributeType;
 - (NSString*)initializingOptionsWithObject:(NSObject*)object;
 - (id)objectWithObjects:(NSArray*)objects keys:(NSArray*)keys initializingOptions:(NSString*)initializingOptions;
 - (id)objectWithClazz:(Class)clazz;
 - (NSEnumerator*)objectEnumeratorWithObject:(id)object;
 - (NSArray*)keysWithObject:(id)object;
-- (id)valueWithStoreValue:(id)value;
-- (id)storeValueWithValue:(id)value;
 - (NSArray*)storeValuesWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute;
 - (id)valueWithResultSet:(FMResultSet*)resultSet attribute:(BZObjectStoreRuntimeProperty*)attribute;
 - (NSString*)sqliteDataTypeName;
 - (NSArray*)sqliteColumnsWithAttribute:(BZObjectStoreRuntimeProperty*)attribute;
+@end
 
-// constractor
+
+@interface BZObjectStoreClazz : NSObject<BZObjectStoreClazzProtocol>
 + (BZObjectStoreClazz*)osclazzWithClazz:(Class)clazz;
 + (BZObjectStoreClazz*)osclazzWithPrimitiveEncodingCode:(NSString*)primitiveEncodingCode;
 + (BZObjectStoreClazz*)osclazzWithStructureName:(NSString*)StructureName;

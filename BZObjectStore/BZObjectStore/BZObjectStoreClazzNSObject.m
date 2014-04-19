@@ -33,6 +33,10 @@
     NSArray *array = @[object];
     return [array objectEnumerator];
 }
+- (NSArray*)keysWithObject:(id)object
+{
+    return nil;
+}
 
 - (id)objectWithClazz:(Class)clazz
 {
@@ -55,31 +59,15 @@
 {
     return YES;
 }
-- (id)storeValueWithValue:(NSObject*)value
-{
-    if (value) {
-        return [NSNumber numberWithInteger:1];
-    } else {
-        return [NSNull null];
-    }
-}
-
-- (id)valueWithStoreValue:(NSObject*)value
-{
-    if ([[value class] isSubclassOfClass:[NSNumber class]]) {
-        return  value;
-    }
-    return nil;
-}
 
 - (NSArray*)storeValuesWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    return @[[self storeValueWithValue:[object valueForKey:attribute.name]]];
-}
-
-- (id)valueWithResultSet:(FMResultSet*)resultSet attribute:(BZObjectStoreRuntimeProperty*)attribute
-{
-    return [self valueWithStoreValue:[resultSet objectForColumnName:attribute.columnName]];
+    NSObject *value = [object valueForKey:attribute.name];
+    if (value) {
+        return @[[NSNumber numberWithInteger:1]];
+    } else {
+        return @[[NSNull null]];
+    }
 }
 
 - (NSString*)sqliteDataTypeName
