@@ -21,23 +21,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "FMDatabase+TemporaryTable.h"
+#import "BZOSIdenticalThirdModel.h"
 
-@implementation FMDatabase (TemporaryTable)
-
-- (BOOL)temporaryTableExists:(NSString*)tableName {
-    
-    tableName = [tableName lowercaseString];
-    
-    FMResultSet *rs = [self executeQuery:@"select [sql] from sqlite_temp_master where [type] = 'table' and lower(name) = ?", tableName];
-    
-    //if at least one next exists, table exists
-    BOOL returnBool = [rs next];
-    
-    //close and free object
-    [rs close];
-    
-    return returnBool;
+@implementation BZOSIdenticalThirdModel
++ (NSString*)OSTableName
+{
+    return @"OSIdenticalFirst";
 }
-
 @end

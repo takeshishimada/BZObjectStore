@@ -21,8 +21,11 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "FMDatabase.h"
+#import "BZOSIdenticalSecondModel.h"
 
-@interface FMDatabase (TemporaryTable)
-- (BOOL)temporaryTableExists:(NSString*)tableName;
+@implementation BZOSIdenticalSecondModel
++ (NSString*)OSTableName
+{
+    return @"OSIdenticalFirst";
+}
 @end

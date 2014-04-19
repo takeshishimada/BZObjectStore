@@ -29,33 +29,9 @@
 #import "BZObjectStoreConst.h"
 #import "BZObjectStoreConditionModel.h"
 #import "BZObjectStoreQueryBuilder.h"
+#import "BZObjectStoreReferenceModel.h"
 #import "BZRuntime.h"
 #import "NSObject+BZObjectStore.h"
-
-@interface BZObjectStoreReferenceModel : NSObject
-@property (nonatomic,strong) NSNumber *rowid;
-@end
-@implementation BZObjectStoreReferenceModel
-@end
-
-@interface BZObjectStoreRuntime ()
-@property (nonatomic,strong) BZObjectStoreClazz *osclazz;
-@property (nonatomic,strong) NSString *selectTemplateStatement;
-@property (nonatomic,strong) NSString *updateTemplateStatement;
-@property (nonatomic,strong) NSString *selectRowidTemplateStatement;
-@property (nonatomic,strong) NSString *insertIntoTemplateStatement;
-@property (nonatomic,strong) NSString *insertOrReplaceIntoTemplateStatement;
-@property (nonatomic,strong) NSString *insertOrIgnoreIntoTemplateStatement;
-@property (nonatomic,strong) NSString *deleteFromTemplateStatement;
-@property (nonatomic,strong) NSString *createTableTemplateStatement;
-@property (nonatomic,strong) NSString *dropTableTemplateStatement;
-@property (nonatomic,strong) NSString *createUniqueIndexTemplateStatement;
-@property (nonatomic,strong) NSString *dropIndexTemplateStatement;
-@property (nonatomic,strong) NSString *countTemplateStatement;
-@property (nonatomic,strong) NSString *referencedCountTemplateStatement;
-@property (nonatomic,strong) NSString *uniqueIndexNameTemplateStatement;
-@property (nonatomic,assign) BOOL hasNotUpdateIfValueIsNullAttribute;
-@end
 
 #define ROWID @"ROWID"
 

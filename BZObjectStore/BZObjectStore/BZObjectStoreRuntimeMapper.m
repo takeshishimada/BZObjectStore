@@ -35,7 +35,6 @@
 #import "FMDatabase.h"
 #import "FMResultSet.h"
 #import "FMDatabaseAdditions.h"
-#import "FMDatabase+TemporaryTable.h"
 #import "FMDatabase+indexInfo.h"
 #import "NSObject+BZObjectStore.h"
 

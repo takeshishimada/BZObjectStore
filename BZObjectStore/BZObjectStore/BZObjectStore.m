@@ -34,7 +34,6 @@
 #import "FMDatabase.h"
 #import "FMResultSet.h"
 #import "FMDatabaseAdditions.h"
-#import "FMDatabase+TemporaryTable.h"
 #import "NSObject+BZObjectStore.h"
 
 @interface BZObjectStoreRuntimeMapper (Protected)
@@ -146,23 +145,6 @@
         [self.dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
             [db setShouldCacheStatements:YES];
             block(db,rollback);
-        }];
-        [self registedAllRuntime];
-    }
-}
-
-- (void)inDatabaseWithBlock:(void(^)(FMDatabase *db))block
-{
-    if (self.db) {
-        if (block) {
-            block(self.db);
-        }
-    } else {
-        [self.dbQueue inDatabase:^(FMDatabase *db) {
-            [db setShouldCacheStatements:YES];
-            if (block) {
-                block(db);
-            }
         }];
         [self registedAllRuntime];
     }

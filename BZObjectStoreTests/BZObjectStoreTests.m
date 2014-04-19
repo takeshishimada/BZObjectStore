@@ -72,6 +72,9 @@
 #import "BZTypeMissMatchItemModel.h"
 #import "BZObjectStoreConditionModel.h"
 #import "BZOSIdenticalAttributeOSSerializeAttributeModel.h"
+#import "BZOSIdenticalFirstModel.h"
+#import "BZOSIdenticalSecondModel.h"
+#import "BZOSIdenticalThirdModel.h"
 
 @interface BZObjectStoreTests : XCTestCase {
     BZObjectStore *_disk;
@@ -124,6 +127,7 @@
     [self testBZAddColumnsModel:_disk];
     [self testBZTypeMissMatchModel:_disk];
     [self testBZOSIdenticalAttributeOSSerializeAttributeModel:_disk];
+    [self testBZOSIdenticalFirstModel:_disk];
 }
 
 
@@ -156,6 +160,7 @@
     [self testBZAddColumnsModel:_memory];
     [self testBZTypeMissMatchModel:_memory];
     [self testBZOSIdenticalAttributeOSSerializeAttributeModel:_memory];
+    [self testBZOSIdenticalFirstModel:_memory];
 }
 
 - (void)testBZVarietyValuesModel:(BZObjectStore*)os
@@ -1704,4 +1709,37 @@
     
 }
 
+- (void)testBZOSIdenticalFirstModel:(BZObjectStore*)os
+{
+    NSError *error = nil;
+    
+    BZOSIdenticalFirstModel *first = [[BZOSIdenticalFirstModel alloc]init];
+    first.code1 = @"01";
+    first.name = @"first";
+
+    BZOSIdenticalSecondModel *second = [[BZOSIdenticalSecondModel alloc]init];
+    second.code1 = @"01";
+    second.name = @"second";
+
+    BZOSIdenticalThirdModel *third = [[BZOSIdenticalThirdModel alloc]init];
+    third.code1 = @"01";
+    third.code2 = nil;
+    third.name = @"third";
+    
+    [os saveObject:first error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+
+    [os saveObject:second error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+
+    [os saveObject:third error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    
+    
+    NSArray *objects = [os fetchObjects:[BZOSIdenticalThirdModel class] condition:nil error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertTrue(objects.count == 2,@"vdata,vimage error");
+    
+
+}
 @end

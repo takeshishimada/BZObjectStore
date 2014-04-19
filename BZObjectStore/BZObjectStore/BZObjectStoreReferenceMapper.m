@@ -34,7 +34,6 @@
 #import "FMDatabase.h"
 #import "FMResultSet.h"
 #import "FMDatabaseAdditions.h"
-#import "FMDatabase+TemporaryTable.h"
 #import "NSObject+BZObjectStore.h"
 
 @interface BZObjectStoreRuntimeMapper (Protected)
