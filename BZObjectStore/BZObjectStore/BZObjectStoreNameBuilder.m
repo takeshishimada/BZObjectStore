@@ -44,7 +44,7 @@
         }
         NSString *ignoreSuffixName = self.ignoreSuffixName;
         if (ignoreSuffixName) {
-            if ([tableName hasPrefix:ignoreSuffixName]) {
+            if ([tableName hasSuffix:ignoreSuffixName]) {
                 tableName = [tableName substringToIndex:tableName.length - ignoreSuffixName.length];
             }
         }

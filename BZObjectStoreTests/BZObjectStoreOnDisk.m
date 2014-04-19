@@ -55,14 +55,14 @@
     return path;
 }
 
-//+ (NSString*)ignorePrefixName
-//{
-//    return @"BZ";
-//}
-//
-//+ (NSString*)ignoreSuffixName
-//{
-//    return @"Model";
-//}
++ (NSString*)ignorePrefixName
+{
+    return @"BZ";
+}
+
++ (NSString*)ignoreSuffixName
+{
+    return @"Model";
+}
 
 @end

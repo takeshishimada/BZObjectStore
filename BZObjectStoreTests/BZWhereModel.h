@@ -22,9 +22,11 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import "BZObjectStoreModelInterface.h"
 
-@interface BZWhereModel : NSObject
+@interface BZWhereModel : NSObject<OSModelInterface>
 - (instancetype)initWithCode:(NSString*)code name:(NSString*)name;
 @property (nonatomic,strong) NSString *code;
 @property (nonatomic,strong) NSString *name;
++ (NSString*)OSTableName;
 @end

@@ -26,6 +26,6 @@
 @implementation BZTypeMissMatchMissMatchModel
 + (NSString*)OSTableName
 {
-    return @"BZTypeMissMatchModel";
+    return @"TypeMissMatch";
 }
 @end

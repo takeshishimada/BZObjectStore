@@ -36,4 +36,15 @@
         return _sharedInstance;
     }
 }
+
++ (NSString*)ignorePrefixName
+{
+    return @"BZ";
+}
+
++ (NSString*)ignoreSuffixName
+{
+    return @"Model";
+}
+
 @end

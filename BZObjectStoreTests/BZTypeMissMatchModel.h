@@ -27,7 +27,7 @@
 
 @class BZTypeMissMatchItemModel;
 
-@interface BZTypeMissMatchModel : NSObject
+@interface BZTypeMissMatchModel : NSObject<OSModelInterface>
 
 typedef struct {
 	int no;

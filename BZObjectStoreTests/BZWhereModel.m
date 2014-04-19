@@ -32,4 +32,8 @@
     }
     return self;
 }
++ (NSString*)OSTableName
+{
+    return @"WhereTest";
+}
 @end
