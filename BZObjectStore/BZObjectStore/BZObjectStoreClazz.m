@@ -24,25 +24,6 @@
 #import "BZObjectStoreClazz.h"
 #import "BZObjectStoreClazzID.h"
 #import "BZObjectStoreClazzNSObject.h"
-#import "BZObjectStoreClazzNSDate.h"
-#import "BZObjectStoreClazzNSURL.h"
-#import "BZObjectStoreClazzNSMutableString.h"
-#import "BZObjectStoreClazzNSString.h"
-#import "BZObjectStoreClazzNSNumber.h"
-#import "BZObjectStoreClazzNSData.h"
-#import "BZObjectStoreClazzUIColor.h"
-#import "BZObjectStoreClazzUIImage.h"
-#import "BZObjectStoreClazzNSValue.h"
-#import "BZObjectStoreClazzNSNull.h"
-#import "BZObjectStoreClazzPrimitive.h"
-#import "BZObjectStoreClazzInt.h"
-#import "BZObjectStoreClazzChar.h"
-#import "BZObjectStoreClazzFloat.h"
-#import "BZObjectStoreClazzDouble.h"
-#import "BZObjectStoreClazzCGRect.h"
-#import "BZObjectStoreClazzCGSize.h"
-#import "BZObjectStoreClazzCGPoint.h"
-#import "BZObjectStoreClazzNSRange.h"
 #import "BZObjectStoreClazzNSMutableArray.h"
 #import "BZObjectStoreClazzNSMutableDictionary.h"
 #import "BZObjectStoreClazzNSMutableSet.h"
@@ -51,7 +32,35 @@
 #import "BZObjectStoreClazzNSDictionary.h"
 #import "BZObjectStoreClazzNSSet.h"
 #import "BZObjectStoreClazzNSOrderedSet.h"
+#import "BZObjectStoreClazzNSMutableString.h"
+#import "BZObjectStoreClazzNSString.h"
+#import "BZObjectStoreClazzNSDate.h"
+#import "BZObjectStoreClazzNSURL.h"
+#import "BZObjectStoreClazzNSNumber.h"
+#import "BZObjectStoreClazzNSData.h"
+#import "BZObjectStoreClazzUIColor.h"
+#import "BZObjectStoreClazzUIImage.h"
+#import "BZObjectStoreClazzNSValue.h"
+#import "BZObjectStoreClazzNSNull.h"
 #import "BZObjectStoreClazzSerialize.h"
+#import "BZObjectStoreClazzPrimitive.h"
+#import "BZObjectStoreClazzChar.h"
+#import "BZObjectStoreClazzShort.h"
+#import "BZObjectStoreClazzInt.h"
+#import "BZObjectStoreClazzLong.h"
+#import "BZObjectStoreClazzLongLong.h"
+#import "BZObjectStoreClazzUnsignedChar.h"
+#import "BZObjectStoreClazzUnsignedShort.h"
+#import "BZObjectStoreClazzUnsignedInt.h"
+#import "BZObjectStoreClazzUnsignedLong.h"
+#import "BZObjectStoreClazzUnsignedLongLong.h"
+#import "BZObjectStoreClazzFloat.h"
+#import "BZObjectStoreClazzUnsignedChar.h"
+#import "BZObjectStoreClazzDouble.h"
+#import "BZObjectStoreClazzCGRect.h"
+#import "BZObjectStoreClazzCGSize.h"
+#import "BZObjectStoreClazzCGPoint.h"
+#import "BZObjectStoreClazzNSRange.h"
 #import "BZObjectStoreConst.h"
 #import "BZObjectStoreRuntimeProperty.h"
 #import "BZObjectStoreSQLiteColumnModel.h"
@@ -191,8 +200,17 @@
             [self addOSClazz:[BZObjectStoreClazzPrimitive class] osclazzsArray:osclazzsArray];
             [self addOSClazz:[BZObjectStoreClazzInt class] osclazzsArray:osclazzsArray];
             [self addOSClazz:[BZObjectStoreClazzChar class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzLong class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzLongLong class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzUnsignedInt class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzUnsignedShort class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzUnsignedChar class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzUnsignedLong class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzUnsignedLongLong class] osclazzsArray:osclazzsArray];
             [self addOSClazz:[BZObjectStoreClazzFloat class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzShort class] osclazzsArray:osclazzsArray];
             [self addOSClazz:[BZObjectStoreClazzDouble class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzUnsignedChar class] osclazzsArray:osclazzsArray];
             [self addOSClazz:[BZObjectStoreClazzCGRect class] osclazzsArray:osclazzsArray];
             [self addOSClazz:[BZObjectStoreClazzCGSize class] osclazzsArray:osclazzsArray];
             [self addOSClazz:[BZObjectStoreClazzCGPoint class] osclazzsArray:osclazzsArray];

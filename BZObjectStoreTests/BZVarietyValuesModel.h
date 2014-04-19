@@ -35,6 +35,7 @@ typedef struct {
 @interface BZVarietyValuesModel : NSObject
 
 // POD types
+@property (nonatomic,assign) char *vcharstring;
 @property (nonatomic,assign) double vdouble_min;
 @property (nonatomic,assign) BOOL vbool_min;
 @property (nonatomic,assign) char vchar_min;

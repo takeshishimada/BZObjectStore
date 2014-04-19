@@ -178,6 +178,7 @@
     foo vvalue = {2,"name",1.23456788f};
 
     // POD types
+    savedObject.vcharstring = "test";
     savedObject.vbool_max = YES;
     savedObject.vdouble_max = DBL_MAX;
     savedObject.vfloat_max = FLT_MAX;

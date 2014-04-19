@@ -21,16 +21,16 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "BZObjectStoreClazzFloat.h"
+#import "BZObjectStoreClazzLongLong.h"
 #import "FMResultSet.h"
 #import "BZObjectStoreConst.h"
 #import "BZObjectStoreRuntimeProperty.h"
 
-@implementation BZObjectStoreClazzFloat
+@implementation BZObjectStoreClazzLongLong
 
 - (NSString*)attributeType
 {
-    return [NSString stringWithFormat:@"%s",@encode(float)];
+    return [NSString stringWithFormat:@"%s",@encode(long long)];
 }
 - (BOOL)isSimpleValueClazz
 {
@@ -45,13 +45,13 @@
 
 - (id)valueWithResultSet:(FMResultSet*)resultSet attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    double value = [resultSet doubleForColumn:attribute.name];
-    return [NSNumber numberWithDouble:value];
+    long long value = [resultSet longLongIntForColumn:attribute.columnName];
+    return [NSNumber numberWithLongLong:value];
 }
 
 - (NSString*)sqliteDataTypeName
 {
-    return SQLITE_DATA_TYPE_REAL;
+    return SQLITE_DATA_TYPE_INTEGER;
 }
 
 @end

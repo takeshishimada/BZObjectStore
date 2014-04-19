@@ -37,37 +37,16 @@
     return YES;
 }
 
-- (id)storeValueWithValue:(NSObject*)value
-{
-    if ([[value class] isSubclassOfClass:[NSNumber class]]) {
-        return value;
-    } else {
-        return [NSNull null];
-    }
-}
-
-- (id)valueWithStoreValue:(NSObject*)value
-{
-    if ([[value class] isSubclassOfClass:[NSNumber class]]) {
-        return value;
-    } else {
-        return [NSNumber numberWithBool:NO];
-    }
-}
-
 - (NSArray*)storeValuesWithObject:(NSObject*)object attributeName:(NSString*)attributeName
 {
     NSNumber *value = [object valueForKey:attributeName];
-    // Fixed me
-    // NSNumber contains char always be saved as 0 or 1...
-    NSNumber *number = [NSNumber numberWithInt:[value intValue]];
-    return @[[self storeValueWithValue:number]];
+    return @[[NSNumber numberWithInt:[value intValue]]];
 }
 
 - (id)valueWithResultSet:(FMResultSet*)resultSet attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    NSObject *value = [resultSet objectForColumnName:attribute.columnName];
-    return [self valueWithStoreValue:value];
+    int value = [resultSet intForColumn:attribute.columnName];
+    return [NSNumber numberWithInt:value];
 }
 
 - (NSString*)sqliteDataTypeName

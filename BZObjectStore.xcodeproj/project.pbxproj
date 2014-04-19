@@ -93,6 +93,14 @@
 		727926B018FA265C00A564AA /* BZTypeMissMatchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 727926AF18FA265C00A564AA /* BZTypeMissMatchModel.m */; };
 		727926B318FA268C00A564AA /* BZTypeMissMatchMissMatchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 727926B218FA268C00A564AA /* BZTypeMissMatchMissMatchModel.m */; };
 		727926B618FA26F200A564AA /* BZTypeMissMatchItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 727926B518FA26F200A564AA /* BZTypeMissMatchItemModel.m */; };
+		7294512219025B9B007C610E /* BZObjectStoreClazzShort.m in Sources */ = {isa = PBXBuildFile; fileRef = 7294512119025B9B007C610E /* BZObjectStoreClazzShort.m */; };
+		7294512919025F10007C610E /* BZObjectStoreClazzUnsignedChar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7294512819025F10007C610E /* BZObjectStoreClazzUnsignedChar.m */; };
+		7294512C19026281007C610E /* BZObjectStoreClazzLong.m in Sources */ = {isa = PBXBuildFile; fileRef = 7294512B19026281007C610E /* BZObjectStoreClazzLong.m */; };
+		7294512F19026BD5007C610E /* BZObjectStoreClazzLongLong.m in Sources */ = {isa = PBXBuildFile; fileRef = 7294512E19026BD5007C610E /* BZObjectStoreClazzLongLong.m */; };
+		7294514419026CF6007C610E /* BZObjectStoreClazzUnsignedInt.m in Sources */ = {isa = PBXBuildFile; fileRef = 7294513D19026CF6007C610E /* BZObjectStoreClazzUnsignedInt.m */; };
+		7294514519026CF6007C610E /* BZObjectStoreClazzUnsignedLong.m in Sources */ = {isa = PBXBuildFile; fileRef = 7294513F19026CF6007C610E /* BZObjectStoreClazzUnsignedLong.m */; };
+		7294514619026CF6007C610E /* BZObjectStoreClazzUnsignedLongLong.m in Sources */ = {isa = PBXBuildFile; fileRef = 7294514119026CF6007C610E /* BZObjectStoreClazzUnsignedLongLong.m */; };
+		7294514719026CF6007C610E /* BZObjectStoreClazzUnsignedShort.m in Sources */ = {isa = PBXBuildFile; fileRef = 7294514319026CF6007C610E /* BZObjectStoreClazzUnsignedShort.m */; };
 		72B89A1B1901770C0017B06F /* BZOSIdenticalAttributeOSSerializeAttributeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72B89A1A1901770C0017B06F /* BZOSIdenticalAttributeOSSerializeAttributeModel.m */; };
 		72B89A211901796A0017B06F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7259F80C18F44F04002A3416 /* XCTest.framework */; };
 		72B89A221901796A0017B06F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7259F7F318F44F04002A3416 /* Foundation.framework */; };
@@ -307,6 +315,22 @@
 		727926B218FA268C00A564AA /* BZTypeMissMatchMissMatchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZTypeMissMatchMissMatchModel.m; sourceTree = "<group>"; };
 		727926B418FA26F200A564AA /* BZTypeMissMatchItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZTypeMissMatchItemModel.h; sourceTree = "<group>"; };
 		727926B518FA26F200A564AA /* BZTypeMissMatchItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZTypeMissMatchItemModel.m; sourceTree = "<group>"; };
+		7294512019025B9B007C610E /* BZObjectStoreClazzShort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzShort.h; sourceTree = "<group>"; };
+		7294512119025B9B007C610E /* BZObjectStoreClazzShort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzShort.m; sourceTree = "<group>"; };
+		7294512719025F10007C610E /* BZObjectStoreClazzUnsignedChar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzUnsignedChar.h; sourceTree = "<group>"; };
+		7294512819025F10007C610E /* BZObjectStoreClazzUnsignedChar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzUnsignedChar.m; sourceTree = "<group>"; };
+		7294512A19026281007C610E /* BZObjectStoreClazzLong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzLong.h; sourceTree = "<group>"; };
+		7294512B19026281007C610E /* BZObjectStoreClazzLong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzLong.m; sourceTree = "<group>"; };
+		7294512D19026BD5007C610E /* BZObjectStoreClazzLongLong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzLongLong.h; sourceTree = "<group>"; };
+		7294512E19026BD5007C610E /* BZObjectStoreClazzLongLong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzLongLong.m; sourceTree = "<group>"; };
+		7294513C19026CF6007C610E /* BZObjectStoreClazzUnsignedInt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzUnsignedInt.h; sourceTree = "<group>"; };
+		7294513D19026CF6007C610E /* BZObjectStoreClazzUnsignedInt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzUnsignedInt.m; sourceTree = "<group>"; };
+		7294513E19026CF6007C610E /* BZObjectStoreClazzUnsignedLong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzUnsignedLong.h; sourceTree = "<group>"; };
+		7294513F19026CF6007C610E /* BZObjectStoreClazzUnsignedLong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzUnsignedLong.m; sourceTree = "<group>"; };
+		7294514019026CF6007C610E /* BZObjectStoreClazzUnsignedLongLong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzUnsignedLongLong.h; sourceTree = "<group>"; };
+		7294514119026CF6007C610E /* BZObjectStoreClazzUnsignedLongLong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzUnsignedLongLong.m; sourceTree = "<group>"; };
+		7294514219026CF6007C610E /* BZObjectStoreClazzUnsignedShort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzUnsignedShort.h; sourceTree = "<group>"; };
+		7294514319026CF6007C610E /* BZObjectStoreClazzUnsignedShort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzUnsignedShort.m; sourceTree = "<group>"; };
 		72B89A191901770C0017B06F /* BZOSIdenticalAttributeOSSerializeAttributeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZOSIdenticalAttributeOSSerializeAttributeModel.h; sourceTree = "<group>"; };
 		72B89A1A1901770C0017B06F /* BZOSIdenticalAttributeOSSerializeAttributeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZOSIdenticalAttributeOSSerializeAttributeModel.m; sourceTree = "<group>"; };
 		72B89A201901796A0017B06F /* BZObjectStoreClazzTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BZObjectStoreClazzTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -662,6 +686,110 @@
 			name = TypeMissMatch;
 			sourceTree = "<group>";
 		};
+		7294512319025BF4007C610E /* C POD */ = {
+			isa = PBXGroup;
+			children = (
+				7259F85E18F44FCA002A3416 /* BZObjectStoreClazzPrimitive.h */,
+				7259F85F18F44FCA002A3416 /* BZObjectStoreClazzPrimitive.m */,
+				7259F83218F44FCA002A3416 /* BZObjectStoreClazzChar.h */,
+				7259F83318F44FCA002A3416 /* BZObjectStoreClazzChar.m */,
+				7294512019025B9B007C610E /* BZObjectStoreClazzShort.h */,
+				7294512119025B9B007C610E /* BZObjectStoreClazzShort.m */,
+				7259F83818F44FCA002A3416 /* BZObjectStoreClazzInt.h */,
+				7259F83918F44FCA002A3416 /* BZObjectStoreClazzInt.m */,
+				7294512A19026281007C610E /* BZObjectStoreClazzLong.h */,
+				7294512B19026281007C610E /* BZObjectStoreClazzLong.m */,
+				7294512D19026BD5007C610E /* BZObjectStoreClazzLongLong.h */,
+				7294512E19026BD5007C610E /* BZObjectStoreClazzLongLong.m */,
+				7294512719025F10007C610E /* BZObjectStoreClazzUnsignedChar.h */,
+				7294512819025F10007C610E /* BZObjectStoreClazzUnsignedChar.m */,
+				7294514219026CF6007C610E /* BZObjectStoreClazzUnsignedShort.h */,
+				7294514319026CF6007C610E /* BZObjectStoreClazzUnsignedShort.m */,
+				7294513C19026CF6007C610E /* BZObjectStoreClazzUnsignedInt.h */,
+				7294513D19026CF6007C610E /* BZObjectStoreClazzUnsignedInt.m */,
+				7294513E19026CF6007C610E /* BZObjectStoreClazzUnsignedLong.h */,
+				7294513F19026CF6007C610E /* BZObjectStoreClazzUnsignedLong.m */,
+				7294514019026CF6007C610E /* BZObjectStoreClazzUnsignedLongLong.h */,
+				7294514119026CF6007C610E /* BZObjectStoreClazzUnsignedLongLong.m */,
+				7259F83418F44FCA002A3416 /* BZObjectStoreClazzDouble.h */,
+				7259F83518F44FCA002A3416 /* BZObjectStoreClazzDouble.m */,
+				7259F83618F44FCA002A3416 /* BZObjectStoreClazzFloat.h */,
+				7259F83718F44FCA002A3416 /* BZObjectStoreClazzFloat.m */,
+			);
+			name = "C POD";
+			sourceTree = "<group>";
+		};
+		7294512419025C09007C610E /* C Structure */ = {
+			isa = PBXGroup;
+			children = (
+				7259F82C18F44FCA002A3416 /* BZObjectStoreClazzCGPoint.h */,
+				7259F82D18F44FCA002A3416 /* BZObjectStoreClazzCGPoint.m */,
+				7259F82E18F44FCA002A3416 /* BZObjectStoreClazzCGRect.h */,
+				7259F82F18F44FCA002A3416 /* BZObjectStoreClazzCGRect.m */,
+				7259F83018F44FCA002A3416 /* BZObjectStoreClazzCGSize.h */,
+				7259F83118F44FCA002A3416 /* BZObjectStoreClazzCGSize.m */,
+				7259F85418F44FCA002A3416 /* BZObjectStoreClazzNSRange.h */,
+				7259F85518F44FCA002A3416 /* BZObjectStoreClazzNSRange.m */,
+			);
+			name = "C Structure";
+			sourceTree = "<group>";
+		};
+		7294512519025C6A007C610E /* Objective-c Arrangement */ = {
+			isa = PBXGroup;
+			children = (
+				7259F85018F44FCA002A3416 /* BZObjectStoreClazzNSObject.h */,
+				7259F85118F44FCA002A3416 /* BZObjectStoreClazzNSObject.m */,
+				7259F83A18F44FCA002A3416 /* BZObjectStoreClazzNSArray.h */,
+				7259F83B18F44FCA002A3416 /* BZObjectStoreClazzNSArray.m */,
+				7259F84018F44FCA002A3416 /* BZObjectStoreClazzNSDictionary.h */,
+				7259F84118F44FCA002A3416 /* BZObjectStoreClazzNSDictionary.m */,
+				7259F85618F44FCA002A3416 /* BZObjectStoreClazzNSSet.h */,
+				7259F85718F44FCA002A3416 /* BZObjectStoreClazzNSSet.m */,
+				7259F85218F44FCA002A3416 /* BZObjectStoreClazzNSOrderedSet.h */,
+				7259F85318F44FCA002A3416 /* BZObjectStoreClazzNSOrderedSet.m */,
+				7259F84218F44FCA002A3416 /* BZObjectStoreClazzNSMutableArray.h */,
+				7259F84318F44FCA002A3416 /* BZObjectStoreClazzNSMutableArray.m */,
+				7259F84418F44FCA002A3416 /* BZObjectStoreClazzNSMutableDictionary.h */,
+				7259F84518F44FCA002A3416 /* BZObjectStoreClazzNSMutableDictionary.m */,
+				7259F84818F44FCA002A3416 /* BZObjectStoreClazzNSMutableSet.h */,
+				7259F84918F44FCA002A3416 /* BZObjectStoreClazzNSMutableSet.m */,
+				7259F84618F44FCA002A3416 /* BZObjectStoreClazzNSMutableOrderedSet.h */,
+				7259F84718F44FCA002A3416 /* BZObjectStoreClazzNSMutableOrderedSet.m */,
+			);
+			name = "Objective-c Arrangement";
+			sourceTree = "<group>";
+		};
+		7294512619025D15007C610E /* Objective-c */ = {
+			isa = PBXGroup;
+			children = (
+				72B9ABBA18FAA51300CA6216 /* BZObjectStoreClazzID.h */,
+				72B9ABBB18FAA51300CA6216 /* BZObjectStoreClazzID.m */,
+				72B9ABBD18FAC7A100CA6216 /* BZObjectStoreClazzSerialize.h */,
+				72B9ABBE18FAC7A100CA6216 /* BZObjectStoreClazzSerialize.m */,
+				7259F83C18F44FCA002A3416 /* BZObjectStoreClazzNSData.h */,
+				7259F83D18F44FCA002A3416 /* BZObjectStoreClazzNSData.m */,
+				7259F83E18F44FCA002A3416 /* BZObjectStoreClazzNSDate.h */,
+				7259F83F18F44FCA002A3416 /* BZObjectStoreClazzNSDate.m */,
+				7259F85818F44FCA002A3416 /* BZObjectStoreClazzNSString.h */,
+				7259F85918F44FCA002A3416 /* BZObjectStoreClazzNSString.m */,
+				7259F84A18F44FCA002A3416 /* BZObjectStoreClazzNSMutableString.h */,
+				7259F84B18F44FCA002A3416 /* BZObjectStoreClazzNSMutableString.m */,
+				7259F84C18F44FCA002A3416 /* BZObjectStoreClazzNSNull.h */,
+				7259F84D18F44FCA002A3416 /* BZObjectStoreClazzNSNull.m */,
+				7259F84E18F44FCA002A3416 /* BZObjectStoreClazzNSNumber.h */,
+				7259F84F18F44FCA002A3416 /* BZObjectStoreClazzNSNumber.m */,
+				7259F85A18F44FCA002A3416 /* BZObjectStoreClazzNSURL.h */,
+				7259F85B18F44FCA002A3416 /* BZObjectStoreClazzNSURL.m */,
+				7259F85C18F44FCA002A3416 /* BZObjectStoreClazzNSValue.h */,
+				7259F85D18F44FCA002A3416 /* BZObjectStoreClazzNSValue.m */,
+				7259F86018F44FCA002A3416 /* BZObjectStoreClazzUIColor.h */,
+				7259F86118F44FCA002A3416 /* BZObjectStoreClazzUIColor.m */,
+				7259F86218F44FCA002A3416 /* BZObjectStoreClazzUIImage.h */,
+				7259F86318F44FCA002A3416 /* BZObjectStoreClazzUIImage.m */,
+			);
+			name = "Objective-c";
+			sourceTree = "<group>";
+		};
 		72B89A241901796A0017B06F /* BZObjectStoreClazzTest */ = {
 			isa = PBXGroup;
 			children = (
@@ -747,66 +875,10 @@
 			children = (
 				7259F82A18F44FCA002A3416 /* BZObjectStoreClazz.h */,
 				7259F82B18F44FCA002A3416 /* BZObjectStoreClazz.m */,
-				72B9ABBD18FAC7A100CA6216 /* BZObjectStoreClazzSerialize.h */,
-				72B9ABBE18FAC7A100CA6216 /* BZObjectStoreClazzSerialize.m */,
-				7259F82C18F44FCA002A3416 /* BZObjectStoreClazzCGPoint.h */,
-				7259F82D18F44FCA002A3416 /* BZObjectStoreClazzCGPoint.m */,
-				7259F82E18F44FCA002A3416 /* BZObjectStoreClazzCGRect.h */,
-				7259F82F18F44FCA002A3416 /* BZObjectStoreClazzCGRect.m */,
-				7259F83018F44FCA002A3416 /* BZObjectStoreClazzCGSize.h */,
-				7259F83118F44FCA002A3416 /* BZObjectStoreClazzCGSize.m */,
-				7259F83218F44FCA002A3416 /* BZObjectStoreClazzChar.h */,
-				7259F83318F44FCA002A3416 /* BZObjectStoreClazzChar.m */,
-				7259F83418F44FCA002A3416 /* BZObjectStoreClazzDouble.h */,
-				7259F83518F44FCA002A3416 /* BZObjectStoreClazzDouble.m */,
-				7259F83618F44FCA002A3416 /* BZObjectStoreClazzFloat.h */,
-				7259F83718F44FCA002A3416 /* BZObjectStoreClazzFloat.m */,
-				7259F83818F44FCA002A3416 /* BZObjectStoreClazzInt.h */,
-				7259F83918F44FCA002A3416 /* BZObjectStoreClazzInt.m */,
-				7259F83A18F44FCA002A3416 /* BZObjectStoreClazzNSArray.h */,
-				7259F83B18F44FCA002A3416 /* BZObjectStoreClazzNSArray.m */,
-				7259F84018F44FCA002A3416 /* BZObjectStoreClazzNSDictionary.h */,
-				7259F84118F44FCA002A3416 /* BZObjectStoreClazzNSDictionary.m */,
-				7259F85618F44FCA002A3416 /* BZObjectStoreClazzNSSet.h */,
-				7259F85718F44FCA002A3416 /* BZObjectStoreClazzNSSet.m */,
-				7259F85218F44FCA002A3416 /* BZObjectStoreClazzNSOrderedSet.h */,
-				7259F85318F44FCA002A3416 /* BZObjectStoreClazzNSOrderedSet.m */,
-				7259F84218F44FCA002A3416 /* BZObjectStoreClazzNSMutableArray.h */,
-				7259F84318F44FCA002A3416 /* BZObjectStoreClazzNSMutableArray.m */,
-				7259F84418F44FCA002A3416 /* BZObjectStoreClazzNSMutableDictionary.h */,
-				7259F84518F44FCA002A3416 /* BZObjectStoreClazzNSMutableDictionary.m */,
-				7259F84618F44FCA002A3416 /* BZObjectStoreClazzNSMutableOrderedSet.h */,
-				7259F84718F44FCA002A3416 /* BZObjectStoreClazzNSMutableOrderedSet.m */,
-				7259F84818F44FCA002A3416 /* BZObjectStoreClazzNSMutableSet.h */,
-				7259F84918F44FCA002A3416 /* BZObjectStoreClazzNSMutableSet.m */,
-				7259F83C18F44FCA002A3416 /* BZObjectStoreClazzNSData.h */,
-				7259F83D18F44FCA002A3416 /* BZObjectStoreClazzNSData.m */,
-				7259F83E18F44FCA002A3416 /* BZObjectStoreClazzNSDate.h */,
-				7259F83F18F44FCA002A3416 /* BZObjectStoreClazzNSDate.m */,
-				7259F84A18F44FCA002A3416 /* BZObjectStoreClazzNSMutableString.h */,
-				7259F84B18F44FCA002A3416 /* BZObjectStoreClazzNSMutableString.m */,
-				7259F84C18F44FCA002A3416 /* BZObjectStoreClazzNSNull.h */,
-				7259F84D18F44FCA002A3416 /* BZObjectStoreClazzNSNull.m */,
-				7259F84E18F44FCA002A3416 /* BZObjectStoreClazzNSNumber.h */,
-				7259F84F18F44FCA002A3416 /* BZObjectStoreClazzNSNumber.m */,
-				72B9ABBA18FAA51300CA6216 /* BZObjectStoreClazzID.h */,
-				72B9ABBB18FAA51300CA6216 /* BZObjectStoreClazzID.m */,
-				7259F85018F44FCA002A3416 /* BZObjectStoreClazzNSObject.h */,
-				7259F85118F44FCA002A3416 /* BZObjectStoreClazzNSObject.m */,
-				7259F85418F44FCA002A3416 /* BZObjectStoreClazzNSRange.h */,
-				7259F85518F44FCA002A3416 /* BZObjectStoreClazzNSRange.m */,
-				7259F85818F44FCA002A3416 /* BZObjectStoreClazzNSString.h */,
-				7259F85918F44FCA002A3416 /* BZObjectStoreClazzNSString.m */,
-				7259F85A18F44FCA002A3416 /* BZObjectStoreClazzNSURL.h */,
-				7259F85B18F44FCA002A3416 /* BZObjectStoreClazzNSURL.m */,
-				7259F85C18F44FCA002A3416 /* BZObjectStoreClazzNSValue.h */,
-				7259F85D18F44FCA002A3416 /* BZObjectStoreClazzNSValue.m */,
-				7259F85E18F44FCA002A3416 /* BZObjectStoreClazzPrimitive.h */,
-				7259F85F18F44FCA002A3416 /* BZObjectStoreClazzPrimitive.m */,
-				7259F86018F44FCA002A3416 /* BZObjectStoreClazzUIColor.h */,
-				7259F86118F44FCA002A3416 /* BZObjectStoreClazzUIColor.m */,
-				7259F86218F44FCA002A3416 /* BZObjectStoreClazzUIImage.h */,
-				7259F86318F44FCA002A3416 /* BZObjectStoreClazzUIImage.m */,
+				7294512319025BF4007C610E /* C POD */,
+				7294512419025C09007C610E /* C Structure */,
+				7294512619025D15007C610E /* Objective-c */,
+				7294512519025C6A007C610E /* Objective-c Arrangement */,
 			);
 			name = Clazz;
 			sourceTree = "<group>";
@@ -1064,6 +1136,7 @@
 				72170BE518F5862400C9A4C1 /* BZObjectStoreSQLiteColumnModel.m in Sources */,
 				7259F89518F44FCA002A3416 /* BZObjectStoreClazzNSObject.m in Sources */,
 				7259F89A18F44FCA002A3416 /* BZObjectStoreClazzNSURL.m in Sources */,
+				7294512F19026BD5007C610E /* BZObjectStoreClazzLongLong.m in Sources */,
 				7259F89618F44FCA002A3416 /* BZObjectStoreClazzNSOrderedSet.m in Sources */,
 				7259F89E18F44FCA002A3416 /* BZObjectStoreClazzUIImage.m in Sources */,
 				7259F88518F44FCA002A3416 /* BZObjectStoreClazzCGSize.m in Sources */,
@@ -1074,14 +1147,19 @@
 				7259F88418F44FCA002A3416 /* BZObjectStoreClazzCGRect.m in Sources */,
 				7259F88018F44FCA002A3416 /* BZObjectStoreAttributeModel.m in Sources */,
 				7259F8A418F44FCA002A3416 /* BZObjectStoreReferenceMapper.m in Sources */,
+				7294514719026CF6007C610E /* BZObjectStoreClazzUnsignedShort.m in Sources */,
 				7259F8A218F44FCA002A3416 /* BZObjectStoreNameBuilder.m in Sources */,
+				7294512919025F10007C610E /* BZObjectStoreClazzUnsignedChar.m in Sources */,
 				7259F8AB18F44FCA002A3416 /* UIColor+BZObjectStore.m in Sources */,
 				7259F89318F44FCA002A3416 /* BZObjectStoreClazzNSNull.m in Sources */,
 				7259F89018F44FCA002A3416 /* BZObjectStoreClazzNSMutableOrderedSet.m in Sources */,
 				7259F8AA18F44FCA002A3416 /* NSObject+BZObjectStore.m in Sources */,
 				7259F88718F44FCA002A3416 /* BZObjectStoreClazzDouble.m in Sources */,
+				7294514519026CF6007C610E /* BZObjectStoreClazzUnsignedLong.m in Sources */,
 				7259F8A918F44FCA002A3416 /* FMDatabase+TemporaryTable.m in Sources */,
+				7294512219025B9B007C610E /* BZObjectStoreClazzShort.m in Sources */,
 				7259F8A718F44FCA002A3416 /* BZObjectStoreRuntimeMapper.m in Sources */,
+				7294514419026CF6007C610E /* BZObjectStoreClazzUnsignedInt.m in Sources */,
 				7259F88318F44FCA002A3416 /* BZObjectStoreClazzCGPoint.m in Sources */,
 				72BEE87618F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.m in Sources */,
 				7259F8A618F44FCA002A3416 /* BZObjectStoreRuntime.m in Sources */,
@@ -1094,6 +1172,7 @@
 				7259F89918F44FCA002A3416 /* BZObjectStoreClazzNSString.m in Sources */,
 				7259F89D18F44FCA002A3416 /* BZObjectStoreClazzUIColor.m in Sources */,
 				7259F89118F44FCA002A3416 /* BZObjectStoreClazzNSMutableSet.m in Sources */,
+				7294512C19026281007C610E /* BZObjectStoreClazzLong.m in Sources */,
 				7259F8A318F44FCA002A3416 /* BZObjectStoreQueryBuilder.m in Sources */,
 				7259F88A18F44FCA002A3416 /* BZObjectStoreClazzNSArray.m in Sources */,
 				7259F8A518F44FCA002A3416 /* BZObjectStoreRelationshipModel.m in Sources */,
@@ -1107,6 +1186,7 @@
 				7259F88F18F44FCA002A3416 /* BZObjectStoreClazzNSMutableDictionary.m in Sources */,
 				7259F89718F44FCA002A3416 /* BZObjectStoreClazzNSRange.m in Sources */,
 				7259F89418F44FCA002A3416 /* BZObjectStoreClazzNSNumber.m in Sources */,
+				7294514619026CF6007C610E /* BZObjectStoreClazzUnsignedLongLong.m in Sources */,
 				72BEE87918F57A4400A7D742 /* BZObjectStoreReferenceConditionModel.m in Sources */,
 				7259F89218F44FCA002A3416 /* BZObjectStoreClazzNSMutableString.m in Sources */,
 				7259F88618F44FCA002A3416 /* BZObjectStoreClazzChar.m in Sources */,
@@ -1444,6 +1524,7 @@
 				72B89A311901796A0017B06F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
