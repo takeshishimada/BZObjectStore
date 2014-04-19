@@ -55,7 +55,7 @@
 - (BOOL)deleteFrom:(NSObject*)object db:(FMDatabase*)db;
 - (BOOL)deleteFrom:(BZObjectStoreRuntime*)runtime condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db;
 - (NSMutableArray*)objectsWithRuntime:(BZObjectStoreRuntime*)runtime condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db;
-- (FMResultSet*)resultSet:(NSObject*)object db:(FMDatabase*)db;
+- (void)UpdateSimpleValueWithObject:(NSObject*)object db:(FMDatabase*)db;
 - (NSNumber*)referencedCount:(NSObject*)object db:(FMDatabase*)db;
 - (NSMutableArray*)relationshipObjectsWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute db:(FMDatabase*)db;
 - (BOOL)insertRelationshipObjectsWithRelationshipObjects:(NSArray*)relationshipObjects db:(FMDatabase*)db;
@@ -64,7 +64,7 @@
 - (BOOL)deleteRelationshipObjectsWithObject:(NSObject*)object db:(FMDatabase*)db;
 - (NSMutableArray*)relationshipObjectsWithToObject:(NSObject*)toObject db:(FMDatabase*)db;
 - (void)updateObjectRowid:(NSObject*)object db:(FMDatabase*)db;
-- (void)updateObjectsRowid:(NSArray*)objects db:(FMDatabase*)db;
+- (void)updateRowidWithObjects:(NSArray*)objects db:(FMDatabase*)db;
 @end
 
 @interface BZObjectStoreRuntimeMapper()
@@ -421,19 +421,10 @@
     // fetch objects
     NSArray *allValues = processedObjects.allValues;
     for (NSObject *targetObject in allValues) {
-        FMResultSet *rs = [self resultSet:targetObject db:db];
+        [self UpdateSimpleValueWithObject:targetObject db:db];
         if ([self hadError:db error:error]) {
             return nil;
         }
-        while ([rs next]) {
-            for (BZObjectStoreRuntimeProperty *attribute in targetObject.runtime.simpleValueAttributes) {
-                if (!attribute.isRelationshipClazz) {
-                    NSObject *value = [attribute valueWithResultSet:rs];
-                    [targetObject setValue:value forKey:attribute.name];
-                }
-            }
-        }
-        [rs close];
     }
     
     for (NSObject *targetObject in allValues) {
@@ -729,7 +720,7 @@
     if (![self isValidObjects:objects error:error]) {
         return NO;
     }
-    [self updateObjectsRowid:objects db:db];
+    [self updateRowidWithObjects:objects db:db];
     if ([self hadError:db error:error]) {
         return NO;
     }

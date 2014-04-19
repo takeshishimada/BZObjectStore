@@ -278,7 +278,7 @@
     [rs close];
 }
 
-- (void)updateObjectsRowid:(NSArray*)objects db:(FMDatabase*)db
+- (void)updateRowidWithObjects:(NSArray*)objects db:(FMDatabase*)db
 {
     for (NSObject *object in objects) {
         [self updateObjectRowid:object db:db];
@@ -286,26 +286,26 @@
     return;
 }
 
-- (FMResultSet*)resultSet:(NSObject*)object db:(FMDatabase*)db
+- (void)UpdateSimpleValueWithObject:(NSObject*)object db:(FMDatabase*)db
 {
-    if (object.rowid) {
-        BZObjectStoreConditionModel *condition = [object.runtime rowidCondition:object];
-        NSMutableArray *parameters = [NSMutableArray array];
-        [parameters addObjectsFromArray:condition.sqlite.parameters];
-        NSString *sql = [object.runtime selectStatementWithCondition:condition];
-        FMResultSet *rs = [db executeQuery:sql withArgumentsInArray:condition.sqlite.parameters];
-        return rs;
-        
-    } else if (object.runtime.hasIdentificationAttributes) {
-        BZObjectStoreConditionModel *condition = [object.runtime uniqueCondition:object];
-        NSMutableArray *parameters = [NSMutableArray array];
-        [parameters addObjectsFromArray:condition.sqlite.parameters];
-        NSString *sql = [object.runtime selectStatementWithCondition:condition];
-        FMResultSet *rs = [db executeQuery:sql withArgumentsInArray:condition.sqlite.parameters];
-        return rs;
-        
+    BZObjectStoreConditionModel *condition = [object.runtime rowidCondition:object];
+    NSMutableArray *parameters = [NSMutableArray array];
+    [parameters addObjectsFromArray:condition.sqlite.parameters];
+    NSString *sql = [object.runtime selectStatementWithCondition:condition];
+    FMResultSet *rs = [db executeQuery:sql withArgumentsInArray:condition.sqlite.parameters];
+    if ([self hadError:db]) {
+        return;
     }
-    return nil;
+    while ([rs next]) {
+        for (BZObjectStoreRuntimeProperty *attribute in object.runtime.simpleValueAttributes) {
+            if (!attribute.isRelationshipClazz) {
+                NSObject *value = [attribute valueWithResultSet:rs];
+                [object setValue:value forKey:attribute.name];
+            }
+        }
+        break;
+    }
+    [rs close];
 }
 
 - (NSNumber*)referencedCount:(NSObject*)object db:(FMDatabase*)db
