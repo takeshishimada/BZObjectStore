@@ -66,7 +66,7 @@
     if (value) {
         return @[[NSNumber numberWithInteger:1]];
     } else {
-        return @[[NSNull null]];
+        return @[[NSNumber numberWithInteger:0]];
     }
 }
 

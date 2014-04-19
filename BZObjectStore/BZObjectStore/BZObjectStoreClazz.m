@@ -70,38 +70,11 @@
 
 #pragma mark override methods,properties
 
-//- (NSEnumerator*)objectEnumeratorWithObject:(NSArray*)object
-//{
-//    NSArray *array = @[object];
-//    return [array objectEnumerator];
-//}
-//
-//- (NSArray*)keysWithObject:(id)object
-//{
-//    return nil;
-//}
-//- (NSString*)initializingOptionsWithObject:(NSObject*)object
-//{
-//    return nil;
-//}
-//- (id)objectWithObjects:(NSArray*)objects keys:(NSArray*)keys initializingOptions:(NSString*)initializingOptions
-//{
-//    return nil;
-//}
-//- (id)objectWithClazz:(Class)clazz
-//{
-//    return nil;
-//}
-
 - (Class)superClazz
 {
     return nil;
 }
 
-//- (NSString*)attributeType
-//{
-//    return @"";
-//}
 - (BOOL)isSimpleValueClazz
 {
     return NO;

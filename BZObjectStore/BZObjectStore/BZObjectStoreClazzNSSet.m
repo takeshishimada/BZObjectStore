@@ -58,19 +58,15 @@
     return YES;
 }
 
-- (id)storeValueWithValue:(NSObject*)value
-{
-    if ([[value class] isSubclassOfClass:[NSSet class]]) {
-        NSSet *set = (NSSet*)value;
-        return [NSNumber numberWithInteger:set.count];
-    } else {
-        return [NSNull null];
-    }
-}
-
 - (NSArray*)storeValuesWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    return @[[self storeValueWithValue:[object valueForKey:attribute.name]]];
+    NSSet *value = [object valueForKey:attribute.name];
+    if ([[value class] isSubclassOfClass:[NSSet class]]) {
+        NSSet *set = (NSSet*)value;
+        return @[[NSNumber numberWithInteger:set.count]];
+    } else {
+        return @[[NSNumber numberWithInteger:0]];
+    }
 }
 
 - (NSString*)sqliteDataTypeName

@@ -57,19 +57,15 @@
     return YES;
 }
 
-- (id)storeValueWithValue:(NSObject*)value
-{
-    if ([[value class] isSubclassOfClass:[NSDictionary class]]) {
-        NSDictionary *dic = (NSDictionary*)value;
-        return [NSNumber numberWithInteger:dic.count];
-    } else {
-        return [NSNull null];
-    }
-}
-
 - (NSArray*)storeValuesWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    return @[[self storeValueWithValue:[object valueForKey:attribute.name]]];
+    NSDictionary *value = [object valueForKey:attribute.name];
+    if ([[value class] isSubclassOfClass:[NSDictionary class]]) {
+        NSDictionary *dic = (NSDictionary*)value;
+        return @[[NSNumber numberWithInteger:dic.count]];
+    } else {
+        return @[[NSNumber numberWithInteger:0]];
+    }
 }
 
 - (NSString*)sqliteDataTypeName
