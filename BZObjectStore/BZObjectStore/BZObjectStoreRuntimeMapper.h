@@ -24,4 +24,6 @@
 #import <Foundation/Foundation.h>
 
 @interface BZObjectStoreRuntimeMapper : NSObject
++ (NSString*)ignorePrefixName;
++ (NSString*)ignoreSuffixName;
 @end

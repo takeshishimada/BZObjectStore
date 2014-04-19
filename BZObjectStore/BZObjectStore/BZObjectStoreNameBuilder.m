@@ -48,6 +48,9 @@
                 tableName = [tableName substringToIndex:tableName.length - ignoreSuffixName.length];
             }
         }
+        if (!tableName || [tableName isEqualToString:@""]) {
+            tableName = NSStringFromClass(clazz);
+        }
     }
     return tableName;
 }

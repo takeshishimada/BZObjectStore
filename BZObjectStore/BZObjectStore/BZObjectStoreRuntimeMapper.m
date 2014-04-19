@@ -61,8 +61,9 @@
     if (self = [super init]) {
         self.registedClazzes = [NSMutableDictionary dictionary];
         BZObjectStoreNameBuilder *nameBuilder = [[BZObjectStoreNameBuilder alloc]init];
-        nameBuilder.ignorePrefixName = [self.class ignorePrefixName];
-        nameBuilder.ignoreSuffixName = [self.class ignoreSuffixName];
+        Class clazz = self.class;
+        nameBuilder.ignorePrefixName = [clazz ignorePrefixName];
+        nameBuilder.ignoreSuffixName = [clazz ignoreSuffixName];
         self.nameBuilder = nameBuilder;
     }
     return self;

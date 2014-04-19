@@ -39,7 +39,7 @@
                 }
             }
             NSString *path = @"database.sqlite";
-            _sharedInstance = [BZObjectStore openWithPath:path error:&error];
+            _sharedInstance = [self openWithPath:path error:&error];
             NSAssert(error == nil,@"objectstore is nil");
         }
         return _sharedInstance;
@@ -54,5 +54,15 @@
     path = [dir stringByAppendingPathComponent:path];
     return path;
 }
+
+//+ (NSString*)ignorePrefixName
+//{
+//    return @"BZ";
+//}
+//
+//+ (NSString*)ignoreSuffixName
+//{
+//    return @"Model";
+//}
 
 @end

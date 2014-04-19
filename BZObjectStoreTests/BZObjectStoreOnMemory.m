@@ -30,7 +30,7 @@
     @synchronized(self) {
         if (!_sharedInstance) {
             NSError *error = nil;
-            _sharedInstance = [BZObjectStore openWithPath:nil error:&error];
+            _sharedInstance = [self openWithPath:nil error:&error];
             NSAssert(error == nil,@"objectstore is nil");
         }
         return _sharedInstance;

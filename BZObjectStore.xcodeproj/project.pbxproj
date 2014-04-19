@@ -60,7 +60,6 @@
 		7259F89918F44FCA002A3416 /* BZObjectStoreClazzNSString.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F85918F44FCA002A3416 /* BZObjectStoreClazzNSString.m */; };
 		7259F89A18F44FCA002A3416 /* BZObjectStoreClazzNSURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F85B18F44FCA002A3416 /* BZObjectStoreClazzNSURL.m */; };
 		7259F89B18F44FCA002A3416 /* BZObjectStoreClazzNSValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F85D18F44FCA002A3416 /* BZObjectStoreClazzNSValue.m */; };
-		7259F89C18F44FCA002A3416 /* BZObjectStoreClazzPrimitive.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F85F18F44FCA002A3416 /* BZObjectStoreClazzPrimitive.m */; };
 		7259F89D18F44FCA002A3416 /* BZObjectStoreClazzUIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F86118F44FCA002A3416 /* BZObjectStoreClazzUIColor.m */; };
 		7259F89E18F44FCA002A3416 /* BZObjectStoreClazzUIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F86318F44FCA002A3416 /* BZObjectStoreClazzUIImage.m */; };
 		7259F8A018F44FCA002A3416 /* BZObjectStoreError.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F86818F44FCA002A3416 /* BZObjectStoreError.m */; };
@@ -250,8 +249,6 @@
 		7259F85B18F44FCA002A3416 /* BZObjectStoreClazzNSURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSURL.m; sourceTree = "<group>"; };
 		7259F85C18F44FCA002A3416 /* BZObjectStoreClazzNSValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSValue.h; sourceTree = "<group>"; };
 		7259F85D18F44FCA002A3416 /* BZObjectStoreClazzNSValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSValue.m; sourceTree = "<group>"; };
-		7259F85E18F44FCA002A3416 /* BZObjectStoreClazzPrimitive.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzPrimitive.h; sourceTree = "<group>"; };
-		7259F85F18F44FCA002A3416 /* BZObjectStoreClazzPrimitive.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzPrimitive.m; sourceTree = "<group>"; };
 		7259F86018F44FCA002A3416 /* BZObjectStoreClazzUIColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzUIColor.h; sourceTree = "<group>"; };
 		7259F86118F44FCA002A3416 /* BZObjectStoreClazzUIColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzUIColor.m; sourceTree = "<group>"; };
 		7259F86218F44FCA002A3416 /* BZObjectStoreClazzUIImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzUIImage.h; sourceTree = "<group>"; };
@@ -689,8 +686,6 @@
 		7294512319025BF4007C610E /* POD */ = {
 			isa = PBXGroup;
 			children = (
-				7259F85E18F44FCA002A3416 /* BZObjectStoreClazzPrimitive.h */,
-				7259F85F18F44FCA002A3416 /* BZObjectStoreClazzPrimitive.m */,
 				7259F83218F44FCA002A3416 /* BZObjectStoreClazzChar.h */,
 				7259F83318F44FCA002A3416 /* BZObjectStoreClazzChar.m */,
 				7294512019025B9B007C610E /* BZObjectStoreClazzShort.h */,
@@ -1177,7 +1172,6 @@
 				7259F88A18F44FCA002A3416 /* BZObjectStoreClazzNSArray.m in Sources */,
 				7259F8A518F44FCA002A3416 /* BZObjectStoreRelationshipModel.m in Sources */,
 				7259F80018F44F04002A3416 /* main.m in Sources */,
-				7259F89C18F44FCA002A3416 /* BZObjectStoreClazzPrimitive.m in Sources */,
 				7259F88118F44FCA002A3416 /* BZObjectStoreBackground.m in Sources */,
 				7259F80418F44F04002A3416 /* BZObjectStoreAppDelegate.m in Sources */,
 				7259F88E18F44FCA002A3416 /* BZObjectStoreClazzNSMutableArray.m in Sources */,

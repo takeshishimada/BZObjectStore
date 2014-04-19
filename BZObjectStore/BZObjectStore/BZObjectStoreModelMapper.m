@@ -38,8 +38,6 @@
 #import "NSObject+BZObjectStore.h"
 
 @interface BZObjectStoreRuntimeMapper (Protected)
-+ (NSString*)ignorePrefixName;
-+ (NSString*)ignoreSuffixName;
 - (BZObjectStoreRuntime*)runtime:(Class)clazz;
 - (void)registedRuntime:(BZObjectStoreRuntime*)runtime;
 - (BOOL)registerRuntime:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
@@ -202,7 +200,8 @@
 
 - (BOOL)deleteFrom:(NSObject*)object db:(FMDatabase*)db
 {
-    if (object.rowid) {
+//    if (object.rowid) {
+    
         BZObjectStoreConditionModel *condition = [object.runtime rowidCondition:object];
         NSMutableArray *parameters = [NSMutableArray array];
         [parameters addObjectsFromArray:condition.sqlite.parameters];
@@ -213,19 +212,19 @@
         }
         return YES;
         
-    } else if (object.runtime.hasIdentificationAttributes) {
-        BZObjectStoreConditionModel *condition = [object.runtime uniqueCondition:object];
-        NSMutableArray *parameters = [NSMutableArray array];
-        [parameters addObjectsFromArray:condition.sqlite.parameters];
-        NSString *sql = [object.runtime deleteFromStatementWithCondition:condition];
-        [db executeUpdate:sql withArgumentsInArray:parameters];
-        if ([self hadError:db]) {
-            return NO;
-        }
-        return YES;
-    }
-    return YES;
-    
+//    } else if (object.runtime.hasIdentificationAttributes) {
+//        BZObjectStoreConditionModel *condition = [object.runtime uniqueCondition:object];
+//        NSMutableArray *parameters = [NSMutableArray array];
+//        [parameters addObjectsFromArray:condition.sqlite.parameters];
+//        NSString *sql = [object.runtime deleteFromStatementWithCondition:condition];
+//        [db executeUpdate:sql withArgumentsInArray:parameters];
+//        if ([self hadError:db]) {
+//            return NO;
+//        }
+//        return YES;
+//    }
+//    return YES;
+//    
 }
 
 - (BOOL)deleteFrom:(BZObjectStoreRuntime*)runtime condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db
