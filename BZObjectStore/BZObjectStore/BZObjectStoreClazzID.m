@@ -28,17 +28,6 @@
 
 @implementation BZObjectStoreClazzID
 
-- (NSEnumerator*)objectEnumeratorWithObject:(NSArray*)object
-{
-    NSArray *array = @[object];
-    return [array objectEnumerator];
-}
-
-- (id)objectWithClazz:(Class)clazz
-{
-    return nil;
-}
-
 - (Class)superClazz
 {
     return NULL;

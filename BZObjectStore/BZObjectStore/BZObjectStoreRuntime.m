@@ -32,10 +32,10 @@
 #import "BZRuntime.h"
 #import "NSObject+BZObjectStore.h"
 
-@interface ObjectStoreReferenceModel : NSObject
+@interface BZObjectStoreReferenceModel : NSObject
 @property (nonatomic,strong) NSNumber *rowid;
 @end
-@implementation ObjectStoreReferenceModel
+@implementation BZObjectStoreReferenceModel
 @end
 
 @interface BZObjectStoreRuntime ()
@@ -186,7 +186,7 @@
         }
     }
     
-    BZRuntime *referenceRuntime = [BZRuntime runtimeWithClass:[ObjectStoreReferenceModel class]];
+    BZRuntime *referenceRuntime = [BZRuntime runtimeWithClass:[BZObjectStoreReferenceModel class]];
     BZObjectStoreRuntimeProperty *rowidAttribute = [BZObjectStoreRuntimeProperty propertyWithBZProperty:referenceRuntime.propertyList.firstObject runtime:self];
     NSMutableArray *attributes = [NSMutableArray array];
     [attributes addObject:rowidAttribute];

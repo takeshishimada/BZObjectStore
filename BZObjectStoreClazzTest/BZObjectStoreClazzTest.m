@@ -84,10 +84,10 @@
     
     BZObjectStoreClazzCGRect *clazz = [[BZObjectStoreClazzCGRect alloc]init];
     NSArray *array = [clazz storeValuesWithObject:test attributeName:@"value"];
-    XCTAssertTrue(array[0] == [NSNull null],"BZObjectStoreClazzCGRect error");
-    XCTAssertTrue(array[1] == [NSNull null],"BZObjectStoreClazzCGRect error");
-    XCTAssertTrue(array[2] == [NSNull null],"BZObjectStoreClazzCGRect error");
-    XCTAssertTrue(array[3] == [NSNull null],"BZObjectStoreClazzCGRect error");
+    XCTAssertTrue(array[0] == [NSNull null],@"BZObjectStoreClazzCGRect error");
+    XCTAssertTrue(array[1] == [NSNull null],@"BZObjectStoreClazzCGRect error");
+    XCTAssertTrue(array[2] == [NSNull null],@"BZObjectStoreClazzCGRect error");
+    XCTAssertTrue(array[3] == [NSNull null],@"BZObjectStoreClazzCGRect error");
 
 }
 
@@ -98,8 +98,8 @@
     
     BZObjectStoreClazzCGPoint *clazz = [[BZObjectStoreClazzCGPoint alloc]init];
     NSArray *array = [clazz storeValuesWithObject:test attributeName:@"value"];
-    XCTAssertTrue(array[0] == [NSNull null],"BZObjectStoreClazzCGRect error");
-    XCTAssertTrue(array[1] == [NSNull null],"BZObjectStoreClazzCGRect error");
+    XCTAssertTrue(array[0] == [NSNull null],@"BZObjectStoreClazzCGRect error");
+    XCTAssertTrue(array[1] == [NSNull null],@"BZObjectStoreClazzCGRect error");
     
 }
 
@@ -110,8 +110,8 @@
     
     BZObjectStoreClazzCGSize *clazz = [[BZObjectStoreClazzCGSize alloc]init];
     NSArray *array = [clazz storeValuesWithObject:test attributeName:@"value"];
-    XCTAssertTrue(array[0] == [NSNull null],"BZObjectStoreClazzCGRect error");
-    XCTAssertTrue(array[1] == [NSNull null],"BZObjectStoreClazzCGRect error");
+    XCTAssertTrue(array[0] == [NSNull null],@"BZObjectStoreClazzCGRect error");
+    XCTAssertTrue(array[1] == [NSNull null],@"BZObjectStoreClazzCGRect error");
     
 }
 
@@ -122,9 +122,44 @@
     
     BZObjectStoreClazzInt *clazz = [[BZObjectStoreClazzInt alloc]init];
     NSArray *array = [clazz storeValuesWithObject:test attributeName:@"value"];
-    XCTAssertTrue(array[0] == [NSNull null],"BZObjectStoreClazzCGRect error");
+    XCTAssertTrue(array[0] == [NSNull null],@"BZObjectStoreClazzCGRect error");
     
 }
 
+- (void)testBZObjectStoreClazzNSDate
+{
+    BZObjectStoreClazzNSDate *clazz = [[BZObjectStoreClazzNSDate alloc]init];
+    NSObject *storeValue = [clazz storeValueWithValue:nil];
+    NSObject *value = [clazz valueWithStoreValue:nil];
+    XCTAssertTrue(storeValue == [NSNull null],@"BZObjectStoreClazzNSDate error");
+    XCTAssertTrue(!value,@"BZObjectStoreClazzNSDate error");
+}
+
+- (void)testBZObjectStoreClazzNSRange
+{
+    BZObjectStoreClazzNSRange *clazz = [[BZObjectStoreClazzNSRange alloc]init];
+    NSObject *storeValue = [clazz storeValueWithValue:nil];
+    NSValue *value = [clazz valueWithStoreValue:nil];
+    XCTAssertTrue(storeValue == [NSNull null],@"BZObjectStoreClazzNSDate error");
+    XCTAssertTrue(NSEqualRanges([value rangeValue], NSMakeRange(0, 0)),@"BZObjectStoreClazzNSDate error");
+}
+
+- (void)testBZObjectStoreClazzFloat
+{
+    BZObjectStoreClazzFloat *clazz = [[BZObjectStoreClazzFloat alloc]init];
+    NSObject *storeValue = [clazz storeValueWithValue:nil];
+    NSNumber *value = [clazz valueWithStoreValue:nil];
+    XCTAssertTrue(storeValue == [NSNull null],@"BZObjectStoreClazzFloat error");
+    XCTAssertTrue(value.floatValue == 0.0f,@"BZObjectStoreClazzFloat error");
+}
+
+- (void)testBZObjectStoreClazzDouble
+{
+    BZObjectStoreClazzDouble *clazz = [[BZObjectStoreClazzDouble alloc]init];
+    NSObject *storeValue = [clazz storeValueWithValue:nil];
+    NSNumber *value = [clazz valueWithStoreValue:nil];
+    XCTAssertTrue(storeValue == [NSNull null],@"BZObjectStoreClazzDouble error");
+    XCTAssertTrue(value.doubleValue == 0.0f,@"BZObjectStoreClazzDouble error");
+}
 
 @end

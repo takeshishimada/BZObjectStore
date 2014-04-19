@@ -77,42 +77,29 @@
     return runtime;
 }
 
-- (BOOL)registerAllRuntimes:(FMDatabase*)db
-{
-    NSArray *clazzNames = [self.registedClazzes allKeys];
-    [self.registedClazzes removeAllObjects];
-    for (NSString *clazzName in clazzNames) {
-        Class clazz = NSClassFromString(clazzName);
-        if (clazz) {
-            BZObjectStoreRuntime *runtime = [self runtime:clazz];
-            [self registerRuntime:runtime db:db];
-            if ([self hadError:db]) {
-                return NO;
-            }
-        }
-    }
-    for (NSString *clazzName in clazzNames) {
-        [self.registedClazzes setObject:@YES forKey:clazzName];
-    }
-    return YES;
-}
-
 - (void)registedRuntime:(BZObjectStoreRuntime*)runtime
 {
     [self.registedClazzes setObject:@YES forKey:runtime.clazzName];
 }
 
+- (void)registedAllRuntime
+{
+    for (NSString *key in self.registedClazzes.allKeys) {
+        [self.registedClazzes setObject:@YES forKey:key];
+    }
+}
+
 - (BOOL)registerRuntime:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db
 {
     NSNumber *registed = [self.registedClazzes objectForKey:runtime.clazzName];
-    if (registed) {
+    if (registed.boolValue) {
         return YES;
     }
     [self createTable:runtime db:db];
     if ([self hadError:db]) {
         return NO;
     }
-    // todo speedup
+    [self.registedClazzes setObject:@NO forKey:runtime.clazzName];
     return YES;
 }
 

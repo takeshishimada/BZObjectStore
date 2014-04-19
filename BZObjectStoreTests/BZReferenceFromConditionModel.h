@@ -30,5 +30,6 @@
 @interface BZReferenceFromConditionModel : NSObject<OSModelInterface>
 @property (nonatomic,strong) NSNumber<OSIdenticalAttribute> *code;
 @property (nonatomic,strong) NSString *name;
+@property (nonatomic,assign) NSInteger price;
 @property (nonatomic,strong) BZReferenceConditionModel *to;
 @end

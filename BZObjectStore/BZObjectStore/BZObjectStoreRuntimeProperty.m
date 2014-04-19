@@ -152,8 +152,6 @@
     // identicalAttribute
     if (!self.isStringNumberClazz) {
         self.identicalAttribute = NO;
-    } else if (self.serializableAttribute) {
-        self.identicalAttribute = NO;
     }
 
     // group function attribute

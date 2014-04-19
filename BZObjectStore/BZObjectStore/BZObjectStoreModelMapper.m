@@ -41,7 +41,6 @@
 + (NSString*)ignorePrefixName;
 + (NSString*)ignoreSuffixName;
 - (BZObjectStoreRuntime*)runtime:(Class)clazz;
-- (BOOL)registerAllRuntimes:(FMDatabase*)db;
 - (void)registedRuntime:(BZObjectStoreRuntime*)runtime;
 - (BOOL)registerRuntime:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
 @end
@@ -367,20 +366,6 @@
     if ([self hadError:db]) {
         return NO;
     }
-//    NSMutableArray *list = [NSMutableArray array];
-//    FMResultSet *rs = [self resultSet:runtime condition:condition db:db];
-//    if ([self hadError:db]) {
-//        return NO;
-//    }
-//    while (rs.next) {
-//        BZObjectStoreRelationshipModel *object = [[BZObjectStoreRelationshipModel alloc]init];
-//        for (BZObjectStoreRuntimeProperty *attribute in runtime.attributes) {
-//            id value = [attribute valueWithResultSet:rs];
-//            [object setValue:value forKey:attribute.name];
-//        }
-//        [list addObject:object];
-//    }
-//    [rs close];
     return list;
 }
 

@@ -39,7 +39,7 @@
 
 @interface BZObjectStoreRuntimeMapper (Protected)
 - (BZObjectStoreRuntime*)runtime:(Class)clazz;
-- (BOOL)registerAllRuntimes:(FMDatabase*)db;
+- (void)registedAllRuntime;
 - (void)registedRuntime:(BZObjectStoreRuntime*)runtime;
 - (BOOL)registerRuntime:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
 @end
@@ -147,6 +147,7 @@
             [db setShouldCacheStatements:YES];
             block(db,rollback);
         }];
+        [self registedAllRuntime];
     }
 }
 
@@ -163,6 +164,7 @@
                 block(db);
             }
         }];
+        [self registedAllRuntime];
     }
 }
 

@@ -39,7 +39,6 @@
 
 @interface BZObjectStoreRuntimeMapper (Protected)
 - (BZObjectStoreRuntime*)runtime:(Class)clazz;
-- (BOOL)registerAllRuntimes:(FMDatabase*)db;
 - (void)registedRuntime:(BZObjectStoreRuntime*)runtime;
 - (BOOL)registerRuntime:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
 @end
@@ -209,7 +208,7 @@
 - (NSNumber*)referencedCount:(NSObject*)object db:(FMDatabase*)db error:(NSError**)error
 {
     if (![self updateRuntime:object db:db]) {
-        return NO;
+        return nil;
     }
     [self isValidRuntime:object.runtime error:error];
     if (*error) {
@@ -231,7 +230,7 @@
         return nil;
     }
     if (![self updateRuntime:object db:db]) {
-        return NO;
+        return nil;
     }
     return [self refreshObjectSub:object db:db error:error];
 }
@@ -263,7 +262,7 @@
     BZObjectStoreRuntime *runtime = [self runtimeWithClazz:clazz db:db];
     [self isValidRuntime:runtime error:error];
     if ( *error ) {
-        return NO;
+        return nil;
     }
     NSMutableArray *list = [self objectsWithRuntime:runtime condition:condition db:db];
     if ([self hadError:db error:error]) {
@@ -279,7 +278,7 @@
 - (NSMutableArray*)fetchReferencingObjectsWithToObject:(NSObject*)object db:(FMDatabase*)db error:(NSError**)error
 {
     if (![self updateRuntime:object db:db]) {
-        return NO;
+        return nil;
     }
     [self isValidRuntime:object.runtime error:error];
     if (*error) {

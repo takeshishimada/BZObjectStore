@@ -101,8 +101,8 @@
     [self testBZVarietyValuesModel:_disk];
     [self testBZInvalidValuesModel:_disk];
     [self testBZRelationshipHeaderModel:_disk];
-//    [self testBZInsertResponseModel:_disk];
-//    [self testBZUpdateResponseModel:_disk];
+    [self testBZInsertResponseModel:_disk];
+    [self testBZUpdateResponseModel:_disk];
     [self testCircularReference:_disk];
     [self testSQLiteGroupCondition:_disk];
     [self testBZUpdateExistsObjectWithNoRowIdModel:_disk];
@@ -133,8 +133,8 @@
     [self testBZVarietyValuesModel:_memory];
     [self testBZInvalidValuesModel:_memory];
     [self testBZRelationshipHeaderModel:_memory];
-//    [self testBZInsertResponseModel:_memory];
-//    [self testBZUpdateResponseModel:_memory];
+    [self testBZInsertResponseModel:_memory];
+    [self testBZUpdateResponseModel:_memory];
     [self testCircularReference:_memory];
     [self testSQLiteGroupCondition:_memory];
     [self testBZUpdateExistsObjectWithNoRowIdModel:_memory];
@@ -563,6 +563,9 @@
 - (void)testBZInsertResponseModel:(BZObjectStore*)os
 {
     NSError *error = nil;
+    [os registerClazz:[BZInsertResponseModel class] error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    
     NSMutableArray *list = [NSMutableArray array];
     for (NSInteger i = 0; i < 20000; i++ ) {
         BZInsertResponseModel *model = [[BZInsertResponseModel alloc]init];
@@ -600,6 +603,9 @@
 - (void)testBZUpdateResponseModel:(BZObjectStore*)os
 {
     NSError *error = nil;
+    [os registerClazz:[BZInsertResponseModel class] error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    
     NSMutableArray *list = [NSMutableArray array];
     for (NSInteger i = 0; i < 20000; i++ ) {
         BZUpdateResponseModel *model = [[BZUpdateResponseModel alloc]init];
@@ -1114,42 +1120,55 @@
     BZReferenceToConditionModel *to1 = [[BZReferenceToConditionModel alloc]init];
     to1.code = @1;
     to1.name = @"to1";
+    to1.price = 10;
 
     BZReferenceToConditionModel *to2 = [[BZReferenceToConditionModel alloc]init];
     to2.code = @2;
     to2.name = @"to2";
-    
+    to2.price = 20;
+
+    BZReferenceToConditionModel *to3 = [[BZReferenceToConditionModel alloc]init];
+    to3.code = @3;
+    to3.name = @"to3";
+    to3.price = 30;
+
     BZReferenceConditionModel *item1 = [[BZReferenceConditionModel alloc]init];
     item1.code = @1;
     item1.name = @"item 1";
+    item1.price = 10;
     item1.to = to1;
     item1.tos = @[to1,to2];
     
     BZReferenceConditionModel *item2 = [[BZReferenceConditionModel alloc]init];
     item2.code = @2;
     item2.name = @"item 2";
+    item1.price = 20;
     item2.to = to2;
 
     BZReferenceConditionModel *item3 = [[BZReferenceConditionModel alloc]init];
     item3.code = @3;
     item3.name = @"item 3";
+    item1.price = 30;
 
     BZReferenceFromConditionModel *from1 = [[BZReferenceFromConditionModel alloc]init];
     from1.code = @1;
     from1.name = @"from1";
+    item1.price = 10;
     from1.to = item1;
     
     BZReferenceFromConditionModel *from2 = [[BZReferenceFromConditionModel alloc]init];
     from2.code = @2;
     from2.name = @"from2";
+    item2.price = 20;
     from2.to = item2;
 
     BZReferenceFromConditionModel *from3 = [[BZReferenceFromConditionModel alloc]init];
-    from2.code = @3;
-    from2.name = @"from3";
-    from2.to = item2;
+    from3.code = @3;
+    from3.name = @"from3";
+    item3.price = 30;
+    from3.to = item2;
 
-    [os saveObjects:@[to1,to2,item1,item2,item3,from1,from2] error:&error];
+    [os saveObjects:@[to1,to2,to3,item1,item2,item3,from1,from2] error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     
     BZObjectStoreConditionModel *fromCondition = [BZObjectStoreConditionModel condition];
@@ -1178,7 +1197,24 @@
     NSArray *referencingObjects = [os fetchReferencingFromObjectsWithObject:item1 error:&error];
     BZReferenceConditionModel *referencingObject = referencingObjects.firstObject;
     XCTAssertTrue([referencingObject.name isEqualToString:@"from1"], @"error");
+   
     
+    BZObjectStoreConditionModel *fromNullCondition = [BZObjectStoreConditionModel condition];
+    fromNullCondition.reference.from = [NSNull null];
+    fromNullCondition.sqlite.where = @"price > 0";
+    NSArray *fromNullReferencedObjects = [os fetchObjects:[BZReferenceToConditionModel class] condition:fromNullCondition error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    BZReferenceToConditionModel *fromNullReferencedObject = fromNullReferencedObjects.firstObject;
+    XCTAssertTrue([fromNullReferencedObject.name isEqualToString:@"to3"], @"error");
+
+    BZObjectStoreConditionModel *toNullCondition = [BZObjectStoreConditionModel condition];
+    toNullCondition.reference.to = [NSNull null];
+    toNullCondition.sqlite.where = @"price > 0";
+    NSArray *toNullReferencedObjects = [os fetchObjects:[BZReferenceConditionModel class] condition:toNullCondition error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    BZReferenceToConditionModel *toNullReferencedObject = toNullReferencedObjects.firstObject;
+    XCTAssertTrue([toNullReferencedObject.name isEqualToString:@"item 3"], @"error");
+
 }
 
 - (void)testBZOSIdenticalModel:(BZObjectStore*)os
