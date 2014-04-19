@@ -38,19 +38,6 @@
     return YES;
 }
 
-- (NSArray*)storeValuesWithObject:(NSObject*)object attributeName:(NSString*)attributeName
-{
-    NSValue *value = [object valueForKey:attributeName];
-    if (value) {
-        CGSize size = [value CGSizeValue];
-        NSNumber *width = [NSNumber numberWithDouble:size.width];
-        NSNumber *height = [NSNumber numberWithDouble:size.height];
-        return @[width,height];
-    } else {
-        return @[[NSNull null],[NSNull null]];
-    }
-}
-
 - (NSArray*)sqliteColumnsWithAttribute:(BZObjectStoreRuntimeProperty *)attribute
 {
     BZObjectStoreSQLiteColumnModel *width = [[BZObjectStoreSQLiteColumnModel alloc]init];
@@ -61,6 +48,15 @@
     height.columnName = [NSString stringWithFormat:@"%@_height",attribute.columnName];
     height.dataTypeName = [self sqliteDataTypeName];
     
+    return @[width,height];
+}
+
+- (NSArray*)storeValuesWithObject:(NSObject*)object attributeName:(NSString*)attributeName
+{
+    NSValue *value = [object valueForKey:attributeName];
+    CGSize size = [value CGSizeValue];
+    NSNumber *width = [NSNumber numberWithDouble:size.width];
+    NSNumber *height = [NSNumber numberWithDouble:size.height];
     return @[width,height];
 }
 

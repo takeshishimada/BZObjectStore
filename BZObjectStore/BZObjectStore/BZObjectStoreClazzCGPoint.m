@@ -38,19 +38,6 @@
     return YES;
 }
 
-- (NSArray*)storeValuesWithObject:(NSObject*)object attributeName:(NSString*)attributeName
-{
-    NSValue *value = [object valueForKey:attributeName];
-    if (value) {
-        CGPoint point = [value CGPointValue];
-        NSNumber *x = [NSNumber numberWithDouble:point.x];
-        NSNumber *y = [NSNumber numberWithDouble:point.y];
-        return @[x,y];
-    } else {
-        return @[[NSNull null],[NSNull null]];
-    }
-}
-
 - (NSArray*)sqliteColumnsWithAttribute:(BZObjectStoreRuntimeProperty *)attribute
 {
     BZObjectStoreSQLiteColumnModel *x = [[BZObjectStoreSQLiteColumnModel alloc]init];
@@ -61,6 +48,15 @@
     y.columnName = [NSString stringWithFormat:@"%@_y",attribute.columnName];
     y.dataTypeName = [self sqliteDataTypeName];
     
+    return @[x,y];
+}
+
+- (NSArray*)storeValuesWithObject:(NSObject*)object attributeName:(NSString*)attributeName
+{
+    NSValue *value = [object valueForKey:attributeName];
+    CGPoint point = [value CGPointValue];
+    NSNumber *x = [NSNumber numberWithDouble:point.x];
+    NSNumber *y = [NSNumber numberWithDouble:point.y];
     return @[x,y];
 }
 

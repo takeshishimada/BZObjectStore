@@ -25,6 +25,7 @@
 #import "FMResultSet.h"
 #import "BZObjectStoreConst.h"
 #import "BZObjectStoreRuntimeProperty.h"
+#import "BZObjectStoreSQLiteColumnModel.h"
 
 @implementation BZObjectStoreClazzNSRange
 
@@ -37,37 +38,43 @@
     return YES;
 }
 
-- (id)storeValueWithValue:(NSObject*)value
-{
-    if ([[value class] isSubclassOfClass:[NSValue class]]) {
-        return NSStringFromRange([(NSValue*)value rangeValue]);
-    } else {
-        return [NSNull null];
-    }
-}
 
-- (id)valueWithStoreValue:(NSObject*)value
+- (NSArray*)sqliteColumnsWithAttribute:(BZObjectStoreRuntimeProperty *)attribute
 {
-    if ([[value class] isSubclassOfClass:[NSString class]]) {
-        return [NSValue valueWithRange:NSRangeFromString((NSString*)value)];
-    } else {
-        return [NSValue valueWithRange:NSMakeRange(0, 0)];
-    }
+    BZObjectStoreSQLiteColumnModel *length = [[BZObjectStoreSQLiteColumnModel alloc]init];
+    length.columnName = [NSString stringWithFormat:@"%@_length",attribute.columnName];
+    length.dataTypeName = [self sqliteDataTypeName];
+    
+    BZObjectStoreSQLiteColumnModel *location = [[BZObjectStoreSQLiteColumnModel alloc]init];
+    location.columnName = [NSString stringWithFormat:@"%@_location",attribute.columnName];
+    location.dataTypeName = [self sqliteDataTypeName];
+    
+    return @[length,location];
 }
 
 - (NSArray*)storeValuesWithObject:(NSObject*)object attributeName:(NSString*)attributeName
 {
-    return @[[self storeValueWithValue:[object valueForKey:attributeName]]];
+    NSValue *value = [object valueForKey:attributeName];
+    NSRange range = [value rangeValue];
+    NSNumber *length = [NSNumber numberWithDouble:range.length];
+    NSNumber *location = [NSNumber numberWithDouble:range.location];
+    return @[length,location];
 }
 
 - (id)valueWithResultSet:(FMResultSet*)resultSet attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    return [self valueWithStoreValue:[resultSet stringForColumn:attribute.columnName]];
+    NSString *columnNameLength = [NSString stringWithFormat:@"%@_length",attribute.columnName];
+    NSString *columnNameLocation = [NSString stringWithFormat:@"%@_location",attribute.columnName];
+    NSRange range;
+    range.length = [resultSet intForColumn:columnNameLength];
+    range.location = [resultSet intForColumn:columnNameLocation];
+    return [NSValue valueWithRange:range];
+    
 }
 
 - (NSString*)sqliteDataTypeName
 {
-    return SQLITE_DATA_TYPE_TEXT;
+    return SQLITE_DATA_TYPE_INTEGER;
 }
 
 @end

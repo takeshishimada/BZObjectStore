@@ -38,21 +38,6 @@
     return YES;
 }
 
-- (NSArray*)storeValuesWithObject:(NSObject*)object attributeName:(NSString*)attributeName
-{
-    NSValue *value = [object valueForKey:attributeName];
-    if (value) {
-        CGRect rect = [value CGRectValue];
-        NSNumber *x = [NSNumber numberWithDouble:rect.origin.x];
-        NSNumber *y = [NSNumber numberWithDouble:rect.origin.y];
-        NSNumber *width = [NSNumber numberWithDouble:rect.size.width];
-        NSNumber *height = [NSNumber numberWithDouble:rect.size.height];
-        return @[x,y,width,height];
-    } else {
-        return @[[NSNull null],[NSNull null],[NSNull null],[NSNull null]];
-    }
-}
-
 - (NSArray*)sqliteColumnsWithAttribute:(BZObjectStoreRuntimeProperty *)attribute
 {
     BZObjectStoreSQLiteColumnModel *x = [[BZObjectStoreSQLiteColumnModel alloc]init];
@@ -62,15 +47,26 @@
     BZObjectStoreSQLiteColumnModel *y = [[BZObjectStoreSQLiteColumnModel alloc]init];
     y.columnName = [NSString stringWithFormat:@"%@_y",attribute.columnName];
     y.dataTypeName = [self sqliteDataTypeName];
-
+    
     BZObjectStoreSQLiteColumnModel *width = [[BZObjectStoreSQLiteColumnModel alloc]init];
     width.columnName = [NSString stringWithFormat:@"%@_width",attribute.columnName];
     width.dataTypeName = [self sqliteDataTypeName];
-
+    
     BZObjectStoreSQLiteColumnModel *height = [[BZObjectStoreSQLiteColumnModel alloc]init];
     height.columnName = [NSString stringWithFormat:@"%@_height",attribute.columnName];
     height.dataTypeName = [self sqliteDataTypeName];
+    
+    return @[x,y,width,height];
+}
 
+- (NSArray*)storeValuesWithObject:(NSObject*)object attributeName:(NSString*)attributeName
+{
+    NSValue *value = [object valueForKey:attributeName];
+    CGRect rect = [value CGRectValue];
+    NSNumber *x = [NSNumber numberWithDouble:rect.origin.x];
+    NSNumber *y = [NSNumber numberWithDouble:rect.origin.y];
+    NSNumber *width = [NSNumber numberWithDouble:rect.size.width];
+    NSNumber *height = [NSNumber numberWithDouble:rect.size.height];
     return @[x,y,width,height];
 }
 

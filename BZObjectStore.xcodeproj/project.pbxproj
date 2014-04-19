@@ -686,7 +686,7 @@
 			name = TypeMissMatch;
 			sourceTree = "<group>";
 		};
-		7294512319025BF4007C610E /* C POD */ = {
+		7294512319025BF4007C610E /* POD */ = {
 			isa = PBXGroup;
 			children = (
 				7259F85E18F44FCA002A3416 /* BZObjectStoreClazzPrimitive.h */,
@@ -716,10 +716,10 @@
 				7259F83618F44FCA002A3416 /* BZObjectStoreClazzFloat.h */,
 				7259F83718F44FCA002A3416 /* BZObjectStoreClazzFloat.m */,
 			);
-			name = "C POD";
+			name = POD;
 			sourceTree = "<group>";
 		};
-		7294512419025C09007C610E /* C Structure */ = {
+		7294512419025C09007C610E /* Structure */ = {
 			isa = PBXGroup;
 			children = (
 				7259F82C18F44FCA002A3416 /* BZObjectStoreClazzCGPoint.h */,
@@ -731,7 +731,7 @@
 				7259F85418F44FCA002A3416 /* BZObjectStoreClazzNSRange.h */,
 				7259F85518F44FCA002A3416 /* BZObjectStoreClazzNSRange.m */,
 			);
-			name = "C Structure";
+			name = Structure;
 			sourceTree = "<group>";
 		};
 		7294512519025C6A007C610E /* Objective-c Arrangement */ = {
@@ -875,8 +875,8 @@
 			children = (
 				7259F82A18F44FCA002A3416 /* BZObjectStoreClazz.h */,
 				7259F82B18F44FCA002A3416 /* BZObjectStoreClazz.m */,
-				7294512319025BF4007C610E /* C POD */,
-				7294512419025C09007C610E /* C Structure */,
+				7294512319025BF4007C610E /* POD */,
+				7294512419025C09007C610E /* Structure */,
 				7294512619025D15007C610E /* Objective-c */,
 				7294512519025C6A007C610E /* Objective-c Arrangement */,
 			);
