@@ -51,9 +51,9 @@
     return [NSNull null];
 }
 
-- (NSArray*)storeValuesWithObject:(NSObject*)object attributeName:(NSString*)attributeName
+- (NSArray*)storeValuesWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    return @[[self storeValueWithValue:[object valueForKey:attributeName]]];
+    return @[[self storeValueWithValue:[object valueForKey:attribute.name]]];
 }
 
 - (id)valueWithResultSet:(FMResultSet*)resultSet attribute:(BZObjectStoreRuntimeProperty*)attribute

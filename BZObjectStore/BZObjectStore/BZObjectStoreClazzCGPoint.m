@@ -51,9 +51,9 @@
     return @[x,y];
 }
 
-- (NSArray*)storeValuesWithObject:(NSObject*)object attributeName:(NSString*)attributeName
+- (NSArray*)storeValuesWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    NSValue *value = [object valueForKey:attributeName];
+    NSValue *value = [object valueForKey:attribute.name];
     CGPoint point = [value CGPointValue];
     NSNumber *x = [NSNumber numberWithDouble:point.x];
     NSNumber *y = [NSNumber numberWithDouble:point.y];

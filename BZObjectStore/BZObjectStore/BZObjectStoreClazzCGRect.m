@@ -59,9 +59,9 @@
     return @[x,y,width,height];
 }
 
-- (NSArray*)storeValuesWithObject:(NSObject*)object attributeName:(NSString*)attributeName
+- (NSArray*)storeValuesWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    NSValue *value = [object valueForKey:attributeName];
+    NSValue *value = [object valueForKey:attribute.name];
     CGRect rect = [value CGRectValue];
     NSNumber *x = [NSNumber numberWithDouble:rect.origin.x];
     NSNumber *y = [NSNumber numberWithDouble:rect.origin.y];

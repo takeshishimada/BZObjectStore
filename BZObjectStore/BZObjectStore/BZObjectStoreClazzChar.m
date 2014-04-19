@@ -37,9 +37,9 @@
     return YES;
 }
 
-- (NSArray*)storeValuesWithObject:(NSObject*)object attributeName:(NSString*)attributeName
+- (NSArray*)storeValuesWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    NSNumber *value = [object valueForKey:attributeName];
+    NSNumber *value = [object valueForKey:attribute.name];
     return @[[NSNumber numberWithInt:[value intValue]]];
 }
 

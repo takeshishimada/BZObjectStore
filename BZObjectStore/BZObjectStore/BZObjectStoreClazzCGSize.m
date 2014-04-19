@@ -51,9 +51,9 @@
     return @[width,height];
 }
 
-- (NSArray*)storeValuesWithObject:(NSObject*)object attributeName:(NSString*)attributeName
+- (NSArray*)storeValuesWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    NSValue *value = [object valueForKey:attributeName];
+    NSValue *value = [object valueForKey:attribute.name];
     CGSize size = [value CGSizeValue];
     NSNumber *width = [NSNumber numberWithDouble:size.width];
     NSNumber *height = [NSNumber numberWithDouble:size.height];
