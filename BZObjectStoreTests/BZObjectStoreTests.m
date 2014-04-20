@@ -75,6 +75,7 @@
 #import "BZOSIdenticalFirstModel.h"
 #import "BZOSIdenticalSecondModel.h"
 #import "BZOSIdenticalThirdModel.h"
+#import "BZDuplicateAttributeModel.h"
 
 @interface BZObjectStoreTests : XCTestCase {
     BZObjectStore *_disk;
@@ -128,6 +129,7 @@
     [self testBZTypeMissMatchModel:_disk];
     [self testBZOSIdenticalAttributeOSSerializeAttributeModel:_disk];
     [self testBZOSIdenticalFirstModel:_disk];
+    [self testBZDuplicateAttributeModel:_disk];
 }
 
 
@@ -161,6 +163,7 @@
     [self testBZTypeMissMatchModel:_memory];
     [self testBZOSIdenticalAttributeOSSerializeAttributeModel:_memory];
     [self testBZOSIdenticalFirstModel:_memory];
+    [self testBZDuplicateAttributeModel:_memory];
 }
 
 - (void)testBZVarietyValuesModel:(BZObjectStore*)os
@@ -1742,4 +1745,15 @@
     
 
 }
+
+- (NSString*)testBZDuplicateAttributeModel:(BZObjectStore*)os
+{
+    NSError *error = nil;
+    BZDuplicateAttributeModel *savedObject = [[BZDuplicateAttributeModel alloc]init];
+    savedObject.code = @"01";
+    [os saveObject:savedObject error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    
+}
+
 @end

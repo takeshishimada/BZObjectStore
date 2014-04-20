@@ -95,6 +95,8 @@
 		7292AB331902E3D000FCF778 /* BZOSIdenticalFirstModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7292AB321902E3D000FCF778 /* BZOSIdenticalFirstModel.m */; };
 		7292AB361902E41E00FCF778 /* BZOSIdenticalSecondModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7292AB351902E41E00FCF778 /* BZOSIdenticalSecondModel.m */; };
 		7292AB391902E47A00FCF778 /* BZOSIdenticalThirdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7292AB381902E47A00FCF778 /* BZOSIdenticalThirdModel.m */; };
+		7292AB3E1903629400FCF778 /* BZDuplicateAttributeBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7292AB3D1903629400FCF778 /* BZDuplicateAttributeBaseModel.m */; };
+		7292AB41190362AD00FCF778 /* BZDuplicateAttributeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7292AB40190362AD00FCF778 /* BZDuplicateAttributeModel.m */; };
 		7294512219025B9B007C610E /* BZObjectStoreClazzShort.m in Sources */ = {isa = PBXBuildFile; fileRef = 7294512119025B9B007C610E /* BZObjectStoreClazzShort.m */; };
 		7294512919025F10007C610E /* BZObjectStoreClazzUnsignedChar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7294512819025F10007C610E /* BZObjectStoreClazzUnsignedChar.m */; };
 		7294512C19026281007C610E /* BZObjectStoreClazzLong.m in Sources */ = {isa = PBXBuildFile; fileRef = 7294512B19026281007C610E /* BZObjectStoreClazzLong.m */; };
@@ -321,6 +323,10 @@
 		7292AB351902E41E00FCF778 /* BZOSIdenticalSecondModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZOSIdenticalSecondModel.m; sourceTree = "<group>"; };
 		7292AB371902E47A00FCF778 /* BZOSIdenticalThirdModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZOSIdenticalThirdModel.h; sourceTree = "<group>"; };
 		7292AB381902E47A00FCF778 /* BZOSIdenticalThirdModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZOSIdenticalThirdModel.m; sourceTree = "<group>"; };
+		7292AB3C1903629400FCF778 /* BZDuplicateAttributeBaseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZDuplicateAttributeBaseModel.h; sourceTree = "<group>"; };
+		7292AB3D1903629400FCF778 /* BZDuplicateAttributeBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZDuplicateAttributeBaseModel.m; sourceTree = "<group>"; };
+		7292AB3F190362AD00FCF778 /* BZDuplicateAttributeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZDuplicateAttributeModel.h; sourceTree = "<group>"; };
+		7292AB40190362AD00FCF778 /* BZDuplicateAttributeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZDuplicateAttributeModel.m; sourceTree = "<group>"; };
 		7294512019025B9B007C610E /* BZObjectStoreClazzShort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzShort.h; sourceTree = "<group>"; };
 		7294512119025B9B007C610E /* BZObjectStoreClazzShort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzShort.m; sourceTree = "<group>"; };
 		7294512719025F10007C610E /* BZObjectStoreClazzUnsignedChar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzUnsignedChar.h; sourceTree = "<group>"; };
@@ -643,6 +649,7 @@
 				72170C0E18F8D2DE00C9A4C1 /* GroupFunction */,
 				72C2683618F945CF0070C2E5 /* Condition */,
 				72170C0F18F8D30C00C9A4C1 /* ModelInterface */,
+				7292AB3B1903627200FCF778 /* DuplicateAttribute */,
 				7259F81318F44F04002A3416 /* Supporting Files */,
 			);
 			path = BZObjectStoreTests;
@@ -707,6 +714,17 @@
 				7259F85118F44FCA002A3416 /* BZObjectStoreClazzNSObject.m */,
 			);
 			name = "Objective-c Other";
+			sourceTree = "<group>";
+		};
+		7292AB3B1903627200FCF778 /* DuplicateAttribute */ = {
+			isa = PBXGroup;
+			children = (
+				7292AB3C1903629400FCF778 /* BZDuplicateAttributeBaseModel.h */,
+				7292AB3D1903629400FCF778 /* BZDuplicateAttributeBaseModel.m */,
+				7292AB3F190362AD00FCF778 /* BZDuplicateAttributeModel.h */,
+				7292AB40190362AD00FCF778 /* BZDuplicateAttributeModel.m */,
+			);
+			name = DuplicateAttribute;
 			sourceTree = "<group>";
 		};
 		7294512319025BF4007C610E /* C POD */ = {
@@ -1244,6 +1262,7 @@
 				72C2684218F97D290070C2E5 /* BZFullTextModel.m in Sources */,
 				72C2682C18F907BA0070C2E5 /* BZAttributeIsModel.m in Sources */,
 				72170BF718F8368200C9A4C1 /* BZOnDemanItemModel.m in Sources */,
+				7292AB41190362AD00FCF778 /* BZDuplicateAttributeModel.m in Sources */,
 				727926B318FA268C00A564AA /* BZTypeMissMatchMissMatchModel.m in Sources */,
 				72C2682818F8F8380070C2E5 /* BZNameModel.m in Sources */,
 				7259F8CB18F45014002A3416 /* BZRelationshipDetailModel.m in Sources */,
@@ -1255,6 +1274,7 @@
 				72C2682318F8ED320070C2E5 /* BZDelegateModel.m in Sources */,
 				7292AB391902E47A00FCF778 /* BZOSIdenticalThirdModel.m in Sources */,
 				72C2683218F942130070C2E5 /* BZAttributeIsWeakReferenceModel.m in Sources */,
+				7292AB3E1903629400FCF778 /* BZDuplicateAttributeBaseModel.m in Sources */,
 				7259F8D018F45014002A3416 /* BZVarietyValuesModel.m in Sources */,
 				7259F8C718F45014002A3416 /* BZInvalidValuesModel.m in Sources */,
 				72C2683918F962340070C2E5 /* BZOrderByModel.m in Sources */,
