@@ -199,31 +199,15 @@
 
 - (BOOL)deleteFrom:(NSObject*)object db:(FMDatabase*)db
 {
-//    if (object.rowid) {
-    
-        BZObjectStoreConditionModel *condition = [object.runtime rowidCondition:object];
-        NSMutableArray *parameters = [NSMutableArray array];
-        [parameters addObjectsFromArray:condition.sqlite.parameters];
-        NSString *sql = [object.runtime deleteFromStatementWithCondition:condition];
-        [db executeUpdate:sql withArgumentsInArray:parameters];
-        if ([self hadError:db]) {
-            return NO;
-        }
-        return YES;
-        
-//    } else if (object.runtime.hasIdentificationAttributes) {
-//        BZObjectStoreConditionModel *condition = [object.runtime uniqueCondition:object];
-//        NSMutableArray *parameters = [NSMutableArray array];
-//        [parameters addObjectsFromArray:condition.sqlite.parameters];
-//        NSString *sql = [object.runtime deleteFromStatementWithCondition:condition];
-//        [db executeUpdate:sql withArgumentsInArray:parameters];
-//        if ([self hadError:db]) {
-//            return NO;
-//        }
-//        return YES;
-//    }
-//    return YES;
-//    
+    BZObjectStoreConditionModel *condition = [object.runtime rowidCondition:object];
+    NSMutableArray *parameters = [NSMutableArray array];
+    [parameters addObjectsFromArray:condition.sqlite.parameters];
+    NSString *sql = [object.runtime deleteFromStatementWithCondition:condition];
+    [db executeUpdate:sql withArgumentsInArray:parameters];
+    if ([self hadError:db]) {
+        return NO;
+    }
+    return YES;
 }
 
 - (BOOL)deleteFrom:(BZObjectStoreRuntime*)runtime condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db

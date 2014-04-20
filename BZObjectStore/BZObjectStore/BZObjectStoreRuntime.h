@@ -74,7 +74,6 @@
 - (NSString*)dropTableStatement;
 - (NSString*)dropUniqueIndexStatement;
 - (NSString*)insertIntoStatement;
-- (NSString*)insertOrReplaceIntoStatement;
 - (NSString*)insertOrIgnoreIntoStatement;
 - (NSString*)updateStatementWithObject:(NSObject*)object condition:(BZObjectStoreConditionModel*)condition;
 - (NSString*)selectRowidStatement:(BZObjectStoreConditionModel*)condition;
@@ -90,7 +89,6 @@
 
 // parameter methods
 - (NSMutableArray*)insertOrIgnoreAttributesParameters:(NSObject*)object;
-- (NSMutableArray*)insertOrReplaceAttributesParameters:(NSObject*)object;
 - (NSMutableArray*)insertAttributesParameters:(NSObject*)object;
 - (NSMutableArray*)updateAttributesParameters:(NSObject*)object;
 
@@ -110,7 +108,6 @@
 @property (nonatomic,strong) NSString *updateTemplateStatement;
 @property (nonatomic,strong) NSString *selectRowidTemplateStatement;
 @property (nonatomic,strong) NSString *insertIntoTemplateStatement;
-@property (nonatomic,strong) NSString *insertOrReplaceIntoTemplateStatement;
 @property (nonatomic,strong) NSString *insertOrIgnoreIntoTemplateStatement;
 @property (nonatomic,strong) NSString *deleteFromTemplateStatement;
 @property (nonatomic,strong) NSString *createTableTemplateStatement;

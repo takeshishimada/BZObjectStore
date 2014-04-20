@@ -200,7 +200,6 @@
     self.updateTemplateStatement = [BZObjectStoreQueryBuilder updateStatement:self];
     self.selectRowidTemplateStatement = [BZObjectStoreQueryBuilder selectRowidStatement:self];
     self.insertIntoTemplateStatement = [BZObjectStoreQueryBuilder insertIntoStatement:self];
-    self.insertOrReplaceIntoTemplateStatement = [BZObjectStoreQueryBuilder insertOrReplaceIntoStatement:self];
     self.insertOrIgnoreIntoTemplateStatement = [BZObjectStoreQueryBuilder insertOrIgnoreIntoStatement:self];
     self.deleteFromTemplateStatement = [BZObjectStoreQueryBuilder deleteFromStatement:self];
     self.createTableTemplateStatement = [BZObjectStoreQueryBuilder createTableStatement:self];
@@ -258,10 +257,6 @@
 - (NSString*)insertOrIgnoreIntoStatement
 {
     return self.insertOrIgnoreIntoTemplateStatement;
-}
-- (NSString*)insertOrReplaceIntoStatement
-{
-    return self.insertOrReplaceIntoTemplateStatement;
 }
 - (NSString*)updateStatementWithObject:(NSObject*)object condition:(BZObjectStoreConditionModel*)condition
 {
