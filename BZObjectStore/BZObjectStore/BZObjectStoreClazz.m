@@ -222,9 +222,6 @@
                 break;
             }
         }
-        if (!osclazz) {
-            osclazz = [[BZObjectStoreClazzInt alloc]init];
-        }
         if (osclazz) {
             [osclazzs setObject:osclazz forKey:key];
         }

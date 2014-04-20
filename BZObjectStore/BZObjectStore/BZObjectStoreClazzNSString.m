@@ -45,31 +45,19 @@
     return YES;
 }
 
-- (id)storeValueWithValue:(NSObject*)value
-{
-    if ([[value class] isSubclassOfClass:[NSString class]]) {
-        return value;
-    } else {
-        return [NSNull null];
-    }
-}
-
-- (id)valueWithStoreValue:(NSObject*)value
-{
-    if ([[value class] isSubclassOfClass:[NSString class]]) {
-        return value;
-    }
-    return nil;
-}
-
 - (NSArray*)storeValuesWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    return @[[self storeValueWithValue:[object valueForKey:attribute.name]]];
+    NSString *value = [object valueForKey:attribute.name];
+    if (value) {
+        return @[value];
+    }
+    return @[[NSNull null]];
 }
 
 - (id)valueWithResultSet:(FMResultSet*)resultSet attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    return [self valueWithStoreValue:[resultSet stringForColumn:attribute.columnName]];
+    NSString *value = [resultSet stringForColumn:attribute.columnName];
+    return value;
 }
 
 - (NSString*)sqliteDataTypeName

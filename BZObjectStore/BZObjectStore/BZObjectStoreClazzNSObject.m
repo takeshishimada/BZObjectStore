@@ -65,9 +65,8 @@
     NSObject *value = [object valueForKey:attribute.name];
     if (value) {
         return @[[NSNumber numberWithInteger:1]];
-    } else {
-        return @[[NSNumber numberWithInteger:0]];
     }
+    return @[[NSNumber numberWithInteger:0]];
 }
 
 - (NSString*)sqliteDataTypeName

@@ -63,9 +63,8 @@
     if ([[value class] isSubclassOfClass:[NSMutableDictionary class]]) {
         NSMutableDictionary *dic = (NSMutableDictionary*)value;
         return @[[NSNumber numberWithInteger:dic.count]];
-    } else {
-        return @[[NSNumber numberWithInteger:0]];
     }
+    return @[[NSNumber numberWithInteger:0]];
 }
 
 - (NSString*)sqliteDataTypeName

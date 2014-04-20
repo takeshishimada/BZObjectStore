@@ -60,9 +60,6 @@
             columnName = (NSString*)[clazz performSelector:@selector(OSColumnName:) withObject:name];
         }
     }
-    if (!columnName || [columnName isEqualToString:@""]) {
-        columnName = name;
-    }
     return columnName;
 }
 

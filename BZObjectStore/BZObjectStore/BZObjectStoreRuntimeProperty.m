@@ -176,7 +176,6 @@
     
     // sqlite
     self.columnName = [self.osruntime.nameBuilder columnName:bzproperty.name clazz:self.osruntime.clazz];
-    self.sqliteDataTypeName = self.osclazz.sqliteDataTypeName;
     self.sqliteColumns = [self.osclazz sqliteColumnsWithAttribute:self];
     
 }

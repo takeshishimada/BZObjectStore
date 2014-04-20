@@ -46,15 +46,17 @@
     UIImage *image = [object valueForKey:attribute.name];
     if (image) {
         return @[[NSData dataWithData:UIImagePNGRepresentation(image)]];
-    } else {
-        return @[[NSNull null]];
     }
+    return @[[NSNull null]];
 }
 
 - (id)valueWithResultSet:(FMResultSet*)resultSet attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
     NSData *data = [resultSet dataForColumn:attribute.columnName];
-    return [[UIImage alloc] initWithData:data];
+    if (data) {
+        return [[UIImage alloc] initWithData:data];
+    }
+    return nil;
 }
 
 

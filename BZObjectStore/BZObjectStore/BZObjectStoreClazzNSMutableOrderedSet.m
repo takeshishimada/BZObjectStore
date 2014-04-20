@@ -63,9 +63,8 @@
     if ([[value class] isSubclassOfClass:[NSMutableOrderedSet class]]) {
         NSMutableOrderedSet *orderedSet = (NSMutableOrderedSet*)value;
         return @[[NSNumber numberWithInteger:orderedSet.count]];
-    } else {
-        return @[[NSNull null]];
     }
+    return @[[NSNull null]];
 }
 
 - (NSString*)sqliteDataTypeName

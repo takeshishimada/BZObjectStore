@@ -1665,7 +1665,7 @@
     
     XCTAssertTrue(fetchedObject.vdouble_max == [NSNull null],"vdouble_max error");
     XCTAssertTrue(!fetchedObject.vbool_max,"vdouble_max error");
-    XCTAssertTrue(!fetchedObject.vfloat_max,"vfloat_max error");
+    XCTAssertTrue(fetchedObject.vfloat_max,"vfloat_max error");
     XCTAssertTrue(fetchedObject.vchar_max,"vchar_max error");
     XCTAssertTrue(!fetchedObject.vint_max,"vint_max error");
     XCTAssertTrue(fetchedObject.vdouble_min,"vdouble_min error");

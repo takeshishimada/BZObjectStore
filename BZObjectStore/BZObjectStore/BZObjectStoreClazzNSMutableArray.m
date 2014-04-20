@@ -64,9 +64,8 @@
     if ([[value class] isSubclassOfClass:[NSMutableArray class]]) {
         NSMutableArray *array = (NSMutableArray*)value;
         return @[[NSNumber numberWithInteger:array.count]];
-    } else {
-        return @[[NSNumber numberWithInteger:0]];
     }
+    return @[[NSNumber numberWithInteger:0]];
 }
 
 - (NSString*)sqliteDataTypeName

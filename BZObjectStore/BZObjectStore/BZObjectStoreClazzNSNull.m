@@ -41,24 +41,14 @@
     return YES;
 }
 
-- (id)storeValueWithValue:(NSObject*)value
-{
-    return [NSNull null];
-}
-
-- (id)valueWithStoreValue:(NSObject*)value
-{
-    return [NSNull null];
-}
-
 - (NSArray*)storeValuesWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    return @[[self storeValueWithValue:[object valueForKey:attribute.name]]];
+    return @[[NSNull null]];
 }
 
 - (id)valueWithResultSet:(FMResultSet*)resultSet attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    return [self valueWithStoreValue:[resultSet objectForColumnName:attribute.columnName]];
+    return [NSNull null];
 }
 
 - (NSString*)sqliteDataTypeName

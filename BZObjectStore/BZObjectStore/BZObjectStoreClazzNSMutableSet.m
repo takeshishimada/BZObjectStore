@@ -64,9 +64,8 @@
     if ([[value class] isSubclassOfClass:[NSMutableSet class]]) {
         NSMutableSet *set = (NSMutableSet*)value;
         return @[[NSNumber numberWithInteger:set.count]];
-    } else {
-        return @[[NSNumber numberWithInteger:0]];
     }
+    return @[[NSNumber numberWithInteger:0]];
 }
 
 - (NSString*)sqliteDataTypeName

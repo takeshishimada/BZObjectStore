@@ -25,6 +25,8 @@
 #import "FMResultSet.h"
 #import "BZObjectStoreConst.h"
 #import "BZObjectStoreRuntimeProperty.h"
+#import "BZObjectStoreSQLiteColumnModel.h"
+#import "BZObjectStoreClazz.h"
 
 @implementation BZObjectStoreClazzID
 
@@ -49,24 +51,51 @@
     return YES;
 }
 
+- (NSArray*)sqliteColumnsWithAttribute:(BZObjectStoreRuntimeProperty *)attribute
+{
+    BZObjectStoreSQLiteColumnModel *value = [[BZObjectStoreSQLiteColumnModel alloc]init];
+    value.columnName = attribute.columnName;
+    value.dataTypeName = SQLITE_DATA_TYPE_BLOB;
+    
+    BZObjectStoreSQLiteColumnModel *attributeType = [[BZObjectStoreSQLiteColumnModel alloc]init];
+    attributeType.columnName = [NSString stringWithFormat:@"%@_attributeType",attribute.columnName];
+    attributeType.dataTypeName = SQLITE_DATA_TYPE_TEXT;
+    
+    return @[value,attributeType];
+}
+
 - (NSArray*)storeValuesWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    NSNumber *value = [object valueForKey:attribute.name];
+    NSObject *value = [object valueForKey:attribute.columnName];
+    NSString *attributeType = nil;
     if (value) {
-        return @[[NSNumber numberWithInteger:1]];
-    } else {
-        return @[[NSNull null]];
+        BZObjectStoreClazz *osclazz = [BZObjectStoreClazz osclazzWithClazz:[value class]];
+        NSArray *storeValue = [osclazz storeValuesWithObject:object attribute:attribute];
+        attributeType = osclazz.attributeType;
+        NSMutableArray *storeValues = [NSMutableArray arrayWithArray:storeValue];
+        if (storeValues.count == 1) {
+            return @[storeValues[0],attributeType];
+        }
     }
+    return @[[NSNull null],[NSNull null]];
 }
 
 - (id)valueWithResultSet:(FMResultSet*)resultSet attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    return [resultSet objectForColumnName:attribute.columnName];
-}
-
-- (NSString*)sqliteDataTypeName
-{
-    return SQLITE_DATA_TYPE_INTEGER;
+    NSString *attributeTypeColumnName = [NSString stringWithFormat:@"%@_attributeType",attribute.columnName];
+    NSString *attributeType = [resultSet stringForColumn:attributeTypeColumnName];
+    Class clazz = NSClassFromString(attributeType);
+    if (clazz) {
+        NSObject *value = [resultSet objectForColumnName:attribute.name];
+        if (value) {
+            BZObjectStoreClazz *osclazz = [BZObjectStoreClazz osclazzWithClazz:clazz];
+            if (osclazz.isSimpleValueClazz) {
+                NSObject *value = [osclazz valueWithResultSet:resultSet attribute:attribute];
+                return value;
+            }
+        }
+    }
+    return nil;
 }
 
 @end
