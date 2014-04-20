@@ -146,6 +146,7 @@
     self.isSimpleValueClazz = self.osclazz.isSimpleValueClazz;
     self.isArrayClazz = self.osclazz.isArrayClazz;
     self.isObjectClazz = self.osclazz.isObjectClazz;
+    self.isRelationshipClazz = self.osclazz.isRelationshipClazz;
     self.isStringNumberClazz = self.osclazz.isStringNumberClazz;
     self.attributeType = self.osclazz.attributeType;
 
@@ -166,12 +167,12 @@
     // relationship attribute
     if (self.serializableAttribute) {
         self.isRelationshipClazz = NO;
-    } else if (self.isArrayClazz ) {
-        self.isRelationshipClazz = YES;
-    } else if (self.isObjectClazz) {
-        self.isRelationshipClazz = YES;
-    } else {
-        self.isRelationshipClazz = NO;
+//    } else if (self.isArrayClazz ) {
+//        self.isRelationshipClazz = YES;
+//    } else if (self.isObjectClazz) {
+//        self.isRelationshipClazz = YES;
+//    } else {
+//        self.isRelationshipClazz = NO;
     }
     
     // sqlite
