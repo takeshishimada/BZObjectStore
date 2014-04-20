@@ -21,8 +21,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "BZObjectStoreClazzNSValue.h"
+#import "BZObjectStoreClazz.h"
 
-@interface BZObjectStoreClazzCGRect : BZObjectStoreClazzNSValue
+@interface BZObjectStoreClazzCGRect : BZObjectStoreClazz
 
 @end

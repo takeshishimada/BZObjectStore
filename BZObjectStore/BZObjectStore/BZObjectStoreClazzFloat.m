@@ -45,7 +45,7 @@
 
 - (id)valueWithResultSet:(FMResultSet*)resultSet attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    double value = [resultSet doubleForColumn:attribute.name];
+    double value = [resultSet doubleForColumn:attribute.columnName];
     return [NSNumber numberWithDouble:value];
 }
 

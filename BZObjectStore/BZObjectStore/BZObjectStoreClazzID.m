@@ -86,7 +86,7 @@
     NSString *attributeType = [resultSet stringForColumn:attributeTypeColumnName];
     Class clazz = NSClassFromString(attributeType);
     if (clazz) {
-        NSObject *value = [resultSet objectForColumnName:attribute.name];
+        NSObject *value = [resultSet objectForColumnName:attribute.columnName];
         if (value) {
             BZObjectStoreClazz *osclazz = [BZObjectStoreClazz osclazzWithClazz:clazz];
             if (osclazz.isSimpleValueClazz) {
