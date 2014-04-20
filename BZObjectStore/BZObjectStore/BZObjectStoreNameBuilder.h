@@ -22,6 +22,7 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import "BZObjectStoreModelInterface.h"
 
 @interface BZObjectStoreNameBuilder : NSObject
 @property (nonatomic,strong) NSString *ignorePrefixName;

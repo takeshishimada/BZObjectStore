@@ -22,7 +22,6 @@
 // THE SOFTWARE.
 
 #import "BZObjectStoreNameBuilder.h"
-#import "BZObjectStoreModelInterface.h"
 
 @implementation BZObjectStoreNameBuilder
 

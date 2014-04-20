@@ -359,15 +359,6 @@
     return parameters;
 }
 
-- (NSMutableArray*)insertOrReplaceAttributesParameters:(NSObject*)object
-{
-    NSMutableArray *parameters = [NSMutableArray array];
-    for (BZObjectStoreRuntimeProperty *attribute in self.attributes) {
-        [parameters addObjectsFromArray:[attribute storeValuesWithObject:object]];
-    }
-    return parameters;
-}
-
 - (NSMutableArray*)updateAttributesParameters:(NSObject*)object
 {
     NSMutableArray *parameters = [NSMutableArray array];
@@ -408,10 +399,6 @@
 - (id)object
 {
     return [self.osclazz objectWithClazz:self.clazz];
-}
-- (NSString*)initializingOptionsWithObject:(NSObject*)object
-{
-    return [self.osclazz initializingOptionsWithObject:object];
 }
 - (NSEnumerator*)objectEnumeratorWithObject:(id)object
 {

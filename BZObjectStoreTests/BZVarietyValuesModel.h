@@ -81,6 +81,7 @@ typedef struct {
 @property (nonatomic,strong) id vidSimple;
 @property (nonatomic,strong) BZVarietyValuesItemModel *vmodel;
 @property (nonatomic,strong) NSValue *vvalue;
+@property (nonatomic,strong) NSDate *vdate;
 
 // objective-c core graphics
 @property (nonatomic,assign) CGFloat vcgfloat;

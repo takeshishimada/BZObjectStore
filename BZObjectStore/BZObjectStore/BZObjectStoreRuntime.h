@@ -96,7 +96,6 @@
 - (BZObjectStoreRuntimeProperty*)attributeWithColumnName:(NSString*)columnName;
 
 // for value in array
-- (NSString*)initializingOptionsWithObject:(NSObject*)object;
 - (NSEnumerator*)objectEnumeratorWithObject:(id)object;
 - (NSArray*)keysWithObject:(id)object;
 - (id)objectWithObjects:(NSArray*)objects keys:(NSArray*)keys initializingOptions:(NSString*)initializingOptions;

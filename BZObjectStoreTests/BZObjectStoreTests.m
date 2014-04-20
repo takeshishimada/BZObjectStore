@@ -76,6 +76,8 @@
 #import "BZOSIdenticalSecondModel.h"
 #import "BZOSIdenticalThirdModel.h"
 #import "BZDuplicateAttributeModel.h"
+#import "BZObjectStoreReferenceModel.h"
+#import "BZObjectStoreNameBuilder.h"
 
 @interface BZObjectStoreTests : XCTestCase {
     BZObjectStore *_disk;
@@ -130,6 +132,8 @@
     [self testBZOSIdenticalAttributeOSSerializeAttributeModel:_disk];
     [self testBZOSIdenticalFirstModel:_disk];
     [self testBZDuplicateAttributeModel:_disk];
+    [self testBZObjectStoreReferenceModel:_disk];
+    [self testBZObjectStoreNameBuilder:_disk];
 }
 
 
@@ -164,6 +168,8 @@
     [self testBZOSIdenticalAttributeOSSerializeAttributeModel:_memory];
     [self testBZOSIdenticalFirstModel:_memory];
     [self testBZDuplicateAttributeModel:_memory];
+    [self testBZObjectStoreReferenceModel:_memory];
+    [self testBZObjectStoreNameBuilder:_memory];
 }
 
 - (void)testBZVarietyValuesModel:(BZObjectStore*)os
@@ -499,7 +505,9 @@
     [os saveObject:empty error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     
-    
+    NSArray *emptyObjects = [os fetchObjects:[BZVarietyValuesModel class] condition:nil error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertTrue(emptyObjects.count == 2,@"emptyObjects count error");
 }
 
 - (void)testBZInvalidValuesModel:(BZObjectStore*)os
@@ -831,6 +839,8 @@
         XCTAssertTrue(headerLatest.details.count == 1,"object error");
     }
     
+    
+    
 }
 
 - (void)testBZExtendModel:(BZObjectStore*)os
@@ -1002,6 +1012,17 @@
         }
         [rs close];
     }];
+    
+    
+    BZAttributeIsModel *refreshingObjectNoRowid = [[BZAttributeIsModel alloc]init];
+    refreshingObjectNoRowid.identicalAttribute = @"01";
+    refreshingObjectNoRowid = [os refreshObject:refreshingObjectNoRowid error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertTrue([refreshingObjectNoRowid.name isEqualToString:@"name2"],"refreshingObjectNoRowid error");
+    XCTAssertTrue([refreshingObjectNoRowid.notUpdateIfValueIsNullAttribute isEqualToString:@"01"],"refreshingObjectNoRowid error");
+    XCTAssertTrue([refreshingObjectNoRowid.onceUpdateAttribute isEqualToString:@"01"],"refreshingObjectNoRowid error");
+    XCTAssertTrue(refreshingObjectNoRowid.fetchOnRefreshingAttribute != nil,@"refreshingObjectNoRowid") ;
+
 
     NSNumber *count = [os count:[BZAttributeIsSerializeModel class] condition:nil error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
@@ -1018,6 +1039,7 @@
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     XCTAssertTrue(count.integerValue == 1,"object error");
 
+    
 }
 
 - (void)testBZOrderByModel:(BZObjectStore*)os
@@ -1761,4 +1783,17 @@
     
 }
 
+- (void)testBZObjectStoreReferenceModel:(BZObjectStore*)os
+{
+    BZObjectStoreReferenceModel *object = [[BZObjectStoreReferenceModel alloc]init];
+    object.rowid = @100;
+    XCTAssertTrue(object.rowid.integerValue == 100,@"testBZObjectStoreReferenceModel error");
+}
+
+- (void)testBZObjectStoreNameBuilder:(BZObjectStore*)os
+{
+    BZObjectStoreNameBuilder *builder = [[BZObjectStoreNameBuilder alloc]init];
+    NSString *tableName = [builder tableName:[BZObjectStoreNameBuilder class]];
+    XCTAssertTrue([tableName isEqualToString:@"BZObjectStoreNameBuilder"],@"BZObjectStoreNameBuilder error");
+}
 @end
