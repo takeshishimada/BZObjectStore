@@ -61,8 +61,7 @@
 {
     NSDictionary *value = [object valueForKey:attribute.name];
     if ([[value class] isSubclassOfClass:[NSDictionary class]]) {
-        NSDictionary *dic = (NSDictionary*)value;
-        return @[[NSNumber numberWithInteger:dic.count]];
+        return @[[NSNumber numberWithInteger:value.count]];
     }
     return @[[NSNumber numberWithInteger:0]];
 }

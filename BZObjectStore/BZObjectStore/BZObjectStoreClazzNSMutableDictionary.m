@@ -61,8 +61,7 @@
 {
     NSMutableDictionary *value = [object valueForKey:attribute.name];
     if ([[value class] isSubclassOfClass:[NSMutableDictionary class]]) {
-        NSMutableDictionary *dic = (NSMutableDictionary*)value;
-        return @[[NSNumber numberWithInteger:dic.count]];
+        return @[[NSNumber numberWithInteger:value.count]];
     }
     return @[[NSNumber numberWithInteger:0]];
 }

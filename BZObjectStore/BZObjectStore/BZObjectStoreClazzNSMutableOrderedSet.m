@@ -59,12 +59,11 @@
 
 - (NSArray*)storeValuesWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    NSObject *value = [object valueForKey:attribute.name];
+    NSMutableOrderedSet *value = [object valueForKey:attribute.name];
     if ([[value class] isSubclassOfClass:[NSMutableOrderedSet class]]) {
-        NSMutableOrderedSet *orderedSet = (NSMutableOrderedSet*)value;
-        return @[[NSNumber numberWithInteger:orderedSet.count]];
+        return @[[NSNumber numberWithInteger:value.count]];
     }
-    return @[[NSNull null]];
+    return @[[NSNumber numberWithInteger:0]];
 }
 
 - (NSString*)sqliteDataTypeName

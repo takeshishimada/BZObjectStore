@@ -494,6 +494,11 @@
         }
     }
 
+    // empty
+    BZVarietyValuesModel *empty = [[BZVarietyValuesModel alloc]init];
+    [os saveObject:empty error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    
     
 }
 

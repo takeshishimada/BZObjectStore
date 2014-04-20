@@ -62,8 +62,7 @@
 {
     NSSet *value = [object valueForKey:attribute.name];
     if ([[value class] isSubclassOfClass:[NSSet class]]) {
-        NSSet *set = (NSSet*)value;
-        return @[[NSNumber numberWithInteger:set.count]];
+        return @[[NSNumber numberWithInteger:value.count]];
     }
     return @[[NSNumber numberWithInteger:0]];
 }

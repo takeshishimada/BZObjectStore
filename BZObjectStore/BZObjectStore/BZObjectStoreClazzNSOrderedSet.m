@@ -62,8 +62,7 @@
 {
     NSOrderedSet *value = [object valueForKey:attribute.name];
     if ([[value class] isSubclassOfClass:[NSOrderedSet class]]) {
-        NSOrderedSet *orderedSet = (NSOrderedSet*)value;
-        return @[[NSNumber numberWithInteger:orderedSet.count]];
+        return @[[NSNumber numberWithInteger:value.count]];
     }
     return @[[NSNumber numberWithInteger:0]];
 }
