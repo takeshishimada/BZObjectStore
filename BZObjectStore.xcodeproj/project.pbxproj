@@ -97,6 +97,9 @@
 		7292AB391902E47A00FCF778 /* BZOSIdenticalThirdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7292AB381902E47A00FCF778 /* BZOSIdenticalThirdModel.m */; };
 		7292AB3E1903629400FCF778 /* BZDuplicateAttributeBaseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7292AB3D1903629400FCF778 /* BZDuplicateAttributeBaseModel.m */; };
 		7292AB41190362AD00FCF778 /* BZDuplicateAttributeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7292AB40190362AD00FCF778 /* BZDuplicateAttributeModel.m */; };
+		7292AB461903792000FCF778 /* BZObjectStoreClazzBZImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7292AB451903792000FCF778 /* BZObjectStoreClazzBZImage.m */; };
+		7292AB4919037A8000FCF778 /* BZImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7292AB4819037A8000FCF778 /* BZImage.m */; };
+		7292AB4C190384CB00FCF778 /* BZImageHolderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7292AB4B190384CB00FCF778 /* BZImageHolderModel.m */; };
 		7294512219025B9B007C610E /* BZObjectStoreClazzShort.m in Sources */ = {isa = PBXBuildFile; fileRef = 7294512119025B9B007C610E /* BZObjectStoreClazzShort.m */; };
 		7294512919025F10007C610E /* BZObjectStoreClazzUnsignedChar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7294512819025F10007C610E /* BZObjectStoreClazzUnsignedChar.m */; };
 		7294512C19026281007C610E /* BZObjectStoreClazzLong.m in Sources */ = {isa = PBXBuildFile; fileRef = 7294512B19026281007C610E /* BZObjectStoreClazzLong.m */; };
@@ -327,6 +330,12 @@
 		7292AB3D1903629400FCF778 /* BZDuplicateAttributeBaseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZDuplicateAttributeBaseModel.m; sourceTree = "<group>"; };
 		7292AB3F190362AD00FCF778 /* BZDuplicateAttributeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZDuplicateAttributeModel.h; sourceTree = "<group>"; };
 		7292AB40190362AD00FCF778 /* BZDuplicateAttributeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZDuplicateAttributeModel.m; sourceTree = "<group>"; };
+		7292AB441903792000FCF778 /* BZObjectStoreClazzBZImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzBZImage.h; sourceTree = "<group>"; };
+		7292AB451903792000FCF778 /* BZObjectStoreClazzBZImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzBZImage.m; sourceTree = "<group>"; };
+		7292AB4719037A8000FCF778 /* BZImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZImage.h; sourceTree = "<group>"; };
+		7292AB4819037A8000FCF778 /* BZImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZImage.m; sourceTree = "<group>"; };
+		7292AB4A190384CB00FCF778 /* BZImageHolderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZImageHolderModel.h; sourceTree = "<group>"; };
+		7292AB4B190384CB00FCF778 /* BZImageHolderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZImageHolderModel.m; sourceTree = "<group>"; };
 		7294512019025B9B007C610E /* BZObjectStoreClazzShort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzShort.h; sourceTree = "<group>"; };
 		7294512119025B9B007C610E /* BZObjectStoreClazzShort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzShort.m; sourceTree = "<group>"; };
 		7294512719025F10007C610E /* BZObjectStoreClazzUnsignedChar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzUnsignedChar.h; sourceTree = "<group>"; };
@@ -650,6 +659,7 @@
 				72C2683618F945CF0070C2E5 /* Condition */,
 				72170C0F18F8D30C00C9A4C1 /* ModelInterface */,
 				7292AB3B1903627200FCF778 /* DuplicateAttribute */,
+				7292AB43190378EF00FCF778 /* Osclazz */,
 				7259F81318F44F04002A3416 /* Supporting Files */,
 			);
 			path = BZObjectStoreTests;
@@ -725,6 +735,19 @@
 				7292AB40190362AD00FCF778 /* BZDuplicateAttributeModel.m */,
 			);
 			name = DuplicateAttribute;
+			sourceTree = "<group>";
+		};
+		7292AB43190378EF00FCF778 /* Osclazz */ = {
+			isa = PBXGroup;
+			children = (
+				7292AB4719037A8000FCF778 /* BZImage.h */,
+				7292AB4819037A8000FCF778 /* BZImage.m */,
+				7292AB441903792000FCF778 /* BZObjectStoreClazzBZImage.h */,
+				7292AB451903792000FCF778 /* BZObjectStoreClazzBZImage.m */,
+				7292AB4A190384CB00FCF778 /* BZImageHolderModel.h */,
+				7292AB4B190384CB00FCF778 /* BZImageHolderModel.m */,
+			);
+			name = Osclazz;
 			sourceTree = "<group>";
 		};
 		7294512319025BF4007C610E /* C POD */ = {
@@ -1241,6 +1264,7 @@
 				727926A618FA15DB00A564AA /* BZAddColumnsModel.m in Sources */,
 				72C2685818FA09A50070C2E5 /* BZWeakPropertyModel.m in Sources */,
 				72170BE818F5950D00C9A4C1 /* BZSQLiteGroupFunctionModel.m in Sources */,
+				7292AB4C190384CB00FCF778 /* BZImageHolderModel.m in Sources */,
 				72170C0318F8CEBD00C9A4C1 /* BZUpdateAttributeModel.m in Sources */,
 				72B89A1B1901770C0017B06F /* BZOSIdenticalAttributeOSSerializeAttributeModel.m in Sources */,
 				7259F8CA18F45014002A3416 /* BZObjectStoreTests.m in Sources */,
@@ -1260,6 +1284,7 @@
 				72C2685118F9FC400070C2E5 /* BZOSIdenticalModel.m in Sources */,
 				72C2684B18F98B950070C2E5 /* BZReferenceToConditionModel.m in Sources */,
 				72C2684218F97D290070C2E5 /* BZFullTextModel.m in Sources */,
+				7292AB4919037A8000FCF778 /* BZImage.m in Sources */,
 				72C2682C18F907BA0070C2E5 /* BZAttributeIsModel.m in Sources */,
 				72170BF718F8368200C9A4C1 /* BZOnDemanItemModel.m in Sources */,
 				7292AB41190362AD00FCF778 /* BZDuplicateAttributeModel.m in Sources */,
@@ -1277,6 +1302,7 @@
 				7292AB3E1903629400FCF778 /* BZDuplicateAttributeBaseModel.m in Sources */,
 				7259F8D018F45014002A3416 /* BZVarietyValuesModel.m in Sources */,
 				7259F8C718F45014002A3416 /* BZInvalidValuesModel.m in Sources */,
+				7292AB461903792000FCF778 /* BZObjectStoreClazzBZImage.m in Sources */,
 				72C2683918F962340070C2E5 /* BZOrderByModel.m in Sources */,
 				72C2684818F98B890070C2E5 /* BZReferenceFromConditionModel.m in Sources */,
 				72C2685418F9FDF20070C2E5 /* BZOSIdenticalItemModel.m in Sources */,

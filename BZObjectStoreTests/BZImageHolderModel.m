@@ -21,8 +21,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "BZDuplicateAttributeBaseModel.h"
+#import "BZImageHolderModel.h"
 
-@interface BZDuplicateAttributeModel : BZDuplicateAttributeBaseModel
-@property (nonatomic,strong) NSString *code;
+@implementation BZImageHolderModel
+
 @end

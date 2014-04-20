@@ -78,6 +78,8 @@
 #import "BZDuplicateAttributeModel.h"
 #import "BZObjectStoreReferenceModel.h"
 #import "BZObjectStoreNameBuilder.h"
+#import "BZObjectStoreClazzBZImage.h"
+#import "BZImageHolderModel.h"
 
 @interface BZObjectStoreTests : XCTestCase {
     BZObjectStore *_disk;
@@ -134,6 +136,8 @@
     [self testBZDuplicateAttributeModel:_disk];
     [self testBZObjectStoreReferenceModel:_disk];
     [self testBZObjectStoreNameBuilder:_disk];
+    [self testBZObjectStoreClazzBZImage:_disk];
+    [_disk close];
 }
 
 
@@ -170,6 +174,8 @@
     [self testBZDuplicateAttributeModel:_memory];
     [self testBZObjectStoreReferenceModel:_memory];
     [self testBZObjectStoreNameBuilder:_memory];
+    [self testBZObjectStoreClazzBZImage:_memory];
+    [_memory close];
 }
 
 - (void)testBZVarietyValuesModel:(BZObjectStore*)os
@@ -1796,4 +1802,42 @@
     NSString *tableName = [builder tableName:[BZObjectStoreNameBuilder class]];
     XCTAssertTrue([tableName isEqualToString:@"BZObjectStoreNameBuilder"],@"BZObjectStoreNameBuilder error");
 }
+
+- (void)testBZObjectStoreClazzBZImage:(BZObjectStore*)os
+{
+    NSError *error = nil;
+    
+    [BZObjectStoreClazz addClazz:[BZObjectStoreClazzBZImage class]];
+    [BZObjectStoreClazz addClazz:[NSString class]];
+    
+    BZImage *image = [[BZImage alloc]init];
+    image.url = @"http://wwww.yahoo.co.jp";
+    image.gif = nil;
+    
+    BZImageHolderModel *holder = [[BZImageHolderModel alloc]init];
+    holder.code = @"10";
+    holder.image = image;
+    
+    [os saveObject:holder error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+
+    holder.code = @"20";
+    holder.image.url = @"http://www.google.com/";
+    
+    [os saveObject:holder error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    
+    NSNumber *count = [os count:[BZImageHolderModel class] condition:nil error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    
+    XCTAssertTrue(count.integerValue == 1,@"testBZObjectStoreClazzBZImage error");
+    
+    NSArray *objects = [os fetchObjects:[BZImageHolderModel class] condition:nil error:&error];
+    BZImageHolderModel *object = objects.firstObject;
+    XCTAssertTrue([object.code isEqualToString:@"10"],@"testBZObjectStoreClazzBZImage error");
+    XCTAssertTrue([object.image.url isEqualToString:@"http://www.google.com/"],@"testBZObjectStoreClazzBZImage error");
+    
+    
+}
+
 @end

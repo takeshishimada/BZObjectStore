@@ -170,7 +170,7 @@
 
 + (void)addClazz:(Class)clazz
 {
-    if ([clazz isSubclassOfClass:[BZObjectStoreClazz class]]) {
+    if (![clazz isSubclassOfClass:[BZObjectStoreClazz class]]) {
         return;
     }
     @synchronized(self) {
