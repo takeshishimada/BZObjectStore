@@ -26,6 +26,6 @@
 @implementation BZObjectStoreAttributeModel
 + (NSString*)OSTableName
 {
-    return @"__BZObjectStoreAttribute__";
+    return @"__ObjectStoreAttribute__";
 }
 @end

@@ -27,6 +27,6 @@
 
 + (NSString*)OSTableName
 {
-    return @"__BZObjectStoreRelationship__";
+    return @"__ObjectStoreRelationship__";
 }
 @end
