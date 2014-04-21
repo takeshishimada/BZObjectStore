@@ -108,11 +108,6 @@
 		7294514619026CF6007C610E /* BZObjectStoreClazzUnsignedLongLong.m in Sources */ = {isa = PBXBuildFile; fileRef = 7294514119026CF6007C610E /* BZObjectStoreClazzUnsignedLongLong.m */; };
 		7294514719026CF6007C610E /* BZObjectStoreClazzUnsignedShort.m in Sources */ = {isa = PBXBuildFile; fileRef = 7294514319026CF6007C610E /* BZObjectStoreClazzUnsignedShort.m */; };
 		72B89A1B1901770C0017B06F /* BZOSIdenticalAttributeOSSerializeAttributeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72B89A1A1901770C0017B06F /* BZOSIdenticalAttributeOSSerializeAttributeModel.m */; };
-		72B89A211901796A0017B06F /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7259F80C18F44F04002A3416 /* XCTest.framework */; };
-		72B89A221901796A0017B06F /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7259F7F318F44F04002A3416 /* Foundation.framework */; };
-		72B89A231901796A0017B06F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7259F7F718F44F04002A3416 /* UIKit.framework */; };
-		72B89A291901796A0017B06F /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 72B89A271901796A0017B06F /* InfoPlist.strings */; };
-		72B89A2B1901796A0017B06F /* BZObjectStoreClazzTest.m in Sources */ = {isa = PBXBuildFile; fileRef = 72B89A2A1901796A0017B06F /* BZObjectStoreClazzTest.m */; };
 		72B9ABBC18FAA51300CA6216 /* BZObjectStoreClazzID.m in Sources */ = {isa = PBXBuildFile; fileRef = 72B9ABBB18FAA51300CA6216 /* BZObjectStoreClazzID.m */; };
 		72B9ABBF18FAC7A100CA6216 /* BZObjectStoreClazzSerialize.m in Sources */ = {isa = PBXBuildFile; fileRef = 72B9ABBE18FAC7A100CA6216 /* BZObjectStoreClazzSerialize.m */; };
 		72BEE87618F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72BEE87518F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.m */; };
@@ -136,18 +131,12 @@
 		72C2685418F9FDF20070C2E5 /* BZOSIdenticalItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2685318F9FDF20070C2E5 /* BZOSIdenticalItemModel.m */; };
 		72C2685818FA09A50070C2E5 /* BZWeakPropertyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2685718FA09A50070C2E5 /* BZWeakPropertyModel.m */; };
 		72C3EC6F190028C0002FFDC5 /* FMDatabase+indexInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C3EC6E190028C0002FFDC5 /* FMDatabase+indexInfo.m */; };
+		82D029EC19051DE2003B7246 /* BZArrayInArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D029EB19051DE2003B7246 /* BZArrayInArrayModel.m */; };
 		82F55B5F18F63E49003A1136 /* AppleLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7259F8AC18F45014002A3416 /* AppleLogo.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
 		7259F81018F44F04002A3416 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = 7259F7E818F44F04002A3416 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = 7259F7EF18F44F04002A3416;
-			remoteInfo = BZObjectStore;
-		};
-		72B89A2D1901796A0017B06F /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7259F7E818F44F04002A3416 /* Project object */;
 			proxyType = 1;
@@ -351,11 +340,6 @@
 		7294514319026CF6007C610E /* BZObjectStoreClazzUnsignedShort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzUnsignedShort.m; sourceTree = "<group>"; };
 		72B89A191901770C0017B06F /* BZOSIdenticalAttributeOSSerializeAttributeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZOSIdenticalAttributeOSSerializeAttributeModel.h; sourceTree = "<group>"; };
 		72B89A1A1901770C0017B06F /* BZOSIdenticalAttributeOSSerializeAttributeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZOSIdenticalAttributeOSSerializeAttributeModel.m; sourceTree = "<group>"; };
-		72B89A201901796A0017B06F /* BZObjectStoreClazzTest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BZObjectStoreClazzTest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		72B89A261901796A0017B06F /* BZObjectStoreClazzTest-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BZObjectStoreClazzTest-Info.plist"; sourceTree = "<group>"; };
-		72B89A281901796A0017B06F /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		72B89A2A1901796A0017B06F /* BZObjectStoreClazzTest.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzTest.m; sourceTree = "<group>"; };
-		72B89A2C1901796A0017B06F /* BZObjectStoreClazzTest-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BZObjectStoreClazzTest-Prefix.pch"; sourceTree = "<group>"; };
 		72B9ABBA18FAA51300CA6216 /* BZObjectStoreClazzID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzID.h; sourceTree = "<group>"; };
 		72B9ABBB18FAA51300CA6216 /* BZObjectStoreClazzID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzID.m; sourceTree = "<group>"; };
 		72B9ABBD18FAC7A100CA6216 /* BZObjectStoreClazzSerialize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzSerialize.h; sourceTree = "<group>"; };
@@ -403,6 +387,8 @@
 		72C3EC6D190028C0002FFDC5 /* FMDatabase+indexInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FMDatabase+indexInfo.h"; sourceTree = "<group>"; };
 		72C3EC6E190028C0002FFDC5 /* FMDatabase+indexInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FMDatabase+indexInfo.m"; sourceTree = "<group>"; };
 		73A736836B224E7BB841BEB0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		82D029EA19051DE2003B7246 /* BZArrayInArrayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZArrayInArrayModel.h; sourceTree = "<group>"; };
+		82D029EB19051DE2003B7246 /* BZArrayInArrayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZArrayInArrayModel.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -427,16 +413,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		72B89A1D1901796A0017B06F /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				72B89A211901796A0017B06F /* XCTest.framework in Frameworks */,
-				72B89A231901796A0017B06F /* UIKit.framework in Frameworks */,
-				72B89A221901796A0017B06F /* Foundation.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -451,6 +427,8 @@
 				7259F8BB18F45014002A3416 /* BZRelationshipItemModel.m */,
 				7259F8AD18F45014002A3416 /* BZCircularReferenceModel.h */,
 				7259F8AE18F45014002A3416 /* BZCircularReferenceModel.m */,
+				82D029EA19051DE2003B7246 /* BZArrayInArrayModel.h */,
+				82D029EB19051DE2003B7246 /* BZArrayInArrayModel.m */,
 			);
 			name = Relationship;
 			sourceTree = "<group>";
@@ -589,7 +567,6 @@
 			children = (
 				7259F7F918F44F04002A3416 /* BZObjectStore */,
 				7259F81218F44F04002A3416 /* BZObjectStoreTests */,
-				72B89A241901796A0017B06F /* BZObjectStoreClazzTest */,
 				7259F7F218F44F04002A3416 /* Frameworks */,
 				7259F7F118F44F04002A3416 /* Products */,
 				73A736836B224E7BB841BEB0 /* Pods.xcconfig */,
@@ -601,7 +578,6 @@
 			children = (
 				7259F7F018F44F04002A3416 /* BZObjectStore.app */,
 				7259F80B18F44F04002A3416 /* BZObjectStoreTests.xctest */,
-				72B89A201901796A0017B06F /* BZObjectStoreClazzTest.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -844,25 +820,6 @@
 			name = "Objective-c";
 			sourceTree = "<group>";
 		};
-		72B89A241901796A0017B06F /* BZObjectStoreClazzTest */ = {
-			isa = PBXGroup;
-			children = (
-				72B89A2A1901796A0017B06F /* BZObjectStoreClazzTest.m */,
-				72B89A251901796A0017B06F /* Supporting Files */,
-			);
-			path = BZObjectStoreClazzTest;
-			sourceTree = "<group>";
-		};
-		72B89A251901796A0017B06F /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				72B89A261901796A0017B06F /* BZObjectStoreClazzTest-Info.plist */,
-				72B89A271901796A0017B06F /* InfoPlist.strings */,
-				72B89A2C1901796A0017B06F /* BZObjectStoreClazzTest-Prefix.pch */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
 		72C2682418F8ED3A0070C2E5 /* modelDidSaveLoadRemove */ = {
 			isa = PBXGroup;
 			children = (
@@ -1060,24 +1017,6 @@
 			productReference = 7259F80B18F44F04002A3416 /* BZObjectStoreTests.xctest */;
 			productType = "com.apple.product-type.bundle.unit-test";
 		};
-		72B89A1F1901796A0017B06F /* BZObjectStoreClazzTest */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = 72B89A2F1901796A0017B06F /* Build configuration list for PBXNativeTarget "BZObjectStoreClazzTest" */;
-			buildPhases = (
-				72B89A1C1901796A0017B06F /* Sources */,
-				72B89A1D1901796A0017B06F /* Frameworks */,
-				72B89A1E1901796A0017B06F /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				72B89A2E1901796A0017B06F /* PBXTargetDependency */,
-			);
-			name = BZObjectStoreClazzTest;
-			productName = BZObjectStoreClazzTest;
-			productReference = 72B89A201901796A0017B06F /* BZObjectStoreClazzTest.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -1089,9 +1028,6 @@
 				ORGANIZATIONNAME = "BONZOO INC.";
 				TargetAttributes = {
 					7259F80A18F44F04002A3416 = {
-						TestTargetID = 7259F7EF18F44F04002A3416;
-					};
-					72B89A1F1901796A0017B06F = {
 						TestTargetID = 7259F7EF18F44F04002A3416;
 					};
 				};
@@ -1110,7 +1046,6 @@
 			targets = (
 				7259F7EF18F44F04002A3416 /* BZObjectStore */,
 				7259F80A18F44F04002A3416 /* BZObjectStoreTests */,
-				72B89A1F1901796A0017B06F /* BZObjectStoreClazzTest */,
 			);
 		};
 /* End PBXProject section */
@@ -1132,14 +1067,6 @@
 			files = (
 				7259F81718F44F04002A3416 /* InfoPlist.strings in Resources */,
 				7259F8C518F45014002A3416 /* AppleLogo.png in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		72B89A1E1901796A0017B06F /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				72B89A291901796A0017B06F /* InfoPlist.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1252,6 +1179,7 @@
 				7259F8C818F45014002A3416 /* BZObjectStoreOnDisk.m in Sources */,
 				72C2683518F9432A0070C2E5 /* BZAttributeIsfetchOnRefreshingModel.m in Sources */,
 				727926AC18FA169700A564AA /* BZAddColumnsAddItemModel.m in Sources */,
+				82D029EC19051DE2003B7246 /* BZArrayInArrayModel.m in Sources */,
 				7259F8CD18F45014002A3416 /* BZRelationshipItemModel.m in Sources */,
 				72C2684518F98B220070C2E5 /* BZReferenceConditionModel.m in Sources */,
 				7259F8C618F45014002A3416 /* BZCircularReferenceModel.m in Sources */,
@@ -1306,14 +1234,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		72B89A1C1901796A0017B06F /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				72B89A2B1901796A0017B06F /* BZObjectStoreClazzTest.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1321,11 +1241,6 @@
 			isa = PBXTargetDependency;
 			target = 7259F7EF18F44F04002A3416 /* BZObjectStore */;
 			targetProxy = 7259F81018F44F04002A3416 /* PBXContainerItemProxy */;
-		};
-		72B89A2E1901796A0017B06F /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = 7259F7EF18F44F04002A3416 /* BZObjectStore */;
-			targetProxy = 72B89A2D1901796A0017B06F /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1342,14 +1257,6 @@
 			isa = PBXVariantGroup;
 			children = (
 				7259F81618F44F04002A3416 /* en */,
-			);
-			name = InfoPlist.strings;
-			sourceTree = "<group>";
-		};
-		72B89A271901796A0017B06F /* InfoPlist.strings */ = {
-			isa = PBXVariantGroup;
-			children = (
-				72B89A281901796A0017B06F /* en */,
 			);
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
@@ -1503,50 +1410,6 @@
 			};
 			name = Release;
 		};
-		72B89A301901796A0017B06F /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 73A736836B224E7BB841BEB0 /* Pods.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BZObjectStore.app/BZObjectStore";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BZObjectStoreClazzTest/BZObjectStoreClazzTest-Prefix.pch";
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = "BZObjectStoreClazzTest/BZObjectStoreClazzTest-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Debug;
-		};
-		72B89A311901796A0017B06F /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 73A736836B224E7BB841BEB0 /* Pods.xcconfig */;
-			buildSettings = {
-				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BZObjectStore.app/BZObjectStore";
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-					"$(DEVELOPER_FRAMEWORKS_DIR)",
-				);
-				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = "BZObjectStoreClazzTest/BZObjectStoreClazzTest-Prefix.pch";
-				INFOPLIST_FILE = "BZObjectStoreClazzTest/BZObjectStoreClazzTest-Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUNDLE_LOADER)";
-				WRAPPER_EXTENSION = xctest;
-			};
-			name = Release;
-		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -1573,15 +1436,6 @@
 			buildConfigurations = (
 				7259F82018F44F04002A3416 /* Debug */,
 				7259F82118F44F04002A3416 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		72B89A2F1901796A0017B06F /* Build configuration list for PBXNativeTarget "BZObjectStoreClazzTest" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				72B89A301901796A0017B06F /* Debug */,
-				72B89A311901796A0017B06F /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

@@ -80,6 +80,7 @@
 #import "BZObjectStoreNameBuilder.h"
 #import "BZObjectStoreClazzBZImage.h"
 #import "BZImageHolderModel.h"
+#import "BZArrayInArrayModel.h"
 
 @interface BZObjectStoreTests : XCTestCase {
     BZObjectStore *_disk;
@@ -137,6 +138,7 @@
     [self testBZObjectStoreReferenceModel:_disk];
     [self testBZObjectStoreNameBuilder:_disk];
     [self testBZObjectStoreClazzBZImage:_disk];
+    [self testBZArrayInArrayModel:_disk];
     [_disk close];
 }
 
@@ -175,6 +177,7 @@
     [self testBZObjectStoreReferenceModel:_memory];
     [self testBZObjectStoreNameBuilder:_memory];
     [self testBZObjectStoreClazzBZImage:_memory];
+    [self testBZArrayInArrayModel:_memory];
     [_memory close];
 }
 
@@ -1839,5 +1842,17 @@
     
     
 }
+
+
+- (void)testBZArrayInArrayModel:(BZObjectStore*)os
+{
+    NSError *error = nil;
+    BZArrayInArrayModel *savedObject = [[BZArrayInArrayModel alloc]init];
+    savedObject.arrayInArray = @[[NSArray arrayWithObjects:@10,@"10",nil]];
+    [os saveObject:savedObject error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    
+}
+
 
 @end

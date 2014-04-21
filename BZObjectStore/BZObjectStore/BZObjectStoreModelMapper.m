@@ -87,11 +87,11 @@
 
 - (NSNumber*)groupWithStatement:(NSString*)statement condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db
 {
-    NSNumber *value = nil;
     FMResultSet *rs = [db executeQuery:statement withArgumentsInArray:condition.sqlite.parameters];
     if ([self hadError:db]) {
-        return value;
+        return nil;
     }
+    NSNumber *value = nil;
     while (rs.next) {
         value = [rs objectForColumnIndex:0];
     }
