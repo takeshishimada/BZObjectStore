@@ -62,7 +62,6 @@
 		7259F89B18F44FCA002A3416 /* BZObjectStoreClazzNSValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F85D18F44FCA002A3416 /* BZObjectStoreClazzNSValue.m */; };
 		7259F89D18F44FCA002A3416 /* BZObjectStoreClazzUIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F86118F44FCA002A3416 /* BZObjectStoreClazzUIColor.m */; };
 		7259F89E18F44FCA002A3416 /* BZObjectStoreClazzUIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F86318F44FCA002A3416 /* BZObjectStoreClazzUIImage.m */; };
-		7259F8A018F44FCA002A3416 /* BZObjectStoreError.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F86818F44FCA002A3416 /* BZObjectStoreError.m */; };
 		7259F8A118F44FCA002A3416 /* BZObjectStoreModelMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F86A18F44FCA002A3416 /* BZObjectStoreModelMapper.m */; };
 		7259F8A218F44FCA002A3416 /* BZObjectStoreNameBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F86C18F44FCA002A3416 /* BZObjectStoreNameBuilder.m */; };
 		7259F8A318F44FCA002A3416 /* BZObjectStoreQueryBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F86E18F44FCA002A3416 /* BZObjectStoreQueryBuilder.m */; };
@@ -262,8 +261,6 @@
 		7259F86218F44FCA002A3416 /* BZObjectStoreClazzUIImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzUIImage.h; sourceTree = "<group>"; };
 		7259F86318F44FCA002A3416 /* BZObjectStoreClazzUIImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzUIImage.m; sourceTree = "<group>"; };
 		7259F86618F44FCA002A3416 /* BZObjectStoreConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreConst.h; sourceTree = "<group>"; };
-		7259F86718F44FCA002A3416 /* BZObjectStoreError.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreError.h; sourceTree = "<group>"; };
-		7259F86818F44FCA002A3416 /* BZObjectStoreError.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreError.m; sourceTree = "<group>"; };
 		7259F86918F44FCA002A3416 /* BZObjectStoreModelMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreModelMapper.h; sourceTree = "<group>"; };
 		7259F86A18F44FCA002A3416 /* BZObjectStoreModelMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreModelMapper.m; sourceTree = "<group>"; };
 		7259F86B18F44FCA002A3416 /* BZObjectStoreNameBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreNameBuilder.h; sourceTree = "<group>"; };
@@ -683,7 +680,6 @@
 				72BEE87A18F57A8000A7D742 /* BZObjectStoreConditionModel.h */,
 				72BEE87418F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.h */,
 				72BEE87718F57A4400A7D742 /* BZObjectStoreReferenceConditionModel.h */,
-				7259F86718F44FCA002A3416 /* BZObjectStoreError.h */,
 				823138BF18FCE0A100C212EB /* Classes */,
 			);
 			path = BZObjectStore;
@@ -1014,7 +1010,6 @@
 				72BEE87B18F57A8000A7D742 /* BZObjectStoreConditionModel.m */,
 				72BEE87518F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.m */,
 				72BEE87818F57A4400A7D742 /* BZObjectStoreReferenceConditionModel.m */,
-				7259F86818F44FCA002A3416 /* BZObjectStoreError.m */,
 				72C3EC6B19001FA4002FFDC5 /* Mapper */,
 				72C3EC6919001F7C002FFDC5 /* Builder */,
 				72C3EC6819001F67002FFDC5 /* Runtime */,
@@ -1222,7 +1217,6 @@
 				72BEE87618F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.m in Sources */,
 				7259F8A618F44FCA002A3416 /* BZObjectStoreRuntime.m in Sources */,
 				7259F88B18F44FCA002A3416 /* BZObjectStoreClazzNSData.m in Sources */,
-				7259F8A018F44FCA002A3416 /* BZObjectStoreError.m in Sources */,
 				7259F88C18F44FCA002A3416 /* BZObjectStoreClazzNSDate.m in Sources */,
 				72B9ABBC18FAA51300CA6216 /* BZObjectStoreClazzID.m in Sources */,
 				72BEE87C18F57A8000A7D742 /* BZObjectStoreConditionModel.m in Sources */,

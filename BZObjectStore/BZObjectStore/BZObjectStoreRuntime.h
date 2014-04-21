@@ -82,6 +82,11 @@
 - (NSString*)referencedCountStatementWithCondition:(BZObjectStoreConditionModel*)condition;
 - (NSString*)countStatementWithCondition:(BZObjectStoreConditionModel*)condition;
 - (NSString*)uniqueIndexName;
+- (NSString*)minStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition;
+- (NSString*)maxStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition;
+- (NSString*)avgStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition;
+- (NSString*)totalStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition;
+- (NSString*)sumStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition;
 
 // condition methods
 - (BZObjectStoreConditionModel*)rowidCondition:(NSObject*)object;
@@ -91,9 +96,6 @@
 - (NSMutableArray*)insertOrIgnoreAttributesParameters:(NSObject*)object;
 - (NSMutableArray*)insertAttributesParameters:(NSObject*)object;
 - (NSMutableArray*)updateAttributesParameters:(NSObject*)object;
-
-// attribute with name
-- (BZObjectStoreRuntimeProperty*)attributeWithColumnName:(NSString*)columnName;
 
 // for value in array
 - (NSEnumerator*)objectEnumeratorWithObject:(id)object;

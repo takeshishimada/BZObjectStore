@@ -29,7 +29,6 @@
 #import "BZObjectStoreRuntime.h"
 #import "BZObjectStoreRuntimeProperty.h"
 #import "BZObjectStoreNameBuilder.h"
-#import "BZObjectStoreError.h"
 #import "FMDatabaseQueue.h"
 #import "FMDatabase.h"
 #import "FMResultSet.h"
@@ -43,12 +42,11 @@
 @end
 
 @interface BZObjectStoreModelMapper (Protected)
-- (NSNumber*)avg:(NSString*)columnName attribute:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db;
-- (NSNumber*)total:(NSString*)columnName attribute:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db;
-- (NSNumber*)sum:(NSString*)columnName attribute:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db;
-- (NSNumber*)min:(NSString*)columnName attribute:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db;
-- (NSNumber*)max:(NSString*)columnName attribute:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db;
-- (NSNumber*)groupWithStatement:(NSString*)statement attribute:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db;
+- (NSNumber*)avg:(BZObjectStoreRuntime*)runtime columnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db;
+- (NSNumber*)total:(BZObjectStoreRuntime*)runtime columnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db;
+- (NSNumber*)sum:(BZObjectStoreRuntime*)runtime columnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db;
+- (NSNumber*)min:(BZObjectStoreRuntime*)runtime columnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db;
+- (NSNumber*)max:(BZObjectStoreRuntime*)runtime columnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db;
 - (NSNumber*)count:(BZObjectStoreRuntime*)runtime condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db;
 - (BOOL)insertOrReplace:(NSObject*)object db:(FMDatabase*)db;
 - (BOOL)deleteFrom:(NSObject*)object db:(FMDatabase*)db;
@@ -91,11 +89,12 @@
 
 - (NSNumber*)max:(NSString*)columnName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error
 {
-    BZObjectStoreRuntimeProperty *attribute = [self groupFunctionAttributeWithColumnName:columnName clazz:clazz db:db error:error];
-    if (*error) {
-        return nil;
-    }
-    id value = [self max:columnName attribute:attribute condition:condition db:db];
+    BZObjectStoreRuntime *runtime = [self runtimeWithClazz:clazz db:db];
+//    [self isValidRuntime:runtime error:error];
+//    if (*error) {
+//        return nil;
+//    }
+    NSNumber *value = [self max:runtime columnName:columnName condition:condition db:db];
     if ([self hadError:db error:error]) {
         return nil;
     }
@@ -104,11 +103,12 @@
 
 - (NSNumber*)min:(NSString*)columnName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error
 {
-    BZObjectStoreRuntimeProperty *attribute = [self groupFunctionAttributeWithColumnName:columnName clazz:clazz db:db error:error];
-    if (*error) {
-        return nil;
-    }
-    id value = [self min:columnName attribute:attribute condition:condition db:db];
+    BZObjectStoreRuntime *runtime = [self runtimeWithClazz:clazz db:db];
+//    [self isValidRuntime:runtime error:error];
+//    if (*error) {
+//        return nil;
+//    }
+    NSNumber *value = [self min:runtime columnName:columnName condition:condition db:db];
     if ([self hadError:db error:error]) {
         return nil;
     }
@@ -117,11 +117,12 @@
 
 - (NSNumber*)avg:(NSString*)columnName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error
 {
-    BZObjectStoreRuntimeProperty *attribute = [self groupFunctionAttributeWithColumnName:columnName clazz:clazz db:db error:error];
-    if (*error) {
-        return nil;
-    }
-    id value = [self avg:columnName attribute:attribute condition:condition db:db];
+    BZObjectStoreRuntime *runtime = [self runtimeWithClazz:clazz db:db];
+//    [self isValidRuntime:runtime error:error];
+//    if (*error) {
+//        return nil;
+//    }
+    NSNumber *value = [self avg:runtime columnName:columnName condition:condition db:db];
     if ([self hadError:db error:error]) {
         return nil;
     }
@@ -130,11 +131,12 @@
 
 - (NSNumber*)total:(NSString*)columnName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error
 {
-    BZObjectStoreRuntimeProperty *attribute = [self groupFunctionAttributeWithColumnName:columnName clazz:clazz db:db error:error];
-    if (*error) {
-        return nil;
-    }
-    id value = [self total:columnName attribute:attribute condition:condition db:db];
+    BZObjectStoreRuntime *runtime = [self runtimeWithClazz:clazz db:db];
+//    [self isValidRuntime:runtime error:error];
+//    if (*error) {
+//        return nil;
+//    }
+    NSNumber *value = [self total:runtime columnName:columnName condition:condition db:db];
     if ([self hadError:db error:error]) {
         return nil;
     }
@@ -143,11 +145,12 @@
 
 - (NSNumber*)sum:(NSString*)columnName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error
 {
-    BZObjectStoreRuntimeProperty *attribute = [self groupFunctionAttributeWithColumnName:columnName clazz:clazz db:db error:error];
-    if (*error) {
-        return nil;
-    }
-    id value = [self sum:columnName attribute:attribute condition:condition db:db];
+    BZObjectStoreRuntime *runtime = [self runtimeWithClazz:clazz db:db];
+//    [self isValidRuntime:runtime error:error];
+//    if (*error) {
+//        return nil;
+//    }
+    NSNumber *value = [self sum:runtime columnName:columnName condition:condition db:db];
     if ([self hadError:db error:error]) {
         return nil;
     }
@@ -162,10 +165,10 @@
     if (![self updateRuntime:object db:db]) {
         return nil;
     }
-    [self isValidRuntime:object.runtime error:error];
-    if (*error) {
-        return nil;
-    }
+//    [self isValidRuntime:object.runtime error:error];
+//    if (*error) {
+//        return nil;
+//    }
     BZObjectStoreConditionModel *condition = nil;
     if (object.rowid) {
         condition = [object.runtime rowidCondition:object];
@@ -193,10 +196,10 @@
 - (NSNumber*)count:(Class)clazz condition:(BZObjectStoreConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error
 {
     BZObjectStoreRuntime *runtime = [self runtimeWithClazz:clazz db:db];
-    [self isValidRuntime:runtime error:error];
-    if (*error) {
-        return nil;
-    }
+//    [self isValidRuntime:runtime error:error];
+//    if (*error) {
+//        return nil;
+//    }
     NSNumber *count = [self count:runtime condition:condition db:db];
     if ([self hadError:db error:error]) {
         return nil;
@@ -209,10 +212,10 @@
     if (![self updateRuntime:object db:db]) {
         return nil;
     }
-    [self isValidRuntime:object.runtime error:error];
-    if (*error) {
-        return nil;
-    }
+//    [self isValidRuntime:object.runtime error:error];
+//    if (*error) {
+//        return nil;
+//    }
     NSNumber *count = [self referencedCount:object db:db];
     if ([self hadError:db error:error]) {
         return nil;
@@ -259,10 +262,10 @@
 - (NSMutableArray*)fetchObjects:(Class)clazz condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db error:(NSError**)error
 {
     BZObjectStoreRuntime *runtime = [self runtimeWithClazz:clazz db:db];
-    [self isValidRuntime:runtime error:error];
-    if ( *error ) {
-        return nil;
-    }
+//    [self isValidRuntime:runtime error:error];
+//    if ( *error ) {
+//        return nil;
+//    }
     NSMutableArray *list = [self objectsWithRuntime:runtime condition:condition db:db];
     if ([self hadError:db error:error]) {
         return nil;
@@ -279,10 +282,10 @@
     if (![self updateRuntime:object db:db]) {
         return nil;
     }
-    [self isValidRuntime:object.runtime error:error];
-    if (*error) {
-        return nil;
-    }
+//    [self isValidRuntime:object.runtime error:error];
+//    if (*error) {
+//        return nil;
+//    }
     [self updateObjectRowid:object db:db];
     if ([db hadError]) {
         return nil;
@@ -440,9 +443,9 @@
     if (![self updateRuntimes:objects db:db]) {
         return NO;
     }
-    if (![self isValidObjects:objects error:error]) {
-        return NO;
-    }
+//    if (![self isValidObjects:objects error:error]) {
+//        return NO;
+//    }
     return [self saveObjectsSub:objects db:db error:error];
 }
 
@@ -694,11 +697,11 @@
 
 - (BOOL)removeObjects:(Class)clazz condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db error:(NSError**)error
 {
-    BZObjectStoreRuntime *runtime = [self runtimeWithClazz:clazz db:db];
-    [self isValidRuntime:runtime error:error];
-    if ( *error ) {
-        return NO;
-    }
+//    BZObjectStoreRuntime *runtime = [self runtimeWithClazz:clazz db:db];
+//    [self isValidRuntime:runtime error:error];
+//    if ( *error ) {
+//        return NO;
+//    }
     NSArray *objects = [self fetchObjects:clazz condition:condition db:db error:error];
     if ([self hadError:db error:error]) {
         return NO;
@@ -715,9 +718,9 @@
     if (![self updateRuntimes:objects db:db]) {
         return NO;
     }
-    if (![self isValidObjects:objects error:error]) {
-        return NO;
-    }
+//    if (![self isValidObjects:objects error:error]) {
+//        return NO;
+//    }
     [self updateRowidWithObjects:objects db:db];
     if ([self hadError:db error:error]) {
         return NO;
@@ -861,40 +864,40 @@
     return runtime;
 }
 
-- (BOOL)isValidObjects:(NSArray*)objects error:(NSError**)error
-{
-    for (NSObject *object in objects) {
-        if (![self isValidRuntime:object.runtime error:error]) {
-            return NO;
-        }
-    }
-    return YES;
-}
+//- (BOOL)isValidObjects:(NSArray*)objects error:(NSError**)error
+//{
+//    for (NSObject *object in objects) {
+//        if (![self isValidRuntime:object.runtime error:error]) {
+//            return NO;
+//        }
+//    }
+//    return YES;
+//}
 
-- (BOOL)isValidRuntime:(BZObjectStoreRuntime*)runtime error:(NSError**)error
-{
-    if (!runtime.isObjectClazz) {
-        if (error != NULL) {
-            NSString *message = [NSString stringWithFormat:@"%@",[runtime.clazz description]];
-            *error = [BZObjectStoreError errorInvalidObject:message];
-        }
-        return NO;
-    }
-    return YES;
-}
+//- (BOOL)isValidRuntime:(BZObjectStoreRuntime*)runtime error:(NSError**)error
+//{
+//    if (!runtime.isObjectClazz) {
+//        if (error != NULL) {
+//            NSString *message = [NSString stringWithFormat:@"%@",[runtime.clazz description]];
+//            *error = [BZObjectStoreError errorInvalidObject:message];
+//        }
+//        return NO;
+//    }
+//    return YES;
+//}
 
-- (BZObjectStoreRuntimeProperty*)groupFunctionAttributeWithColumnName:(NSString*)columnName clazz:(Class)clazz db:(FMDatabase*)db error:(NSError**)error
-{
-    BZObjectStoreRuntime *runtime = [self runtimeWithClazz:clazz db:db];
-    BZObjectStoreRuntimeProperty *attribute = [runtime attributeWithColumnName:columnName];
-    if (attribute.isGroupFunctionClazz) {
-        return attribute;
-    } else {
-        NSString *message = [NSString stringWithFormat:@"%@ %@",columnName,NSStringFromClass(runtime.clazz)];
-        *error = [BZObjectStoreError errorInvalidColumnName:message];
-        return nil;
-    }
-}
+//- (BZObjectStoreRuntimeProperty*)groupFunctionAttributeWithColumnName:(NSString*)columnName clazz:(Class)clazz db:(FMDatabase*)db error:(NSError**)error
+//{
+//    BZObjectStoreRuntime *runtime = [self runtimeWithClazz:clazz db:db];
+//    BZObjectStoreRuntimeProperty *attribute = [runtime attributeWithColumnName:columnName];
+//    if (attribute.isGroupFunctionClazz) {
+//        return attribute;
+//    } else {
+//        NSString *message = [NSString stringWithFormat:@"%@ %@",columnName,NSStringFromClass(runtime.clazz)];
+//        *error = [BZObjectStoreError errorInvalidColumnName:message];
+//        return nil;
+//    }
+//}
 
 - (BOOL)hadError:(FMDatabase*)db error:(NSError**)error
 {

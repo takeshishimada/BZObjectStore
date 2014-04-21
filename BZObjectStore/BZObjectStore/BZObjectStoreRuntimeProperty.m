@@ -228,31 +228,6 @@
     return [BZObjectStoreQueryBuilder alterTableAddColumnStatement:self.osruntime sqliteColumn:sqliteColumn];
 }
 
-- (NSString*)minStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition
-{
-    return [BZObjectStoreQueryBuilder minStatement:self.osruntime columnName:columnName];
-}
-
-- (NSString*)maxStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition
-{
-    return [BZObjectStoreQueryBuilder maxStatement:self.osruntime columnName:columnName];
-}
-
-- (NSString*)avgStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition
-{
-    return [BZObjectStoreQueryBuilder avgStatement:self.osruntime columnName:columnName];
-}
-
-- (NSString*)totalStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition
-{
-    return [BZObjectStoreQueryBuilder totalStatement:self.osruntime columnName:columnName];
-}
-
-- (NSString*)sumStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition
-{
-    return [BZObjectStoreQueryBuilder sumStatement:self.osruntime columnName:columnName];
-}
-
 
 #pragma mark mapping methods
 

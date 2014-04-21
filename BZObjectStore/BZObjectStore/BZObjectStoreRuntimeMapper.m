@@ -30,7 +30,6 @@
 #import "BZObjectStoreRuntimeProperty.h"
 #import "BZObjectStoreNameBuilder.h"
 #import "BZObjectStoreSQLiteColumnModel.h"
-#import "BZObjectStoreError.h"
 #import "FMDatabaseQueue.h"
 #import "FMDatabase.h"
 #import "FMResultSet.h"

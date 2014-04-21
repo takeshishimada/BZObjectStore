@@ -29,7 +29,6 @@
 #import "BZObjectStoreRuntime.h"
 #import "BZObjectStoreRuntimeProperty.h"
 #import "BZObjectStoreNameBuilder.h"
-#import "BZObjectStoreError.h"
 #import "FMDatabaseQueue.h"
 #import "FMDatabase.h"
 #import "FMResultSet.h"
@@ -367,11 +366,7 @@
 - (BOOL)saveObjects:(NSArray*)objects error:(NSError**)error
 {
     if (![[objects class] isSubclassOfClass:[NSArray class]]) {
-        NSString *message = @"Object must be NSArray subclassing";
-        if (error) {
-            *error = [BZObjectStoreError errorInvalidObject:message];;
-        }
-        return NO;
+        return YES;
     }
     __block NSError *err = nil;
     __block BOOL ret = NO;
@@ -456,11 +451,7 @@
 - (BOOL)removeObjects:(NSArray *)objects error:(NSError**)error
 {
     if (![[objects class] isSubclassOfClass:[NSArray class]]) {
-        NSString *message = @"Object must be NSArray subclassing";
-        if (error) {
-            *error = [BZObjectStoreError errorInvalidObject:message];;
-        }
-        return NO;
+        return YES;
     }
     __block NSError *err = nil;
     __block BOOL ret = NO;

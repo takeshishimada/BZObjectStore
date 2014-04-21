@@ -29,7 +29,6 @@
 #import "BZObjectStoreRuntime.h"
 #import "BZObjectStoreRuntimeProperty.h"
 #import "BZObjectStoreNameBuilder.h"
-#import "BZObjectStoreError.h"
 #import "FMDatabaseQueue.h"
 #import "FMDatabase.h"
 #import "FMResultSet.h"
@@ -44,60 +43,52 @@
 
 @implementation BZObjectStoreModelMapper
 
-- (NSNumber*)avg:(NSString*)columnName attribute:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db
+- (NSNumber*)avg:(BZObjectStoreRuntime*)runtime columnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db
 {
-    NSString *sql = [attribute avgStatementWithColumnName:columnName condition:condition];
-    NSNumber *value = [self groupWithStatement:sql attribute:attribute condition:condition db:db];
+    NSString *sql = [runtime avgStatementWithColumnName:columnName condition:condition];
+    NSNumber *value = [self groupWithStatement:sql condition:condition db:db];
     return value;
 }
 
-- (NSNumber*)total:(NSString*)columnName attribute:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db
+- (NSNumber*)total:(BZObjectStoreRuntime*)runtime columnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db
 {
-    NSString *sql = [attribute totalStatementWithColumnName:columnName condition:condition];
-    NSNumber *value = [self groupWithStatement:sql attribute:attribute condition:condition db:db];
+    NSString *sql = [runtime totalStatementWithColumnName:columnName condition:condition];
+    NSNumber *value = [self groupWithStatement:sql condition:condition db:db];
     return value;
 }
 
-- (NSNumber*)sum:(NSString*)columnName attribute:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db
+- (NSNumber*)sum:(BZObjectStoreRuntime*)runtime columnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db
 {
-    NSString *sql = [attribute sumStatementWithColumnName:columnName condition:condition];
-    NSNumber *value = [self groupWithStatement:sql attribute:attribute condition:condition db:db];
+    NSString *sql = [runtime sumStatementWithColumnName:columnName condition:condition];
+    NSNumber *value = [self groupWithStatement:sql condition:condition db:db];
     return value;
 }
 
-- (NSNumber*)min:(NSString*)columnName attribute:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db
+- (NSNumber*)min:(BZObjectStoreRuntime*)runtime columnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db
 {
-    NSString *sql = [attribute minStatementWithColumnName:columnName condition:condition];
-    NSNumber *value = [self groupWithStatement:sql attribute:attribute condition:condition db:db];
+    NSString *sql = [runtime minStatementWithColumnName:columnName condition:condition];
+    NSNumber *value = [self groupWithStatement:sql condition:condition db:db];
     return value;
 }
 
-- (NSNumber*)max:(NSString*)columnName attribute:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db
+- (NSNumber*)max:(BZObjectStoreRuntime*)runtime columnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db
 {
-    NSString *sql = [attribute maxStatementWithColumnName:columnName condition:condition];
-    NSNumber *value = [self groupWithStatement:sql attribute:attribute condition:condition db:db];
-    return value;
-}
-
-- (NSNumber*)groupWithStatement:(NSString*)statement attribute:(BZObjectStoreRuntimeProperty*)attribute condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db
-{
-    NSNumber *value = nil;
-    FMResultSet *rs = [db executeQuery:statement withArgumentsInArray:condition.sqlite.parameters];
-    if ([self hadError:db]) {
-        return value;
-    }
-    while (rs.next) {
-        value = [attribute valueWithResultSet:rs];
-    }
-    [rs close];
+    NSString *sql = [runtime maxStatementWithColumnName:columnName condition:condition];
+    NSNumber *value = [self groupWithStatement:sql condition:condition db:db];
     return value;
 }
 
 - (NSNumber*)count:(BZObjectStoreRuntime*)runtime condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db
 {
-    NSNumber *value = nil;
     NSString *sql = [runtime countStatementWithCondition:condition];
-    FMResultSet *rs = [db executeQuery:sql withArgumentsInArray:condition.sqlite.parameters];
+    NSNumber *value = [self groupWithStatement:sql condition:condition db:db];
+    return value;
+}
+
+- (NSNumber*)groupWithStatement:(NSString*)statement condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db
+{
+    NSNumber *value = nil;
+    FMResultSet *rs = [db executeQuery:statement withArgumentsInArray:condition.sqlite.parameters];
     if ([self hadError:db]) {
         return value;
     }
@@ -107,6 +98,7 @@
     [rs close];
     return value;
 }
+
 
 - (BOOL)insertOrReplace:(NSObject*)object db:(FMDatabase*)db
 {

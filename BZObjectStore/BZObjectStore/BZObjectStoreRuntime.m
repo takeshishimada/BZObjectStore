@@ -212,18 +212,6 @@
     
 }
 
-// attribute with name
-- (BZObjectStoreRuntimeProperty*)attributeWithColumnName:(NSString*)columnName
-{
-    // todo
-    for (BZObjectStoreRuntimeProperty *attribute in self.attributes) {
-        if ([attribute.name isEqualToString:columnName]) {
-            return attribute;
-        }
-    }
-    return nil;
-}
-
 #pragma mark statement methods
 
 - (NSString*)uniqueIndexName
@@ -319,6 +307,31 @@
     [sql appendString:self.countTemplateStatement];
     [sql appendString:[BZObjectStoreQueryBuilder selectConditionStatement:condition runtime:self]];
     return [NSString stringWithString:sql];
+}
+
+- (NSString*)minStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition
+{
+    return [BZObjectStoreQueryBuilder minStatement:self columnName:columnName];
+}
+
+- (NSString*)maxStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition
+{
+    return [BZObjectStoreQueryBuilder maxStatement:self columnName:columnName];
+}
+
+- (NSString*)avgStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition
+{
+    return [BZObjectStoreQueryBuilder avgStatement:self columnName:columnName];
+}
+
+- (NSString*)totalStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition
+{
+    return [BZObjectStoreQueryBuilder totalStatement:self columnName:columnName];
+}
+
+- (NSString*)sumStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition
+{
+    return [BZObjectStoreQueryBuilder sumStatement:self columnName:columnName];
 }
 
 #pragma marks unique condition
