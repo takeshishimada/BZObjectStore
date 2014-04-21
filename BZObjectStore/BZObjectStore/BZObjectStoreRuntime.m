@@ -24,21 +24,31 @@
 #import "BZObjectStoreRuntime.h"
 #import "BZObjectStoreClazz.h"
 #import "BZObjectStoreRuntimeProperty.h"
-#import "BZObjectStoreModelInterface.h"
 #import "BZObjectStoreNameBuilder.h"
 #import "BZObjectStoreConst.h"
 #import "BZObjectStoreConditionModel.h"
 #import "BZObjectStoreQueryBuilder.h"
 #import "BZObjectStoreReferenceModel.h"
 #import "BZRuntime.h"
-#import "NSObject+BZObjectStore.h"
 
-#define ROWID @"ROWID"
+@interface BZObjectStoreRuntime ()
+@property (nonatomic,strong) BZObjectStoreClazz *osclazz;
+@property (nonatomic,strong) NSString *selectTemplateStatement;
+@property (nonatomic,strong) NSString *updateTemplateStatement;
+@property (nonatomic,strong) NSString *selectRowidTemplateStatement;
+@property (nonatomic,strong) NSString *insertIntoTemplateStatement;
+@property (nonatomic,strong) NSString *insertOrIgnoreIntoTemplateStatement;
+@property (nonatomic,strong) NSString *deleteFromTemplateStatement;
+@property (nonatomic,strong) NSString *createTableTemplateStatement;
+@property (nonatomic,strong) NSString *createUniqueIndexTemplateStatement;
+@property (nonatomic,strong) NSString *dropIndexTemplateStatement;
+@property (nonatomic,strong) NSString *countTemplateStatement;
+@property (nonatomic,strong) NSString *referencedCountTemplateStatement;
+@property (nonatomic,strong) NSString *uniqueIndexNameTemplateStatement;
+@property (nonatomic,assign) BOOL hasNotUpdateIfValueIsNullAttribute;
+@end
 
 @implementation BZObjectStoreRuntime
-
-
-#pragma mark Constructor
 
 + (instancetype)runtimeWithClazz:(Class)clazz nameBuilder:(BZObjectStoreNameBuilder*)nameBuilder
 {
@@ -118,7 +128,7 @@
     NSMutableArray *propertyList = [NSMutableArray array];
     for (BZRuntimeProperty *property in bzruntime.propertyList) {
         NSString *from = [property.name uppercaseString];
-        if (![from isEqualToString:ROWID]) {
+        if (![from isEqualToString:@"ROWID"]) {
             BOOL exists = NO;
             for (BZRuntimeProperty *existingProperty in propertyList) {
                 NSString *to = [existingProperty.name uppercaseString];
@@ -203,7 +213,6 @@
     self.insertOrIgnoreIntoTemplateStatement = [BZObjectStoreQueryBuilder insertOrIgnoreIntoStatement:self];
     self.deleteFromTemplateStatement = [BZObjectStoreQueryBuilder deleteFromStatement:self];
     self.createTableTemplateStatement = [BZObjectStoreQueryBuilder createTableStatement:self];
-    self.dropTableTemplateStatement = [BZObjectStoreQueryBuilder dropTableStatement:self];
     self.createUniqueIndexTemplateStatement = [BZObjectStoreQueryBuilder createUniqueIndexStatement:self];
     self.dropIndexTemplateStatement = [BZObjectStoreQueryBuilder dropIndexStatement:self];
     self.countTemplateStatement = [BZObjectStoreQueryBuilder countStatement:self];
@@ -222,17 +231,9 @@
 {
     return self.createTableTemplateStatement;
 }
-- (NSString*)createIndexStatement
-{
-    return self.createUniqueIndexTemplateStatement;
-}
 - (NSString*)createUniqueIndexStatement
 {
     return self.createUniqueIndexTemplateStatement;
-}
-- (NSString*)dropTableStatement
-{
-    return self.dropTableTemplateStatement;
 }
 - (NSString*)dropUniqueIndexStatement
 {

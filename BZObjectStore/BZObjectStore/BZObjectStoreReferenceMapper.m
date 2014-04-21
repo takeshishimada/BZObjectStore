@@ -426,10 +426,10 @@
             [processedObjects setValue:targetObject forKey:targetObject.objectStoreHashForSave];
             for (BZObjectStoreRuntimeProperty *attribute in targetObject.runtime.relationshipAttributes) {
                 NSObject *firstStuckAttributeObject = [targetObject valueForKey:attribute.name];
+                BZObjectStoreObjectAttributeModel *objectAttribute = [[BZObjectStoreObjectAttributeModel alloc]init];
+                objectAttribute.object = targetObject;
+                objectAttribute.attribute = attribute;
                 if (firstStuckAttributeObject) {
-                    BZObjectStoreObjectAttributeModel *objectAttribute = [[BZObjectStoreObjectAttributeModel alloc]init];
-                    objectAttribute.object = targetObject;
-                    objectAttribute.attribute = attribute;
                     
                     NSMutableArray *objectAttributeStuck = [NSMutableArray array];
                     NSMutableArray *allRelationshipObjects = [NSMutableArray array];
@@ -564,8 +564,8 @@
                         }
                     }
                     objectAttribute.relationshipObjects = allRelationshipObjects;
-                    [attributeObjects addObject:objectAttribute];
                 }
+                [attributeObjects addObject:objectAttribute];
             }
             [objectStuck removeObject:targetObject];
         } else {
