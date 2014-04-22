@@ -75,6 +75,7 @@
 #import "BZOSIdenticalFirstModel.h"
 #import "BZOSIdenticalSecondModel.h"
 #import "BZOSIdenticalThirdModel.h"
+#import "BZOSIdenticalForthModel.h"
 #import "BZDuplicateAttributeModel.h"
 #import "BZObjectStoreReferenceModel.h"
 #import "BZObjectStoreNameBuilder.h"
@@ -1776,7 +1777,12 @@
     third.code1 = @"01";
     third.code2 = nil;
     third.name = @"third";
-    
+
+    BZOSIdenticalForthModel *forth = [[BZOSIdenticalForthModel alloc]init];
+    forth.code1 = @"01";
+    forth.code2 = nil;
+    forth.name = @"forth";
+
     [os saveObject:first error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
 
@@ -1786,11 +1792,13 @@
     [os saveObject:third error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     
-    
     NSArray *objects = [os fetchObjects:[BZOSIdenticalThirdModel class] condition:nil error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     XCTAssertTrue(objects.count == 2,@"vdata,vimage error");
-    
+
+    [os saveObject:forth error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+
 
 }
 
