@@ -138,7 +138,9 @@
             [db setShouldCacheStatements:YES];
             block(db,rollback);
         }];
-        [self registedAllRuntime];
+        [self.dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
+            [self registedAllRuntime];
+        }];
     }
 }
 

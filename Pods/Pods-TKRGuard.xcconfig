@@ -1,0 +1,2 @@
+PODS_TKRGUARD_FRAMEWORK_SEARCH_PATHS = $(inherited) "$(SDKROOT)/Developer/Library/Frameworks"
+PODS_TKRGUARD_OTHER_LDFLAGS = -framework SenTestingKit -framework XCTest
