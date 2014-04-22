@@ -27,4 +27,5 @@
 @interface BZBackgroundModel : NSObject<OSModelInterface>
 @property (nonatomic,strong) NSNumber *code;
 @property (nonatomic,strong) NSString *name;
+@property (nonatomic,assign) double price;
 @end

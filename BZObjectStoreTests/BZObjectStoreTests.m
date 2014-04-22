@@ -1893,9 +1893,11 @@
     BZBackgroundModel *savedObject = [[BZBackgroundModel alloc]init];
     savedObject.code = @10;
     savedObject.name = @"test";
+    savedObject.price = 1.234567890009;
     
     __block NSError *err = nil;
-    __block NSNumber *count = nil;
+    __block NSNumber *val = nil;
+    __block NSArray *list = nil;
     [os saveObjectInBackground:savedObject completionBlock:^(NSError *error) {
         err = error;
         RESUME;
@@ -1903,16 +1905,67 @@
     WAIT;
     XCTAssert(!err, @"saveObjectInBackground \"%s\"", __PRETTY_FUNCTION__);
 
+    val = nil;
     [os countInBackground:[BZBackgroundModel class] condition:nil completionBlock:^(NSNumber *value, NSError *error) {
-        count = value;
+        val = value;
         err = error;
         RESUME;
     }];
     WAIT;
     XCTAssert(!err, @"error \"%s\"", __PRETTY_FUNCTION__);
-    XCTAssertTrue(count.integerValue == 1,@"countInBackground error");
+    XCTAssertTrue(val.integerValue == 1,@"countInBackground error");
+
+    val = nil;
+    [os sumInBackground:@"price" clazz:[BZBackgroundModel class] condition:nil completionBlock:^(NSNumber *value, NSError *error) {
+        val = value;
+        err = error;
+        RESUME;
+    }];
+    WAIT;
+    XCTAssert(!err, @"error \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertTrue(val.doubleValue == 1.234567890009,@"sumInBackground error");
+
+    val = nil;
+    [os totalInBackground:@"price" clazz:[BZBackgroundModel class] condition:nil completionBlock:^(NSNumber *value, NSError *error) {
+        val = value;
+        err = error;
+        RESUME;
+    }];
+    WAIT;
+    XCTAssert(!err, @"error \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertTrue(val.doubleValue == 1.234567890009,@"totalInBackground error");
+
+    val = nil;
+    [os avgInBackground:@"price" clazz:[BZBackgroundModel class] condition:nil completionBlock:^(NSNumber *value, NSError *error) {
+        val = value;
+        err = error;
+        RESUME;
+    }];
+    WAIT;
+    XCTAssert(!err, @"error \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertTrue(val.doubleValue == 1.234567890009,@"avgInBackground error");
+
+    val = nil;
+    [os minInBackground:@"price" clazz:[BZBackgroundModel class] condition:nil completionBlock:^(NSNumber *value, NSError *error) {
+        val = value;
+        err = error;
+        RESUME;
+    }];
+    WAIT;
+    XCTAssert(!err, @"error \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertTrue(val.doubleValue == 1.234567890009,@"minInBackground error");
+
+    val = nil;
+    [os maxInBackground:@"price" clazz:[BZBackgroundModel class] condition:nil completionBlock:^(NSNumber *value, NSError *error) {
+        val = value;
+        err = error;
+        RESUME;
+    }];
+    WAIT;
+    XCTAssert(!err, @"error \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertTrue(val.doubleValue == 1.234567890009,@"maxInBackground error");
     
-    
+    val = nil;
     [os saveObjectsInBackground:@[savedObject] completionBlock:^(NSError *error) {
         err = error;
         RESUME;
@@ -1920,6 +1973,15 @@
     WAIT;
     XCTAssert(!err, @"saveObjectsInBackground \"%s\"", __PRETTY_FUNCTION__);
 
+    list = nil;
+    [os fetchObjectsInBackground:[BZBackgroundModel class] condition:nil completionBlock:^(NSArray *objects, NSError *error) {
+        list = objects;
+        err = error;
+        RESUME;
+    }];
+    WAIT;
+    XCTAssert(!err, @"fetchObjectsInBackground \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertTrue(list.count == 1,@"fetchObjectsInBackground error");
     
 }
 
