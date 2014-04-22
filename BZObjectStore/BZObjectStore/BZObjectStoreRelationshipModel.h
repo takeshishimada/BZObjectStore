@@ -28,15 +28,15 @@
 @class BZObjectStoreRuntime;
 
 @interface BZObjectStoreRelationshipModel : NSObject<OSModelInterface>
-@property (nonatomic,strong) NSString *fromClassName;
+@property (nonatomic,strong) NSString<OSIdenticalAttribute> *fromClassName;
 @property (nonatomic,strong) NSString *fromTableName;
-@property (nonatomic,strong) NSString *fromAttributeName;
-@property (nonatomic,strong) NSNumber *fromRowid;
-@property (nonatomic,strong) NSString *toClassName;
+@property (nonatomic,strong) NSString<OSIdenticalAttribute> *fromAttributeName;
+@property (nonatomic,strong) NSNumber<OSIdenticalAttribute> *fromRowid;
+@property (nonatomic,strong) NSString<OSIdenticalAttribute> *toClassName;
 @property (nonatomic,strong) NSString *toTableName;
-@property (nonatomic,strong) NSNumber *toRowid;
-@property (nonatomic,strong) NSNumber *attributeLevel;
-@property (nonatomic,assign) NSNumber *attributeSequence;
+@property (nonatomic,strong) NSNumber<OSIdenticalAttribute> *toRowid;
+@property (nonatomic,strong) NSNumber<OSIdenticalAttribute> *attributeLevel;
+@property (nonatomic,assign) NSNumber<OSIdenticalAttribute> *attributeSequence;
 @property (nonatomic,strong) NSNumber *attributeParentLevel;
 @property (nonatomic,strong) NSNumber *attributeParentSequence;
 @property (nonatomic,strong) NSString *attributeKey;
