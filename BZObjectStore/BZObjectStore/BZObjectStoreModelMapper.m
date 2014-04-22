@@ -387,8 +387,8 @@
     BZObjectStoreRuntime *runtime = [self runtime:[BZObjectStoreRelationshipModel class]];
     NSString *className = NSStringFromClass([object class]);
     BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
-    condition.sqlite.where = @"fromClassName = ? or toClassName = ?";
-    condition.sqlite.parameters = @[className,className];
+    condition.sqlite.where = @"(fromClassName = ? and fromRowid = ?) or (toClassName = ? and toRowid = ?)";
+    condition.sqlite.parameters = @[className,object.rowid,className,object.rowid];
     [self deleteFrom:runtime condition:condition db:db];
     if ([self hadError:db]) {
         return NO;
