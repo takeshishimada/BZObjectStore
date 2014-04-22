@@ -1855,7 +1855,7 @@
     
 }
 
-
+// todo
 - (void)testBZArrayInArrayModel:(BZObjectStore*)os
 {
     NSError *error = nil;
@@ -1864,11 +1864,12 @@
     
     BZArrayInArrayModel *savedObject2 = [[BZArrayInArrayModel alloc]init];
     savedObject2.arrayInArray = @[[NSArray arrayWithObjects:@10,@"10",savedObject1, nil]];
+    savedObject2.dictionaryInArray = @[@{@"null": [NSNull null],@"object1": savedObject1}];
     
     [os saveObject:savedObject2 error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
 
-    [os removeObject:savedObject2 error:&error];
+    [os removeObjects:@[savedObject2,savedObject2] error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
 
 }

@@ -340,15 +340,13 @@
                         for (BZObjectStoreRelationshipModel *child in objectAttibute.relationshipObjects) {
                             if ([child.attributeParentLevel isEqualToNumber:relationshipObject.attributeLevel]) {
                                 if ([child.attributeParentSequence isEqualToNumber:relationshipObject.attributeSequence]) {
-                                    if (child.attributeKey) {
-                                        [keys addObject:child.attributeKey];
-                                    } else {
-                                        [keys addObject:[NSNull null]];
-                                    }
                                     if (child.attributeValue) {
+                                        if (child.attributeKey) {
+                                            [keys addObject:child.attributeKey];
+                                        } else {
+                                            [keys addObject:[NSNull null]];
+                                        }
                                         [objects addObject:child.attributeValue];
-                                    } else {
-                                        [objects addObject:[NSNull null]];
                                     }
                                 }
                             }
@@ -360,8 +358,6 @@
                         Class clazz = NSClassFromString(relationshipObject.toClassName);
                         if (clazz) {
                             relationshipObject.attributeFromObject = targetObject;
-                        } else {
-                            relationshipObject.attributeValue = nil;
                         }
                     }
                     
@@ -739,8 +735,10 @@
                 }
             }
             [objectStuck removeObject:targetObject];
-        } else {
-            [objectStuck removeObject:targetObject];
+            
+//        because of fetching processed before this remove method
+//        } else {
+//            [objectStuck removeObject:targetObject];
         }
     }
     

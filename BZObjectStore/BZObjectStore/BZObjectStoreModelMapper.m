@@ -288,9 +288,6 @@
     if (!object.rowid) {
         return nil;
     }
-    if (!object.rowid) {
-        return nil;
-    }
     BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
     condition.sqlite.where = @"toTableName = ? and toRowid = ?";
     condition.sqlite.parameters = @[object.runtime.tableName,object.rowid];
