@@ -37,7 +37,7 @@
 
 - (id)refreshObject:(NSObject*)object error:(NSError**)error;
 - (NSMutableArray*)fetchObjects:(Class)clazz condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error;
-- (NSMutableArray*)fetchReferencingFromObjectsWithObject:(NSObject*)object error:(NSError**)error;
+- (NSMutableArray*)fetchReferencingFromObjects:(NSObject*)object error:(NSError**)error;
 
 - (NSNumber*)count:(Class)clazz condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error;
 - (NSNumber*)referencedCount:(NSObject*)object error:(NSError**)error;
