@@ -1,8 +1,5 @@
 language: objective-c
-
 before_install:
-  - sudo easy_install cpp-coveralls
-script:
-  - make clean test-with-coverage
-after_success:
-  - make send-coverage
+  - rvm get stable
+  - rvm use ruby-2.0.0-p247
+  - gem install cocoapods
