@@ -1898,6 +1898,8 @@
     __block NSError *err = nil;
     __block NSNumber *val = nil;
     __block NSArray *list = nil;
+    __block BZBackgroundModel *obj = nil;
+    
     [os saveObjectInBackground:savedObject completionBlock:^(NSError *error) {
         err = error;
         RESUME;
@@ -1925,6 +1927,16 @@
     XCTAssert(!err, @"error \"%s\"", __PRETTY_FUNCTION__);
     XCTAssertTrue(val.integerValue == 0,@"referencedCountInBackground error");
 
+    obj = nil;
+    [os refreshObjectInBackground:savedObject completionBlock:^(NSObject *object, NSError *error) {
+        obj = (BZBackgroundModel*)object;
+        err = error;
+        RESUME;
+    }];
+    WAIT;
+    XCTAssert(!err, @"error \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertTrue([obj.code isEqualToNumber:savedObject.code],@"refreshObjectInBackground error");
+    
     list = nil;
     [os fetchReferencingFromObjectsInBackground:savedObject completionBlock:^(NSArray *objects, NSError *error) {
         list = objects;
@@ -2004,6 +2016,50 @@
     XCTAssert(!err, @"fetchObjectsInBackground \"%s\"", __PRETTY_FUNCTION__);
     XCTAssertTrue(list.count == 1,@"fetchObjectsInBackground error");
     
+    [os removeObjectInBackground:list.firstObject completionBlock:^(NSError *error) {
+        err = error;
+        RESUME;
+    }];
+    WAIT;
+    XCTAssert(!err, @"removeObjectInBackground \"%s\"", __PRETTY_FUNCTION__);
+    
+    [os saveObjectInBackground:savedObject completionBlock:^(NSError *error) {
+        err = error;
+        RESUME;
+    }];
+    WAIT;
+    XCTAssert(!err, @"saveObjectInBackground \"%s\"", __PRETTY_FUNCTION__);
+    
+    [os removeObjectsInBackground:@[list.firstObject] completionBlock:^(NSError *error) {
+        err = error;
+        RESUME;
+    }];
+    WAIT;
+    XCTAssert(!err, @"removeObjectsInBackground \"%s\"", __PRETTY_FUNCTION__);
+
+    [os saveObjectInBackground:savedObject completionBlock:^(NSError *error) {
+        err = error;
+        RESUME;
+    }];
+    WAIT;
+    XCTAssert(!err, @"saveObjectInBackground \"%s\"", __PRETTY_FUNCTION__);
+    
+    [os removeObjectsInBackground:[BZBackgroundModel class] condition:nil completionBlock:^(NSError *error) {
+        err = error;
+        RESUME;
+    }];
+    WAIT;
+    XCTAssert(!err, @"saveObjectInBackground \"%s\"", __PRETTY_FUNCTION__);
+    
+    list = nil;
+    [os fetchObjectsInBackground:[BZBackgroundModel class] condition:nil completionBlock:^(NSArray *objects, NSError *error) {
+        list = objects;
+        err = error;
+        RESUME;
+    }];
+    WAIT;
+    XCTAssert(!err, @"fetchObjectsInBackground \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertTrue(list.count == 0,@"fetchObjectsInBackground error");
     
     
 }
