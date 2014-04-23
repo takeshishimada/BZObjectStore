@@ -22,7 +22,7 @@ pod 'BZObjectStore'
 #import "BZObjectStore.h"
 
 @interface SampleModel : NSObject
-@property (nonatomic,strong) NSString name;
+@property (nonatomic,strong) NSString *name;
 @property (nonatomic,assign) NSInteger price;
 @end
 @implementation SampleModel
@@ -38,7 +38,7 @@ pod 'BZObjectStore'
 
     SampleModel *sample2 = [[SampleModel alloc]init];
     sample2.name = @"sample2";
-    sample1.price = 50;
+    sample2.price = 50;
     
     // open database
     BZObjectStore *os = [BZObjectStore openWithPath:@"database.sqlite" error:&error];
