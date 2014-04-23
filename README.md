@@ -18,27 +18,40 @@ pod 'BZObjectStore'
 
 #import "BZObjectStore.h"
 
-- (void)example
+@interface SampleModel : NSObject
+@property (nonatomic,assign) NSInteger name;
+@end
+@implementation SampleModel
+@end
+
+
+- (void)test
 {
     NSError *error = nil;
 
+    SampleModel *sample1 = [[SampleModel alloc]init];
+    sample1.name = @"sample1";
+
+    SampleModel *sample2 = [[SampleModel alloc]init];
+    sample2.name = @"sample2";
+    
     // open database
     BZObjectStore *os = [BZObjectStore openWithPath:@"database.sqlite" error:&error];
 
     // save object
-    [os saveObject:yourobject error:&error];
+    [os saveObject:sample1 error:&error];
     
     // save objects in array
-    [os saveObjects:@[yourobject1,yourobject2] error:&error];
+    [os saveObjects:@[sample1,sample2] error:&error];
 
     // fetch objects
-    NSArray *yourobjects = [os fetchObjects:[YOURCLASS class] condition:nil error:&error];
+    NSArray *samples = [os fetchObjects:[SampleModel class] condition:nil error:&error];
 
     // remove object
-    [os removeObject:yourobject error:&error];
+    [os removeObject:sample1 error:&error];
     
     // remove objects
-    [os removeObjects:[YOURCLASS class] condition:nil error:&error];
+    [os removeObjects:[SampleModel class] condition:nil error:&error];
 }
 
 
@@ -46,7 +59,7 @@ pod 'BZObjectStore'
 
 
 
-## Mapping results in SQLite
+## Mapping Objects In NSArray
 
 ```objective-c
 #import "BZObjectStore.h"
