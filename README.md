@@ -21,6 +21,8 @@ pod 'BZObjectStore'
 - (void)example
 {
     NSError *error = nil;
+
+    // open database
     BZObjectStore *os = [BZObjectStore openWithPath:@"database.sqlite" error:&error];
 
     // save object
