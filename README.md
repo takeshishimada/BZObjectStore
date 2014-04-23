@@ -6,9 +6,8 @@ This is an ORM library wrapped FMDB.
 
 ## Summary
 - Mapping Models to SQLite tables
-- Relationship with NSObject, NSArray, NSDictionary, NSSet, NSOrderedSet
+- Relationships with NSObject, NSArray, NSDictionary, NSSet, NSOrderedSet
 - Automatic Schema Creating
-- Strong and weak referencing
 - Thread Safe
 - Useful functions
 
@@ -24,6 +23,7 @@ pod 'BZObjectStore'
 
 @interface SampleModel : NSObject
 @property (nonatomic,strong) NSString name;
+@property (nonatomic,assign) NSInteger price;
 @end
 
 @implementation SampleModel
@@ -35,9 +35,11 @@ pod 'BZObjectStore'
 
     SampleModel *sample1 = [[SampleModel alloc]init];
     sample1.name = @"sample1";
+    sample1.price = 100;
 
     SampleModel *sample2 = [[SampleModel alloc]init];
     sample2.name = @"sample2";
+    sample1.price = 50;
     
     // open database
     BZObjectStore *os = [BZObjectStore openWithPath:@"database.sqlite" error:&error];
@@ -51,11 +53,22 @@ pod 'BZObjectStore'
     // fetch objects
     NSArray *samples = [os fetchObjects:[SampleModel class] condition:nil error:&error];
 
+    // fetch objects with condition
+    BZObjectStoreConditionModel *fetchCondition = [BZObjectStoreConditionModel condition];
+    fetchCondition.sqlite.where = @"name = 'sample1' and price > 50";
+    fetchCondition.sqlite.orderBy = @"name desc";
+    NSArray *samples = [os fetchObjects:[SampleModel class] condition:fetchCondition error:&error];
+
     // remove object
     [os removeObject:sample1 error:&error];
     
     // remove objects
     [os removeObjects:[SampleModel class] condition:nil error:&error];
+
+    // remove objects with condition
+    BZObjectStoreConditionModel *removeCondition = [BZObjectStoreConditionModel condition];
+    removeCondition.sqlite.where = @"name = 'sample1'";
+    [os removeObjects:[SampleModel class] condition:removeCondition error:&error];
     
     // close database
     [os close];
