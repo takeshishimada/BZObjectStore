@@ -27,7 +27,7 @@ pod 'BZObjectStore'
     [os saveObject:YOUROBJECT error:&error];
     
     // save objects in array
-    [os saveObjects:@[YOUROBJECT,YOUROBJECT error:&error];
+    [os saveObjects:@[YOUROBJECT1,YOUROBJECT2] error:&error];
 
     // fetch objects
     NSArray *yourobjects = [os fetchObjects:[YOURCLASS class] condition:nil error:&error];
