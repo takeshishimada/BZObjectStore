@@ -25,7 +25,6 @@ pod 'BZObjectStore'
 @property (nonatomic,strong) NSString name;
 @property (nonatomic,assign) NSInteger price;
 @end
-
 @implementation SampleModel
 @end
 
