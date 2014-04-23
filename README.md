@@ -29,7 +29,7 @@ pod 'BZObjectStore'
 @implementation SampleModel
 @end
 
-- (void)test
+- (void)simpleTest
 {
     NSError *error = nil;
 
@@ -53,17 +53,17 @@ pod 'BZObjectStore'
     // fetch objects
     NSArray *samples = [os fetchObjects:[SampleModel class] condition:nil error:&error];
 
-    // fetch objects with condition
-    BZObjectStoreConditionModel *fetchCondition = [BZObjectStoreConditionModel condition];
-    fetchCondition.sqlite.where = @"name = 'sample1' and price > 50";
-    fetchCondition.sqlite.orderBy = @"name desc";
-    NSArray *samples = [os fetchObjects:[SampleModel class] condition:fetchCondition error:&error];
-
     // remove object
     [os removeObject:sample1 error:&error];
     
     // remove objects
     [os removeObjects:[SampleModel class] condition:nil error:&error];
+
+    // fetch objects with condition
+    BZObjectStoreConditionModel *fetchCondition = [BZObjectStoreConditionModel condition];
+    fetchCondition.sqlite.where = @"name = 'sample1' and price > 50";
+    fetchCondition.sqlite.orderBy = @"name desc";
+    NSArray *samples = [os fetchObjects:[SampleModel class] condition:fetchCondition error:&error];
 
     // remove objects with condition
     BZObjectStoreConditionModel *removeCondition = [BZObjectStoreConditionModel condition];
