@@ -21,9 +21,9 @@ pod 'BZObjectStore'
 @interface SampleModel : NSObject
 @property (nonatomic,assign) NSInteger name;
 @end
+
 @implementation SampleModel
 @end
-
 
 - (void)test
 {
@@ -53,7 +53,6 @@ pod 'BZObjectStore'
     // remove objects
     [os removeObjects:[SampleModel class] condition:nil error:&error];
 }
-
 
 ```
 
