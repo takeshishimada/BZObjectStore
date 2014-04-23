@@ -46,7 +46,7 @@ pod 'BZObjectStore'
 
 
 
-## Example NSArray property
+## Mapping results in SQLite
 
 ```objective-c
 #import "BZObjectStore.h"
