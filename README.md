@@ -18,6 +18,28 @@ pod 'BZObjectStore'
 
 #import "BZObjectStore.h"
 
+- (void)save
+{
+    NSError *error = nil;
+    BZObjectStore *os = [BZObjectStore openWithPath:@"database.sqlite" error:&error];
+    [os saveObject:header error:&error];
+    if (error) {
+        NSLog(@"%@",error);
+    }
+}
+
+
+
+```
+
+
+
+NSArray
+
+```objective-c
+
+#import "BZObjectStore.h"
+
 @class Item;
 @class OrderDetail;
 
