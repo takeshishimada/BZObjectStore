@@ -19,7 +19,7 @@ pod 'BZObjectStore'
 #import "BZObjectStore.h"
 
 @interface SampleModel : NSObject
-@property (nonatomic,assign) NSInteger name;
+@property (nonatomic,strong) NSString name;
 @end
 
 @implementation SampleModel
