@@ -18,26 +18,35 @@ pod 'BZObjectStore'
 
 #import "BZObjectStore.h"
 
-- (void)save
+- (void)example
 {
     NSError *error = nil;
     BZObjectStore *os = [BZObjectStore openWithPath:@"database.sqlite" error:&error];
-    [os saveObject:header error:&error];
-    if (error) {
-        NSLog(@"%@",error);
-    }
-}
 
+    // save object
+    [os saveObject:YOUROBJECT error:&error];
+    
+    // save objects in array
+    [os saveObjects:@[YOUROBJECT,YOUROBJECT error:&error];
+
+    // fetch objects
+    NSArray *yourobjects = [os fetchObjects:[YOURCLASS class] condition:nil error:&error];
+
+    // remove object
+    [os removeObject:yourobject error:&error];
+    
+    // remove objects by class
+    [os removeObjects:[YOURCLASS class] condition:nil error:&error];
+}
 
 
 ```
 
 
 
-NSArray
+## Example NSArray property
 
 ```objective-c
-
 #import "BZObjectStore.h"
 
 @class Item;
@@ -97,7 +106,6 @@ NSArray
     if (error) {
         NSLog(@"%@",error);
     }
-    
 }
 
 ```
