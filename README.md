@@ -26,10 +26,10 @@ pod 'BZObjectStore'
     BZObjectStore *os = [BZObjectStore openWithPath:@"database.sqlite" error:&error];
 
     // save object
-    [os saveObject:YOUROBJECT error:&error];
+    [os saveObject:yourobject error:&error];
     
     // save objects in array
-    [os saveObjects:@[YOUROBJECT1,YOUROBJECT2] error:&error];
+    [os saveObjects:@[yourobject1,yourobject2] error:&error];
 
     // fetch objects
     NSArray *yourobjects = [os fetchObjects:[YOURCLASS class] condition:nil error:&error];
@@ -37,7 +37,7 @@ pod 'BZObjectStore'
     // remove object
     [os removeObject:yourobject error:&error];
     
-    // remove objects by class
+    // remove objects
     [os removeObjects:[YOURCLASS class] condition:nil error:&error];
 }
 
