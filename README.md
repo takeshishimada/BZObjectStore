@@ -2,7 +2,7 @@ BZObjectStore
 =============
 [![Build Status](https://travis-ci.org/expensivegasprices/BZObjectStore.svg)](https://travis-ci.org/expensivegasprices/BZObjectStore)
 
-This is a ORM library wrapped FMDB.
+This is an ORM library wrapped FMDB.
 
 ## CocoaPods
 
@@ -13,7 +13,7 @@ pod 'BZObjectStore'
 ```
 
 ## Usage
-There are three main classes in BZObjectStore:
+There are six main classes and one main interface in BZObjectStore:
 
 1. `BZObjectStore` - 
 2. `BZObjectStoreBackground` - 
