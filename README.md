@@ -78,7 +78,7 @@ fetchCondition.sqlite.orderBy = @"name desc";
 NSArray *objects = [os fetchObjects:[SampleModel class] condition:fetchCondition error:&error];
 ```
 
-#### Fetch Objects with condition
+#### Remove Objects with condition
 ```objective-c
 BZObjectStoreConditionModel *removeCondition = [BZObjectStoreConditionModel condition];
 removeCondition.sqlite.where = @"name = 'sample1'";
