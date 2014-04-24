@@ -185,7 +185,7 @@ ignore super class attribute.
 ```
 
 #### OSFullTextSearch
-use sqlite FTS3 function.
+use sqlite FTS3.
 
 ```objective-c
 #import "BZObjectStoreModelInterface.h"
