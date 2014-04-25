@@ -14,7 +14,7 @@ Targeting either iOS 5.0 and above
 - Relationship in NSObject, NSArray, NSDictionary, NSSet, NSOrderedSet support
 - Automatic Schema Creating
 - Thread Safety
-- Lazy fetching,One time Update and Other useful options
+- Lazy fetching,One time Update and other useful options
 
 ## Installation
 BZObjectStore can be installed using [CocoaPods](http://cocoapods.org/).
