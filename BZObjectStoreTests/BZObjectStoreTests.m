@@ -86,13 +86,77 @@
 #import "BZObjectStoreBackground.h"
 #import "BZBackgroundModel.h"
 
+
 @interface BZObjectStoreTests : XCTestCase {
     BZObjectStore *_disk;
     BZObjectStore *_memory;
 }
 @end
 
+#import "BZObjectStore.h"
+
+@class Item;
+@class OrderDetail;
+
+@interface OrderHeader : NSObject
+@property (nonatomic,assign) NSInteger orderNo;
+@property (nonatomic,strong) NSArray *orderDetails;
+@property (nonatomic,strong) NSDate *orderedAt;
+@end
+@implementation OrderHeader
+@end
+
+@interface OrderDetail : NSObject
+@property (nonatomic,strong) Item *orderItem;
+@property (nonatomic,assign) NSInteger amount;
+@end
+@implementation OrderDetail
+@end
+
+@interface Item : NSObject
+@property (nonatomic,assign) NSInteger itemNo;
+@property (nonatomic,strong) NSString *itemName;
+@property (nonatomic,assign) CGFloat price;
+@end
+@implementation Item
+@end
+
+
 @implementation BZObjectStoreTests
+
+- (void)save
+{
+    Item *apple = [[Item alloc]init];
+    apple.itemNo = 1;
+    apple.itemName = @"apple";
+    apple.price = 1.5f;
+    
+    Item *orange = [[Item alloc]init];
+    orange.itemNo = 2;
+    orange.itemName = @"orange";
+    orange.price = 1.2f;
+
+    OrderDetail *orderApple = [[OrderDetail alloc]init];
+    orderApple.orderItem = apple;
+    orderApple.amount = 10;
+
+    OrderDetail *orderOrange = [[OrderDetail alloc]init];
+    orderOrange.orderItem = orange;
+    orderOrange.amount = 10;
+    
+    OrderHeader *header = [[OrderHeader alloc]init];
+    header.orderNo = 1;
+    header.orderDetails = @[orderApple,orderOrange];
+    header.orderedAt = [NSDate date];
+    
+    NSError *error = nil;
+    BZObjectStore *os = [BZObjectStore openWithPath:@"database.sqlite" error:&error];
+    [os saveObject:header error:&error];
+    if (error) {
+        NSLog(@"%@",error);
+    }
+    
+}
 
 - (void)setUp
 {
@@ -1257,7 +1321,7 @@
     NSNumber *existsObject2 = [os existsObject:from3 error:&error];
     XCTAssertTrue(!existsObject2.boolValue, @"error");
 
-    NSArray *referencingObjects = [os fetchReferencingFromObjects:item1 error:&error];
+    NSArray *referencingObjects = [os fetchReferencingObjectsTo:item1 error:&error];
     BZReferenceConditionModel *referencingObject = referencingObjects.firstObject;
     XCTAssertTrue([referencingObject.name isEqualToString:@"from1"], @"error");
    
@@ -1938,14 +2002,14 @@
     XCTAssertTrue([obj.code isEqualToNumber:savedObject.code],@"refreshObjectInBackground error");
     
     list = nil;
-    [os fetchReferencingFromObjectsInBackground:savedObject completionBlock:^(NSArray *objects, NSError *error) {
+    [os fetchReferencingObjectsToInBackground:savedObject completionBlock:^(NSArray *objects, NSError *error) {
         list = objects;
         err = error;
         RESUME;
     }];
     WAIT;
-    XCTAssert(!err, @"fetchReferencingFromObjectsInBackground \"%s\"", __PRETTY_FUNCTION__);
-    XCTAssertTrue(list.count == 0,@"fetchReferencingFromObjectsInBackground error");
+    XCTAssert(!err, @"fetchReferencingObjectsToInBackground \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertTrue(list.count == 0,@"fetchReferencingObjectsToInBackground error");
     
     
     val = nil;

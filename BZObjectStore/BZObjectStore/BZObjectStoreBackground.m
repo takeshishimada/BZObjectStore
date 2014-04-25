@@ -116,12 +116,12 @@
     }];
 }
 
-- (void)fetchReferencingFromObjectsInBackground:(NSObject*)object completionBlock:(void(^)(NSArray *objects,NSError *error))completionBlock
+- (void)fetchReferencingObjectsToInBackground:(NSObject*)object completionBlock:(void(^)(NSArray *objects,NSError *error))completionBlock
 {
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     [queue addOperationWithBlock:^{
         NSError *error = nil;
-        NSArray *objects = [self fetchReferencingFromObjects:object error:&error];
+        NSArray *objects = [self fetchReferencingObjectsTo:object error:&error];
         NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];
         [mainQueue addOperationWithBlock:^{
             completionBlock(objects,error);
