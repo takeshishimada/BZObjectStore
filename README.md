@@ -96,6 +96,31 @@ removeCondition.sqlite.where = @"name = 'sample1'";
 [os close];
 ```
 
+#### Get maximum value
+```objective-c
+NSNumber *value = [os max:@"price" class:[SampleModel class] condition:nil error:&error];
+```
+
+#### Get minimum value
+```objective-c
+NSNumber *value = [os min:@"price" class:[SampleModel class] condition:nil error:&error];
+```
+
+#### Get sum values
+```objective-c
+NSNumber *value = [os sum:@"price" class:[SampleModel class] condition:nil error:&error];
+```
+
+#### Get total values
+```objective-c
+NSNumber *value = [os total:@"price" class:[SampleModel class] condition:nil error:&error];
+```
+
+#### Get average value
+```objective-c
+NSNumber *value = [os avg:@"price" class:[SampleModel class] condition:nil error:&error];
+```
+
 ## Options
 #### OSIdenticalAttribute
 define identical attributes
