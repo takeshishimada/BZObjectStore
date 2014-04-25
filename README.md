@@ -11,10 +11,10 @@ Targeting either iOS 5.0 and above
 
 ## Summary
 - Mapping Models to SQLite tables
-- Relationship in NSObject, NSArray, NSDictionary, NSSet, NSOrderedSet
+- Relationship in NSObject, NSArray, NSDictionary, NSSet, NSOrderedSet support
 - Automatic Schema Creating
 - Thread Safety
-- Lazy fetching,OneTime Update and Other Useful Options
+- Lazy fetching,One time Update and other useful options
 
 ## Installation
 BZObjectStore can be installed using [CocoaPods](http://cocoapods.org/).
@@ -43,8 +43,10 @@ SampleModel *sample2 = [[SampleModel alloc]init];
 sample2.name = @"sample2";
 sample2.price = 50;
 ```
-###### Open Database
+#### Open Database
 ```objective-c
+#import "BZObjectStore.h"
+
 NSError *error = nil;
 BZObjectStore *os = [BZObjectStore openWithPath:@"database.sqlite" error:&error];
 ```
@@ -197,25 +199,25 @@ use sqlite FTS3.
 @end
 ```
 
-#### OSInsertPerformance
+#### OSPriorInsertPerformance
 prior insert performance. 
 
 ```objective-c
 #import "BZObjectStoreModelInterface.h"
 
-@interface LogModel : NSObject<OSInsertPerformance>
+@interface LogModel : NSObject<OSPriorInsertPerformance>
 @property (nonatomic,assign) NSString *code;
 @property (nonatomic,assign) NSString *description;
 @end
 ```
 
-#### OSUpdatePerformance
+#### OSPriorUpdatePerformance
 prior update performance. 
 
 ```objective-c
 #import "BZObjectStoreModelInterface.h"
 
-@interface ProfileModel : NSObject<OSUpdatePerformance>
+@interface ProfileModel : NSObject<OSPriorUpdatePerformance>
 @property (nonatomic,assign) NSString *name;
 @end
 ```
