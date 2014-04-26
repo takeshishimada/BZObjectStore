@@ -38,7 +38,7 @@ BZObjectStore *os = [BZObjectStore openWithPath:@"database.sqlite" error:&error]
 // close database
 [os close];
 ```
-After processed, you can find database path in console like 'database path = XXXX'.
+After processed, you can find 'database path=XXXX' in console.
 Open sqlite file with your tool and check tables.
 
 
