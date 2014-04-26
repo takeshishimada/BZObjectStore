@@ -44,7 +44,7 @@ Open sqlite file with your tool and check tables.
 
 
 ## Usage
-#### Consider you have a model like this.
+#### Consider you have models like this.
 ```objective-c
 #import "BZObjectStore.h"
 
@@ -300,7 +300,7 @@ import BZObjectStoreBackground.h and call each method name + 'InBackground'.
 
 ## Model Interface
 OSModelInterface provides additional functions.
-Import BZObjectStoreModelInterface.h file in your model header file and overide method you need. 
+Import BZObjectStoreModelInterface.h file, implement <OSModelInterface> in your model .h file and overide method you need in .m file. 
 
 #### Change TableName
 ```objective-c
