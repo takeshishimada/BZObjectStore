@@ -3,13 +3,13 @@ BZObjectStore
 [![Build Status](https://travis-ci.org/expensivegasprices/BZObjectStore.svg)](https://travis-ci.org/expensivegasprices/BZObjectStore)
 
 BZObjectStore is an ORM library wrapped FMDB.
-
-BZObjectStore automatically store your model into SQLite and provide useful options to your application.
+BZObjectStore automatically store your models into SQLite and provide useful options to your application.
 
 ## Requirements
 Targeting either iOS 5.0 and above
 
 ## Summary
+- Easy to use
 - Mapping Models to SQLite tables
 - Relationship in NSObject, NSArray, NSDictionary, NSSet, NSOrderedSet support
 - Automatic Schema Creating
@@ -22,7 +22,27 @@ BZObjectStore can be installed using [CocoaPods](http://cocoapods.org/).
 pod 'BZObjectStore'
 ```
 
-## Basic Usage
+## Example
+```objective-c
+#import "BZObjectStore.h"
+
+NSError *error = nil;
+
+// open datbase
+BZObjectStore *os = [BZObjectStore openWithPath:@"database.sqlite" error:&error];
+
+// save object
+[os saveObject:YOUROBJECT error:&error];
+
+// close database
+[os close];
+```
+After processed, you can find database path in console like 'database path = XXXX'.
+Open sqlite file with your tool and check tables.
+
+
+
+## Usage
 #### Consider you have a model like this.
 ```objective-c
 #import "BZObjectStore.h"
@@ -64,6 +84,17 @@ BZObjectStore *os = [BZObjectStore openWithPath:@"database.sqlite" error:&error]
 NSArray *objects = [os fetchObjects:[SampleModel class] condition:nil error:&error];
 ```
 
+#### Refresh Object
+```objective-c
+// fetch latest data from database
+NSObject *latest = [os refreshObject:sample1 error:&error];
+```
+
+#### Fetch objects which are referencing to target object
+```objective-c
+NSArray *objects = [os fetchReferencingObjectsTo:sample1 condition:nil error:&error];
+```
+
 #### Remove Objects
 ```objective-c
 // remove object
@@ -87,6 +118,7 @@ NSArray *objects = [os fetchObjects:[SampleModel class] condition:fetchCondition
 BZObjectStoreConditionModel *removeCondition = [BZObjectStoreConditionModel condition];
 removeCondition.sqlite.where = @"name = 'sample1'";
 
+// remove objects in array
 [os removeObjects:[SampleModel class] condition:removeCondition error:&error];
 ```
 
@@ -122,6 +154,8 @@ NSNumber *value = [os avg:@"price" class:[SampleModel class] condition:nil error
 ```
 
 ## Options
+If variable type is primitve, use attributeIsXXXX override methods in OSModelInterface instead of these options.
+
 #### OSIdenticalAttribute
 define identical attributes
 
@@ -202,7 +236,7 @@ update attributes only one time.
 ```
 
 #### OSIgnoreSuperClass
-ignore super class attribute.
+ignore super class attributes.
 
 ```objective-c
 #import "BZObjectStoreModelInterface.h"
@@ -248,11 +282,64 @@ prior update performance.
 ```
 
 ## In Background
+You can use background process methods.
+import BZObjectStoreBackground.h and call each method name + 'InBackground'.
 
+```objective-c
+#import "BZObjectStore.h"
 
-## Condition
-
+[os saveObjectInBackground:savedObject completionBlock:^(NSError *error) {
+	if (!error) {
+		// succeed
+	} else {
+		// failed
+	}
+}];
+```
 
 ## Model Interface
+OSModelInterface provides additional functions.
+Import BZObjectStoreModelInterface.h file in your model header file and overide method you need. 
 
+#### Change TableName
+```objective-c
++ (NSString*)OSTableName
+{
+	return @"table_name_you_want";
+}
+```
 
+#### Change ColumnName
+```objective-c
++ (NSString*)OSColumnName:(NSString*)attributeName
+{
+	if ([attributeName isEqualString:@"price"]) {
+		return @"column_name_you_want";
+	}
+	return attributeName;
+}
+```
+
+#### Hook the event when model loaded.
+```objective-c
+- (void)OSModelDidLoad
+{
+	// your operation
+}
+```
+
+#### Hook the event when model saved.
+```objective-c
+- (void)OSModelDidSave
+{
+	// your operation
+}
+```
+
+#### Hook the event when model removed.
+```objective-c
+- (void)OSModelDidRemove
+{
+	// your operation
+}
+```
