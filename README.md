@@ -300,7 +300,7 @@ import BZObjectStoreBackground.h and call each method name + 'InBackground'.
 
 ## Model Interface
 OSModelInterface provides additional functions.
-Import BZObjectStoreModelInterface.h file, implement <OSModelInterface> in your model .h file and overide method you need in .m file. 
+Import BZObjectStoreModelInterface.h file, implement OSModelInterface protocol in your model and overide method you need.
 
 #### Change TableName
 ```objective-c
