@@ -420,7 +420,7 @@ Import BZObjectStoreBackground.h and call each method name + 'InBackground' meth
 }];
 ```
 
-## Supported Data Types
+## Data Types
 |Objective-C Data Types|SQLite Data Types|Mapping Column Names|Remarks|
 |:-----------|:-----------|:-----------|:-----------|
 |char*|INTEGER|attributeName||
