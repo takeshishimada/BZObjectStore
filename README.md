@@ -453,7 +453,7 @@ Import BZObjectStoreBackground.h and call each method name + 'InBackground' meth
 |NSMutableOrderedSet|INTEGER|attributeName|saved number of Objects|
 |NSObject|INTEGER|attributeName|saved number of Objects|
 
-Other C structures will be save as NSValue.
+Other C structures will be saved as NSValue.
 
 
 ## About Relationship
