@@ -120,7 +120,7 @@
     return dbQueue;
 }
 
-#pragma mark inDatabase,inTransaction
+#pragma mark inTransaction
 
 - (FMDatabaseQueue*)FMDBQueue
 {
@@ -135,13 +135,25 @@
         }
     } else {
         [self.dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
+            self.db = db;
             [db setShouldCacheStatements:YES];
             block(db,rollback);
         }];
         [self.dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
             [self registedAllRuntime];
         }];
+        self.db = nil;
     }
+}
+
+#pragma mark transaction
+
+- (void)inTransaction:(void(^)(BZObjectStore *os,BOOL *rollback))block
+{
+    __weak BZObjectStore *weakSelf = self;
+    [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
+        block(weakSelf,rollback);
+    }];
 }
 
 #pragma mark exists, count, min, max methods

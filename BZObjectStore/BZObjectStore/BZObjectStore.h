@@ -49,6 +49,8 @@
 - (NSNumber*)total:(NSString*)columnName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error;
 - (NSNumber*)avg:(NSString*)columnName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error;
 
+- (void)inTransaction:(void(^)(BZObjectStore *os,BOOL *rollback))block;
+
 - (BOOL)registerClazz:(Class)clazz error:(NSError**)error;
 
 - (void)close;

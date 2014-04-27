@@ -131,6 +131,7 @@
 		72C2685418F9FDF20070C2E5 /* BZOSIdenticalItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2685318F9FDF20070C2E5 /* BZOSIdenticalItemModel.m */; };
 		72C2685818FA09A50070C2E5 /* BZWeakPropertyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2685718FA09A50070C2E5 /* BZWeakPropertyModel.m */; };
 		72C3EC6F190028C0002FFDC5 /* FMDatabase+indexInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C3EC6E190028C0002FFDC5 /* FMDatabase+indexInfo.m */; };
+		72EC847B190D5669001AE1F7 /* BZTransactionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72EC847A190D5669001AE1F7 /* BZTransactionModel.m */; };
 		821F19AA1906511C00E7F96C /* BZBackgroundModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 821F19A91906511C00E7F96C /* BZBackgroundModel.m */; };
 		82D029EC19051DE2003B7246 /* BZArrayInArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D029EB19051DE2003B7246 /* BZArrayInArrayModel.m */; };
 		82D029EF19064602003B7246 /* BZOSIdenticalForthModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D029EE19064602003B7246 /* BZOSIdenticalForthModel.m */; };
@@ -388,6 +389,8 @@
 		72C2685718FA09A50070C2E5 /* BZWeakPropertyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZWeakPropertyModel.m; sourceTree = "<group>"; };
 		72C3EC6D190028C0002FFDC5 /* FMDatabase+indexInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FMDatabase+indexInfo.h"; sourceTree = "<group>"; };
 		72C3EC6E190028C0002FFDC5 /* FMDatabase+indexInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FMDatabase+indexInfo.m"; sourceTree = "<group>"; };
+		72EC8479190D5669001AE1F7 /* BZTransactionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZTransactionModel.h; sourceTree = "<group>"; };
+		72EC847A190D5669001AE1F7 /* BZTransactionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZTransactionModel.m; sourceTree = "<group>"; };
 		73A736836B224E7BB841BEB0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		821F19A81906511C00E7F96C /* BZBackgroundModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZBackgroundModel.h; sourceTree = "<group>"; };
 		821F19A91906511C00E7F96C /* BZBackgroundModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZBackgroundModel.m; sourceTree = "<group>"; };
@@ -642,6 +645,7 @@
 				7292AB3B1903627200FCF778 /* DuplicateAttribute */,
 				7292AB43190378EF00FCF778 /* Osclazz */,
 				821F19A7190650F000E7F96C /* Background */,
+				72EC8478190D5649001AE1F7 /* Transaction */,
 				7259F81318F44F04002A3416 /* Supporting Files */,
 			);
 			path = BZObjectStoreTests;
@@ -968,6 +972,15 @@
 			name = Category;
 			sourceTree = "<group>";
 		};
+		72EC8478190D5649001AE1F7 /* Transaction */ = {
+			isa = PBXGroup;
+			children = (
+				72EC8479190D5669001AE1F7 /* BZTransactionModel.h */,
+				72EC847A190D5669001AE1F7 /* BZTransactionModel.m */,
+			);
+			name = Transaction;
+			sourceTree = "<group>";
+		};
 		821F19A7190650F000E7F96C /* Background */ = {
 			isa = PBXGroup;
 			children = (
@@ -1246,6 +1259,7 @@
 				7259F8C718F45014002A3416 /* BZInvalidValuesModel.m in Sources */,
 				7292AB461903792000FCF778 /* BZObjectStoreClazzBZImage.m in Sources */,
 				72C2683918F962340070C2E5 /* BZOrderByModel.m in Sources */,
+				72EC847B190D5669001AE1F7 /* BZTransactionModel.m in Sources */,
 				72C2684818F98B890070C2E5 /* BZReferenceFromConditionModel.m in Sources */,
 				72C2685418F9FDF20070C2E5 /* BZOSIdenticalItemModel.m in Sources */,
 				72170BF618F8368200C9A4C1 /* BZOnDemandHeaderModel.m in Sources */,

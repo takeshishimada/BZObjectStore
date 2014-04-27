@@ -85,7 +85,7 @@
 #import "TKRGuard.h"
 #import "BZObjectStoreBackground.h"
 #import "BZBackgroundModel.h"
-
+#import "BZTransactionModel.h"
 
 @interface BZObjectStoreTests : XCTestCase {
     BZObjectStore *_disk;
@@ -208,9 +208,9 @@
     [self testBZObjectStoreClazzBZImage:_disk];
     [self testBZArrayInArrayModel:_disk];
     [self testBackground:_disk];
+    [self testInTransaction:_disk];
     [_disk close];
 }
-
 
 
 - (void)testOnMemory
@@ -248,6 +248,7 @@
     [self testBZObjectStoreClazzBZImage:_memory];
     [self testBZArrayInArrayModel:_memory];
     [self testBackground:_memory];
+    [self testInTransaction:_memory];
     [_memory close];
 }
 
@@ -1951,6 +1952,37 @@
 
 }
 
+- (void)testInTransaction:(BZObjectStore*)os
+{
+    [os inTransaction:^(BZObjectStore *os, BOOL *rollback) {
+        NSError *error = nil;
+        BZTransactionModel *saveObject = [[BZTransactionModel alloc]init];
+        saveObject.code = @1;
+        [os saveObject:saveObject error:&error];
+        XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+        NSNumber *count = [os count:[BZTransactionModel class] condition:nil error:&error];
+        XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+        XCTAssertTrue(count.intValue == 1,@"testInTransaction error");
+    }];
+
+    [os inTransaction:^(BZObjectStore *os, BOOL *rollback) {
+        NSError *error = nil;
+        BZTransactionModel *saveObject = [[BZTransactionModel alloc]init];
+        saveObject.code = @1;
+        [os saveObject:saveObject error:&error];
+        XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+        NSNumber *count = [os count:[BZTransactionModel class] condition:nil error:&error];
+        XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+        XCTAssertTrue(count.intValue == 2,@"testInTransaction error");
+        *rollback = YES;
+    }];
+    
+    NSError *error = nil;
+    NSNumber *count = [os count:[BZTransactionModel class] condition:nil error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertTrue(count.intValue == 1,@"testInTransaction error");
+
+}
 
 - (void)testBackground:(BZObjectStore*)os
 {
