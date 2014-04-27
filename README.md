@@ -4,7 +4,7 @@ BZObjectStore
 
 This is an ORM library wrapped FMDB.
 
-BZObjectStore automatically store your models on SQLite and provides useful options to your application.
+BZObjectStore automatically store your models to SQLite tables and provides useful options to your application.
 
 ## Requirements
 Targeting either iOS 5.0 and above
