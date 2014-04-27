@@ -419,3 +419,48 @@ Import BZObjectStoreBackground.h and call each method name + 'InBackground' meth
 	}
 }];
 ```
+
+## Supported Data Types
+|Objective-C Data Types|SQLite Data Types|Mapping Column Names|Remarks|
+|:-----------|:-----------|:-----------|:-----------|
+|char*|INTEGER|attributeName||
+|short|INTEGER|attributeName||
+|int|INTEGER|attributeName||
+|long|INTEGER|attributeName||
+|longlong|INTEGER|attributeName||
+|double|REAL|attributeName||
+|float|REAL|attributeName||
+|unsigned char*|INTEGER|attributeName||
+|unsigned short|INTEGER|attributeName||
+|unsigned int|INTEGER|attributeName||
+|unsigned long|INTEGER|attributeName||
+|unsigned longlong|INTEGER|attributeName||
+|CGPoint|INTEGER|attributeName + '_x',+ '_y'|separated to 2 columns|
+|CGSize|INTEGER|attributeName + '_width',+ '_height'|separated to 2 columns|
+|CGRect|INTEGER|attributeName + '_x', + '_y', + '_width', + '_height'|separated to 4 columns|
+|NSRange|INTEGER|attributeName + '_length', + '_location'|separated to 2 columns|
+|NSData|BLOB|attributeName||
+|NSString|TEXT|attributeName||
+|NSMutableString|TEXT|attributeName||
+|NSNull|BLOB|attributeName||
+|NSNumber|INTEGER|attributeName||
+|NSURL|TEXT|attributeName|save absolute URL string|
+|NSValue|BLOB|attributeName|saved serialized|
+|UIColor|TEXT|attributeName|saved as RGBA string|
+|UIImage|BLOB|attributeName|saved as GIF binary data|
+|NSArray|INTEGER|attributeName|save number of Objects|
+|NSDictionary|INTEGER|attributeName|save number of Objects|
+|NSSet|INTEGER|attributeName|save number of Objects|
+|NSOrderedSet|INTEGER|attributeName|save number of Objects|
+|NSMutableArray|INTEGER|attributeName|save number of Objects|
+|NSMutableDictionary|INTEGER|attributeName|save number of Objects|
+|NSMutableSet|INTEGER|attributeName|save number of Objects|
+|NSMutableOrderedSet|INTEGER|attributeName|save number of Objects|
+
+Other C structures will be save as NSValue.
+
+
+## About Relationship
+Relationships will be stored on "_ObjectStoreRelationship_" table.
+You can use relationship condition by BZObjectStoreCondition.
+
