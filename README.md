@@ -474,7 +474,3 @@ Import BZObjectStoreBackground.h and call each method name + 'InBackground' meth
 
 Other C structures will be saved as NSValue.
 
-
-## About Relationship
-Relationships will be stored on "ObjectStoreRelationship" table.
-
