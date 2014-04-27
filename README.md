@@ -163,8 +163,6 @@ NSNumber *value = [os avg:@"price" class:[SampleModel class] condition:nil error
 ```
 
 ## Options
-If variable type is primitve, override attributeIsXXXX methods in OSModelInterface instead of these options.
-
 #### OSIdenticalAttribute
 define identical attributes
 
@@ -289,28 +287,14 @@ prior update performance
 @property (nonatomic,assign) NSString *name;
 @end
 ```
-
-## In Background
-You can use background process methods.
-Import BZObjectStoreBackground.h and call each method name + 'InBackground' methods.
-
-```objective-c
-#import "BZObjectStore.h"
-
-[os saveObjectInBackground:savedObject completionBlock:^(NSError *error) {
-	if (!error) {
-		// succeed
-	} else {
-		// failed
-	}
-}];
-```
+If primitve type, override attributeIsXXXX methods in OSModelInterface instead of these options.
 
 ## Model Interface
 OSModelInterface provides additional functions.
 Import BZObjectStoreModelInterface.h file, implement OSModelInterface protocol in your model and override methods you need.
 
 #### Change TableName
+
 ```objective-c
 + (NSString*)OSTableName
 {
@@ -351,4 +335,87 @@ Import BZObjectStoreModelInterface.h file, implement OSModelInterface protocol i
 {
 	// your operation
 }
+```
+
+#### define OSIdenticalAttribute option
+```objective-c
++ (BOOL)attributeIsOSIdenticalAttribute:(NSString*)attributeName
+{
+	if ([attributeName isEqualString:@"foo"]) {
+		return YES;
+	}
+	return NO;
+}
+```
+
+#### Define OSIgnoreAttribue option
+```objective-c
++ (BOOL)attributeIsOSIgnoreAttribute:(NSString*)attributeName
+{
+	if ([attributeName isEqualString:@"foo"]) {
+		return YES;
+	}
+	return NO;
+}
+```
+
+#### Define OSWeakReferenceAttribute option
+```objective-c
++ (BOOL)attributeIsOSWeakReferenceAttribute:(NSString*)attributeName
+{
+	if ([attributeName isEqualString:@"foo"]) {
+		return YES;
+	}
+	return NO;
+}
+```
+
+#### Define OSNotUpdateIfValueIsNullAttribute option
+```objective-c
++ (BOOL)attributeIsOSNotUpdateIfValueIsNullAttribute:(NSString*)attributeName
+{
+	if ([attributeName isEqualString:@"foo"]) {
+		return YES;
+	}
+	return NO;
+}
+```
+
+#### Define OSSerializableAttribute option
+```objective-c
++ (BOOL)attributeIsOSSerializableAttribute:(NSString*)attributeName
+{
+	if ([attributeName isEqualString:@"foo"]) {
+		return YES;
+	}
+	return NO;
+}
+```
+
+#### Define OSOnceUpdateAttribute option
+```objective-c
++ (BOOL)attributeIsOSOnceUpdateAttribute:(NSString*)attributeName
+{
+	if ([attributeName isEqualString:@"foo"]) {
+		return YES;
+	}
+	return NO;
+}
+```
+
+
+## In Background
+You can use background process methods.
+Import BZObjectStoreBackground.h and call each method name + 'InBackground' methods.
+
+```objective-c
+#import "BZObjectStore.h"
+
+[os saveObjectInBackground:savedObject completionBlock:^(NSError *error) {
+	if (!error) {
+		// succeed
+	} else {
+		// failed
+	}
+}];
 ```
