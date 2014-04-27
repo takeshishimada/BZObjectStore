@@ -73,7 +73,7 @@ BZObjectStore *os = [BZObjectStore openWithPath:@"database.sqlite" error:&error]
 ```
 #### Save Objects
 ```objective-c
-// save object
+// save a object
 [os saveObject:sample1 error:&error];
 
 // save objects in array
@@ -93,7 +93,7 @@ NSArray *objects = [os fetchReferencingObjectsTo:sample1 condition:nil error:&er
 
 #### Remove Objects
 ```objective-c
-// remove object
+// remove a object
 [os removeObject:sample1 error:&error];
 
 // remove objects
@@ -457,6 +457,5 @@ Other C structures will be save as NSValue.
 
 
 ## About Relationship
-Relationships will be stored on "_ObjectStoreRelationship_" table.
-You can use relationship condition by BZObjectStoreCondition.
+Relationships will be stored on "ObjectStoreRelationship" table.
 
