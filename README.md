@@ -83,16 +83,11 @@ BZObjectStore *os = [BZObjectStore openWithPath:@"database.sqlite" error:&error]
 ```objective-c
 // fetch objects
 NSArray *objects = [os fetchObjects:[SampleModel class] condition:nil error:&error];
-```
 
-#### Refresh Object
-```objective-c
 // fetch latest data from database
 NSObject *latest = [os refreshObject:sample1 error:&error];
-```
 
-#### Fetch Referencing Objects
-```objective-c
+// fetch referencing objects
 NSArray *objects = [os fetchReferencingObjectsTo:sample1 condition:nil error:&error];
 ```
 
