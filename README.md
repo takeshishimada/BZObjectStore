@@ -444,18 +444,19 @@ Import BZObjectStoreBackground.h and call each method name + 'InBackground' meth
 |NSMutableString|TEXT|attributeName||
 |NSNull|BLOB|attributeName||
 |NSNumber|INTEGER|attributeName||
-|NSURL|TEXT|attributeName|save absolute URL string|
-|NSValue|BLOB|attributeName|saved serialized|
+|NSURL|TEXT|attributeName|saved as absolute URL string|
+|NSValue|BLOB|attributeName|saved as serialized|
 |UIColor|TEXT|attributeName|saved as RGBA string|
 |UIImage|BLOB|attributeName|saved as GIF binary data|
-|NSArray|INTEGER|attributeName|save number of Objects|
-|NSDictionary|INTEGER|attributeName|save number of Objects|
-|NSSet|INTEGER|attributeName|save number of Objects|
-|NSOrderedSet|INTEGER|attributeName|save number of Objects|
-|NSMutableArray|INTEGER|attributeName|save number of Objects|
-|NSMutableDictionary|INTEGER|attributeName|save number of Objects|
-|NSMutableSet|INTEGER|attributeName|save number of Objects|
-|NSMutableOrderedSet|INTEGER|attributeName|save number of Objects|
+|NSArray|INTEGER|attributeName|saved number of Objects|
+|NSDictionary|INTEGER|attributeName|saved number of Objects|
+|NSSet|INTEGER|attributeName|saved number of Objects|
+|NSOrderedSet|INTEGER|attributeName|saved number of Objects|
+|NSMutableArray|INTEGER|attributeName|saved number of Objects|
+|NSMutableDictionary|INTEGER|attributeName|saved number of Objects|
+|NSMutableSet|INTEGER|attributeName|save numberd of Objects|
+|NSMutableOrderedSet|INTEGER|attributeName|saved number of Objects|
+|NSObject|INTEGER|attributeName|saved number of Objects|
 
 Other C structures will be save as NSValue.
 
