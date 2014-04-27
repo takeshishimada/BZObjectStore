@@ -69,7 +69,13 @@ sample2.price = 50;
 #import "BZObjectStore.h"
 
 NSError *error = nil;
+
+// default path is NSApplicationSupportDirectory/bundleIdentifier
 BZObjectStore *os = [BZObjectStore openWithPath:@"database.sqlite" error:&error];
+
+// open In memory
+BZObjectStore *os = [BZObjectStore openWithPath:nil error:&error];
+
 ```
 #### Save Objects
 ```objective-c
@@ -155,6 +161,19 @@ NSNumber *value = [os total:@"price" class:[SampleModel class] condition:nil err
 #### Get average value
 ```objective-c
 NSNumber *value = [os avg:@"price" class:[SampleModel class] condition:nil error:&error];
+```
+
+#### Transaction
+```objective-c
+[os inTransaction:^(BZObjectStore *os, BOOL *rollback) {
+
+    NSError *error = nil;
+    [os saveObject:sample1 error:&error];
+    [os saveObject:sample2 error:&error];
+    
+    // rollback if need
+    *rollback = YES;
+}];
 ```
 
 ## Options
