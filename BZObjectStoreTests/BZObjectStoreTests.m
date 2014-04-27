@@ -2157,6 +2157,18 @@
     XCTAssert(!err, @"fetchObjectsInBackground \"%s\"", __PRETTY_FUNCTION__);
     XCTAssertTrue(list.count == 0,@"fetchObjectsInBackground error");
     
+    [os inTransactionInBackground:^(BZObjectStore *os, BOOL *rollback) {
+        NSError *error = nil;
+        NSNumber *count = [os count:[BZBackgroundModel class] condition:nil error:&error];
+        err = error;
+        val = count;
+        [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+            RESUME;
+        }];
+    }];
+    WAIT;
+    XCTAssert(!err, @"inTransactionInBackground \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssertTrue(val.integerValue == 0,@"countInBackground error");
     
 }
 

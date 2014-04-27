@@ -220,4 +220,12 @@
     }];
 }
 
+- (void)inTransactionInBackground:(void(^)(BZObjectStore *os,BOOL *rollback))block
+{
+    NSOperationQueue *queue = [[NSOperationQueue alloc]init];
+    [queue addOperationWithBlock:^{
+        [self inTransaction:block];
+    }];
+}
+
 @end
