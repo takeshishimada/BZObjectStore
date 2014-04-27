@@ -4,7 +4,7 @@ BZObjectStore
 
 This is an ORM library wrapped FMDB.
 
-BZObjectStore automatically store your models into SQLite and provide useful options to your application.
+BZObjectStore automatically store your models on SQLite and provides useful options to your application.
 
 ## Requirements
 Targeting either iOS 5.0 and above
@@ -103,6 +103,10 @@ NSArray *objects = [os fetchReferencingObjectsTo:sample1 condition:nil error:&er
 
 // remove objects
 [os removeObjects:[SampleModel class] condition:nil error:&error];
+
+// remove objects in array
+[os removeObject:@[sample1,sample2] error:&error];
+
 ```
 
 #### Fetch Objects with condition
@@ -119,7 +123,6 @@ NSArray *objects = [os fetchObjects:[SampleModel class] condition:fetchCondition
 BZObjectStoreConditionModel *removeCondition = [BZObjectStoreConditionModel condition];
 removeCondition.sqlite.where = @"name = 'sample1'";
 
-// remove objects in array
 [os removeObjects:[SampleModel class] condition:removeCondition error:&error];
 ```
 
@@ -127,6 +130,11 @@ removeCondition.sqlite.where = @"name = 'sample1'";
 ```objective-c
 // close database
 [os close];
+```
+
+#### Get count value
+```objective-c
+[os count:[SampleModel class] condition:nil error:&error];
 ```
 
 #### Get maximum value
@@ -155,7 +163,7 @@ NSNumber *value = [os avg:@"price" class:[SampleModel class] condition:nil error
 ```
 
 ## Options
-If variable type is primitve, use attributeIsXXXX override methods in OSModelInterface instead of these options.
+If variable type is primitve, override attributeIsXXXX methods in OSModelInterface instead of these options.
 
 #### OSIdenticalAttribute
 define identical attributes
@@ -170,7 +178,7 @@ define identical attributes
 ```
 
 #### OSIgnoreAttribute
-ignore attributes.
+ignore attributes
 
 ```objective-c
 #import "BZObjectStoreModelInterface.h"
@@ -183,7 +191,7 @@ ignore attributes.
 ```
 
 #### OSWeakReferenceAttribute
-do not delete objects in attributes when remove a object.
+do not delete relationship objects when remove a object.
 
 ```objective-c
 #import "BZObjectStoreModelInterface.h"
@@ -200,7 +208,7 @@ do not delete objects in attributes when remove a object.
 ```
 
 #### OSFetchOnRefreshingAttribute
-fetch objects in attributes only when refreshObject method, does not fetch when fetchObjects method.
+fetch relationship objects only when refreshObject method, does not fetch when fetchObjects method.
 
 ```objective-c
 #import "BZObjectStoreModelInterface.h"
@@ -237,7 +245,7 @@ update attributes only one time.
 ```
 
 #### OSIgnoreSuperClass
-ignore super class attributes.
+ignore super class attributes
 
 ```objective-c
 #import "BZObjectStoreModelInterface.h"
@@ -249,7 +257,7 @@ ignore super class attributes.
 ```
 
 #### OSFullTextSearch
-use sqlite FTS3.
+use sqlite FTS3
 
 ```objective-c
 #import "BZObjectStoreModelInterface.h"
@@ -260,7 +268,7 @@ use sqlite FTS3.
 ```
 
 #### OSPriorInsertPerformance
-prior insert performance. 
+prior insert performance
 
 ```objective-c
 #import "BZObjectStoreModelInterface.h"
@@ -272,7 +280,7 @@ prior insert performance.
 ```
 
 #### OSPriorUpdatePerformance
-prior update performance. 
+prior update performance
 
 ```objective-c
 #import "BZObjectStoreModelInterface.h"
@@ -284,7 +292,7 @@ prior update performance.
 
 ## In Background
 You can use background process methods.
-import BZObjectStoreBackground.h and call each method name + 'InBackground'.
+Import BZObjectStoreBackground.h and call each method name + 'InBackground' methods.
 
 ```objective-c
 #import "BZObjectStore.h"
@@ -300,7 +308,7 @@ import BZObjectStoreBackground.h and call each method name + 'InBackground'.
 
 ## Model Interface
 OSModelInterface provides additional functions.
-Import BZObjectStoreModelInterface.h file, implement OSModelInterface protocol in your model and overide method you need.
+Import BZObjectStoreModelInterface.h file, implement OSModelInterface protocol in your model and override methods you need.
 
 #### Change TableName
 ```objective-c
@@ -314,7 +322,7 @@ Import BZObjectStoreModelInterface.h file, implement OSModelInterface protocol i
 ```objective-c
 + (NSString*)OSColumnName:(NSString*)attributeName
 {
-	if ([attributeName isEqualString:@"price"]) {
+	if ([attributeName isEqualString:@"column_name_you_want_to_change"]) {
 		return @"column_name_you_want";
 	}
 	return attributeName;
