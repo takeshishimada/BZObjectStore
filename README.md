@@ -91,7 +91,7 @@ NSArray *objects = [os fetchObjects:[SampleModel class] condition:nil error:&err
 NSObject *latest = [os refreshObject:sample1 error:&error];
 ```
 
-#### Fetch objects which are referencing to target object
+#### Fetch Referencing Objects
 ```objective-c
 NSArray *objects = [os fetchReferencingObjectsTo:sample1 condition:nil error:&error];
 ```
