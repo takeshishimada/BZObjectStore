@@ -483,7 +483,8 @@ Import BZObjectStoreBackground.h and call each method name + 'InBackground' meth
 Other C structures will be saved as NSValue.
 
 ## Features
-- CLLocation, NSHashTable, NSMapTable support  
+- CLLocationCoordinate2D, CLLocation support
+- NSHashTable, NSMapTable support  
 - [Parse](https://parse.com/docs/ios/api/index.html "Parse") support
 
 ## MICS
