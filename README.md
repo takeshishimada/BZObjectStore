@@ -74,10 +74,10 @@ NSError *error = nil;
 // default path is NSApplicationSupportDirectory/bundleIdentifier
 BZObjectStore *os = [BZObjectStore openWithPath:@"database.sqlite" error:&error];
 
-// open In memory
+// open in memory
 BZObjectStore *os = [BZObjectStore openWithPath:nil error:&error];
 ```
-#### Register Calss
+#### Register Class
 ```objective-c
 // Improve response time (Not required)
 BOOL ret = [os registerClass:[SampleModel class] error:&error];
@@ -482,7 +482,13 @@ Import BZObjectStoreBackground.h and call each method name + 'InBackground' meth
 
 Other C structures will be saved as NSValue.
 
-
 ## Features
-- CLLocation, NSHashTable, NSMapTable support  
+- CLLocationCoordinate2D, CLLocation support
+- NSHashTable, NSMapTable support  
 - [Parse](https://parse.com/docs/ios/api/index.html "Parse") support
+- Notifications
+
+## MICS
+Author: Takeshi Shimada  
+History: https://github.com/expensivegasprices/BZObjectStore/History.md  
+Inspired by [FMDB](https://github.com/ccgus/fmdb "FMDB"), [JSONModel](https://github.com/icanzilb/JSONModel "JSONModel") and [AFNetworking](https://github.com/AFNetworking/AFNetworking "AFNetworking").
