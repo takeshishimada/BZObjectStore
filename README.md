@@ -305,7 +305,8 @@ If primitve type, override attributeIsXXXX methods in OSModelInterface instead o
 
 ## Model Interface
 OSModelInterface provides additional functions.  
-Import BZObjectStoreModelInterface.h file, implement OSModelInterface protocol in your model and override methods you need.
+Import BZObjectStoreModelInterface.h file, implement OSModelInterface protocol in your model  
+and override methods you need.
 
 #### Change TableName
 
