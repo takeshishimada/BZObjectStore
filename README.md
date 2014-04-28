@@ -487,6 +487,6 @@ Other C structures will be saved as NSValue.
 - [Parse](https://parse.com/docs/ios/api/index.html "Parse") support
 
 ## MICS
-Author: [Takeshi Shimada](expensivegasprices@gmail.com "Takeshi Shimada")  
+Author: [Takeshi Shimada](mailto://expensivegasprices@gmail.com "Takeshi Shimada")  
 History: https://github.com/expensivegasprices/BZObjectStore/History.md    
 Inspired by [JSONModel](https://github.com/icanzilb/JSONModel "JSONModel"), [AFNetworking](https://github.com/AFNetworking/AFNetworking "AFNetworking") and [FMDB](https://github.com/ccgus/fmdb "FMDB").
