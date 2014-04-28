@@ -74,10 +74,10 @@ NSError *error = nil;
 // default path is NSApplicationSupportDirectory/bundleIdentifier
 BZObjectStore *os = [BZObjectStore openWithPath:@"database.sqlite" error:&error];
 
-// open In memory
+// open in memory
 BZObjectStore *os = [BZObjectStore openWithPath:nil error:&error];
 ```
-#### Register Calss
+#### Register Class
 ```objective-c
 // Improve response time (Not required)
 BOOL ret = [os registerClass:[SampleModel class] error:&error];
