@@ -38,8 +38,8 @@ BZObjectStore *os = [BZObjectStore openWithPath:@"database.sqlite" error:&error]
 // close database
 [os close];
 ```
-After processed, you can find 'database path=XXXX' in console.
-Open sqlite file with your tool and check tables.
+After processed, you can find 'database path=XXXX' in console.  
+Open this file with your SQLite tool and check tables.
 
 
 
@@ -304,7 +304,7 @@ prior update performance
 If primitve type, override attributeIsXXXX methods in OSModelInterface instead of these options.
 
 ## Model Interface
-OSModelInterface provides additional functions.
+OSModelInterface provides additional functions.  
 Import BZObjectStoreModelInterface.h file, implement OSModelInterface protocol in your model and override methods you need.
 
 #### Change TableName
@@ -351,7 +351,7 @@ Import BZObjectStoreModelInterface.h file, implement OSModelInterface protocol i
 }
 ```
 
-#### define OSIdenticalAttribute option
+#### Define OSIdenticalAttribute option
 ```objective-c
 + (BOOL)attributeIsOSIdenticalAttribute:(NSString*)attributeName
 {
@@ -441,18 +441,19 @@ Import BZObjectStoreBackground.h and call each method name + 'InBackground' meth
 |short|INTEGER|attributeName||
 |int|INTEGER|attributeName||
 |long|INTEGER|attributeName||
-|longlong|INTEGER|attributeName||
+|long long|INTEGER|attributeName||
 |double|REAL|attributeName||
 |float|REAL|attributeName||
 |unsigned char*|INTEGER|attributeName||
 |unsigned short|INTEGER|attributeName||
 |unsigned int|INTEGER|attributeName||
 |unsigned long|INTEGER|attributeName||
-|unsigned longlong|INTEGER|attributeName||
-|CGPoint|INTEGER|attributeName + '_x',+ '_y'|separated to 2 columns|
-|CGSize|INTEGER|attributeName + '_width',+ '_height'|separated to 2 columns|
-|CGRect|INTEGER|attributeName + '_x', + '_y', + '_width', + '_height'|separated to 4 columns|
+|unsigned long long|INTEGER|attributeName||
+|CGPoint|REAL|attributeName + '_x',+ '_y'|separated to 2 columns|
+|CGSize|REAL|attributeName + '_width',+ '_height'|separated to 2 columns|
+|CGRect|REAL|attributeName + '_x', + '_y', + '_width', + '_height'|separated to 4 columns|
 |NSRange|INTEGER|attributeName + '_length', + '_location'|separated to 2 columns|
+|NSDate|INTEGER|attributeName|saved as Unix time|
 |NSData|BLOB|attributeName||
 |NSString|TEXT|attributeName||
 |NSMutableString|TEXT|attributeName||
@@ -473,4 +474,9 @@ Import BZObjectStoreBackground.h and call each method name + 'InBackground' meth
 |NSObject|INTEGER|attributeName|saved number of Objects|
 
 Other C structures will be saved as NSValue.
+
+
+## Features
+CLLocation, NSHashTable, NSMapTable support  
+Parse Objects support
 
