@@ -486,4 +486,4 @@ Other C structures will be saved as NSValue.
 ## Features
 - CLLocation, NSHashTable, NSMapTable support  
 - Parse Objects support
-- Automatic Column Deleting
+- Automatic Column Deleting support
