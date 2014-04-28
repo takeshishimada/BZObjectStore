@@ -95,11 +95,11 @@
     
     NSError *err = nil;
     BOOL ret = NO;
-    ret = [os registerClazz:[BZObjectStoreRelationshipModel class] error:&err];
+    ret = [os registerClass:[BZObjectStoreRelationshipModel class] error:&err];
     if (!ret) {
         return nil;
     }
-    ret = [os registerClazz:[BZObjectStoreAttributeModel class] error:&err];
+    ret = [os registerClass:[BZObjectStoreAttributeModel class] error:&err];
     if (!ret) {
         return nil;
     }
@@ -486,7 +486,7 @@
 
 #pragma register methods
 
-- (BOOL)registerClazz:(Class)clazz error:(NSError**)error
+- (BOOL)registerClass:(Class)clazz error:(NSError**)error
 {
     __block NSError *err = nil;
     __block BOOL ret = NO;

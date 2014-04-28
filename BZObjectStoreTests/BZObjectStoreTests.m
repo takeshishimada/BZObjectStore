@@ -669,7 +669,7 @@
 - (void)testBZInsertResponseModel:(BZObjectStore*)os
 {
     NSError *error = nil;
-    [os registerClazz:[BZInsertResponseModel class] error:&error];
+    [os registerClass:[BZInsertResponseModel class] error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     
     NSMutableArray *list = [NSMutableArray array];
@@ -709,7 +709,7 @@
 - (void)testBZUpdateResponseModel:(BZObjectStore*)os
 {
     NSError *error = nil;
-    [os registerClazz:[BZInsertResponseModel class] error:&error];
+    [os registerClass:[BZInsertResponseModel class] error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     
     NSMutableArray *list = [NSMutableArray array];

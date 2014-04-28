@@ -51,7 +51,7 @@
 
 - (void)inTransaction:(void(^)(BZObjectStore *os,BOOL *rollback))block;
 
-- (BOOL)registerClazz:(Class)clazz error:(NSError**)error;
+- (BOOL)registerClass:(Class)clazz error:(NSError**)error;
 
 - (void)close;
 
