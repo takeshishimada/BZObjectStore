@@ -301,10 +301,11 @@ prior update performance
 @property (nonatomic,assign) NSString *name;
 @end
 ```
-If primitve type, override attributeIsXXXX methods in OSModelInterface instead of these options.
+If primitve type, override attributeIsXXXX methods in your model instead of these options.
+These methods are defined in OSModelInterface protocol.
 
-## Model Interface
-OSModelInterface provides additional functions.  
+## OSModelInterface
+This interface provides additional functions.  
 Import BZObjectStoreModelInterface.h file, implement OSModelInterface protocol in your model  
 and override methods you need.
 
