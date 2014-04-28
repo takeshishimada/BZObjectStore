@@ -79,7 +79,7 @@ BZObjectStore *os = [BZObjectStore openWithPath:nil error:&error];
 ```
 #### Register Calss
 ```objective-c
-// Improve response time if regist a class first. (Not required)
+// Improve response time (Not required)
 BOOL ret = [os registerClass:[SampleModel class] error:&error];
 ```
 #### Save Objects
