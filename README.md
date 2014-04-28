@@ -489,4 +489,4 @@ Other C structures will be saved as NSValue.
 ## MICS
 Author: Takeshi Shimada  
 History: https://github.com/expensivegasprices/BZObjectStore/History.md  
-Inspired by [JSONModel](https://github.com/icanzilb/JSONModel "JSONModel"), [AFNetworking](https://github.com/AFNetworking/AFNetworking "AFNetworking") and [FMDB](https://github.com/ccgus/fmdb "FMDB").
+Inspired by [FMDB](https://github.com/ccgus/fmdb "FMDB"), [JSONModel](https://github.com/icanzilb/JSONModel "JSONModel") and [AFNetworking](https://github.com/AFNetworking/AFNetworking "AFNetworking").
