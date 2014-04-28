@@ -486,6 +486,7 @@ Other C structures will be saved as NSValue.
 - CLLocationCoordinate2D, CLLocation support
 - NSHashTable, NSMapTable support  
 - [Parse](https://parse.com/docs/ios/api/index.html "Parse") support
+- Change Notifications
 
 ## MICS
 Author: Takeshi Shimada  
