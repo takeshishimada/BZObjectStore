@@ -104,7 +104,8 @@
     self.tableName = [self.nameBuilder tableName:self.clazz];
 
     // class options
-    self.fullTextSearch =  [self.clazz conformsToProtocol:@protocol(OSFullTextSearch)];
+    self.fullTextSearch3 =  [self.clazz conformsToProtocol:@protocol(OSFullTextSearch3)];
+    self.fullTextSearch4 =  [self.clazz conformsToProtocol:@protocol(OSFullTextSearch4)];
     if ([self.clazz conformsToProtocol:@protocol(OSModelInterface)]) {
         NSObject *object = [[self.clazz alloc]init];
         if ([object respondsToSelector:@selector(OSModelDidSave)]) {

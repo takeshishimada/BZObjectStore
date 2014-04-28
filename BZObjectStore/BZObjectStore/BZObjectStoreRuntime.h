@@ -56,7 +56,8 @@
 @property (nonatomic,strong) NSArray *simpleValueAttributes;
 
 // class options
-@property (nonatomic,assign) BOOL fullTextSearch;
+@property (nonatomic,assign) BOOL fullTextSearch3;
+@property (nonatomic,assign) BOOL fullTextSearch4;
 @property (nonatomic,assign) BOOL modelDidLoad;
 @property (nonatomic,assign) BOOL modelDidSave;
 @property (nonatomic,assign) BOOL modelDidRemove;

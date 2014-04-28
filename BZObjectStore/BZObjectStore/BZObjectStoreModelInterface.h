@@ -26,7 +26,10 @@
 @protocol OSIgnoreSuperClass
 @end
 
-@protocol OSFullTextSearch
+@protocol OSFullTextSearch3
+@end
+
+@protocol OSFullTextSearch4
 @end
 
 @protocol OSInsertPerformance

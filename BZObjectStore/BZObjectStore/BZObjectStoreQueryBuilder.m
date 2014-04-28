@@ -177,13 +177,15 @@
     NSString *tableName = runtime.tableName;
     NSArray *attributes = runtime.insertAttributes;
     NSMutableString *sql = [NSMutableString string];
-    if (runtime.fullTextSearch) {
+    if (runtime.fullTextSearch3 || runtime.fullTextSearch4) {
         [sql appendString:@"CREATE VIRTUAL TABLE IF NOT EXISTS "];
     } else {
         [sql appendString:@"CREATE TABLE IF NOT EXISTS "];
     }
     [sql appendString:tableName];
-    if (runtime.fullTextSearch) {
+    if (runtime.fullTextSearch3) {
+        [sql appendString:@" USING fts3 "];
+    } else if (runtime.fullTextSearch4) {
         [sql appendString:@" USING fts4 "];
     }
     [sql appendString:@" ("];

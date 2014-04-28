@@ -110,7 +110,7 @@
         if ([self hadError:db]) {
             return NO;
         }
-        if (!runtime.fullTextSearch && runtime.hasIdentificationAttributes) {
+        if (!runtime.fullTextSearch3 && !runtime.fullTextSearch4 && runtime.hasIdentificationAttributes) {
             [db executeUpdate:[runtime createUniqueIndexStatement]];
             if ([self hadError:db]) {
                 return NO;
@@ -141,7 +141,7 @@
                 return NO;
             }
         }
-        if (!runtime.hasIdentificationAttributes || runtime.fullTextSearch) {
+        if (!runtime.hasIdentificationAttributes || runtime.fullTextSearch3 || runtime.fullTextSearch4) {
             BOOL indexExists = [db indexExists:runtime.uniqueIndexName];
             if (indexExists) {
                 [db executeUpdate:[runtime dropUniqueIndexStatement]];
