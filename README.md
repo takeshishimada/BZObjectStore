@@ -16,7 +16,7 @@ Targeting either iOS 5.0 and above
 - Automatic Schema Creating
 - Thread Safety
 - Lazy fetching,One time Update and other useful options
-- Not require any super class in your model
+- Any super class in your model not required
 
 ## Installation
 BZObjectStore can be installed using [CocoaPods](http://cocoapods.org/).
