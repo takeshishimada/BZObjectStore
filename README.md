@@ -301,7 +301,7 @@ prior update performance
 @property (nonatomic,assign) NSString *name;
 @end
 ```
-If primitve type, override attributeIsXXXX methods in your model instead of these options.
+If primitve type, override attributeIsXXXX methods in your model instead of these options.  
 These methods are defined in OSModelInterface protocol.
 
 ## OSModelInterface
@@ -421,7 +421,7 @@ and override methods you need.
 
 
 ## In Background
-You can use background process methods.
+You can use background process methods.  
 Import BZObjectStoreBackground.h and call each method name + 'InBackground' methods.
 
 ```objective-c
