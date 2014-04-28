@@ -273,13 +273,24 @@ ignore super class attributes
 @end
 ```
 
-#### OSFullTextSearch
+#### OSFullTextSearch3
 use sqlite FTS3
 
 ```objective-c
 #import "BZObjectStoreModelInterface.h"
 
-@interface Address : NSObject<OSFullTextSearch>
+@interface Address : NSObject<OSFullTextSearch3>
+@property (nonatomic,assign) NSString *address;
+@end
+```
+
+#### OSFullTextSearch4
+use sqlite FTS4
+
+```objective-c
+#import "BZObjectStoreModelInterface.h"
+
+@interface Address : NSObject<OSFullTextSearch4>
 @property (nonatomic,assign) NSString *address;
 @end
 ```
