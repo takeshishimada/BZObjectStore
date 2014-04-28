@@ -76,7 +76,11 @@ BZObjectStore *os = [BZObjectStore openWithPath:@"database.sqlite" error:&error]
 
 // open In memory
 BZObjectStore *os = [BZObjectStore openWithPath:nil error:&error];
-
+```
+#### Register Calss
+```objective-c
+// Improve response time if regist a class first. (Not required)
+BOOL ret = [os registerClass:[SampleModel class] error:&error];
 ```
 #### Save Objects
 ```objective-c
