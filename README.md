@@ -477,6 +477,6 @@ Other C structures will be saved as NSValue.
 
 
 ## Features
-CLLocation, NSHashTable, NSMapTable support  
-Parse Objects support
+- CLLocation, NSHashTable, NSMapTable support  
+- Parse Objects support
 
