@@ -55,7 +55,7 @@
 {
     BZObjectStoreSQLiteColumnModel *value = [[BZObjectStoreSQLiteColumnModel alloc]init];
     value.columnName = attribute.columnName;
-    value.dataTypeName = SQLITE_DATA_TYPE_BLOB;
+    value.dataTypeName = SQLITE_DATA_TYPE_NONE;
     
     BZObjectStoreSQLiteColumnModel *attributeType = [[BZObjectStoreSQLiteColumnModel alloc]init];
     attributeType.columnName = [NSString stringWithFormat:@"%@_attributeType",attribute.columnName];

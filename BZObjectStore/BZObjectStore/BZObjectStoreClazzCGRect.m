@@ -86,7 +86,7 @@
 
 - (NSString*)sqliteDataTypeName
 {
-    return SQLITE_DATA_TYPE_INTEGER;
+    return SQLITE_DATA_TYPE_REAL;
 }
 
 @end
