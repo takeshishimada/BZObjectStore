@@ -536,15 +536,15 @@ Import BZObjectStoreBackground.h and call each method name + 'InBackground' meth
 |NSValue|BLOB|attributeName|saved as serialized|
 |UIColor|TEXT|attributeName|saved as RGBA string|
 |UIImage|BLOB|attributeName|saved as GIF binary data|
-|NSArray|INTEGER|attributeName|saved number of Objects|
-|NSDictionary|INTEGER|attributeName|saved number of Objects|
-|NSSet|INTEGER|attributeName|saved number of Objects|
-|NSOrderedSet|INTEGER|attributeName|saved number of Objects|
-|NSMutableArray|INTEGER|attributeName|saved number of Objects|
-|NSMutableDictionary|INTEGER|attributeName|saved number of Objects|
-|NSMutableSet|INTEGER|attributeName|save numberd of Objects|
-|NSMutableOrderedSet|INTEGER|attributeName|saved number of Objects|
-|NSObject|INTEGER|attributeName|saved number of Objects|
+|NSArray|INTEGER|attributeName|saved as number of Objects|
+|NSDictionary|INTEGER|attributeName|saved as number of Objects|
+|NSSet|INTEGER|attributeName|saved as number of Objects|
+|NSOrderedSet|INTEGER|attributeName|saved as number of Objects|
+|NSMutableArray|INTEGER|attributeName|saved as number of Objects|
+|NSMutableDictionary|INTEGER|attributeName|saved as number of Objects|
+|NSMutableSet|INTEGER|attributeName|save as numberd of Objects|
+|NSMutableOrderedSet|INTEGER|attributeName|saved as number of Objects|
+|NSObject|INTEGER|attributeName|saved as number of Objects|
 |ID|NONE|attributeName,attributeName + '_attributeType'|separated to 2 columns|
 
 Other C structures will be saved as NSValue.
