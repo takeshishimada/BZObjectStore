@@ -29,5 +29,4 @@ test-with-coverage:
 		GCC_GENERATE_TEST_COVERAGE_FILES=YES
 
 send-coverage:
-	coveralls \
-		-e BZObjectStoreTests
+	coveralls 
