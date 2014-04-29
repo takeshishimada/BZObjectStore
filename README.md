@@ -184,9 +184,9 @@ NSNumber *value = [os avg:@"price" class:[SampleModel class] condition:nil error
 ## Condition
 There are three classes:
 
-1. `BZObjectStoreConditionModel` - This class has the following classes and you create it and set to each method.
-2. `BZObjectStoreSQLiteConditionModel` - This class means SQLite condition.
-3. `BZObjectStoreReferenceConditionModel` - This class means reference object condition.
+1. `BZObjectStoreConditionModel` - This class contains the following classes and you create it and set to each method.
+2. `BZObjectStoreSQLiteConditionModel` - SQLite condition.
+3. `BZObjectStoreReferenceConditionModel` - Reference object condition.
 
 #### BZObjectStoreConditionModel
 ```objective-c
@@ -549,7 +549,7 @@ Import BZObjectStoreBackground.h and call each method name + 'InBackground' meth
 
 Other C structures will be saved as NSValue.
 
-## Readonly Property
+## Readonly
 Readonly property always will be ignore.
 
 ## FMDatabaseQueue
