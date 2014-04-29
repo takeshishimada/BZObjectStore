@@ -184,7 +184,7 @@ NSNumber *value = [os avg:@"price" class:[SampleModel class] condition:nil error
 ## Condition
 There are three classes:
 
-1. `BZObjectStoreConditionModel` - This class contains the following classes. You create this class and set it to each method when you need.
+1. `BZObjectStoreConditionModel` - This class contains the following classes. You create a instance and set it to each method when you need.
 2. `BZObjectStoreSQLiteConditionModel` - SQLite condition.
 3. `BZObjectStoreReferenceConditionModel` - Reference object condition.
 
