@@ -559,7 +559,7 @@ In order to use FMDatabaseQueue, inherit BZObjectStore class and override FMDBQu
 - CLLocationCoordinate2D, CLLocation support
 - NSHashTable, NSMapTable support  
 - [Parse](https://parse.com/docs/ios/api/index.html "Parse") support
-- Notifications
+- Notifications to Views
 
 ## MICS
 Author: Takeshi Shimada  
