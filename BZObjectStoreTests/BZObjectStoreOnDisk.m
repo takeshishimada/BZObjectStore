@@ -49,9 +49,8 @@
 
 + (NSString*)databasePath:(NSString*)path
 {
-    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
     NSString *dir = [paths objectAtIndex:0];
-    dir = [dir stringByAppendingPathComponent:[[NSBundle mainBundle] bundleIdentifier]];
     path = [dir stringByAppendingPathComponent:path];
     return path;
 }
