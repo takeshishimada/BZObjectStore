@@ -52,6 +52,7 @@ Open this file with your SQLite tool and check tables.
 @interface SampleModel : NSObject
 @property (nonatomic,strong) NSString *name;
 @property (nonatomic,assign) NSInteger price;
+@property (nonatomic,strong) SampleModel *sample;
 @end
 
 @implementation SampleModel
@@ -64,6 +65,7 @@ sample1.price = 100;
 SampleModel *sample2 = [[SampleModel alloc]init];
 sample2.name = @"sample2";
 sample2.price = 50;
+sample2.sample = sample1;
 ```
 #### Open Database
 ```objective-c
@@ -80,7 +82,7 @@ BZObjectStore *os = [BZObjectStore openWithPath:nil error:&error];
 #### Register Class
 ```objective-c
 // Improve response time (Not required)
-BOOL ret = [os registerClass:[SampleModel class] error:&error];
+[os registerClass:[SampleModel class] error:&error];
 ```
 #### Save Objects
 ```objective-c
@@ -93,13 +95,13 @@ BOOL ret = [os registerClass:[SampleModel class] error:&error];
 #### Fetch Objects
 ```objective-c
 // fetch objects
-NSArray *objects = [os fetchObjects:[SampleModel class] condition:nil error:&error];
+NSArray *fetchObjects = [os fetchObjects:[SampleModel class] condition:nil error:&error];
 
 // fetch latest data from database
 SampleModel *latest = [os refreshObject:sample1 error:&error];
 
 // fetch referencing objects
-NSArray *objects = [os fetchReferencingObjectsTo:sample1 condition:nil error:&error];
+NSArray *referencingObjects = [os fetchReferencingObjectsTo:sample1 error:&error];
 ```
 
 #### Remove Objects
@@ -140,32 +142,32 @@ removeCondition.sqlite.where = @"name = 'sample1'";
 
 #### Get count value
 ```objective-c
-[os count:[SampleModel class] condition:nil error:&error];
+NSNumber *count = [os count:[SampleModel class] condition:nil error:&error];
 ```
 
 #### Get maximum value
 ```objective-c
-NSNumber *value = [os max:@"price" class:[SampleModel class] condition:nil error:&error];
+NSNumber *max = [os max:@"price" class:[SampleModel class] condition:nil error:&error];
 ```
 
 #### Get minimum value
 ```objective-c
-NSNumber *value = [os min:@"price" class:[SampleModel class] condition:nil error:&error];
+NSNumber *min = [os min:@"price" class:[SampleModel class] condition:nil error:&error];
 ```
 
 #### Get sum values
 ```objective-c
-NSNumber *value = [os sum:@"price" class:[SampleModel class] condition:nil error:&error];
+NSNumber *sum = [os sum:@"price" class:[SampleModel class] condition:nil error:&error];
 ```
 
 #### Get total values
 ```objective-c
-NSNumber *value = [os total:@"price" class:[SampleModel class] condition:nil error:&error];
+NSNumber *total = [os total:@"price" class:[SampleModel class] condition:nil error:&error];
 ```
 
 #### Get average value
 ```objective-c
-NSNumber *value = [os avg:@"price" class:[SampleModel class] condition:nil error:&error];
+NSNumber *avg = [os avg:@"price" class:[SampleModel class] condition:nil error:&error];
 ```
 
 #### Transaction
@@ -207,7 +209,7 @@ condition.reference.XXXXX
 condition.sqlite.where = @"name = ?";
 
 // where parameters
-condition.sqlite.parameters = @[name];
+condition.sqlite.parameters = @[@"sample1"];
 
 // order By
 condition.sqlite.orderBy = @"code desc";
@@ -216,7 +218,7 @@ condition.sqlite.orderBy = @"code desc";
 condition.sqlite.limit = @20;
 
 // offset
-condition.sqlite.offSet = @20;
+condition.sqlite.offset = @20;
 ```
 
 #### BZObjectStoreReferenceConditionModel
