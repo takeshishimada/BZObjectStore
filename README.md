@@ -522,6 +522,8 @@ Import BZObjectStoreBackground.h and call each method name + 'InBackground' meth
 |unsigned int|INTEGER|attributeName||
 |unsigned long|INTEGER|attributeName||
 |unsigned long long|INTEGER|attributeName||
+|NSInteger|INTEGER|attributeName||
+|CGFloat|REAL|attributeName||
 |CGPoint|REAL|attributeName + '_x',+ '_y'|separated to 2 columns|
 |CGSize|REAL|attributeName + '_width',+ '_height'|separated to 2 columns|
 |CGRect|REAL|attributeName + '_x', + '_y', + '_width', + '_height'|separated to 4 columns|
