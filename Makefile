@@ -1,4 +1,5 @@
 WORKSPACE = BZObjectStore.xcworkspace
+SCHEME = BZObjectStore
 TEST_TARGET = BZObjectStoreTests
 
 clean:
@@ -9,6 +10,7 @@ clean:
 test:
 	xcodebuild \
 		-workspace $(WORKSPACE) \
+		-scheme $(SCHEME) \
 		-target $(TEST_TARGET) \
 		-sdk iphonesimulator \
 		-configuration Debug \
@@ -17,7 +19,8 @@ test:
 
 test-with-coverage:
 	xcodebuild \
-		-project $(PROJECT) \
+		-workspace $(WORKSPACE) \
+		-scheme $(SCHEME) \
 		-target $(TEST_TARGET) \
 		-sdk iphonesimulator \
 		-configuration Debug \
