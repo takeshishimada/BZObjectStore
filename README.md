@@ -556,11 +556,12 @@ Import BZObjectStoreBackground.h and call each method name + 'InBackground' meth
 
 Other C structures will be saved as NSValue.
 
-## Readonly
+## Others
+#### Readonly
 Readonly property always will be ignore.
 
-## FMDatabaseQueue and FMDatabase
-#### In Order to use FMDatabaseQueue, use dbQueue property.
+#### FMDatabaseQueue and FMDatabase
+##### In Order to use FMDatabaseQueue, use dbQueue property.
 ```objective-c
 #import "BZObjectStore.h"
 #import "FMDatabaseQueue.h"
@@ -581,18 +582,18 @@ Readonly property always will be ignore.
 }
 ```
 
-#### In order to use FMDatabase, inherit BZObjectStore class and override the following methods.
+##### In order to use FMDatabase, inherit BZObjectStore class and override the following methods.
 ```objective-c
 #import "FMDatabase.h"
 
 - (void)transactionDidBegin:(FMDatabase *)db
 {
-    // be called from all fetch,remove,save methods 
+    // called when call fetch,remove,save methods 
 }
 
 - (void)transactionDidEnd:(FMDatabase *)db
 {
-    // be called from all fetch,remove,save methods 
+    // called when call fetch,remove,save methods 
 }
 ```
 
