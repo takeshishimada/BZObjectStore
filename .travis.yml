@@ -6,3 +6,5 @@ before_install:
     - pod install
 script:
     - make clean test-with-coverage
+after_success:
+    - make send-coverage
