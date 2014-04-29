@@ -553,7 +553,7 @@ Other C structures will be saved as NSValue.
 Readonly property always will be ignore.
 
 ## FMDatabaseQueue
-In order to use FMDatabaseQueue, inherit BZObjectStore class and override FMDBQueue property in your header file.
+In order to use FMDatabaseQueue, inherit BZObjectStore class and override FMDBQueue property.
 
 ## Features
 - CLLocationCoordinate2D, CLLocation, NSHashTable, NSMapTable support
