@@ -68,7 +68,6 @@
 
 - (void)transactionDidBegin:(FMDatabase *)db
 {
-//    [db setTraceExecution:YES];
 }
 
 - (void)transactionDidEnd:(FMDatabase *)db
