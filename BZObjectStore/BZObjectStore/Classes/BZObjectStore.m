@@ -74,7 +74,7 @@
 {
     if (path && ![path isEqualToString:@""]) {
         if ([path isEqualToString:[path lastPathComponent]]) {
-            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
             NSString *dir = [paths objectAtIndex:0];
             path = [dir stringByAppendingPathComponent:path];
 #ifdef DEBUG
