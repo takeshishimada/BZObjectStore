@@ -300,7 +300,7 @@ do not update attributes when value is nil.
 
 @interface ProfileModel : NSObject
 @property (nonatomic,strong) NSString *name;
-@property (nonatomic,string) UIImage<OSNotUpdateIfValueIsNullAttribute> *image;
+@property (nonatomic,strong) UIImage<OSNotUpdateIfValueIsNullAttribute> *image;
 @end
 ```
 
@@ -314,7 +314,6 @@ update attributes only one time.
 @property (nonatomic,strong) NSString *name;
 @property (nonatomic,strong) NSDate<OSOnceUpdateAttribute> *registAt;
 @property (nonatomic,strong) NSDate *updateAt;
-*image;
 @end
 ```
 
@@ -323,6 +322,10 @@ ignore super class attributes
 
 ```objective-c
 #import "BZObjectStoreModelInterface.h"
+
+@interface OrderModel : NSObject
+@property (nonatomic,strong) NSString *remarks;
+@end
 
 @interface DailyOrderModel : OrderModel<OSIgnoreSuperClass>
 @property (nonatomic,strong) NSString *no;
@@ -352,25 +355,25 @@ use sqlite FTS4
 @end
 ```
 
-#### OSPriorInsertPerformance
+#### OSInsertPerformance
 prior insert performance
 
 ```objective-c
 #import "BZObjectStoreModelInterface.h"
 
-@interface LogModel : NSObject<OSPriorInsertPerformance>
+@interface LogModel : NSObject<OSInsertPerformance>
 @property (nonatomic,assign) NSString *code;
 @property (nonatomic,assign) NSString *description;
 @end
 ```
 
-#### OSPriorUpdatePerformance
+#### OSUpdatePerformance
 prior update performance
 
 ```objective-c
 #import "BZObjectStoreModelInterface.h"
 
-@interface ProfileModel : NSObject<OSPriorUpdatePerformance>
+@interface ProfileModel : NSObject<OSUpdatePerformance>
 @property (nonatomic,assign) NSString *name;
 @end
 ```
