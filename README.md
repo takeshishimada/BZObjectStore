@@ -530,8 +530,8 @@ Import BZObjectStoreBackground.h and call each method name + 'InBackground' meth
 |NSData|BLOB|attributeName||
 |NSString|TEXT|attributeName||
 |NSMutableString|TEXT|attributeName||
-|NSNull|BLOB|attributeName||
-|NSNumber|INTEGER|attributeName||
+|NSNull|BLOB|attributeName|saved as null|
+|NSNumber|INTEGER|attributeName|saved as primitive value|
 |NSURL|TEXT|attributeName|saved as absolute URL string|
 |NSValue|BLOB|attributeName|saved as serialized|
 |UIColor|TEXT|attributeName|saved as RGBA string|
