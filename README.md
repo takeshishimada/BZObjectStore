@@ -7,7 +7,7 @@ This is an ORM library wrapped FMDB.
 BZObjectStore automatically stores your models to SQLite tables and provides useful options to your application.
 
 ## Requirements
-Targeting either iOS 5.1 and above
+Targeting either iOS 5.1 and above and ARC.
 
 ## Summary
 - Easy to use
@@ -490,8 +490,14 @@ Import BZObjectStoreBackground.h and call each method name + 'InBackground' meth
 |NSMutableSet|INTEGER|attributeName|save numberd of Objects|
 |NSMutableOrderedSet|INTEGER|attributeName|saved number of Objects|
 |NSObject|INTEGER|attributeName|saved number of Objects|
+|ID|NONE|attributeName,attributeName + '_attributeType'|separated to 2 columns|
 
 Other C structures will be saved as NSValue.
+
+## Readonly Property
+Readonly property always will be ignore.
+
+
 
 ## Features
 - CLLocationCoordinate2D, CLLocation support
