@@ -7,7 +7,7 @@ This is an ORM library wrapped FMDB.
 BZObjectStore automatically stores your models to SQLite tables and provides useful options to your application.
 
 ## Requirements
-Targeting either iOS 5.1 and above and ARC.
+Targeting either iOS 5.0 and above and ARC.
 
 ## Summary
 - Easy to use
@@ -556,8 +556,7 @@ Readonly property always will be ignore.
 In order to use FMDatabaseQueue, inherit BZObjectStore class and override FMDBQueue property in your header file.
 
 ## Features
-- CLLocationCoordinate2D, CLLocation support
-- NSHashTable, NSMapTable support  
+- CLLocationCoordinate2D, CLLocation, NSHashTable, NSMapTable support
 - [Parse](https://parse.com/docs/ios/api/index.html "Parse") support
 - Notifications to Views
 
