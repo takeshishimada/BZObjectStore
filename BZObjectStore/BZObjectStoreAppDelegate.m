@@ -34,14 +34,14 @@
     return YES;
 }
 
-- (void)applicationWillTerminate:(UIApplication *)application
-{
-    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
-#ifdef DEBUG
-    extern void __gcov_flush(void);
-    __gcov_flush();
-#endif
-}
+//- (void)applicationWillTerminate:(UIApplication *)application
+//{
+//    // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
+//#ifdef DEBUG
+//    extern void __gcov_flush(void);
+//    __gcov_flush();
+//#endif
+//}
 
 #ifdef DEBUG
 + (void)initialize {
