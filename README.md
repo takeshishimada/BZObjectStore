@@ -600,6 +600,9 @@ Readonly property always will be ignore.
 #### Identical Attribute values
 Identical attribute value can not be changed after object saving.
 
+#### Background process methods
+Background process methods can not be use in inTransactionInBackground method.
+
 
 ## Features
 - CLLocationCoordinate2D, CLLocation, NSHashTable, NSMapTable support
