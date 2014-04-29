@@ -1,4 +1,4 @@
-PROJECT = BZObjectStore.xcworkspace
+WORKSPACE = BZObjectStore.xcworkspace
 TEST_TARGET = BZObjectStoreTests
 
 clean:
@@ -8,7 +8,7 @@ clean:
 
 test:
 	xcodebuild \
-		-project $(PROJECT) \
+		-workspace $(WORKSPACE) \
 		-target $(TEST_TARGET) \
 		-sdk iphonesimulator \
 		-configuration Debug \
