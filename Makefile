@@ -3,7 +3,7 @@ TEST_TARGET = BZObjectStoreTests
 
 clean:
 	xcodebuild \
-		-project $(PROJECT) \
+		-workspace $(WORKSPACE) \
 		clean
 
 test:
