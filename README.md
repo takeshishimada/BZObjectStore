@@ -398,7 +398,7 @@ and override methods you need.
 ```objective-c
 + (NSString*)OSColumnName:(NSString*)attributeName
 {
-	if ([attributeName isEqualString:@"column_name_you_want_to_change"]) {
+	if ([attributeName isEqualToString:@"column_name_you_want_to_change"]) {
 		return @"column_name_you_want";
 	}
 	return attributeName;
@@ -433,7 +433,7 @@ and override methods you need.
 ```objective-c
 + (BOOL)attributeIsOSIdenticalAttribute:(NSString*)attributeName
 {
-	if ([attributeName isEqualString:@"foo"]) {
+	if ([attributeName isEqualToString:@"foo"]) {
 		return YES;
 	}
 	return NO;
@@ -444,7 +444,7 @@ and override methods you need.
 ```objective-c
 + (BOOL)attributeIsOSIgnoreAttribute:(NSString*)attributeName
 {
-	if ([attributeName isEqualString:@"foo"]) {
+	if ([attributeName isEqualToString:@"foo"]) {
 		return YES;
 	}
 	return NO;
@@ -455,7 +455,7 @@ and override methods you need.
 ```objective-c
 + (BOOL)attributeIsOSWeakReferenceAttribute:(NSString*)attributeName
 {
-	if ([attributeName isEqualString:@"foo"]) {
+	if ([attributeName isEqualToString:@"foo"]) {
 		return YES;
 	}
 	return NO;
@@ -466,7 +466,7 @@ and override methods you need.
 ```objective-c
 + (BOOL)attributeIsOSNotUpdateIfValueIsNullAttribute:(NSString*)attributeName
 {
-	if ([attributeName isEqualString:@"foo"]) {
+	if ([attributeName isEqualToString:@"foo"]) {
 		return YES;
 	}
 	return NO;
@@ -477,7 +477,7 @@ and override methods you need.
 ```objective-c
 + (BOOL)attributeIsOSSerializableAttribute:(NSString*)attributeName
 {
-	if ([attributeName isEqualString:@"foo"]) {
+	if ([attributeName isEqualToString:@"foo"]) {
 		return YES;
 	}
 	return NO;
@@ -488,7 +488,7 @@ and override methods you need.
 ```objective-c
 + (BOOL)attributeIsOSOnceUpdateAttribute:(NSString*)attributeName
 {
-	if ([attributeName isEqualString:@"foo"]) {
+	if ([attributeName isEqualToString:@"foo"]) {
 		return YES;
 	}
 	return NO;
