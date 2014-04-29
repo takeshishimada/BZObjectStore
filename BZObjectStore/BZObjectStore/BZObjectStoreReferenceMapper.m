@@ -735,10 +735,11 @@
                 }
             }
             [objectStuck removeObject:targetObject];
-            
-//        because of fetching processed before this remove method
-//        } else {
-//            [objectStuck removeObject:targetObject];
+            // the following code is not needed
+            //  because of fetching processed before this remove method
+            //} else {
+            //  [objectStuck removeObject:targetObject];
+            //}
         }
     }
     
