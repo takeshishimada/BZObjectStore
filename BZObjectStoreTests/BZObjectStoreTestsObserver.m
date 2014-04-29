@@ -25,11 +25,20 @@
 
 @implementation BZObjectStoreTestsObserver
 
-- (void) stopObserving
++ (void)load
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setValue:@"XCTestLog,GcovTestObserver"
+                                             forKey:@"XCTestObserverClass"];
+    [defaults synchronize];
+}
+
+- (void)stopObserving
 {
     [super stopObserving];
-    UIApplication* application = [UIApplication sharedApplication];
-    [application.delegate applicationWillTerminate:application];
+    
+    extern void __gcov_flush(void);
+    __gcov_flush();
 }
 
 @end
