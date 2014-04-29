@@ -24,9 +24,15 @@
 #import "BZObjectStoreReferenceMapper.h"
 #import "BZObjectStoreConditionModel.h"
 
+@class FMDatabaseQueue;
+@class FMDatabase;
+
 @interface BZObjectStore : BZObjectStoreReferenceMapper
 
 + (instancetype)openWithPath:(NSString*)path error:(NSError**)error;
+- (void)close;
+- (void)inTransaction:(void(^)(BZObjectStore *os,BOOL *rollback))block;
+- (BOOL)registerClass:(Class)clazz error:(NSError**)error;
 
 - (BOOL)saveObject:(NSObject*)object error:(NSError**)error;
 - (BOOL)saveObjects:(NSArray*)objects error:(NSError**)error;
@@ -49,10 +55,11 @@
 - (NSNumber*)total:(NSString*)columnName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error;
 - (NSNumber*)avg:(NSString*)columnName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error;
 
-- (void)inTransaction:(void(^)(BZObjectStore *os,BOOL *rollback))block;
-
-- (BOOL)registerClass:(Class)clazz error:(NSError**)error;
-
-- (void)close;
-
 @end
+
+@interface BZObjectStore (Additional)
+@property (nonatomic,readonly) FMDatabaseQueue *dbQueue;
+- (void)transactionDidBegin:(FMDatabase*)db;
+- (void)transactionDidEnd:(FMDatabase*)db;
+@end
+

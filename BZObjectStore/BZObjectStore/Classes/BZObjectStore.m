@@ -122,11 +122,6 @@
 
 #pragma mark inTransaction
 
-- (FMDatabaseQueue*)FMDBQueue
-{
-    return self.dbQueue;
-}
-
 - (void)inTransactionWithBlock:(void(^)(FMDatabase *db,BOOL *rollback))block
 {
     if (self.db) {
@@ -134,16 +129,27 @@
             block(self.db,&_rollback);
         }
     } else {
+        __weak BZObjectStore *weakSelf = self;
         [self.dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
-            self.db = db;
+            [weakSelf transactionDidBegin:db];
+            weakSelf.db = db;
             [db setShouldCacheStatements:YES];
             block(db,rollback);
         }];
         [self.dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
-            [self registedAllRuntime];
+            [weakSelf registedAllRuntime];
         }];
+        [self transactionDidEnd:self.db];
         self.db = nil;
     }
+}
+
+- (void)transactionDidBegin:(FMDatabase*)db
+{
+}
+
+- (void)transactionDidEnd:(FMDatabase*)db
+{
 }
 
 #pragma mark transaction

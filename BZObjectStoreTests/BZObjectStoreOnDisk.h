@@ -26,7 +26,6 @@
 @class FMDatabaseQueue;
 
 @interface BZObjectStore (BZObjectStoreOnDisk)
-- (FMDatabaseQueue*)FMDBQueue;
 @end
 
 @interface BZObjectStoreOnDisk : BZObjectStore

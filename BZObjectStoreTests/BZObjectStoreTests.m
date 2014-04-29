@@ -1009,7 +1009,7 @@
     [os saveObject:saveObject error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     
-    [os.FMDBQueue inDatabase:^(FMDatabase *db) {
+    [os.dbQueue inDatabase:^(FMDatabase *db) {
         FMResultSet *rs = [db getTableSchema:@"BZIgnoreAttribute"];
         while (rs.next) {
             NSString *columnName = [rs stringForColumnIndex:1];
@@ -1096,7 +1096,7 @@
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     XCTAssertTrue(refreshObject.fetchOnRefreshingAttribute != nil,@"error") ;
     
-    [os.FMDBQueue inDatabase:^(FMDatabase *db) {
+    [os.dbQueue inDatabase:^(FMDatabase *db) {
         FMResultSet *rs = [db getTableSchema:@"BZAttributeIsModel"];
         while (rs.next) {
             NSString *columnName = [rs stringForColumnIndex:1];

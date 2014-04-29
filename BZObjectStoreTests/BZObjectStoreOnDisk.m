@@ -22,6 +22,7 @@
 // THE SOFTWARE.
 
 #import "BZObjectStoreOnDisk.h"
+#import "FMDatabase.h"
 
 @implementation BZObjectStoreOnDisk
 + (instancetype)sharedInstance
@@ -63,6 +64,15 @@
 + (NSString*)ignoreSuffixName
 {
     return @"Model";
+}
+
+- (void)transactionDidBegin:(FMDatabase *)db
+{
+//    [db setTraceExecution:YES];
+}
+
+- (void)transactionDidEnd:(FMDatabase *)db
+{
 }
 
 @end

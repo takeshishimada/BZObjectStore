@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		3C01BC65477147389CF16CB0 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 11CB3F3E43BB4976B6E3EF2E /* libPods.a */; };
-		72170BE518F5862400C9A4C1 /* BZObjectStoreSQLiteColumnModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72170BE418F5862400C9A4C1 /* BZObjectStoreSQLiteColumnModel.m */; };
 		72170BE818F5950D00C9A4C1 /* BZSQLiteGroupFunctionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72170BE718F5950D00C9A4C1 /* BZSQLiteGroupFunctionModel.m */; };
 		72170BEB18F6E9D200C9A4C1 /* BZUpdateExistsObjectWithNoRowIdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72170BEA18F6E9D200C9A4C1 /* BZUpdateExistsObjectWithNoRowIdModel.m */; };
 		72170BEE18F8327700C9A4C1 /* BZUpdateResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72170BED18F8327700C9A4C1 /* BZUpdateResponseModel.m */; };
@@ -31,47 +30,6 @@
 		7259F80E18F44F04002A3416 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7259F7F318F44F04002A3416 /* Foundation.framework */; };
 		7259F80F18F44F04002A3416 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7259F7F718F44F04002A3416 /* UIKit.framework */; };
 		7259F81718F44F04002A3416 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 7259F81518F44F04002A3416 /* InfoPlist.strings */; };
-		7259F87F18F44FCA002A3416 /* BZObjectStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F82418F44FCA002A3416 /* BZObjectStore.m */; };
-		7259F88018F44FCA002A3416 /* BZObjectStoreAttributeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F82718F44FCA002A3416 /* BZObjectStoreAttributeModel.m */; };
-		7259F88118F44FCA002A3416 /* BZObjectStoreBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F82918F44FCA002A3416 /* BZObjectStoreBackground.m */; };
-		7259F88218F44FCA002A3416 /* BZObjectStoreClazz.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F82B18F44FCA002A3416 /* BZObjectStoreClazz.m */; };
-		7259F88318F44FCA002A3416 /* BZObjectStoreClazzCGPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F82D18F44FCA002A3416 /* BZObjectStoreClazzCGPoint.m */; };
-		7259F88418F44FCA002A3416 /* BZObjectStoreClazzCGRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F82F18F44FCA002A3416 /* BZObjectStoreClazzCGRect.m */; };
-		7259F88518F44FCA002A3416 /* BZObjectStoreClazzCGSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F83118F44FCA002A3416 /* BZObjectStoreClazzCGSize.m */; };
-		7259F88618F44FCA002A3416 /* BZObjectStoreClazzChar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F83318F44FCA002A3416 /* BZObjectStoreClazzChar.m */; };
-		7259F88718F44FCA002A3416 /* BZObjectStoreClazzDouble.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F83518F44FCA002A3416 /* BZObjectStoreClazzDouble.m */; };
-		7259F88818F44FCA002A3416 /* BZObjectStoreClazzFloat.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F83718F44FCA002A3416 /* BZObjectStoreClazzFloat.m */; };
-		7259F88918F44FCA002A3416 /* BZObjectStoreClazzInt.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F83918F44FCA002A3416 /* BZObjectStoreClazzInt.m */; };
-		7259F88A18F44FCA002A3416 /* BZObjectStoreClazzNSArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F83B18F44FCA002A3416 /* BZObjectStoreClazzNSArray.m */; };
-		7259F88B18F44FCA002A3416 /* BZObjectStoreClazzNSData.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F83D18F44FCA002A3416 /* BZObjectStoreClazzNSData.m */; };
-		7259F88C18F44FCA002A3416 /* BZObjectStoreClazzNSDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F83F18F44FCA002A3416 /* BZObjectStoreClazzNSDate.m */; };
-		7259F88D18F44FCA002A3416 /* BZObjectStoreClazzNSDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F84118F44FCA002A3416 /* BZObjectStoreClazzNSDictionary.m */; };
-		7259F88E18F44FCA002A3416 /* BZObjectStoreClazzNSMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F84318F44FCA002A3416 /* BZObjectStoreClazzNSMutableArray.m */; };
-		7259F88F18F44FCA002A3416 /* BZObjectStoreClazzNSMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F84518F44FCA002A3416 /* BZObjectStoreClazzNSMutableDictionary.m */; };
-		7259F89018F44FCA002A3416 /* BZObjectStoreClazzNSMutableOrderedSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F84718F44FCA002A3416 /* BZObjectStoreClazzNSMutableOrderedSet.m */; };
-		7259F89118F44FCA002A3416 /* BZObjectStoreClazzNSMutableSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F84918F44FCA002A3416 /* BZObjectStoreClazzNSMutableSet.m */; };
-		7259F89218F44FCA002A3416 /* BZObjectStoreClazzNSMutableString.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F84B18F44FCA002A3416 /* BZObjectStoreClazzNSMutableString.m */; };
-		7259F89318F44FCA002A3416 /* BZObjectStoreClazzNSNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F84D18F44FCA002A3416 /* BZObjectStoreClazzNSNull.m */; };
-		7259F89418F44FCA002A3416 /* BZObjectStoreClazzNSNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F84F18F44FCA002A3416 /* BZObjectStoreClazzNSNumber.m */; };
-		7259F89518F44FCA002A3416 /* BZObjectStoreClazzNSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F85118F44FCA002A3416 /* BZObjectStoreClazzNSObject.m */; };
-		7259F89618F44FCA002A3416 /* BZObjectStoreClazzNSOrderedSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F85318F44FCA002A3416 /* BZObjectStoreClazzNSOrderedSet.m */; };
-		7259F89718F44FCA002A3416 /* BZObjectStoreClazzNSRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F85518F44FCA002A3416 /* BZObjectStoreClazzNSRange.m */; };
-		7259F89818F44FCA002A3416 /* BZObjectStoreClazzNSSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F85718F44FCA002A3416 /* BZObjectStoreClazzNSSet.m */; };
-		7259F89918F44FCA002A3416 /* BZObjectStoreClazzNSString.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F85918F44FCA002A3416 /* BZObjectStoreClazzNSString.m */; };
-		7259F89A18F44FCA002A3416 /* BZObjectStoreClazzNSURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F85B18F44FCA002A3416 /* BZObjectStoreClazzNSURL.m */; };
-		7259F89B18F44FCA002A3416 /* BZObjectStoreClazzNSValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F85D18F44FCA002A3416 /* BZObjectStoreClazzNSValue.m */; };
-		7259F89D18F44FCA002A3416 /* BZObjectStoreClazzUIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F86118F44FCA002A3416 /* BZObjectStoreClazzUIColor.m */; };
-		7259F89E18F44FCA002A3416 /* BZObjectStoreClazzUIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F86318F44FCA002A3416 /* BZObjectStoreClazzUIImage.m */; };
-		7259F8A118F44FCA002A3416 /* BZObjectStoreModelMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F86A18F44FCA002A3416 /* BZObjectStoreModelMapper.m */; };
-		7259F8A218F44FCA002A3416 /* BZObjectStoreNameBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F86C18F44FCA002A3416 /* BZObjectStoreNameBuilder.m */; };
-		7259F8A318F44FCA002A3416 /* BZObjectStoreQueryBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F86E18F44FCA002A3416 /* BZObjectStoreQueryBuilder.m */; };
-		7259F8A418F44FCA002A3416 /* BZObjectStoreReferenceMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F87018F44FCA002A3416 /* BZObjectStoreReferenceMapper.m */; };
-		7259F8A518F44FCA002A3416 /* BZObjectStoreRelationshipModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F87218F44FCA002A3416 /* BZObjectStoreRelationshipModel.m */; };
-		7259F8A618F44FCA002A3416 /* BZObjectStoreRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F87418F44FCA002A3416 /* BZObjectStoreRuntime.m */; };
-		7259F8A718F44FCA002A3416 /* BZObjectStoreRuntimeMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F87618F44FCA002A3416 /* BZObjectStoreRuntimeMapper.m */; };
-		7259F8A818F44FCA002A3416 /* BZObjectStoreRuntimeProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F87818F44FCA002A3416 /* BZObjectStoreRuntimeProperty.m */; };
-		7259F8AA18F44FCA002A3416 /* NSObject+BZObjectStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F87C18F44FCA002A3416 /* NSObject+BZObjectStore.m */; };
-		7259F8AB18F44FCA002A3416 /* UIColor+BZObjectStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F87E18F44FCA002A3416 /* UIColor+BZObjectStore.m */; };
 		7259F8C518F45014002A3416 /* AppleLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7259F8AC18F45014002A3416 /* AppleLogo.png */; };
 		7259F8C618F45014002A3416 /* BZCircularReferenceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F8AE18F45014002A3416 /* BZCircularReferenceModel.m */; };
 		7259F8C718F45014002A3416 /* BZInvalidValuesModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7259F8B018F45014002A3416 /* BZInvalidValuesModel.m */; };
@@ -90,7 +48,63 @@
 		727926B018FA265C00A564AA /* BZTypeMissMatchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 727926AF18FA265C00A564AA /* BZTypeMissMatchModel.m */; };
 		727926B318FA268C00A564AA /* BZTypeMissMatchMissMatchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 727926B218FA268C00A564AA /* BZTypeMissMatchMissMatchModel.m */; };
 		727926B618FA26F200A564AA /* BZTypeMissMatchItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 727926B518FA26F200A564AA /* BZTypeMissMatchItemModel.m */; };
-		7292AB301902CABD00FCF778 /* BZObjectStoreReferenceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7292AB2F1902CABD00FCF778 /* BZObjectStoreReferenceModel.m */; };
+		7284931F190F508A005D9ACB /* BZObjectStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492A9190F508A005D9ACB /* BZObjectStore.m */; };
+		72849320190F508A005D9ACB /* BZObjectStoreBackground.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492AA190F508A005D9ACB /* BZObjectStoreBackground.m */; };
+		72849321190F508A005D9ACB /* BZObjectStoreConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492AB190F508A005D9ACB /* BZObjectStoreConditionModel.m */; };
+		72849322190F508A005D9ACB /* BZObjectStoreReferenceConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492AC190F508A005D9ACB /* BZObjectStoreReferenceConditionModel.m */; };
+		72849323190F508A005D9ACB /* BZObjectStoreSQLiteConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492AD190F508A005D9ACB /* BZObjectStoreSQLiteConditionModel.m */; };
+		72849324190F508A005D9ACB /* FMDatabase+indexInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492B0190F508A005D9ACB /* FMDatabase+indexInfo.m */; };
+		72849325190F508A005D9ACB /* NSObject+BZObjectStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492B2190F508A005D9ACB /* NSObject+BZObjectStore.m */; };
+		72849326190F508A005D9ACB /* UIColor+BZObjectStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492B4190F508A005D9ACB /* UIColor+BZObjectStore.m */; };
+		72849327190F508A005D9ACB /* BZObjectStoreClazz.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492B7190F508A005D9ACB /* BZObjectStoreClazz.m */; };
+		72849328190F508A005D9ACB /* BZObjectStoreClazzChar.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492BA190F508A005D9ACB /* BZObjectStoreClazzChar.m */; };
+		72849329190F508A005D9ACB /* BZObjectStoreClazzDouble.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492BC190F508A005D9ACB /* BZObjectStoreClazzDouble.m */; };
+		7284932A190F508A005D9ACB /* BZObjectStoreClazzFloat.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492BE190F508A005D9ACB /* BZObjectStoreClazzFloat.m */; };
+		7284932B190F508A005D9ACB /* BZObjectStoreClazzInt.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492C0190F508A005D9ACB /* BZObjectStoreClazzInt.m */; };
+		7284932C190F508A005D9ACB /* BZObjectStoreClazzLong.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492C2190F508A005D9ACB /* BZObjectStoreClazzLong.m */; };
+		7284932D190F508A005D9ACB /* BZObjectStoreClazzLongLong.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492C4190F508A005D9ACB /* BZObjectStoreClazzLongLong.m */; };
+		7284932E190F508A005D9ACB /* BZObjectStoreClazzShort.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492C6190F508A005D9ACB /* BZObjectStoreClazzShort.m */; };
+		7284932F190F508A005D9ACB /* BZObjectStoreClazzUnsignedChar.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492C8190F508A005D9ACB /* BZObjectStoreClazzUnsignedChar.m */; };
+		72849330190F508A005D9ACB /* BZObjectStoreClazzUnsignedInt.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492CA190F508A005D9ACB /* BZObjectStoreClazzUnsignedInt.m */; };
+		72849331190F508A005D9ACB /* BZObjectStoreClazzUnsignedLong.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492CC190F508A005D9ACB /* BZObjectStoreClazzUnsignedLong.m */; };
+		72849332190F508A005D9ACB /* BZObjectStoreClazzUnsignedLongLong.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492CE190F508A005D9ACB /* BZObjectStoreClazzUnsignedLongLong.m */; };
+		72849333190F508A005D9ACB /* BZObjectStoreClazzUnsignedShort.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492D0190F508A005D9ACB /* BZObjectStoreClazzUnsignedShort.m */; };
+		72849334190F508A005D9ACB /* BZObjectStoreClazzCGPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492D3190F508A005D9ACB /* BZObjectStoreClazzCGPoint.m */; };
+		72849335190F508A005D9ACB /* BZObjectStoreClazzCGRect.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492D5190F508A005D9ACB /* BZObjectStoreClazzCGRect.m */; };
+		72849336190F508A005D9ACB /* BZObjectStoreClazzCGSize.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492D7190F508A005D9ACB /* BZObjectStoreClazzCGSize.m */; };
+		72849337190F508A005D9ACB /* BZObjectStoreClazzNSRange.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492D9190F508A005D9ACB /* BZObjectStoreClazzNSRange.m */; };
+		72849338190F508A005D9ACB /* BZObjectStoreClazzNSData.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492DC190F508A005D9ACB /* BZObjectStoreClazzNSData.m */; };
+		72849339190F508A005D9ACB /* BZObjectStoreClazzNSDate.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492DE190F508A005D9ACB /* BZObjectStoreClazzNSDate.m */; };
+		7284933A190F508A005D9ACB /* BZObjectStoreClazzNSMutableString.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492E0190F508A005D9ACB /* BZObjectStoreClazzNSMutableString.m */; };
+		7284933B190F508A005D9ACB /* BZObjectStoreClazzNSNull.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492E2190F508A005D9ACB /* BZObjectStoreClazzNSNull.m */; };
+		7284933C190F508A005D9ACB /* BZObjectStoreClazzNSNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492E4190F508A005D9ACB /* BZObjectStoreClazzNSNumber.m */; };
+		7284933D190F508A005D9ACB /* BZObjectStoreClazzNSString.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492E6190F508A005D9ACB /* BZObjectStoreClazzNSString.m */; };
+		7284933E190F508A005D9ACB /* BZObjectStoreClazzNSURL.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492E8190F508A005D9ACB /* BZObjectStoreClazzNSURL.m */; };
+		7284933F190F508A005D9ACB /* BZObjectStoreClazzNSValue.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492EA190F508A005D9ACB /* BZObjectStoreClazzNSValue.m */; };
+		72849340190F508A005D9ACB /* BZObjectStoreClazzSerialize.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492EC190F508A005D9ACB /* BZObjectStoreClazzSerialize.m */; };
+		72849341190F508A005D9ACB /* BZObjectStoreClazzUIColor.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492EE190F508A005D9ACB /* BZObjectStoreClazzUIColor.m */; };
+		72849342190F508A005D9ACB /* BZObjectStoreClazzUIImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492F0190F508A005D9ACB /* BZObjectStoreClazzUIImage.m */; };
+		72849343190F508A005D9ACB /* BZObjectStoreClazzNSArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492F3190F508A005D9ACB /* BZObjectStoreClazzNSArray.m */; };
+		72849344190F508A005D9ACB /* BZObjectStoreClazzNSDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492F5190F508A005D9ACB /* BZObjectStoreClazzNSDictionary.m */; };
+		72849345190F508A005D9ACB /* BZObjectStoreClazzNSMutableArray.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492F7190F508A005D9ACB /* BZObjectStoreClazzNSMutableArray.m */; };
+		72849346190F508A005D9ACB /* BZObjectStoreClazzNSMutableDictionary.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492F9190F508A005D9ACB /* BZObjectStoreClazzNSMutableDictionary.m */; };
+		72849347190F508A005D9ACB /* BZObjectStoreClazzNSMutableOrderedSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492FB190F508A005D9ACB /* BZObjectStoreClazzNSMutableOrderedSet.m */; };
+		72849348190F508A005D9ACB /* BZObjectStoreClazzNSMutableSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492FD190F508A005D9ACB /* BZObjectStoreClazzNSMutableSet.m */; };
+		72849349190F508A005D9ACB /* BZObjectStoreClazzNSOrderedSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 728492FF190F508A005D9ACB /* BZObjectStoreClazzNSOrderedSet.m */; };
+		7284934A190F508A005D9ACB /* BZObjectStoreClazzNSSet.m in Sources */ = {isa = PBXBuildFile; fileRef = 72849301190F508A005D9ACB /* BZObjectStoreClazzNSSet.m */; };
+		7284934B190F508A005D9ACB /* BZObjectStoreClazzID.m in Sources */ = {isa = PBXBuildFile; fileRef = 72849304190F508A005D9ACB /* BZObjectStoreClazzID.m */; };
+		7284934C190F508A005D9ACB /* BZObjectStoreClazzNSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 72849306190F508A005D9ACB /* BZObjectStoreClazzNSObject.m */; };
+		7284934D190F508A005D9ACB /* BZObjectStoreModelMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7284930A190F508A005D9ACB /* BZObjectStoreModelMapper.m */; };
+		7284934E190F508A005D9ACB /* BZObjectStoreReferenceMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7284930C190F508A005D9ACB /* BZObjectStoreReferenceMapper.m */; };
+		7284934F190F508A005D9ACB /* BZObjectStoreRuntimeMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7284930E190F508A005D9ACB /* BZObjectStoreRuntimeMapper.m */; };
+		72849350190F508A005D9ACB /* BZObjectStoreAttributeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72849311190F508A005D9ACB /* BZObjectStoreAttributeModel.m */; };
+		72849351190F508A005D9ACB /* BZObjectStoreReferenceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72849313190F508A005D9ACB /* BZObjectStoreReferenceModel.m */; };
+		72849352190F508A005D9ACB /* BZObjectStoreRelationshipModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72849315190F508A005D9ACB /* BZObjectStoreRelationshipModel.m */; };
+		72849353190F508A005D9ACB /* BZObjectStoreSQLiteColumnModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72849317190F508A005D9ACB /* BZObjectStoreSQLiteColumnModel.m */; };
+		72849354190F508A005D9ACB /* BZObjectStoreRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 7284931A190F508A005D9ACB /* BZObjectStoreRuntime.m */; };
+		72849355190F508A005D9ACB /* BZObjectStoreRuntimeProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 7284931C190F508A005D9ACB /* BZObjectStoreRuntimeProperty.m */; };
+		72849362190F5119005D9ACB /* BZObjectStoreNameBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 7284935F190F5119005D9ACB /* BZObjectStoreNameBuilder.m */; };
+		72849363190F5119005D9ACB /* BZObjectStoreQueryBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 72849361190F5119005D9ACB /* BZObjectStoreQueryBuilder.m */; };
 		7292AB331902E3D000FCF778 /* BZOSIdenticalFirstModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7292AB321902E3D000FCF778 /* BZOSIdenticalFirstModel.m */; };
 		7292AB361902E41E00FCF778 /* BZOSIdenticalSecondModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7292AB351902E41E00FCF778 /* BZOSIdenticalSecondModel.m */; };
 		7292AB391902E47A00FCF778 /* BZOSIdenticalThirdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7292AB381902E47A00FCF778 /* BZOSIdenticalThirdModel.m */; };
@@ -99,20 +113,7 @@
 		7292AB461903792000FCF778 /* BZObjectStoreClazzBZImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7292AB451903792000FCF778 /* BZObjectStoreClazzBZImage.m */; };
 		7292AB4919037A8000FCF778 /* BZImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 7292AB4819037A8000FCF778 /* BZImage.m */; };
 		7292AB4C190384CB00FCF778 /* BZImageHolderModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7292AB4B190384CB00FCF778 /* BZImageHolderModel.m */; };
-		7294512219025B9B007C610E /* BZObjectStoreClazzShort.m in Sources */ = {isa = PBXBuildFile; fileRef = 7294512119025B9B007C610E /* BZObjectStoreClazzShort.m */; };
-		7294512919025F10007C610E /* BZObjectStoreClazzUnsignedChar.m in Sources */ = {isa = PBXBuildFile; fileRef = 7294512819025F10007C610E /* BZObjectStoreClazzUnsignedChar.m */; };
-		7294512C19026281007C610E /* BZObjectStoreClazzLong.m in Sources */ = {isa = PBXBuildFile; fileRef = 7294512B19026281007C610E /* BZObjectStoreClazzLong.m */; };
-		7294512F19026BD5007C610E /* BZObjectStoreClazzLongLong.m in Sources */ = {isa = PBXBuildFile; fileRef = 7294512E19026BD5007C610E /* BZObjectStoreClazzLongLong.m */; };
-		7294514419026CF6007C610E /* BZObjectStoreClazzUnsignedInt.m in Sources */ = {isa = PBXBuildFile; fileRef = 7294513D19026CF6007C610E /* BZObjectStoreClazzUnsignedInt.m */; };
-		7294514519026CF6007C610E /* BZObjectStoreClazzUnsignedLong.m in Sources */ = {isa = PBXBuildFile; fileRef = 7294513F19026CF6007C610E /* BZObjectStoreClazzUnsignedLong.m */; };
-		7294514619026CF6007C610E /* BZObjectStoreClazzUnsignedLongLong.m in Sources */ = {isa = PBXBuildFile; fileRef = 7294514119026CF6007C610E /* BZObjectStoreClazzUnsignedLongLong.m */; };
-		7294514719026CF6007C610E /* BZObjectStoreClazzUnsignedShort.m in Sources */ = {isa = PBXBuildFile; fileRef = 7294514319026CF6007C610E /* BZObjectStoreClazzUnsignedShort.m */; };
 		72B89A1B1901770C0017B06F /* BZOSIdenticalAttributeOSSerializeAttributeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72B89A1A1901770C0017B06F /* BZOSIdenticalAttributeOSSerializeAttributeModel.m */; };
-		72B9ABBC18FAA51300CA6216 /* BZObjectStoreClazzID.m in Sources */ = {isa = PBXBuildFile; fileRef = 72B9ABBB18FAA51300CA6216 /* BZObjectStoreClazzID.m */; };
-		72B9ABBF18FAC7A100CA6216 /* BZObjectStoreClazzSerialize.m in Sources */ = {isa = PBXBuildFile; fileRef = 72B9ABBE18FAC7A100CA6216 /* BZObjectStoreClazzSerialize.m */; };
-		72BEE87618F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72BEE87518F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.m */; };
-		72BEE87918F57A4400A7D742 /* BZObjectStoreReferenceConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72BEE87818F57A4400A7D742 /* BZObjectStoreReferenceConditionModel.m */; };
-		72BEE87C18F57A8000A7D742 /* BZObjectStoreConditionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72BEE87B18F57A8000A7D742 /* BZObjectStoreConditionModel.m */; };
 		72C2682318F8ED320070C2E5 /* BZDelegateModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2682218F8ED320070C2E5 /* BZDelegateModel.m */; };
 		72C2682818F8F8380070C2E5 /* BZNameModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2682718F8F8380070C2E5 /* BZNameModel.m */; };
 		72C2682C18F907BA0070C2E5 /* BZAttributeIsModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2682B18F907BA0070C2E5 /* BZAttributeIsModel.m */; };
@@ -130,7 +131,6 @@
 		72C2685118F9FC400070C2E5 /* BZOSIdenticalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2685018F9FC400070C2E5 /* BZOSIdenticalModel.m */; };
 		72C2685418F9FDF20070C2E5 /* BZOSIdenticalItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2685318F9FDF20070C2E5 /* BZOSIdenticalItemModel.m */; };
 		72C2685818FA09A50070C2E5 /* BZWeakPropertyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2685718FA09A50070C2E5 /* BZWeakPropertyModel.m */; };
-		72C3EC6F190028C0002FFDC5 /* FMDatabase+indexInfo.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C3EC6E190028C0002FFDC5 /* FMDatabase+indexInfo.m */; };
 		72EC847B190D5669001AE1F7 /* BZTransactionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72EC847A190D5669001AE1F7 /* BZTransactionModel.m */; };
 		821F19AA1906511C00E7F96C /* BZBackgroundModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 821F19A91906511C00E7F96C /* BZBackgroundModel.m */; };
 		82D029EC19051DE2003B7246 /* BZArrayInArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D029EB19051DE2003B7246 /* BZArrayInArrayModel.m */; };
@@ -150,8 +150,6 @@
 
 /* Begin PBXFileReference section */
 		11CB3F3E43BB4976B6E3EF2E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
-		72170BE318F5862400C9A4C1 /* BZObjectStoreSQLiteColumnModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreSQLiteColumnModel.h; sourceTree = "<group>"; };
-		72170BE418F5862400C9A4C1 /* BZObjectStoreSQLiteColumnModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreSQLiteColumnModel.m; sourceTree = "<group>"; };
 		72170BE618F5950D00C9A4C1 /* BZSQLiteGroupFunctionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZSQLiteGroupFunctionModel.h; sourceTree = "<group>"; };
 		72170BE718F5950D00C9A4C1 /* BZSQLiteGroupFunctionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZSQLiteGroupFunctionModel.m; sourceTree = "<group>"; };
 		72170BE918F6E9D200C9A4C1 /* BZUpdateExistsObjectWithNoRowIdModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZUpdateExistsObjectWithNoRowIdModel.h; sourceTree = "<group>"; };
@@ -190,89 +188,8 @@
 		7259F81418F44F04002A3416 /* BZObjectStoreTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "BZObjectStoreTests-Info.plist"; sourceTree = "<group>"; };
 		7259F81618F44F04002A3416 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		7259F82318F44FCA002A3416 /* BZObjectStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStore.h; sourceTree = "<group>"; };
-		7259F82418F44FCA002A3416 /* BZObjectStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStore.m; sourceTree = "<group>"; };
 		7259F82518F44FCA002A3416 /* BZObjectStoreModelInterface.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreModelInterface.h; sourceTree = "<group>"; };
-		7259F82618F44FCA002A3416 /* BZObjectStoreAttributeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreAttributeModel.h; sourceTree = "<group>"; };
-		7259F82718F44FCA002A3416 /* BZObjectStoreAttributeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreAttributeModel.m; sourceTree = "<group>"; };
 		7259F82818F44FCA002A3416 /* BZObjectStoreBackground.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreBackground.h; sourceTree = "<group>"; };
-		7259F82918F44FCA002A3416 /* BZObjectStoreBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreBackground.m; sourceTree = "<group>"; };
-		7259F82A18F44FCA002A3416 /* BZObjectStoreClazz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazz.h; sourceTree = "<group>"; };
-		7259F82B18F44FCA002A3416 /* BZObjectStoreClazz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazz.m; sourceTree = "<group>"; };
-		7259F82C18F44FCA002A3416 /* BZObjectStoreClazzCGPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzCGPoint.h; sourceTree = "<group>"; };
-		7259F82D18F44FCA002A3416 /* BZObjectStoreClazzCGPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzCGPoint.m; sourceTree = "<group>"; };
-		7259F82E18F44FCA002A3416 /* BZObjectStoreClazzCGRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzCGRect.h; sourceTree = "<group>"; };
-		7259F82F18F44FCA002A3416 /* BZObjectStoreClazzCGRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzCGRect.m; sourceTree = "<group>"; };
-		7259F83018F44FCA002A3416 /* BZObjectStoreClazzCGSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzCGSize.h; sourceTree = "<group>"; };
-		7259F83118F44FCA002A3416 /* BZObjectStoreClazzCGSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzCGSize.m; sourceTree = "<group>"; };
-		7259F83218F44FCA002A3416 /* BZObjectStoreClazzChar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzChar.h; sourceTree = "<group>"; };
-		7259F83318F44FCA002A3416 /* BZObjectStoreClazzChar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzChar.m; sourceTree = "<group>"; };
-		7259F83418F44FCA002A3416 /* BZObjectStoreClazzDouble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzDouble.h; sourceTree = "<group>"; };
-		7259F83518F44FCA002A3416 /* BZObjectStoreClazzDouble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzDouble.m; sourceTree = "<group>"; };
-		7259F83618F44FCA002A3416 /* BZObjectStoreClazzFloat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzFloat.h; sourceTree = "<group>"; };
-		7259F83718F44FCA002A3416 /* BZObjectStoreClazzFloat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzFloat.m; sourceTree = "<group>"; };
-		7259F83818F44FCA002A3416 /* BZObjectStoreClazzInt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzInt.h; sourceTree = "<group>"; };
-		7259F83918F44FCA002A3416 /* BZObjectStoreClazzInt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzInt.m; sourceTree = "<group>"; };
-		7259F83A18F44FCA002A3416 /* BZObjectStoreClazzNSArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSArray.h; sourceTree = "<group>"; };
-		7259F83B18F44FCA002A3416 /* BZObjectStoreClazzNSArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSArray.m; sourceTree = "<group>"; };
-		7259F83C18F44FCA002A3416 /* BZObjectStoreClazzNSData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSData.h; sourceTree = "<group>"; };
-		7259F83D18F44FCA002A3416 /* BZObjectStoreClazzNSData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSData.m; sourceTree = "<group>"; };
-		7259F83E18F44FCA002A3416 /* BZObjectStoreClazzNSDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSDate.h; sourceTree = "<group>"; };
-		7259F83F18F44FCA002A3416 /* BZObjectStoreClazzNSDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSDate.m; sourceTree = "<group>"; };
-		7259F84018F44FCA002A3416 /* BZObjectStoreClazzNSDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSDictionary.h; sourceTree = "<group>"; };
-		7259F84118F44FCA002A3416 /* BZObjectStoreClazzNSDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSDictionary.m; sourceTree = "<group>"; };
-		7259F84218F44FCA002A3416 /* BZObjectStoreClazzNSMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSMutableArray.h; sourceTree = "<group>"; };
-		7259F84318F44FCA002A3416 /* BZObjectStoreClazzNSMutableArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSMutableArray.m; sourceTree = "<group>"; };
-		7259F84418F44FCA002A3416 /* BZObjectStoreClazzNSMutableDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSMutableDictionary.h; sourceTree = "<group>"; };
-		7259F84518F44FCA002A3416 /* BZObjectStoreClazzNSMutableDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSMutableDictionary.m; sourceTree = "<group>"; };
-		7259F84618F44FCA002A3416 /* BZObjectStoreClazzNSMutableOrderedSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSMutableOrderedSet.h; sourceTree = "<group>"; };
-		7259F84718F44FCA002A3416 /* BZObjectStoreClazzNSMutableOrderedSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSMutableOrderedSet.m; sourceTree = "<group>"; };
-		7259F84818F44FCA002A3416 /* BZObjectStoreClazzNSMutableSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSMutableSet.h; sourceTree = "<group>"; };
-		7259F84918F44FCA002A3416 /* BZObjectStoreClazzNSMutableSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSMutableSet.m; sourceTree = "<group>"; };
-		7259F84A18F44FCA002A3416 /* BZObjectStoreClazzNSMutableString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSMutableString.h; sourceTree = "<group>"; };
-		7259F84B18F44FCA002A3416 /* BZObjectStoreClazzNSMutableString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSMutableString.m; sourceTree = "<group>"; };
-		7259F84C18F44FCA002A3416 /* BZObjectStoreClazzNSNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSNull.h; sourceTree = "<group>"; };
-		7259F84D18F44FCA002A3416 /* BZObjectStoreClazzNSNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSNull.m; sourceTree = "<group>"; };
-		7259F84E18F44FCA002A3416 /* BZObjectStoreClazzNSNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSNumber.h; sourceTree = "<group>"; };
-		7259F84F18F44FCA002A3416 /* BZObjectStoreClazzNSNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSNumber.m; sourceTree = "<group>"; };
-		7259F85018F44FCA002A3416 /* BZObjectStoreClazzNSObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSObject.h; sourceTree = "<group>"; };
-		7259F85118F44FCA002A3416 /* BZObjectStoreClazzNSObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSObject.m; sourceTree = "<group>"; };
-		7259F85218F44FCA002A3416 /* BZObjectStoreClazzNSOrderedSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSOrderedSet.h; sourceTree = "<group>"; };
-		7259F85318F44FCA002A3416 /* BZObjectStoreClazzNSOrderedSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSOrderedSet.m; sourceTree = "<group>"; };
-		7259F85418F44FCA002A3416 /* BZObjectStoreClazzNSRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSRange.h; sourceTree = "<group>"; };
-		7259F85518F44FCA002A3416 /* BZObjectStoreClazzNSRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSRange.m; sourceTree = "<group>"; };
-		7259F85618F44FCA002A3416 /* BZObjectStoreClazzNSSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSSet.h; sourceTree = "<group>"; };
-		7259F85718F44FCA002A3416 /* BZObjectStoreClazzNSSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSSet.m; sourceTree = "<group>"; };
-		7259F85818F44FCA002A3416 /* BZObjectStoreClazzNSString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSString.h; sourceTree = "<group>"; };
-		7259F85918F44FCA002A3416 /* BZObjectStoreClazzNSString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSString.m; sourceTree = "<group>"; };
-		7259F85A18F44FCA002A3416 /* BZObjectStoreClazzNSURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSURL.h; sourceTree = "<group>"; };
-		7259F85B18F44FCA002A3416 /* BZObjectStoreClazzNSURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSURL.m; sourceTree = "<group>"; };
-		7259F85C18F44FCA002A3416 /* BZObjectStoreClazzNSValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSValue.h; sourceTree = "<group>"; };
-		7259F85D18F44FCA002A3416 /* BZObjectStoreClazzNSValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSValue.m; sourceTree = "<group>"; };
-		7259F86018F44FCA002A3416 /* BZObjectStoreClazzUIColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzUIColor.h; sourceTree = "<group>"; };
-		7259F86118F44FCA002A3416 /* BZObjectStoreClazzUIColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzUIColor.m; sourceTree = "<group>"; };
-		7259F86218F44FCA002A3416 /* BZObjectStoreClazzUIImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzUIImage.h; sourceTree = "<group>"; };
-		7259F86318F44FCA002A3416 /* BZObjectStoreClazzUIImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzUIImage.m; sourceTree = "<group>"; };
-		7259F86618F44FCA002A3416 /* BZObjectStoreConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreConst.h; sourceTree = "<group>"; };
-		7259F86918F44FCA002A3416 /* BZObjectStoreModelMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreModelMapper.h; sourceTree = "<group>"; };
-		7259F86A18F44FCA002A3416 /* BZObjectStoreModelMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreModelMapper.m; sourceTree = "<group>"; };
-		7259F86B18F44FCA002A3416 /* BZObjectStoreNameBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreNameBuilder.h; sourceTree = "<group>"; };
-		7259F86C18F44FCA002A3416 /* BZObjectStoreNameBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreNameBuilder.m; sourceTree = "<group>"; };
-		7259F86D18F44FCA002A3416 /* BZObjectStoreQueryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreQueryBuilder.h; sourceTree = "<group>"; };
-		7259F86E18F44FCA002A3416 /* BZObjectStoreQueryBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreQueryBuilder.m; sourceTree = "<group>"; };
-		7259F86F18F44FCA002A3416 /* BZObjectStoreReferenceMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreReferenceMapper.h; sourceTree = "<group>"; };
-		7259F87018F44FCA002A3416 /* BZObjectStoreReferenceMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreReferenceMapper.m; sourceTree = "<group>"; };
-		7259F87118F44FCA002A3416 /* BZObjectStoreRelationshipModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreRelationshipModel.h; sourceTree = "<group>"; };
-		7259F87218F44FCA002A3416 /* BZObjectStoreRelationshipModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreRelationshipModel.m; sourceTree = "<group>"; };
-		7259F87318F44FCA002A3416 /* BZObjectStoreRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreRuntime.h; sourceTree = "<group>"; };
-		7259F87418F44FCA002A3416 /* BZObjectStoreRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreRuntime.m; sourceTree = "<group>"; };
-		7259F87518F44FCA002A3416 /* BZObjectStoreRuntimeMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreRuntimeMapper.h; sourceTree = "<group>"; };
-		7259F87618F44FCA002A3416 /* BZObjectStoreRuntimeMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreRuntimeMapper.m; sourceTree = "<group>"; };
-		7259F87718F44FCA002A3416 /* BZObjectStoreRuntimeProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreRuntimeProperty.h; sourceTree = "<group>"; };
-		7259F87818F44FCA002A3416 /* BZObjectStoreRuntimeProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreRuntimeProperty.m; sourceTree = "<group>"; };
-		7259F87B18F44FCA002A3416 /* NSObject+BZObjectStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BZObjectStore.h"; sourceTree = "<group>"; };
-		7259F87C18F44FCA002A3416 /* NSObject+BZObjectStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BZObjectStore.m"; sourceTree = "<group>"; };
-		7259F87D18F44FCA002A3416 /* UIColor+BZObjectStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+BZObjectStore.h"; sourceTree = "<group>"; };
-		7259F87E18F44FCA002A3416 /* UIColor+BZObjectStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BZObjectStore.m"; sourceTree = "<group>"; };
 		7259F8AC18F45014002A3416 /* AppleLogo.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = AppleLogo.png; sourceTree = "<group>"; };
 		7259F8AD18F45014002A3416 /* BZCircularReferenceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZCircularReferenceModel.h; sourceTree = "<group>"; };
 		7259F8AE18F45014002A3416 /* BZCircularReferenceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZCircularReferenceModel.m; sourceTree = "<group>"; };
@@ -307,8 +224,116 @@
 		727926B218FA268C00A564AA /* BZTypeMissMatchMissMatchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZTypeMissMatchMissMatchModel.m; sourceTree = "<group>"; };
 		727926B418FA26F200A564AA /* BZTypeMissMatchItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZTypeMissMatchItemModel.h; sourceTree = "<group>"; };
 		727926B518FA26F200A564AA /* BZTypeMissMatchItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZTypeMissMatchItemModel.m; sourceTree = "<group>"; };
-		7292AB2E1902CABD00FCF778 /* BZObjectStoreReferenceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreReferenceModel.h; sourceTree = "<group>"; };
-		7292AB2F1902CABD00FCF778 /* BZObjectStoreReferenceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreReferenceModel.m; sourceTree = "<group>"; };
+		728492A9190F508A005D9ACB /* BZObjectStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStore.m; sourceTree = "<group>"; };
+		728492AA190F508A005D9ACB /* BZObjectStoreBackground.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreBackground.m; sourceTree = "<group>"; };
+		728492AB190F508A005D9ACB /* BZObjectStoreConditionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreConditionModel.m; sourceTree = "<group>"; };
+		728492AC190F508A005D9ACB /* BZObjectStoreReferenceConditionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreReferenceConditionModel.m; sourceTree = "<group>"; };
+		728492AD190F508A005D9ACB /* BZObjectStoreSQLiteConditionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreSQLiteConditionModel.m; sourceTree = "<group>"; };
+		728492AF190F508A005D9ACB /* FMDatabase+indexInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FMDatabase+indexInfo.h"; sourceTree = "<group>"; };
+		728492B0190F508A005D9ACB /* FMDatabase+indexInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FMDatabase+indexInfo.m"; sourceTree = "<group>"; };
+		728492B1190F508A005D9ACB /* NSObject+BZObjectStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BZObjectStore.h"; sourceTree = "<group>"; };
+		728492B2190F508A005D9ACB /* NSObject+BZObjectStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BZObjectStore.m"; sourceTree = "<group>"; };
+		728492B3190F508A005D9ACB /* UIColor+BZObjectStore.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+BZObjectStore.h"; sourceTree = "<group>"; };
+		728492B4190F508A005D9ACB /* UIColor+BZObjectStore.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+BZObjectStore.m"; sourceTree = "<group>"; };
+		728492B6190F508A005D9ACB /* BZObjectStoreClazz.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazz.h; sourceTree = "<group>"; };
+		728492B7190F508A005D9ACB /* BZObjectStoreClazz.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazz.m; sourceTree = "<group>"; };
+		728492B9190F508A005D9ACB /* BZObjectStoreClazzChar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzChar.h; sourceTree = "<group>"; };
+		728492BA190F508A005D9ACB /* BZObjectStoreClazzChar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzChar.m; sourceTree = "<group>"; };
+		728492BB190F508A005D9ACB /* BZObjectStoreClazzDouble.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzDouble.h; sourceTree = "<group>"; };
+		728492BC190F508A005D9ACB /* BZObjectStoreClazzDouble.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzDouble.m; sourceTree = "<group>"; };
+		728492BD190F508A005D9ACB /* BZObjectStoreClazzFloat.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzFloat.h; sourceTree = "<group>"; };
+		728492BE190F508A005D9ACB /* BZObjectStoreClazzFloat.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzFloat.m; sourceTree = "<group>"; };
+		728492BF190F508A005D9ACB /* BZObjectStoreClazzInt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzInt.h; sourceTree = "<group>"; };
+		728492C0190F508A005D9ACB /* BZObjectStoreClazzInt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzInt.m; sourceTree = "<group>"; };
+		728492C1190F508A005D9ACB /* BZObjectStoreClazzLong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzLong.h; sourceTree = "<group>"; };
+		728492C2190F508A005D9ACB /* BZObjectStoreClazzLong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzLong.m; sourceTree = "<group>"; };
+		728492C3190F508A005D9ACB /* BZObjectStoreClazzLongLong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzLongLong.h; sourceTree = "<group>"; };
+		728492C4190F508A005D9ACB /* BZObjectStoreClazzLongLong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzLongLong.m; sourceTree = "<group>"; };
+		728492C5190F508A005D9ACB /* BZObjectStoreClazzShort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzShort.h; sourceTree = "<group>"; };
+		728492C6190F508A005D9ACB /* BZObjectStoreClazzShort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzShort.m; sourceTree = "<group>"; };
+		728492C7190F508A005D9ACB /* BZObjectStoreClazzUnsignedChar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzUnsignedChar.h; sourceTree = "<group>"; };
+		728492C8190F508A005D9ACB /* BZObjectStoreClazzUnsignedChar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzUnsignedChar.m; sourceTree = "<group>"; };
+		728492C9190F508A005D9ACB /* BZObjectStoreClazzUnsignedInt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzUnsignedInt.h; sourceTree = "<group>"; };
+		728492CA190F508A005D9ACB /* BZObjectStoreClazzUnsignedInt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzUnsignedInt.m; sourceTree = "<group>"; };
+		728492CB190F508A005D9ACB /* BZObjectStoreClazzUnsignedLong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzUnsignedLong.h; sourceTree = "<group>"; };
+		728492CC190F508A005D9ACB /* BZObjectStoreClazzUnsignedLong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzUnsignedLong.m; sourceTree = "<group>"; };
+		728492CD190F508A005D9ACB /* BZObjectStoreClazzUnsignedLongLong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzUnsignedLongLong.h; sourceTree = "<group>"; };
+		728492CE190F508A005D9ACB /* BZObjectStoreClazzUnsignedLongLong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzUnsignedLongLong.m; sourceTree = "<group>"; };
+		728492CF190F508A005D9ACB /* BZObjectStoreClazzUnsignedShort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzUnsignedShort.h; sourceTree = "<group>"; };
+		728492D0190F508A005D9ACB /* BZObjectStoreClazzUnsignedShort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzUnsignedShort.m; sourceTree = "<group>"; };
+		728492D2190F508A005D9ACB /* BZObjectStoreClazzCGPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzCGPoint.h; sourceTree = "<group>"; };
+		728492D3190F508A005D9ACB /* BZObjectStoreClazzCGPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzCGPoint.m; sourceTree = "<group>"; };
+		728492D4190F508A005D9ACB /* BZObjectStoreClazzCGRect.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzCGRect.h; sourceTree = "<group>"; };
+		728492D5190F508A005D9ACB /* BZObjectStoreClazzCGRect.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzCGRect.m; sourceTree = "<group>"; };
+		728492D6190F508A005D9ACB /* BZObjectStoreClazzCGSize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzCGSize.h; sourceTree = "<group>"; };
+		728492D7190F508A005D9ACB /* BZObjectStoreClazzCGSize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzCGSize.m; sourceTree = "<group>"; };
+		728492D8190F508A005D9ACB /* BZObjectStoreClazzNSRange.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSRange.h; sourceTree = "<group>"; };
+		728492D9190F508A005D9ACB /* BZObjectStoreClazzNSRange.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSRange.m; sourceTree = "<group>"; };
+		728492DB190F508A005D9ACB /* BZObjectStoreClazzNSData.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSData.h; sourceTree = "<group>"; };
+		728492DC190F508A005D9ACB /* BZObjectStoreClazzNSData.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSData.m; sourceTree = "<group>"; };
+		728492DD190F508A005D9ACB /* BZObjectStoreClazzNSDate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSDate.h; sourceTree = "<group>"; };
+		728492DE190F508A005D9ACB /* BZObjectStoreClazzNSDate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSDate.m; sourceTree = "<group>"; };
+		728492DF190F508A005D9ACB /* BZObjectStoreClazzNSMutableString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSMutableString.h; sourceTree = "<group>"; };
+		728492E0190F508A005D9ACB /* BZObjectStoreClazzNSMutableString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSMutableString.m; sourceTree = "<group>"; };
+		728492E1190F508A005D9ACB /* BZObjectStoreClazzNSNull.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSNull.h; sourceTree = "<group>"; };
+		728492E2190F508A005D9ACB /* BZObjectStoreClazzNSNull.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSNull.m; sourceTree = "<group>"; };
+		728492E3190F508A005D9ACB /* BZObjectStoreClazzNSNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSNumber.h; sourceTree = "<group>"; };
+		728492E4190F508A005D9ACB /* BZObjectStoreClazzNSNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSNumber.m; sourceTree = "<group>"; };
+		728492E5190F508A005D9ACB /* BZObjectStoreClazzNSString.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSString.h; sourceTree = "<group>"; };
+		728492E6190F508A005D9ACB /* BZObjectStoreClazzNSString.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSString.m; sourceTree = "<group>"; };
+		728492E7190F508A005D9ACB /* BZObjectStoreClazzNSURL.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSURL.h; sourceTree = "<group>"; };
+		728492E8190F508A005D9ACB /* BZObjectStoreClazzNSURL.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSURL.m; sourceTree = "<group>"; };
+		728492E9190F508A005D9ACB /* BZObjectStoreClazzNSValue.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSValue.h; sourceTree = "<group>"; };
+		728492EA190F508A005D9ACB /* BZObjectStoreClazzNSValue.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSValue.m; sourceTree = "<group>"; };
+		728492EB190F508A005D9ACB /* BZObjectStoreClazzSerialize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzSerialize.h; sourceTree = "<group>"; };
+		728492EC190F508A005D9ACB /* BZObjectStoreClazzSerialize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzSerialize.m; sourceTree = "<group>"; };
+		728492ED190F508A005D9ACB /* BZObjectStoreClazzUIColor.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzUIColor.h; sourceTree = "<group>"; };
+		728492EE190F508A005D9ACB /* BZObjectStoreClazzUIColor.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzUIColor.m; sourceTree = "<group>"; };
+		728492EF190F508A005D9ACB /* BZObjectStoreClazzUIImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzUIImage.h; sourceTree = "<group>"; };
+		728492F0190F508A005D9ACB /* BZObjectStoreClazzUIImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzUIImage.m; sourceTree = "<group>"; };
+		728492F2190F508A005D9ACB /* BZObjectStoreClazzNSArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSArray.h; sourceTree = "<group>"; };
+		728492F3190F508A005D9ACB /* BZObjectStoreClazzNSArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSArray.m; sourceTree = "<group>"; };
+		728492F4190F508A005D9ACB /* BZObjectStoreClazzNSDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSDictionary.h; sourceTree = "<group>"; };
+		728492F5190F508A005D9ACB /* BZObjectStoreClazzNSDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSDictionary.m; sourceTree = "<group>"; };
+		728492F6190F508A005D9ACB /* BZObjectStoreClazzNSMutableArray.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSMutableArray.h; sourceTree = "<group>"; };
+		728492F7190F508A005D9ACB /* BZObjectStoreClazzNSMutableArray.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSMutableArray.m; sourceTree = "<group>"; };
+		728492F8190F508A005D9ACB /* BZObjectStoreClazzNSMutableDictionary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSMutableDictionary.h; sourceTree = "<group>"; };
+		728492F9190F508A005D9ACB /* BZObjectStoreClazzNSMutableDictionary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSMutableDictionary.m; sourceTree = "<group>"; };
+		728492FA190F508A005D9ACB /* BZObjectStoreClazzNSMutableOrderedSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSMutableOrderedSet.h; sourceTree = "<group>"; };
+		728492FB190F508A005D9ACB /* BZObjectStoreClazzNSMutableOrderedSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSMutableOrderedSet.m; sourceTree = "<group>"; };
+		728492FC190F508A005D9ACB /* BZObjectStoreClazzNSMutableSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSMutableSet.h; sourceTree = "<group>"; };
+		728492FD190F508A005D9ACB /* BZObjectStoreClazzNSMutableSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSMutableSet.m; sourceTree = "<group>"; };
+		728492FE190F508A005D9ACB /* BZObjectStoreClazzNSOrderedSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSOrderedSet.h; sourceTree = "<group>"; };
+		728492FF190F508A005D9ACB /* BZObjectStoreClazzNSOrderedSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSOrderedSet.m; sourceTree = "<group>"; };
+		72849300190F508A005D9ACB /* BZObjectStoreClazzNSSet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSSet.h; sourceTree = "<group>"; };
+		72849301190F508A005D9ACB /* BZObjectStoreClazzNSSet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSSet.m; sourceTree = "<group>"; };
+		72849303190F508A005D9ACB /* BZObjectStoreClazzID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzID.h; sourceTree = "<group>"; };
+		72849304190F508A005D9ACB /* BZObjectStoreClazzID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzID.m; sourceTree = "<group>"; };
+		72849305190F508A005D9ACB /* BZObjectStoreClazzNSObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSObject.h; sourceTree = "<group>"; };
+		72849306190F508A005D9ACB /* BZObjectStoreClazzNSObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSObject.m; sourceTree = "<group>"; };
+		72849308190F508A005D9ACB /* BZObjectStoreConst.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreConst.h; sourceTree = "<group>"; };
+		72849309190F508A005D9ACB /* BZObjectStoreModelMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreModelMapper.h; sourceTree = "<group>"; };
+		7284930A190F508A005D9ACB /* BZObjectStoreModelMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreModelMapper.m; sourceTree = "<group>"; };
+		7284930B190F508A005D9ACB /* BZObjectStoreReferenceMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreReferenceMapper.h; sourceTree = "<group>"; };
+		7284930C190F508A005D9ACB /* BZObjectStoreReferenceMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreReferenceMapper.m; sourceTree = "<group>"; };
+		7284930D190F508A005D9ACB /* BZObjectStoreRuntimeMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreRuntimeMapper.h; sourceTree = "<group>"; };
+		7284930E190F508A005D9ACB /* BZObjectStoreRuntimeMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreRuntimeMapper.m; sourceTree = "<group>"; };
+		72849310190F508A005D9ACB /* BZObjectStoreAttributeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreAttributeModel.h; sourceTree = "<group>"; };
+		72849311190F508A005D9ACB /* BZObjectStoreAttributeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreAttributeModel.m; sourceTree = "<group>"; };
+		72849312190F508A005D9ACB /* BZObjectStoreReferenceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreReferenceModel.h; sourceTree = "<group>"; };
+		72849313190F508A005D9ACB /* BZObjectStoreReferenceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreReferenceModel.m; sourceTree = "<group>"; };
+		72849314190F508A005D9ACB /* BZObjectStoreRelationshipModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreRelationshipModel.h; sourceTree = "<group>"; };
+		72849315190F508A005D9ACB /* BZObjectStoreRelationshipModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreRelationshipModel.m; sourceTree = "<group>"; };
+		72849316190F508A005D9ACB /* BZObjectStoreSQLiteColumnModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreSQLiteColumnModel.h; sourceTree = "<group>"; };
+		72849317190F508A005D9ACB /* BZObjectStoreSQLiteColumnModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreSQLiteColumnModel.m; sourceTree = "<group>"; };
+		72849319190F508A005D9ACB /* BZObjectStoreRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreRuntime.h; sourceTree = "<group>"; };
+		7284931A190F508A005D9ACB /* BZObjectStoreRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreRuntime.m; sourceTree = "<group>"; };
+		7284931B190F508A005D9ACB /* BZObjectStoreRuntimeProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreRuntimeProperty.h; sourceTree = "<group>"; };
+		7284931C190F508A005D9ACB /* BZObjectStoreRuntimeProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreRuntimeProperty.m; sourceTree = "<group>"; };
+		7284935E190F5119005D9ACB /* BZObjectStoreNameBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreNameBuilder.h; sourceTree = "<group>"; };
+		7284935F190F5119005D9ACB /* BZObjectStoreNameBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreNameBuilder.m; sourceTree = "<group>"; };
+		72849360190F5119005D9ACB /* BZObjectStoreQueryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreQueryBuilder.h; sourceTree = "<group>"; };
+		72849361190F5119005D9ACB /* BZObjectStoreQueryBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreQueryBuilder.m; sourceTree = "<group>"; };
 		7292AB311902E3D000FCF778 /* BZOSIdenticalFirstModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZOSIdenticalFirstModel.h; sourceTree = "<group>"; };
 		7292AB321902E3D000FCF778 /* BZOSIdenticalFirstModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZOSIdenticalFirstModel.m; sourceTree = "<group>"; };
 		7292AB341902E41E00FCF778 /* BZOSIdenticalSecondModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZOSIdenticalSecondModel.h; sourceTree = "<group>"; };
@@ -325,34 +350,11 @@
 		7292AB4819037A8000FCF778 /* BZImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZImage.m; sourceTree = "<group>"; };
 		7292AB4A190384CB00FCF778 /* BZImageHolderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZImageHolderModel.h; sourceTree = "<group>"; };
 		7292AB4B190384CB00FCF778 /* BZImageHolderModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZImageHolderModel.m; sourceTree = "<group>"; };
-		7294512019025B9B007C610E /* BZObjectStoreClazzShort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzShort.h; sourceTree = "<group>"; };
-		7294512119025B9B007C610E /* BZObjectStoreClazzShort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzShort.m; sourceTree = "<group>"; };
-		7294512719025F10007C610E /* BZObjectStoreClazzUnsignedChar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzUnsignedChar.h; sourceTree = "<group>"; };
-		7294512819025F10007C610E /* BZObjectStoreClazzUnsignedChar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzUnsignedChar.m; sourceTree = "<group>"; };
-		7294512A19026281007C610E /* BZObjectStoreClazzLong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzLong.h; sourceTree = "<group>"; };
-		7294512B19026281007C610E /* BZObjectStoreClazzLong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzLong.m; sourceTree = "<group>"; };
-		7294512D19026BD5007C610E /* BZObjectStoreClazzLongLong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzLongLong.h; sourceTree = "<group>"; };
-		7294512E19026BD5007C610E /* BZObjectStoreClazzLongLong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzLongLong.m; sourceTree = "<group>"; };
-		7294513C19026CF6007C610E /* BZObjectStoreClazzUnsignedInt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzUnsignedInt.h; sourceTree = "<group>"; };
-		7294513D19026CF6007C610E /* BZObjectStoreClazzUnsignedInt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzUnsignedInt.m; sourceTree = "<group>"; };
-		7294513E19026CF6007C610E /* BZObjectStoreClazzUnsignedLong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzUnsignedLong.h; sourceTree = "<group>"; };
-		7294513F19026CF6007C610E /* BZObjectStoreClazzUnsignedLong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzUnsignedLong.m; sourceTree = "<group>"; };
-		7294514019026CF6007C610E /* BZObjectStoreClazzUnsignedLongLong.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzUnsignedLongLong.h; sourceTree = "<group>"; };
-		7294514119026CF6007C610E /* BZObjectStoreClazzUnsignedLongLong.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzUnsignedLongLong.m; sourceTree = "<group>"; };
-		7294514219026CF6007C610E /* BZObjectStoreClazzUnsignedShort.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzUnsignedShort.h; sourceTree = "<group>"; };
-		7294514319026CF6007C610E /* BZObjectStoreClazzUnsignedShort.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzUnsignedShort.m; sourceTree = "<group>"; };
 		72B89A191901770C0017B06F /* BZOSIdenticalAttributeOSSerializeAttributeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZOSIdenticalAttributeOSSerializeAttributeModel.h; sourceTree = "<group>"; };
 		72B89A1A1901770C0017B06F /* BZOSIdenticalAttributeOSSerializeAttributeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZOSIdenticalAttributeOSSerializeAttributeModel.m; sourceTree = "<group>"; };
-		72B9ABBA18FAA51300CA6216 /* BZObjectStoreClazzID.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzID.h; sourceTree = "<group>"; };
-		72B9ABBB18FAA51300CA6216 /* BZObjectStoreClazzID.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzID.m; sourceTree = "<group>"; };
-		72B9ABBD18FAC7A100CA6216 /* BZObjectStoreClazzSerialize.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzSerialize.h; sourceTree = "<group>"; };
-		72B9ABBE18FAC7A100CA6216 /* BZObjectStoreClazzSerialize.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzSerialize.m; sourceTree = "<group>"; };
 		72BEE87418F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreSQLiteConditionModel.h; sourceTree = "<group>"; };
-		72BEE87518F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreSQLiteConditionModel.m; sourceTree = "<group>"; };
 		72BEE87718F57A4400A7D742 /* BZObjectStoreReferenceConditionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreReferenceConditionModel.h; sourceTree = "<group>"; };
-		72BEE87818F57A4400A7D742 /* BZObjectStoreReferenceConditionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreReferenceConditionModel.m; sourceTree = "<group>"; };
 		72BEE87A18F57A8000A7D742 /* BZObjectStoreConditionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreConditionModel.h; sourceTree = "<group>"; };
-		72BEE87B18F57A8000A7D742 /* BZObjectStoreConditionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreConditionModel.m; sourceTree = "<group>"; };
 		72C2682118F8ED320070C2E5 /* BZDelegateModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZDelegateModel.h; sourceTree = "<group>"; };
 		72C2682218F8ED320070C2E5 /* BZDelegateModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZDelegateModel.m; sourceTree = "<group>"; };
 		72C2682618F8F8380070C2E5 /* BZNameModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZNameModel.h; sourceTree = "<group>"; };
@@ -387,8 +389,6 @@
 		72C2685318F9FDF20070C2E5 /* BZOSIdenticalItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZOSIdenticalItemModel.m; sourceTree = "<group>"; };
 		72C2685618FA09A50070C2E5 /* BZWeakPropertyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZWeakPropertyModel.h; sourceTree = "<group>"; };
 		72C2685718FA09A50070C2E5 /* BZWeakPropertyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZWeakPropertyModel.m; sourceTree = "<group>"; };
-		72C3EC6D190028C0002FFDC5 /* FMDatabase+indexInfo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "FMDatabase+indexInfo.h"; sourceTree = "<group>"; };
-		72C3EC6E190028C0002FFDC5 /* FMDatabase+indexInfo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "FMDatabase+indexInfo.m"; sourceTree = "<group>"; };
 		72EC8479190D5669001AE1F7 /* BZTransactionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZTransactionModel.h; sourceTree = "<group>"; };
 		72EC847A190D5669001AE1F7 /* BZTransactionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZTransactionModel.m; sourceTree = "<group>"; };
 		73A736836B224E7BB841BEB0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -669,7 +669,7 @@
 				72BEE87A18F57A8000A7D742 /* BZObjectStoreConditionModel.h */,
 				72BEE87418F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.h */,
 				72BEE87718F57A4400A7D742 /* BZObjectStoreReferenceConditionModel.h */,
-				823138BF18FCE0A100C212EB /* Classes */,
+				728492A3190F508A005D9ACB /* Classes */,
 			);
 			path = BZObjectStore;
 			sourceTree = "<group>";
@@ -700,15 +700,209 @@
 			name = TypeMissMatch;
 			sourceTree = "<group>";
 		};
-		7292AB3A1903103500FCF778 /* Objective-c Other */ = {
+		728492A3190F508A005D9ACB /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				72B9ABBA18FAA51300CA6216 /* BZObjectStoreClazzID.h */,
-				72B9ABBB18FAA51300CA6216 /* BZObjectStoreClazzID.m */,
-				7259F85018F44FCA002A3416 /* BZObjectStoreClazzNSObject.h */,
-				7259F85118F44FCA002A3416 /* BZObjectStoreClazzNSObject.m */,
+				728492A9190F508A005D9ACB /* BZObjectStore.m */,
+				728492AA190F508A005D9ACB /* BZObjectStoreBackground.m */,
+				728492AB190F508A005D9ACB /* BZObjectStoreConditionModel.m */,
+				728492AC190F508A005D9ACB /* BZObjectStoreReferenceConditionModel.m */,
+				728492AD190F508A005D9ACB /* BZObjectStoreSQLiteConditionModel.m */,
+				728492AE190F508A005D9ACB /* Category */,
+				728492B5190F508A005D9ACB /* Clazz */,
+				72849307190F508A005D9ACB /* Mapper */,
+				7284930F190F508A005D9ACB /* Model */,
+				7284935D190F5119005D9ACB /* Query */,
+				72849318190F508A005D9ACB /* Runtime */,
 			);
-			name = "Objective-c Other";
+			path = Classes;
+			sourceTree = "<group>";
+		};
+		728492AE190F508A005D9ACB /* Category */ = {
+			isa = PBXGroup;
+			children = (
+				728492AF190F508A005D9ACB /* FMDatabase+indexInfo.h */,
+				728492B0190F508A005D9ACB /* FMDatabase+indexInfo.m */,
+				728492B1190F508A005D9ACB /* NSObject+BZObjectStore.h */,
+				728492B2190F508A005D9ACB /* NSObject+BZObjectStore.m */,
+				728492B3190F508A005D9ACB /* UIColor+BZObjectStore.h */,
+				728492B4190F508A005D9ACB /* UIColor+BZObjectStore.m */,
+			);
+			path = Category;
+			sourceTree = "<group>";
+		};
+		728492B5190F508A005D9ACB /* Clazz */ = {
+			isa = PBXGroup;
+			children = (
+				728492B6190F508A005D9ACB /* BZObjectStoreClazz.h */,
+				728492B7190F508A005D9ACB /* BZObjectStoreClazz.m */,
+				728492B8190F508A005D9ACB /* C POD */,
+				728492D1190F508A005D9ACB /* C Structures */,
+				728492DA190F508A005D9ACB /* Objective-c */,
+				728492F1190F508A005D9ACB /* Objective-c Arrangement */,
+				72849302190F508A005D9ACB /* Objective-c Other */,
+			);
+			path = Clazz;
+			sourceTree = "<group>";
+		};
+		728492B8190F508A005D9ACB /* C POD */ = {
+			isa = PBXGroup;
+			children = (
+				728492B9190F508A005D9ACB /* BZObjectStoreClazzChar.h */,
+				728492BA190F508A005D9ACB /* BZObjectStoreClazzChar.m */,
+				728492BB190F508A005D9ACB /* BZObjectStoreClazzDouble.h */,
+				728492BC190F508A005D9ACB /* BZObjectStoreClazzDouble.m */,
+				728492BD190F508A005D9ACB /* BZObjectStoreClazzFloat.h */,
+				728492BE190F508A005D9ACB /* BZObjectStoreClazzFloat.m */,
+				728492BF190F508A005D9ACB /* BZObjectStoreClazzInt.h */,
+				728492C0190F508A005D9ACB /* BZObjectStoreClazzInt.m */,
+				728492C1190F508A005D9ACB /* BZObjectStoreClazzLong.h */,
+				728492C2190F508A005D9ACB /* BZObjectStoreClazzLong.m */,
+				728492C3190F508A005D9ACB /* BZObjectStoreClazzLongLong.h */,
+				728492C4190F508A005D9ACB /* BZObjectStoreClazzLongLong.m */,
+				728492C5190F508A005D9ACB /* BZObjectStoreClazzShort.h */,
+				728492C6190F508A005D9ACB /* BZObjectStoreClazzShort.m */,
+				728492C7190F508A005D9ACB /* BZObjectStoreClazzUnsignedChar.h */,
+				728492C8190F508A005D9ACB /* BZObjectStoreClazzUnsignedChar.m */,
+				728492C9190F508A005D9ACB /* BZObjectStoreClazzUnsignedInt.h */,
+				728492CA190F508A005D9ACB /* BZObjectStoreClazzUnsignedInt.m */,
+				728492CB190F508A005D9ACB /* BZObjectStoreClazzUnsignedLong.h */,
+				728492CC190F508A005D9ACB /* BZObjectStoreClazzUnsignedLong.m */,
+				728492CD190F508A005D9ACB /* BZObjectStoreClazzUnsignedLongLong.h */,
+				728492CE190F508A005D9ACB /* BZObjectStoreClazzUnsignedLongLong.m */,
+				728492CF190F508A005D9ACB /* BZObjectStoreClazzUnsignedShort.h */,
+				728492D0190F508A005D9ACB /* BZObjectStoreClazzUnsignedShort.m */,
+			);
+			path = "C POD";
+			sourceTree = "<group>";
+		};
+		728492D1190F508A005D9ACB /* C Structures */ = {
+			isa = PBXGroup;
+			children = (
+				728492D2190F508A005D9ACB /* BZObjectStoreClazzCGPoint.h */,
+				728492D3190F508A005D9ACB /* BZObjectStoreClazzCGPoint.m */,
+				728492D4190F508A005D9ACB /* BZObjectStoreClazzCGRect.h */,
+				728492D5190F508A005D9ACB /* BZObjectStoreClazzCGRect.m */,
+				728492D6190F508A005D9ACB /* BZObjectStoreClazzCGSize.h */,
+				728492D7190F508A005D9ACB /* BZObjectStoreClazzCGSize.m */,
+				728492D8190F508A005D9ACB /* BZObjectStoreClazzNSRange.h */,
+				728492D9190F508A005D9ACB /* BZObjectStoreClazzNSRange.m */,
+			);
+			path = "C Structures";
+			sourceTree = "<group>";
+		};
+		728492DA190F508A005D9ACB /* Objective-c */ = {
+			isa = PBXGroup;
+			children = (
+				728492DB190F508A005D9ACB /* BZObjectStoreClazzNSData.h */,
+				728492DC190F508A005D9ACB /* BZObjectStoreClazzNSData.m */,
+				728492DD190F508A005D9ACB /* BZObjectStoreClazzNSDate.h */,
+				728492DE190F508A005D9ACB /* BZObjectStoreClazzNSDate.m */,
+				728492DF190F508A005D9ACB /* BZObjectStoreClazzNSMutableString.h */,
+				728492E0190F508A005D9ACB /* BZObjectStoreClazzNSMutableString.m */,
+				728492E1190F508A005D9ACB /* BZObjectStoreClazzNSNull.h */,
+				728492E2190F508A005D9ACB /* BZObjectStoreClazzNSNull.m */,
+				728492E3190F508A005D9ACB /* BZObjectStoreClazzNSNumber.h */,
+				728492E4190F508A005D9ACB /* BZObjectStoreClazzNSNumber.m */,
+				728492E5190F508A005D9ACB /* BZObjectStoreClazzNSString.h */,
+				728492E6190F508A005D9ACB /* BZObjectStoreClazzNSString.m */,
+				728492E7190F508A005D9ACB /* BZObjectStoreClazzNSURL.h */,
+				728492E8190F508A005D9ACB /* BZObjectStoreClazzNSURL.m */,
+				728492E9190F508A005D9ACB /* BZObjectStoreClazzNSValue.h */,
+				728492EA190F508A005D9ACB /* BZObjectStoreClazzNSValue.m */,
+				728492EB190F508A005D9ACB /* BZObjectStoreClazzSerialize.h */,
+				728492EC190F508A005D9ACB /* BZObjectStoreClazzSerialize.m */,
+				728492ED190F508A005D9ACB /* BZObjectStoreClazzUIColor.h */,
+				728492EE190F508A005D9ACB /* BZObjectStoreClazzUIColor.m */,
+				728492EF190F508A005D9ACB /* BZObjectStoreClazzUIImage.h */,
+				728492F0190F508A005D9ACB /* BZObjectStoreClazzUIImage.m */,
+			);
+			path = "Objective-c";
+			sourceTree = "<group>";
+		};
+		728492F1190F508A005D9ACB /* Objective-c Arrangement */ = {
+			isa = PBXGroup;
+			children = (
+				728492F2190F508A005D9ACB /* BZObjectStoreClazzNSArray.h */,
+				728492F3190F508A005D9ACB /* BZObjectStoreClazzNSArray.m */,
+				728492F4190F508A005D9ACB /* BZObjectStoreClazzNSDictionary.h */,
+				728492F5190F508A005D9ACB /* BZObjectStoreClazzNSDictionary.m */,
+				728492F6190F508A005D9ACB /* BZObjectStoreClazzNSMutableArray.h */,
+				728492F7190F508A005D9ACB /* BZObjectStoreClazzNSMutableArray.m */,
+				728492F8190F508A005D9ACB /* BZObjectStoreClazzNSMutableDictionary.h */,
+				728492F9190F508A005D9ACB /* BZObjectStoreClazzNSMutableDictionary.m */,
+				728492FA190F508A005D9ACB /* BZObjectStoreClazzNSMutableOrderedSet.h */,
+				728492FB190F508A005D9ACB /* BZObjectStoreClazzNSMutableOrderedSet.m */,
+				728492FC190F508A005D9ACB /* BZObjectStoreClazzNSMutableSet.h */,
+				728492FD190F508A005D9ACB /* BZObjectStoreClazzNSMutableSet.m */,
+				728492FE190F508A005D9ACB /* BZObjectStoreClazzNSOrderedSet.h */,
+				728492FF190F508A005D9ACB /* BZObjectStoreClazzNSOrderedSet.m */,
+				72849300190F508A005D9ACB /* BZObjectStoreClazzNSSet.h */,
+				72849301190F508A005D9ACB /* BZObjectStoreClazzNSSet.m */,
+			);
+			path = "Objective-c Arrangement";
+			sourceTree = "<group>";
+		};
+		72849302190F508A005D9ACB /* Objective-c Other */ = {
+			isa = PBXGroup;
+			children = (
+				72849303190F508A005D9ACB /* BZObjectStoreClazzID.h */,
+				72849304190F508A005D9ACB /* BZObjectStoreClazzID.m */,
+				72849305190F508A005D9ACB /* BZObjectStoreClazzNSObject.h */,
+				72849306190F508A005D9ACB /* BZObjectStoreClazzNSObject.m */,
+			);
+			path = "Objective-c Other";
+			sourceTree = "<group>";
+		};
+		72849307190F508A005D9ACB /* Mapper */ = {
+			isa = PBXGroup;
+			children = (
+				72849308190F508A005D9ACB /* BZObjectStoreConst.h */,
+				72849309190F508A005D9ACB /* BZObjectStoreModelMapper.h */,
+				7284930A190F508A005D9ACB /* BZObjectStoreModelMapper.m */,
+				7284930B190F508A005D9ACB /* BZObjectStoreReferenceMapper.h */,
+				7284930C190F508A005D9ACB /* BZObjectStoreReferenceMapper.m */,
+				7284930D190F508A005D9ACB /* BZObjectStoreRuntimeMapper.h */,
+				7284930E190F508A005D9ACB /* BZObjectStoreRuntimeMapper.m */,
+			);
+			path = Mapper;
+			sourceTree = "<group>";
+		};
+		7284930F190F508A005D9ACB /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				72849310190F508A005D9ACB /* BZObjectStoreAttributeModel.h */,
+				72849311190F508A005D9ACB /* BZObjectStoreAttributeModel.m */,
+				72849312190F508A005D9ACB /* BZObjectStoreReferenceModel.h */,
+				72849313190F508A005D9ACB /* BZObjectStoreReferenceModel.m */,
+				72849314190F508A005D9ACB /* BZObjectStoreRelationshipModel.h */,
+				72849315190F508A005D9ACB /* BZObjectStoreRelationshipModel.m */,
+				72849316190F508A005D9ACB /* BZObjectStoreSQLiteColumnModel.h */,
+				72849317190F508A005D9ACB /* BZObjectStoreSQLiteColumnModel.m */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		72849318190F508A005D9ACB /* Runtime */ = {
+			isa = PBXGroup;
+			children = (
+				72849319190F508A005D9ACB /* BZObjectStoreRuntime.h */,
+				7284931A190F508A005D9ACB /* BZObjectStoreRuntime.m */,
+				7284931B190F508A005D9ACB /* BZObjectStoreRuntimeProperty.h */,
+				7284931C190F508A005D9ACB /* BZObjectStoreRuntimeProperty.m */,
+			);
+			path = Runtime;
+			sourceTree = "<group>";
+		};
+		7284935D190F5119005D9ACB /* Query */ = {
+			isa = PBXGroup;
+			children = (
+				7284935E190F5119005D9ACB /* BZObjectStoreNameBuilder.h */,
+				7284935F190F5119005D9ACB /* BZObjectStoreNameBuilder.m */,
+				72849360190F5119005D9ACB /* BZObjectStoreQueryBuilder.h */,
+				72849361190F5119005D9ACB /* BZObjectStoreQueryBuilder.m */,
+			);
+			path = Query;
 			sourceTree = "<group>";
 		};
 		7292AB3B1903627200FCF778 /* DuplicateAttribute */ = {
@@ -733,104 +927,6 @@
 				7292AB4B190384CB00FCF778 /* BZImageHolderModel.m */,
 			);
 			name = Osclazz;
-			sourceTree = "<group>";
-		};
-		7294512319025BF4007C610E /* C POD */ = {
-			isa = PBXGroup;
-			children = (
-				7259F83218F44FCA002A3416 /* BZObjectStoreClazzChar.h */,
-				7259F83318F44FCA002A3416 /* BZObjectStoreClazzChar.m */,
-				7294512019025B9B007C610E /* BZObjectStoreClazzShort.h */,
-				7294512119025B9B007C610E /* BZObjectStoreClazzShort.m */,
-				7259F83818F44FCA002A3416 /* BZObjectStoreClazzInt.h */,
-				7259F83918F44FCA002A3416 /* BZObjectStoreClazzInt.m */,
-				7294512A19026281007C610E /* BZObjectStoreClazzLong.h */,
-				7294512B19026281007C610E /* BZObjectStoreClazzLong.m */,
-				7294512D19026BD5007C610E /* BZObjectStoreClazzLongLong.h */,
-				7294512E19026BD5007C610E /* BZObjectStoreClazzLongLong.m */,
-				7294512719025F10007C610E /* BZObjectStoreClazzUnsignedChar.h */,
-				7294512819025F10007C610E /* BZObjectStoreClazzUnsignedChar.m */,
-				7294514219026CF6007C610E /* BZObjectStoreClazzUnsignedShort.h */,
-				7294514319026CF6007C610E /* BZObjectStoreClazzUnsignedShort.m */,
-				7294513C19026CF6007C610E /* BZObjectStoreClazzUnsignedInt.h */,
-				7294513D19026CF6007C610E /* BZObjectStoreClazzUnsignedInt.m */,
-				7294513E19026CF6007C610E /* BZObjectStoreClazzUnsignedLong.h */,
-				7294513F19026CF6007C610E /* BZObjectStoreClazzUnsignedLong.m */,
-				7294514019026CF6007C610E /* BZObjectStoreClazzUnsignedLongLong.h */,
-				7294514119026CF6007C610E /* BZObjectStoreClazzUnsignedLongLong.m */,
-				7259F83418F44FCA002A3416 /* BZObjectStoreClazzDouble.h */,
-				7259F83518F44FCA002A3416 /* BZObjectStoreClazzDouble.m */,
-				7259F83618F44FCA002A3416 /* BZObjectStoreClazzFloat.h */,
-				7259F83718F44FCA002A3416 /* BZObjectStoreClazzFloat.m */,
-			);
-			name = "C POD";
-			sourceTree = "<group>";
-		};
-		7294512419025C09007C610E /* C Structure */ = {
-			isa = PBXGroup;
-			children = (
-				7259F82C18F44FCA002A3416 /* BZObjectStoreClazzCGPoint.h */,
-				7259F82D18F44FCA002A3416 /* BZObjectStoreClazzCGPoint.m */,
-				7259F82E18F44FCA002A3416 /* BZObjectStoreClazzCGRect.h */,
-				7259F82F18F44FCA002A3416 /* BZObjectStoreClazzCGRect.m */,
-				7259F83018F44FCA002A3416 /* BZObjectStoreClazzCGSize.h */,
-				7259F83118F44FCA002A3416 /* BZObjectStoreClazzCGSize.m */,
-				7259F85418F44FCA002A3416 /* BZObjectStoreClazzNSRange.h */,
-				7259F85518F44FCA002A3416 /* BZObjectStoreClazzNSRange.m */,
-			);
-			name = "C Structure";
-			sourceTree = "<group>";
-		};
-		7294512519025C6A007C610E /* Objective-c Arrangement */ = {
-			isa = PBXGroup;
-			children = (
-				7259F83A18F44FCA002A3416 /* BZObjectStoreClazzNSArray.h */,
-				7259F83B18F44FCA002A3416 /* BZObjectStoreClazzNSArray.m */,
-				7259F84018F44FCA002A3416 /* BZObjectStoreClazzNSDictionary.h */,
-				7259F84118F44FCA002A3416 /* BZObjectStoreClazzNSDictionary.m */,
-				7259F85618F44FCA002A3416 /* BZObjectStoreClazzNSSet.h */,
-				7259F85718F44FCA002A3416 /* BZObjectStoreClazzNSSet.m */,
-				7259F85218F44FCA002A3416 /* BZObjectStoreClazzNSOrderedSet.h */,
-				7259F85318F44FCA002A3416 /* BZObjectStoreClazzNSOrderedSet.m */,
-				7259F84218F44FCA002A3416 /* BZObjectStoreClazzNSMutableArray.h */,
-				7259F84318F44FCA002A3416 /* BZObjectStoreClazzNSMutableArray.m */,
-				7259F84418F44FCA002A3416 /* BZObjectStoreClazzNSMutableDictionary.h */,
-				7259F84518F44FCA002A3416 /* BZObjectStoreClazzNSMutableDictionary.m */,
-				7259F84818F44FCA002A3416 /* BZObjectStoreClazzNSMutableSet.h */,
-				7259F84918F44FCA002A3416 /* BZObjectStoreClazzNSMutableSet.m */,
-				7259F84618F44FCA002A3416 /* BZObjectStoreClazzNSMutableOrderedSet.h */,
-				7259F84718F44FCA002A3416 /* BZObjectStoreClazzNSMutableOrderedSet.m */,
-			);
-			name = "Objective-c Arrangement";
-			sourceTree = "<group>";
-		};
-		7294512619025D15007C610E /* Objective-c */ = {
-			isa = PBXGroup;
-			children = (
-				72B9ABBD18FAC7A100CA6216 /* BZObjectStoreClazzSerialize.h */,
-				72B9ABBE18FAC7A100CA6216 /* BZObjectStoreClazzSerialize.m */,
-				7259F83C18F44FCA002A3416 /* BZObjectStoreClazzNSData.h */,
-				7259F83D18F44FCA002A3416 /* BZObjectStoreClazzNSData.m */,
-				7259F83E18F44FCA002A3416 /* BZObjectStoreClazzNSDate.h */,
-				7259F83F18F44FCA002A3416 /* BZObjectStoreClazzNSDate.m */,
-				7259F85818F44FCA002A3416 /* BZObjectStoreClazzNSString.h */,
-				7259F85918F44FCA002A3416 /* BZObjectStoreClazzNSString.m */,
-				7259F84A18F44FCA002A3416 /* BZObjectStoreClazzNSMutableString.h */,
-				7259F84B18F44FCA002A3416 /* BZObjectStoreClazzNSMutableString.m */,
-				7259F84C18F44FCA002A3416 /* BZObjectStoreClazzNSNull.h */,
-				7259F84D18F44FCA002A3416 /* BZObjectStoreClazzNSNull.m */,
-				7259F84E18F44FCA002A3416 /* BZObjectStoreClazzNSNumber.h */,
-				7259F84F18F44FCA002A3416 /* BZObjectStoreClazzNSNumber.m */,
-				7259F85A18F44FCA002A3416 /* BZObjectStoreClazzNSURL.h */,
-				7259F85B18F44FCA002A3416 /* BZObjectStoreClazzNSURL.m */,
-				7259F85C18F44FCA002A3416 /* BZObjectStoreClazzNSValue.h */,
-				7259F85D18F44FCA002A3416 /* BZObjectStoreClazzNSValue.m */,
-				7259F86018F44FCA002A3416 /* BZObjectStoreClazzUIColor.h */,
-				7259F86118F44FCA002A3416 /* BZObjectStoreClazzUIColor.m */,
-				7259F86218F44FCA002A3416 /* BZObjectStoreClazzUIImage.h */,
-				7259F86318F44FCA002A3416 /* BZObjectStoreClazzUIImage.m */,
-			);
-			name = "Objective-c";
 			sourceTree = "<group>";
 		};
 		72C2682418F8ED3A0070C2E5 /* modelDidSaveLoadRemove */ = {
@@ -894,84 +990,6 @@
 			name = WeakProperty;
 			sourceTree = "<group>";
 		};
-		72C3EC6719001F54002FFDC5 /* Clazz */ = {
-			isa = PBXGroup;
-			children = (
-				7259F82A18F44FCA002A3416 /* BZObjectStoreClazz.h */,
-				7259F82B18F44FCA002A3416 /* BZObjectStoreClazz.m */,
-				7294512319025BF4007C610E /* C POD */,
-				7294512419025C09007C610E /* C Structure */,
-				7294512619025D15007C610E /* Objective-c */,
-				7294512519025C6A007C610E /* Objective-c Arrangement */,
-				7292AB3A1903103500FCF778 /* Objective-c Other */,
-			);
-			name = Clazz;
-			sourceTree = "<group>";
-		};
-		72C3EC6819001F67002FFDC5 /* Runtime */ = {
-			isa = PBXGroup;
-			children = (
-				7259F87318F44FCA002A3416 /* BZObjectStoreRuntime.h */,
-				7259F87418F44FCA002A3416 /* BZObjectStoreRuntime.m */,
-				7259F87718F44FCA002A3416 /* BZObjectStoreRuntimeProperty.h */,
-				7259F87818F44FCA002A3416 /* BZObjectStoreRuntimeProperty.m */,
-			);
-			name = Runtime;
-			sourceTree = "<group>";
-		};
-		72C3EC6919001F7C002FFDC5 /* Builder */ = {
-			isa = PBXGroup;
-			children = (
-				7259F86B18F44FCA002A3416 /* BZObjectStoreNameBuilder.h */,
-				7259F86C18F44FCA002A3416 /* BZObjectStoreNameBuilder.m */,
-				7259F86D18F44FCA002A3416 /* BZObjectStoreQueryBuilder.h */,
-				7259F86E18F44FCA002A3416 /* BZObjectStoreQueryBuilder.m */,
-			);
-			name = Builder;
-			sourceTree = "<group>";
-		};
-		72C3EC6A19001F8A002FFDC5 /* Model */ = {
-			isa = PBXGroup;
-			children = (
-				7292AB2E1902CABD00FCF778 /* BZObjectStoreReferenceModel.h */,
-				7292AB2F1902CABD00FCF778 /* BZObjectStoreReferenceModel.m */,
-				7259F82618F44FCA002A3416 /* BZObjectStoreAttributeModel.h */,
-				7259F82718F44FCA002A3416 /* BZObjectStoreAttributeModel.m */,
-				7259F87118F44FCA002A3416 /* BZObjectStoreRelationshipModel.h */,
-				7259F87218F44FCA002A3416 /* BZObjectStoreRelationshipModel.m */,
-				72170BE318F5862400C9A4C1 /* BZObjectStoreSQLiteColumnModel.h */,
-				72170BE418F5862400C9A4C1 /* BZObjectStoreSQLiteColumnModel.m */,
-			);
-			name = Model;
-			sourceTree = "<group>";
-		};
-		72C3EC6B19001FA4002FFDC5 /* Mapper */ = {
-			isa = PBXGroup;
-			children = (
-				7259F86F18F44FCA002A3416 /* BZObjectStoreReferenceMapper.h */,
-				7259F87018F44FCA002A3416 /* BZObjectStoreReferenceMapper.m */,
-				7259F86918F44FCA002A3416 /* BZObjectStoreModelMapper.h */,
-				7259F86A18F44FCA002A3416 /* BZObjectStoreModelMapper.m */,
-				7259F87518F44FCA002A3416 /* BZObjectStoreRuntimeMapper.h */,
-				7259F87618F44FCA002A3416 /* BZObjectStoreRuntimeMapper.m */,
-				7259F86618F44FCA002A3416 /* BZObjectStoreConst.h */,
-			);
-			name = Mapper;
-			sourceTree = "<group>";
-		};
-		72C3EC6C19001FB6002FFDC5 /* Category */ = {
-			isa = PBXGroup;
-			children = (
-				72C3EC6D190028C0002FFDC5 /* FMDatabase+indexInfo.h */,
-				72C3EC6E190028C0002FFDC5 /* FMDatabase+indexInfo.m */,
-				7259F87B18F44FCA002A3416 /* NSObject+BZObjectStore.h */,
-				7259F87C18F44FCA002A3416 /* NSObject+BZObjectStore.m */,
-				7259F87D18F44FCA002A3416 /* UIColor+BZObjectStore.h */,
-				7259F87E18F44FCA002A3416 /* UIColor+BZObjectStore.m */,
-			);
-			name = Category;
-			sourceTree = "<group>";
-		};
 		72EC8478190D5649001AE1F7 /* Transaction */ = {
 			isa = PBXGroup;
 			children = (
@@ -988,24 +1006,6 @@
 				821F19A91906511C00E7F96C /* BZBackgroundModel.m */,
 			);
 			name = Background;
-			sourceTree = "<group>";
-		};
-		823138BF18FCE0A100C212EB /* Classes */ = {
-			isa = PBXGroup;
-			children = (
-				7259F82418F44FCA002A3416 /* BZObjectStore.m */,
-				7259F82918F44FCA002A3416 /* BZObjectStoreBackground.m */,
-				72BEE87B18F57A8000A7D742 /* BZObjectStoreConditionModel.m */,
-				72BEE87518F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.m */,
-				72BEE87818F57A4400A7D742 /* BZObjectStoreReferenceConditionModel.m */,
-				72C3EC6B19001FA4002FFDC5 /* Mapper */,
-				72C3EC6919001F7C002FFDC5 /* Builder */,
-				72C3EC6819001F67002FFDC5 /* Runtime */,
-				72C3EC6719001F54002FFDC5 /* Clazz */,
-				72C3EC6A19001F8A002FFDC5 /* Model */,
-				72C3EC6C19001FB6002FFDC5 /* Category */,
-			);
-			name = Classes;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1141,65 +1141,65 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				72B9ABBF18FAC7A100CA6216 /* BZObjectStoreClazzSerialize.m in Sources */,
-				7259F89B18F44FCA002A3416 /* BZObjectStoreClazzNSValue.m in Sources */,
-				7259F8A118F44FCA002A3416 /* BZObjectStoreModelMapper.m in Sources */,
-				7259F87F18F44FCA002A3416 /* BZObjectStore.m in Sources */,
-				72170BE518F5862400C9A4C1 /* BZObjectStoreSQLiteColumnModel.m in Sources */,
-				7259F89518F44FCA002A3416 /* BZObjectStoreClazzNSObject.m in Sources */,
-				7259F89A18F44FCA002A3416 /* BZObjectStoreClazzNSURL.m in Sources */,
-				7294512F19026BD5007C610E /* BZObjectStoreClazzLongLong.m in Sources */,
-				7259F89618F44FCA002A3416 /* BZObjectStoreClazzNSOrderedSet.m in Sources */,
-				7259F89E18F44FCA002A3416 /* BZObjectStoreClazzUIImage.m in Sources */,
-				7259F88518F44FCA002A3416 /* BZObjectStoreClazzCGSize.m in Sources */,
-				7259F88918F44FCA002A3416 /* BZObjectStoreClazzInt.m in Sources */,
-				7259F8A818F44FCA002A3416 /* BZObjectStoreRuntimeProperty.m in Sources */,
-				72C3EC6F190028C0002FFDC5 /* FMDatabase+indexInfo.m in Sources */,
-				7259F88D18F44FCA002A3416 /* BZObjectStoreClazzNSDictionary.m in Sources */,
-				7259F88418F44FCA002A3416 /* BZObjectStoreClazzCGRect.m in Sources */,
-				7259F88018F44FCA002A3416 /* BZObjectStoreAttributeModel.m in Sources */,
-				7259F8A418F44FCA002A3416 /* BZObjectStoreReferenceMapper.m in Sources */,
-				7294514719026CF6007C610E /* BZObjectStoreClazzUnsignedShort.m in Sources */,
-				7259F8A218F44FCA002A3416 /* BZObjectStoreNameBuilder.m in Sources */,
-				7294512919025F10007C610E /* BZObjectStoreClazzUnsignedChar.m in Sources */,
-				7259F8AB18F44FCA002A3416 /* UIColor+BZObjectStore.m in Sources */,
-				7259F89318F44FCA002A3416 /* BZObjectStoreClazzNSNull.m in Sources */,
-				7259F89018F44FCA002A3416 /* BZObjectStoreClazzNSMutableOrderedSet.m in Sources */,
-				7259F8AA18F44FCA002A3416 /* NSObject+BZObjectStore.m in Sources */,
-				7259F88718F44FCA002A3416 /* BZObjectStoreClazzDouble.m in Sources */,
-				7294514519026CF6007C610E /* BZObjectStoreClazzUnsignedLong.m in Sources */,
-				7294512219025B9B007C610E /* BZObjectStoreClazzShort.m in Sources */,
-				7259F8A718F44FCA002A3416 /* BZObjectStoreRuntimeMapper.m in Sources */,
-				7294514419026CF6007C610E /* BZObjectStoreClazzUnsignedInt.m in Sources */,
-				7259F88318F44FCA002A3416 /* BZObjectStoreClazzCGPoint.m in Sources */,
-				72BEE87618F579FE00A7D742 /* BZObjectStoreSQLiteConditionModel.m in Sources */,
-				7259F8A618F44FCA002A3416 /* BZObjectStoreRuntime.m in Sources */,
-				7259F88B18F44FCA002A3416 /* BZObjectStoreClazzNSData.m in Sources */,
-				7259F88C18F44FCA002A3416 /* BZObjectStoreClazzNSDate.m in Sources */,
-				72B9ABBC18FAA51300CA6216 /* BZObjectStoreClazzID.m in Sources */,
-				72BEE87C18F57A8000A7D742 /* BZObjectStoreConditionModel.m in Sources */,
-				7259F88818F44FCA002A3416 /* BZObjectStoreClazzFloat.m in Sources */,
-				7259F89918F44FCA002A3416 /* BZObjectStoreClazzNSString.m in Sources */,
-				7259F89D18F44FCA002A3416 /* BZObjectStoreClazzUIColor.m in Sources */,
-				7259F89118F44FCA002A3416 /* BZObjectStoreClazzNSMutableSet.m in Sources */,
-				7294512C19026281007C610E /* BZObjectStoreClazzLong.m in Sources */,
-				7259F8A318F44FCA002A3416 /* BZObjectStoreQueryBuilder.m in Sources */,
-				7259F88A18F44FCA002A3416 /* BZObjectStoreClazzNSArray.m in Sources */,
-				7259F8A518F44FCA002A3416 /* BZObjectStoreRelationshipModel.m in Sources */,
+				72849334190F508A005D9ACB /* BZObjectStoreClazzCGPoint.m in Sources */,
+				7284934C190F508A005D9ACB /* BZObjectStoreClazzNSObject.m in Sources */,
+				72849327190F508A005D9ACB /* BZObjectStoreClazz.m in Sources */,
+				7284933D190F508A005D9ACB /* BZObjectStoreClazzNSString.m in Sources */,
+				72849352190F508A005D9ACB /* BZObjectStoreRelationshipModel.m in Sources */,
+				72849342190F508A005D9ACB /* BZObjectStoreClazzUIImage.m in Sources */,
+				72849337190F508A005D9ACB /* BZObjectStoreClazzNSRange.m in Sources */,
+				7284934A190F508A005D9ACB /* BZObjectStoreClazzNSSet.m in Sources */,
+				72849323190F508A005D9ACB /* BZObjectStoreSQLiteConditionModel.m in Sources */,
+				7284933A190F508A005D9ACB /* BZObjectStoreClazzNSMutableString.m in Sources */,
+				72849343190F508A005D9ACB /* BZObjectStoreClazzNSArray.m in Sources */,
+				72849325190F508A005D9ACB /* NSObject+BZObjectStore.m in Sources */,
+				72849322190F508A005D9ACB /* BZObjectStoreReferenceConditionModel.m in Sources */,
+				72849320190F508A005D9ACB /* BZObjectStoreBackground.m in Sources */,
+				72849355190F508A005D9ACB /* BZObjectStoreRuntimeProperty.m in Sources */,
+				72849346190F508A005D9ACB /* BZObjectStoreClazzNSMutableDictionary.m in Sources */,
 				7259F80018F44F04002A3416 /* main.m in Sources */,
-				7259F88118F44FCA002A3416 /* BZObjectStoreBackground.m in Sources */,
+				7284934F190F508A005D9ACB /* BZObjectStoreRuntimeMapper.m in Sources */,
+				72849344190F508A005D9ACB /* BZObjectStoreClazzNSDictionary.m in Sources */,
+				72849349190F508A005D9ACB /* BZObjectStoreClazzNSOrderedSet.m in Sources */,
+				7284933F190F508A005D9ACB /* BZObjectStoreClazzNSValue.m in Sources */,
+				7284932B190F508A005D9ACB /* BZObjectStoreClazzInt.m in Sources */,
+				7284932D190F508A005D9ACB /* BZObjectStoreClazzLongLong.m in Sources */,
+				72849332190F508A005D9ACB /* BZObjectStoreClazzUnsignedLongLong.m in Sources */,
+				72849321190F508A005D9ACB /* BZObjectStoreConditionModel.m in Sources */,
+				7284934D190F508A005D9ACB /* BZObjectStoreModelMapper.m in Sources */,
+				72849341190F508A005D9ACB /* BZObjectStoreClazzUIColor.m in Sources */,
+				7284932F190F508A005D9ACB /* BZObjectStoreClazzUnsignedChar.m in Sources */,
+				72849333190F508A005D9ACB /* BZObjectStoreClazzUnsignedShort.m in Sources */,
+				72849348190F508A005D9ACB /* BZObjectStoreClazzNSMutableSet.m in Sources */,
+				72849331190F508A005D9ACB /* BZObjectStoreClazzUnsignedLong.m in Sources */,
+				72849353190F508A005D9ACB /* BZObjectStoreSQLiteColumnModel.m in Sources */,
+				72849363190F5119005D9ACB /* BZObjectStoreQueryBuilder.m in Sources */,
+				7284931F190F508A005D9ACB /* BZObjectStore.m in Sources */,
 				7259F80418F44F04002A3416 /* BZObjectStoreAppDelegate.m in Sources */,
-				7259F88E18F44FCA002A3416 /* BZObjectStoreClazzNSMutableArray.m in Sources */,
-				7259F89818F44FCA002A3416 /* BZObjectStoreClazzNSSet.m in Sources */,
-				7259F88218F44FCA002A3416 /* BZObjectStoreClazz.m in Sources */,
-				7259F88F18F44FCA002A3416 /* BZObjectStoreClazzNSMutableDictionary.m in Sources */,
-				7259F89718F44FCA002A3416 /* BZObjectStoreClazzNSRange.m in Sources */,
-				7259F89418F44FCA002A3416 /* BZObjectStoreClazzNSNumber.m in Sources */,
-				7294514619026CF6007C610E /* BZObjectStoreClazzUnsignedLongLong.m in Sources */,
-				72BEE87918F57A4400A7D742 /* BZObjectStoreReferenceConditionModel.m in Sources */,
-				7292AB301902CABD00FCF778 /* BZObjectStoreReferenceModel.m in Sources */,
-				7259F89218F44FCA002A3416 /* BZObjectStoreClazzNSMutableString.m in Sources */,
-				7259F88618F44FCA002A3416 /* BZObjectStoreClazzChar.m in Sources */,
+				72849340190F508A005D9ACB /* BZObjectStoreClazzSerialize.m in Sources */,
+				72849345190F508A005D9ACB /* BZObjectStoreClazzNSMutableArray.m in Sources */,
+				7284934E190F508A005D9ACB /* BZObjectStoreReferenceMapper.m in Sources */,
+				7284933E190F508A005D9ACB /* BZObjectStoreClazzNSURL.m in Sources */,
+				7284932E190F508A005D9ACB /* BZObjectStoreClazzShort.m in Sources */,
+				7284934B190F508A005D9ACB /* BZObjectStoreClazzID.m in Sources */,
+				72849336190F508A005D9ACB /* BZObjectStoreClazzCGSize.m in Sources */,
+				72849362190F5119005D9ACB /* BZObjectStoreNameBuilder.m in Sources */,
+				72849330190F508A005D9ACB /* BZObjectStoreClazzUnsignedInt.m in Sources */,
+				72849335190F508A005D9ACB /* BZObjectStoreClazzCGRect.m in Sources */,
+				7284933C190F508A005D9ACB /* BZObjectStoreClazzNSNumber.m in Sources */,
+				72849338190F508A005D9ACB /* BZObjectStoreClazzNSData.m in Sources */,
+				72849324190F508A005D9ACB /* FMDatabase+indexInfo.m in Sources */,
+				72849328190F508A005D9ACB /* BZObjectStoreClazzChar.m in Sources */,
+				72849326190F508A005D9ACB /* UIColor+BZObjectStore.m in Sources */,
+				7284933B190F508A005D9ACB /* BZObjectStoreClazzNSNull.m in Sources */,
+				72849339190F508A005D9ACB /* BZObjectStoreClazzNSDate.m in Sources */,
+				72849350190F508A005D9ACB /* BZObjectStoreAttributeModel.m in Sources */,
+				72849347190F508A005D9ACB /* BZObjectStoreClazzNSMutableOrderedSet.m in Sources */,
+				72849351190F508A005D9ACB /* BZObjectStoreReferenceModel.m in Sources */,
+				7284932C190F508A005D9ACB /* BZObjectStoreClazzLong.m in Sources */,
+				7284932A190F508A005D9ACB /* BZObjectStoreClazzFloat.m in Sources */,
+				72849329190F508A005D9ACB /* BZObjectStoreClazzDouble.m in Sources */,
+				72849354190F508A005D9ACB /* BZObjectStoreRuntime.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
