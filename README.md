@@ -559,8 +559,43 @@ Other C structures will be saved as NSValue.
 ## Readonly
 Readonly property always will be ignore.
 
-## FMDatabaseQueue
-In order to use FMDatabaseQueue, inherit BZObjectStore class and override FMDBQueue property.
+## FMDatabaseQueue and FMDatabase
+#### In Order to use FMDatabaseQueue, use dbQueue property.
+```objective-c
+#import "BZObjectStore.h"
+#import "FMDatabaseQueue.h"
+#import "FMDatabase.h"
+
+- (void)foo
+{
+    BZObjectStore *os = [BZObjectStore openWithPath:@"database.sqlite" error:nil];
+    FMDatabaseQueue *dbQueue = os.dbQueue;
+    [dbQueue inDatabase:^(FMDatabase *db) {
+        FMResultSet *rs = [db getTableSchema:@"SampleModel"];
+        while (rs.next) {
+            NSString *columnName = [rs stringForColumnIndex:1];
+        }
+        [rs close];
+    }];
+    [os close];
+}
+```
+
+#### In order to use FMDatabase, inherit BZObjectStore class and override the following methods.
+```objective-c
+#import "FMDatabase.h"
+
+- (void)transactionDidBegin:(FMDatabase *)db
+{
+    // be called from all fetch,remove,save methods 
+}
+
+- (void)transactionDidEnd:(FMDatabase *)db
+{
+    // be called from all fetch,remove,save methods 
+}
+```
+
 
 ## Features
 - CLLocationCoordinate2D, CLLocation, NSHashTable, NSMapTable support
