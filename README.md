@@ -1,7 +1,5 @@
 BZObjectStore
 =============
-[![Build Status](https://travis-ci.org/expensivegasprices/BZObjectStore.svg)](https://travis-ci.org/expensivegasprices/BZObjectStore)
-[![Coverage Status](https://coveralls.io/repos/expensivegasprices/BZObjectStore/badge.png)](https://coveralls.io/r/expensivegasprices/BZObjectStore)
 
 This is an ORM library wrapped FMDB.
 
