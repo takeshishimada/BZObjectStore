@@ -73,7 +73,7 @@ sample2.sample = sample1;
 
 NSError *error = nil;
 
-// default path is NSApplicationSupportDirectory/bundleIdentifier
+// default path is NSLibraryDirectory
 BZObjectStore *os = [BZObjectStore openWithPath:@"database.sqlite" error:&error];
 
 // open in memory
@@ -556,11 +556,53 @@ Import BZObjectStoreBackground.h and call each method name + 'InBackground' meth
 
 Other C structures will be saved as NSValue.
 
-## Readonly
+## Others
+#### FMDatabaseQueue and FMDatabase
+##### In Order to use FMDatabaseQueue, use dbQueue property.
+```objective-c
+#import "BZObjectStore.h"
+#import "FMDatabaseQueue.h"
+#import "FMDatabase.h"
+
+- (void)foo
+{
+    BZObjectStore *os = [BZObjectStore openWithPath:@"database.sqlite" error:nil];
+    FMDatabaseQueue *dbQueue = os.dbQueue;
+    [dbQueue inDatabase:^(FMDatabase *db) {
+        FMResultSet *rs = [db getTableSchema:@"SampleModel"];
+        while (rs.next) {
+            NSString *columnName = [rs stringForColumnIndex:1];
+        }
+        [rs close];
+    }];
+    [os close];
+}
+```
+
+##### In order to use FMDatabase, inherit BZObjectStore class and override the following methods.
+```objective-c
+#import "FMDatabase.h"
+
+- (void)transactionDidBegin:(FMDatabase *)db
+{
+    // called when call fetch,remove,save methods 
+}
+
+- (void)transactionDidEnd:(FMDatabase *)db
+{
+    // called when call fetch,remove,save methods 
+}
+```
+
+#### Readonly Property
 Readonly property always will be ignore.
 
-## FMDatabaseQueue
-In order to use FMDatabaseQueue, inherit BZObjectStore class and override FMDBQueue property.
+#### Identical Attribute values
+Identical attribute value can not be changed after object saving.
+
+#### Background process methods
+Background process methods can not be use in inTransactionInBackground method.
+
 
 ## Features
 - CLLocationCoordinate2D, CLLocation, NSHashTable, NSMapTable support
