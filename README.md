@@ -260,7 +260,7 @@ ignore attributes
 @interface OrderModel : NSObject
 @property (nonatomic,strong) NSString<OSIdenticalAttribute> *no;
 @property (nonatomic,assign) NSArray *items;
-@property (nonatomic,assign) NSIndexPath<OSIgnoreAttribute> indexPath;
+@property (nonatomic,assign) NSIndexPath<OSIgnoreAttribute> *indexPath;
 @end
 ```
 
