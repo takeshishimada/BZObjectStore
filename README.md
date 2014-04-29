@@ -596,6 +596,8 @@ Readonly property always will be ignore.
     // called when call fetch,remove,save methods 
 }
 ```
+#### Identical Attribute values
+Identical attribute values can not be changed after object saving.
 
 
 ## Features
