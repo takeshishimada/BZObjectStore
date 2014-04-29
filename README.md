@@ -73,7 +73,7 @@ sample2.sample = sample1;
 
 NSError *error = nil;
 
-// default path is NSApplicationSupportDirectory/bundleIdentifier
+// default path is NSLibraryDirectory
 BZObjectStore *os = [BZObjectStore openWithPath:@"database.sqlite" error:&error];
 
 // open in memory
