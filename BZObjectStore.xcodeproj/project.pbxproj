@@ -1057,6 +1057,11 @@
 				CLASSPREFIX = BZObjectStore;
 				LastUpgradeCheck = 0510;
 				ORGANIZATIONNAME = "BONZOO INC.";
+				TargetAttributes = {
+					7259F80A18F44F04002A3416 = {
+						TestTargetID = 7259F7EF18F44F04002A3416;
+					};
+				};
 			};
 			buildConfigurationList = 7259F7EB18F44F04002A3416 /* Build configuration list for PBXProject "BZObjectStore" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -1401,6 +1406,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 73A736836B224E7BB841BEB0 /* Pods.xcconfig */;
 			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BZObjectStore.app/BZObjectStore";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1414,6 +1420,7 @@
 				);
 				INFOPLIST_FILE = "BZObjectStoreTests/BZObjectStoreTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Debug;
@@ -1422,6 +1429,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 73A736836B224E7BB841BEB0 /* Pods.xcconfig */;
 			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BZObjectStore.app/BZObjectStore";
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -1431,6 +1439,7 @@
 				GCC_PREFIX_HEADER = "BZObjectStore/BZObjectStore-Prefix.pch";
 				INFOPLIST_FILE = "BZObjectStoreTests/BZObjectStoreTests-Info.plist";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
 			};
 			name = Release;
