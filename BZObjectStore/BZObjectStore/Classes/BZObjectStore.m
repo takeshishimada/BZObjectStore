@@ -76,7 +76,6 @@
         if ([path isEqualToString:[path lastPathComponent]]) {
             NSArray *paths = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES);
             NSString *dir = [paths objectAtIndex:0];
-            dir = [dir stringByAppendingPathComponent:[[NSBundle mainBundle] bundleIdentifier]];
             path = [dir stringByAppendingPathComponent:path];
 #ifdef DEBUG
             NSLog(@"database path = %@",path);
