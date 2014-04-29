@@ -1,5 +1,5 @@
 WORKSPACE = BZObjectStore.xcworkspace
-SCHEME = BZObjectStoreCoveralls
+SCHEME = BZObjectStore
 
 clean:
 	xcodebuild \
@@ -11,12 +11,12 @@ test-with-coverage:
 	xcodebuild \
 		-workspace $(WORKSPACE) \
 		-scheme $(SCHEME) \
-		-sdk iphonesimulator \
+		-sdk iphonesimulator7.1 \
 		-configuration Debug \
 		TEST_AFTER_BUILD=YES \
 		TEST_HOST= \
 		GCC_INSTRUMENT_PROGRAM_FLOW_ARCS=YES \
-		GCC_GENERATE_TEST_COVERAGE_FILES=YES
+		GCC_GENERATE_TEST_COVERAGE_FILES=YES build test
 
 send-coverage:
 	coveralls \

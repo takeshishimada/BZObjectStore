@@ -178,8 +178,8 @@
     [self testBZVarietyValuesModel:_disk];
     [self testBZInvalidValuesModel:_disk];
     [self testBZRelationshipHeaderModel:_disk];
-    [self testBZInsertResponseModel:_disk];
-    [self testBZUpdateResponseModel:_disk];
+//    [self testBZInsertResponseModel:_disk];
+//    [self testBZUpdateResponseModel:_disk];
     [self testCircularReference:_disk];
     [self testSQLiteGroupCondition:_disk];
     [self testBZUpdateExistsObjectWithNoRowIdModel:_disk];
@@ -218,8 +218,8 @@
     [self testBZVarietyValuesModel:_memory];
     [self testBZInvalidValuesModel:_memory];
     [self testBZRelationshipHeaderModel:_memory];
-    [self testBZInsertResponseModel:_memory];
-    [self testBZUpdateResponseModel:_memory];
+//    [self testBZInsertResponseModel:_memory];
+//    [self testBZUpdateResponseModel:_memory];
     [self testCircularReference:_memory];
     [self testSQLiteGroupCondition:_memory];
     [self testBZUpdateExistsObjectWithNoRowIdModel:_memory];

@@ -28,7 +28,7 @@
 + (void)load
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setValue:@"XCTestLog,GcovTestObserver"
+    [defaults setValue:@"XCTestLog,BZObjectStoreTestsObserver"
                                              forKey:@"XCTestObserverClass"];
     [defaults synchronize];
 }
