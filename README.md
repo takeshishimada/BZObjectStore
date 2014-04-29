@@ -181,6 +181,61 @@ NSNumber *value = [os avg:@"price" class:[SampleModel class] condition:nil error
 }];
 ```
 
+## Condition
+There are three condition classes in BZObjectStore:
+
+1. `BZObjectStoreConditionModel` - This class has the following classes and you create it and set to each method.
+2. `BZObjectStoreSQLiteConditionModel` - This class means SQLite condition.
+3. `BZObjectStoreReferenceConditionModel` - This class means reference object condition.
+
+#### BZObjectStoreConditionModel
+```objective-c
+// create insntance
+BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
+
+// access to BZObjectStoreSQLiteConditionModel
+condition.sqlite.XXXXX
+
+// access to BZObjectStoreReferenceConditionModel
+condition.reference.XXXXX
+```
+
+#### BZObjectStoreSQLiteConditionModel
+```objective-c
+
+// where condition
+condition.sqlite.where = @"name = ?";
+
+// where parameters
+condition.sqlite.parameters = @[name];
+
+// order By
+condition.sqlite.orderBy = @"code desc";
+
+// limit
+condition.sqlite.limit = @20;
+
+// offset
+condition.sqlite.offSet = @20;
+```
+
+#### BZObjectStoreReferenceConditionModel
+```objective-c
+
+// set object referencing from
+condition.reference.from = sample1;
+
+// no object referencing from
+condition.reference.from = [NSNull null];
+
+// set object referenced to
+condition.reference.to = sample1;
+
+// no object referenced to
+condition.reference.from = [NSNull null];
+
+```
+
 ## Options
 #### OSIdenticalAttribute
 define identical attributes
@@ -497,7 +552,8 @@ Other C structures will be saved as NSValue.
 ## Readonly Property
 Readonly property always will be ignore.
 
-
+## FMDatabaseQueue
+In order to use FMDatabaseQueue, inherit BZObjectStore class and override FMDBQueue property in your header file.
 
 ## Features
 - CLLocationCoordinate2D, CLLocation support
