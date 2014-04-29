@@ -12,7 +12,6 @@ test:
 	xcodebuild \
 		-workspace $(WORKSPACE) \
 		-scheme $(SCHEME) \
-		-target $(TEST_TARGET) \
 		-sdk iphonesimulator \
 		-configuration Debug \
 		TEST_AFTER_BUILD=YES \
@@ -22,7 +21,6 @@ test-with-coverage:
 	xcodebuild \
 		-workspace $(WORKSPACE) \
 		-scheme $(SCHEME) \
-		-target $(TEST_TARGET) \
 		-sdk iphonesimulator \
 		-configuration Debug \
 		TEST_AFTER_BUILD=YES \

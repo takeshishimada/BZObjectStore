@@ -7,4 +7,4 @@ before_install:
 script:
     - make clean test-with-coverage
 after_success:
-    - make send-coverage
+    - make coveralls
