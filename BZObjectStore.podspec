@@ -9,7 +9,6 @@ Pod::Spec.new do |s|
   s.platform = :ios, '5.0'
   s.requires_arc = true
   s.source_files = 'BZObjectStore/BZObjectStore/**/*.{h,m}'
-  s.public_header_files = "BZObjectStore/BZObjectStore/*.h"
   
   s.subspec 'Core' do |cs|
     cs.dependency 'FMDB'
