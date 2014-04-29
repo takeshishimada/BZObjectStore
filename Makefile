@@ -3,7 +3,7 @@ SCHEME = BZObjectStore
 TEST_TARGET = BZObjectStoreTests
 
 clean:
-	xcodebuild -workspace BZObjectStore.xcworkspace -scheme BZObjectStore
+	xcodebuild -workspace BZObjectStore.xcworkspace -scheme BZObjectStore clean
 
 test:
 	xcodebuild \
