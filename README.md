@@ -7,7 +7,7 @@ This is an ORM library wrapped FMDB.
 BZObjectStore automatically stores your models to SQLite tables and provides useful options to your application.
 
 ## Requirements
-Targeting either iOS 5.1 and above
+Targeting either iOS 5.0 and above and ARC.
 
 ## Summary
 - Easy to use
@@ -39,7 +39,7 @@ BZObjectStore *os = [BZObjectStore openWithPath:@"database.sqlite" error:&error]
 // close database
 [os close];
 ```
-After processed, you can find 'database path=XXXX' in console.  
+After processed, you can find 'database path=/XXXX/database.sqlite' in console.  
 Open this file with your SQLite tool and check tables.
 
 
@@ -179,6 +179,61 @@ NSNumber *value = [os avg:@"price" class:[SampleModel class] condition:nil error
     // rollback if need
     *rollback = YES;
 }];
+```
+
+## Condition
+There are three classes:
+
+1. `BZObjectStoreConditionModel` - This class contains the following classes. You create a instance and set it to each method when you need.
+2. `BZObjectStoreSQLiteConditionModel` - SQLite condition.
+3. `BZObjectStoreReferenceConditionModel` - Reference object condition.
+
+#### BZObjectStoreConditionModel
+```objective-c
+// create insntance
+BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
+
+// access to BZObjectStoreSQLiteConditionModel
+condition.sqlite.XXXXX
+
+// access to BZObjectStoreReferenceConditionModel
+condition.reference.XXXXX
+```
+
+#### BZObjectStoreSQLiteConditionModel
+```objective-c
+
+// where condition
+condition.sqlite.where = @"name = ?";
+
+// where parameters
+condition.sqlite.parameters = @[name];
+
+// order By
+condition.sqlite.orderBy = @"code desc";
+
+// limit
+condition.sqlite.limit = @20;
+
+// offset
+condition.sqlite.offSet = @20;
+```
+
+#### BZObjectStoreReferenceConditionModel
+```objective-c
+
+// set object referencing from
+condition.reference.from = sample1;
+
+// no object referencing from
+condition.reference.from = [NSNull null];
+
+// set object referenced to
+condition.reference.to = sample1;
+
+// no object referenced to
+condition.reference.from = [NSNull null];
+
 ```
 
 ## Options
@@ -453,7 +508,7 @@ Import BZObjectStoreBackground.h and call each method name + 'InBackground' meth
 ```
 
 ## Data Types
-|Objective-C Data Types|SQLite Data Types|Mapping Column Names|Remarks|
+|Objective-C and C Data Types|SQLite Data Types|Mapping Column Names|Remarks|
 |:-----------|:-----------|:-----------|:-----------|
 |char*|INTEGER|attributeName||
 |short|INTEGER|attributeName||
@@ -467,6 +522,8 @@ Import BZObjectStoreBackground.h and call each method name + 'InBackground' meth
 |unsigned int|INTEGER|attributeName||
 |unsigned long|INTEGER|attributeName||
 |unsigned long long|INTEGER|attributeName||
+|NSInteger|INTEGER|attributeName||
+|CGFloat|REAL|attributeName||
 |CGPoint|REAL|attributeName + '_x',+ '_y'|separated to 2 columns|
 |CGSize|REAL|attributeName + '_width',+ '_height'|separated to 2 columns|
 |CGRect|REAL|attributeName + '_x', + '_y', + '_width', + '_height'|separated to 4 columns|
@@ -475,29 +532,35 @@ Import BZObjectStoreBackground.h and call each method name + 'InBackground' meth
 |NSData|BLOB|attributeName||
 |NSString|TEXT|attributeName||
 |NSMutableString|TEXT|attributeName||
-|NSNull|BLOB|attributeName||
-|NSNumber|INTEGER|attributeName||
+|NSNull|BLOB|attributeName|saved as null|
+|NSNumber|INTEGER|attributeName|saved as primitive value|
 |NSURL|TEXT|attributeName|saved as absolute URL string|
 |NSValue|BLOB|attributeName|saved as serialized|
 |UIColor|TEXT|attributeName|saved as RGBA string|
 |UIImage|BLOB|attributeName|saved as GIF binary data|
-|NSArray|INTEGER|attributeName|saved number of Objects|
-|NSDictionary|INTEGER|attributeName|saved number of Objects|
-|NSSet|INTEGER|attributeName|saved number of Objects|
-|NSOrderedSet|INTEGER|attributeName|saved number of Objects|
-|NSMutableArray|INTEGER|attributeName|saved number of Objects|
-|NSMutableDictionary|INTEGER|attributeName|saved number of Objects|
-|NSMutableSet|INTEGER|attributeName|save numberd of Objects|
-|NSMutableOrderedSet|INTEGER|attributeName|saved number of Objects|
-|NSObject|INTEGER|attributeName|saved number of Objects|
+|NSArray|INTEGER|attributeName|saved as number of Objects|
+|NSDictionary|INTEGER|attributeName|saved as number of Objects|
+|NSSet|INTEGER|attributeName|saved as number of Objects|
+|NSOrderedSet|INTEGER|attributeName|saved as number of Objects|
+|NSMutableArray|INTEGER|attributeName|saved as number of Objects|
+|NSMutableDictionary|INTEGER|attributeName|saved as number of Objects|
+|NSMutableSet|INTEGER|attributeName|save as numberd of Objects|
+|NSMutableOrderedSet|INTEGER|attributeName|saved as number of Objects|
+|NSObject|INTEGER|attributeName|saved as number of Objects|
+|ID|NONE|attributeName,attributeName + '_attributeType'|separated to 2 columns|
 
 Other C structures will be saved as NSValue.
 
+## Readonly
+Readonly property always will be ignore.
+
+## FMDatabaseQueue
+In order to use FMDatabaseQueue, inherit BZObjectStore class and override FMDBQueue property.
+
 ## Features
-- CLLocationCoordinate2D, CLLocation support
-- NSHashTable, NSMapTable support  
+- CLLocationCoordinate2D, CLLocation, NSHashTable, NSMapTable support
 - [Parse](https://parse.com/docs/ios/api/index.html "Parse") support
-- Notifications
+- Notifications to Views support
 
 ## MICS
 Author: Takeshi Shimada  
