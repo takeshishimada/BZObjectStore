@@ -557,9 +557,6 @@ Import BZObjectStoreBackground.h and call each method name + 'InBackground' meth
 Other C structures will be saved as NSValue.
 
 ## Others
-#### Readonly
-Readonly property always will be ignore.
-
 #### FMDatabaseQueue and FMDatabase
 ##### In Order to use FMDatabaseQueue, use dbQueue property.
 ```objective-c
@@ -596,8 +593,12 @@ Readonly property always will be ignore.
     // called when call fetch,remove,save methods 
 }
 ```
+
+#### Readonly Property
+Readonly property always will be ignore.
+
 #### Identical Attribute values
-Identical attribute values can not be changed after object saving.
+Identical attribute value can not be changed after object saving.
 
 
 ## Features
