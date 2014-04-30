@@ -606,7 +606,7 @@ Background process methods can not be use in inTransactionInBackground method.
 
 ## Features
 - Unregister Class support
-- Auto Migration Support
+- Automatic Migration Support
 - CLLocationCoordinate2D, CLLocation, NSHashTable, NSMapTable support
 - [Parse](https://parse.com/docs/ios/api/index.html "Parse") support
 - Notifications to Views support
