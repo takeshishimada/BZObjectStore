@@ -13,6 +13,7 @@ Targeting either iOS 5.0 and above and ARC.
 - Mapping Models to SQLite tables
 - Relationship in NSObject, NSArray, NSDictionary, NSSet, NSOrderedSet support
 - Automatic Schema Creating
+- Automatic Column Adding
 - Thread Safety
 - Lazy fetching,One time Update and other useful options
 - Any super class in your model not required
@@ -604,6 +605,8 @@ Background process methods can not be use in inTransactionInBackground method.
 
 
 ## Features
+- Unregister Class support
+- Auto Migration Support
 - CLLocationCoordinate2D, CLLocation, NSHashTable, NSMapTable support
 - [Parse](https://parse.com/docs/ios/api/index.html "Parse") support
 - Notifications to Views support
