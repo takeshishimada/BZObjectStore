@@ -482,7 +482,7 @@
                         NSEnumerator *enumerator = nil;
                         NSArray *keys = nil;
                         NSInteger attributeSequence = 1;
-                        NSNumber *attributeLevel = [NSNumber numberWithInteger:[stuck.parentRelationship.attributeLevel integerValue] + 1];
+                        NSNumber *attributeLevel = [NSNumber numberWithUnsignedInteger:[stuck.parentRelationship.attributeLevel unsignedIntegerValue] + 1];
                         NSNumber *attributeParentLevel = stuck.parentRelationship.attributeLevel;
                         NSNumber *attributeParentSequence = stuck.parentRelationship.attributeSequence;
                         if (!attributeParentLevel) {

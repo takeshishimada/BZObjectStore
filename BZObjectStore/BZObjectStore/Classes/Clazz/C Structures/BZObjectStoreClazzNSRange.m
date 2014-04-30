@@ -56,8 +56,8 @@
 {
     NSValue *value = [object valueForKey:attribute.name];
     NSRange range = [value rangeValue];
-    NSNumber *length = [NSNumber numberWithDouble:range.length];
-    NSNumber *location = [NSNumber numberWithDouble:range.location];
+    NSNumber *length = [NSNumber numberWithUnsignedInteger:range.length];
+    NSNumber *location = [NSNumber numberWithUnsignedInteger:range.location];
     return @[length,location];
 }
 
@@ -66,8 +66,8 @@
     NSString *columnNameLength = [NSString stringWithFormat:@"%@_length",attribute.columnName];
     NSString *columnNameLocation = [NSString stringWithFormat:@"%@_location",attribute.columnName];
     NSRange range;
-    range.length = [resultSet intForColumn:columnNameLength];
-    range.location = [resultSet intForColumn:columnNameLocation];
+    range.length = [resultSet longForColumn:columnNameLength];
+    range.location = [resultSet longForColumn:columnNameLocation];
     return [NSValue valueWithRange:range];
     
 }

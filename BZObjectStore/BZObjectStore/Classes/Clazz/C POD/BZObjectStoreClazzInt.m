@@ -46,7 +46,7 @@
 - (id)valueWithResultSet:(FMResultSet*)resultSet attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
     int value = [resultSet intForColumn:attribute.columnName];
-    return [NSNumber numberWithLong:value];
+    return [NSNumber numberWithInt:value];
 }
 
 - (NSString*)sqliteDataTypeName

@@ -63,10 +63,21 @@
 {
     NSValue *value = [object valueForKey:attribute.name];
     CGRect rect = [value CGRectValue];
-    NSNumber *x = [NSNumber numberWithDouble:rect.origin.x];
-    NSNumber *y = [NSNumber numberWithDouble:rect.origin.y];
-    NSNumber *width = [NSNumber numberWithDouble:rect.size.width];
-    NSNumber *height = [NSNumber numberWithDouble:rect.size.height];
+    NSNumber *x = nil;
+    NSNumber *y = nil;
+    NSNumber *width = nil;
+    NSNumber *height = nil;
+#if CGFLOAT_IS_DOUBLE
+    x = [NSNumber numberWithDouble:rect.origin.x];
+    y = [NSNumber numberWithDouble:rect.origin.y];
+    width = [NSNumber numberWithDouble:rect.size.width];
+    height = [NSNumber numberWithDouble:rect.size.height];
+#else
+    x = [NSNumber numberWithFloat:rect.origin.x];
+    y = [NSNumber numberWithFloat:rect.origin.y];
+    width = [NSNumber numberWithFloat:rect.size.width];
+    height = [NSNumber numberWithFloat:rect.size.height];
+#endif
     return @[x,y,width,height];
 }
 

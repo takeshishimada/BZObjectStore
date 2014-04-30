@@ -55,8 +55,15 @@
 {
     NSValue *value = [object valueForKey:attribute.name];
     CGSize size = [value CGSizeValue];
-    NSNumber *width = [NSNumber numberWithDouble:size.width];
-    NSNumber *height = [NSNumber numberWithDouble:size.height];
+    NSNumber *width = nil;
+    NSNumber *height = nil;
+#if CGFLOAT_IS_DOUBLE
+    width = [NSNumber numberWithDouble:size.width];
+    height = [NSNumber numberWithDouble:size.height];
+#else
+    width = [NSNumber numberWithFloat:size.width];
+    height = [NSNumber numberWithFloat:size.height];
+#endif
     return @[width,height];
 }
 

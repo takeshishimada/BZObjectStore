@@ -61,9 +61,9 @@
 {
     NSMutableOrderedSet *value = [object valueForKey:attribute.name];
     if ([[value class] isSubclassOfClass:[NSMutableOrderedSet class]]) {
-        return @[[NSNumber numberWithInteger:value.count]];
+        return @[[NSNumber numberWithUnsignedInteger:value.count]];
     }
-    return @[[NSNumber numberWithInteger:0]];
+    return @[[NSNumber numberWithUnsignedInteger:0]];
 }
 
 - (NSString*)sqliteDataTypeName

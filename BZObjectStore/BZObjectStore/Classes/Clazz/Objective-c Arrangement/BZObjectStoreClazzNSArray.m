@@ -62,9 +62,9 @@
 {
     NSArray *value = [object valueForKey:attribute.name];
     if ([[value class] isSubclassOfClass:[NSArray class]]) {
-        return @[[NSNumber numberWithInteger:((NSArray*)value).count]];
+        return @[[NSNumber numberWithUnsignedInteger:((NSArray*)value).count]];
     }
-    return @[[NSNumber numberWithInteger:0]];
+    return @[[NSNumber numberWithUnsignedInteger:0]];
 }
 
 - (NSString*)sqliteDataTypeName

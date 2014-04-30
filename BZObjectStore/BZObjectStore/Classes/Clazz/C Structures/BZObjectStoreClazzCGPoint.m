@@ -55,8 +55,15 @@
 {
     NSValue *value = [object valueForKey:attribute.name];
     CGPoint point = [value CGPointValue];
-    NSNumber *x = [NSNumber numberWithDouble:point.x];
-    NSNumber *y = [NSNumber numberWithDouble:point.y];
+    NSNumber *x = nil;
+    NSNumber *y = nil;
+#if CGFLOAT_IS_DOUBLE
+    x = [NSNumber numberWithDouble:point.x];
+    y = [NSNumber numberWithDouble:point.y];
+#else
+    x = [NSNumber numberWithFloat:point.x];
+    y = [NSNumber numberWithFloat:point.y];
+#endif
     return @[x,y];
 }
 
