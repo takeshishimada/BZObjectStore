@@ -7,7 +7,7 @@ clean:
 		-scheme $(SCHEME) \
 		clean
 
-test
+test:
 	xcodebuild \
 		-workspace $(WORKSPACE) \
 		-scheme $(SCHEME) \
