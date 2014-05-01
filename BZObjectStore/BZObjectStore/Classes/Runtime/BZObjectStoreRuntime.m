@@ -40,6 +40,7 @@
 @property (nonatomic,strong) NSString *insertOrIgnoreIntoTemplateStatement;
 @property (nonatomic,strong) NSString *deleteFromTemplateStatement;
 @property (nonatomic,strong) NSString *createTableTemplateStatement;
+@property (nonatomic,strong) NSString *dropTableTemplateStatement;
 @property (nonatomic,strong) NSString *createUniqueIndexTemplateStatement;
 @property (nonatomic,strong) NSString *dropIndexTemplateStatement;
 @property (nonatomic,strong) NSString *countTemplateStatement;
@@ -214,6 +215,7 @@
     self.insertOrIgnoreIntoTemplateStatement = [BZObjectStoreQueryBuilder insertOrIgnoreIntoStatement:self];
     self.deleteFromTemplateStatement = [BZObjectStoreQueryBuilder deleteFromStatement:self];
     self.createTableTemplateStatement = [BZObjectStoreQueryBuilder createTableStatement:self];
+    self.dropTableTemplateStatement = [BZObjectStoreQueryBuilder dropTableStatement:self];
     self.createUniqueIndexTemplateStatement = [BZObjectStoreQueryBuilder createUniqueIndexStatement:self];
     self.dropIndexTemplateStatement = [BZObjectStoreQueryBuilder dropIndexStatement:self];
     self.countTemplateStatement = [BZObjectStoreQueryBuilder countStatement:self];
@@ -231,6 +233,10 @@
 - (NSString*)createTableStatement
 {
     return self.createTableTemplateStatement;
+}
+- (NSString*)dropTableStatement
+{
+    return self.dropTableTemplateStatement;
 }
 - (NSString*)createUniqueIndexStatement
 {

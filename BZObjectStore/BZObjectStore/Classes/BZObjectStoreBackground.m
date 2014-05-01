@@ -241,5 +241,18 @@
     }];
 }
 
+- (void)unRegisterClassInBackground:(Class)clazz completionBlock:(void(^)(NSError *error))completionBlock
+{
+    NSOperationQueue *queue = [[NSOperationQueue alloc]init];
+    [queue addOperationWithBlock:^{
+        NSError *error = nil;
+        [self unRegisterClass:clazz error:&error];
+        NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];
+        [mainQueue addOperationWithBlock:^{
+            completionBlock(error);
+        }];
+    }];
+}
+
 
 @end

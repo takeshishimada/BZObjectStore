@@ -39,7 +39,9 @@
 - (BZObjectStoreRuntime*)runtime:(Class)clazz;
 - (void)registedAllRuntime;
 - (void)registedRuntime:(BZObjectStoreRuntime*)runtime;
+- (void)unRegistedRuntime:(BZObjectStoreRuntime*)runtime;
 - (BOOL)registerRuntime:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
+- (BOOL)unRegisterRuntime:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
 @end
 
 @interface BZObjectStoreReferenceMapper (Protected)
@@ -61,6 +63,7 @@
 
 
 @interface BZObjectStore ()
+@property (nonatomic,weak) BZObjectStore *weakSelf;
 @property (nonatomic,strong) FMDatabaseQueue *dbQueue;
 @property (nonatomic,strong) FMDatabase *db;
 @property (nonatomic,assign) BOOL rollback;
@@ -91,6 +94,7 @@
     BZObjectStore *os = [[self alloc]init];
     os.dbQueue = dbQueue;
     os.db = nil;
+    os.weakSelf = os;
     
     NSError *err = nil;
     BOOL ret = NO;
@@ -128,15 +132,14 @@
             block(self.db,&_rollback);
         }
     } else {
-        __weak BZObjectStore *weakSelf = self;
         [self.dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
-            [weakSelf transactionDidBegin:db];
-            weakSelf.db = db;
+            [_weakSelf transactionDidBegin:db];
+            _weakSelf.db = db;
             [db setShouldCacheStatements:YES];
             block(db,rollback);
         }];
         [self.dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
-            [weakSelf registedAllRuntime];
+            [_weakSelf registedAllRuntime];
         }];
         [self transactionDidEnd:self.db];
         self.db = nil;
@@ -168,7 +171,7 @@
     __block NSError *err = nil;
     __block NSNumber *exists = nil;
     [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
-        exists = [self existsObject:object db:db error:&err];
+        exists = [_weakSelf existsObject:object db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
         }
@@ -187,7 +190,7 @@
     __block NSError *err = nil;
     __block NSNumber *value = nil;
     [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
-        value = [self count:clazz condition:condition db:db error:&err];
+        value = [_weakSelf count:clazz condition:condition db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
         }
@@ -206,7 +209,7 @@
     __block NSError *err = nil;
     __block id value = nil;
     [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
-        value = [self max:columnName class:clazz condition:condition db:db error:&err];
+        value = [_weakSelf max:columnName class:clazz condition:condition db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
         }
@@ -225,7 +228,7 @@
     __block NSError *err = nil;
     __block id value = nil;
     [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
-        value = [self min:columnName class:clazz condition:condition db:db error:&err];
+        value = [_weakSelf min:columnName class:clazz condition:condition db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
         }
@@ -244,7 +247,7 @@
     __block NSError *err = nil;
     __block id value = nil;
     [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
-        value = [self total:columnName class:clazz condition:condition db:db error:&err];
+        value = [_weakSelf total:columnName class:clazz condition:condition db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
         }
@@ -263,7 +266,7 @@
     __block NSError *err = nil;
     __block id value = nil;
     [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
-        value = [self sum:columnName class:clazz condition:condition db:db error:&err];
+        value = [_weakSelf sum:columnName class:clazz condition:condition db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
         }
@@ -282,7 +285,7 @@
     __block NSError *err = nil;
     __block id value = nil;
     [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
-        value = [self avg:columnName class:clazz condition:condition db:db error:&err];
+        value = [_weakSelf avg:columnName class:clazz condition:condition db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
         }
@@ -304,7 +307,7 @@
     __block NSError *err = nil;
     __block NSNumber *value = nil;
     [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
-        value = [self referencedCount:object db:db error:&err];
+        value = [_weakSelf referencedCount:object db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
         }
@@ -323,7 +326,7 @@
     __block NSError *err = nil;
     __block NSMutableArray *list = nil;
     [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
-        list = [self fetchReferencingObjectsWithToObject:object db:db error:&err];
+        list = [_weakSelf fetchReferencingObjectsWithToObject:object db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
         }
@@ -345,7 +348,7 @@
     __block NSError *err = nil;
     __block NSMutableArray *value = nil;
     [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
-        value = [self fetchObjects:clazz condition:condition db:db error:&err];
+        value = [_weakSelf fetchObjects:clazz condition:condition db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
         }
@@ -364,7 +367,7 @@
     __block NSError *err = nil;
     __block NSObject *latestObject = nil;
     [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
-        latestObject = [self refreshObject:object db:db error:&err];
+        latestObject = [_weakSelf refreshObject:object db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
         }
@@ -390,7 +393,7 @@
     __block NSError *err = nil;
     __block BOOL ret = NO;
     [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
-        [self saveObjects:objects db:db error:&err];
+        [_weakSelf saveObjects:objects db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
         }
@@ -410,7 +413,7 @@
     __block NSError *err = nil;
     __block BOOL ret = NO;
     [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
-        ret = [self saveObjects:@[object] db:db error:&err];
+        ret = [_weakSelf saveObjects:@[object] db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
         }
@@ -432,7 +435,7 @@
     __block BOOL ret = NO;
     [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
         [db setShouldCacheStatements:YES];
-        ret = [self removeObjects:clazz condition:condition db:db error:&err];
+        ret = [_weakSelf removeObjects:clazz condition:condition db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
         }
@@ -452,7 +455,7 @@
     __block NSError *err = nil;
     __block BOOL ret = NO;
     [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
-        ret = [self removeObjects:@[object] db:db error:&err];
+        ret = [_weakSelf removeObjects:@[object] db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
         }
@@ -475,7 +478,7 @@
     __block NSError *err = nil;
     __block BOOL ret = NO;
     [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
-        ret = [self removeObjects:objects db:db error:&err];
+        ret = [_weakSelf removeObjects:objects db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
         }
@@ -495,18 +498,49 @@
 {
     __block NSError *err = nil;
     __block BOOL ret = NO;
+    __block BZObjectStoreRuntime *runtime = [self runtime:clazz];
     [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
-        BZObjectStoreRuntime *runtime = [self runtime:clazz];
-        ret = [self registerRuntime:runtime db:db];
+        ret = [_weakSelf registerRuntime:runtime db:db];
         if ([db hadError]) {
             err = [db lastError];
         }
         if (err) {
             *rollback = YES;
         }
-        [self registedRuntime:runtime];
         return;
     }];
+    [self registedRuntime:runtime];
+    if (error) {
+        *error = err;
+    }
+    return ret;
+}
+
+- (BOOL)unRegisterClass:(Class)clazz error:(NSError**)error
+{
+    __block NSError *err = nil;
+    __block BOOL ret = NO;
+    __block BZObjectStoreRuntime *runtime = [self runtime:clazz];
+    [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
+        ret = [_weakSelf removeObjects:clazz condition:nil error:&err];
+        if ([db hadError]) {
+            err = [db lastError];
+        }
+        if (err) {
+            *rollback = YES;
+        }
+        if (ret) {
+            ret = [_weakSelf unRegisterRuntime:runtime db:db];
+            if ([db hadError]) {
+                err = [db lastError];
+            }
+            if (err) {
+                *rollback = YES;
+            }
+        }
+        return;
+    }];
+    [self unRegistedRuntime:runtime];
     if (error) {
         *error = err;
     }
@@ -519,5 +553,6 @@
     self.dbQueue = nil;
     self.db = nil;
 }
+
 
 @end

@@ -25,9 +25,5 @@
 
 @class FMDatabaseQueue;
 
-@interface BZObjectStore (BZObjectStoreOnDisk)
-@end
-
 @interface BZObjectStoreOnDisk : BZObjectStore
-+ (instancetype)sharedInstance;
 @end

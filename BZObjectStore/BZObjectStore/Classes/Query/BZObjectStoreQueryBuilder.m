@@ -204,6 +204,15 @@
     return [NSString stringWithString:sql];
 }
 
++ (NSString*)dropTableStatement:(BZObjectStoreRuntime*)runtime
+{
+    NSString *tableName = runtime.tableName;
+    NSMutableString *sql = [NSMutableString string];
+    [sql appendString:@"DROP TABLE "];
+    [sql appendString:tableName];
+    return [NSString stringWithString:sql];
+}
+
 + (NSString*)uniqueIndexName:(BZObjectStoreRuntime*)runtime
 {
     return [NSString stringWithFormat:@"%@_IDX",runtime.tableName];

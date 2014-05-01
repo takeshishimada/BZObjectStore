@@ -81,6 +81,11 @@
     [self.registedClazzes setObject:@YES forKey:runtime.clazzName];
 }
 
+- (void)unRegistedRuntime:(BZObjectStoreRuntime*)runtime
+{
+    [self.registedClazzes removeObjectForKey:runtime.clazzName];
+}
+
 - (void)registedAllRuntime
 {
     for (NSString *key in self.registedClazzes.allKeys) {
@@ -99,6 +104,19 @@
         return NO;
     }
     [self.registedClazzes setObject:@NO forKey:runtime.clazzName];
+    return YES;
+}
+
+- (BOOL)unRegisterRuntime:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db
+{
+    NSNumber *registed = [self.registedClazzes objectForKey:runtime.clazzName];
+    if (!registed.boolValue) {
+        return YES;
+    }
+    [self dropTable:runtime db:db];
+    if ([self hadError:db]) {
+        return NO;
+    }
     return YES;
 }
 
@@ -184,6 +202,18 @@
                     }
                 }
             }
+        }
+    }
+    return YES;
+}
+
+- (BOOL)dropTable:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db
+{
+    BOOL tableExists = [db tableExists:runtime.tableName];
+    if (tableExists) {
+        [db executeUpdate:[runtime dropTableStatement]];
+        if ([self hadError:db]) {
+            return NO;
         }
     }
     return YES;

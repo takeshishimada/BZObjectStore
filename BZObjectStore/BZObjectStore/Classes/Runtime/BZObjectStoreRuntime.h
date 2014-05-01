@@ -70,6 +70,7 @@
 
 // statement methods
 - (NSString*)createTableStatement;
+- (NSString*)dropTableStatement;
 - (NSString*)createUniqueIndexStatement;
 - (NSString*)dropUniqueIndexStatement;
 - (NSString*)insertIntoStatement;

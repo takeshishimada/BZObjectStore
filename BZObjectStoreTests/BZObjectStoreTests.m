@@ -124,47 +124,13 @@
 
 @implementation BZObjectStoreTests
 
-- (void)save
-{
-    Item *apple = [[Item alloc]init];
-    apple.itemNo = 1;
-    apple.itemName = @"apple";
-    apple.price = 1.5f;
-    
-    Item *orange = [[Item alloc]init];
-    orange.itemNo = 2;
-    orange.itemName = @"orange";
-    orange.price = 1.2f;
-
-    OrderDetail *orderApple = [[OrderDetail alloc]init];
-    orderApple.orderItem = apple;
-    orderApple.amount = 10;
-
-    OrderDetail *orderOrange = [[OrderDetail alloc]init];
-    orderOrange.orderItem = orange;
-    orderOrange.amount = 10;
-    
-    OrderHeader *header = [[OrderHeader alloc]init];
-    header.orderNo = 1;
-    header.orderDetails = @[orderApple,orderOrange];
-    header.orderedAt = [NSDate date];
-    
-    NSError *error = nil;
-    BZObjectStore *os = [BZObjectStore openWithPath:@"database.sqlite" error:&error];
-    [os saveObject:header error:&error];
-    if (error) {
-        NSLog(@"%@",error);
-    }
-    
-}
-
 - (void)setUp
 {
     [super setUp];
     
     // Put setup code here. This method is called before the invocation of each test method in the class.
-    _disk = [BZObjectStoreOnDisk sharedInstance];
-    _memory = [BZObjectStoreOnMemory sharedInstance];
+    _disk = [BZObjectStoreOnDisk openWithPath:@"database.sqlite" error:nil];
+    _memory = [BZObjectStoreOnMemory openWithPath:nil error:nil];
 }
 
 - (void)tearDown
@@ -210,6 +176,7 @@
     [self testBackground:_disk];
     [self testInTransaction:_disk];
     [_disk close];
+    _disk = nil;
 }
 
 
@@ -250,6 +217,7 @@
     [self testBackground:_memory];
     [self testInTransaction:_memory];
     [_memory close];
+    _memory = nil;
 }
 
 - (void)testBZVarietyValuesModel:(BZObjectStore*)os
@@ -703,6 +671,9 @@
 
     NSNumber *count = [os count:[BZInsertResponseModel class] condition:nil error:&error];
     XCTAssertTrue([count integerValue] == 0, @"fetch error");
+
+    [os unRegisterClass:[BZInsertResponseModel class] error:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
 
 }
 
@@ -2176,7 +2147,14 @@
     }];
     WAIT;
     XCTAssert(!err, @"registerClassInBackground \"%s\"", __PRETTY_FUNCTION__);
-    
+
+    [os unRegisterClassInBackground:[BZBackgroundModel class] completionBlock:^(NSError *error) {
+        err = error;
+        RESUME;
+    }];
+    WAIT;
+    XCTAssert(!err, @"unRegisterClassInBackground \"%s\"", __PRETTY_FUNCTION__);
+
 }
 
 

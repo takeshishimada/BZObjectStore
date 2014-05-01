@@ -24,18 +24,18 @@
 #import "BZObjectStoreOnMemory.h"
 
 @implementation BZObjectStoreOnMemory
-+ (instancetype)sharedInstance
-{
-    static id _sharedInstance;
-    @synchronized(self) {
-        if (!_sharedInstance) {
-            NSError *error = nil;
-            _sharedInstance = [self openWithPath:nil error:&error];
-            NSAssert(error == nil,@"objectstore is nil");
-        }
-        return _sharedInstance;
-    }
-}
+//+ (instancetype)sharedInstance
+//{
+//    static id _sharedInstance;
+//    @synchronized(self) {
+//        if (!_sharedInstance) {
+//            NSError *error = nil;
+//            _sharedInstance = [self openWithPath:nil error:&error];
+//            NSAssert(error == nil,@"objectstore is nil");
+//        }
+//        return _sharedInstance;
+//    }
+//}
 
 + (NSString*)ignorePrefixName
 {

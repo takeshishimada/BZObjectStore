@@ -39,6 +39,7 @@
 + (NSString*)insertOrIgnoreIntoStatement:(BZObjectStoreRuntime*)runtime;
 + (NSString*)deleteFromStatement:(BZObjectStoreRuntime*)runtime;
 + (NSString*)createTableStatement:(BZObjectStoreRuntime*)runtime;
++ (NSString*)dropTableStatement:(BZObjectStoreRuntime*)runtime;
 + (NSString*)createUniqueIndexStatement:(BZObjectStoreRuntime*)runtime;
 + (NSString*)dropIndexStatement:(BZObjectStoreRuntime*)runtime;
 + (NSString*)referencedCountStatement:(BZObjectStoreRuntime*)runtime;

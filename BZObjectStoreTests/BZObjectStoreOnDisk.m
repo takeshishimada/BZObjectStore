@@ -25,27 +25,6 @@
 #import "FMDatabase.h"
 
 @implementation BZObjectStoreOnDisk
-+ (instancetype)sharedInstance
-{
-    static id _sharedInstance;
-    @synchronized(self) {
-        if (!_sharedInstance) {
-            NSError *error = nil;
-            NSString *deletePath = [self databasePath:@"database.sqlite"];
-            NSFileManager *manager = [NSFileManager defaultManager];
-            if ([manager fileExistsAtPath:deletePath]) {
-                [manager removeItemAtPath:deletePath error:&error];
-                if (error) {
-                    NSLog(@"%@",error);
-                }
-            }
-            NSString *path = @"database.sqlite";
-            _sharedInstance = [self openWithPath:path error:&error];
-            NSAssert(error == nil,@"objectstore is nil");
-        }
-        return _sharedInstance;
-    }
-}
 
 + (NSString*)databasePath:(NSString*)path
 {
