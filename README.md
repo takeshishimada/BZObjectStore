@@ -596,13 +596,13 @@ Other C structures will be saved as NSValue.
 ```
 
 #### Readonly Property
-Readonly property always will be ignore.
+Readonly property always will be ignored.
 
 #### Identical Attribute values
 Identical attribute value can not be changed after object saving.
 
 #### Background process methods
-Background process methods can not be use in inTransactionInBackground method.
+Background process methods can not be used in inTransactionInBackground method.
 
 
 ## Features
