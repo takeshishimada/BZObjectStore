@@ -1,10 +1,4 @@
 language: objective-c
-before_install:
-    - sudo easy_install cpp-coveralls
-    - gem install cocoapods --no-rdoc --no-ri --no-document --quiet
-    - gem install xcpretty --no-rdoc --no-ri --no-document --quiet
-    - pod install
+
 script:
-    - make clean test-with-coverage
-after_success:
-    - make send-coverage
+  - make clean test
