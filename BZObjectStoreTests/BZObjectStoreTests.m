@@ -178,8 +178,8 @@
     [self testBZVarietyValuesModel:_disk];
     [self testBZInvalidValuesModel:_disk];
     [self testBZRelationshipHeaderModel:_disk];
-//    [self testBZInsertResponseModel:_disk];
-//    [self testBZUpdateResponseModel:_disk];
+    [self testBZInsertResponseModel:_disk];
+    [self testBZUpdateResponseModel:_disk];
     [self testCircularReference:_disk];
     [self testSQLiteGroupCondition:_disk];
     [self testBZUpdateExistsObjectWithNoRowIdModel:_disk];
@@ -218,8 +218,8 @@
     [self testBZVarietyValuesModel:_memory];
     [self testBZInvalidValuesModel:_memory];
     [self testBZRelationshipHeaderModel:_memory];
-//    [self testBZInsertResponseModel:_memory];
-//    [self testBZUpdateResponseModel:_memory];
+    [self testBZInsertResponseModel:_memory];
+    [self testBZUpdateResponseModel:_memory];
     [self testCircularReference:_memory];
     [self testSQLiteGroupCondition:_memory];
     [self testBZUpdateExistsObjectWithNoRowIdModel:_memory];
@@ -2169,6 +2169,13 @@
     WAIT;
     XCTAssert(!err, @"inTransactionInBackground \"%s\"", __PRETTY_FUNCTION__);
     XCTAssertTrue(val.integerValue == 0,@"countInBackground error");
+    
+    [os registerClassInBackground:[BZBackgroundModel class] completionBlock:^(NSError *error) {
+        err = error;
+        RESUME;
+    }];
+    WAIT;
+    XCTAssert(!err, @"registerClassInBackground \"%s\"", __PRETTY_FUNCTION__);
     
 }
 
