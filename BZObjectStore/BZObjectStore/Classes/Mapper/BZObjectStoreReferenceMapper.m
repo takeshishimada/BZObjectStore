@@ -35,15 +35,6 @@
 #import "FMDatabaseAdditions.h"
 #import "NSObject+BZObjectStore.h"
 
-@interface BZObjectStoreReferenceMapper ()
-@property (nonatomic,strong) BZObjectStoreNameBuilder *nameBuilder;
-- (BZObjectStoreRuntime*)runtime:(Class)clazz;
-- (BOOL)registerRuntime:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
-
-@property (nonatomic,strong) NSMutableDictionary *registedClazzes;
-
-@end
-
 @interface BZObjectStoreModelMapper (Protected)
 - (NSNumber*)avg:(BZObjectStoreRuntime*)runtime columnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db;
 - (NSNumber*)total:(BZObjectStoreRuntime*)runtime columnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db;
@@ -86,6 +77,11 @@
 @property (nonatomic,strong) BZObjectStoreRelationshipModel* parentRelationship;
 @end
 @implementation BZAttributeStuckModel
+@end
+
+@interface BZObjectStoreReferenceMapper ()
+@property (nonatomic,strong) BZObjectStoreNameBuilder *nameBuilder;
+@property (nonatomic,strong) NSMutableDictionary *registedClazzes;
 @end
 
 @implementation BZObjectStoreReferenceMapper
