@@ -35,12 +35,6 @@
 #import "FMDatabaseAdditions.h"
 #import "NSObject+BZObjectStore.h"
 
-@interface BZObjectStoreRuntimeMapper (Protected)
-- (BZObjectStoreRuntime*)runtime:(Class)clazz;
-- (void)registedRuntime:(BZObjectStoreRuntime*)runtime;
-- (BOOL)registerRuntime:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
-@end
-
 @implementation BZObjectStoreModelMapper
 
 - (NSNumber*)avg:(BZObjectStoreRuntime*)runtime columnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db
@@ -308,7 +302,7 @@
 
 #pragma mark relationship methods
 
-- (NSMutableArray*)relationshipObjectsWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute db:(FMDatabase*)db
+- (NSMutableArray*)relationshipObjectsWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute relationshipRuntime:(BZObjectStoreRuntime*)relationshipRuntime db:(FMDatabase*)db
 {
     NSString *fromClassName = NSStringFromClass([object class]);
     NSString *fromAttributeName = attribute.name;
@@ -318,22 +312,21 @@
     condition.sqlite.where = @"fromClassName = ? and fromAttributeName = ? and fromRowid = ?";
     condition.sqlite.orderBy = @"attributeLevel desc,attributeSequence asc,attributeParentLevel desc,attributeParentSequence asc";
     condition.sqlite.parameters = parameters;
-    return [self relationshipObjectsWithCondition:condition db:db];
+    return [self relationshipObjectsWithCondition:condition relationshipRuntime:relationshipRuntime db:db];
 }
 
-- (NSMutableArray*)relationshipObjectsWithToObject:(NSObject*)toObject db:(FMDatabase*)db
+- (NSMutableArray*)relationshipObjectsWithToObject:(NSObject*)toObject relationshipRuntime:(BZObjectStoreRuntime*)relationshipRuntime db:(FMDatabase*)db
 {
     BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
     condition.sqlite.where = @"toClassName = ? and toRowid = ?";
     condition.sqlite.orderBy = @"toClassName,toRowid";
     condition.sqlite.parameters = @[NSStringFromClass([toObject class]),toObject.rowid];
-    return [self relationshipObjectsWithCondition:condition db:db];
+    return [self relationshipObjectsWithCondition:condition relationshipRuntime:relationshipRuntime db:db];
 }
 
-- (NSMutableArray*)relationshipObjectsWithCondition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db
+- (NSMutableArray*)relationshipObjectsWithCondition:(BZObjectStoreConditionModel*)condition relationshipRuntime:(BZObjectStoreRuntime*)relationshipRuntime db:(FMDatabase*)db
 {
-    BZObjectStoreRuntime *runtime = [self runtime:[BZObjectStoreRelationshipModel class]];
-    NSMutableArray *list = [self objectsWithRuntime:runtime condition:condition db:db];
+    NSMutableArray *list = [self objectsWithRuntime:relationshipRuntime condition:condition db:db];
     if ([self hadError:db]) {
         return NO;
     }
@@ -351,16 +344,15 @@
     return YES;
 }
 
-- (BOOL)deleteRelationshipObjectsWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute db:(FMDatabase*)db
+- (BOOL)deleteRelationshipObjectsWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute relationshipRuntime:(BZObjectStoreRuntime*)relationshipRuntime db:(FMDatabase*)db
 {
-    BZObjectStoreRuntime *runtime = [self runtime:[BZObjectStoreRelationshipModel class]];
     NSString *className = NSStringFromClass([object class]);
     NSString *attributeName = attribute.name;
     NSNumber *rowid = object.rowid;
     BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
     condition.sqlite.where = @"fromClassName = ? and fromAttributeName = ? and fromRowid = ?";
     condition.sqlite.parameters = @[className,attributeName,rowid];
-    [self deleteFrom:runtime condition:condition db:db];
+    [self deleteFrom:relationshipRuntime condition:condition db:db];
     if ([self hadError:db]) {
         return NO;
     }
@@ -379,14 +371,13 @@
     return YES;
 }
 
-- (BOOL)deleteRelationshipObjectsWithObject:(NSObject*)object db:(FMDatabase*)db
+- (BOOL)deleteRelationshipObjectsWithObject:(NSObject*)object relationshipRuntime:(BZObjectStoreRuntime*)relationshipRuntime db:(FMDatabase*)db
 {
-    BZObjectStoreRuntime *runtime = [self runtime:[BZObjectStoreRelationshipModel class]];
     NSString *className = NSStringFromClass([object class]);
     BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
     condition.sqlite.where = @"(fromClassName = ? and fromRowid = ?) or (toClassName = ? and toRowid = ?)";
     condition.sqlite.parameters = @[className,object.rowid,className,object.rowid];
-    [self deleteFrom:runtime condition:condition db:db];
+    [self deleteFrom:relationshipRuntime condition:condition db:db];
     if ([self hadError:db]) {
         return NO;
     }

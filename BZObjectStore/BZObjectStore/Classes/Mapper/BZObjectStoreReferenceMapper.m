@@ -53,12 +53,14 @@
 - (NSMutableArray*)objectsWithRuntime:(BZObjectStoreRuntime*)runtime condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db;
 - (void)UpdateSimpleValueWithObject:(NSObject*)object db:(FMDatabase*)db;
 - (NSNumber*)referencedCount:(NSObject*)object db:(FMDatabase*)db;
-- (NSMutableArray*)relationshipObjectsWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute db:(FMDatabase*)db;
+
+- (NSMutableArray*)relationshipObjectsWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute relationshipRuntime:(BZObjectStoreRuntime*)relationshipRuntime db:(FMDatabase*)db;
 - (BOOL)insertRelationshipObjectsWithRelationshipObjects:(NSArray*)relationshipObjects db:(FMDatabase*)db;
-- (BOOL)deleteRelationshipObjectsWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute db:(FMDatabase*)db;
+- (BOOL)deleteRelationshipObjectsWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute relationshipRuntime:(BZObjectStoreRuntime*)relationshipRuntime db:(FMDatabase*)db;
 - (BOOL)deleteRelationshipObjectsWithRelationshipObject:(BZObjectStoreRelationshipModel*)relationshipObject db:(FMDatabase*)db;
-- (BOOL)deleteRelationshipObjectsWithObject:(NSObject*)object db:(FMDatabase*)db;
-- (NSMutableArray*)relationshipObjectsWithToObject:(NSObject*)toObject db:(FMDatabase*)db;
+- (BOOL)deleteRelationshipObjectsWithObject:(NSObject*)object relationshipRuntime:(BZObjectStoreRuntime*)relationshipRuntime db:(FMDatabase*)db;
+- (NSMutableArray*)relationshipObjectsWithToObject:(NSObject*)toObject relationshipRuntime:(BZObjectStoreRuntime*)relationshipRuntime db:(FMDatabase*)db;
+
 - (void)updateObjectRowid:(NSObject*)object db:(FMDatabase*)db;
 - (void)updateRowidWithObjects:(NSArray*)objects db:(FMDatabase*)db;
 @end
@@ -252,7 +254,8 @@
     if (!object.rowid) {
         return nil;
     }
-    NSMutableArray *relationshipObjects = [self relationshipObjectsWithToObject:object db:db];
+    BZObjectStoreRuntime *relationshipRuntime = [self runtimeWithClazz:[BZObjectStoreRelationshipModel class] db:db];
+    NSMutableArray *relationshipObjects = [self relationshipObjectsWithToObject:object relationshipRuntime:relationshipRuntime db:db];
     if ([self hadError:db error:error]) {
         return nil;
     }
@@ -296,6 +299,7 @@
             }
         }
     }
+    BZObjectStoreRuntime *relationshipRuntime = [self runtimeWithClazz:[BZObjectStoreRelationshipModel class] db:db];
     while (objectStuck.count > 0) {
         
         // each object
@@ -312,7 +316,7 @@
                 BZObjectStoreObjectAttributeModel *objectAttibute = [[BZObjectStoreObjectAttributeModel alloc]init];
                 objectAttibute.object = targetObject;
                 objectAttibute.attribute = attribute;
-                objectAttibute.relationshipObjects = [self relationshipObjectsWithObject:targetObject attribute:attribute db:db];
+                objectAttibute.relationshipObjects = [self relationshipObjectsWithObject:targetObject attribute:attribute relationshipRuntime:relationshipRuntime db:db];
                 for (BZObjectStoreRelationshipModel *relationshipObject in objectAttibute.relationshipObjects) {
                     Class attributeClazz = NSClassFromString(relationshipObject.toClassName);
                     BZObjectStoreRuntime *runtime = [self runtimeWithClazz:attributeClazz db:db];
@@ -578,10 +582,10 @@
     }
     
     // save relationship
-    BZObjectStoreRuntime *relationshipObjectRuntime = [self runtimeWithClazz:[BZObjectStoreRelationshipModel class] db:db];
+    BZObjectStoreRuntime *relationshipRuntime = [self runtimeWithClazz:[BZObjectStoreRelationshipModel class] db:db];
     for (BZObjectStoreObjectAttributeModel *objectAttribute in attributeObjects) {
         for (BZObjectStoreRelationshipModel *relationshipObject in objectAttribute.relationshipObjects) {
-            relationshipObject.runtime = relationshipObjectRuntime;
+            relationshipObject.runtime = relationshipRuntime;
             relationshipObject.fromRowid = relationshipObject.attributeFromObject.rowid;
             if (relationshipObject.attributeToObject) {
                 if (relationshipObject.toTableName) {
@@ -597,7 +601,7 @@
                 return NO;
             }
         }
-        NSMutableArray *relationshipObjects = [self relationshipObjectsWithObject:objectAttribute.object attribute:objectAttribute.attribute db:db];
+        NSMutableArray *relationshipObjects = [self relationshipObjectsWithObject:objectAttribute.object attribute:objectAttribute.attribute relationshipRuntime:relationshipRuntime db:db];
         if ([self hadError:db error:error]) {
             return NO;
         }
@@ -624,7 +628,7 @@
                 }
             }
         }
-        [self deleteRelationshipObjectsWithObject:objectAttribute.object attribute:objectAttribute.attribute db:db];
+        [self deleteRelationshipObjectsWithObject:objectAttribute.object attribute:objectAttribute.attribute relationshipRuntime:relationshipRuntime db:db];
         if ([self hadError:db error:error]) {
             return NO;
         }
@@ -743,13 +747,14 @@
     }
     
     // remove objects
+    BZObjectStoreRuntime *relationshipRuntime = [self runtimeWithClazz:[BZObjectStoreRelationshipModel class] db:db];
     NSArray *allValues = processedObjects.allValues;
     for (NSObject *targetObject in allValues) {
         [self deleteFrom:targetObject db:db];
         if ([self hadError:db error:error]) {
             return NO;
         }
-        [self deleteRelationshipObjectsWithObject:targetObject db:db];
+        [self deleteRelationshipObjectsWithObject:targetObject relationshipRuntime:relationshipRuntime db:db];
         if ([self hadError:db error:error]) {
             return NO;
         }

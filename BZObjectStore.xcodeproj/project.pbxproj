@@ -857,13 +857,13 @@
 		72849307190F508A005D9ACB /* Mapper */ = {
 			isa = PBXGroup;
 			children = (
-				72849308190F508A005D9ACB /* BZObjectStoreConst.h */,
 				7284930B190F508A005D9ACB /* BZObjectStoreReferenceMapper.h */,
 				7284930C190F508A005D9ACB /* BZObjectStoreReferenceMapper.m */,
 				72849309190F508A005D9ACB /* BZObjectStoreModelMapper.h */,
 				7284930A190F508A005D9ACB /* BZObjectStoreModelMapper.m */,
 				7284930D190F508A005D9ACB /* BZObjectStoreRuntimeMapper.h */,
 				7284930E190F508A005D9ACB /* BZObjectStoreRuntimeMapper.m */,
+				72849308190F508A005D9ACB /* BZObjectStoreConst.h */,
 			);
 			path = Mapper;
 			sourceTree = "<group>";
