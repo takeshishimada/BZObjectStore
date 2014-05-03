@@ -73,7 +73,7 @@
 
 
 @interface BZProcessingObjectModel : NSObject
-@property (nonatomic,strong) NSObject *object;
+@property (nonatomic,strong) NSObject *targetObject;
 @property (nonatomic,strong) BZObjectStoreRuntimeProperty *attribute;
 @property (nonatomic,strong) NSMutableArray *relationshipObjects;
 @end
@@ -81,7 +81,7 @@
 @end
 
 @interface BZProcessingStackObjectModel : NSObject
-@property (nonatomic,strong) NSObject *attributeObject;
+@property (nonatomic,strong) NSObject *targetObjectInAttribute;
 @property (nonatomic,strong) BZObjectStoreRelationshipModel* parentRelationship;
 @end
 @implementation BZProcessingStackObjectModel
@@ -324,12 +324,12 @@
 - (NSMutableArray*)fetchObjectsSub:(NSArray*)objects refreshing:(BOOL)refreshing db:(FMDatabase*)db error:(NSError**)error
 {
     NSMutableDictionary *processedObjects = [NSMutableDictionary dictionary];
-    NSMutableArray *objectStuck = [NSMutableArray array];
+    NSMutableArray *targetObjects = [NSMutableArray array];
     for (NSObject *object in objects) {
         if (![processedObjects valueForKey:object.objectStoreHashForSave]) {
             [processedObjects setValue:object forKey:object.objectStoreHashForSave];
             if (object.runtime.hasRelationshipAttributes) {
-                [objectStuck addObject:object];
+                [targetObjects addObject:object];
             }
         }
     }
@@ -337,10 +337,10 @@
     if ([self hadError:db error:error]) {
         return nil;
     }
-    while (objectStuck.count > 0) {
+    while (targetObjects.count > 0) {
         
         // each object
-        NSObject *targetObject = [objectStuck lastObject];
+        NSObject *targetObject = [targetObjects lastObject];
         // each object-attribute
         for (BZObjectStoreRuntimeProperty *attribute in targetObject.runtime.relationshipAttributes) {
             BOOL ignoreFetch = NO;
@@ -351,7 +351,7 @@
             }
             if (!ignoreFetch) {
                 BZProcessingObjectModel *processingObject = [[BZProcessingObjectModel alloc]init];
-                processingObject.object = targetObject;
+                processingObject.targetObject = targetObject;
                 processingObject.attribute = attribute;
                 processingObject.relationshipObjects = [self relationshipObjectsWithObject:targetObject attribute:attribute relationshipRuntime:relationshipRuntime db:db];
                 for (BZObjectStoreRelationshipModel *relationshipObject in processingObject.relationshipObjects) {
@@ -372,7 +372,7 @@
                             relationshipObject.attributeValue = object;
                             object.runtime = runtime;
                             if (object.runtime.hasRelationshipAttributes) {
-                                [objectStuck addObject:object];
+                                [targetObjects addObject:object];
                             }
                             [processedObjects setValue:object forKey:object.objectStoreHashForFetch];
                         }
@@ -412,7 +412,7 @@
                 }
             }
         }
-        [objectStuck removeObject:targetObject];
+        [targetObjects removeObject:targetObject];
     }
 
     
@@ -450,28 +450,28 @@
 
 - (BOOL)saveObjectsSub:(NSArray*)objects db:(FMDatabase*)db error:(NSError**)error
 {
-    NSMutableArray *attributeObjects = [NSMutableArray array];
+    NSMutableArray *processingObjects = [NSMutableArray array];
     NSMutableDictionary *processedObjects = [NSMutableDictionary dictionary];
-    NSMutableArray *objectStuck = [NSMutableArray array];
+    NSMutableArray *targetObjects = [NSMutableArray array];
     for (NSObject *object in objects) {
         if (object.runtime.hasRelationshipAttributes) {
-            [objectStuck addObjectsFromArray:objects];
+            [targetObjects addObjectsFromArray:objects];
         } else {
             if (![processedObjects valueForKey:object.objectStoreHashForSave]) {
                 [processedObjects setValue:object forKey:object.objectStoreHashForSave];
             }
         }
     }
-    while (objectStuck.count > 0) {
-        NSObject *targetObject = [objectStuck lastObject];
+    while (targetObjects.count > 0) {
+        NSObject *targetObject = [targetObjects lastObject];
         if (![processedObjects valueForKey:targetObject.objectStoreHashForSave]) {
             [processedObjects setValue:targetObject forKey:targetObject.objectStoreHashForSave];
             for (BZObjectStoreRuntimeProperty *attribute in targetObject.runtime.relationshipAttributes) {
-                NSObject *firstStuckAttributeObject = [targetObject valueForKey:attribute.name];
+                NSObject *targetObjectInAttribute = [targetObject valueForKey:attribute.name];
                 BZProcessingObjectModel *processingObject = [[BZProcessingObjectModel alloc]init];
-                processingObject.object = targetObject;
+                processingObject.targetObject = targetObject;
                 processingObject.attribute = attribute;
-                if (firstStuckAttributeObject) {
+                if (targetObjectInAttribute) {
                     
                     NSMutableArray *stackedObjects = [NSMutableArray array];
                     NSMutableArray *allRelationshipObjects = [NSMutableArray array];
@@ -483,7 +483,7 @@
                             return NO;
                         }
                     } else {
-                        runtime = [self runtimeWithClazz:[firstStuckAttributeObject class] db:db error:error];
+                        runtime = [self runtimeWithClazz:[targetObjectInAttribute class] db:db error:error];
                         if ([self hadError:db error:error]) {
                             return NO;
                         }
@@ -510,13 +510,13 @@
                         
                         BZProcessingStackObjectModel *stackedObject = [[BZProcessingStackObjectModel alloc]init];
                         stackedObject.parentRelationship = topRelationshipObject;
-                        stackedObject.attributeObject = firstStuckAttributeObject;
+                        stackedObject.targetObjectInAttribute = targetObjectInAttribute;
                         [stackedObjects addObject:stackedObject];
                         
                     } else if (runtime.isObjectClazz || runtime.isSimpleValueClazz) {
                         BZProcessingStackObjectModel *stackedObject = [[BZProcessingStackObjectModel alloc]init];
                         stackedObject.parentRelationship = nil;
-                        stackedObject.attributeObject = firstStuckAttributeObject;
+                        stackedObject.targetObjectInAttribute = targetObjectInAttribute;
                         [stackedObjects addObject:stackedObject];
                         
                     }
@@ -539,13 +539,13 @@
                             attributeParentSequence = @0;
                         }
                         
-                        [self updateRuntime:stackedObject.attributeObject db:db error:error];
+                        [self updateRuntime:stackedObject.targetObjectInAttribute db:db error:error];
                         if ([self hadError:db error:error]) {
                             return NO;
                         }
-                        if (stackedObject.attributeObject.runtime.isRelationshipClazz) {
-                            enumerator = [stackedObject.attributeObject.runtime objectEnumeratorWithObject:stackedObject.attributeObject];
-                            keys = [stackedObject.attributeObject.runtime keysWithObject:stackedObject.attributeObject];
+                        if (stackedObject.targetObjectInAttribute.runtime.isRelationshipClazz) {
+                            enumerator = [stackedObject.targetObjectInAttribute.runtime objectEnumeratorWithObject:stackedObject.targetObjectInAttribute];
+                            keys = [stackedObject.targetObjectInAttribute.runtime keysWithObject:stackedObject.targetObjectInAttribute];
                         }
                         for (NSObject *attributeObjectInEnumerator in enumerator) {
                             Class attributeClazzInEnumerator = [attributeObjectInEnumerator class];
@@ -601,21 +601,21 @@
                             if (relationshipObject.attributeToObject.runtime.isArrayClazz) {
                                 BZProcessingStackObjectModel *stackedObject = [[BZProcessingStackObjectModel alloc]init];
                                 stackedObject.parentRelationship = relationshipObject;
-                                stackedObject.attributeObject = relationshipObject.attributeToObject;
+                                stackedObject.targetObjectInAttribute = relationshipObject.attributeToObject;
                                 [stackedObjects addObject:stackedObject];
                                 
                             } else if (relationshipObject.attributeToObject.runtime.isObjectClazz) {
-                                [objectStuck addObject:relationshipObject.attributeToObject];
+                                [targetObjects addObject:relationshipObject.attributeToObject];
                             }
                         }
                     }
                     processingObject.relationshipObjects = allRelationshipObjects;
                 }
-                [attributeObjects addObject:processingObject];
+                [processingObjects addObject:processingObject];
             }
-            [objectStuck removeObject:targetObject];
+            [targetObjects removeObject:targetObject];
         } else {
-            [objectStuck removeObject:targetObject];
+            [targetObjects removeObject:targetObject];
         }
     }
     
@@ -633,7 +633,7 @@
     if ([self hadError:db error:error]) {
         return NO;
     }
-    for (BZProcessingObjectModel *processingObject in attributeObjects) {
+    for (BZProcessingObjectModel *processingObject in processingObjects) {
         for (BZObjectStoreRelationshipModel *relationshipObject in processingObject.relationshipObjects) {
             relationshipObject.runtime = relationshipRuntime;
             relationshipObject.fromRowid = relationshipObject.attributeFromObject.rowid;
@@ -644,14 +644,14 @@
             }
         }
     }
-    for (BZProcessingObjectModel *processingObject in attributeObjects) {
+    for (BZProcessingObjectModel *processingObject in processingObjects) {
         for (BZObjectStoreRelationshipModel *relationshipObject in processingObject.relationshipObjects) {
             [self deleteRelationshipObjectsWithRelationshipObject:relationshipObject db:db];
             if ([self hadError:db error:error]) {
                 return NO;
             }
         }
-        NSMutableArray *relationshipObjects = [self relationshipObjectsWithObject:processingObject.object attribute:processingObject.attribute relationshipRuntime:relationshipRuntime db:db];
+        NSMutableArray *relationshipObjects = [self relationshipObjectsWithObject:processingObject.targetObject attribute:processingObject.attribute relationshipRuntime:relationshipRuntime db:db];
         if ([self hadError:db error:error]) {
             return NO;
         }
@@ -681,7 +681,7 @@
                 }
             }
         }
-        [self deleteRelationshipObjectsWithObject:processingObject.object attribute:processingObject.attribute relationshipRuntime:relationshipRuntime db:db];
+        [self deleteRelationshipObjectsWithObject:processingObject.targetObject attribute:processingObject.attribute relationshipRuntime:relationshipRuntime db:db];
         if ([self hadError:db error:error]) {
             return NO;
         }
@@ -740,49 +740,45 @@
 - (BOOL)removeObjectsSub:(NSArray*)objects db:(FMDatabase*)db error:(NSError**)error
 {
     NSMutableDictionary *processedObjects = [NSMutableDictionary dictionary];
-    NSMutableArray *objectStuck = [NSMutableArray array];
-    for (NSObject *object in objects) {
-        if (object.rowid) {
-            if (object.runtime.hasRelationshipAttributes) {
-                [objectStuck addObjectsFromArray:objects];
+    NSMutableArray *targetObjects = [NSMutableArray array];
+    for (NSObject *targetObject in objects) {
+        if (targetObject.rowid) {
+            if (targetObject.runtime.hasRelationshipAttributes) {
+                [targetObjects addObject:targetObject];
             } else {
-                if (![processedObjects valueForKey:object.objectStoreHashForSave]) {
-                    [processedObjects setValue:object forKey:object.objectStoreHashForSave];
+                if (![processedObjects valueForKey:targetObject.objectStoreHashForSave]) {
+                    [processedObjects setValue:targetObject forKey:targetObject.objectStoreHashForSave];
                 }
             }
         }
     }
-    while (objectStuck.count > 0) {
-        
-        // each object
-        NSObject *targetObject = [objectStuck lastObject];
+    while (targetObjects.count > 0) {
+        NSObject *targetObject = [targetObjects lastObject];
         if (![processedObjects valueForKey:targetObject.objectStoreHashForSave]) {
             [processedObjects setValue:targetObject forKey:targetObject.objectStoreHashForSave];
-            
-            // each object-attribute
             for (BZObjectStoreRuntimeProperty *attribute in targetObject.runtime.relationshipAttributes) {
                 if (!attribute.weakReferenceAttribute) {
-                    NSObject *firstAttributeObject = [targetObject valueForKey:attribute.name];
-                    if (firstAttributeObject) {
-                        NSMutableArray *objectAttributeStuck = [NSMutableArray array];
-                        [objectAttributeStuck addObject:firstAttributeObject];
+                    NSObject *tagetObjectInAttribute = [targetObject valueForKey:attribute.name];
+                    if (tagetObjectInAttribute) {
+                        NSMutableArray *tagetObjectInAttributeStack = [NSMutableArray array];
+                        [tagetObjectInAttributeStack addObject:tagetObjectInAttribute];
                         
-                        while (objectAttributeStuck.count > 0) {
-                            NSObject *attributeObject = [objectAttributeStuck lastObject];
-                            [objectAttributeStuck removeLastObject];
-                            [self updateRuntime:attributeObject db:db error:error];
+                        while (tagetObjectInAttributeStack.count > 0) {
+                            NSObject *tagetObjectInAttribute = [tagetObjectInAttributeStack lastObject];
+                            [tagetObjectInAttributeStack removeLastObject];
+                            [self updateRuntime:tagetObjectInAttribute db:db error:error];
                             if ([self hadError:db error:error]) {
                                 return NO;
                             }
-                            if (attributeObject.runtime.isRelationshipClazz) {
-                                NSEnumerator *enumerator = [attributeObject.runtime objectEnumeratorWithObject:attributeObject];
-                                for (NSObject *attributeObjectInEnumerator in enumerator) {
-                                    BZObjectStoreRuntime *runtime = [self runtimeWithClazz:[attributeObjectInEnumerator class] db:db error:error];
+                            if (tagetObjectInAttribute.runtime.isRelationshipClazz) {
+                                NSEnumerator *enumerator = [tagetObjectInAttribute.runtime objectEnumeratorWithObject:tagetObjectInAttribute];
+                                for (NSObject *tagetObjectInEnumeratorInAttribute in enumerator) {
+                                    BZObjectStoreRuntime *runtime = [self runtimeWithClazz:[tagetObjectInEnumeratorInAttribute class] db:db error:error];
                                     if (runtime.isObjectClazz) {
-                                        attributeObjectInEnumerator.runtime = runtime;
-                                        [objectStuck addObject:attributeObjectInEnumerator];
+                                        tagetObjectInEnumeratorInAttribute.runtime = runtime;
+                                        [targetObjects addObject:tagetObjectInEnumeratorInAttribute];
                                     } else if (runtime.isArrayClazz) {
-                                        [objectAttributeStuck addObject:attributeObjectInEnumerator];
+                                        [tagetObjectInAttributeStack addObject:tagetObjectInEnumeratorInAttribute];
                                     }
                                 }
                             }
@@ -790,7 +786,7 @@
                     }
                 }
             }
-            [objectStuck removeObject:targetObject];
+            [targetObjects removeObject:targetObject];
             // the following code is not needed
             //  because of fetching processed before this remove method
             //} else {
