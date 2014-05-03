@@ -50,6 +50,7 @@
 - (BOOL)saveObjects:(NSArray*)objects db:(FMDatabase*)db error:(NSError**)error;
 - (BOOL)removeObjects:(NSArray*)objects db:(FMDatabase*)db error:(NSError**)error;
 - (BOOL)removeObjects:(Class)clazz condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db error:(NSError**)error;
+
 - (BZObjectStoreRuntime*)runtime:(Class)clazz;
 - (BOOL)registerRuntime:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db error:(NSError**)error;
 - (BOOL)unRegisterRuntime:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db error:(NSError**)error;

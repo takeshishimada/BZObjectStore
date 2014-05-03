@@ -882,11 +882,6 @@
 }
 
 
-
-
-//
-
-
 - (BZObjectStoreRuntime*)runtime:(Class)clazz
 {
     if (clazz == NULL) {
