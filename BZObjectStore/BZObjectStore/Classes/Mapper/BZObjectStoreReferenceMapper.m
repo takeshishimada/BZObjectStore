@@ -36,6 +36,7 @@
 #import "NSObject+BZObjectStore.h"
 
 @interface BZObjectStoreRuntimeMapper (Protected)
+@property (nonatomic,strong) BZObjectStoreNameBuilder *nameBuilder;
 - (BZObjectStoreRuntime*)runtime:(Class)clazz;
 - (BOOL)registerRuntime:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
 @end
@@ -60,28 +61,24 @@
 - (BOOL)deleteRelationshipObjectsWithRelationshipObject:(BZObjectStoreRelationshipModel*)relationshipObject db:(FMDatabase*)db;
 - (BOOL)deleteRelationshipObjectsWithObject:(NSObject*)object relationshipRuntime:(BZObjectStoreRuntime*)relationshipRuntime db:(FMDatabase*)db;
 - (NSMutableArray*)relationshipObjectsWithToObject:(NSObject*)toObject relationshipRuntime:(BZObjectStoreRuntime*)relationshipRuntime db:(FMDatabase*)db;
-
 - (void)updateObjectRowid:(NSObject*)object db:(FMDatabase*)db;
 - (void)updateRowidWithObjects:(NSArray*)objects db:(FMDatabase*)db;
 @end
 
-@interface BZObjectStoreRuntimeMapper()
-@property (nonatomic,strong) BZObjectStoreNameBuilder *nameBuilder;
-@end
 
-@interface BZObjectStoreObjectAttributeModel : NSObject
+@interface BZAttributeModel : NSObject
 @property (nonatomic,strong) NSObject *object;
 @property (nonatomic,strong) BZObjectStoreRuntimeProperty *attribute;
 @property (nonatomic,strong) NSMutableArray *relationshipObjects;
 @end
-@implementation BZObjectStoreObjectAttributeModel
+@implementation BZAttributeModel
 @end
 
-@interface BZObjectStoreObjectAttributeStuckObject : NSObject
+@interface BZAttributeStuckModel : NSObject
 @property (nonatomic,strong) NSObject *attributeObject;
 @property (nonatomic,strong) BZObjectStoreRelationshipModel* parentRelationship;
 @end
-@implementation BZObjectStoreObjectAttributeStuckObject
+@implementation BZAttributeStuckModel
 @end
 
 @implementation BZObjectStoreReferenceMapper
@@ -313,7 +310,7 @@
                 }
             }
             if (!ignoreFetch) {
-                BZObjectStoreObjectAttributeModel *objectAttibute = [[BZObjectStoreObjectAttributeModel alloc]init];
+                BZAttributeModel *objectAttibute = [[BZAttributeModel alloc]init];
                 objectAttibute.object = targetObject;
                 objectAttibute.attribute = attribute;
                 objectAttibute.relationshipObjects = [self relationshipObjectsWithObject:targetObject attribute:attribute relationshipRuntime:relationshipRuntime db:db];
@@ -425,7 +422,7 @@
             [processedObjects setValue:targetObject forKey:targetObject.objectStoreHashForSave];
             for (BZObjectStoreRuntimeProperty *attribute in targetObject.runtime.relationshipAttributes) {
                 NSObject *firstStuckAttributeObject = [targetObject valueForKey:attribute.name];
-                BZObjectStoreObjectAttributeModel *objectAttribute = [[BZObjectStoreObjectAttributeModel alloc]init];
+                BZAttributeModel *objectAttribute = [[BZAttributeModel alloc]init];
                 objectAttribute.object = targetObject;
                 objectAttribute.attribute = attribute;
                 if (firstStuckAttributeObject) {
@@ -459,26 +456,26 @@
                         topRelationshipObject.attributeKey = nil;
                         [allRelationshipObjects addObject:topRelationshipObject];
                         
-                        BZObjectStoreObjectAttributeStuckObject *firstStuck = [[BZObjectStoreObjectAttributeStuckObject alloc]init];
+                        BZAttributeStuckModel *firstStuck = [[BZAttributeStuckModel alloc]init];
                         firstStuck.parentRelationship = topRelationshipObject;
                         firstStuck.attributeObject = firstStuckAttributeObject;
                         [objectAttributeStuck addObject:firstStuck];
                         
                     } else if (runtime.isObjectClazz) {
-                        BZObjectStoreObjectAttributeStuckObject *firstStuck = [[BZObjectStoreObjectAttributeStuckObject alloc]init];
+                        BZAttributeStuckModel *firstStuck = [[BZAttributeStuckModel alloc]init];
                         firstStuck.parentRelationship = nil;
                         firstStuck.attributeObject = firstStuckAttributeObject;
                         [objectAttributeStuck addObject:firstStuck];
                         
                     } else if (runtime.isSimpleValueClazz ) {
-                        BZObjectStoreObjectAttributeStuckObject *firstStuck = [[BZObjectStoreObjectAttributeStuckObject alloc]init];
+                        BZAttributeStuckModel *firstStuck = [[BZAttributeStuckModel alloc]init];
                         firstStuck.parentRelationship = nil;
                         firstStuck.attributeObject = firstStuckAttributeObject;
                         [objectAttributeStuck addObject:firstStuck];
                     }
                     
                     while (objectAttributeStuck.count > 0) {
-                        BZObjectStoreObjectAttributeStuckObject *stuck = [objectAttributeStuck lastObject];
+                        BZAttributeStuckModel *stuck = [objectAttributeStuck lastObject];
                         [objectAttributeStuck removeLastObject];
                         
                         NSMutableArray *relationshipObjects = [NSMutableArray array];
@@ -552,7 +549,7 @@
                         }
                         for (BZObjectStoreRelationshipModel *relationshipObject in relationshipObjects) {
                             if (relationshipObject.attributeToObject.runtime.isArrayClazz) {
-                                BZObjectStoreObjectAttributeStuckObject *newStuck = [[BZObjectStoreObjectAttributeStuckObject alloc]init];
+                                BZAttributeStuckModel *newStuck = [[BZAttributeStuckModel alloc]init];
                                 newStuck.parentRelationship = relationshipObject;
                                 newStuck.attributeObject = relationshipObject.attributeToObject;
                                 [objectAttributeStuck addObject:newStuck];
@@ -583,7 +580,7 @@
     
     // save relationship
     BZObjectStoreRuntime *relationshipRuntime = [self runtimeWithClazz:[BZObjectStoreRelationshipModel class] db:db];
-    for (BZObjectStoreObjectAttributeModel *objectAttribute in attributeObjects) {
+    for (BZAttributeModel *objectAttribute in attributeObjects) {
         for (BZObjectStoreRelationshipModel *relationshipObject in objectAttribute.relationshipObjects) {
             relationshipObject.runtime = relationshipRuntime;
             relationshipObject.fromRowid = relationshipObject.attributeFromObject.rowid;
@@ -594,7 +591,7 @@
             }
         }
     }
-    for (BZObjectStoreObjectAttributeModel *objectAttribute in attributeObjects) {
+    for (BZAttributeModel *objectAttribute in attributeObjects) {
         for (BZObjectStoreRelationshipModel *relationshipObject in objectAttribute.relationshipObjects) {
             [self deleteRelationshipObjectsWithRelationshipObject:relationshipObject db:db];
             if ([self hadError:db error:error]) {
