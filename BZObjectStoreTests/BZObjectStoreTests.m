@@ -655,9 +655,9 @@
     NSMutableArray *list = [NSMutableArray array];
     for (NSInteger i = 0; i < 20000; i++ ) {
         BZInsertResponseModel *model = [[BZInsertResponseModel alloc]init];
-        model.code = [NSString stringWithFormat:@"%d",i];
-        model.name = [NSString stringWithFormat:@"name %d",i];
-        model.address = [NSString stringWithFormat:@"address %d",i];
+        model.code = [NSString stringWithFormat:@"%ld",(long)i];
+        model.name = [NSString stringWithFormat:@"name %ld",(long)i];
+        model.address = [NSString stringWithFormat:@"address %ld",(long)i];
         model.birthday = [NSDate date];
         [list addObject:model];
     }
@@ -698,17 +698,17 @@
     NSMutableArray *list = [NSMutableArray array];
     for (NSInteger i = 0; i < 1; i++ ) {
         BZUpdateResponseModel *model = [[BZUpdateResponseModel alloc]init];
-        model.code = [NSString stringWithFormat:@"%d",i];
-        model.name = [NSString stringWithFormat:@"name %d",i];
-        model.address = [NSString stringWithFormat:@"address %d",i];
+        model.code = [NSString stringWithFormat:@"%ld",(long)i];
+        model.name = [NSString stringWithFormat:@"name %ld",(long)i];
+        model.address = [NSString stringWithFormat:@"address %ld",(long)i];
         model.birthday = [NSDate date];
         [list addObject:model];
     }
     for (NSInteger i = 0; i < 20000; i++ ) {
         BZUpdateResponseModel *model = [[BZUpdateResponseModel alloc]init];
-        model.code = [NSString stringWithFormat:@"%d",i];
-        model.name = [NSString stringWithFormat:@"name %d",i];
-        model.address = [NSString stringWithFormat:@"address %d",i];
+        model.code = [NSString stringWithFormat:@"%ld",(long)i];
+        model.name = [NSString stringWithFormat:@"name %ld",(long)i];
+        model.address = [NSString stringWithFormat:@"address %ld",(long)i];
         model.birthday = [NSDate date];
         [list addObject:model];
     }
@@ -1205,7 +1205,7 @@
     NSMutableArray *objects = [NSMutableArray array];
     for (NSInteger i = 0; i < 2000; i++) {
         BZFullTextModel *saveObject = [[BZFullTextModel alloc]init];
-        saveObject.address = [NSString stringWithFormat:@"test address%d test",i];
+        saveObject.address = [NSString stringWithFormat:@"test address%ld test",(long)i];
         [objects addObject:saveObject];
     }
     

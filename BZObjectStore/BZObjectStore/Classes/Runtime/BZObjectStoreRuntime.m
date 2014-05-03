@@ -387,12 +387,14 @@
         for (BZObjectStoreRuntimeProperty *attribute in self.updateAttributes) {
             NSObject *value = [object valueForKey:attribute.name];
             if (value) {
-                [parameters addObjectsFromArray:[attribute storeValuesWithObject:object]];
+                NSArray *values = [attribute storeValuesWithObject:object];
+                [parameters addObjectsFromArray:values];
             }
         }
     } else {
         for (BZObjectStoreRuntimeProperty *attribute in self.updateAttributes) {
-            [parameters addObjectsFromArray:[attribute storeValuesWithObject:object]];
+            NSArray *values = [attribute storeValuesWithObject:object];
+            [parameters addObjectsFromArray:values];
         }
     }
     return parameters;

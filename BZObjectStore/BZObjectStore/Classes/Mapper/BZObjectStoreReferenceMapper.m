@@ -58,8 +58,15 @@
 - (void)updateObjectRowid:(NSObject*)object db:(FMDatabase*)db;
 - (void)updateRowidWithObjects:(NSArray*)objects db:(FMDatabase*)db;
 
+- (BOOL)existsTable:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
+- (BOOL)createTable:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
+- (BOOL)createUniqueIndex:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
 - (BOOL)dropTable:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
-- (BOOL)createTable:(BZObjectStoreRuntime*)runtime attributeRuntime:(BZObjectStoreRuntime*)attributeRuntime db:(FMDatabase*)db;
+- (BOOL)dropUniqueIndex:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
+- (BOOL)createAttribute:(BZObjectStoreRuntime*)runtime attributeRuntime:(BZObjectStoreRuntime*)attributeRuntime db:(FMDatabase*)db;
+- (BOOL)deleteAttribute:(BZObjectStoreRuntime*)runtime attributeRuntime:(BZObjectStoreRuntime*)attributeRuntime db:(FMDatabase*)db;
+
+- (BOOL)createTable2:(BZObjectStoreRuntime*)runtime attributeRuntime:(BZObjectStoreRuntime*)attributeRuntime db:(FMDatabase*)db;
 
 @end
 
@@ -915,7 +922,7 @@
         return YES;
     }
     BZObjectStoreRuntime *attributeRuntime = [self runtime:[BZObjectStoreAttributeModel class]];
-    [super createTable:runtime attributeRuntime:attributeRuntime db:db];
+    [super createTable2:runtime attributeRuntime:attributeRuntime db:db];
     if ([self hadError:db error:error]) {
         return NO;
     }
