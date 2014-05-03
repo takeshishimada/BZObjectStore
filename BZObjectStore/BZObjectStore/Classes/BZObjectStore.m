@@ -35,15 +35,6 @@
 #import "FMDatabaseAdditions.h"
 #import "NSObject+BZObjectStore.h"
 
-@interface BZObjectStoreRuntimeMapper (Protected)
-- (BZObjectStoreRuntime*)runtime:(Class)clazz;
-- (void)registedAllRuntime;
-- (void)registedRuntime:(BZObjectStoreRuntime*)runtime;
-- (void)unRegistedRuntime:(BZObjectStoreRuntime*)runtime;
-- (BOOL)registerRuntime:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
-- (BOOL)unRegisterRuntime:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
-@end
-
 @interface BZObjectStoreReferenceMapper (Protected)
 - (NSNumber*)existsObject:(NSObject*)object db:(FMDatabase*)db error:(NSError**)error;
 - (NSNumber*)max:(NSString*)columnName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error;
@@ -59,6 +50,12 @@
 - (BOOL)saveObjects:(NSArray*)objects db:(FMDatabase*)db error:(NSError**)error;
 - (BOOL)removeObjects:(NSArray*)objects db:(FMDatabase*)db error:(NSError**)error;
 - (BOOL)removeObjects:(Class)clazz condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db error:(NSError**)error;
+- (BZObjectStoreRuntime*)runtime:(Class)clazz;
+- (void)registedAllRuntime;
+- (void)registedRuntime:(BZObjectStoreRuntime*)runtime;
+- (void)unRegistedRuntime:(BZObjectStoreRuntime*)runtime;
+- (BOOL)registerRuntime:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
+- (BOOL)unRegisterRuntime:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
 @end
 
 

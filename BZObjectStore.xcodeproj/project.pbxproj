@@ -96,7 +96,6 @@
 		7284934C190F508A005D9ACB /* BZObjectStoreClazzNSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 72849306190F508A005D9ACB /* BZObjectStoreClazzNSObject.m */; };
 		7284934D190F508A005D9ACB /* BZObjectStoreModelMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7284930A190F508A005D9ACB /* BZObjectStoreModelMapper.m */; };
 		7284934E190F508A005D9ACB /* BZObjectStoreReferenceMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7284930C190F508A005D9ACB /* BZObjectStoreReferenceMapper.m */; };
-		7284934F190F508A005D9ACB /* BZObjectStoreRuntimeMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 7284930E190F508A005D9ACB /* BZObjectStoreRuntimeMapper.m */; };
 		72849350190F508A005D9ACB /* BZObjectStoreAttributeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72849311190F508A005D9ACB /* BZObjectStoreAttributeModel.m */; };
 		72849351190F508A005D9ACB /* BZObjectStoreReferenceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72849313190F508A005D9ACB /* BZObjectStoreReferenceModel.m */; };
 		72849352190F508A005D9ACB /* BZObjectStoreRelationshipModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72849315190F508A005D9ACB /* BZObjectStoreRelationshipModel.m */; };
@@ -316,8 +315,6 @@
 		7284930A190F508A005D9ACB /* BZObjectStoreModelMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreModelMapper.m; sourceTree = "<group>"; };
 		7284930B190F508A005D9ACB /* BZObjectStoreReferenceMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreReferenceMapper.h; sourceTree = "<group>"; };
 		7284930C190F508A005D9ACB /* BZObjectStoreReferenceMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreReferenceMapper.m; sourceTree = "<group>"; };
-		7284930D190F508A005D9ACB /* BZObjectStoreRuntimeMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreRuntimeMapper.h; sourceTree = "<group>"; };
-		7284930E190F508A005D9ACB /* BZObjectStoreRuntimeMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreRuntimeMapper.m; sourceTree = "<group>"; };
 		72849310190F508A005D9ACB /* BZObjectStoreAttributeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreAttributeModel.h; sourceTree = "<group>"; };
 		72849311190F508A005D9ACB /* BZObjectStoreAttributeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreAttributeModel.m; sourceTree = "<group>"; };
 		72849312190F508A005D9ACB /* BZObjectStoreReferenceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreReferenceModel.h; sourceTree = "<group>"; };
@@ -861,8 +858,6 @@
 				7284930C190F508A005D9ACB /* BZObjectStoreReferenceMapper.m */,
 				72849309190F508A005D9ACB /* BZObjectStoreModelMapper.h */,
 				7284930A190F508A005D9ACB /* BZObjectStoreModelMapper.m */,
-				7284930D190F508A005D9ACB /* BZObjectStoreRuntimeMapper.h */,
-				7284930E190F508A005D9ACB /* BZObjectStoreRuntimeMapper.m */,
 				72849308190F508A005D9ACB /* BZObjectStoreConst.h */,
 			);
 			path = Mapper;
@@ -1158,7 +1153,6 @@
 				72849355190F508A005D9ACB /* BZObjectStoreRuntimeProperty.m in Sources */,
 				72849346190F508A005D9ACB /* BZObjectStoreClazzNSMutableDictionary.m in Sources */,
 				7259F80018F44F04002A3416 /* main.m in Sources */,
-				7284934F190F508A005D9ACB /* BZObjectStoreRuntimeMapper.m in Sources */,
 				72849344190F508A005D9ACB /* BZObjectStoreClazzNSDictionary.m in Sources */,
 				72849349190F508A005D9ACB /* BZObjectStoreClazzNSOrderedSet.m in Sources */,
 				7284933F190F508A005D9ACB /* BZObjectStoreClazzNSValue.m in Sources */,

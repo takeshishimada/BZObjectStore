@@ -21,7 +21,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "BZObjectStoreRuntimeMapper.h"
+#import <Foundation/Foundation.h>
 
-@interface BZObjectStoreModelMapper : BZObjectStoreRuntimeMapper
+@interface BZObjectStoreModelMapper : NSObject
 @end

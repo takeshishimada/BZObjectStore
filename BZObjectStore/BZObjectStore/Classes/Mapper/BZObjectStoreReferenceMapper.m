@@ -35,10 +35,13 @@
 #import "FMDatabaseAdditions.h"
 #import "NSObject+BZObjectStore.h"
 
-@interface BZObjectStoreRuntimeMapper (Protected)
+@interface BZObjectStoreReferenceMapper ()
 @property (nonatomic,strong) BZObjectStoreNameBuilder *nameBuilder;
 - (BZObjectStoreRuntime*)runtime:(Class)clazz;
 - (BOOL)registerRuntime:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
+
+@property (nonatomic,strong) NSMutableDictionary *registedClazzes;
+
 @end
 
 @interface BZObjectStoreModelMapper (Protected)
@@ -63,6 +66,10 @@
 - (NSMutableArray*)relationshipObjectsWithToObject:(NSObject*)toObject relationshipRuntime:(BZObjectStoreRuntime*)relationshipRuntime db:(FMDatabase*)db;
 - (void)updateObjectRowid:(NSObject*)object db:(FMDatabase*)db;
 - (void)updateRowidWithObjects:(NSArray*)objects db:(FMDatabase*)db;
+
+- (BOOL)dropTable:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
+- (BOOL)createTable:(BZObjectStoreRuntime*)runtime attributeRuntime:(BZObjectStoreRuntime*)attributeRuntime db:(FMDatabase*)db;
+
 @end
 
 
@@ -82,6 +89,29 @@
 @end
 
 @implementation BZObjectStoreReferenceMapper
+
++ (NSString*)ignorePrefixName
+{
+    return nil;
+}
+
++ (NSString*)ignoreSuffixName
+{
+    return nil;
+}
+
+- (instancetype)init
+{
+    if (self = [super init]) {
+        self.registedClazzes = [NSMutableDictionary dictionary];
+        BZObjectStoreNameBuilder *nameBuilder = [[BZObjectStoreNameBuilder alloc]init];
+        Class clazz = self.class;
+        nameBuilder.ignorePrefixName = [clazz ignorePrefixName];
+        nameBuilder.ignoreSuffixName = [clazz ignoreSuffixName];
+        self.nameBuilder = nameBuilder;
+    }
+    return self;
+}
 
 #pragma mark group methods
 
@@ -800,12 +830,12 @@
 
 - (BZObjectStoreRuntime*)runtimeWithClazz:(Class)clazz db:(FMDatabase*)db
 {
-    BZObjectStoreRuntime *runtime = [super runtime:clazz];
+    BZObjectStoreRuntime *runtime = [self runtime:clazz];
     if (!runtime) {
         return nil;
     }
     if (runtime.isObjectClazz) {
-        [super registerRuntime:runtime db:db];
+        [self registerRuntime:runtime db:db];
         if ([self hadError:db error:nil]) {
             return nil;
         }
@@ -824,6 +854,77 @@
     }
     return NO;
 }
+
+
+
+
+//
+
+
+- (BZObjectStoreRuntime*)runtime:(Class)clazz
+{
+    if (clazz == NULL) {
+        return nil;
+    }
+    BZObjectStoreRuntime *runtime = [BZObjectStoreRuntime runtimeWithClazz:clazz nameBuilder:self.nameBuilder];
+    return runtime;
+}
+
+- (void)registedRuntime:(BZObjectStoreRuntime*)runtime
+{
+    [self.registedClazzes setObject:@YES forKey:runtime.clazzName];
+}
+
+- (void)unRegistedRuntime:(BZObjectStoreRuntime*)runtime
+{
+    [self.registedClazzes removeObjectForKey:runtime.clazzName];
+}
+
+- (void)registedAllRuntime
+{
+    for (NSString *key in self.registedClazzes.allKeys) {
+        [self.registedClazzes setObject:@YES forKey:key];
+    }
+}
+
+- (BOOL)registerRuntime:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db
+{
+    NSNumber *registed = [self.registedClazzes objectForKey:runtime.clazzName];
+    if (registed.boolValue) {
+        return YES;
+    }
+    BZObjectStoreRuntime *attributeRuntime = [self runtime:[BZObjectStoreAttributeModel class]];
+    [super createTable:runtime attributeRuntime:attributeRuntime db:db];
+    if ([self hadError:db]) {
+        return NO;
+    }
+    [self.registedClazzes setObject:@NO forKey:runtime.clazzName];
+    return YES;
+}
+
+- (BOOL)unRegisterRuntime:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db
+{
+    NSNumber *registed = [self.registedClazzes objectForKey:runtime.clazzName];
+    if (!registed.boolValue) {
+        return YES;
+    }
+    [super dropTable:runtime db:db];
+    if ([self hadError:db]) {
+        return NO;
+    }
+    return YES;
+}
+
+
+- (BOOL)hadError:(FMDatabase*)db
+{
+    if ([db hadError]) {
+        return YES;
+    } else {
+        return NO;
+    }
+}
+
 
 @end
 
