@@ -128,6 +128,18 @@
 {
     [super setUp];
     
+    NSString *path = @"database.sqlite";
+    if (path && ![path isEqualToString:@""]) {
+        if ([path isEqualToString:[path lastPathComponent]]) {
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+            NSString *dir = [paths objectAtIndex:0];
+            path = [dir stringByAppendingPathComponent:path];
+        }
+    }
+    NSFileManager *manager = [NSFileManager defaultManager];
+    if ([manager removeItemAtPath:path error:nil]) {
+    }
+
     // Put setup code here. This method is called before the invocation of each test method in the class.
     _disk = [BZObjectStoreOnDisk openWithPath:@"database.sqlite" error:nil];
     _memory = [BZObjectStoreOnMemory openWithPath:nil error:nil];
