@@ -46,7 +46,7 @@
 - (BOOL)deleteFrom:(NSObject*)object db:(FMDatabase*)db;
 - (BOOL)deleteFrom:(BZObjectStoreRuntime*)runtime condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db;
 - (NSMutableArray*)objectsWithRuntime:(BZObjectStoreRuntime*)runtime condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db;
-- (void)UpdateSimpleValueWithObject:(NSObject*)object db:(FMDatabase*)db;
+- (void)updateSimpleValueWithObject:(NSObject*)object db:(FMDatabase*)db;
 - (NSNumber*)referencedCount:(NSObject*)object db:(FMDatabase*)db;
 
 - (NSMutableArray*)relationshipObjectsWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute relationshipRuntime:(BZObjectStoreRuntime*)relationshipRuntime db:(FMDatabase*)db;
@@ -411,7 +411,7 @@
     // fetch objects
     NSArray *allValues = processedObjects.allValues;
     for (NSObject *targetObject in allValues) {
-        [self UpdateSimpleValueWithObject:targetObject db:db];
+        [self updateSimpleValueWithObject:targetObject db:db];
         if ([self hadError:db error:error]) {
             return nil;
         }
