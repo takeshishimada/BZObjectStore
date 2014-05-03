@@ -97,6 +97,8 @@
         object.className = runtime.clazzName;
         object.attributeName = attribute.name;
         object.attributeType = attribute.attributeType;
+        object.identicalAttribute = attribute.identicalAttribute;
+        object.weakReferenceAttribute = attribute.weakReferenceAttribute;
         NSArray *parameters = [attributeRuntime insertAttributesParameters:object];
         [db executeUpdate:insertsql withArgumentsInArray:parameters];
         if ([self hadError:db]) {

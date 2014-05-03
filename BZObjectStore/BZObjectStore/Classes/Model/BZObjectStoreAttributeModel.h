@@ -29,5 +29,7 @@
 @property (nonatomic,strong) NSString *className;
 @property (nonatomic,strong) NSString *attributeName;
 @property (nonatomic,strong) NSString *attributeType;
+@property (nonatomic,assign) BOOL identicalAttribute;
+@property (nonatomic,assign) BOOL weakReferenceAttribute;
 + (NSString*)OSTableName;
 @end
