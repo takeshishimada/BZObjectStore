@@ -24,7 +24,11 @@
 #import <Foundation/Foundation.h>
 #import "BZObjectStoreModelInterface.h"
 
+@class BZObjectStoreRuntime;
+@class BZObjectStoreRuntimeProperty;
+
 @interface BZObjectStoreAttributeModel : NSObject<OSModelInterface>
+- (instancetype)initWithRuntime:(BZObjectStoreRuntime*)runtime attribute:(BZObjectStoreRuntimeProperty*)attribute;
 @property (nonatomic,strong) NSString *tableName;
 @property (nonatomic,strong) NSString *className;
 @property (nonatomic,strong) NSString *attributeName;

@@ -22,10 +22,27 @@
 // THE SOFTWARE.
 
 #import "BZObjectStoreAttributeModel.h"
+#import "BZObjectStoreRuntime.h"
+#import "BZObjectStoreRuntimeProperty.h"
 
 @implementation BZObjectStoreAttributeModel
+
+- (instancetype)initWithRuntime:(BZObjectStoreRuntime*)runtime attribute:(BZObjectStoreRuntimeProperty*)attribute
+{
+    if (self = [super init]) {
+        self.tableName = runtime.tableName;
+        self.className = runtime.clazzName;
+        self.attributeName = attribute.name;
+        self.attributeType = attribute.attributeType;
+        self.identicalAttribute = attribute.identicalAttribute;
+        self.weakReferenceAttribute = attribute.weakReferenceAttribute;
+    }
+    return self;
+}
+
 + (NSString*)OSTableName
 {
     return @"__ObjectStoreAttribute__";
 }
+
 @end

@@ -59,10 +59,18 @@
 @protocol OSOnceUpdateAttribute
 @end
 
+@class BZObjectStore;
+
 @protocol OSModelInterface <NSObject>
 @optional
 + (NSString*)OSTableName;
 + (NSString*)OSColumnName:(NSString*)attributeName;
+- (void)OSModelDidLoad;
+- (void)OSModelDidSave;
+- (void)OSModelDidRemove;
++ (NSString*)OSMigration:(BZObjectStore*)os oldAttributeNameForAttribute:(NSString*)attributeName;
++ (id)OSMigration:(BZObjectStore*)os defaultValueForAttribute:(NSString*)attributeName;
++ (id)OSMigration:(BZObjectStore*)os objectForDuplicatedObjects:(NSArray*)duplicatedObjects;
 + (BOOL)attributeIsOSIdenticalAttribute:(NSString*)attributeName;
 + (BOOL)attributeIsOSIgnoreAttribute:(NSString*)attributeName;
 + (BOOL)attributeIsOSWeakReferenceAttribute:(NSString*)attributeName;
@@ -70,9 +78,6 @@
 + (BOOL)attributeIsOSNotUpdateIfValueIsNullAttribute:(NSString*)attributeName;
 + (BOOL)attributeIsOSSerializableAttribute:(NSString*)attributeName;
 + (BOOL)attributeIsOSOnceUpdateAttribute:(NSString*)attributeName;
-- (void)OSModelDidLoad;
-- (void)OSModelDidSave;
-- (void)OSModelDidRemove;
 @end
 
 @interface NSObject (OSAttributeProtocol)
