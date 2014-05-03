@@ -99,7 +99,8 @@
     if (registed.boolValue) {
         return YES;
     }
-    [self createTable:runtime db:db];
+    BZObjectStoreRuntime *attributeRuntime = [self runtime:[BZObjectStoreAttributeModel class]];
+    [self createTable:runtime attributeRuntime:attributeRuntime db:db];
     if ([self hadError:db]) {
         return NO;
     }
@@ -120,7 +121,7 @@
     return YES;
 }
 
-- (BOOL)createTable:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db
+- (BOOL)createTable:(BZObjectStoreRuntime*)runtime attributeRuntime:(BZObjectStoreRuntime*)attributeRuntime db:(FMDatabase*)db
 {
     BOOL tableExists = [db tableExists:runtime.tableName];
     if (!tableExists) {
@@ -134,7 +135,7 @@
                 return NO;
             }
         }
-        [self createAtributeTable:runtime db:db];
+        [self createAtributeTable:runtime attributeRuntime:attributeRuntime db:db];
         if ([self hadError:db]) {
             return NO;
         }
@@ -154,7 +155,7 @@
             
         }
         if ( addedColumns ) {
-            [self createAtributeTable:runtime db:db];
+            [self createAtributeTable:runtime attributeRuntime:attributeRuntime db:db];
             if ([self hadError:db]) {
                 return NO;
             }
@@ -219,7 +220,7 @@
     return YES;
 }
 
-- (BOOL)createAtributeTable:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db
+- (BOOL)createAtributeTable:(BZObjectStoreRuntime*)runtime attributeRuntime:(BZObjectStoreRuntime*)attributeRuntime db:(FMDatabase*)db
 {
     if (runtime.clazz == [BZObjectStoreAttributeModel class]) {
         return YES;
@@ -227,7 +228,6 @@
     if (runtime.clazz == [BZObjectStoreRelationshipModel class]) {
         return YES;
     }
-    BZObjectStoreRuntime *attributeRuntime = [self runtime:[BZObjectStoreAttributeModel class]];
     BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
     condition.sqlite.where = @"className = ?";
     condition.sqlite.parameters = @[runtime.clazzName];
