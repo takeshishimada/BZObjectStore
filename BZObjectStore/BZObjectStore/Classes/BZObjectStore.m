@@ -51,11 +51,11 @@
 - (BOOL)removeObjects:(NSArray*)objects db:(FMDatabase*)db error:(NSError**)error;
 - (BOOL)removeObjects:(Class)clazz condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db error:(NSError**)error;
 - (BZObjectStoreRuntime*)runtime:(Class)clazz;
-- (void)registedAllRuntime;
-- (void)registedRuntime:(BZObjectStoreRuntime*)runtime;
-- (void)unRegistedRuntime:(BZObjectStoreRuntime*)runtime;
-- (BOOL)registerRuntime:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
-- (BOOL)unRegisterRuntime:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
+- (BOOL)registerRuntime:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db error:(NSError**)error;
+- (BOOL)unRegisterRuntime:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db error:(NSError**)error;
+- (void)setRegistedAllRuntimeFlag;
+- (void)setRegistedRuntimeFlag:(BZObjectStoreRuntime*)runtime;
+- (void)setUnRegistedRuntimeFlag:(BZObjectStoreRuntime*)runtime;
 @end
 
 
@@ -136,7 +136,7 @@
             block(db,rollback);
         }];
         [self.dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
-            [_weakSelf registedAllRuntime];
+            [_weakSelf setRegistedAllRuntimeFlag];
         }];
         [self transactionDidEnd:self.db];
         self.db = nil;
@@ -497,7 +497,7 @@
     __block BOOL ret = NO;
     __block BZObjectStoreRuntime *runtime = [self runtime:clazz];
     [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
-        ret = [_weakSelf registerRuntime:runtime db:db];
+        ret = [_weakSelf registerRuntime:runtime db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
         }
@@ -506,7 +506,7 @@
         }
         return;
     }];
-    [self registedRuntime:runtime];
+    [self setRegistedRuntimeFlag:runtime];
     if (error) {
         *error = err;
     }
@@ -519,25 +519,16 @@
     __block BOOL ret = NO;
     __block BZObjectStoreRuntime *runtime = [self runtime:clazz];
     [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
-        ret = [_weakSelf removeObjects:clazz condition:nil error:&err];
+        ret = [_weakSelf unRegisterRuntime:runtime db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
         }
         if (err) {
             *rollback = YES;
         }
-        if (ret) {
-            ret = [_weakSelf unRegisterRuntime:runtime db:db];
-            if ([db hadError]) {
-                err = [db lastError];
-            }
-            if (err) {
-                *rollback = YES;
-            }
-        }
         return;
     }];
-    [self unRegistedRuntime:runtime];
+    [self setUnRegistedRuntimeFlag:runtime];
     if (error) {
         *error = err;
     }
