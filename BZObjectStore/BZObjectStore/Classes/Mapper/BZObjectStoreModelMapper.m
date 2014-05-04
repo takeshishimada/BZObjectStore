@@ -39,7 +39,7 @@
 
 @implementation BZObjectStoreModelMapper
 
-- (BOOL)createAtributeTable2:(BZObjectStoreRuntime*)runtime attributeRuntime:(BZObjectStoreRuntime*)attributeRuntime db:(FMDatabase*)db
+- (BOOL)createAtributeTable:(BZObjectStoreRuntime*)runtime attributeRuntime:(BZObjectStoreRuntime*)attributeRuntime db:(FMDatabase*)db
 {
     BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
     condition.sqlite.where = @"className = ?";
@@ -52,11 +52,7 @@
     
     NSString *insertsql = [attributeRuntime insertIntoStatement];
     for (BZObjectStoreRuntimeProperty *attribute in runtime.insertAttributes) {
-        BZObjectStoreAttributeModel *object = [[BZObjectStoreAttributeModel alloc]init];
-        object.tableName = runtime.tableName;
-        object.className = runtime.clazzName;
-        object.attributeName = attribute.name;
-        object.attributeType = attribute.attributeType;
+        BZObjectStoreAttributeModel *object = [[BZObjectStoreAttributeModel alloc]initWithRuntime:runtime attribute:attribute];
         NSArray *parameters = [attributeRuntime insertAttributesParameters:object];
         [db executeUpdate:insertsql withArgumentsInArray:parameters];
         if ([self hadError:db]) {
@@ -66,7 +62,7 @@
     return YES;
 }
 
-- (BOOL)createTable2:(BZObjectStoreRuntime*)runtime attributeRuntime:(BZObjectStoreRuntime*)attributeRuntime db:(FMDatabase*)db
+- (BOOL)createTable:(BZObjectStoreRuntime*)runtime attributeRuntime:(BZObjectStoreRuntime*)attributeRuntime db:(FMDatabase*)db
 {
     BOOL tableExists = [db tableExists:runtime.tableName];
     if (!tableExists) {
@@ -80,7 +76,7 @@
                 return NO;
             }
         }
-        [self createAtributeTable2:runtime attributeRuntime:attributeRuntime db:db];
+        [self createAtributeTable:runtime attributeRuntime:attributeRuntime db:db];
         if ([self hadError:db]) {
             return NO;
         }
@@ -100,7 +96,7 @@
             
         }
         if ( addedColumns ) {
-            [self createAtributeTable2:runtime attributeRuntime:attributeRuntime db:db];
+            [self createAtributeTable:runtime attributeRuntime:attributeRuntime db:db];
             if ([self hadError:db]) {
                 return NO;
             }
@@ -158,34 +154,34 @@
 
 #pragma mark create,drop
 
-- (BOOL)existsTable:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db
-{
-    return [db tableExists:runtime.tableName];
-}
-
-- (BOOL)existsIndex:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db
-{
-    return [db indexExists:runtime.uniqueIndexName];
-}
-
-- (BOOL)createTable:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db
-{
-    [db executeUpdate:[runtime createTableStatement]];
-    if ([self hadError:db]) {
-        return NO;
-    }
-    return YES;
-}
-
-- (BOOL)createUniqueIndex:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db
-{
-    [db executeUpdate:[runtime createUniqueIndexStatement]];
-    if ([self hadError:db]) {
-        return NO;
-    }
-    return YES;
-}
-
+//- (BOOL)existsTable:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db
+//{
+//    return [db tableExists:runtime.tableName];
+//}
+//
+//- (BOOL)existsIndex:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db
+//{
+//    return [db indexExists:runtime.uniqueIndexName];
+//}
+//
+//- (BOOL)createTable:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db
+//{
+//    [db executeUpdate:[runtime createTableStatement]];
+//    if ([self hadError:db]) {
+//        return NO;
+//    }
+//    return YES;
+//}
+//
+//- (BOOL)createUniqueIndex:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db
+//{
+//    [db executeUpdate:[runtime createUniqueIndexStatement]];
+//    if ([self hadError:db]) {
+//        return NO;
+//    }
+//    return YES;
+//}
+//
 - (BOOL)dropTable:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db
 {
     BOOL tableExists = [db tableExists:runtime.tableName];
@@ -198,18 +194,18 @@
     return YES;
 }
 
-- (BOOL)dropUniqueIndex:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db
-{
-    BOOL indexExists = [db indexExists:runtime.uniqueIndexName];
-    if (indexExists) {
-        [db executeUpdate:[runtime dropUniqueIndexStatement]];
-        if ([self hadError:db]) {
-            return NO;
-        }
-    }
-    return YES;
-}
-
+//- (BOOL)dropUniqueIndex:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db
+//{
+//    BOOL indexExists = [db indexExists:runtime.uniqueIndexName];
+//    if (indexExists) {
+//        [db executeUpdate:[runtime dropUniqueIndexStatement]];
+//        if ([self hadError:db]) {
+//            return NO;
+//        }
+//    }
+//    return YES;
+//}
+//
 
 #pragma mark attribute methods
 

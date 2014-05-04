@@ -68,7 +68,7 @@
 - (BOOL)createAttribute:(BZObjectStoreRuntime*)runtime attributeRuntime:(BZObjectStoreRuntime*)attributeRuntime db:(FMDatabase*)db;
 - (BOOL)deleteAttribute:(BZObjectStoreRuntime*)runtime attributeRuntime:(BZObjectStoreRuntime*)attributeRuntime db:(FMDatabase*)db;
 
-- (BOOL)createTable2:(BZObjectStoreRuntime*)runtime attributeRuntime:(BZObjectStoreRuntime*)attributeRuntime db:(FMDatabase*)db;
+- (BOOL)createTable:(BZObjectStoreRuntime*)runtime attributeRuntime:(BZObjectStoreRuntime*)attributeRuntime db:(FMDatabase*)db;
 
 @end
 
@@ -916,7 +916,7 @@
     }
 
     BZObjectStoreRuntime *attributeRuntime = [self runtime:[BZObjectStoreAttributeModel class]];
-    [self createTable2:runtime attributeRuntime:attributeRuntime db:db];
+    [self createTable:runtime attributeRuntime:attributeRuntime db:db];
     if ([self hadError:db error:error]) {
         return NO;
     }
