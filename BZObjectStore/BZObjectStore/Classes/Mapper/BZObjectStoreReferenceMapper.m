@@ -540,11 +540,12 @@
                             attributeParentSequence = @0;
                         }
                         
-                        [self updateRuntime:processingInAttributeObject.targetObjectInAttribute db:db error:error];
+                        BZObjectStoreRuntime *runtime = [self runtimeWithClazz:processingInAttributeObject.targetObjectInAttribute.class db:db error:error];
                         if ([self hadError:db error:error]) {
                             return NO;
                         }
-                        if (processingInAttributeObject.targetObjectInAttribute.runtime.isRelationshipClazz) {
+                        if (runtime.isRelationshipClazz) {
+                            processingInAttributeObject.targetObjectInAttribute.runtime = runtime;
                             enumerator = [processingInAttributeObject.targetObjectInAttribute.runtime objectEnumeratorWithObject:processingInAttributeObject.targetObjectInAttribute];
                             keys = [processingInAttributeObject.targetObjectInAttribute.runtime keysWithObject:processingInAttributeObject.targetObjectInAttribute];
                         }
@@ -555,7 +556,9 @@
                                 return NO;
                             }
                             if (attributeRuntimeInEnumerator) {
-                                attributeObjectInEnumerator.runtime = attributeRuntimeInEnumerator;
+                                if (attributeRuntimeInEnumerator.isRelationshipClazz) {
+                                    attributeObjectInEnumerator.runtime = attributeRuntimeInEnumerator;
+                                }
                                 NSString *attributeObjectClassName = nil;
                                 NSString *attributeObjectTableName = nil;
                                 NSObject *attributeObject = nil;
@@ -592,7 +595,9 @@
                                 } else {
                                     relationshipObject.attributeKey = nil;
                                 }
-                                relationshipObject.attributeToObject.runtime = attributeRuntimeInEnumerator;
+                                if (attributeRuntimeInEnumerator.isRelationshipClazz) {
+                                    relationshipObject.attributeToObject.runtime = attributeRuntimeInEnumerator;
+                                }
                                 [relationshipObjects addObject:relationshipObject];
                                 [allRelationshipObjects addObject:relationshipObject];
                                 attributeSequence++;
