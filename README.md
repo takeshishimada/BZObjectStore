@@ -80,8 +80,12 @@ BZObjectStore *os = [BZObjectStore openWithPath:nil error:&error];
 ```
 #### Register Class
 ```objective-c
-// Improve response time (Not required)
+// Improve response time (Not required but recommended)
 [os registerClass:[SampleModel class] error:&error];
+```
+#### UnRegister Class
+```objective-c
+[os unRegisterClass:[SampleModel class] error:&error];
 ```
 #### Save Objects
 ```objective-c
@@ -604,7 +608,7 @@ Background process methods can not be used in inTransactionInBackground method.
 
 
 ## Features
-- Unregister Class support
+- 64bit Environment Support
 - Automatic Migration Support
 - CLLocationCoordinate2D, CLLocation, NSHashTable, NSMapTable support
 - [Parse](https://parse.com/docs/ios/api/index.html "Parse") support
