@@ -513,6 +513,8 @@ Import BZObjectStoreBackground.h and call each method name + 'InBackground' meth
 		// failed
 	}
 }];
+
+// refer BZObjectStoreBackground.h about other methods
 ```
 
 ## Data Types
@@ -560,8 +562,12 @@ Import BZObjectStoreBackground.h and call each method name + 'InBackground' meth
 Other C structures will be saved as NSValue.
 
 ## Others
+#### Migration
+BZObjectStore supports adding attributes and deleting attributes which has not OSIdenticalAttribute only.
+Please use FMDatabaseQueue and FMDatabase directly.
+
 #### FMDatabaseQueue and FMDatabase
-##### In Order to use FMDatabaseQueue, use dbQueue property.
+##### In order to use FMDatabaseQueue, use dbQueue property.
 ```objective-c
 #import "BZObjectStore.h"
 #import "FMDatabaseQueue.h"
@@ -597,18 +603,13 @@ Other C structures will be saved as NSValue.
 }
 ```
 
-#### Readonly Property
-Readonly property always will be ignored.
-
-#### Identical Attribute values
-Identical attribute value can not be changed after object saving.
-
-#### Background process methods
-Background process methods can not be used in inTransactionInBackground method.
+### Restricted
+Readonly property always will be ignored.  
+Identical attribute value can not be changed after object saving.  
+Background process methods can not be used in inTransactionInBackground method.  
 
 
 ## Features
-- 64bit Environment Support
 - Automatic Migration Support
 - CLLocationCoordinate2D, CLLocation, NSHashTable, NSMapTable support
 - [Parse](https://parse.com/docs/ios/api/index.html "Parse") support
