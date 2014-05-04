@@ -39,16 +39,8 @@
 
 @implementation BZObjectStoreModelMapper
 
-
-
 - (BOOL)createAtributeTable2:(BZObjectStoreRuntime*)runtime attributeRuntime:(BZObjectStoreRuntime*)attributeRuntime db:(FMDatabase*)db
 {
-    if (runtime.clazz == [BZObjectStoreAttributeModel class]) {
-        return YES;
-    }
-    if (runtime.clazz == [BZObjectStoreRelationshipModel class]) {
-        return YES;
-    }
     BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
     condition.sqlite.where = @"className = ?";
     condition.sqlite.parameters = @[runtime.clazzName];
@@ -169,6 +161,11 @@
 - (BOOL)existsTable:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db
 {
     return [db tableExists:runtime.tableName];
+}
+
+- (BOOL)existsIndex:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db
+{
+    return [db indexExists:runtime.uniqueIndexName];
 }
 
 - (BOOL)createTable:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db

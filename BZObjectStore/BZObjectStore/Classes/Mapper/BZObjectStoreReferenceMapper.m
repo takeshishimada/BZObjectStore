@@ -59,6 +59,7 @@
 - (void)updateRowidWithObjects:(NSArray*)objects db:(FMDatabase*)db;
 
 - (BOOL)existsTable:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
+- (BOOL)existsIndex:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
 - (BOOL)createTable:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
 - (BOOL)createUniqueIndex:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
 - (BOOL)dropTable:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
@@ -760,12 +761,12 @@
                 if (!attribute.weakReferenceAttribute) {
                     NSObject *tagetObjectInAttribute = [targetObject valueForKey:attribute.name];
                     if (tagetObjectInAttribute) {
-                        NSMutableArray *tagetObjectInAttributeStack = [NSMutableArray array];
-                        [tagetObjectInAttributeStack addObject:tagetObjectInAttribute];
+                        NSMutableArray *tagetObjectsInAttribute = [NSMutableArray array];
+                        [tagetObjectsInAttribute addObject:tagetObjectInAttribute];
                         
-                        while (tagetObjectInAttributeStack.count > 0) {
-                            NSObject *tagetObjectInAttribute = [tagetObjectInAttributeStack lastObject];
-                            [tagetObjectInAttributeStack removeLastObject];
+                        while (tagetObjectsInAttribute.count > 0) {
+                            NSObject *tagetObjectInAttribute = [tagetObjectsInAttribute lastObject];
+                            [tagetObjectsInAttribute removeLastObject];
                             [self updateRuntime:tagetObjectInAttribute db:db error:error];
                             if ([self hadError:db error:error]) {
                                 return NO;
@@ -778,7 +779,7 @@
                                         tagetObjectInEnumeratorInAttribute.runtime = runtime;
                                         [targetObjects addObject:tagetObjectInEnumeratorInAttribute];
                                     } else if (runtime.isArrayClazz) {
-                                        [tagetObjectInAttributeStack addObject:tagetObjectInEnumeratorInAttribute];
+                                        [tagetObjectsInAttribute addObject:tagetObjectInEnumeratorInAttribute];
                                     }
                                 }
                             }
@@ -913,7 +914,7 @@
     if (registed.boolValue) {
         return YES;
     }
-    
+
     BZObjectStoreRuntime *attributeRuntime = [self runtime:[BZObjectStoreAttributeModel class]];
     [self createTable2:runtime attributeRuntime:attributeRuntime db:db];
     if ([self hadError:db error:error]) {
@@ -921,19 +922,9 @@
     }
     
     
-//    NSMutableArray *newAttributes = [NSMutableArray array];
-//    NSMutableArray *oldAttributes = [NSMutableArray array];
-//    for (BZObjectStoreRuntimeProperty *attribute in runtime.insertAttributes) {
-//        [newAttributes addObject:[[BZObjectStoreAttributeModel alloc]initWithRuntime:runtime attribute:attribute]];
-//    }
-//    [oldAttributes addObjectsFromArray:[self selectAttributes:runtime attributeRuntime:attributeRuntime db:db]];
-    
-    
-    
     [self.registedClazzes setObject:@NO forKey:runtime.clazzName];
     return YES;
 }
-
 
 
 - (BOOL)unRegisterRuntime:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db error:(NSError**)error

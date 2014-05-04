@@ -96,11 +96,11 @@
     
     NSError *err = nil;
     BOOL ret = NO;
-    ret = [os registerClass:[BZObjectStoreRelationshipModel class] error:&err];
+    ret = [os registerClass:[BZObjectStoreAttributeModel class] error:&err];
     if (!ret) {
         return nil;
     }
-    ret = [os registerClass:[BZObjectStoreAttributeModel class] error:&err];
+    ret = [os registerClass:[BZObjectStoreRelationshipModel class] error:&err];
     if (!ret) {
         return nil;
     }
