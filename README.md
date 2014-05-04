@@ -513,6 +513,8 @@ Import BZObjectStoreBackground.h and call each method name + 'InBackground' meth
 		// failed
 	}
 }];
+
+// refer BZObjectStoreBackground.h about other methods
 ```
 
 ## Data Types
