@@ -45,6 +45,7 @@
 #import "BZObjectStoreClazzSerialize.h"
 #import "BZObjectStoreClazzChar.h"
 #import "BZObjectStoreClazzShort.h"
+#import "BZObjectStoreClazzC99Bool.h"
 #import "BZObjectStoreClazzInt.h"
 #import "BZObjectStoreClazzLong.h"
 #import "BZObjectStoreClazzLongLong.h"
@@ -145,6 +146,7 @@
             [self addOSClazz:[BZObjectStoreClazzNSDictionary class] osclazzsArray:osclazzsArray];
             [self addOSClazz:[BZObjectStoreClazzNSSet class] osclazzsArray:osclazzsArray];
             [self addOSClazz:[BZObjectStoreClazzNSOrderedSet class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzC99Bool class] osclazzsArray:osclazzsArray];
             [self addOSClazz:[BZObjectStoreClazzInt class] osclazzsArray:osclazzsArray];
             [self addOSClazz:[BZObjectStoreClazzChar class] osclazzsArray:osclazzsArray];
             [self addOSClazz:[BZObjectStoreClazzLong class] osclazzsArray:osclazzsArray];
@@ -225,6 +227,9 @@
         if (osclazz) {
             [osclazzs setObject:osclazz forKey:key];
         }
+    }
+    if (!osclazz) {
+        return nil;
     }
     return osclazz;
 }
