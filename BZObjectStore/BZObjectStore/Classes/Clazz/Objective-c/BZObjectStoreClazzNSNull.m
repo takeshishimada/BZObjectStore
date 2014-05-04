@@ -41,7 +41,7 @@
     return YES;
 }
 
-- (NSArray*)storeValuesWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute
+- (NSArray*)storeValuesWithValue:(id)value attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
     return @[[NSNull null]];
 }

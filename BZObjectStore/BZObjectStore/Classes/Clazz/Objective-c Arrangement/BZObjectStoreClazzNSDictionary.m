@@ -57,9 +57,8 @@
     return YES;
 }
 
-- (NSArray*)storeValuesWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute
+- (NSArray*)storeValuesWithValue:(NSDictionary*)value attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    NSDictionary *value = [object valueForKey:attribute.name];
     if ([[value class] isSubclassOfClass:[NSDictionary class]]) {
         return @[[NSNumber numberWithUnsignedInteger:value.count]];
     }

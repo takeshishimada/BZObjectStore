@@ -45,9 +45,8 @@
     return YES;
 }
 
-- (NSArray*)storeValuesWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute
+- (NSArray*)storeValuesWithValue:(NSDate*)value attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    NSDate *value = [object valueForKey:attribute.name];
     if (value) {
         return @[value];
     }

@@ -52,9 +52,8 @@
     return @[length,location];
 }
 
-- (NSArray*)storeValuesWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute
+- (NSArray*)storeValuesWithValue:(NSValue*)value attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    NSValue *value = [object valueForKey:attribute.name];
     NSRange range = [value rangeValue];
     NSNumber *length = [NSNumber numberWithUnsignedInteger:range.length];
     NSNumber *location = [NSNumber numberWithUnsignedInteger:range.location];

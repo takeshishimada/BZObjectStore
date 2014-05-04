@@ -64,13 +64,12 @@
     return @[value,attributeType];
 }
 
-- (NSArray*)storeValuesWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute
+- (NSArray*)storeValuesWithValue:(NSObject*)value attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    NSObject *value = [object valueForKey:attribute.columnName];
     NSString *attributeType = nil;
     if (value) {
         BZObjectStoreClazz *osclazz = [BZObjectStoreClazz osclazzWithClazz:[value class]];
-        NSArray *storeValue = [osclazz storeValuesWithObject:object attribute:attribute];
+        NSArray *storeValue = [osclazz storeValuesWithValue:value attribute:attribute];
         attributeType = osclazz.attributeType;
         NSMutableArray *storeValues = [NSMutableArray arrayWithArray:storeValue];
         if (storeValues.count == 1) {

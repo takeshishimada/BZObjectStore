@@ -45,9 +45,8 @@
     return YES;
 }
 
-- (NSArray*)storeValuesWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute
+- (NSArray*)storeValuesWithValue:(NSURL*)value attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    NSURL *value = [object valueForKey:attribute.name];
     if (value) {
         return @[[value absoluteString]];
     }

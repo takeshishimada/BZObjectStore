@@ -41,11 +41,10 @@
     return YES;
 }
 
-- (NSArray*)storeValuesWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute
+- (NSArray*)storeValuesWithValue:(UIImage*)value attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    UIImage *image = [object valueForKey:attribute.name];
-    if (image) {
-        return @[[NSData dataWithData:UIImagePNGRepresentation(image)]];
+    if (value) {
+        return @[[NSData dataWithData:UIImagePNGRepresentation(value)]];
     }
     return @[[NSNull null]];
 }

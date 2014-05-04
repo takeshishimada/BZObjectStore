@@ -39,7 +39,7 @@
 - (id)objectWithClazz:(Class)clazz;
 - (NSEnumerator*)objectEnumeratorWithObject:(id)object;
 - (NSArray*)keysWithObject:(id)object;
-- (NSArray*)storeValuesWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute;
+- (NSArray*)storeValuesWithValue:(id)value attribute:(BZObjectStoreRuntimeProperty*)attribute;
 - (id)valueWithResultSet:(FMResultSet*)resultSet attribute:(BZObjectStoreRuntimeProperty*)attribute;
 - (NSString*)sqliteDataTypeName;
 - (NSArray*)sqliteColumnsWithAttribute:(BZObjectStoreRuntimeProperty*)attribute;

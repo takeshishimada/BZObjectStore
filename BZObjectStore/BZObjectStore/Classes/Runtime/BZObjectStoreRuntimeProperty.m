@@ -233,7 +233,7 @@
 
 - (NSArray*)storeValuesWithObject:(NSObject*)object
 {
-    return [self.osclazz storeValuesWithObject:object attribute:self];
+    return [self.osclazz storeValuesWithValue:[object valueForKey:self.name] attribute:self];
 }
 
 - (id)valueWithResultSet:(FMResultSet*)resultSet

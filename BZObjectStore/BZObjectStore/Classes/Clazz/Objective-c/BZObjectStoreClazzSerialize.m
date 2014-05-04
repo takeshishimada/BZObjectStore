@@ -41,9 +41,8 @@
     return YES;
 }
 
-- (NSArray*)storeValuesWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute
+- (NSArray*)storeValuesWithValue:(NSObject*)value attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    NSObject *value = [object valueForKey:attribute.name];
     if ([value conformsToProtocol:@protocol(NSCoding)]) {
         return @[[NSKeyedArchiver archivedDataWithRootObject:value]];
     }

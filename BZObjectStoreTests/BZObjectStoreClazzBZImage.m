@@ -57,9 +57,8 @@
     return @[url,gif];
 }
 
-- (NSArray*)storeValuesWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute
+- (NSArray*)storeValuesWithValue:(BZImage*)value attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    BZImage *value = [object valueForKey:attribute.name];
     if ([[value class] isSubclassOfClass:[BZImage class]]) {
         NSObject *url = value.url;
         NSObject *gif = value.gif;

@@ -47,9 +47,8 @@
     return YES;
 }
 
-- (NSArray*)storeValuesWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute
+- (NSArray*)storeValuesWithValue:(UIColor*)value attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    UIColor *value = [object valueForKey:attribute.name];
     if ([[value class] isSubclassOfClass:[UIColor class]]) {
         return @[[value stringHEXValue]];
     }
