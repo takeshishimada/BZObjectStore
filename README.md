@@ -563,7 +563,7 @@ Other C structures will be saved as NSValue.
 
 ## Others
 #### Migration
-BZObjectStore supports adding attributes and deleting attributes which has not OSIdenticalAttribute only.
+BZObjectStore supports adding attributes and deleting attributes which dose not implements OSIdenticalAttribute only.
 Please use FMDatabaseQueue and FMDatabase directly.
 
 #### FMDatabaseQueue and FMDatabase
