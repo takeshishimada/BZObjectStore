@@ -79,15 +79,6 @@ BZObjectStore *os = [BZObjectStore openWithPath:@"database.sqlite" error:&error]
 // open in memory
 BZObjectStore *os = [BZObjectStore openWithPath:nil error:&error];
 ```
-#### Register Class
-```objective-c
-// Improve response time (Not required but recommended)
-[os registerClass:[SampleModel class] error:&error];
-```
-#### UnRegister Class
-```objective-c
-[os unRegisterClass:[SampleModel class] error:&error];
-```
 #### Save Objects
 ```objective-c
 // save a object
@@ -107,7 +98,6 @@ SampleModel *latest = [os refreshObject:sample1 error:&error];
 // fetch referencing objects
 NSArray *referencingObjects = [os fetchReferencingObjectsTo:sample1 error:&error];
 ```
-
 #### Remove Objects
 ```objective-c
 // remove a object
@@ -118,9 +108,7 @@ NSArray *referencingObjects = [os fetchReferencingObjectsTo:sample1 error:&error
 
 // remove objects in array
 [os removeObject:@[sample1,sample2] error:&error];
-
 ```
-
 #### Fetch Objects with condition
 ```objective-c
 BZObjectStoreConditionModel *fetchCondition = [BZObjectStoreConditionModel condition];
@@ -129,7 +117,6 @@ fetchCondition.sqlite.orderBy = @"name desc";
 
 NSArray *objects = [os fetchObjects:[SampleModel class] condition:fetchCondition error:&error];
 ```
-
 #### Remove Objects with condition
 ```objective-c
 BZObjectStoreConditionModel *removeCondition = [BZObjectStoreConditionModel condition];
@@ -137,43 +124,35 @@ removeCondition.sqlite.where = @"name = 'sample1'";
 
 [os removeObjects:[SampleModel class] condition:removeCondition error:&error];
 ```
-
 #### Close Database
 ```objective-c
 // close database
 [os close];
 ```
-
 #### Get count value
 ```objective-c
 NSNumber *count = [os count:[SampleModel class] condition:nil error:&error];
 ```
-
 #### Get maximum value
 ```objective-c
 NSNumber *max = [os max:@"price" class:[SampleModel class] condition:nil error:&error];
 ```
-
 #### Get minimum value
 ```objective-c
 NSNumber *min = [os min:@"price" class:[SampleModel class] condition:nil error:&error];
 ```
-
 #### Get sum values
 ```objective-c
 NSNumber *sum = [os sum:@"price" class:[SampleModel class] condition:nil error:&error];
 ```
-
 #### Get total values
 ```objective-c
 NSNumber *total = [os total:@"price" class:[SampleModel class] condition:nil error:&error];
 ```
-
 #### Get average value
 ```objective-c
 NSNumber *avg = [os avg:@"price" class:[SampleModel class] condition:nil error:&error];
 ```
-
 #### Transaction
 ```objective-c
 [os inTransaction:^(BZObjectStore *os, BOOL *rollback) {
@@ -185,6 +164,15 @@ NSNumber *avg = [os avg:@"price" class:[SampleModel class] condition:nil error:&
     // rollback if need
     *rollback = YES;
 }];
+```
+#### Register Class
+```objective-c
+// Improve response time (Not required but recommended)
+[os registerClass:[SampleModel class] error:&error];
+```
+#### UnRegister Class
+```objective-c
+[os unRegisterClass:[SampleModel class] error:&error];
 ```
 
 ## Condition
