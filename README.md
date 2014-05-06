@@ -615,7 +615,6 @@ Please use FMDatabaseQueue and FMDatabase directly.
 ## Features
 - Automatic Migration Support
 - CLLocationCoordinate2D, CLLocation, NSHashTable, NSMapTable support
-- Notifications to Views support
 
 ## MICS
 Author: Takeshi Shimada  
