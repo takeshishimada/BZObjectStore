@@ -30,7 +30,7 @@
 #import "BZRuntime.h"
 
 @interface BZObjectStoreClazzPFObjectRequiredAttributesModel : NSObject
-@property (nonatomic,strong) NSString *objectId;
+@property (nonatomic,strong) NSString<OSModelInterface> *objectId;
 @property (nonatomic,strong) NSDate *createdAt;
 @property (nonatomic,strong) NSDate *updatedAt;
 @property (nonatomic,strong) PFACL<OSSerializableAttribute> *ACL;
