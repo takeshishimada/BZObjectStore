@@ -88,11 +88,10 @@
 #import "BZBackgroundModel.h"
 #import "BZTransactionModel.h"
 #import "BZParseModel.h"
-#import "BZObjectStoreClazzPFObject.h"
+#import "BZObjectStoreParse.h"
+#import <Parse/Parse.h>
 
 @interface BZObjectStoreTests : XCTestCase {
-    BZObjectStore *_disk;
-    BZObjectStore *_memory;
 }
 @end
 
@@ -135,7 +134,22 @@
     
     [Parse setApplicationId:@"qNMDT4gO06FhoPafaFOr6iM17FL5MoX2Idd00Mhr"
                   clientKey:@"S3yt2lFSZNHOPE7Z0a6oa451tpecGJ5ysXfR92uO"];
+    
+    
+    // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+    [BZObjectStoreParse registerClass];
+    
+}
 
+- (void)tearDown
+{
+    // Put teardown code here. This method is called after the invocation of each test method in the class.
+    [super tearDown];
+}
+
+- (void)testOnDisk
+{
     NSString *path = @"database.sqlite";
     if (path && ![path isEqualToString:@""]) {
         if ([path isEqualToString:[path lastPathComponent]]) {
@@ -147,57 +161,45 @@
     NSFileManager *manager = [NSFileManager defaultManager];
     if ([manager removeItemAtPath:path error:nil]) {
     }
-
-    // Put setup code here. This method is called before the invocation of each test method in the class.
-    [BZObjectStoreClazz addClazz:[BZObjectStoreClazzPFObject class]];
     
+    BZObjectStore *_disk;
     _disk = [BZObjectStoreOnDisk openWithPath:@"database.sqlite" error:nil];
-    _memory = [BZObjectStoreOnMemory openWithPath:nil error:nil];
-}
 
-- (void)tearDown
-{
-    // Put teardown code here. This method is called after the invocation of each test method in the class.
-    [super tearDown];
-}
-
-- (void)testOnDisk
-{
     [self testBZParseModel:_disk];
-//    [self testBZVarietyValuesModel:_disk];
-//    [self testBZInvalidValuesModel:_disk];
-//    [self testBZRelationshipHeaderModel:_disk];
-//    [self testBZInsertResponseModel:_disk];
-//    [self testBZUpdateResponseModel:_disk];
-//    [self testCircularReference:_disk];
-//    [self testSQLiteGroupCondition:_disk];
-//    [self testBZUpdateExistsObjectWithNoRowIdModel:_disk];
-//    [self testBZOnDemanItemModel:_disk];
-//    [self testBZExtendModel:_disk];
-//    [self testBZIgnoreExtendModel:_disk];
-//    [self testUpdateAttributeModel:_disk];
-//    [self testBZIgnoreAttribute:_disk];
-//    [self testBZDelegateModel:_disk];
-//    [self testBZNameModel:_disk];
-//    [self testAttributesModel:_disk];
-//    [self testBZOrderByModel:_disk];
-//    [self testBZWhereModel:_disk];
-//    [self testBZOffSetLimitModel:_disk];
-//    [self testBZFullTextModel:_disk];
-//    [self testBZReferenceConditionModel:_disk];
-//    [self testBZOSIdenticalModel:_disk];
-//    [self testBZWeakPropertyModel:_disk];
-//    [self testBZAddColumnsModel:_disk];
-//    [self testBZTypeMissMatchModel:_disk];
-//    [self testBZOSIdenticalAttributeOSSerializeAttributeModel:_disk];
-//    [self testBZOSIdenticalFirstModel:_disk];
-//    [self testBZDuplicateAttributeModel:_disk];
-//    [self testBZObjectStoreReferenceModel:_disk];
-//    [self testBZObjectStoreNameBuilder:_disk];
-//    [self testBZObjectStoreClazzBZImage:_disk];
-//    [self testBZArrayInArrayModel:_disk];
-//    [self testBackground:_disk];
-//    [self testInTransaction:_disk];
+    [self testBZVarietyValuesModel:_disk];
+    [self testBZInvalidValuesModel:_disk];
+    [self testBZRelationshipHeaderModel:_disk];
+    [self testBZInsertResponseModel:_disk];
+    [self testBZUpdateResponseModel:_disk];
+    [self testCircularReference:_disk];
+    [self testSQLiteGroupCondition:_disk];
+    [self testBZUpdateExistsObjectWithNoRowIdModel:_disk];
+    [self testBZOnDemanItemModel:_disk];
+    [self testBZExtendModel:_disk];
+    [self testBZIgnoreExtendModel:_disk];
+    [self testUpdateAttributeModel:_disk];
+    [self testBZIgnoreAttribute:_disk];
+    [self testBZDelegateModel:_disk];
+    [self testBZNameModel:_disk];
+    [self testAttributesModel:_disk];
+    [self testBZOrderByModel:_disk];
+    [self testBZWhereModel:_disk];
+    [self testBZOffSetLimitModel:_disk];
+    [self testBZFullTextModel:_disk];
+    [self testBZReferenceConditionModel:_disk];
+    [self testBZOSIdenticalModel:_disk];
+    [self testBZWeakPropertyModel:_disk];
+    [self testBZAddColumnsModel:_disk];
+    [self testBZTypeMissMatchModel:_disk];
+    [self testBZOSIdenticalAttributeOSSerializeAttributeModel:_disk];
+    [self testBZOSIdenticalFirstModel:_disk];
+    [self testBZDuplicateAttributeModel:_disk];
+    [self testBZObjectStoreReferenceModel:_disk];
+    [self testBZObjectStoreNameBuilder:_disk];
+    [self testBZObjectStoreClazzBZImage:_disk];
+    [self testBZArrayInArrayModel:_disk];
+    [self testBackground:_disk];
+    [self testInTransaction:_disk];
     [_disk close];
     _disk = nil;
 }
@@ -205,41 +207,43 @@
 
 - (void)testOnMemory
 {
-    [self testBZParseModel:_disk];
-//    [self testBZVarietyValuesModel:_memory];
-//    [self testBZInvalidValuesModel:_memory];
-//    [self testBZRelationshipHeaderModel:_memory];
-//    [self testBZInsertResponseModel:_memory];
-//    [self testBZUpdateResponseModel:_memory];
-//    [self testCircularReference:_memory];
-//    [self testSQLiteGroupCondition:_memory];
-//    [self testBZUpdateExistsObjectWithNoRowIdModel:_memory];
-//    [self testBZOnDemanItemModel:_memory];
-//    [self testBZExtendModel:_memory];
-//    [self testBZIgnoreExtendModel:_memory];
-//    [self testUpdateAttributeModel:_memory];
-//    [self testBZIgnoreAttribute:_memory];
-//    [self testBZDelegateModel:_memory];
-//    [self testBZNameModel:_memory];
-//    [self testAttributesModel:_memory];
-//    [self testBZOrderByModel:_memory];
-//    [self testBZWhereModel:_memory];
-//    [self testBZOffSetLimitModel:_memory];
-//    [self testBZFullTextModel:_memory];
-//    [self testBZReferenceConditionModel:_memory];
-//    [self testBZOSIdenticalModel:_memory];
-//    [self testBZWeakPropertyModel:_memory];
-//    [self testBZAddColumnsModel:_memory];
-//    [self testBZTypeMissMatchModel:_memory];
-//    [self testBZOSIdenticalAttributeOSSerializeAttributeModel:_memory];
-//    [self testBZOSIdenticalFirstModel:_memory];
-//    [self testBZDuplicateAttributeModel:_memory];
-//    [self testBZObjectStoreReferenceModel:_memory];
-//    [self testBZObjectStoreNameBuilder:_memory];
-//    [self testBZObjectStoreClazzBZImage:_memory];
-//    [self testBZArrayInArrayModel:_memory];
-//    [self testBackground:_memory];
-//    [self testInTransaction:_memory];
+    BZObjectStore *_memory;
+    _memory = [BZObjectStoreOnMemory openWithPath:nil error:nil];
+    [self testBZParseModel:_memory];
+    [self testBZVarietyValuesModel:_memory];
+    [self testBZInvalidValuesModel:_memory];
+    [self testBZRelationshipHeaderModel:_memory];
+    [self testBZInsertResponseModel:_memory];
+    [self testBZUpdateResponseModel:_memory];
+    [self testCircularReference:_memory];
+    [self testSQLiteGroupCondition:_memory];
+    [self testBZUpdateExistsObjectWithNoRowIdModel:_memory];
+    [self testBZOnDemanItemModel:_memory];
+    [self testBZExtendModel:_memory];
+    [self testBZIgnoreExtendModel:_memory];
+    [self testUpdateAttributeModel:_memory];
+    [self testBZIgnoreAttribute:_memory];
+    [self testBZDelegateModel:_memory];
+    [self testBZNameModel:_memory];
+    [self testAttributesModel:_memory];
+    [self testBZOrderByModel:_memory];
+    [self testBZWhereModel:_memory];
+    [self testBZOffSetLimitModel:_memory];
+    [self testBZFullTextModel:_memory];
+    [self testBZReferenceConditionModel:_memory];
+    [self testBZOSIdenticalModel:_memory];
+    [self testBZWeakPropertyModel:_memory];
+    [self testBZAddColumnsModel:_memory];
+    [self testBZTypeMissMatchModel:_memory];
+    [self testBZOSIdenticalAttributeOSSerializeAttributeModel:_memory];
+    [self testBZOSIdenticalFirstModel:_memory];
+    [self testBZDuplicateAttributeModel:_memory];
+    [self testBZObjectStoreReferenceModel:_memory];
+    [self testBZObjectStoreNameBuilder:_memory];
+    [self testBZObjectStoreClazzBZImage:_memory];
+    [self testBZArrayInArrayModel:_memory];
+    [self testBackground:_memory];
+    [self testInTransaction:_memory];
     [_memory close];
     _memory = nil;
 }
@@ -252,19 +256,19 @@
     BZVarietyValuesItemModel *item1 = [[BZVarietyValuesItemModel alloc]init];
     item1.code = @"01";
     item1.name = @"apple";
-
+    
     BZVarietyValuesItemModel *item2 = [[BZVarietyValuesItemModel alloc]init];
     item2.code = @"02";
     item2.name = @"orange";
-
+    
     BZVarietyValuesItemModel *item3 = [[BZVarietyValuesItemModel alloc]init];
     item3.code = @"03";
     item3.name = @"banana";
-
+    
     BZVarietyValuesModel *savedObject = [[BZVarietyValuesModel alloc]init];
     
     foo vvalue = {2,"name",1.23456788f};
-
+    
     // POD types
     savedObject.vcharstring = "test";
     savedObject.vbool_max = YES;
@@ -316,7 +320,7 @@
     savedObject.vrect = CGRectMake(4.123456f,1.123456f,2.123456f,3.123456f);
     savedObject.vpoint = CGPointMake(4.123456f, 5.123456f);
     savedObject.vsize = CGSizeMake(6.123456f, 7.123456f);
-
+    
     // objective-c array,set,dictionary,orderedset
     savedObject.vArray = [NSArray arrayWithObjects:item1,item2,item3, nil];
     NSValue *pointSaved = [NSValue valueWithCGPoint:CGPointMake(1, 2)];
@@ -340,14 +344,14 @@
     NSArray *fetchedObjects = [os fetchObjects:[BZVarietyValuesModel class] condition:nil error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     XCTAssertTrue(fetchedObjects.count == 1, @"fetch objects count is invalid");
-
+    
     
     
     
     // variable simple value tests
     BZVarietyValuesModel *fetchedObject = fetchedObjects.firstObject;
     XCTAssertTrue(![fetchedObject isEqual:savedObject],"object error");
-
+    
     
     // class type
     XCTAssertTrue([[savedObject.vstring class] isSubclassOfClass:[NSString class]], @"nsstring class");
@@ -400,7 +404,7 @@
     XCTAssertTrue(fetchedObject.vfoo.no == 2, @"struct int error");
     XCTAssertTrue(strcmp(fetchedObject.vfoo.name, "name") == 0, @"struct int error");
     XCTAssertTrue(fetchedObject.vfoo.average == 1.23456788f, @"struct double error");
-
+    
     // objective-c
     XCTAssertTrue(fetchedObject.vnsinteger == savedObject.vnsinteger,"vinteger error");
     XCTAssertTrue([fetchedObject.vstring isEqualToString:savedObject.vstring],"vstring error");
@@ -424,12 +428,12 @@
     BZVarietyValuesItemModel *vidto = (BZVarietyValuesItemModel*)savedObject.vid;
     XCTAssertTrue([vidfrom.code isEqualToString:vidto.code] ,@"vdictionary error");
     XCTAssertTrue([vidfrom.name isEqualToString:vidto.name] ,@"vdictionary error");
-
+    
     BZVarietyValuesItemModel *vmodelfrom = (BZVarietyValuesItemModel*)fetchedObject.vmodel;
     BZVarietyValuesItemModel *vmodelto = (BZVarietyValuesItemModel*)savedObject.vmodel;
     XCTAssertTrue([vmodelfrom.code isEqualToString:vmodelto.code] ,@"vdictionary error");
     XCTAssertTrue([vmodelfrom.name isEqualToString:vmodelto.name] ,@"vdictionary error");
-
+    
     
     
     // objective-c core graphics
@@ -516,7 +520,7 @@
             XCTAssertTrue([from.name isEqualToString:to.name] ,@"OrderedSet error");
         }
     }
-
+    
     // mutable array test
     {
         NSArray *fromList = fetchedObject.vmutableArray;
@@ -539,7 +543,7 @@
             XCTAssertTrue([from.name isEqualToString:to.name] ,@"vmutabledictionary error");
         }
     }
-
+    
     // mutableset test
     {
         NSArray *fromList = fetchedObject.vmutableSet.allObjects;
@@ -561,7 +565,7 @@
             XCTAssertTrue([from.name isEqualToString:to.name] ,@"vmutableSet error");
         }
     }
-
+    
     // mutableOrderedSet test
     {
         NSMutableOrderedSet *fromList = fetchedObject.vmutableOrderedSet;
@@ -573,7 +577,7 @@
             XCTAssertTrue([from.name isEqualToString:to.name] ,@"mutableOrderedSet error");
         }
     }
-
+    
     // empty
     BZVarietyValuesModel *empty = [[BZVarietyValuesModel alloc]init];
     [os saveObject:empty error:&error];
@@ -605,26 +609,26 @@
     BZRelationshipItemModel *item1 = [[BZRelationshipItemModel alloc]init];
     item1.code = @"item1";
     item1.price = 100;
-
+    
     BZRelationshipItemModel *item2 = [[BZRelationshipItemModel alloc]init];
     item2.code = @"item2";
     item2.price = 200;
     item2.items = @[item1,item1];
-
+    
     BZRelationshipDetailModel *detail1 = [[BZRelationshipDetailModel alloc]init];
     detail1.code = @"detail01";
     detail1.item = item1;
     detail1.count = 2;
-
+    
     BZRelationshipDetailModel *detail2 = [[BZRelationshipDetailModel alloc]init];
     detail2.code = @"detail02";
     detail2.item = item2;
     detail2.count = 2;
-
+    
     BZRelationshipHeaderModel *header = [[BZRelationshipHeaderModel alloc]init];
     header.code = @"header01";
     header.details = @[detail1,detail2];
-
+    
     
     NSError *error = nil;
     [os saveObject:header error:&error];
@@ -638,26 +642,26 @@
     
     BZRelationshipDetailModel *fetchedDetail = fetchedHeader.details.lastObject;
     XCTAssertTrue(fetchedDetail.item.items.count == 2, @"sub sub array count error");
-
+    
     fetchedHeader.details = [NSArray array];
     [os saveObject:fetchedHeader error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-
+    
     [os removeObject:fetchedHeader error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     
     NSNumber *headerCount = [os count:[BZRelationshipHeaderModel class] condition:nil error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     XCTAssertTrue([headerCount integerValue] == 0, @"header count error");
-
+    
     NSNumber *detailCount = [os count:[BZRelationshipDetailModel class] condition:nil error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     XCTAssertTrue([detailCount integerValue] == 0, @"header count error");
-
+    
     NSNumber *itemCount = [os count:[BZRelationshipItemModel class] condition:nil error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     XCTAssertTrue([itemCount integerValue] == 0, @"header count error");
-
+    
 }
 
 - (void)testBZInsertResponseModel:(BZObjectStore*)os
@@ -681,26 +685,26 @@
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     NSDate *savethen = [NSDate date];
     NSLog(@"save reponse then - now: %1.3fsec", [savethen timeIntervalSinceDate:savenow]);
-
+    
     NSDate *fetchnow = [NSDate date];
     NSArray *fetchObjects = [os fetchObjects:[BZInsertResponseModel class] condition:nil error:&error];
     XCTAssertTrue(fetchObjects.count == 20000, @"fetch error");
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     NSDate *fetchthen = [NSDate date];
     NSLog(@"fetch reponse then - now: %1.3fsec", [fetchthen timeIntervalSinceDate:fetchnow]);
-
+    
     NSDate *removenow = [NSDate date];
     [os removeObjects:[BZInsertResponseModel class] condition:nil error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     NSDate *removethen = [NSDate date];
     NSLog(@"remove reponse then - now: %1.3fsec", [removethen timeIntervalSinceDate:removenow]);
-
+    
     NSNumber *count = [os count:[BZInsertResponseModel class] condition:nil error:&error];
     XCTAssertTrue([count integerValue] == 0, @"fetch error");
-
+    
     [os unRegisterClass:[BZInsertResponseModel class] error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-
+    
 }
 
 - (void)testBZUpdateResponseModel:(BZObjectStore*)os
@@ -780,13 +784,13 @@
     
     NSArray *list = [os fetchObjects:[BZCircularReferenceModel class] condition:nil error:nil];
     XCTAssertTrue(list.count == 5,"object error");
-
+    
     [os removeObject:p3 error:nil];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-
+    
     NSNumber *count1 = [os count:[BZCircularReferenceModel class] condition:nil error:nil];
     XCTAssertTrue([count1 isEqualToNumber:@4],"object error");
-
+    
     [os removeObject:p1 error:nil];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     
@@ -834,14 +838,14 @@
     } else {
         XCTAssertTrue([sum integerValue] == 840,"error");
     }
-
+    
     NSNumber *total = [os total:@"price" class:[BZSQLiteGroupFunctionModel class] condition:nil error:nil];
     if (error) {
         XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     } else {
         XCTAssertTrue([total integerValue] == 840,"error");
     }
-
+    
     NSNumber *count = [os count:[BZSQLiteGroupFunctionModel class] condition:nil error:nil];
     if (error) {
         XCTFail(@"No implementation for \"%s\"", __PRETTY_FUNCTION__);
@@ -864,25 +868,25 @@
     second.no1 = @"01";
     second.no2 = @"01";
     second.name = @"second";
-
+    
     BZUpdateExistsObjectWithNoRowIdModel *third = [[BZUpdateExistsObjectWithNoRowIdModel alloc]init];
     third.no1 = @"03";
     third.no2 = @"03";
     third.name = @"third";
-
+    
     [os saveObject:first error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     
     [os saveObject:second error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-
+    
     [os saveObject:third error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-
+    
     second.name = @"";
     [os saveObject:second error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-
+    
     NSArray *objects = [os fetchObjects:[BZUpdateExistsObjectWithNoRowIdModel class] condition:nil error:&error];
     BZUpdateExistsObjectWithNoRowIdModel *object = objects.firstObject;
     XCTAssertTrue([object.name isEqualToString:@""],"error");
@@ -1033,7 +1037,7 @@
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     saveObject = objects.firstObject;
     XCTAssertTrue(saveObject.modelDidLoad,"object error");
-
+    
     [os removeObject:saveObject error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     XCTAssertTrue(saveObject.modelDidRemove,"object error");
@@ -1053,7 +1057,7 @@
 - (void)testAttributesModel:(BZObjectStore*)os
 {
     NSError *error = nil;
-
+    
     BZAttributeIsSerializeModel *serializeObject = [[BZAttributeIsSerializeModel alloc]init];
     BZAttributeIsWeakReferenceModel *weakReferenceObject = [[BZAttributeIsWeakReferenceModel alloc]init];
     BZAttributeIsfetchOnRefreshingModel *fetchOnRefreshingModel = [[BZAttributeIsfetchOnRefreshingModel alloc]init];
@@ -1088,7 +1092,7 @@
     XCTAssertTrue([fetchObject.notUpdateIfValueIsNullAttribute isEqualToString:@"01"],"object error");
     XCTAssertTrue([fetchObject.onceUpdateAttribute isEqualToString:@"01"],"object error");
     XCTAssertTrue(fetchObject.fetchOnRefreshingAttribute == nil,@"error") ;
-
+    
     BZAttributeIsModel *refreshObject = [os refreshObject:fetchObject error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     XCTAssertTrue(refreshObject.fetchOnRefreshingAttribute != nil,@"error") ;
@@ -1111,8 +1115,8 @@
     XCTAssertTrue([refreshingObjectNoRowid.notUpdateIfValueIsNullAttribute isEqualToString:@"01"],"refreshingObjectNoRowid error");
     XCTAssertTrue([refreshingObjectNoRowid.onceUpdateAttribute isEqualToString:@"01"],"refreshingObjectNoRowid error");
     XCTAssertTrue(refreshingObjectNoRowid.fetchOnRefreshingAttribute != nil,@"refreshingObjectNoRowid") ;
-
-
+    
+    
     NSNumber *count = [os count:[BZAttributeIsSerializeModel class] condition:nil error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     XCTAssertTrue(count.integerValue == 0,"object error");
@@ -1123,11 +1127,11 @@
     
     [os removeObjects:@[saveObject1,saveObject2] error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-
+    
     count = [os count:[BZAttributeIsWeakReferenceModel class] condition:nil error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     XCTAssertTrue(count.integerValue == 1,"object error");
-
+    
     
 }
 
@@ -1143,7 +1147,7 @@
     BZOrderByModel *sixth = [[BZOrderByModel alloc]initWithCode:@"02" name:@"name2" price:27.12345f point:CGPointMake(19.87654321f, 14.23456789f)];
     BZOrderByModel *seventh = [[BZOrderByModel alloc]initWithCode:@"02" name:@"name2" price:27.12345f point:CGPointMake(39.87654321f, 14.23456789f)];
     [os saveObjects:@[first,second,third,fourth,fifth,sixth,seventh] error:&error];
-
+    
     BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
     condition.sqlite.orderBy = @"code desc,name desc,price desc,point_x desc";
     NSArray *objects = [os fetchObjects:[BZOrderByModel class] condition:condition error:&error];
@@ -1187,17 +1191,17 @@
 - (void)testBZOffSetLimitModel:(BZObjectStore*)os
 {
     NSError *error = nil;
-
+    
     BZOffSetLimitModel *item01 = [[BZOffSetLimitModel alloc]initWithCode:@"01" name:@"name01" price:1.0f];
     BZOffSetLimitModel *item02 = [[BZOffSetLimitModel alloc]initWithCode:@"02" name:@"name02" price:2.0f];
     BZOffSetLimitModel *item03 = [[BZOffSetLimitModel alloc]initWithCode:@"03" name:@"name03" price:3.0f];
     BZOffSetLimitModel *item04 = [[BZOffSetLimitModel alloc]initWithCode:@"04" name:@"name04" price:4.0f];
     BZOffSetLimitModel *item05 = [[BZOffSetLimitModel alloc]initWithCode:@"05" name:@"name05" price:5.0f];
     BZOffSetLimitModel *item06 = [[BZOffSetLimitModel alloc]initWithCode:@"06" name:@"name06" price:6.0f];
-
+    
     [os saveObjects:@[item01,item02,item03,item04,item05,item06] error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-
+    
     BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
     condition.sqlite.orderBy = @"price desc";
     condition.sqlite.limit = @3;
@@ -1206,7 +1210,7 @@
     NSArray *objects = [os fetchObjects:[BZOffSetLimitModel class] condition:condition error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     XCTAssertTrue(objects.count == 3,"object error");
-
+    
     BZOffSetLimitModel *first = objects.firstObject;
     XCTAssertTrue([first.code isEqualToString:@"04"],"object error");
     
@@ -1241,22 +1245,22 @@
 - (void)testBZReferenceConditionModel:(BZObjectStore*)os
 {
     NSError *error = nil;
-
+    
     BZReferenceToConditionModel *to1 = [[BZReferenceToConditionModel alloc]init];
     to1.code = @1;
     to1.name = @"to1";
     to1.price = 10;
-
+    
     BZReferenceToConditionModel *to2 = [[BZReferenceToConditionModel alloc]init];
     to2.code = @2;
     to2.name = @"to2";
     to2.price = 20;
-
+    
     BZReferenceToConditionModel *to3 = [[BZReferenceToConditionModel alloc]init];
     to3.code = @3;
     to3.name = @"to3";
     to3.price = 30;
-
+    
     BZReferenceConditionModel *item1 = [[BZReferenceConditionModel alloc]init];
     item1.code = @1;
     item1.name = @"item 1";
@@ -1269,12 +1273,12 @@
     item2.name = @"item 2";
     item1.price = 20;
     item2.to = to2;
-
+    
     BZReferenceConditionModel *item3 = [[BZReferenceConditionModel alloc]init];
     item3.code = @3;
     item3.name = @"item 3";
     item1.price = 30;
-
+    
     BZReferenceFromConditionModel *from1 = [[BZReferenceFromConditionModel alloc]init];
     from1.code = @1;
     from1.name = @"from1";
@@ -1286,13 +1290,13 @@
     from2.name = @"from2";
     item2.price = 20;
     from2.to = item2;
-
+    
     BZReferenceFromConditionModel *from3 = [[BZReferenceFromConditionModel alloc]init];
     from3.code = @3;
     from3.name = @"from3";
     item3.price = 30;
     from3.to = item2;
-
+    
     [os saveObjects:@[to1,to2,to3,item1,item2,item3,from1,from2] error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     
@@ -1302,10 +1306,10 @@
     NSArray *fromObjects = [os fetchObjects:[BZReferenceConditionModel class] condition:fromCondition error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     XCTAssertTrue(fromObjects.count == 1, @"error");
-
+    
     BZObjectStoreConditionModel *toCondition = [BZObjectStoreConditionModel condition];
     toCondition.reference.to = to2;
-
+    
     NSArray *toObjects = [os fetchObjects:[BZReferenceConditionModel class] condition:toCondition error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     XCTAssertTrue(toObjects.count == 2, @"error");
@@ -1315,14 +1319,14 @@
     
     NSNumber *existsObject1 = [os existsObject:item1 error:&error];
     XCTAssertTrue(existsObject1.boolValue, @"error");
-
+    
     NSNumber *existsObject2 = [os existsObject:from3 error:&error];
     XCTAssertTrue(!existsObject2.boolValue, @"error");
-
+    
     NSArray *referencingObjects = [os fetchReferencingObjectsTo:item1 error:&error];
     BZReferenceConditionModel *referencingObject = referencingObjects.firstObject;
     XCTAssertTrue([referencingObject.name isEqualToString:@"from1"], @"error");
-   
+    
     
     BZObjectStoreConditionModel *fromNullCondition = [BZObjectStoreConditionModel condition];
     fromNullCondition.reference.from = [NSNull null];
@@ -1331,7 +1335,7 @@
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     BZReferenceToConditionModel *fromNullReferencedObject = fromNullReferencedObjects.firstObject;
     XCTAssertTrue([fromNullReferencedObject.name isEqualToString:@"to3"], @"error");
-
+    
     BZObjectStoreConditionModel *toNullCondition = [BZObjectStoreConditionModel condition];
     toNullCondition.reference.to = [NSNull null];
     toNullCondition.sqlite.where = @"price > 0";
@@ -1339,13 +1343,13 @@
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     BZReferenceToConditionModel *toNullReferencedObject = toNullReferencedObjects.firstObject;
     XCTAssertTrue([toNullReferencedObject.name isEqualToString:@"item 3"], @"error");
-
+    
 }
 
 - (void)testBZOSIdenticalModel:(BZObjectStore*)os
 {
     NSError *error = nil;
-
+    
     BZOSIdenticalItemModel *item1 = [[BZOSIdenticalItemModel alloc]init];
     item1.code = @"01";
     item1.name = @"apple";
@@ -1421,11 +1425,11 @@
     savedObject.vmutableSet = [NSMutableSet setWithObjects:item1,item2,item3, nil];
     savedObject.vmutabledictionary = [NSMutableDictionary dictionaryWithObjectsAndKeys:item1,item1.name,item3,item3.name, nil];
     savedObject.vmutableOrderedSet = [NSMutableOrderedSet orderedSetWithObjects:item1,item3, nil];
-
+    
     
     [os saveObject:savedObject error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-
+    
     
     BZOSIdenticalModel *savedObject2 = [[BZOSIdenticalModel alloc]init];
     savedObject2.vstring = @"string";
@@ -1436,10 +1440,10 @@
     
     [os saveObject:savedObject2 error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-
+    
     NSNumber *count2 = [os count:[BZOSIdenticalModel class] condition:nil error:&error];
     XCTAssertTrue(count2.integerValue == 1, @"error");
-
+    
     
     
     
@@ -1453,7 +1457,7 @@
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     NSNumber *count3 = [os count:[BZOSIdenticalModel class] condition:nil error:&error];
     XCTAssertTrue(count3.integerValue == 2, @"error");
-
+    
     
     
     BZOSIdenticalModel *savedObject4 = [[BZOSIdenticalModel alloc]init];
@@ -1468,7 +1472,7 @@
     XCTAssertTrue(count4.integerValue == 3, @"error");
     
     
-
+    
     BZOSIdenticalModel *savedObject5 = [[BZOSIdenticalModel alloc]init];
     savedObject5.vstring = @"string";
     savedObject5.vmutableString = [NSMutableString stringWithString:@"mutableString"];
@@ -1481,7 +1485,7 @@
     
     NSNumber *count5 = [os count:[BZOSIdenticalModel class] condition:nil error:&error];
     XCTAssertTrue(count5.integerValue == 4, @"error");
-
+    
     BZOSIdenticalModel *savedObject6 = [[BZOSIdenticalModel alloc]init];
     savedObject6.vstring = @"string";
     savedObject6.vmutableString = [NSMutableString stringWithString:@"mutableString"];
@@ -1494,7 +1498,7 @@
     
     NSNumber *count6 = [os count:[BZOSIdenticalModel class] condition:nil error:&error];
     XCTAssertTrue(count6.integerValue == 5, @"error");
-
+    
     BZOSIdenticalModel *savedObject7 = [[BZOSIdenticalModel alloc]init];
     savedObject7.vstring = @"string";
     savedObject7.vmutableString = [NSMutableString stringWithString:@"mutableString"];
@@ -1507,17 +1511,17 @@
     
     NSNumber *count7 = [os count:[BZOSIdenticalModel class] condition:nil error:&error];
     XCTAssertTrue(count7.integerValue == 6, @"error");
-
+    
     BZOSIdenticalModel *savedObject8 = [[BZOSIdenticalModel alloc]init];
     savedObject8.vstring = @"string";
     savedObject8.vmutableString = [NSMutableString stringWithString:@"mutableString"];
     savedObject8.vnumber = [NSNumber numberWithBool:YES];
     savedObject8.vurl = [NSURL URLWithString:@"http://wwww.yahoo.com"];
     savedObject8.vcolor = [UIColor clearColor];
-
+    
     [os removeObject:savedObject8 error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-
+    
     NSNumber *count8 = [os count:[BZOSIdenticalModel class] condition:nil error:&error];
     XCTAssertTrue(count8.integerValue == 5, @"error");
     
@@ -1534,19 +1538,19 @@
     
     [os saveObject:item1 error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-
+    
     [os removeObject:item1 error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-
+    
     NSNumber *count = [os count:[BZWeakPropertyModel class] condition:nil error:&error];
     XCTAssertTrue(count.integerValue == 1, @"error");
-
+    
 }
 
 - (void)testBZAddColumnsModel:(BZObjectStore*)os
 {
     NSError *error = nil;
-
+    
     // setup models
     BZAddColumnsAddItemModel *item1 = [[BZAddColumnsAddItemModel alloc]init];
     item1.code = @"01";
@@ -1559,7 +1563,7 @@
     BZAddColumnsAddItemModel *item3 = [[BZAddColumnsAddItemModel alloc]init];
     item3.code = @"03";
     item3.name = @"banana";
-
+    
     
     //
     BZAddColumnsModel *noColumnObject = [[BZAddColumnsModel alloc]init];
@@ -1636,20 +1640,20 @@
     
     [os saveObject:columnObject error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-
+    
     NSNumber *count2 = [os count:[BZAddColumnsAddModel class] condition:nil error:&error];
     XCTAssertTrue(count2.integerValue == 1, @"error");
-
+    
     NSArray *objects = [os fetchObjects:[BZAddColumnsModel class] condition:nil error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     noColumnObject = objects.firstObject;
     XCTAssertTrue(objects.count == 1, @"error");
-
+    
     objects = [os fetchObjects:[BZAddColumnsAddModel class] condition:nil error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     BZAddColumnsAddModel *fetchedObject = objects.firstObject;
     XCTAssertTrue(objects.count == 1, @"error");
-
+    
     BZAddColumnsAddModel *savedObject = columnObject;
     XCTAssertTrue(fetchedObject.vdouble_max == savedObject.vdouble_max,"vdouble_max error");
     XCTAssertTrue(fetchedObject.vbool_max == savedObject.vbool_max,"vdouble_max error");
@@ -1692,7 +1696,7 @@
     XCTAssertTrue([[fetchedObject.vurl absoluteString] isEqualToString:[savedObject.vurl absoluteString]],@"vurl error");
     XCTAssertTrue(fetchedObject.vnull == [NSNull null],@"vmutableSet error");
     XCTAssertTrue([fetchedObject.vdata isEqualToData:[NSData dataWithData:UIImagePNGRepresentation(fetchedObject.vimage)]],@"vdata,vimage error");
-
+    
 }
 
 - (void)testBZTypeMissMatchModel:(BZObjectStore*)os
@@ -1815,13 +1819,13 @@
     savedObject01.name = @"name01";
     [os saveObject:savedObject01 error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-
+    
     BZOSIdenticalAttributeOSSerializeAttributeModel *savedObject02 = [[BZOSIdenticalAttributeOSSerializeAttributeModel alloc]init];
     savedObject02.code = @"01";
     savedObject02.name = @"name02";
     [os saveObject:savedObject02 error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-
+    
     NSNumber *count = [os count:[BZOSIdenticalAttributeOSSerializeAttributeModel class] condition:nil error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     XCTAssertTrue(count.integerValue == 2,@"vdata,vimage error");
@@ -1835,38 +1839,38 @@
     BZOSIdenticalFirstModel *first = [[BZOSIdenticalFirstModel alloc]init];
     first.code1 = @"01";
     first.name = @"first";
-
+    
     BZOSIdenticalSecondModel *second = [[BZOSIdenticalSecondModel alloc]init];
     second.code1 = @"01";
     second.name = @"second";
-
+    
     BZOSIdenticalThirdModel *third = [[BZOSIdenticalThirdModel alloc]init];
     third.code1 = @"01";
     third.code2 = nil;
     third.name = @"third";
-
+    
     BZOSIdenticalForthModel *forth = [[BZOSIdenticalForthModel alloc]init];
     forth.code1 = @"01";
     forth.code2 = nil;
     forth.name = @"forth";
-
+    
     [os saveObject:first error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-
+    
     [os saveObject:second error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-
+    
     [os saveObject:third error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     
     NSArray *objects = [os fetchObjects:[BZOSIdenticalThirdModel class] condition:nil error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     XCTAssertTrue(objects.count == 2,@"vdata,vimage error");
-
+    
     [os saveObject:forth error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-
-
+    
+    
 }
 
 - (NSString*)testBZDuplicateAttributeModel:(BZObjectStore*)os
@@ -1910,7 +1914,7 @@
     
     [os saveObject:holder error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-
+    
     holder.code = @"20";
     holder.image.url = @"http://www.google.com/";
     
@@ -1943,10 +1947,10 @@
     
     [os saveObject:savedObject2 error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-
+    
     [os removeObjects:@[savedObject2,savedObject2] error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-
+    
 }
 
 - (void)testInTransaction:(BZObjectStore*)os
@@ -1961,7 +1965,7 @@
         XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
         XCTAssertTrue(count.intValue == 1,@"testInTransaction error");
     }];
-
+    
     [os inTransaction:^(BZObjectStore *os, BOOL *rollback) {
         NSError *error = nil;
         BZTransactionModel *saveObject = [[BZTransactionModel alloc]init];
@@ -1978,7 +1982,7 @@
     NSNumber *count = [os count:[BZTransactionModel class] condition:nil error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     XCTAssertTrue(count.intValue == 1,@"testInTransaction error");
-
+    
 }
 
 - (void)testBackground:(BZObjectStore*)os
@@ -1999,7 +2003,7 @@
     }];
     WAIT;
     XCTAssert(!err, @"saveObjectInBackground \"%s\"", __PRETTY_FUNCTION__);
-
+    
     val = nil;
     [os countInBackground:[BZBackgroundModel class] condition:nil completionBlock:^(NSNumber *value, NSError *error) {
         val = value;
@@ -2009,7 +2013,7 @@
     WAIT;
     XCTAssert(!err, @"error \"%s\"", __PRETTY_FUNCTION__);
     XCTAssertTrue(val.integerValue == 1,@"countInBackground error");
-
+    
     val = nil;
     [os referencedCountInBackground:savedObject completionBlock:^(NSNumber *value, NSError *error) {
         val = value;
@@ -2019,7 +2023,7 @@
     WAIT;
     XCTAssert(!err, @"error \"%s\"", __PRETTY_FUNCTION__);
     XCTAssertTrue(val.integerValue == 0,@"referencedCountInBackground error");
-
+    
     obj = nil;
     [os refreshObjectInBackground:savedObject completionBlock:^(NSObject *object, NSError *error) {
         obj = (BZBackgroundModel*)object;
@@ -2050,7 +2054,7 @@
     WAIT;
     XCTAssert(!err, @"error \"%s\"", __PRETTY_FUNCTION__);
     XCTAssertTrue(val.doubleValue == 1.234567890009,@"sumInBackground error");
-
+    
     val = nil;
     [os totalInBackground:@"price" clazz:[BZBackgroundModel class] condition:nil completionBlock:^(NSNumber *value, NSError *error) {
         val = value;
@@ -2060,7 +2064,7 @@
     WAIT;
     XCTAssert(!err, @"error \"%s\"", __PRETTY_FUNCTION__);
     XCTAssertTrue(val.doubleValue == 1.234567890009,@"totalInBackground error");
-
+    
     val = nil;
     [os avgInBackground:@"price" clazz:[BZBackgroundModel class] condition:nil completionBlock:^(NSNumber *value, NSError *error) {
         val = value;
@@ -2070,7 +2074,7 @@
     WAIT;
     XCTAssert(!err, @"error \"%s\"", __PRETTY_FUNCTION__);
     XCTAssertTrue(val.doubleValue == 1.234567890009,@"avgInBackground error");
-
+    
     val = nil;
     [os minInBackground:@"price" clazz:[BZBackgroundModel class] condition:nil completionBlock:^(NSNumber *value, NSError *error) {
         val = value;
@@ -2080,7 +2084,7 @@
     WAIT;
     XCTAssert(!err, @"error \"%s\"", __PRETTY_FUNCTION__);
     XCTAssertTrue(val.doubleValue == 1.234567890009,@"minInBackground error");
-
+    
     val = nil;
     [os maxInBackground:@"price" clazz:[BZBackgroundModel class] condition:nil completionBlock:^(NSNumber *value, NSError *error) {
         val = value;
@@ -2098,7 +2102,7 @@
     }];
     WAIT;
     XCTAssert(!err, @"saveObjectsInBackground \"%s\"", __PRETTY_FUNCTION__);
-
+    
     list = nil;
     [os fetchObjectsInBackground:[BZBackgroundModel class] condition:nil completionBlock:^(NSArray *objects, NSError *error) {
         list = objects;
@@ -2129,7 +2133,7 @@
     }];
     WAIT;
     XCTAssert(!err, @"removeObjectsInBackground \"%s\"", __PRETTY_FUNCTION__);
-
+    
     [os saveObjectInBackground:savedObject completionBlock:^(NSError *error) {
         err = error;
         RESUME;
@@ -2173,25 +2177,37 @@
     }];
     WAIT;
     XCTAssert(!err, @"registerClassInBackground \"%s\"", __PRETTY_FUNCTION__);
-
+    
     [os unRegisterClassInBackground:[BZBackgroundModel class] completionBlock:^(NSError *error) {
         err = error;
         RESUME;
     }];
     WAIT;
     XCTAssert(!err, @"unRegisterClassInBackground \"%s\"", __PRETTY_FUNCTION__);
-
+    
 }
 
 - (void)testBZParseModel:(BZObjectStore*)os
 {
-    NSLog(@"%d",[[BZParseModel class] isSubclassOfClass:[PFObject class]]);
     NSError *error = nil;
+
+    PFUser *user = [PFUser user];
+    user.username = @"my name";
+    user.password = @"my pass";
+    user.email = @"email@example.com";
+    [os saveObject:user error:&error];
+
     BZParseModel *parseModel = [[BZParseModel alloc]init];
     parseModel.string = @"string";
     parseModel.mutableString = [NSMutableString stringWithString:@"mutableString"];
     parseModel.date = [NSDate date];
-
+    PFGeoPoint *point = [PFGeoPoint geoPointWithLatitude:1.23456789f longitude:9.87654321f];
+    [parseModel setValue:point forKeyPath:@"point"];
+    
+//    UIImage *image = [UIImage imageNamed:@"AppleLogo.png"];
+//    NSData *gif = [NSData dataWithData:UIImagePNGRepresentation(image)];
+//    parseModel.file = [PFFile fileWithName:@"filename" data:gif];
+    
     [parseModel save:&error];
     [os saveObject:parseModel error:&error];
     
@@ -2200,6 +2216,7 @@
         object.objectId = nil;
         [object save:&error];
     }
+    
     
 }
 

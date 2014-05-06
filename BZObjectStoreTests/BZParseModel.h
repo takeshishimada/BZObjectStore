@@ -25,10 +25,10 @@
 #import "BZObjectStoreModelInterface.h"
 
 @interface BZParseModel : PFObject<PFSubclassing>
-@property (nonatomic,retain) NSString *objectId;
-@property (nonatomic,retain) PFACL<OSSerializableAttribute> *ACL;
 @property (nonatomic,retain) NSString *string;
 @property (nonatomic,retain) NSMutableString *mutableString;
 @property (nonatomic,retain) NSDate *date;
+//@property (nonatomic,retain) PFGeoPoint *point;
+//@property (nonatomic,retain) PFFile *file;
 + (NSString *)parseClassName;
 @end

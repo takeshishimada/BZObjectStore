@@ -29,6 +29,8 @@
 @dynamic string;
 @dynamic mutableString;
 @dynamic date;
+//@dynamic point;
+//@dynamic file;
 + (NSString *)parseClassName {
     return @"BZParseModel";
 }

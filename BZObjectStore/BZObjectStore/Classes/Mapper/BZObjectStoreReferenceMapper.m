@@ -58,12 +58,12 @@
 - (void)updateObjectRowid:(NSObject*)object db:(FMDatabase*)db;
 - (void)updateRowidWithObjects:(NSArray*)objects db:(FMDatabase*)db;
 
-- (BOOL)existsTable:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
-- (BOOL)existsIndex:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
-- (BOOL)createTable:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
-- (BOOL)createUniqueIndex:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
+//- (BOOL)existsTable:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
+//- (BOOL)existsIndex:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
+//- (BOOL)createTable:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
+//- (BOOL)createUniqueIndex:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
 - (BOOL)dropTable:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
-- (BOOL)dropUniqueIndex:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
+//- (BOOL)dropUniqueIndex:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
 - (NSArray*)selectAttributes:(BZObjectStoreRuntime*)runtime attributeRuntime:(BZObjectStoreRuntime*)attributeRuntime db:(FMDatabase*)db;
 - (BOOL)createAttribute:(BZObjectStoreRuntime*)runtime attributeRuntime:(BZObjectStoreRuntime*)attributeRuntime db:(FMDatabase*)db;
 - (BOOL)deleteAttribute:(BZObjectStoreRuntime*)runtime attributeRuntime:(BZObjectStoreRuntime*)attributeRuntime db:(FMDatabase*)db;
@@ -871,9 +871,6 @@
             return nil;
         }
     }
-    if (clazz == [NSObject class]) {
-        NSLog(@"test");
-    }
     return runtime;
 }
 
@@ -924,11 +921,12 @@
     }
 
     BZObjectStoreRuntime *attributeRuntime = [self runtime:[BZObjectStoreAttributeModel class]];
-    [self createTable:runtime attributeRuntime:attributeRuntime db:db];
-    if ([self hadError:db error:error]) {
-        return NO;
+    if (runtime.isObjectClazz) {
+        [self createTable:runtime attributeRuntime:attributeRuntime db:db];
+        if ([self hadError:db error:error]) {
+            return NO;
+        }
     }
-    
     
     [self.registedClazzes setObject:@NO forKey:runtime.clazzName];
     return YES;

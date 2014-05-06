@@ -21,12 +21,24 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "BZObjectStoreClazzNSObject.h"
+#import "BZObjectStoreClazzPFUser.h"
 #import "FMResultSet.h"
 #import "BZObjectStoreConst.h"
 #import "BZObjectStoreRuntimeProperty.h"
+#import "BZObjectStoreModelInterface.h"
+#import <Parse/Parse.h>
+#import "BZRuntime.h"
 
-@implementation BZObjectStoreClazzNSObject
+@interface BZObjectStoreClazzPFUserRequiredAttributesModel : NSObject
+@property (nonatomic, strong) NSString *email;
+@property (nonatomic, strong) NSString *password;
+@property (nonatomic, strong) NSString *sessionToken;
+@property (nonatomic, strong) NSString *username;
+@end
+@implementation BZObjectStoreClazzPFUserRequiredAttributesModel
+@end
+
+@implementation BZObjectStoreClazzPFUser
 
 - (NSEnumerator*)objectEnumeratorWithObject:(NSArray*)object
 {
@@ -40,12 +52,12 @@
 
 - (id)objectWithClazz:(Class)clazz
 {
-    return [[clazz alloc]init];
+    return [PFUser user];
 }
 
 - (Class)superClazz
 {
-    return [NSObject class];
+    return [PFUser class];
 }
 - (NSString*)attributeType
 {
@@ -59,9 +71,26 @@
 {
     return YES;
 }
-- (void)setValue:(id)value object:(id)object forKey:(NSString*)key
+- (BOOL)isSubClazz:(Class)clazz
 {
-    [object setValue:value forKeyPath:key];
+    NSString *parseClassName = NSStringFromClass([PFUser class]);
+    while (true) {
+        NSString *className = NSStringFromClass(clazz);
+        if ([parseClassName isEqualToString:className]) {
+            return YES;
+        }
+        clazz = [clazz superclass];
+        if (!clazz) {
+            break;
+        }
+    }
+    return NO;
+}
+
+- (NSArray*)requiredPropertyList
+{
+    BZRuntime *runtime = [BZRuntime runtimeWithClass:[BZObjectStoreClazzPFUserRequiredAttributesModel class]];
+    return runtime.propertyList;
 }
 
 - (NSArray*)storeValuesWithValue:(NSObject*)value attribute:(BZObjectStoreRuntimeProperty*)attribute

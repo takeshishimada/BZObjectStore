@@ -101,6 +101,10 @@
 {
     return NO;
 }
+- (NSArray*)requiredPropertyList
+{
+    return nil;
+}
 
 - (NSArray*)sqliteColumnsWithAttribute:(BZObjectStoreRuntimeProperty*)attribute
 {
@@ -131,8 +135,6 @@
         @synchronized(self) {
             NSMutableArray *osclazzsArray = [self osclazzsArray];
             _osclazzs = [NSMutableDictionary dictionary];
-//            [self addOSClazz:[BZObjectStoreClazzID class] osclazzsArray:osclazzsArray];
-//            [self addOSClazz:[BZObjectStoreClazzNSObject class] osclazzsArray:osclazzsArray];
             [self addOSClazz:[BZObjectStoreClazzNSMutableString class] osclazzsArray:osclazzsArray];
             [self addOSClazz:[BZObjectStoreClazzNSMutableArray class] osclazzsArray:osclazzsArray];
             [self addOSClazz:[BZObjectStoreClazzNSMutableDictionary class] osclazzsArray:osclazzsArray];
@@ -202,7 +204,7 @@
     }
     NSMutableArray *osclazzsArray = [self osclazzsArray];
     if (!clazz) {
-        return [[BZObjectStoreClazzID alloc]init];
+        return [self clazzIdInstance];
     }
     for (BZObjectStoreClazz *osclazz in osclazzsArray) {
         if ( osclazz.superClazz != [NSObject class]) {
@@ -212,9 +214,31 @@
             }
         }
     }
-    osclazz = [[BZObjectStoreClazzNSObject alloc]init];
+    osclazz = [self clazzNSObjectInstance];
     [osclazzs setObject:osclazz forKey:NSStringFromClass(clazz)];
     return osclazz;
+}
+
++ (BZObjectStoreClazzID*)clazzIdInstance
+{
+    static id _clazzIdInstance = nil;
+    @synchronized(self) {
+        if (!_clazzIdInstance) {
+            _clazzIdInstance = [[BZObjectStoreClazzID alloc]init];
+        }
+        return _clazzIdInstance;
+    }
+}
+
++ (BZObjectStoreClazzNSObject*)clazzNSObjectInstance
+{
+    static id _clazzNSObjectInstance = nil;
+    @synchronized(self) {
+        if (!_clazzNSObjectInstance) {
+            _clazzNSObjectInstance = [[BZObjectStoreClazzNSObject alloc]init];
+        }
+        return _clazzNSObjectInstance;
+    }
 }
 
 + (BZObjectStoreClazz*)osclazzWithPrimitiveEncodingCode:(NSString*)primitiveEncodingCode

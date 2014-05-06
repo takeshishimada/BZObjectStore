@@ -131,6 +131,10 @@
         bzruntime = [BZRuntime runtimeSuperClassWithClass:self.clazz superClazz:self.osclazz.superClazz];
     }
     NSMutableArray *propertyList = [NSMutableArray array];
+    NSArray *requiredPropertyListOnEachClazz = [self.osclazz requiredPropertyList];
+    if (requiredPropertyListOnEachClazz) {
+        [propertyList addObjectsFromArray:requiredPropertyListOnEachClazz];
+    }
     for (BZRuntimeProperty *property in bzruntime.propertyList) {
         NSString *from = [property.name uppercaseString];
         if (![from isEqualToString:@"ROWID"]) {
@@ -438,5 +442,4 @@
 {
     return [self.osclazz objectWithObjects:objects keys:keys initializingOptions:initializingOptions];
 }
-
 @end

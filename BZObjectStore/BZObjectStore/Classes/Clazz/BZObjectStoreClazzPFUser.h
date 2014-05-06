@@ -21,35 +21,8 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "BZObjectStoreAppDelegate.h"
-#import <Parse/Parse.h>
-#import "BZObjectStore.h"
 #import "BZObjectStoreClazz.h"
-#import "BZObjectStoreParse.h"
-#import "BZObjectStoreClazzPFObject.h"
-#import "BZObjectStoreClazzPFGeoPoint.h"
-#import "BZObjectStoreClazzPFFile.h"
 
-
-@implementation BZObjectStoreAppDelegate
-
-- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
-{
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
-    
-    [BZObjectStoreParse registerClass];
-    [Parse setApplicationId:@"qNMDT4gO06FhoPafaFOr6iM17FL5MoX2Idd00Mhr"
-                  clientKey:@"S3yt2lFSZNHOPE7Z0a6oa451tpecGJ5ysXfR92uO"];
-    
-    [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
-
-    return YES;
-}
-
-
-
+@interface BZObjectStoreClazzPFUser : BZObjectStoreClazz
 
 @end

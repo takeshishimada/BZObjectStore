@@ -25,7 +25,18 @@
 #import "FMResultSet.h"
 #import "BZObjectStoreConst.h"
 #import "BZObjectStoreRuntimeProperty.h"
+#import "BZObjectStoreModelInterface.h"
 #import <Parse/Parse.h>
+#import "BZRuntime.h"
+
+@interface BZObjectStoreClazzPFObjectRequiredAttributesModel : NSObject
+@property (nonatomic,strong) NSString *objectId;
+@property (nonatomic,strong) NSDate *createdAt;
+@property (nonatomic,strong) NSDate *updatedAt;
+@property (nonatomic,strong) PFACL<OSSerializableAttribute> *ACL;
+@end
+@implementation BZObjectStoreClazzPFObjectRequiredAttributesModel
+@end
 
 @implementation BZObjectStoreClazzPFObject
 
@@ -74,6 +85,12 @@
         }
     }
     return NO;
+}
+
+- (NSArray*)requiredPropertyList
+{
+    BZRuntime *runtime = [BZRuntime runtimeWithClass:[BZObjectStoreClazzPFObjectRequiredAttributesModel class]];
+    return runtime.propertyList;
 }
 
 - (NSArray*)storeValuesWithValue:(NSObject*)value attribute:(BZObjectStoreRuntimeProperty*)attribute
