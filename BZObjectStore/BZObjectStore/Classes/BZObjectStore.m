@@ -496,8 +496,8 @@
 {
     __block NSError *err = nil;
     __block BOOL ret = NO;
-    __block BZObjectStoreRuntime *runtime = [self runtime:clazz];
     [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
+        BZObjectStoreRuntime *runtime = [self runtime:clazz];
         ret = [_weakSelf registerRuntime:runtime db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
@@ -505,9 +505,9 @@
         if (err) {
             *rollback = YES;
         }
+        [self setRegistedRuntimeFlag:runtime];
         return;
     }];
-    [self setRegistedRuntimeFlag:runtime];
     if (error) {
         *error = err;
     }
@@ -518,8 +518,8 @@
 {
     __block NSError *err = nil;
     __block BOOL ret = NO;
-    __block BZObjectStoreRuntime *runtime = [self runtime:clazz];
     [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
+        BZObjectStoreRuntime *runtime = [self runtime:clazz];
         ret = [_weakSelf unRegisterRuntime:runtime db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
@@ -527,9 +527,9 @@
         if (err) {
             *rollback = YES;
         }
+        [self setUnRegistedRuntimeFlag:runtime];
         return;
     }];
-    [self setUnRegistedRuntimeFlag:runtime];
     if (error) {
         *error = err;
     }

@@ -58,6 +58,9 @@
         if (!_runtimes) {
             _runtimes = [NSMutableDictionary dictionary];
         }
+        if (!clazz) {
+            return nil;
+        }
         Class targetClazz = NULL;
         BZObjectStoreClazz *osclazz = [BZObjectStoreClazz osclazzWithClazz:clazz];
         if (osclazz.isObjectClazz) {
@@ -123,9 +126,9 @@
     // attributes
     BZRuntime *bzruntime = nil;
     if ([self.clazz conformsToProtocol:@protocol(OSIgnoreSuperClass)]) {
-        bzruntime = [BZRuntime runtimeWithClass:self.clazz];
+        bzruntime = [BZRuntime runtimeWithClass:self.clazz superClazz:self.osclazz.superClazz];
     } else {
-        bzruntime = [BZRuntime runtimeSuperClassWithClass:self.clazz];
+        bzruntime = [BZRuntime runtimeSuperClassWithClass:self.clazz superClazz:self.osclazz.superClazz];
     }
     NSMutableArray *propertyList = [NSMutableArray array];
     for (BZRuntimeProperty *property in bzruntime.propertyList) {

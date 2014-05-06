@@ -34,6 +34,7 @@
 - (BOOL)isObjectClazz;
 - (BOOL)isRelationshipClazz;
 - (BOOL)isStringNumberClazz;
+- (BOOL)isSubClazz:(Class)clazz;
 - (NSString*)attributeType;
 - (id)objectWithObjects:(NSArray*)objects keys:(NSArray*)keys initializingOptions:(NSString*)initializingOptions;
 - (id)objectWithClazz:(Class)clazz;

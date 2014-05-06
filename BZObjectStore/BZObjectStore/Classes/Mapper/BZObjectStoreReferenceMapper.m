@@ -871,6 +871,9 @@
             return nil;
         }
     }
+    if (clazz == [NSObject class]) {
+        NSLog(@"test");
+    }
     return runtime;
 }
 

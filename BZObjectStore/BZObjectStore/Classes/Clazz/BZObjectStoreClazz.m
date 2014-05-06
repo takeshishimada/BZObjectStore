@@ -76,6 +76,11 @@
     return nil;
 }
 
+- (BOOL)isSubClazz:(Class)clazz
+{
+    return [clazz isSubclassOfClass:self.superClazz];
+}
+
 - (BOOL)isSimpleValueClazz
 {
     return NO;
@@ -126,8 +131,8 @@
         @synchronized(self) {
             NSMutableArray *osclazzsArray = [self osclazzsArray];
             _osclazzs = [NSMutableDictionary dictionary];
-            [self addOSClazz:[BZObjectStoreClazzID class] osclazzsArray:osclazzsArray];
-            [self addOSClazz:[BZObjectStoreClazzNSObject class] osclazzsArray:osclazzsArray];
+//            [self addOSClazz:[BZObjectStoreClazzID class] osclazzsArray:osclazzsArray];
+//            [self addOSClazz:[BZObjectStoreClazzNSObject class] osclazzsArray:osclazzsArray];
             [self addOSClazz:[BZObjectStoreClazzNSMutableString class] osclazzsArray:osclazzsArray];
             [self addOSClazz:[BZObjectStoreClazzNSMutableArray class] osclazzsArray:osclazzsArray];
             [self addOSClazz:[BZObjectStoreClazzNSMutableDictionary class] osclazzsArray:osclazzsArray];
@@ -197,18 +202,19 @@
     }
     NSMutableArray *osclazzsArray = [self osclazzsArray];
     if (!clazz) {
-        return osclazzsArray[0];
+        return [[BZObjectStoreClazzID alloc]init];
     }
     for (BZObjectStoreClazz *osclazz in osclazzsArray) {
         if ( osclazz.superClazz != [NSObject class]) {
-            if ([clazz isSubclassOfClass:osclazz.superClazz]) {
+            if ([osclazz isSubClazz:clazz]) {
                 [osclazzs setObject:osclazz forKey:NSStringFromClass(clazz)];
                 return osclazz;
             }
         }
     }
-    [osclazzs setObject:osclazzsArray[1] forKey:NSStringFromClass(clazz)];
-    return osclazzsArray[1];
+    osclazz = [[BZObjectStoreClazzNSObject alloc]init];
+    [osclazzs setObject:osclazz forKey:NSStringFromClass(clazz)];
+    return osclazz;
 }
 
 + (BZObjectStoreClazz*)osclazzWithPrimitiveEncodingCode:(NSString*)primitiveEncodingCode
@@ -227,9 +233,6 @@
         if (osclazz) {
             [osclazzs setObject:osclazz forKey:key];
         }
-    }
-    if (!osclazz) {
-        return nil;
     }
     return osclazz;
 }

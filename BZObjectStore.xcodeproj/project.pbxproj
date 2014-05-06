@@ -132,6 +132,8 @@
 		72C2685818FA09A50070C2E5 /* BZWeakPropertyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2685718FA09A50070C2E5 /* BZWeakPropertyModel.m */; };
 		72E2DE5F1916A7170087702D /* BZObjectStoreClazzInt.m in Sources */ = {isa = PBXBuildFile; fileRef = 72E2DE5E1916A7170087702D /* BZObjectStoreClazzInt.m */; };
 		72EC847B190D5669001AE1F7 /* BZTransactionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72EC847A190D5669001AE1F7 /* BZTransactionModel.m */; };
+		72ED67A61917DFA200457F1E /* BZParseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72ED67A51917DFA200457F1E /* BZParseModel.m */; };
+		72ED67AA1917EC8E00457F1E /* BZObjectStoreClazzPFObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 72ED67A91917EC8E00457F1E /* BZObjectStoreClazzPFObject.m */; };
 		821F19AA1906511C00E7F96C /* BZBackgroundModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 821F19A91906511C00E7F96C /* BZBackgroundModel.m */; };
 		82D029EC19051DE2003B7246 /* BZArrayInArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D029EB19051DE2003B7246 /* BZArrayInArrayModel.m */; };
 		82D029EF19064602003B7246 /* BZOSIdenticalForthModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D029EE19064602003B7246 /* BZOSIdenticalForthModel.m */; };
@@ -150,6 +152,7 @@
 
 /* Begin PBXFileReference section */
 		11CB3F3E43BB4976B6E3EF2E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		7202AC271918014B009C24C1 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		72170BE618F5950D00C9A4C1 /* BZSQLiteGroupFunctionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZSQLiteGroupFunctionModel.h; sourceTree = "<group>"; };
 		72170BE718F5950D00C9A4C1 /* BZSQLiteGroupFunctionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZSQLiteGroupFunctionModel.m; sourceTree = "<group>"; };
 		72170BE918F6E9D200C9A4C1 /* BZUpdateExistsObjectWithNoRowIdModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZUpdateExistsObjectWithNoRowIdModel.h; sourceTree = "<group>"; };
@@ -391,6 +394,10 @@
 		72E2DE5E1916A7170087702D /* BZObjectStoreClazzInt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzInt.m; sourceTree = "<group>"; };
 		72EC8479190D5669001AE1F7 /* BZTransactionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZTransactionModel.h; sourceTree = "<group>"; };
 		72EC847A190D5669001AE1F7 /* BZTransactionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZTransactionModel.m; sourceTree = "<group>"; };
+		72ED67A41917DFA200457F1E /* BZParseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZParseModel.h; sourceTree = "<group>"; };
+		72ED67A51917DFA200457F1E /* BZParseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZParseModel.m; sourceTree = "<group>"; };
+		72ED67A81917EC8E00457F1E /* BZObjectStoreClazzPFObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BZObjectStoreClazzPFObject.h; path = BZObjectStore/BZObjectStoreParse/BZObjectStoreClazzPFObject.h; sourceTree = SOURCE_ROOT; };
+		72ED67A91917EC8E00457F1E /* BZObjectStoreClazzPFObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BZObjectStoreClazzPFObject.m; path = BZObjectStore/BZObjectStoreParse/BZObjectStoreClazzPFObject.m; sourceTree = SOURCE_ROOT; };
 		73A736836B224E7BB841BEB0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		821F19A81906511C00E7F96C /* BZBackgroundModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZBackgroundModel.h; sourceTree = "<group>"; };
 		821F19A91906511C00E7F96C /* BZBackgroundModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZBackgroundModel.m; sourceTree = "<group>"; };
@@ -596,6 +603,7 @@
 		7259F7F218F44F04002A3416 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				7202AC271918014B009C24C1 /* libPods.a */,
 				7259F7F318F44F04002A3416 /* Foundation.framework */,
 				7259F7F518F44F04002A3416 /* CoreGraphics.framework */,
 				7259F7F718F44F04002A3416 /* UIKit.framework */,
@@ -646,6 +654,7 @@
 				7292AB43190378EF00FCF778 /* Osclazz */,
 				821F19A7190650F000E7F96C /* Background */,
 				72EC8478190D5649001AE1F7 /* Transaction */,
+				72ED67A31917DF7E00457F1E /* Parse */,
 				7259F81318F44F04002A3416 /* Supporting Files */,
 			);
 			path = BZObjectStoreTests;
@@ -741,6 +750,7 @@
 				728492DA190F508A005D9ACB /* Objective-c */,
 				728492F1190F508A005D9ACB /* Objective-c Arrangement */,
 				72849302190F508A005D9ACB /* Objective-c Other */,
+				72ED67A71917EC4B00457F1E /* Parse */,
 			);
 			path = Clazz;
 			sourceTree = "<group>";
@@ -999,6 +1009,24 @@
 			name = Transaction;
 			sourceTree = "<group>";
 		};
+		72ED67A31917DF7E00457F1E /* Parse */ = {
+			isa = PBXGroup;
+			children = (
+				72ED67A41917DFA200457F1E /* BZParseModel.h */,
+				72ED67A51917DFA200457F1E /* BZParseModel.m */,
+			);
+			name = Parse;
+			sourceTree = "<group>";
+		};
+		72ED67A71917EC4B00457F1E /* Parse */ = {
+			isa = PBXGroup;
+			children = (
+				72ED67A81917EC8E00457F1E /* BZObjectStoreClazzPFObject.h */,
+				72ED67A91917EC8E00457F1E /* BZObjectStoreClazzPFObject.m */,
+			);
+			name = Parse;
+			sourceTree = "<group>";
+		};
 		821F19A7190650F000E7F96C /* Background */ = {
 			isa = PBXGroup;
 			children = (
@@ -1197,6 +1225,7 @@
 				72849347190F508A005D9ACB /* BZObjectStoreClazzNSMutableOrderedSet.m in Sources */,
 				72849351190F508A005D9ACB /* BZObjectStoreReferenceModel.m in Sources */,
 				7284932C190F508A005D9ACB /* BZObjectStoreClazzLong.m in Sources */,
+				72ED67AA1917EC8E00457F1E /* BZObjectStoreClazzPFObject.m in Sources */,
 				7284932A190F508A005D9ACB /* BZObjectStoreClazzFloat.m in Sources */,
 				72849329190F508A005D9ACB /* BZObjectStoreClazzDouble.m in Sources */,
 				72849354190F508A005D9ACB /* BZObjectStoreRuntime.m in Sources */,
@@ -1212,6 +1241,7 @@
 				727926AC18FA169700A564AA /* BZAddColumnsAddItemModel.m in Sources */,
 				82D029EC19051DE2003B7246 /* BZArrayInArrayModel.m in Sources */,
 				7259F8CD18F45014002A3416 /* BZRelationshipItemModel.m in Sources */,
+				72ED67A61917DFA200457F1E /* BZParseModel.m in Sources */,
 				72C2684518F98B220070C2E5 /* BZReferenceConditionModel.m in Sources */,
 				7259F8C618F45014002A3416 /* BZCircularReferenceModel.m in Sources */,
 				727926A618FA15DB00A564AA /* BZAddColumnsModel.m in Sources */,
@@ -1419,6 +1449,10 @@
 					"$(inherited)",
 				);
 				INFOPLIST_FILE = "BZObjectStoreTests/BZObjectStoreTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
@@ -1438,6 +1472,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BZObjectStore/BZObjectStore-Prefix.pch";
 				INFOPLIST_FILE = "BZObjectStoreTests/BZObjectStoreTests-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Pods/build/Debug-iphoneos",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				TEST_HOST = "$(BUNDLE_LOADER)";
 				WRAPPER_EXTENSION = xctest;
