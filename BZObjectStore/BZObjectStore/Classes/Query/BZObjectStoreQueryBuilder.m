@@ -24,7 +24,6 @@
 #import "BZObjectStoreQueryBuilder.h"
 #import "BZObjectStoreRuntime.h"
 #import "BZObjectStoreRuntimeProperty.h"
-#import "BZObjectStoreConst.h"
 #import "BZObjectStoreNameBuilder.h"
 #import "BZObjectStoreRelationshipModel.h"
 #import "BZObjectStoreConditionModel.h"
@@ -197,9 +196,9 @@
         [sql appendString:@","];
     }
     [sql appendString:@"__createdAt__ "];
-    [sql appendString:SQLITE_DATA_TYPE_DATETIME];
+    [sql appendString:@"DATE"];
     [sql appendString:@",__updatedAt__ "];
-    [sql appendString:SQLITE_DATA_TYPE_DATETIME];
+    [sql appendString:@"DATE"];
     [sql appendString:@")"];
     return [NSString stringWithString:sql];
 }

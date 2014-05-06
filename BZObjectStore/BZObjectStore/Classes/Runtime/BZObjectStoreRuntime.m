@@ -25,7 +25,6 @@
 #import "BZObjectStoreClazz.h"
 #import "BZObjectStoreRuntimeProperty.h"
 #import "BZObjectStoreNameBuilder.h"
-#import "BZObjectStoreConst.h"
 #import "BZObjectStoreConditionModel.h"
 #import "BZObjectStoreQueryBuilder.h"
 #import "BZObjectStoreReferenceModel.h"
