@@ -8,18 +8,22 @@ Pod::Spec.new do |s|
   s.source   = { :git => 'https://github.com/expensivegasprices/BZObjectStore.git', :tag => s.version.to_s }
   s.platform = :ios, '5.0'
   s.requires_arc = true
-  s.source_files = 'BZObjectStore/BZObjectStore/**/*.{h,m}'
-  
-  s.dependency 'FMDB'
-  s.dependency 'ColorUtils'
-  s.dependency 'BZRuntime'
 
-  s.subspec 'Parse' do |ss|
-    ss.dependency 'FMDB'
-    ss.dependency 'Parse'
-    ss.framework    = 'Parse'
-    ss.ios.xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '"$(PODS_ROOT)/Parse"' }
-    ss.source_files = 'BZObjectStore/BZObjectStore/**/*.{h,m}','BZObjectStore/BZObjectStoreParse/*.{h,m}'
+  s.default_subspec = 'BZObjectStore/Core'
+
+  s.subspec 'Core' do |cs|
+    cs.dependency 'FMDB'
+    cs.dependency 'ColorUtils'
+    cs.dependency 'BZRuntime'
+    cs.source_files = 'BZObjectStore/BZObjectStore/**/*.{h,m}'
+  end
+
+  s.subspec 'Parse' do |ps|
+    ps.dependency 'FMDB'
+    ps.dependency 'Parse'
+    ps.framework    = 'Parse'
+    ps.ios.xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '"$(PODS_ROOT)/Parse"' }
+    ps.source_files = 'BZObjectStore/BZObjectStore/**/*.{h,m}','BZObjectStore/BZObjectStoreParse/*.{h,m}'
   end
 
 end
