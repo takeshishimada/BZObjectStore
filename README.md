@@ -11,6 +11,7 @@ Targeting either iOS 5.0 and above and ARC.
 - Easy to use
 - Mapping Models to SQLite tables
 - Relationship in NSObject, NSArray, NSDictionary, NSSet, NSOrderedSet support
+- [Parse](https://parse.com/docs/ios/api/index.html "Parse") support
 - Automatic Schema Creating
 - Automatic Column Adding
 - Thread Safety
@@ -21,6 +22,7 @@ Targeting either iOS 5.0 and above and ARC.
 BZObjectStore can be installed using [CocoaPods](http://cocoapods.org/).
 ```
 pod 'BZObjectStore'
+pod 'BZObjectStore/Parse' // if needed
 ```
 
 ## Example
@@ -558,12 +560,26 @@ Import BZObjectStoreBackground.h and call each method name + 'InBackground' meth
 |NSMutableOrderedSet|INTEGER|attributeName|saved as number of Objects|
 |NSObject|INTEGER|attributeName|saved as number of Objects|
 |ID|NONE|attributeName,attributeName + '_attributeType'|separated to 2 columns|
-
 Other C structures will be saved as NSValue.
+
+## Relationship support
+Objects in NSObject, NSArray, NSDictionary, NSSet, NSOrderedSet will be mapped to SQLite table automaticaly.  
+
+## Parse support
+BZObjectStore supports the following Parse objects.  
+- PFObject<PFSubclassing>  
+- PFUser  
+- PFFile  
+- PFGeoPoint  
+
+|Parse Data Types|SQLite Data Types|Mapping Column Names|Remarks|
+|:-----------|:-----------|:-----------|:-----------|
+|PFGeoPoint|REAL|attributeName + '_latitude',+ '_longitude'|separated to 2 columns|
+|PFFile|TEXT,BLOB|attributeName + '_name',+ '_data'|separated to 2 columns|
 
 ## Others
 #### Migration
-BZObjectStore supports adding attributes and deleting attributes which dose not implements OSIdenticalAttribute only.
+BZObjectStore supports adding attributes and deleting attributes which dose not implements OSIdenticalAttribute only.  
 Please use FMDatabaseQueue and FMDatabase directly.
 
 #### FMDatabaseQueue and FMDatabase
@@ -604,15 +620,14 @@ Please use FMDatabaseQueue and FMDatabase directly.
 ```
 
 ### Restricted
-Readonly property always will be ignored.  
-Identical attribute value can not be changed after object saving.  
-Background process methods can not be used in inTransactionInBackground method.  
+- Readonly property always will be ignored.  
+- Identical attribute value can not be changed after object saving.  
+- Background process methods can not be used in inTransactionInBackground method.  
 
 
 ## Features
 - Automatic Migration Support
 - CLLocationCoordinate2D, CLLocation, NSHashTable, NSMapTable support
-- [Parse](https://parse.com/docs/ios/api/index.html "Parse") support
 - Notifications to Views support
 
 ## MICS
