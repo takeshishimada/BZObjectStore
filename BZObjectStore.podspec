@@ -14,11 +14,12 @@ Pod::Spec.new do |s|
   s.dependency 'ColorUtils'
   s.dependency 'BZRuntime'
 
-  s.subspec 'VV' do |ss|
+  s.subspec 'Parse' do |ss|
     ss.dependency 'FMDB'
     ss.dependency 'Parse'
     ss.framework    = 'Parse'
-    ss.source_files = 'BZObjectStore/BZObjectStore/Classes/Clazz/**/*.{h,m}','BZObjectStore/BZObjectStoreParse/*.{h,m}'
+    ss.ios.xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '"$(PODS_ROOT)/Parse"' }
+    ss.source_files = 'BZObjectStore/BZObjectStore/**/*.{h,m}','BZObjectStore/BZObjectStoreParse/*.{h,m}'
   end
 
 end
