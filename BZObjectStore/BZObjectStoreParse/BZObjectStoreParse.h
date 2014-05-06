@@ -21,19 +21,7 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "BZObjectStoreParse.h"
-#import "BZObjectStoreClazz.h"
-#import "BZObjectStoreClazzPFObject.h"
-#import "BZObjectStoreClazzPFUser.h"
-#import "BZObjectStoreClazzPFGeoPoint.h"
-#import "BZObjectStoreClazzPFFile.h"
+#import <Foundation/Foundation.h>
 
-@implementation BZObjectStoreParse
-+ (void)registerClass
-{
-    [BZObjectStoreClazz addClazz:[BZObjectStoreClazzPFGeoPoint class]];
-    [BZObjectStoreClazz addClazz:[BZObjectStoreClazzPFFile class]];
-    [BZObjectStoreClazz addClazz:[BZObjectStoreClazzPFUser class]];
-    [BZObjectStoreClazz addClazz:[BZObjectStoreClazzPFObject class]];
-}
+@interface BZObjectStoreParse : NSObject
 @end
