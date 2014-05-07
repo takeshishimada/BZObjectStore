@@ -161,7 +161,7 @@ NSNumber *avg = [os avg:@"price" class:[SampleModel class] condition:nil error:&
     [os saveObject:sample1 error:&error];
     [os saveObject:sample2 error:&error];
     
-    // rollback if need
+    // rollback if needed
     *rollback = YES;
 }];
 ```
