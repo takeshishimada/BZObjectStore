@@ -175,7 +175,7 @@ NSNumber *avg = [os avg:@"price" class:[SampleModel class] condition:nil error:&
 [os unRegisterClass:[SampleModel class] error:&error];
 ```
 
-## Condition
+## Condition Model
 There are three classes:
 
 1. `BZObjectStoreConditionModel` - This class contains the following classes. You create a instance and set it to each method when you need.
