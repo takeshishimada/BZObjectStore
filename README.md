@@ -554,7 +554,7 @@ Objects in NSObject, NSArray, NSDictionary, NSSet, NSOrderedSet will be mapped t
 
 ## Parse support
 BZObjectStore supports the following Parse objects.  
-- PFObject<PFSubclassing>  
+- PFObject implements PFSubclassing
 - PFUser  
 - PFFile  
 - PFGeoPoint  
