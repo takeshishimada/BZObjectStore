@@ -617,7 +617,7 @@ Please use FMDatabaseQueue and FMDatabase directly.
 - Notification support
 - Automatic Migration Support
 - CLLocationCoordinate2D, CLLocation, NSHashTable, NSMapTable support
-- OS X support
+- OSX support
 - 
 ## MICS
 Author: Takeshi Shimada  
