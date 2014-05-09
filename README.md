@@ -613,6 +613,8 @@ Please use FMDatabaseQueue and FMDatabase directly.
 
 
 ## Features
+- ActiveRecord pattern support
+- Notification support
 - Automatic Migration Support
 - CLLocationCoordinate2D, CLLocation, NSHashTable, NSMapTable support
 
