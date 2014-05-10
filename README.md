@@ -554,7 +554,7 @@ Objects in NSObject, NSArray, NSDictionary, NSSet, NSOrderedSet will be mapped t
 
 ## Parse support
 BZObjectStore supports the following Parse objects.  
-- PFObject<PFSubclassing>  
+- PFObject implements PFSubclassing
 - PFUser  
 - PFFile  
 - PFGeoPoint  
@@ -613,6 +613,8 @@ Please use FMDatabaseQueue and FMDatabase directly.
 
 
 ## Features
+- ActiveRecord pattern support
+- Notification support
 - Automatic Migration Support
 - CLLocationCoordinate2D, CLLocation, NSHashTable, NSMapTable support
 
