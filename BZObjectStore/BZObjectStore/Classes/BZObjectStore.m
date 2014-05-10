@@ -95,13 +95,12 @@
     os.weakSelf = os;
     
     NSError *err = nil;
-    BOOL ret = NO;
-    ret = [os registerClass:[BZObjectStoreAttributeModel class] error:&err];
-    if (!ret) {
+    [os registerClass:[BZObjectStoreAttributeModel class] error:&err];
+    if (err) {
         return nil;
     }
-    ret = [os registerClass:[BZObjectStoreRelationshipModel class] error:&err];
-    if (!ret) {
+    [os registerClass:[BZObjectStoreRelationshipModel class] error:&err];
+    if (err) {
         return nil;
     }
     if (error) {
@@ -383,15 +382,15 @@
 
 #pragma mark save methods
 
-- (BOOL)saveObjects:(NSArray*)objects error:(NSError**)error
+- (void)saveObjects:(NSArray*)objects error:(NSError**)error
 {
     if (![[objects class] isSubclassOfClass:[NSArray class]]) {
-        return YES;
+        return;
     }
     __block NSError *err = nil;
     __block BOOL ret = NO;
     [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
-        [_weakSelf saveObjects:objects db:db error:&err];
+        ret = [_weakSelf saveObjects:objects db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
         }
@@ -403,10 +402,10 @@
     if (error) {
         *error = err;
     }
-    return ret;
+    return;
 }
 
-- (BOOL)saveObject:(NSObject*)object error:(NSError**)error
+- (void)saveObject:(NSObject*)object error:(NSError**)error
 {
     __block NSError *err = nil;
     __block BOOL ret = NO;
@@ -422,12 +421,12 @@
     if (error) {
         *error = err;
     }
-    return ret;
+    return;
 }
 
 #pragma mark remove methods
 
-- (BOOL)removeObjects:(Class)clazz condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error
+- (void)removeObjects:(Class)clazz condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error
 {
     __block NSError *err = nil;
     __block BOOL ret = NO;
@@ -445,10 +444,10 @@
     if (error) {
         *error = err;
     }
-    return ret;
+    return;
 }
 
-- (BOOL)removeObject:(NSObject*)object error:(NSError**)error
+- (void)removeObject:(NSObject*)object error:(NSError**)error
 {
     __block NSError *err = nil;
     __block BOOL ret = NO;
@@ -465,13 +464,13 @@
     if (error) {
         *error = err;
     }
-    return ret;
+    return;
 }
 
-- (BOOL)removeObjects:(NSArray *)objects error:(NSError**)error
+- (void)removeObjects:(NSArray *)objects error:(NSError**)error
 {
     if (![[objects class] isSubclassOfClass:[NSArray class]]) {
-        return YES;
+        return;
     }
     __block NSError *err = nil;
     __block BOOL ret = NO;
@@ -487,12 +486,12 @@
     if (error) {
         *error = err;
     }
-    return ret;
+    return;
 }
 
 #pragma register methods
 
-- (BOOL)registerClass:(Class)clazz error:(NSError**)error
+- (void)registerClass:(Class)clazz error:(NSError**)error
 {
     __block NSError *err = nil;
     __block BOOL ret = NO;
@@ -511,10 +510,10 @@
     if (error) {
         *error = err;
     }
-    return ret;
+    return;
 }
 
-- (BOOL)unRegisterClass:(Class)clazz error:(NSError**)error
+- (void)unRegisterClass:(Class)clazz error:(NSError**)error
 {
     __block NSError *err = nil;
     __block BOOL ret = NO;
@@ -533,7 +532,7 @@
     if (error) {
         *error = err;
     }
-    return ret;
+    return;
 }
 
 - (void)close
