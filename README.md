@@ -98,16 +98,16 @@ SampleModel *latest = [os refreshObject:sample1 error:&error];
 // fetch referencing objects
 NSArray *referencingObjects = [os fetchReferencingObjectsTo:sample1 error:&error];
 ```
-#### Remove Objects
+#### Delete Objects
 ```objective-c
-// remove a object
-[os removeObject:sample1 error:&error];
+// delete a object
+[os deleteObject:sample1 error:&error];
 
-// remove objects
-[os removeObjects:[SampleModel class] condition:nil error:&error];
+// delete objects
+[os deleteObjects:[SampleModel class] condition:nil error:&error];
 
-// remove objects in array
-[os removeObject:@[sample1,sample2] error:&error];
+// delete objects in array
+[os deleteObject:@[sample1,sample2] error:&error];
 ```
 #### Fetch Objects with condition
 ```objective-c
@@ -117,12 +117,12 @@ fetchCondition.sqlite.orderBy = @"name desc";
 
 NSArray *objects = [os fetchObjects:[SampleModel class] condition:fetchCondition error:&error];
 ```
-#### Remove Objects with condition
+#### Delete Objects with condition
 ```objective-c
-BZObjectStoreConditionModel *removeCondition = [BZObjectStoreConditionModel condition];
-removeCondition.sqlite.where = @"name = 'sample1'";
+BZObjectStoreConditionModel *deleteCondition = [BZObjectStoreConditionModel condition];
+deleteCondition.sqlite.where = @"name = 'sample1'";
 
-[os removeObjects:[SampleModel class] condition:removeCondition error:&error];
+[os deleteObjects:[SampleModel class] condition:deleteCondition error:&error];
 ```
 #### Close Database
 ```objective-c
@@ -257,7 +257,7 @@ ignore attributes
 ```
 
 #### OSWeakReferenceAttribute
-do not delete relationship objects when remove a object.
+do not delete relationship objects when delete a object.
 
 ```objective-c
 #import "BZObjectStoreModelInterface.h"
@@ -413,9 +413,9 @@ and override methods you need.
 }
 ```
 
-#### Hook the event when model removed.
+#### Hook the event when model deleted.
 ```objective-c
-- (void)OSModelDidRemove
+- (void)OSModelDidDelete
 {
 	// your operation
 }
@@ -597,12 +597,12 @@ Please use FMDatabaseQueue and FMDatabase directly.
 
 - (void)transactionDidBegin:(FMDatabase *)db
 {
-    // called when call fetch,remove,save methods 
+    // called when call fetch,delete,save methods 
 }
 
 - (void)transactionDidEnd:(FMDatabase *)db
 {
-    // called when call fetch,remove,save methods 
+    // called when call fetch,delete,save methods 
 }
 ```
 
