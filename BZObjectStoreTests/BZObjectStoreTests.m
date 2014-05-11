@@ -644,7 +644,7 @@
     [os saveObject:fetchedHeader error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     
-    [os removeObject:fetchedHeader error:&error];
+    [os deleteObject:fetchedHeader error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     
     NSNumber *headerCount = [os count:[BZRelationshipHeaderModel class] condition:nil error:&error];
@@ -691,7 +691,7 @@
     NSLog(@"fetch reponse then - now: %1.3fsec", [fetchthen timeIntervalSinceDate:fetchnow]);
     
     NSDate *removenow = [NSDate date];
-    [os removeObjects:[BZInsertResponseModel class] condition:nil error:&error];
+    [os deleteObjects:[BZInsertResponseModel class] condition:nil error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     NSDate *removethen = [NSDate date];
     NSLog(@"remove reponse then - now: %1.3fsec", [removethen timeIntervalSinceDate:removenow]);
@@ -742,7 +742,7 @@
     NSLog(@"fetch reponse then - now: %1.3fsec", [fetchthen timeIntervalSinceDate:fetchnow]);
     
     NSDate *removenow = [NSDate date];
-    [os removeObjects:[BZUpdateResponseModel class] condition:nil error:&error];
+    [os deleteObjects:[BZUpdateResponseModel class] condition:nil error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     NSDate *removethen = [NSDate date];
     NSLog(@"remove reponse then - now: %1.3fsec", [removethen timeIntervalSinceDate:removenow]);
@@ -782,13 +782,13 @@
     NSArray *list = [os fetchObjects:[BZCircularReferenceModel class] condition:nil error:nil];
     XCTAssertTrue(list.count == 5,"object error");
     
-    [os removeObject:p3 error:nil];
+    [os deleteObject:p3 error:nil];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     
     NSNumber *count1 = [os count:[BZCircularReferenceModel class] condition:nil error:nil];
     XCTAssertTrue([count1 isEqualToNumber:@4],"object error");
     
-    [os removeObject:p1 error:nil];
+    [os deleteObject:p1 error:nil];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     
     NSNumber *count2 = [os count:[BZCircularReferenceModel class] condition:nil error:nil];
@@ -1022,7 +1022,7 @@
 {
     BZDelegateModel *saveObject = [[BZDelegateModel alloc]init];
     XCTAssertTrue(!saveObject.modelDidLoad,"object error");
-    XCTAssertTrue(!saveObject.modelDidRemove,"object error");
+    XCTAssertTrue(!saveObject.modelDidDelete,"object error");
     XCTAssertTrue(!saveObject.modelDidSave,"object error");
     
     NSError *error = nil;
@@ -1035,9 +1035,9 @@
     saveObject = objects.firstObject;
     XCTAssertTrue(saveObject.modelDidLoad,"object error");
     
-    [os removeObject:saveObject error:&error];
+    [os deleteObject:saveObject error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-    XCTAssertTrue(saveObject.modelDidRemove,"object error");
+    XCTAssertTrue(saveObject.modelDidDelete,"object error");
     
 }
 
@@ -1122,7 +1122,7 @@
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     XCTAssertTrue(count.integerValue == 1,"object error");
     
-    [os removeObjects:@[saveObject1,saveObject2] error:&error];
+    [os deleteObjects:@[saveObject1,saveObject2] error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     
     count = [os count:[BZAttributeIsWeakReferenceModel class] condition:nil error:&error];
@@ -1516,7 +1516,7 @@
     savedObject8.vurl = [NSURL URLWithString:@"http://wwww.yahoo.com"];
     savedObject8.vcolor = [UIColor clearColor];
     
-    [os removeObject:savedObject8 error:&error];
+    [os deleteObject:savedObject8 error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     
     NSNumber *count8 = [os count:[BZOSIdenticalModel class] condition:nil error:&error];
@@ -1536,7 +1536,7 @@
     [os saveObject:item1 error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     
-    [os removeObject:item1 error:&error];
+    [os deleteObject:item1 error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     
     NSNumber *count = [os count:[BZWeakPropertyModel class] condition:nil error:&error];
@@ -1945,7 +1945,7 @@
     [os saveObject:savedObject2 error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     
-    [os removeObjects:@[savedObject2,savedObject2] error:&error];
+    [os deleteObjects:@[savedObject2,savedObject2] error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     
 }
@@ -2110,7 +2110,7 @@
     XCTAssert(!err, @"fetchObjectsInBackground \"%s\"", __PRETTY_FUNCTION__);
     XCTAssertTrue(list.count == 1,@"fetchObjectsInBackground error");
     
-    [os removeObjectInBackground:list.firstObject completionBlock:^(NSError *error) {
+    [os deleteObjectInBackground:list.firstObject completionBlock:^(NSError *error) {
         err = error;
         RESUME;
     }];
@@ -2124,7 +2124,7 @@
     WAIT;
     XCTAssert(!err, @"saveObjectInBackground \"%s\"", __PRETTY_FUNCTION__);
     
-    [os removeObjectsInBackground:@[list.firstObject] completionBlock:^(NSError *error) {
+    [os deleteObjectsInBackground:@[list.firstObject] completionBlock:^(NSError *error) {
         err = error;
         RESUME;
     }];
@@ -2138,7 +2138,7 @@
     WAIT;
     XCTAssert(!err, @"saveObjectInBackground \"%s\"", __PRETTY_FUNCTION__);
     
-    [os removeObjectsInBackground:[BZBackgroundModel class] condition:nil completionBlock:^(NSError *error) {
+    [os deleteObjectsInBackground:[BZBackgroundModel class] condition:nil completionBlock:^(NSError *error) {
         err = error;
         RESUME;
     }];

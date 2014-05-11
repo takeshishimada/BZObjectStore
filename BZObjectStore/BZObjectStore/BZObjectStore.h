@@ -33,12 +33,12 @@
 
 - (void)inTransaction:(void(^)(BZObjectStore *os,BOOL *rollback))block;
 
-- (void)saveObject:(NSObject*)object error:(NSError**)error;
-- (void)saveObjects:(NSArray*)objects error:(NSError**)error;
+- (BOOL)saveObject:(NSObject*)object error:(NSError**)error;
+- (BOOL)saveObjects:(NSArray*)objects error:(NSError**)error;
 
-- (void)removeObject:(NSObject*)object error:(NSError**)error;
-- (void)removeObjects:(NSArray *)objects error:(NSError**)error;
-- (void)removeObjects:(Class)clazz condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error;
+- (BOOL)deleteObject:(NSObject*)object error:(NSError**)error;
+- (BOOL)deleteObjects:(NSArray *)objects error:(NSError**)error;
+- (BOOL)deleteObjects:(Class)clazz condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error;
 
 - (id)refreshObject:(NSObject*)object error:(NSError**)error;
 - (NSMutableArray*)fetchObjects:(Class)clazz condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error;
@@ -54,8 +54,8 @@
 - (NSNumber*)total:(NSString*)columnName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error;
 - (NSNumber*)avg:(NSString*)columnName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error;
 
-- (void)registerClass:(Class)clazz error:(NSError**)error;
-- (void)unRegisterClass:(Class)clazz error:(NSError**)error;
+- (BOOL)registerClass:(Class)clazz error:(NSError**)error;
+- (BOOL)unRegisterClass:(Class)clazz error:(NSError**)error;
 
 - (void)close;
 

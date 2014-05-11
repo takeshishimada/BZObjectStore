@@ -60,7 +60,7 @@
 @property (nonatomic,assign) BOOL fullTextSearch4;
 @property (nonatomic,assign) BOOL modelDidLoad;
 @property (nonatomic,assign) BOOL modelDidSave;
-@property (nonatomic,assign) BOOL modelDidRemove;
+@property (nonatomic,assign) BOOL modelDidDelete;
 
 // for response
 @property (nonatomic,assign) BOOL hasIdentificationAttributes;

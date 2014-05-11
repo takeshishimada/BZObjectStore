@@ -67,7 +67,7 @@
 + (NSString*)OSColumnName:(NSString*)attributeName;
 - (void)OSModelDidLoad;
 - (void)OSModelDidSave;
-- (void)OSModelDidRemove;
+- (void)OSModelDidDelete;
 + (BOOL)attributeIsOSIdenticalAttribute:(NSString*)attributeName;
 + (BOOL)attributeIsOSIgnoreAttribute:(NSString*)attributeName;
 + (BOOL)attributeIsOSWeakReferenceAttribute:(NSString*)attributeName;

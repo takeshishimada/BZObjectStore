@@ -48,8 +48,8 @@
 - (NSArray*)refreshObject:(NSObject*)object db:(FMDatabase*)db error:(NSError**)error;
 - (NSMutableArray*)fetchObjects:(Class)clazz condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db error:(NSError**)error;
 - (BOOL)saveObjects:(NSArray*)objects db:(FMDatabase*)db error:(NSError**)error;
-- (BOOL)removeObjects:(NSArray*)objects db:(FMDatabase*)db error:(NSError**)error;
-- (BOOL)removeObjects:(Class)clazz condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db error:(NSError**)error;
+- (BOOL)deleteObjects:(NSArray*)objects db:(FMDatabase*)db error:(NSError**)error;
+- (BOOL)deleteObjects:(Class)clazz condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db error:(NSError**)error;
 
 - (BZObjectStoreRuntime*)runtime:(Class)clazz;
 - (BOOL)registerRuntime:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db error:(NSError**)error;
@@ -382,10 +382,10 @@
 
 #pragma mark save methods
 
-- (void)saveObjects:(NSArray*)objects error:(NSError**)error
+- (BOOL)saveObjects:(NSArray*)objects error:(NSError**)error
 {
     if (![[objects class] isSubclassOfClass:[NSArray class]]) {
-        return;
+        return NO;
     }
     __block NSError *err = nil;
     __block BOOL ret = NO;
@@ -402,10 +402,10 @@
     if (error) {
         *error = err;
     }
-    return;
+    return ret;
 }
 
-- (void)saveObject:(NSObject*)object error:(NSError**)error
+- (BOOL)saveObject:(NSObject*)object error:(NSError**)error
 {
     __block NSError *err = nil;
     __block BOOL ret = NO;
@@ -421,18 +421,18 @@
     if (error) {
         *error = err;
     }
-    return;
+    return ret;
 }
 
-#pragma mark remove methods
+#pragma mark delete methods
 
-- (void)removeObjects:(Class)clazz condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error
+- (BOOL)deleteObjects:(Class)clazz condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error
 {
     __block NSError *err = nil;
     __block BOOL ret = NO;
     [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
         [db setShouldCacheStatements:YES];
-        ret = [_weakSelf removeObjects:clazz condition:condition db:db error:&err];
+        ret = [_weakSelf deleteObjects:clazz condition:condition db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
         }
@@ -444,15 +444,15 @@
     if (error) {
         *error = err;
     }
-    return;
+    return ret;
 }
 
-- (void)removeObject:(NSObject*)object error:(NSError**)error
+- (BOOL)deleteObject:(NSObject*)object error:(NSError**)error
 {
     __block NSError *err = nil;
     __block BOOL ret = NO;
     [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
-        ret = [_weakSelf removeObjects:@[object] db:db error:&err];
+        ret = [_weakSelf deleteObjects:@[object] db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
         }
@@ -464,18 +464,18 @@
     if (error) {
         *error = err;
     }
-    return;
+    return ret;
 }
 
-- (void)removeObjects:(NSArray *)objects error:(NSError**)error
+- (BOOL)deleteObjects:(NSArray *)objects error:(NSError**)error
 {
     if (![[objects class] isSubclassOfClass:[NSArray class]]) {
-        return;
+        return NO;
     }
     __block NSError *err = nil;
     __block BOOL ret = NO;
     [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
-        ret = [_weakSelf removeObjects:objects db:db error:&err];
+        ret = [_weakSelf deleteObjects:objects db:db error:&err];
         if ([db hadError]) {
             err = [db lastError];
         }
@@ -486,12 +486,12 @@
     if (error) {
         *error = err;
     }
-    return;
+    return ret;
 }
 
 #pragma register methods
 
-- (void)registerClass:(Class)clazz error:(NSError**)error
+- (BOOL)registerClass:(Class)clazz error:(NSError**)error
 {
     __block NSError *err = nil;
     __block BOOL ret = NO;
@@ -510,10 +510,10 @@
     if (error) {
         *error = err;
     }
-    return;
+    return ret;
 }
 
-- (void)unRegisterClass:(Class)clazz error:(NSError**)error
+- (BOOL)unRegisterClass:(Class)clazz error:(NSError**)error
 {
     __block NSError *err = nil;
     __block BOOL ret = NO;
@@ -532,7 +532,7 @@
     if (error) {
         *error = err;
     }
-    return;
+    return ret;
 }
 
 - (void)close

@@ -678,7 +678,7 @@
                             return NO;
                         }
                         if (object) {
-                            [self removeObjectsSub:@[object] db:db error:error];
+                            [self deleteObjectsSub:@[object] db:db error:error];
                             if ([self hadError:db error:error]) {
                                 return NO;
                             }
@@ -708,22 +708,22 @@
 
 
 
-#pragma mark remove methods
+#pragma mark delete methods
 
-- (BOOL)removeObjects:(Class)clazz condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db error:(NSError**)error
+- (BOOL)deleteObjects:(Class)clazz condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db error:(NSError**)error
 {
     NSArray *objects = [self fetchObjects:clazz condition:condition db:db error:error];
     if ([self hadError:db error:error]) {
         return NO;
     }
-    [self removeObjectsSub:objects db:db error:error];
+    [self deleteObjectsSub:objects db:db error:error];
     if ([self hadError:db error:error]) {
         return NO;
     }
     return YES;
 }
 
-- (BOOL)removeObjects:(NSArray*)objects db:(FMDatabase*)db error:(NSError**)error
+- (BOOL)deleteObjects:(NSArray*)objects db:(FMDatabase*)db error:(NSError**)error
 {
     if (![self updateRuntimes:objects db:db error:error]) {
         return NO;
@@ -736,14 +736,14 @@
     if ([self hadError:db error:error]) {
         return NO;
     }
-    [self removeObjectsSub:objects db:db error:error];
+    [self deleteObjectsSub:objects db:db error:error];
     if ([self hadError:db error:error]) {
         return NO;
     }
     return YES;
 }
 
-- (BOOL)removeObjectsSub:(NSArray*)objects db:(FMDatabase*)db error:(NSError**)error
+- (BOOL)deleteObjectsSub:(NSArray*)objects db:(FMDatabase*)db error:(NSError**)error
 {
     NSMutableDictionary *processedObjects = [NSMutableDictionary dictionary];
     NSMutableArray *targetObjects = [NSMutableArray array];
@@ -794,14 +794,14 @@
             }
             [targetObjects removeObject:targetObject];
             // the following code is not needed
-            //  because of fetching processed before this remove method
+            //  because of fetching processed before this delete method
             //} else {
             //  [objectStuck removeObject:targetObject];
             //}
         }
     }
     
-    // remove objects
+    // delete objects
     BZObjectStoreRuntime *relationshipRuntime = [self runtimeWithClazz:[BZObjectStoreRelationshipModel class] db:db error:error];
     if ([self hadError:db error:error]) {
         return NO;
@@ -819,8 +819,8 @@
     }
     
     for (NSObject *targetObject in allValues) {
-        if (targetObject.runtime.modelDidRemove) {
-            [targetObject performSelector:@selector(OSModelDidRemove) withObject:nil];
+        if (targetObject.runtime.modelDidDelete) {
+            [targetObject performSelector:@selector(OSModelDidDelete) withObject:nil];
         }
     }
 
@@ -939,7 +939,7 @@
     if (!registed.boolValue) {
         return YES;
     }
-    [self removeObjects:runtime.clazz condition:nil db:db error:error];
+    [self deleteObjects:runtime.clazz condition:nil db:db error:error];
     if ([self hadError:db error:error]) {
         return NO;
     }

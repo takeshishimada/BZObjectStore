@@ -114,8 +114,8 @@
         if ([object respondsToSelector:@selector(OSModelDidSave)]) {
             self.modelDidSave = YES;
         }
-        if ([object respondsToSelector:@selector(OSModelDidRemove)]) {
-            self.modelDidRemove = YES;
+        if ([object respondsToSelector:@selector(OSModelDidDelete)]) {
+            self.modelDidDelete = YES;
         }
         if ([object respondsToSelector:@selector(OSModelDidLoad)]) {
             self.modelDidLoad = YES;

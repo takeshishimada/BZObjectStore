@@ -30,9 +30,9 @@
 - (void)saveObjectInBackground:(NSObject*)object completionBlock:(void(^)(NSError *error))completionBlock;
 - (void)saveObjectsInBackground:(NSArray*)objects completionBlock:(void(^)(NSError *error))completionBlock;
 
-- (void)removeObjectInBackground:(NSObject*)object completionBlock:(void(^)(NSError *error))completionBlock;
-- (void)removeObjectsInBackground:(NSArray*)objects completionBlock:(void(^)(NSError *error))completionBlock;
-- (void)removeObjectsInBackground:(Class)clazz condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSError *error))completionBlock;
+- (void)deleteObjectInBackground:(NSObject*)object completionBlock:(void(^)(NSError *error))completionBlock;
+- (void)deleteObjectsInBackground:(NSArray*)objects completionBlock:(void(^)(NSError *error))completionBlock;
+- (void)deleteObjectsInBackground:(Class)clazz condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSError *error))completionBlock;
 
 - (void)refreshObjectInBackground:(NSObject*)object completionBlock:(void(^)(NSObject *object,NSError *error))completionBlock;
 - (void)fetchObjectsInBackground:(Class)clazz condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSArray *objects,NSError *error))completionBlock;

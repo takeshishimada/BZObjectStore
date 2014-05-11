@@ -28,5 +28,5 @@
 @interface BZDelegateModel : NSObject<OSModelInterface>
 @property (nonatomic,readonly) BOOL modelDidLoad;
 @property (nonatomic,readonly) BOOL modelDidSave;
-@property (nonatomic,readonly) BOOL modelDidRemove;
+@property (nonatomic,readonly) BOOL modelDidDelete;
 @end

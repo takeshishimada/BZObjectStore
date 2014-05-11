@@ -51,12 +51,12 @@
     }];
 }
 
-- (void)removeObjectInBackground:(NSObject*)object completionBlock:(void(^)(NSError *error))completionBlock
+- (void)deleteObjectInBackground:(NSObject*)object completionBlock:(void(^)(NSError *error))completionBlock
 {
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     [queue addOperationWithBlock:^{
         NSError *error = nil;
-        [self removeObject:object error:&error];
+        [self deleteObject:object error:&error];
         NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];
         [mainQueue addOperationWithBlock:^{
             completionBlock(error);
@@ -64,12 +64,12 @@
     }];
 }
 
-- (void)removeObjectsInBackground:(NSArray*)objects completionBlock:(void(^)(NSError *error))completionBlock
+- (void)deleteObjectsInBackground:(NSArray*)objects completionBlock:(void(^)(NSError *error))completionBlock
 {
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     [queue addOperationWithBlock:^{
         NSError *error = nil;
-        [self removeObjects:objects error:&error];
+        [self deleteObjects:objects error:&error];
         NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];
         [mainQueue addOperationWithBlock:^{
             completionBlock(error);
@@ -77,12 +77,12 @@
     }];
 }
 
-- (void)removeObjectsInBackground:(Class)clazz condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSError *error))completionBlock
+- (void)deleteObjectsInBackground:(Class)clazz condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSError *error))completionBlock
 {
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     [queue addOperationWithBlock:^{
         NSError *error = nil;
-        [self removeObjects:clazz condition:condition error:&error];
+        [self deleteObjects:clazz condition:condition error:&error];
         NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];
         [mainQueue addOperationWithBlock:^{
             completionBlock(error);

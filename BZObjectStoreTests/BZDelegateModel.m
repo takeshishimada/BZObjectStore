@@ -26,7 +26,7 @@
 @interface BZDelegateModel ()
 @property (nonatomic,readwrite) BOOL modelDidLoad;
 @property (nonatomic,readwrite) BOOL modelDidSave;
-@property (nonatomic,readwrite) BOOL modelDidRemove;
+@property (nonatomic,readwrite) BOOL modelDidDelete;
 @end
 
 @implementation BZDelegateModel
@@ -34,9 +34,9 @@
 {
     self.modelDidLoad = YES;
 }
-- (void)OSModelDidRemove
+- (void)OSModelDidDelete
 {
-    self.modelDidRemove = YES;
+    self.modelDidDelete = YES;
 }
 - (void)OSModelDidSave
 {
