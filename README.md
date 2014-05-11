@@ -7,7 +7,7 @@ BZObjectStore automatically stores your models to SQLite tables and provides use
 ## Requirements
 Targeting either iOS 5.0 and above and ARC.
 
-## Summary
+## Features
 - Easy to use
 - Mapping Models to SQLite tables
 - Relationship in NSObject, NSArray, NSDictionary, NSSet, NSOrderedSet support
@@ -612,7 +612,7 @@ Please use FMDatabaseQueue and FMDatabase directly.
 - Background process methods can not be used in inTransactionInBackground method.  
 
 
-## Features
+## Futures
 - ActiveRecord pattern support
 - Notification support
 - Automatic Migration Support
