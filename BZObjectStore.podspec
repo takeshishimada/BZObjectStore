@@ -28,4 +28,9 @@ Pod::Spec.new do |s|
     ps.source_files = 'BZObjectStore/BZObjectStoreParse/*.{h,m}'
   end
 
+  s.subspec 'ActiveRecord' do |ps|
+    ps.dependency 'BZObjectStore/Core'
+    ps.source_files = 'BZObjectStore/BZObjectStoreActiveRecord/*.{h,m}'
+  end
+
 end
