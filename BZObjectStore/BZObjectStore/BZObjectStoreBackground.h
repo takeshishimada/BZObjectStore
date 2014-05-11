@@ -40,11 +40,11 @@
 - (void)countInBackground:(Class)clazz condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock;
 
 - (void)referencedCountInBackground:(NSObject*)object completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock;
-- (void)maxInBackground:(NSString*)attributeName clazz:(Class)clazz condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock;
-- (void)minInBackground:(NSString*)attributeName clazz:(Class)clazz condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock;
-- (void)sumInBackground:(NSString*)attributeName clazz:(Class)clazz condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock;
-- (void)totalInBackground:(NSString*)attributeName clazz:(Class)clazz condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock;
-- (void)avgInBackground:(NSString*)attributeName clazz:(Class)clazz condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock;
+- (void)maxInBackground:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock;
+- (void)minInBackground:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock;
+- (void)sumInBackground:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock;
+- (void)totalInBackground:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock;
+- (void)avgInBackground:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock;
 
 - (void)registerClassInBackground:(Class)clazz completionBlock:(void(^)(NSError *error))completionBlock;
 - (void)unRegisterClassInBackground:(Class)clazz completionBlock:(void(^)(NSError *error))completionBlock;

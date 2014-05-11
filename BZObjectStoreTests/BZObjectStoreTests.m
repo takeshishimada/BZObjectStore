@@ -2043,7 +2043,7 @@
     
     
     val = nil;
-    [os sumInBackground:@"price" clazz:[BZBackgroundModel class] condition:nil completionBlock:^(NSNumber *value, NSError *error) {
+    [os sumInBackground:@"price" class:[BZBackgroundModel class] condition:nil completionBlock:^(NSNumber *value, NSError *error) {
         val = value;
         err = error;
         RESUME;
@@ -2053,7 +2053,7 @@
     XCTAssertTrue(val.doubleValue == 1.234567890009,@"sumInBackground error");
     
     val = nil;
-    [os totalInBackground:@"price" clazz:[BZBackgroundModel class] condition:nil completionBlock:^(NSNumber *value, NSError *error) {
+    [os totalInBackground:@"price" class:[BZBackgroundModel class] condition:nil completionBlock:^(NSNumber *value, NSError *error) {
         val = value;
         err = error;
         RESUME;
@@ -2063,7 +2063,7 @@
     XCTAssertTrue(val.doubleValue == 1.234567890009,@"totalInBackground error");
     
     val = nil;
-    [os avgInBackground:@"price" clazz:[BZBackgroundModel class] condition:nil completionBlock:^(NSNumber *value, NSError *error) {
+    [os avgInBackground:@"price" class:[BZBackgroundModel class] condition:nil completionBlock:^(NSNumber *value, NSError *error) {
         val = value;
         err = error;
         RESUME;
@@ -2073,7 +2073,7 @@
     XCTAssertTrue(val.doubleValue == 1.234567890009,@"avgInBackground error");
     
     val = nil;
-    [os minInBackground:@"price" clazz:[BZBackgroundModel class] condition:nil completionBlock:^(NSNumber *value, NSError *error) {
+    [os minInBackground:@"price" class:[BZBackgroundModel class] condition:nil completionBlock:^(NSNumber *value, NSError *error) {
         val = value;
         err = error;
         RESUME;
@@ -2083,7 +2083,7 @@
     XCTAssertTrue(val.doubleValue == 1.234567890009,@"minInBackground error");
     
     val = nil;
-    [os maxInBackground:@"price" clazz:[BZBackgroundModel class] condition:nil completionBlock:^(NSNumber *value, NSError *error) {
+    [os maxInBackground:@"price" class:[BZBackgroundModel class] condition:nil completionBlock:^(NSNumber *value, NSError *error) {
         val = value;
         err = error;
         RESUME;
