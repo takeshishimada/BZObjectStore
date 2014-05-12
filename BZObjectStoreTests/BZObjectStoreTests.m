@@ -163,40 +163,40 @@
     _disk = [BZObjectStoreOnDisk openWithPath:@"database.sqlite" error:nil];
 
     [self testBZParseModel:_disk];
-    [self testBZVarietyValuesModel:_disk];
-    [self testBZInvalidValuesModel:_disk];
-    [self testBZRelationshipHeaderModel:_disk];
-    [self testBZInsertResponseModel:_disk];
-    [self testBZUpdateResponseModel:_disk];
-    [self testCircularReference:_disk];
-    [self testSQLiteGroupCondition:_disk];
-    [self testBZUpdateExistsObjectWithNoRowIdModel:_disk];
-    [self testBZOnDemanItemModel:_disk];
-    [self testBZExtendModel:_disk];
-    [self testBZIgnoreExtendModel:_disk];
-    [self testUpdateAttributeModel:_disk];
-    [self testBZIgnoreAttribute:_disk];
-    [self testBZDelegateModel:_disk];
-    [self testBZNameModel:_disk];
-    [self testAttributesModel:_disk];
-    [self testBZOrderByModel:_disk];
-    [self testBZWhereModel:_disk];
-    [self testBZOffSetLimitModel:_disk];
-    [self testBZFullTextModel:_disk];
-    [self testBZReferenceConditionModel:_disk];
-    [self testBZOSIdenticalModel:_disk];
-    [self testBZWeakPropertyModel:_disk];
-    [self testBZAddColumnsModel:_disk];
-    [self testBZTypeMissMatchModel:_disk];
-    [self testBZOSIdenticalAttributeOSSerializeAttributeModel:_disk];
-    [self testBZOSIdenticalFirstModel:_disk];
-    [self testBZDuplicateAttributeModel:_disk];
-    [self testBZObjectStoreReferenceModel:_disk];
-    [self testBZObjectStoreNameBuilder:_disk];
-    [self testBZObjectStoreClazzBZImage:_disk];
-    [self testBZArrayInArrayModel:_disk];
-    [self testBackground:_disk];
-    [self testInTransaction:_disk];
+//    [self testBZVarietyValuesModel:_disk];
+//    [self testBZInvalidValuesModel:_disk];
+//    [self testBZRelationshipHeaderModel:_disk];
+//    [self testBZInsertResponseModel:_disk];
+//    [self testBZUpdateResponseModel:_disk];
+//    [self testCircularReference:_disk];
+//    [self testSQLiteGroupCondition:_disk];
+//    [self testBZUpdateExistsObjectWithNoRowIdModel:_disk];
+//    [self testBZOnDemanItemModel:_disk];
+//    [self testBZExtendModel:_disk];
+//    [self testBZIgnoreExtendModel:_disk];
+//    [self testUpdateAttributeModel:_disk];
+//    [self testBZIgnoreAttribute:_disk];
+//    [self testBZDelegateModel:_disk];
+//    [self testBZNameModel:_disk];
+//    [self testAttributesModel:_disk];
+//    [self testBZOrderByModel:_disk];
+//    [self testBZWhereModel:_disk];
+//    [self testBZOffSetLimitModel:_disk];
+//    [self testBZFullTextModel:_disk];
+//    [self testBZReferenceConditionModel:_disk];
+//    [self testBZOSIdenticalModel:_disk];
+//    [self testBZWeakPropertyModel:_disk];
+//    [self testBZAddColumnsModel:_disk];
+//    [self testBZTypeMissMatchModel:_disk];
+//    [self testBZOSIdenticalAttributeOSSerializeAttributeModel:_disk];
+//    [self testBZOSIdenticalFirstModel:_disk];
+//    [self testBZDuplicateAttributeModel:_disk];
+//    [self testBZObjectStoreReferenceModel:_disk];
+//    [self testBZObjectStoreNameBuilder:_disk];
+//    [self testBZObjectStoreClazzBZImage:_disk];
+//    [self testBZArrayInArrayModel:_disk];
+//    [self testBackground:_disk];
+//    [self testInTransaction:_disk];
     [_disk close];
     _disk = nil;
 }
@@ -206,41 +206,41 @@
 {
     BZObjectStore *_memory;
     _memory = [BZObjectStoreOnMemory openWithPath:nil error:nil];
-    [self testBZParseModel:_memory];
-    [self testBZVarietyValuesModel:_memory];
-    [self testBZInvalidValuesModel:_memory];
-    [self testBZRelationshipHeaderModel:_memory];
-    [self testBZInsertResponseModel:_memory];
-    [self testBZUpdateResponseModel:_memory];
-    [self testCircularReference:_memory];
-    [self testSQLiteGroupCondition:_memory];
-    [self testBZUpdateExistsObjectWithNoRowIdModel:_memory];
-    [self testBZOnDemanItemModel:_memory];
-    [self testBZExtendModel:_memory];
-    [self testBZIgnoreExtendModel:_memory];
-    [self testUpdateAttributeModel:_memory];
-    [self testBZIgnoreAttribute:_memory];
-    [self testBZDelegateModel:_memory];
-    [self testBZNameModel:_memory];
-    [self testAttributesModel:_memory];
-    [self testBZOrderByModel:_memory];
-    [self testBZWhereModel:_memory];
-    [self testBZOffSetLimitModel:_memory];
-    [self testBZFullTextModel:_memory];
-    [self testBZReferenceConditionModel:_memory];
-    [self testBZOSIdenticalModel:_memory];
-    [self testBZWeakPropertyModel:_memory];
-    [self testBZAddColumnsModel:_memory];
-    [self testBZTypeMissMatchModel:_memory];
-    [self testBZOSIdenticalAttributeOSSerializeAttributeModel:_memory];
-    [self testBZOSIdenticalFirstModel:_memory];
-    [self testBZDuplicateAttributeModel:_memory];
-    [self testBZObjectStoreReferenceModel:_memory];
-    [self testBZObjectStoreNameBuilder:_memory];
-    [self testBZObjectStoreClazzBZImage:_memory];
-    [self testBZArrayInArrayModel:_memory];
-    [self testBackground:_memory];
-    [self testInTransaction:_memory];
+//    [self testBZParseModel:_memory];
+//    [self testBZVarietyValuesModel:_memory];
+//    [self testBZInvalidValuesModel:_memory];
+//    [self testBZRelationshipHeaderModel:_memory];
+//    [self testBZInsertResponseModel:_memory];
+//    [self testBZUpdateResponseModel:_memory];
+//    [self testCircularReference:_memory];
+//    [self testSQLiteGroupCondition:_memory];
+//    [self testBZUpdateExistsObjectWithNoRowIdModel:_memory];
+//    [self testBZOnDemanItemModel:_memory];
+//    [self testBZExtendModel:_memory];
+//    [self testBZIgnoreExtendModel:_memory];
+//    [self testUpdateAttributeModel:_memory];
+//    [self testBZIgnoreAttribute:_memory];
+//    [self testBZDelegateModel:_memory];
+//    [self testBZNameModel:_memory];
+//    [self testAttributesModel:_memory];
+//    [self testBZOrderByModel:_memory];
+//    [self testBZWhereModel:_memory];
+//    [self testBZOffSetLimitModel:_memory];
+//    [self testBZFullTextModel:_memory];
+//    [self testBZReferenceConditionModel:_memory];
+//    [self testBZOSIdenticalModel:_memory];
+//    [self testBZWeakPropertyModel:_memory];
+//    [self testBZAddColumnsModel:_memory];
+//    [self testBZTypeMissMatchModel:_memory];
+//    [self testBZOSIdenticalAttributeOSSerializeAttributeModel:_memory];
+//    [self testBZOSIdenticalFirstModel:_memory];
+//    [self testBZDuplicateAttributeModel:_memory];
+//    [self testBZObjectStoreReferenceModel:_memory];
+//    [self testBZObjectStoreNameBuilder:_memory];
+//    [self testBZObjectStoreClazzBZImage:_memory];
+//    [self testBZArrayInArrayModel:_memory];
+//    [self testBackground:_memory];
+//    [self testInTransaction:_memory];
     [_memory close];
     _memory = nil;
 }
@@ -2186,34 +2186,61 @@
 
 - (void)testBZParseModel:(BZObjectStore*)os
 {
+//    NSError *error = nil;
+//
+//    PFUser *user = [PFUser user];
+//    user.username = @"my name";
+//    user.password = @"my pass";
+//    user.email = @"email@example.com";
+//    [os saveObject:user error:&error];
+//
+//    BZParseModel *parseModel = [[BZParseModel alloc]init];
+//    parseModel.string = @"string";
+//    parseModel.mutableString = [NSMutableString stringWithString:@"mutableString"];
+//    parseModel.date = [NSDate date];
+//    PFGeoPoint *point = [PFGeoPoint geoPointWithLatitude:1.23456789f longitude:9.87654321f];
+//    [parseModel setValue:point forKeyPath:@"point"];
+//    
+//    [parseModel save:&error];
+//    [os saveObject:parseModel error:&error];
+//    
+//    NSArray *objects = [os fetchObjects:[BZParseModel class] condition:nil error:&error];
+//    for (BZParseModel *object in objects) {
+//        object.objectId = nil;
+//        [object save:&error];
+//    }
+
     NSError *error = nil;
-
-    PFUser *user = [PFUser user];
-    user.username = @"my name";
-    user.password = @"my pass";
-    user.email = @"email@example.com";
-    [os saveObject:user error:&error];
-
-    BZParseModel *parseModel = [[BZParseModel alloc]init];
-    parseModel.string = @"string";
-    parseModel.mutableString = [NSMutableString stringWithString:@"mutableString"];
-    parseModel.date = [NSDate date];
-    PFGeoPoint *point = [PFGeoPoint geoPointWithLatitude:1.23456789f longitude:9.87654321f];
-    [parseModel setValue:point forKeyPath:@"point"];
     
-//    UIImage *image = [UIImage imageNamed:@"AppleLogo.png"];
-//    NSData *gif = [NSData dataWithData:UIImagePNGRepresentation(image)];
-//    parseModel.file = [PFFile fileWithName:@"filename" data:gif];
-    
-    [parseModel save:&error];
-    [os saveObject:parseModel error:&error];
-    
-    NSArray *objects = [os fetchObjects:[BZParseModel class] condition:nil error:&error];
-    for (BZParseModel *object in objects) {
-        object.objectId = nil;
-        [object save:&error];
+    for (NSInteger i = 0; i < 10; i++) {
+        BZParseModel *parseModel = [[BZParseModel alloc]init];
+        parseModel.string = @"string";
+        parseModel.mutableString = [NSMutableString stringWithString:@"mutableString"];
+        parseModel.date = [NSDate date];
+        PFGeoPoint *point = [PFGeoPoint geoPointWithLatitude:1.23456789f longitude:9.87654321f];
+        [parseModel setValue:point forKeyPath:@"point"];
+        [os saveObject:parseModel error:&error];
     }
+    NSArray *objects = [os fetchObjects:[BZParseModel class] condition:nil error:&error];
+    XCTAssertTrue(objects.count == 10,@"count error");
     
+    for (BZParseModel *object in objects) {
+        [object save:&error];
+        XCTAssert(!error, @"parse \"%s\"", __PRETTY_FUNCTION__);
+        [os saveObject:object error:&error];
+        XCTAssert(!error, @"parse \"%s\"", __PRETTY_FUNCTION__);
+    }
+    NSNumber *count = [os count:[BZParseModel class] condition:nil error:&error];
+    XCTAssertTrue(count.integerValue == 10,@"count error");
+    
+//    [parseModel save:&error];
+//    
+//    NSArray *objects = [os fetchObjects:[BZParseModel class] condition:nil error:&error];
+//    for (BZParseModel *object in objects) {
+//        object.objectId = nil;
+//        [object save:&error];
+//    }
+
     
 }
 
