@@ -612,7 +612,7 @@ Please use FMDatabaseQueue and FMDatabase directly.
 - Background process methods can not be used in inTransactionInBackground method.  
 
 
-## Futures
+## TODO
 - ActiveRecord pattern support
 - Notification support
 - Automatic Migration Support
