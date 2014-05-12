@@ -2214,32 +2214,14 @@
 
 - (void)testBZParseModel:(BZObjectStore*)os
 {
-//    NSError *error = nil;
-//
-//    PFUser *user = [PFUser user];
-//    user.username = @"my name";
-//    user.password = @"my pass";
-//    user.email = @"email@example.com";
-//    [os saveObject:user error:&error];
-//
-//    BZParseModel *parseModel = [[BZParseModel alloc]init];
-//    parseModel.string = @"string";
-//    parseModel.mutableString = [NSMutableString stringWithString:@"mutableString"];
-//    parseModel.date = [NSDate date];
-//    PFGeoPoint *point = [PFGeoPoint geoPointWithLatitude:1.23456789f longitude:9.87654321f];
-//    [parseModel setValue:point forKeyPath:@"point"];
-//    
-//    [parseModel save:&error];
-//    [os saveObject:parseModel error:&error];
-//    
-//    NSArray *objects = [os fetchObjects:[BZParseModel class] condition:nil error:&error];
-//    for (BZParseModel *object in objects) {
-//        object.objectId = nil;
-//        [object save:&error];
-//    }
-
     NSError *error = nil;
-    
+
+    PFUser *user = [PFUser user];
+    user.username = @"my name";
+    user.password = @"my pass";
+    user.email = @"email@example.com";
+    [os saveObject:user error:&error];
+
     for (NSInteger i = 0; i < 10; i++) {
         BZParseModel *parseModel = [[BZParseModel alloc]init];
         parseModel.string = @"string";
@@ -2252,23 +2234,15 @@
     NSArray *objects = [os fetchObjects:[BZParseModel class] condition:nil error:&error];
     XCTAssertTrue(objects.count == 10,@"count error");
     
-//    for (BZParseModel *object in objects) {
-//        [object save:&error];
-//        XCTAssert(!error, @"parse \"%s\"", __PRETTY_FUNCTION__);
-//        [os saveObject:object error:&error];
-//        XCTAssert(!error, @"parse \"%s\"", __PRETTY_FUNCTION__);
-//    }
-//    NSNumber *count = [os count:[BZParseModel class] condition:nil error:&error];
-//    XCTAssertTrue(count.integerValue == 10,@"count error");
+    for (BZParseModel *object in objects) {
+        [object save:&error];
+        XCTAssert(!error, @"parse \"%s\"", __PRETTY_FUNCTION__);
+        [os saveObject:object error:&error];
+        XCTAssert(!error, @"parse \"%s\"", __PRETTY_FUNCTION__);
+    }
+    NSNumber *count = [os count:[BZParseModel class] condition:nil error:&error];
+    XCTAssertTrue(count.integerValue == 10,@"count error");
     
-//    [parseModel save:&error];
-//    
-//    NSArray *objects = [os fetchObjects:[BZParseModel class] condition:nil error:&error];
-//    for (BZParseModel *object in objects) {
-//        object.objectId = nil;
-//        [object save:&error];
-//    }
-
     
 }
 
