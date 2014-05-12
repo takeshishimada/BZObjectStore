@@ -594,7 +594,7 @@ Please use FMDatabaseQueue and FMDatabase directly.
 ```
 
 ## ActiveRecord support
-###### setup activeRecord
+##### setup
 ```objective-c
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
@@ -603,7 +603,7 @@ Please use FMDatabaseQueue and FMDatabase directly.
 }
 ```
 
-###### case using BZActiveRecord
+##### case using BZActiveRecord
 ```objective-c
 #import "BZActiveRecord.h"
 
@@ -615,7 +615,7 @@ Please use FMDatabaseQueue and FMDatabase directly.
 @implementation SampleModel
 @end
 ```
-###### case using NSObject-BZActiveRecord.h
+##### case using NSObject-BZActiveRecord.h
 ```objective-c
 #import "NSObject-BZActiveRecord.h"
 
@@ -627,7 +627,7 @@ Please use FMDatabaseQueue and FMDatabase directly.
 @implementation SampleModel
 @end
 ```
-###### save object
+##### save object
 ```objective-c
 - (void)foo
 {
