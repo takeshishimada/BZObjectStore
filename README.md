@@ -662,7 +662,6 @@ Please use FMDatabaseQueue and FMDatabase directly.
 
 
 ## TODO
-- ActiveRecord pattern support
 - Notification support
 - Automatic Migration Support
 - CLLocationCoordinate2D, CLLocation, NSHashTable, NSMapTable support
