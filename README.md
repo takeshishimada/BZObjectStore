@@ -16,12 +16,14 @@ Targeting either iOS 5.0 and above and ARC.
 - Thread Safety
 - Lazy fetching,One time Update and other useful options
 - Any super class in your model not required
+- ActiveRecord support
 
 ## Installation
 BZObjectStore can be installed using [CocoaPods](http://cocoapods.org/).
 ```
 pod 'BZObjectStore'
 pod 'BZObjectStore/Parse' // if needed
+pod 'BZObjectStore/ActiveRecord' // if needed
 ```
 
 ## Example
@@ -382,7 +384,7 @@ and override methods you need.
 ```objective-c
 + (NSString*)OSTableName
 {
-	return @"table_name_you_want";
+    return @"table_name_you_want";
 }
 ```
 
@@ -390,10 +392,10 @@ and override methods you need.
 ```objective-c
 + (NSString*)OSColumnName:(NSString*)attributeName
 {
-	if ([attributeName isEqualToString:@"column_name_you_want_to_change"]) {
-		return @"column_name_you_want";
-	}
-	return attributeName;
+    if ([attributeName isEqualToString:@"column_name_you_want_to_change"]) {
+        return @"column_name_you_want";
+    }
+    return attributeName;
 }
 ```
 
@@ -401,7 +403,7 @@ and override methods you need.
 ```objective-c
 - (void)OSModelDidLoad
 {
-	// your operation
+    // your operation
 }
 ```
 
@@ -409,7 +411,7 @@ and override methods you need.
 ```objective-c
 - (void)OSModelDidSave
 {
-	// your operation
+    // your operation
 }
 ```
 
@@ -417,7 +419,7 @@ and override methods you need.
 ```objective-c
 - (void)OSModelDidDelete
 {
-	// your operation
+    // your operation
 }
 ```
 
@@ -425,10 +427,10 @@ and override methods you need.
 ```objective-c
 + (BOOL)attributeIsOSIdenticalAttribute:(NSString*)attributeName
 {
-	if ([attributeName isEqualToString:@"foo"]) {
-		return YES;
-	}
-	return NO;
+    if ([attributeName isEqualToString:@"foo"]) {
+        return YES;
+    }
+    return NO;
 }
 ```
 
@@ -436,10 +438,10 @@ and override methods you need.
 ```objective-c
 + (BOOL)attributeIsOSIgnoreAttribute:(NSString*)attributeName
 {
-	if ([attributeName isEqualToString:@"foo"]) {
-		return YES;
-	}
-	return NO;
+    if ([attributeName isEqualToString:@"foo"]) {
+        return YES;
+    }
+    return NO;
 }
 ```
 
@@ -447,10 +449,10 @@ and override methods you need.
 ```objective-c
 + (BOOL)attributeIsOSWeakReferenceAttribute:(NSString*)attributeName
 {
-	if ([attributeName isEqualToString:@"foo"]) {
-		return YES;
-	}
-	return NO;
+    if ([attributeName isEqualToString:@"foo"]) {
+        return YES;
+    }
+    return NO;
 }
 ```
 
@@ -458,10 +460,10 @@ and override methods you need.
 ```objective-c
 + (BOOL)attributeIsOSNotUpdateIfValueIsNullAttribute:(NSString*)attributeName
 {
-	if ([attributeName isEqualToString:@"foo"]) {
-		return YES;
-	}
-	return NO;
+    if ([attributeName isEqualToString:@"foo"]) {
+        return YES;
+    }
+    return NO;
 }
 ```
 
@@ -469,10 +471,10 @@ and override methods you need.
 ```objective-c
 + (BOOL)attributeIsOSSerializableAttribute:(NSString*)attributeName
 {
-	if ([attributeName isEqualToString:@"foo"]) {
-		return YES;
-	}
-	return NO;
+    if ([attributeName isEqualToString:@"foo"]) {
+        return YES;
+    }
+    return NO;
 }
 ```
 
@@ -480,10 +482,10 @@ and override methods you need.
 ```objective-c
 + (BOOL)attributeIsOSOnceUpdateAttribute:(NSString*)attributeName
 {
-	if ([attributeName isEqualToString:@"foo"]) {
-		return YES;
-	}
-	return NO;
+    if ([attributeName isEqualToString:@"foo"]) {
+        return YES;
+    }
+    return NO;
 }
 ```
 
@@ -496,11 +498,11 @@ Import BZObjectStoreBackground.h and call each method name + 'InBackground' meth
 #import "BZObjectStore.h"
 
 [os saveObjectInBackground:savedObject completionBlock:^(NSError *error) {
-	if (!error) {
-		// succeed
-	} else {
-		// failed
-	}
+    if (!error) {
+        // succeed
+    } else {
+        // failed
+    }
 }];
 
 // refer BZObjectStoreBackground.h about other methods
@@ -590,6 +592,53 @@ Please use FMDatabaseQueue and FMDatabase directly.
     [os close];
 }
 ```
+
+## ActiveRecord support
+###### setup activeRecord
+```objective-c
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
+{
+    BZObjectStore *os = [BZObjectStore openWithPath:@"database.sqlite" error:&error];
+    [BZActiveRecord setupWithObjectStore:os];
+}
+```
+
+###### case using BZActiveRecord
+```objective-c
+#import "BZActiveRecord.h"
+
+@interface SampleModel : BZActiveRecord
+@property (nonatomic,strong) NSString *name;
+@property (nonatomic,assign) NSInteger price;
+@property (nonatomic,strong) SampleModel *sample;
+@end
+@implementation SampleModel
+@end
+```
+###### case using NSObject-BZActiveRecord.h
+```objective-c
+#import "NSObject-BZActiveRecord.h"
+
+@interface SampleModel : NSObject
+@property (nonatomic,strong) NSString *name;
+@property (nonatomic,assign) NSInteger price;
+@property (nonatomic,strong) SampleModel *sample;
+@end
+@implementation SampleModel
+@end
+```
+###### save object
+```objective-c
+- (void)foo
+{
+    NSError *error = nil;
+    SampleModel *sample = [SampleModel alloc]init];
+    [sample save:&error];
+    NSArray *samples = [SampleModel fetchs:nil error::&error];
+    [sample delete:&error];
+}
+```
+
 
 ##### In order to use FMDatabase, inherit BZObjectStore class and override the following methods.
 ```objective-c
