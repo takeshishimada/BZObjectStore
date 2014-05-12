@@ -600,7 +600,7 @@ BZObjectStore supports the following Parse objects.
 @implementation SampleModel
 @end
 ```
-##### save object
+##### example
 ```objective-c
 - (void)foo
 {
