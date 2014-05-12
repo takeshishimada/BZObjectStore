@@ -167,12 +167,11 @@
     // relationship attribute
     if (self.serializableAttribute) {
         self.isRelationshipClazz = NO;
-//    } else if (self.isArrayClazz ) {
-//        self.isRelationshipClazz = YES;
-//    } else if (self.isObjectClazz) {
-//        self.isRelationshipClazz = YES;
-//    } else {
-//        self.isRelationshipClazz = NO;
+    }
+    
+    // fetchOnRefreshingAttribute
+    if (self.fetchOnRefreshingAttribute) {
+        self.notUpdateIfValueIsNullAttribute = YES;
     }
     
     // sqlite
