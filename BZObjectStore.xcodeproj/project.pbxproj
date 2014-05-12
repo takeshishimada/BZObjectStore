@@ -26,6 +26,7 @@
 		724A0CA8191FCE7700AF177D /* BZObjectStoreClazzPFObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 724A0CA1191FCE7700AF177D /* BZObjectStoreClazzPFObject.m */; };
 		724A0CA9191FCE7700AF177D /* BZObjectStoreClazzPFUser.m in Sources */ = {isa = PBXBuildFile; fileRef = 724A0CA3191FCE7700AF177D /* BZObjectStoreClazzPFUser.m */; };
 		724A0CAA191FCE7700AF177D /* BZObjectStoreParse.m in Sources */ = {isa = PBXBuildFile; fileRef = 724A0CA5191FCE7700AF177D /* BZObjectStoreParse.m */; };
+		724A0CAD1921022600AF177D /* BZObjectStoreClazzNSDecimalNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 724A0CAC1921022600AF177D /* BZObjectStoreClazzNSDecimalNumber.m */; };
 		7259F7F418F44F04002A3416 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7259F7F318F44F04002A3416 /* Foundation.framework */; };
 		7259F7F618F44F04002A3416 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7259F7F518F44F04002A3416 /* CoreGraphics.framework */; };
 		7259F7F818F44F04002A3416 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7259F7F718F44F04002A3416 /* UIKit.framework */; };
@@ -196,6 +197,8 @@
 		724A0CA3191FCE7700AF177D /* BZObjectStoreClazzPFUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzPFUser.m; sourceTree = "<group>"; };
 		724A0CA4191FCE7700AF177D /* BZObjectStoreParse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreParse.h; sourceTree = "<group>"; };
 		724A0CA5191FCE7700AF177D /* BZObjectStoreParse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreParse.m; sourceTree = "<group>"; };
+		724A0CAB1921022600AF177D /* BZObjectStoreClazzNSDecimalNumber.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSDecimalNumber.h; sourceTree = "<group>"; };
+		724A0CAC1921022600AF177D /* BZObjectStoreClazzNSDecimalNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSDecimalNumber.m; sourceTree = "<group>"; };
 		7259F7F018F44F04002A3416 /* BZObjectStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BZObjectStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7259F7F318F44F04002A3416 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7259F7F518F44F04002A3416 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -870,6 +873,8 @@
 				728492E2190F508A005D9ACB /* BZObjectStoreClazzNSNull.m */,
 				728492E3190F508A005D9ACB /* BZObjectStoreClazzNSNumber.h */,
 				728492E4190F508A005D9ACB /* BZObjectStoreClazzNSNumber.m */,
+				724A0CAB1921022600AF177D /* BZObjectStoreClazzNSDecimalNumber.h */,
+				724A0CAC1921022600AF177D /* BZObjectStoreClazzNSDecimalNumber.m */,
 				728492E5190F508A005D9ACB /* BZObjectStoreClazzNSString.h */,
 				728492E6190F508A005D9ACB /* BZObjectStoreClazzNSString.m */,
 				728492E7190F508A005D9ACB /* BZObjectStoreClazzNSURL.h */,
@@ -1240,6 +1245,7 @@
 				72849332190F508A005D9ACB /* BZObjectStoreClazzUnsignedLongLong.m in Sources */,
 				72849321190F508A005D9ACB /* BZObjectStoreConditionModel.m in Sources */,
 				7284934D190F508A005D9ACB /* BZObjectStoreModelMapper.m in Sources */,
+				724A0CAD1921022600AF177D /* BZObjectStoreClazzNSDecimalNumber.m in Sources */,
 				72849341190F508A005D9ACB /* BZObjectStoreClazzUIColor.m in Sources */,
 				7284932F190F508A005D9ACB /* BZObjectStoreClazzUnsignedChar.m in Sources */,
 				72849333190F508A005D9ACB /* BZObjectStoreClazzUnsignedShort.m in Sources */,

@@ -302,6 +302,7 @@
     savedObject.vrange = NSMakeRange(1, 2);
     savedObject.vmutableString = [NSMutableString stringWithString:@"mutableString"];
     savedObject.vnumber = [NSNumber numberWithBool:YES];
+    savedObject.vdecimalnumber = [NSDecimalNumber decimalNumberWithString:@"100.0123456789"];
     savedObject.vurl = [NSURL URLWithString:@"http://wwww.yahoo.com"];
     savedObject.vnull = [NSNull null];
     savedObject.vcolor = [UIColor redColor];
@@ -355,6 +356,7 @@
     XCTAssertTrue([[savedObject.vmutableString class] isSubclassOfClass:[NSMutableString class]], @"vmutableString class");
     XCTAssertTrue([[savedObject.vvalue class] isSubclassOfClass:[NSValue class]], @"vvalue class");
     XCTAssertTrue([[savedObject.vnumber class] isSubclassOfClass:[NSNumber class]], @"vnumber class");
+    XCTAssertTrue([[savedObject.vdecimalnumber class] isSubclassOfClass:[NSDecimalNumber class]], @"vnumber class");
     XCTAssertTrue([[savedObject.vurl class] isSubclassOfClass:[NSURL class]], @"vurl class");
     XCTAssertTrue([[savedObject.vnull class] isSubclassOfClass:[NSNull class]], @"vnull class");
     XCTAssertTrue([[savedObject.vcolor class] isSubclassOfClass:[UIColor class]], @"vcolor class");
@@ -409,6 +411,7 @@
     XCTAssertTrue(fetchedObject.vrange.location == savedObject.vrange.location,"vrange error");
     XCTAssertTrue([fetchedObject.vmutableString isEqualToString:savedObject.vmutableString],"vmutableString error");
     XCTAssertTrue([fetchedObject.vnumber isEqualToNumber:savedObject.vnumber],"vnumber error");
+    XCTAssertTrue([fetchedObject.vdecimalnumber isEqualToNumber:savedObject.vdecimalnumber],"vdecimalnumber error");
     XCTAssertTrue([fetchedObject.vcolor RGBAValue] == [[UIColor redColor] RGBAValue],@"vcolor error");
     XCTAssertTrue([[fetchedObject.vurl absoluteString] isEqualToString:[savedObject.vurl absoluteString]],@"vurl error");
     XCTAssertTrue(fetchedObject.vnull == [NSNull null],@"vmutableSet error");

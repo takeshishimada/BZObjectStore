@@ -36,6 +36,7 @@
 #import "BZObjectStoreClazzNSString.h"
 #import "BZObjectStoreClazzNSDate.h"
 #import "BZObjectStoreClazzNSURL.h"
+#import "BZObjectStoreClazzNSDecimalNumber.h"
 #import "BZObjectStoreClazzNSNumber.h"
 #import "BZObjectStoreClazzNSData.h"
 #import "BZObjectStoreClazzUIColor.h"
@@ -143,6 +144,7 @@
             [self addOSClazz:[BZObjectStoreClazzNSDate class] osclazzsArray:osclazzsArray];
             [self addOSClazz:[BZObjectStoreClazzNSURL class] osclazzsArray:osclazzsArray];
             [self addOSClazz:[BZObjectStoreClazzNSString class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzNSDecimalNumber class] osclazzsArray:osclazzsArray];
             [self addOSClazz:[BZObjectStoreClazzNSNumber class] osclazzsArray:osclazzsArray];
             [self addOSClazz:[BZObjectStoreClazzNSData class] osclazzsArray:osclazzsArray];
             [self addOSClazz:[BZObjectStoreClazzUIColor class] osclazzsArray:osclazzsArray];

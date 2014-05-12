@@ -72,6 +72,7 @@ typedef struct {
 @property (nonatomic,strong) NSString *vstring;
 @property (nonatomic,strong) NSMutableString *vmutableString;
 @property (nonatomic,strong) NSNumber *vnumber;
+@property (nonatomic,strong) NSDecimalNumber *vdecimalnumber;
 @property (nonatomic,strong) NSNull *vnull;
 @property (nonatomic,strong) NSURL *vurl;
 @property (nonatomic,strong) NSData *vdata;
