@@ -612,23 +612,8 @@ BZObjectStore supports the following Parse objects.
 }
 ```
 
-
-##### In order to use FMDatabase, inherit BZObjectStore class and override the following methods.
-```objective-c
-#import "FMDatabase.h"
-
-- (void)transactionDidBegin:(FMDatabase *)db
-{
-    // called when call fetch,delete,save methods 
-}
-
-- (void)transactionDidEnd:(FMDatabase *)db
-{
-    // called when call fetch,delete,save methods 
-}
-```
-
 ## Others
+
 #### Migration
 BZObjectStore supports adding attributes and deleting attributes which dose not implements OSIdenticalAttribute only.  
 Please use FMDatabaseQueue and FMDatabase directly.
@@ -652,6 +637,21 @@ Please use FMDatabaseQueue and FMDatabase directly.
         [rs close];
     }];
     [os close];
+}
+```
+
+##### In order to use FMDatabase, inherit BZObjectStore class and override the following methods.
+```objective-c
+#import "FMDatabase.h"
+
+- (void)transactionDidBegin:(FMDatabase *)db
+{
+    // called when call fetch,delete,save methods 
+}
+
+- (void)transactionDidEnd:(FMDatabase *)db
+{
+    // called when call fetch,delete,save methods 
 }
 ```
 
