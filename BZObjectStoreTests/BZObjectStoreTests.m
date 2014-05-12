@@ -2252,14 +2252,14 @@
     NSArray *objects = [os fetchObjects:[BZParseModel class] condition:nil error:&error];
     XCTAssertTrue(objects.count == 10,@"count error");
     
-//    for (BZParseModel *object in objects) {
-//        [object save:&error];
-//        XCTAssert(!error, @"parse \"%s\"", __PRETTY_FUNCTION__);
-//        [os saveObject:object error:&error];
-//        XCTAssert(!error, @"parse \"%s\"", __PRETTY_FUNCTION__);
-//    }
-//    NSNumber *count = [os count:[BZParseModel class] condition:nil error:&error];
-//    XCTAssertTrue(count.integerValue == 10,@"count error");
+    for (BZParseModel *object in objects) {
+        [object save:&error];
+        XCTAssert(!error, @"parse \"%s\"", __PRETTY_FUNCTION__);
+        [os saveObject:object error:&error];
+        XCTAssert(!error, @"parse \"%s\"", __PRETTY_FUNCTION__);
+    }
+    NSNumber *count = [os count:[BZParseModel class] condition:nil error:&error];
+    XCTAssertTrue(count.integerValue == 10,@"count error");
     
 //    [parseModel save:&error];
 //    
