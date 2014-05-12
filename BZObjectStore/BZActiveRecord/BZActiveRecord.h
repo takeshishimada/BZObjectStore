@@ -25,7 +25,6 @@
 #import "NSObject+BZActiveRecord.h"
 
 @interface BZActiveRecord : NSObject
-+ (void)setupWithPath:(NSString *)path;
-+ (void)setupWithPath:(NSString *)path error:(NSError**)error;
++ (void)setupWithObjectStore:(BZObjectStore*)os;
 + (BZObjectStore*)objectStore;
 @end

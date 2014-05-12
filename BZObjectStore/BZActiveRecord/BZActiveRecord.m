@@ -27,25 +27,13 @@ static BZObjectStore *_os;
 
 @implementation BZActiveRecord
 
-+ (void)setupWithPath:(NSString *)path
++ (void)setupWithObjectStore:(BZObjectStore*)os
 {
-    return [self setupWithPath:path error:nil];
-}
-
-+ (void)setupWithPath:(NSString *)path error:(NSError**)error
-{
-    @synchronized(self) {
-        if (_os == nil) {
-            _os = [BZObjectStore openWithPath:path error:error];
-        }
-    }
+    _os = os;
 }
 
 + (BZObjectStore*)objectStore
 {
-    if (!_os) {
-        [self setupWithPath:nil];
-    }
     return _os;
 }
 
