@@ -40,8 +40,8 @@
     self.window.backgroundColor = [UIColor whiteColor];
     [self.window makeKeyAndVisible];
     
-    [Parse setApplicationId:@""
-                  clientKey:@""];
+    [Parse setApplicationId:@"qNMDT4gO06FhoPafaFOr6iM17FL5MoX2Idd00Mhr"
+                  clientKey:@"S3yt2lFSZNHOPE7Z0a6oa451tpecGJ5ysXfR92uO"];
     
     [PFAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
 

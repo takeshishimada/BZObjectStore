@@ -219,7 +219,7 @@
 
 + (NSString*)createUniqueIndexStatement:(BZObjectStoreRuntime*)runtime
 {
-    NSMutableString *sql = [self createIndexStatementSub:runtime unique:NO attributes:runtime.identificationAttributes];
+    NSMutableString *sql = [self createIndexStatementSub:runtime unique:YES attributes:runtime.identificationAttributes];
     return [NSString stringWithString:sql];
 }
 

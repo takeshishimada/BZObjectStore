@@ -89,6 +89,7 @@
 #import "BZTransactionModel.h"
 #import "BZParseModel.h"
 #import "BZObjectStoreParse.h"
+#import "BZActiveRecordModel.h"
 #import <Parse/Parse.h>
 
 @interface BZObjectStoreTests : XCTestCase {
@@ -132,8 +133,8 @@
     
     [BZParseModel registerSubclass];
     
-    [Parse setApplicationId:nil
-                  clientKey:nil];
+    [Parse setApplicationId:@"qNMDT4gO06FhoPafaFOr6iM17FL5MoX2Idd00Mhr"
+                  clientKey:@"S3yt2lFSZNHOPE7Z0a6oa451tpecGJ5ysXfR92uO"];
     
     
     // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -2187,6 +2188,30 @@
     
 }
 
+- (void)testBZActiveRecordModel:(BZObjectStore*)os
+{
+    [BZActiveRecord setupWithObjectStore:os];
+    
+    NSError *error = nil;
+    for (NSInteger i = 0; i < 10; i++) {
+        BZActiveRecordModel *save = [[BZActiveRecordModel alloc]init];
+        save.code = [NSString stringWithFormat:@"%ld",i];
+        save.price = i * 10.23;
+        [save save:&error];
+        XCTAssert(!error, @"activerecord save \"%s\"", __PRETTY_FUNCTION__);
+    }
+    
+    BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
+    condition.sqlite.where = @"code = ?";
+    condition.sqlite.parameters = @[@"1"];
+    
+    NSNumber *count = [BZActiveRecordModel count:condition error:&error];
+    XCTAssertTrue(count.integerValue == 1,@"activerecord count error");
+    
+    NSNumber *total = [BZActiveRecordModel total:@"price" condition:condition error:&error];
+    XCTAssertTrue(total.doubleValue == 10.23,@"activerecord total error");
+}
+
 - (void)testBZParseModel:(BZObjectStore*)os
 {
 //    NSError *error = nil;
@@ -2227,14 +2252,14 @@
     NSArray *objects = [os fetchObjects:[BZParseModel class] condition:nil error:&error];
     XCTAssertTrue(objects.count == 10,@"count error");
     
-    for (BZParseModel *object in objects) {
-        [object save:&error];
-        XCTAssert(!error, @"parse \"%s\"", __PRETTY_FUNCTION__);
-        [os saveObject:object error:&error];
-        XCTAssert(!error, @"parse \"%s\"", __PRETTY_FUNCTION__);
-    }
-    NSNumber *count = [os count:[BZParseModel class] condition:nil error:&error];
-    XCTAssertTrue(count.integerValue == 10,@"count error");
+//    for (BZParseModel *object in objects) {
+//        [object save:&error];
+//        XCTAssert(!error, @"parse \"%s\"", __PRETTY_FUNCTION__);
+//        [os saveObject:object error:&error];
+//        XCTAssert(!error, @"parse \"%s\"", __PRETTY_FUNCTION__);
+//    }
+//    NSNumber *count = [os count:[BZParseModel class] condition:nil error:&error];
+//    XCTAssertTrue(count.integerValue == 10,@"count error");
     
 //    [parseModel save:&error];
 //    
