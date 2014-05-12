@@ -163,41 +163,42 @@
     BZObjectStore *_disk;
     _disk = [BZObjectStoreOnDisk openWithPath:@"database.sqlite" error:nil];
 
-    [self testBZParseModel:_disk];
-    [self testBZVarietyValuesModel:_disk];
-    [self testBZInvalidValuesModel:_disk];
-    [self testBZRelationshipHeaderModel:_disk];
-    [self testBZInsertResponseModel:_disk];
-    [self testBZUpdateResponseModel:_disk];
-    [self testCircularReference:_disk];
-    [self testSQLiteGroupCondition:_disk];
-    [self testBZUpdateExistsObjectWithNoRowIdModel:_disk];
-    [self testBZOnDemanItemModel:_disk];
-    [self testBZExtendModel:_disk];
-    [self testBZIgnoreExtendModel:_disk];
-    [self testUpdateAttributeModel:_disk];
-    [self testBZIgnoreAttribute:_disk];
-    [self testBZDelegateModel:_disk];
-    [self testBZNameModel:_disk];
-    [self testAttributesModel:_disk];
-    [self testBZOrderByModel:_disk];
-    [self testBZWhereModel:_disk];
-    [self testBZOffSetLimitModel:_disk];
-    [self testBZFullTextModel:_disk];
-    [self testBZReferenceConditionModel:_disk];
-    [self testBZOSIdenticalModel:_disk];
-    [self testBZWeakPropertyModel:_disk];
-    [self testBZAddColumnsModel:_disk];
-    [self testBZTypeMissMatchModel:_disk];
-    [self testBZOSIdenticalAttributeOSSerializeAttributeModel:_disk];
-    [self testBZOSIdenticalFirstModel:_disk];
-    [self testBZDuplicateAttributeModel:_disk];
-    [self testBZObjectStoreReferenceModel:_disk];
-    [self testBZObjectStoreNameBuilder:_disk];
-    [self testBZObjectStoreClazzBZImage:_disk];
-    [self testBZArrayInArrayModel:_disk];
-    [self testBackground:_disk];
-    [self testInTransaction:_disk];
+    [self testBZActiveRecordModel:_disk];
+//    [self testBZParseModel:_disk];
+//    [self testBZVarietyValuesModel:_disk];
+//    [self testBZInvalidValuesModel:_disk];
+//    [self testBZRelationshipHeaderModel:_disk];
+//    [self testBZInsertResponseModel:_disk];
+//    [self testBZUpdateResponseModel:_disk];
+//    [self testCircularReference:_disk];
+//    [self testSQLiteGroupCondition:_disk];
+//    [self testBZUpdateExistsObjectWithNoRowIdModel:_disk];
+//    [self testBZOnDemanItemModel:_disk];
+//    [self testBZExtendModel:_disk];
+//    [self testBZIgnoreExtendModel:_disk];
+//    [self testUpdateAttributeModel:_disk];
+//    [self testBZIgnoreAttribute:_disk];
+//    [self testBZDelegateModel:_disk];
+//    [self testBZNameModel:_disk];
+//    [self testAttributesModel:_disk];
+//    [self testBZOrderByModel:_disk];
+//    [self testBZWhereModel:_disk];
+//    [self testBZOffSetLimitModel:_disk];
+//    [self testBZFullTextModel:_disk];
+//    [self testBZReferenceConditionModel:_disk];
+//    [self testBZOSIdenticalModel:_disk];
+//    [self testBZWeakPropertyModel:_disk];
+//    [self testBZAddColumnsModel:_disk];
+//    [self testBZTypeMissMatchModel:_disk];
+//    [self testBZOSIdenticalAttributeOSSerializeAttributeModel:_disk];
+//    [self testBZOSIdenticalFirstModel:_disk];
+//    [self testBZDuplicateAttributeModel:_disk];
+//    [self testBZObjectStoreReferenceModel:_disk];
+//    [self testBZObjectStoreNameBuilder:_disk];
+//    [self testBZObjectStoreClazzBZImage:_disk];
+//    [self testBZArrayInArrayModel:_disk];
+//    [self testBackground:_disk];
+//    [self testInTransaction:_disk];
     [_disk close];
     _disk = nil;
 }
@@ -207,41 +208,42 @@
 {
     BZObjectStore *_memory;
     _memory = [BZObjectStoreOnMemory openWithPath:nil error:nil];
-    [self testBZParseModel:_memory];
-    [self testBZVarietyValuesModel:_memory];
-    [self testBZInvalidValuesModel:_memory];
-    [self testBZRelationshipHeaderModel:_memory];
-    [self testBZInsertResponseModel:_memory];
-    [self testBZUpdateResponseModel:_memory];
-    [self testCircularReference:_memory];
-    [self testSQLiteGroupCondition:_memory];
-    [self testBZUpdateExistsObjectWithNoRowIdModel:_memory];
-    [self testBZOnDemanItemModel:_memory];
-    [self testBZExtendModel:_memory];
-    [self testBZIgnoreExtendModel:_memory];
-    [self testUpdateAttributeModel:_memory];
-    [self testBZIgnoreAttribute:_memory];
-    [self testBZDelegateModel:_memory];
-    [self testBZNameModel:_memory];
-    [self testAttributesModel:_memory];
-    [self testBZOrderByModel:_memory];
-    [self testBZWhereModel:_memory];
-    [self testBZOffSetLimitModel:_memory];
-    [self testBZFullTextModel:_memory];
-    [self testBZReferenceConditionModel:_memory];
-    [self testBZOSIdenticalModel:_memory];
-    [self testBZWeakPropertyModel:_memory];
-    [self testBZAddColumnsModel:_memory];
-    [self testBZTypeMissMatchModel:_memory];
-    [self testBZOSIdenticalAttributeOSSerializeAttributeModel:_memory];
-    [self testBZOSIdenticalFirstModel:_memory];
-    [self testBZDuplicateAttributeModel:_memory];
-    [self testBZObjectStoreReferenceModel:_memory];
-    [self testBZObjectStoreNameBuilder:_memory];
-    [self testBZObjectStoreClazzBZImage:_memory];
-    [self testBZArrayInArrayModel:_memory];
-    [self testBackground:_memory];
-    [self testInTransaction:_memory];
+    [self testBZActiveRecordModel:_memory];
+//    [self testBZParseModel:_memory];
+//    [self testBZVarietyValuesModel:_memory];
+//    [self testBZInvalidValuesModel:_memory];
+//    [self testBZRelationshipHeaderModel:_memory];
+//    [self testBZInsertResponseModel:_memory];
+//    [self testBZUpdateResponseModel:_memory];
+//    [self testCircularReference:_memory];
+//    [self testSQLiteGroupCondition:_memory];
+//    [self testBZUpdateExistsObjectWithNoRowIdModel:_memory];
+//    [self testBZOnDemanItemModel:_memory];
+//    [self testBZExtendModel:_memory];
+//    [self testBZIgnoreExtendModel:_memory];
+//    [self testUpdateAttributeModel:_memory];
+//    [self testBZIgnoreAttribute:_memory];
+//    [self testBZDelegateModel:_memory];
+//    [self testBZNameModel:_memory];
+//    [self testAttributesModel:_memory];
+//    [self testBZOrderByModel:_memory];
+//    [self testBZWhereModel:_memory];
+//    [self testBZOffSetLimitModel:_memory];
+//    [self testBZFullTextModel:_memory];
+//    [self testBZReferenceConditionModel:_memory];
+//    [self testBZOSIdenticalModel:_memory];
+//    [self testBZWeakPropertyModel:_memory];
+//    [self testBZAddColumnsModel:_memory];
+//    [self testBZTypeMissMatchModel:_memory];
+//    [self testBZOSIdenticalAttributeOSSerializeAttributeModel:_memory];
+//    [self testBZOSIdenticalFirstModel:_memory];
+//    [self testBZDuplicateAttributeModel:_memory];
+//    [self testBZObjectStoreReferenceModel:_memory];
+//    [self testBZObjectStoreNameBuilder:_memory];
+//    [self testBZObjectStoreClazzBZImage:_memory];
+//    [self testBZArrayInArrayModel:_memory];
+//    [self testBackground:_memory];
+//    [self testInTransaction:_memory];
     [_memory close];
     _memory = nil;
 }
@@ -2196,20 +2198,33 @@
     for (NSInteger i = 0; i < 10; i++) {
         BZActiveRecordModel *save = [[BZActiveRecordModel alloc]init];
         save.code = [NSString stringWithFormat:@"%ld",i];
-        save.price = i * 10.23;
+        save.price = i * 10;
         [save save:&error];
         XCTAssert(!error, @"activerecord save \"%s\"", __PRETTY_FUNCTION__);
     }
     
     BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
-    condition.sqlite.where = @"code = ?";
-    condition.sqlite.parameters = @[@"1"];
+    condition.sqlite.where = @"code IN ( ?,? )";
+    condition.sqlite.parameters = @[@"1",@"2"];
     
     NSNumber *count = [BZActiveRecordModel count:condition error:&error];
-    XCTAssertTrue(count.integerValue == 1,@"activerecord count error");
+    XCTAssertTrue(count.integerValue == 2,@"activerecord count error");
     
     NSNumber *total = [BZActiveRecordModel total:@"price" condition:condition error:&error];
-    XCTAssertTrue(total.doubleValue == 10.23,@"activerecord total error");
+    XCTAssertTrue(total.integerValue == 30,@"activerecord total error");
+    
+    NSNumber *sum = [BZActiveRecordModel sum:@"price" condition:condition error:&error];
+    XCTAssertTrue(sum.integerValue == 30,@"activerecord sum error");
+
+    NSNumber *avg = [BZActiveRecordModel avg:@"price" condition:condition error:&error];
+    XCTAssertTrue(avg.integerValue == 15,@"activerecord avg error");
+
+    NSNumber *max = [BZActiveRecordModel max:@"price" condition:nil error:&error];
+    XCTAssertTrue(max.integerValue ==90,@"activerecord max error");
+
+    NSNumber *min = [BZActiveRecordModel min:@"price" condition:nil error:&error];
+    XCTAssertTrue(min.integerValue ==0,@"activerecord max error");
+
 }
 
 - (void)testBZParseModel:(BZObjectStore*)os

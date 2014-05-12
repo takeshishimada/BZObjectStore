@@ -325,27 +325,42 @@
 
 - (NSString*)minStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition
 {
-    return [BZObjectStoreQueryBuilder minStatement:self columnName:columnName];
+    NSMutableString *sql = [NSMutableString string];
+    [sql appendString:[BZObjectStoreQueryBuilder minStatement:self columnName:columnName]];
+    [sql appendString:[BZObjectStoreQueryBuilder selectConditionStatement:condition runtime:self]];
+    return sql;
 }
 
 - (NSString*)maxStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition
 {
-    return [BZObjectStoreQueryBuilder maxStatement:self columnName:columnName];
+    NSMutableString *sql = [NSMutableString string];
+    [sql appendString:[BZObjectStoreQueryBuilder maxStatement:self columnName:columnName]];
+    [sql appendString:[BZObjectStoreQueryBuilder selectConditionStatement:condition runtime:self]];
+    return sql;
 }
 
 - (NSString*)avgStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition
 {
-    return [BZObjectStoreQueryBuilder avgStatement:self columnName:columnName];
+    NSMutableString *sql = [NSMutableString string];
+    [sql appendString:[BZObjectStoreQueryBuilder avgStatement:self columnName:columnName]];
+    [sql appendString:[BZObjectStoreQueryBuilder selectConditionStatement:condition runtime:self]];
+    return sql;
 }
 
 - (NSString*)totalStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition
 {
-    return [BZObjectStoreQueryBuilder totalStatement:self columnName:columnName];
+    NSMutableString *sql = [NSMutableString string];
+    [sql appendString:[BZObjectStoreQueryBuilder totalStatement:self columnName:columnName]];
+    [sql appendString:[BZObjectStoreQueryBuilder selectConditionStatement:condition runtime:self]];
+    return sql;
 }
 
 - (NSString*)sumStatementWithColumnName:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition
 {
-    return [BZObjectStoreQueryBuilder sumStatement:self columnName:columnName];
+    NSMutableString *sql = [NSMutableString string];
+    [sql appendString:[BZObjectStoreQueryBuilder sumStatement:self columnName:columnName]];
+    [sql appendString:[BZObjectStoreQueryBuilder selectConditionStatement:condition runtime:self]];
+    return sql;
 }
 
 #pragma marks unique condition
