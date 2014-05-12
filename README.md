@@ -566,33 +566,6 @@ BZObjectStore supports the following Parse objects.
 |PFGeoPoint|REAL|attributeName + '_latitude',+ '_longitude'|separated to 2 columns|
 |PFFile|TEXT,BLOB|attributeName + '_name',+ '_data'|separated to 2 columns|
 
-## Others
-#### Migration
-BZObjectStore supports adding attributes and deleting attributes which dose not implements OSIdenticalAttribute only.  
-Please use FMDatabaseQueue and FMDatabase directly.
-
-#### FMDatabaseQueue and FMDatabase
-##### In order to use FMDatabaseQueue, use dbQueue property.
-```objective-c
-#import "BZObjectStore.h"
-#import "FMDatabaseQueue.h"
-#import "FMDatabase.h"
-
-- (void)foo
-{
-    BZObjectStore *os = [BZObjectStore openWithPath:@"database.sqlite" error:nil];
-    FMDatabaseQueue *dbQueue = os.dbQueue;
-    [dbQueue inDatabase:^(FMDatabase *db) {
-        FMResultSet *rs = [db getTableSchema:@"SampleModel"];
-        while (rs.next) {
-            NSString *columnName = [rs stringForColumnIndex:1];
-        }
-        [rs close];
-    }];
-    [os close];
-}
-```
-
 ## ActiveRecord support
 ##### setup
 ```objective-c
@@ -652,6 +625,33 @@ Please use FMDatabaseQueue and FMDatabase directly.
 - (void)transactionDidEnd:(FMDatabase *)db
 {
     // called when call fetch,delete,save methods 
+}
+```
+
+## Others
+#### Migration
+BZObjectStore supports adding attributes and deleting attributes which dose not implements OSIdenticalAttribute only.  
+Please use FMDatabaseQueue and FMDatabase directly.
+
+#### FMDatabaseQueue and FMDatabase
+##### In order to use FMDatabaseQueue, use dbQueue property.
+```objective-c
+#import "BZObjectStore.h"
+#import "FMDatabaseQueue.h"
+#import "FMDatabase.h"
+
+- (void)foo
+{
+    BZObjectStore *os = [BZObjectStore openWithPath:@"database.sqlite" error:nil];
+    FMDatabaseQueue *dbQueue = os.dbQueue;
+    [dbQueue inDatabase:^(FMDatabase *db) {
+        FMResultSet *rs = [db getTableSchema:@"SampleModel"];
+        while (rs.next) {
+            NSString *columnName = [rs stringForColumnIndex:1];
+        }
+        [rs close];
+    }];
+    [os close];
 }
 ```
 
