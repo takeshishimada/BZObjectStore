@@ -20,7 +20,7 @@
 		72170C0318F8CEBD00C9A4C1 /* BZUpdateAttributeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72170C0218F8CEBD00C9A4C1 /* BZUpdateAttributeModel.m */; };
 		72170C1818F8DA1400C9A4C1 /* BZIgnoreAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 72170C1718F8DA1400C9A4C1 /* BZIgnoreAttribute.m */; };
 		724A0C99191FCD0500AF177D /* BZActiveRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 724A0C96191FCD0500AF177D /* BZActiveRecord.m */; };
-		724A0C9A191FCD0500AF177D /* NSObject+BZActiveRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 724A0C98191FCD0500AF177D /* NSObject+BZActiveRecord.m */; };
+		724A0C9A191FCD0500AF177D /* NSObject+ActiveRecord.m in Sources */ = {isa = PBXBuildFile; fileRef = 724A0C98191FCD0500AF177D /* NSObject+ActiveRecord.m */; };
 		724A0CA6191FCE7700AF177D /* BZObjectStoreClazzPFFile.m in Sources */ = {isa = PBXBuildFile; fileRef = 724A0C9D191FCE7700AF177D /* BZObjectStoreClazzPFFile.m */; };
 		724A0CA7191FCE7700AF177D /* BZObjectStoreClazzPFGeoPoint.m in Sources */ = {isa = PBXBuildFile; fileRef = 724A0C9F191FCE7700AF177D /* BZObjectStoreClazzPFGeoPoint.m */; };
 		724A0CA8191FCE7700AF177D /* BZObjectStoreClazzPFObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 724A0CA1191FCE7700AF177D /* BZObjectStoreClazzPFObject.m */; };
@@ -28,6 +28,7 @@
 		724A0CAA191FCE7700AF177D /* BZObjectStoreParse.m in Sources */ = {isa = PBXBuildFile; fileRef = 724A0CA5191FCE7700AF177D /* BZObjectStoreParse.m */; };
 		724A0CAD1921022600AF177D /* BZObjectStoreClazzNSDecimalNumber.m in Sources */ = {isa = PBXBuildFile; fileRef = 724A0CAC1921022600AF177D /* BZObjectStoreClazzNSDecimalNumber.m */; };
 		724A0CB019210AEC00AF177D /* BZActiveRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 724A0CAF19210AEC00AF177D /* BZActiveRecordModel.m */; };
+		724A0CB91922686F00AF177D /* NSObject+ActiveRecordParse.m in Sources */ = {isa = PBXBuildFile; fileRef = 724A0CB81922686F00AF177D /* NSObject+ActiveRecordParse.m */; };
 		7259F7F418F44F04002A3416 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7259F7F318F44F04002A3416 /* Foundation.framework */; };
 		7259F7F618F44F04002A3416 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7259F7F518F44F04002A3416 /* CoreGraphics.framework */; };
 		7259F7F818F44F04002A3416 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7259F7F718F44F04002A3416 /* UIKit.framework */; };
@@ -186,8 +187,8 @@
 		72170C1718F8DA1400C9A4C1 /* BZIgnoreAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZIgnoreAttribute.m; sourceTree = "<group>"; };
 		724A0C95191FCD0500AF177D /* BZActiveRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZActiveRecord.h; sourceTree = "<group>"; };
 		724A0C96191FCD0500AF177D /* BZActiveRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZActiveRecord.m; sourceTree = "<group>"; };
-		724A0C97191FCD0500AF177D /* NSObject+BZActiveRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BZActiveRecord.h"; sourceTree = "<group>"; };
-		724A0C98191FCD0500AF177D /* NSObject+BZActiveRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BZActiveRecord.m"; sourceTree = "<group>"; };
+		724A0C97191FCD0500AF177D /* NSObject+ActiveRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ActiveRecord.h"; sourceTree = "<group>"; };
+		724A0C98191FCD0500AF177D /* NSObject+ActiveRecord.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ActiveRecord.m"; sourceTree = "<group>"; };
 		724A0C9C191FCE7700AF177D /* BZObjectStoreClazzPFFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzPFFile.h; sourceTree = "<group>"; };
 		724A0C9D191FCE7700AF177D /* BZObjectStoreClazzPFFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzPFFile.m; sourceTree = "<group>"; };
 		724A0C9E191FCE7700AF177D /* BZObjectStoreClazzPFGeoPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzPFGeoPoint.h; sourceTree = "<group>"; };
@@ -202,6 +203,8 @@
 		724A0CAC1921022600AF177D /* BZObjectStoreClazzNSDecimalNumber.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSDecimalNumber.m; sourceTree = "<group>"; };
 		724A0CAE19210AEC00AF177D /* BZActiveRecordModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZActiveRecordModel.h; sourceTree = "<group>"; };
 		724A0CAF19210AEC00AF177D /* BZActiveRecordModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZActiveRecordModel.m; sourceTree = "<group>"; };
+		724A0CB71922686F00AF177D /* NSObject+ActiveRecordParse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+ActiveRecordParse.h"; sourceTree = "<group>"; };
+		724A0CB81922686F00AF177D /* NSObject+ActiveRecordParse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+ActiveRecordParse.m"; sourceTree = "<group>"; };
 		7259F7F018F44F04002A3416 /* BZObjectStore.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BZObjectStore.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7259F7F318F44F04002A3416 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		7259F7F518F44F04002A3416 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -611,8 +614,10 @@
 			children = (
 				724A0C95191FCD0500AF177D /* BZActiveRecord.h */,
 				724A0C96191FCD0500AF177D /* BZActiveRecord.m */,
-				724A0C97191FCD0500AF177D /* NSObject+BZActiveRecord.h */,
-				724A0C98191FCD0500AF177D /* NSObject+BZActiveRecord.m */,
+				724A0C97191FCD0500AF177D /* NSObject+ActiveRecord.h */,
+				724A0C98191FCD0500AF177D /* NSObject+ActiveRecord.m */,
+				724A0CB71922686F00AF177D /* NSObject+ActiveRecordParse.h */,
+				724A0CB81922686F00AF177D /* NSObject+ActiveRecordParse.m */,
 			);
 			name = ActiveRecord;
 			path = BZActiveRecord;
@@ -1242,7 +1247,7 @@
 				7259F80018F44F04002A3416 /* main.m in Sources */,
 				72849344190F508A005D9ACB /* BZObjectStoreClazzNSDictionary.m in Sources */,
 				72849349190F508A005D9ACB /* BZObjectStoreClazzNSOrderedSet.m in Sources */,
-				724A0C9A191FCD0500AF177D /* NSObject+BZActiveRecord.m in Sources */,
+				724A0C9A191FCD0500AF177D /* NSObject+ActiveRecord.m in Sources */,
 				7284933F190F508A005D9ACB /* BZObjectStoreClazzNSValue.m in Sources */,
 				724A0CAA191FCE7700AF177D /* BZObjectStoreParse.m in Sources */,
 				7284932B190F508A005D9ACB /* BZObjectStoreClazzC99Bool.m in Sources */,
@@ -1278,6 +1283,7 @@
 				72849324190F508A005D9ACB /* FMDatabase+indexInfo.m in Sources */,
 				726EA3C7191897D700D70AA6 /* BZParseModel.m in Sources */,
 				72849328190F508A005D9ACB /* BZObjectStoreClazzChar.m in Sources */,
+				724A0CB91922686F00AF177D /* NSObject+ActiveRecordParse.m in Sources */,
 				72849326190F508A005D9ACB /* UIColor+BZObjectStore.m in Sources */,
 				7284933B190F508A005D9ACB /* BZObjectStoreClazzNSNull.m in Sources */,
 				72849339190F508A005D9ACB /* BZObjectStoreClazzNSDate.m in Sources */,

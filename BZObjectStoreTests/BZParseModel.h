@@ -23,8 +23,11 @@
 
 #import <Parse/Parse.h>
 #import "BZObjectStoreModelInterface.h"
+#import "NSObject+ActiveRecordParse.h"
 
 @interface BZParseModel : PFObject<PFSubclassing>
+@property (nonatomic,retain) NSString *code;
+@property (nonatomic,assign) NSInteger price;
 @property (nonatomic,retain) NSString *string;
 @property (nonatomic,retain) NSMutableString *mutableString;
 @property (nonatomic,retain) NSDate *date;

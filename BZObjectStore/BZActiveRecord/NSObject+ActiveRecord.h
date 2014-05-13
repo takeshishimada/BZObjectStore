@@ -22,12 +22,13 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import "BZActiveRecord.h"
 #import "BZObjectStore.h"
 #import "BZObjectStoreBackground.h"
 #import "BZObjectStoreModelInterface.h"
 #import "BZObjectStoreConditionModel.h"
 
-@interface NSObject (BZActiveRecord)
+@interface NSObject (ActiveRecord)
 
 - (BOOL)save;
 - (BOOL)save:(NSError**)error;

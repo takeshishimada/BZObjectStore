@@ -2239,6 +2239,8 @@
 
     for (NSInteger i = 0; i < 10; i++) {
         BZParseModel *parseModel = [[BZParseModel alloc]init];
+        parseModel.code = [NSString stringWithFormat:@"%ld",i];
+        parseModel.price = i * 10;
         parseModel.string = @"string";
         parseModel.mutableString = [NSMutableString stringWithString:@"mutableString"];
         parseModel.date = [NSDate date];
@@ -2257,7 +2259,29 @@
     }
     NSNumber *count = [os count:[BZParseModel class] condition:nil error:&error];
     XCTAssertTrue(count.integerValue == 10,@"count error");
+
+    BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
+    condition.sqlite.where = @"code IN ( ?,? )";
+    condition.sqlite.parameters = @[@"1",@"2"];
     
+    NSNumber *count2 = [BZParseModel OSCount:condition error:&error];
+    XCTAssertTrue(count2.integerValue == 2,@"activerecord count error");
+    
+    NSNumber *total = [BZParseModel OSTotal:@"price" condition:condition error:&error];
+    XCTAssertTrue(total.integerValue == 30,@"activerecord total error");
+    
+    NSNumber *sum = [BZParseModel OSSum:@"price" condition:condition error:&error];
+    XCTAssertTrue(sum.integerValue == 30,@"activerecord sum error");
+    
+    NSNumber *avg = [BZParseModel OSAvg:@"price" condition:condition error:&error];
+    XCTAssertTrue(avg.integerValue == 15,@"activerecord avg error");
+    
+    NSNumber *max = [BZParseModel OSMax:@"price" condition:nil error:&error];
+    XCTAssertTrue(max.integerValue ==90,@"activerecord max error");
+    
+    NSNumber *min = [BZParseModel OSMin:@"price" condition:nil error:&error];
+    XCTAssertTrue(min.integerValue ==0,@"activerecord max error");
+
     
 }
 

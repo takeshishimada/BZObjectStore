@@ -21,192 +21,191 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "NSObject+BZActiveRecord.h"
-#import "BZActiveRecord.h"
+#import "NSObject+ActiveRecordParse.h"
 
-@implementation NSObject (BZActiveRecord)
+@implementation NSObject (ActiveRecordParse)
 
-- (BOOL)save
+- (BOOL)OSSave
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     return [os saveObject:self error:nil];
 }
 
-- (BOOL)save:(NSError**)error
+- (BOOL)OSSave:(NSError**)error
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     return [os saveObject:self error:error];
 }
 
-- (BOOL)delete
+- (BOOL)OSDelete
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     return [os deleteObject:self error:nil];
 }
 
-- (BOOL)delete:(NSError**)error
+- (BOOL)OSDelete:(NSError**)error
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     return [os deleteObject:self error:error];
 }
 
-- (id)refresh
+- (id)OSRefresh
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     return [os refreshObject:self error:nil];
 }
 
-- (id)refresh:(NSError**)error
+- (id)OSRefresh:(NSError**)error
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     return [os refreshObject:self error:error];
 }
 
-- (NSNumber*)exists
+- (NSNumber*)OSExists
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     return [os existsObject:self error:nil];
 }
 
-- (NSNumber*)exists:(NSError**)error
+- (NSNumber*)OSExists:(NSError**)error
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     return [os existsObject:self error:error];
 }
 
-- (NSNumber*)referencedCount
+- (NSNumber*)OSReferencedCount
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     return [os referencedCount:self error:nil];
 }
 
-- (NSNumber*)referencedCount:(NSError**)error
+- (NSNumber*)OSReferencedCount:(NSError**)error
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     return [os referencedCount:self error:error];
 }
 
-+ (NSMutableArray*)fetch:(BZObjectStoreConditionModel*)condition
++ (NSMutableArray*)OSFetch:(BZObjectStoreConditionModel*)condition
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     return [os fetchObjects:[self class] condition:condition error:nil];
 }
 
-+ (NSMutableArray*)fetch:(BZObjectStoreConditionModel*)condition error:(NSError**)error
++ (NSMutableArray*)OSFetch:(BZObjectStoreConditionModel*)condition error:(NSError**)error
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     return [os fetchObjects:[self class] condition:condition error:error];
 }
 
-+ (BOOL)deleteAll:(BZObjectStoreConditionModel*)condition
++ (BOOL)OSDeleteAll:(BZObjectStoreConditionModel*)condition
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     return [os deleteObjects:[self class] condition:condition error:nil];
 }
 
-+ (BOOL)deleteAll:(BZObjectStoreConditionModel*)condition error:(NSError**)error
++ (BOOL)OSDeleteAll:(BZObjectStoreConditionModel*)condition error:(NSError**)error
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     return [os deleteObjects:[self class] condition:condition error:error];
 }
 
-+ (NSNumber*)count:(BZObjectStoreConditionModel*)condition
++ (NSNumber*)OSCount:(BZObjectStoreConditionModel*)condition
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     return [os count:[self class] condition:condition error:nil];
 }
 
-+ (NSNumber*)count:(BZObjectStoreConditionModel*)condition error:(NSError**)error
++ (NSNumber*)OSCount:(BZObjectStoreConditionModel*)condition error:(NSError**)error
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     return [os count:[self class] condition:condition error:error];
 }
 
-+ (NSNumber*)max:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition
++ (NSNumber*)OSMax:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     return [os max:columnName class:[self class] condition:condition error:nil];
 }
 
-+ (NSNumber*)max:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error
++ (NSNumber*)OSMax:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     return [os max:columnName class:[self class] condition:condition error:error];
 }
 
-+ (NSNumber*)min:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition
++ (NSNumber*)OSMin:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     return [os min:columnName class:[self class] condition:condition error:nil];
 }
 
-+ (NSNumber*)min:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error
++ (NSNumber*)OSMin:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     return [os min:columnName class:[self class] condition:condition error:error];
 }
 
-+ (NSNumber*)sum:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition
++ (NSNumber*)OSSum:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     return [os sum:columnName class:[self class] condition:condition error:nil];
 }
 
-+ (NSNumber*)sum:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error
++ (NSNumber*)OSSum:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     return [os sum:columnName class:[self class] condition:condition error:error];
 }
 
-+ (NSNumber*)total:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition
++ (NSNumber*)OSTotal:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     return [os total:columnName class:[self class] condition:condition error:nil];
 }
 
-+ (NSNumber*)total:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error
++ (NSNumber*)OSTotal:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     return [os total:columnName class:[self class] condition:condition error:error];
 }
 
-+ (NSNumber*)avg:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition
++ (NSNumber*)OSAvg:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     return [os avg:columnName class:[self class] condition:condition error:nil];
 }
 
-+ (NSNumber*)avg:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error
++ (NSNumber*)OSAvg:(NSString*)columnName condition:(BZObjectStoreConditionModel*)condition error:(NSError**)error
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     return [os avg:columnName class:[self class] condition:condition error:error];
 }
-+ (void)inTransaction:(void(^)(BZObjectStore *os,BOOL *rollback))block
++ (void)OSInTransaction:(void(^)(BZObjectStore *os,BOOL *rollback))block
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     [os inTransaction:^(BZObjectStore *os, BOOL *rollback) {
         block(os,rollback);
     }];
 }
-+ (BOOL)registClass
++ (BOOL)OSRegistClass
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     return [os registerClass:[self class] error:nil];
 }
 
-+ (BOOL)registClass:(NSError**)error
++ (BOOL)OSRegistClass:(NSError**)error
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     return [os registerClass:[self class] error:error];
 }
 
-+ (BOOL)unRegisterClass
++ (BOOL)OSUnRegisterClass
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     return [os unRegisterClass:[self class] error:nil];
 }
 
-+ (BOOL)unRegisterClass:(NSError**)error
++ (BOOL)OSUnRegisterClass:(NSError**)error
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     return [os unRegisterClass:[self class] error:error];
@@ -215,85 +214,85 @@
 
 
 
-- (void)saveInBackground:(void(^)(NSError *error))completionBlock
+- (void)OSSaveInBackground:(void(^)(NSError *error))completionBlock
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     [os saveObjectInBackground:self completionBlock:completionBlock];
 }
 
-- (void)deleteInBackground:(void(^)(NSError *error))completionBlock
+- (void)OSDeleteInBackground:(void(^)(NSError *error))completionBlock
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     [os deleteObjectInBackground:self completionBlock:completionBlock];
 }
 
-- (void)referencedCountInBackground:(void(^)(NSNumber *value,NSError *error))completionBlock
+- (void)OSReferencedCountInBackground:(void(^)(NSNumber *value,NSError *error))completionBlock
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     [os referencedCountInBackground:self completionBlock:completionBlock];
 }
 
-+ (void)fetchObjectsInBackground:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSArray *objects,NSError *error))completionBlock
++ (void)OSFetchObjectsInBackground:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSArray *objects,NSError *error))completionBlock
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     [os fetchObjectsInBackground:[self class] condition:condition completionBlock:completionBlock];
 }
 
-+ (void)deleteAllInBackground:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSError *error))completionBlock
++ (void)OSDeleteAllInBackground:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSError *error))completionBlock
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     [os deleteObjectsInBackground:[self class] condition:condition completionBlock:completionBlock];
 }
 
-+ (void)countInBackground:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock
++ (void)OSCountInBackground:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     [os countInBackground:[self class] condition:condition completionBlock:completionBlock];
 }
 
-+ (void)maxInBackground:(NSString*)attributeName condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock
++ (void)OSMaxInBackground:(NSString*)attributeName condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     [os maxInBackground:attributeName class:[self class] condition:condition completionBlock:completionBlock];
 }
 
-+ (void)minInBackground:(NSString*)attributeName condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock
++ (void)OSMinInBackground:(NSString*)attributeName condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     [os minInBackground:attributeName class:[self class] condition:condition completionBlock:completionBlock];
 }
 
-+ (void)sumInBackground:(NSString*)attributeName condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock
++ (void)OSSumInBackground:(NSString*)attributeName condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     [os sumInBackground:attributeName class:[self class] condition:condition completionBlock:completionBlock];
 }
 
-+ (void)totalInBackground:(NSString*)attributeName condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock
++ (void)OSTotalInBackground:(NSString*)attributeName condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     [os totalInBackground:attributeName class:[self class] condition:condition completionBlock:completionBlock];
 }
 
-+ (void)avgInBackground:(NSString*)attributeName condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock
++ (void)OSAvgInBackground:(NSString*)attributeName condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     [os avgInBackground:attributeName class:[self class] condition:condition completionBlock:completionBlock];
 }
 
-+ (void)inTransactionInBackground:(void(^)(BZObjectStore *os,BOOL *rollback))block
++ (void)OSInTransactionInBackground:(void(^)(BZObjectStore *os,BOOL *rollback))block
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     [os inTransactionInBackground:block];
 }
 
-+ (void)registerClassInBackground:(Class)clazz completionBlock:(void(^)(NSError *error))completionBlock
++ (void)OSRegisterClassInBackground:(Class)clazz completionBlock:(void(^)(NSError *error))completionBlock
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     [os registerClassInBackground:[self class] completionBlock:completionBlock];
 }
 
-+ (void)unRegisterClassInBackground:(Class)clazz completionBlock:(void(^)(NSError *error))completionBlock
++ (void)OSUnRegisterClassInBackground:(Class)clazz completionBlock:(void(^)(NSError *error))completionBlock
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     [os unRegisterClassInBackground:[self class] completionBlock:completionBlock];

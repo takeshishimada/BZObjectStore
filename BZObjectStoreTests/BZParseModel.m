@@ -25,6 +25,8 @@
 #import <Parse/PFObject+Subclass.h>
 
 @implementation BZParseModel
+@dynamic code;
+@dynamic price;
 @dynamic objectId;
 @dynamic string;
 @dynamic mutableString;

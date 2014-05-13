@@ -22,7 +22,9 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import "NSObject+BZActiveRecord.h"
+#import "NSObject+ActiveRecord.h"
+
+@class BZObjectStore;
 
 @interface BZActiveRecord : NSObject
 + (void)setupWithObjectStore:(BZObjectStore*)os;
