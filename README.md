@@ -576,19 +576,7 @@ BZObjectStore supports the following Parse objects.
 }
 ```
 
-##### case using BZActiveRecord
-```objective-c
-#import "BZActiveRecord.h"
-
-@interface SampleModel : BZActiveRecord
-@property (nonatomic,strong) NSString *name;
-@property (nonatomic,assign) NSInteger price;
-@property (nonatomic,strong) SampleModel *sample;
-@end
-@implementation SampleModel
-@end
-```
-##### case using NSObject-BZActiveRecord.h
+##### import NSObject-BZActiveRecord.h in your model
 ```objective-c
 #import "NSObject-BZActiveRecord.h"
 
@@ -600,6 +588,7 @@ BZObjectStore supports the following Parse objects.
 @implementation SampleModel
 @end
 ```
+
 ##### example
 ```objective-c
 - (void)foo
