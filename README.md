@@ -576,9 +576,9 @@ BZObjectStore supports the following Parse objects.
 }
 ```
 
-##### import NSObject-BZActiveRecord.h in your model
+##### import NSObject-ActiveRecord.h in your model
 ```objective-c
-#import "NSObject-BZActiveRecord.h"
+#import "NSObject-ActiveRecord.h"
 
 @interface SampleModel : NSObject
 @property (nonatomic,strong) NSString *name;
@@ -596,8 +596,20 @@ BZObjectStore supports the following Parse objects.
     NSError *error = nil;
     SampleModel *sample = [SampleModel alloc]init];
     [sample save:&error];
-    NSArray *samples = [SampleModel fetchs:nil error::&error];
+    NSArray *samples = [SampleModel fetchs:nil error:&error];
     [sample delete:&error];
+}
+```
+
+##### If you use PFObject, import NSObject-ActiveRecordParse.h in your model.
+```objective-c
+- (void)foo
+{
+    NSError *error = nil;
+    SampleModel *sample = [SampleModel alloc]init];
+    [sample OSSave:&error];
+    NSArray *samples = [SampleModel OSFetchs:nil error:&error];
+    [sample OSDelete:&error];
 }
 ```
 
