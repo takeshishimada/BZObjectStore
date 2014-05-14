@@ -23,8 +23,8 @@ BZObjectStore can be installed using [CocoaPods](http://cocoapods.org/).
 ```
 pod 'BZObjectStore'
 pod 'BZObjectStore/CoreLocation' // if needed
-pod 'BZObjectStore/Parse' // if needed
 pod 'BZObjectStore/ActiveRecord' // if needed
+pod 'BZObjectStore/Parse' // if needed
 ```
 
 ## Example
@@ -561,18 +561,6 @@ Objects in NSObject, NSArray, NSDictionary, NSSet, NSOrderedSet will be mapped t
 |CLLocationCoordinate2D|REAL|attributeName + '_latitude',+ '_longitude'|separated to 2 columns|
 |CLLocation|REAL|attributeName + '_altitude',+ '_latitude',+ '_longitude',+ '_course',+ '_horizontalAccuracy',+ '_speed',+ '_timestamp',+ '_verticalAccuracy'|separated to 8 columns|
 
-## Parse support
-BZObjectStore supports the following Parse objects.  
-- PFObject implements PFSubclassing
-- PFUser  
-- PFFile  
-- PFGeoPoint  
-
-|Parse Data Types|SQLite Data Types|Mapping Column Names|Remarks|
-|:-----------|:-----------|:-----------|:-----------|
-|PFGeoPoint|REAL|attributeName + '_latitude',+ '_longitude'|separated to 2 columns|
-|PFFile|TEXT,BLOB|attributeName + '_name',+ '_data'|separated to 2 columns|
-
 ## ActiveRecord support
 ##### setup
 ```objective-c
@@ -619,6 +607,18 @@ BZObjectStore supports the following Parse objects.
     [sample OSDelete:&error];
 }
 ```
+
+## Parse support
+BZObjectStore supports the following Parse objects.  
+- PFObject implements PFSubclassing
+- PFUser  
+- PFFile  
+- PFGeoPoint  
+
+|Parse Data Types|SQLite Data Types|Mapping Column Names|Remarks|
+|:-----------|:-----------|:-----------|:-----------|
+|PFGeoPoint|REAL|attributeName + '_latitude',+ '_longitude'|separated to 2 columns|
+|PFFile|TEXT,BLOB|attributeName + '_name',+ '_data'|separated to 2 columns|
 
 ## Others
 
