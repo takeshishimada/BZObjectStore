@@ -550,16 +550,14 @@ Import BZObjectStoreBackground.h and call each method name + 'InBackground' meth
 |NSMutableOrderedSet|INTEGER|attributeName||
 |NSObject|INTEGER|attributeName||
 |ID|NONE|attributeName,attributeName + '_attributeType'|separated to 2 columns|
+|CLLocationCoordinate2D|REAL|attributeName + '_latitude',+ '_longitude'|separated to 2 columns|
+|CLLocation|REAL|attributeName + '_altitude',+ '_latitude',+ '_longitude',+ '_course',+ '_horizontalAccuracy',+ '_speed',+ '_timestamp',+ '_verticalAccuracy'|separated to 8 columns|
 Other C structures will be saved as NSValue.
+
 
 ## Relationship
 Objects in NSObject, NSArray, NSDictionary, NSSet, NSOrderedSet will be mapped to SQLite table automaticaly.  
 
-## CoreLocation support
-|Objective-C Data Types|SQLite Data Types|Mapping Column Names|Remarks|
-|:-----------|:-----------|:-----------|:-----------|
-|CLLocationCoordinate2D|REAL|attributeName + '_latitude',+ '_longitude'|separated to 2 columns|
-|CLLocation|REAL|attributeName + '_altitude',+ '_latitude',+ '_longitude',+ '_course',+ '_horizontalAccuracy',+ '_speed',+ '_timestamp',+ '_verticalAccuracy'|separated to 8 columns|
 
 ## ActiveRecord support
 ##### setup
