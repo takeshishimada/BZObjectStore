@@ -216,6 +216,9 @@
         NSString *name = [firstAttribute substringWithRange:NSMakeRange(2, firstAttribute.length - 3)];
         NSArray *names = [name componentsSeparatedByString:@"="];
         structureName = names.firstObject;
+        if ([structureName isEqualToString:@"?"] && names.count > 1) {
+            structureName = names[1];
+        }
     }
     return structureName;
 }

@@ -322,6 +322,10 @@
     savedObject.vpoint = CGPointMake(4.123456f, 5.123456f);
     savedObject.vsize = CGSizeMake(6.123456f, 7.123456f);
     
+    // objective-c core location
+    savedObject.vlocation = [[CLLocation alloc]initWithCoordinate:CLLocationCoordinate2DMake(1.1234567890123456789,1.1234567890123456789) altitude:1.1234567890123456789 horizontalAccuracy:1.1234567890123456789 verticalAccuracy:1.1234567890123456789 course:1.1234567890123456789 speed:1.1234567890123456789 timestamp:[NSDate date]];
+    savedObject.vcoordinate2D = CLLocationCoordinate2DMake(1.1234567890123456789,1.1234567890123456789);
+    
     // objective-c array,set,dictionary,orderedset
     savedObject.vArray = [NSArray arrayWithObjects:item1,item2,item3, nil];
     NSValue *pointSaved = [NSValue valueWithCGPoint:CGPointMake(1, 2)];
@@ -437,8 +441,19 @@
     XCTAssertTrue([vmodelfrom.code isEqualToString:vmodelto.code] ,@"vdictionary error");
     XCTAssertTrue([vmodelfrom.name isEqualToString:vmodelto.name] ,@"vdictionary error");
     
-    
-    
+    // objective-c corelocation
+    XCTAssertTrue(fetchedObject.vcoordinate2D.latitude == savedObject.vcoordinate2D.latitude,@"vcoordinate2D error");
+    XCTAssertTrue(fetchedObject.vcoordinate2D.longitude == savedObject.vcoordinate2D.longitude,@"vcoordinate2D error");
+
+    XCTAssertTrue(fetchedObject.vlocation.coordinate.latitude == savedObject.vlocation.coordinate.latitude,@"vlocation error");
+    XCTAssertTrue(fetchedObject.vlocation.coordinate.longitude == savedObject.vlocation.coordinate.longitude,@"vlocation error");
+
+    XCTAssertTrue(fetchedObject.vlocation.timestamp.timeIntervalSince1970 == savedObject.vlocation.timestamp.timeIntervalSince1970,@"vlocation error");
+    XCTAssertTrue(fetchedObject.vlocation.speed == savedObject.vlocation.speed,@"vlocation error");
+    XCTAssertTrue(fetchedObject.vlocation.course == savedObject.vlocation.course,@"vlocation error");
+    XCTAssertTrue(fetchedObject.vlocation.altitude == savedObject.vlocation.altitude,@"vlocation error");
+    XCTAssertTrue(fetchedObject.vlocation.horizontalAccuracy == savedObject.vlocation.horizontalAccuracy,@"vlocation error");
+
     // objective-c core graphics
     XCTAssertTrue(fetchedObject.vcgfloat == savedObject.vcgfloat,"vfloat error");
     XCTAssertTrue(CGRectEqualToRect(fetchedObject.vrect,savedObject.vrect),@"vrect error");

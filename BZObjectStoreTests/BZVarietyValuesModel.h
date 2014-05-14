@@ -25,6 +25,7 @@
 #import "BZObjectStoreModelInterface.h"
 #import "BZVarietyValuesItemModel.h"
 #import "AutoCoding.h"
+#import <CoreLocation/CoreLocation.h>
 
 typedef struct {
 	int no;
@@ -102,4 +103,7 @@ typedef struct {
 @property (nonatomic,strong) NSMutableDictionary *vmutabledictionary;
 @property (nonatomic,strong) NSMutableOrderedSet *vmutableOrderedSet;
 
+// CoreLocation
+@property (nonatomic,assign) CLLocationCoordinate2D vcoordinate2D;
+@property (nonatomic,strong) CLLocation *vlocation;
 @end

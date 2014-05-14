@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'BZObjectStore'
-  s.version  = '1.0.8'
+  s.version  = '1.0.9'
   s.license  = 'MIT'
   s.summary  = 'ORM library wrapped FMDB'
   s.homepage = 'https://github.com/expensivegasprices/BZObjectStore'
@@ -15,7 +15,13 @@ Pod::Spec.new do |s|
     cs.dependency 'FMDB'
     cs.dependency 'ColorUtils'
     cs.dependency 'BZRuntime'
-    cs.source_files = 'BZObjectStore/BZObjectStore/**/*.{h,m}'
+    cs.source_files = 'BZObjectStore/Core/**/*.{h,m}'
+  end
+
+  s.subspec 'CoreLocation' do |ps|
+    ps.dependency 'BZObjectStore/Core'
+    ps.framework    = 'CoreLocation'
+    ps.source_files = 'BZObjectStore/CoreLocation/*.{h,m}'
   end
 
   s.subspec 'Parse' do |ps|
@@ -25,12 +31,12 @@ Pod::Spec.new do |s|
     ps.dependency 'Parse'
     ps.framework    = 'Parse'
     ps.ios.xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '"$(PODS_ROOT)/Parse"' }
-    ps.source_files = 'BZObjectStore/BZObjectStoreParse/*.{h,m}'
+    ps.source_files = 'BZObjectStore/Parse/*.{h,m}'
   end
 
   s.subspec 'ActiveRecord' do |ps|
     ps.dependency 'BZObjectStore/Core'
-    ps.source_files = 'BZObjectStore/BZActiveRecord/*.{h,m}'
+    ps.source_files = 'BZObjectStore/ActiveRecord/*.{h,m}'
   end
 
 end
