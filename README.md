@@ -672,7 +672,7 @@ Please use FMDatabaseQueue and FMDatabase directly.
 ## TODO
 - Notification support
 - Automatic Migration Support
-- CLLocationCoordinate2D, CLLocation, NSHashTable, NSMapTable support
+- NSHashTable, NSMapTable support
 
 ## MICS
 Author: Takeshi Shimada  
