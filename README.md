@@ -22,6 +22,7 @@ Targeting either iOS 5.0 and above and ARC.
 BZObjectStore can be installed using [CocoaPods](http://cocoapods.org/).
 ```
 pod 'BZObjectStore'
+pod 'BZObjectStore/CoreLocation' // if needed
 pod 'BZObjectStore/Parse' // if needed
 pod 'BZObjectStore/ActiveRecord' // if needed
 ```
@@ -551,8 +552,14 @@ Import BZObjectStoreBackground.h and call each method name + 'InBackground' meth
 |ID|NONE|attributeName,attributeName + '_attributeType'|separated to 2 columns|
 Other C structures will be saved as NSValue.
 
-## Relationship support
+## Relationship
 Objects in NSObject, NSArray, NSDictionary, NSSet, NSOrderedSet will be mapped to SQLite table automaticaly.  
+
+## CoreLocation support
+|Objective-C Data Types|SQLite Data Types|Mapping Column Names|Remarks|
+|:-----------|:-----------|:-----------|:-----------|
+|CLLocationCoordinate2D|REAL|attributeName + '_latitude',+ '_longitude'|separated to 2 columns|
+|CLLocation|REAL|attributeName + '_altitude',+ '_latitude',+ '_longitude',+ '_course',+ '_horizontalAccuracy',+ '_speed',+ '_timestamp',+ '_verticalAccuracy'|separated to 8 columns|
 
 ## Parse support
 BZObjectStore supports the following Parse objects.  
