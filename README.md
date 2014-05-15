@@ -667,11 +667,6 @@ Please use FMDatabaseQueue and FMDatabase directly.
 - Background process methods can not be used in inTransactionInBackground method.  
 
 
-## TODO
-- Notification support
-- Automatic Migration Support
-- NSHashTable, NSMapTable support
-
 ## MICS
 Author: Takeshi Shimada  
 History: https://github.com/expensivegasprices/BZObjectStore/History.md  
