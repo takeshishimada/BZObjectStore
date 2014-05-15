@@ -47,7 +47,7 @@ Open this file with your SQLite tool and check tables.
 
 
 
-## Usage
+## Methods
 #### Consider you have models like this.
 ```objective-c
 #import "BZObjectStore.h"
