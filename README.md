@@ -660,6 +660,9 @@ Please use FMDatabaseQueue and FMDatabase directly.
 }
 ```
 
+### TODO
+Migration functions
+
 ### Restricted
 - Readonly property always will be ignored.  
 - Identical attribute value can not be changed after object saving.  
