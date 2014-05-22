@@ -27,6 +27,6 @@
 
 @interface BZObjectStoreConditionModel : NSObject
 + (instancetype)condition;
-@property (nonatomic,strong) BZObjectStoreSQLiteConditionModel *sqlite;
-@property (nonatomic,strong) BZObjectStoreReferenceConditionModel *reference;
+@property (nonatomic,readonly) BZObjectStoreSQLiteConditionModel *sqlite;
+@property (nonatomic,readonly) BZObjectStoreReferenceConditionModel *reference;
 @end

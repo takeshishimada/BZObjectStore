@@ -23,6 +23,11 @@
 
 #import "BZObjectStoreConditionModel.h"
 
+@interface BZObjectStoreConditionModel ()
+@property (nonatomic,strong) BZObjectStoreSQLiteConditionModel *sqlite;
+@property (nonatomic,strong) BZObjectStoreReferenceConditionModel *reference;
+@end
+
 @implementation BZObjectStoreConditionModel
 + (instancetype)condition
 {
