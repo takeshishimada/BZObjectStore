@@ -30,10 +30,14 @@
 #import "BZRuntime.h"
 
 @interface BZObjectStoreClazzPFUserRequiredAttributesModel : NSObject
+@property (nonatomic, strong) NSString<OSModelInterface> *objectId;
 @property (nonatomic, strong) NSString *email;
 @property (nonatomic, strong) NSString *password;
 @property (nonatomic, strong) NSString *sessionToken;
 @property (nonatomic, strong) NSString *username;
+@property (nonatomic, strong) NSDate *createdAt;
+@property (nonatomic, strong) NSDate *updatedAt;
+@property (nonatomic, strong) PFACL<OSSerializableAttribute> *ACL;
 @end
 @implementation BZObjectStoreClazzPFUserRequiredAttributesModel
 @end

@@ -2164,7 +2164,7 @@
         RESUME;
     }];
     WAIT;
-    XCTAssert(!err, @"saveObjectInBackground \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssert(!err, @"deleteObjectsInBackground \"%s\"", __PRETTY_FUNCTION__);
     
     list = nil;
     [os fetchObjectsInBackground:[BZBackgroundModel class] condition:nil completionBlock:^(NSArray *objects, NSError *error) {
@@ -2250,6 +2250,11 @@
     user.username = @"my name";
     user.password = @"my pass";
     user.email = @"email@example.com";
+    BOOL ret = [user signUp];
+    if (!ret) {
+        user = [PFUser currentUser];
+    }
+    [user save];
     [os saveObject:user error:&error];
 
     for (NSInteger i = 0; i < 10; i++) {
