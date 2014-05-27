@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'BZObjectStore'
-  s.version  = '1.0.9'
+  s.version  = '1.1.1'
   s.license  = 'MIT'
   s.summary  = 'ORM library wrapped FMDB'
   s.homepage = 'https://github.com/expensivegasprices/BZObjectStore'
