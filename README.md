@@ -11,7 +11,7 @@ Targeting either iOS 5.0 and above and ARC.
 - Easy to use
 - Mapping Models to SQLite tables
 - Relationship in NSObject, NSArray, NSDictionary, NSSet, NSOrderedSet support
-- [Parse](https://parse.com/docs/ios/api/index.html "Parse") support
+- [Parse.com](https://parse.com/docs/ios/api/index.html "Parse.com") support
 - Automatic Schema Creating
 - Thread Safety
 - Lazy fetching,One time Update and other useful options
