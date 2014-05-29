@@ -672,4 +672,4 @@ Migration functions
 ## MICS
 Author: Takeshi Shimada  
 History: https://github.com/expensivegasprices/BZObjectStore/History.md  
-Inspired by [FMDB](https://github.com/ccgus/fmdb "FMDB"), [JSONModel](https://github.com/icanzilb/JSONModel "JSONModel") and [AFNetworking](https://github.com/AFNetworking/AFNetworking "AFNetworking").
+Inspired by [AFNetworking](https://github.com/AFNetworking/AFNetworking "AFNetworking"), [JSONModel](https://github.com/icanzilb/JSONModel "JSONModel") and [FMDB](https://github.com/ccgus/fmdb "FMDB").
