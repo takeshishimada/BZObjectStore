@@ -65,5 +65,8 @@
 @property (nonatomic,readonly) FMDatabaseQueue *dbQueue;
 - (void)transactionDidBegin:(FMDatabase*)db;
 - (void)transactionDidEnd:(FMDatabase*)db;
+- (NSMutableArray*)fetchObjects:(Class)clazz where:(NSString*)where parameters:(NSArray*)parameters orderBy:(NSString*)orderBy error:(NSError**)error;
+- (NSMutableArray*)fetchObjects:(Class)clazz where:(NSString*)where parameters:(NSArray*)parameters orderBy:(NSString*)orderBy offset:(NSNumber*)offset limit:(NSNumber*)limit error:(NSError**)error;
+- (BOOL)deleteObjects:(Class)clazz where:(NSString*)where parameters:(NSArray*)parameters error:(NSError**)error;
 @end
 

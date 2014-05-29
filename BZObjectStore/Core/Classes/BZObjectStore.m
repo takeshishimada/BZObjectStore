@@ -359,6 +359,26 @@
     return value;
 }
 
+- (NSMutableArray*)fetchObjects:(Class)clazz where:(NSString*)where parameters:(NSArray*)parameters orderBy:(NSString*)orderBy error:(NSError**)error
+{
+    BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
+    condition.sqlite.where = where;
+    condition.sqlite.parameters = parameters;
+    condition.sqlite.orderBy = orderBy;
+    return [self fetchObjects:clazz condition:condition error:error];
+}
+
+- (NSMutableArray*)fetchObjects:(Class)clazz where:(NSString*)where parameters:(NSArray*)parameters orderBy:(NSString*)orderBy offset:(NSNumber*)offset limit:(NSNumber*)limit error:(NSError**)error
+{
+    BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
+    condition.sqlite.where = where;
+    condition.sqlite.parameters = parameters;
+    condition.sqlite.orderBy = orderBy;
+    condition.sqlite.offset = offset;
+    condition.sqlite.limit = limit;
+    return [self fetchObjects:clazz condition:condition error:error];
+}
+
 - (id)refreshObject:(NSObject*)object error:(NSError**)error
 {
     __block NSError *err = nil;
@@ -445,6 +465,14 @@
         *error = err;
     }
     return ret;
+}
+
+- (BOOL)deleteObjects:(Class)clazz where:(NSString*)where parameters:(NSArray*)parameters error:(NSError**)error
+{
+    BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
+    condition.sqlite.where = where;
+    condition.sqlite.parameters = parameters;
+    return [self deleteObjects:clazz condition:condition error:error];
 }
 
 - (BOOL)deleteObject:(NSObject*)object error:(NSError**)error
