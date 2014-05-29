@@ -149,6 +149,7 @@
 		72EC847B190D5669001AE1F7 /* BZTransactionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72EC847A190D5669001AE1F7 /* BZTransactionModel.m */; };
 		72ED67A61917DFA200457F1E /* BZParseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72ED67A51917DFA200457F1E /* BZParseModel.m */; };
 		821F19AA1906511C00E7F96C /* BZBackgroundModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 821F19A91906511C00E7F96C /* BZBackgroundModel.m */; };
+		8296BB57193738CD00622F99 /* ColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8296BB56193738CD00622F99 /* ColorUtils.m */; };
 		82D029EC19051DE2003B7246 /* BZArrayInArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D029EB19051DE2003B7246 /* BZArrayInArrayModel.m */; };
 		82D029EF19064602003B7246 /* BZOSIdenticalForthModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D029EE19064602003B7246 /* BZOSIdenticalForthModel.m */; };
 		82F55B5F18F63E49003A1136 /* AppleLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7259F8AC18F45014002A3416 /* AppleLogo.png */; };
@@ -441,6 +442,8 @@
 		73A736836B224E7BB841BEB0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		821F19A81906511C00E7F96C /* BZBackgroundModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZBackgroundModel.h; sourceTree = "<group>"; };
 		821F19A91906511C00E7F96C /* BZBackgroundModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZBackgroundModel.m; sourceTree = "<group>"; };
+		8296BB55193738CD00622F99 /* ColorUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorUtils.h; sourceTree = "<group>"; };
+		8296BB56193738CD00622F99 /* ColorUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorUtils.m; sourceTree = "<group>"; };
 		82D029EA19051DE2003B7246 /* BZArrayInArrayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZArrayInArrayModel.h; sourceTree = "<group>"; };
 		82D029EB19051DE2003B7246 /* BZArrayInArrayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZArrayInArrayModel.m; sourceTree = "<group>"; };
 		82D029ED19064602003B7246 /* BZOSIdenticalForthModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZOSIdenticalForthModel.h; sourceTree = "<group>"; };
@@ -662,6 +665,8 @@
 				724A0CCE1923B22A00AF177D /* NSObject+BZObjectStore.m */,
 				724A0CCF1923B22A00AF177D /* UIColor+BZObjectStore.h */,
 				724A0CD01923B22A00AF177D /* UIColor+BZObjectStore.m */,
+				8296BB55193738CD00622F99 /* ColorUtils.h */,
+				8296BB56193738CD00622F99 /* ColorUtils.m */,
 			);
 			path = Category;
 			sourceTree = "<group>";
@@ -1293,6 +1298,7 @@
 				724A0D701923B22B00AF177D /* BZObjectStoreModelMapper.m in Sources */,
 				724A0D721923B22B00AF177D /* BZObjectStoreAttributeModel.m in Sources */,
 				724A0D791923B22B00AF177D /* BZObjectStoreRuntimeProperty.m in Sources */,
+				8296BB57193738CD00622F99 /* ColorUtils.m in Sources */,
 				724A0D4E1923B22B00AF177D /* BZObjectStoreClazzLong.m in Sources */,
 				724A0D631923B22B00AF177D /* BZObjectStoreClazzSerialize.m in Sources */,
 				724A0D441923B22B00AF177D /* BZObjectStoreSQLiteConditionModel.m in Sources */,
