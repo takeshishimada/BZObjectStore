@@ -2251,10 +2251,9 @@
     user.password = @"my pass";
     user.email = @"email@example.com";
     BOOL ret = [user signUp];
-    if (!ret) {
-//        user = [PFUser currentUser];
+    if (ret) {
+        [user save];
     }
-    [user save];
     [os saveObject:user error:&error];
 
     for (NSInteger i = 0; i < 10; i++) {
