@@ -41,6 +41,7 @@
 #import "BZObjectStoreClazzNSData.h"
 #import "BZObjectStoreClazzUIColor.h"
 #import "BZObjectStoreClazzUIImage.h"
+#import "BZObjectStoreClazzNSImage.h"
 #import "BZObjectStoreClazzNSValue.h"
 #import "BZObjectStoreClazzNSNull.h"
 #import "BZObjectStoreClazzSerialize.h"
@@ -149,6 +150,7 @@
             [self addOSClazz:[BZObjectStoreClazzNSData class] osclazzsArray:osclazzsArray];
             [self addOSClazz:[BZObjectStoreClazzUIColor class] osclazzsArray:osclazzsArray];
             [self addOSClazz:[BZObjectStoreClazzUIImage class] osclazzsArray:osclazzsArray];
+            [self addOSClazz:[BZObjectStoreClazzNSImage class] osclazzsArray:osclazzsArray];
             [self addOSClazz:[BZObjectStoreClazzNSValue class] osclazzsArray:osclazzsArray];
             [self addOSClazz:[BZObjectStoreClazzNSNull class] osclazzsArray:osclazzsArray];
             [self addOSClazz:[BZObjectStoreClazzNSArray class] osclazzsArray:osclazzsArray];

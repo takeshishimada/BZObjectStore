@@ -2212,7 +2212,7 @@
     NSError *error = nil;
     for (NSInteger i = 0; i < 10; i++) {
         BZActiveRecordModel *save = [[BZActiveRecordModel alloc]init];
-        save.code = [NSString stringWithFormat:@"%ld",i];
+        save.code = [NSString stringWithFormat:@"%ld",(long)i];
         save.price = i * 10;
         [save save:&error];
         XCTAssert(!error, @"activerecord save \"%s\"", __PRETTY_FUNCTION__);
@@ -2251,15 +2251,14 @@
     user.password = @"my pass";
     user.email = @"email@example.com";
     BOOL ret = [user signUp];
-    if (!ret) {
-        user = [PFUser currentUser];
+    if (ret) {
+        [user save];
     }
-    [user save];
     [os saveObject:user error:&error];
 
     for (NSInteger i = 0; i < 10; i++) {
         BZParseModel *parseModel = [[BZParseModel alloc]init];
-        parseModel.code = [NSString stringWithFormat:@"%ld",i];
+        parseModel.code = [NSString stringWithFormat:@"%ld",(long)i];
         parseModel.price = i * 10;
         parseModel.string = @"string";
         parseModel.mutableString = [NSMutableString stringWithString:@"mutableString"];

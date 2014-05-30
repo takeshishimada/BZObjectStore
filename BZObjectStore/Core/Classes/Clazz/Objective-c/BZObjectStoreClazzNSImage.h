@@ -23,6 +23,6 @@
 
 #import "BZObjectStoreClazzImage.h"
 
-@interface BZObjectStoreClazzUIImage : BZObjectStoreClazzImage
+@interface BZObjectStoreClazzNSImage : BZObjectStoreClazzImage
 
 @end

@@ -21,80 +21,81 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "BZObjectStoreClazzUIColor.h"
+#import "BZObjectStoreClazzImage.h"
 #import "FMResultSet.h"
-#import "ColorUtils.h"
-#import "UIColor+BZObjectStore.h"
 #import "BZObjectStoreConst.h"
 #import "BZObjectStoreRuntimeProperty.h"
 
-@implementation BZObjectStoreClazzUIColor
+@implementation BZObjectStoreClazzImage
 
 #if TARGET_OS_IPHONE
+
 - (Class)superClazz
 {
-    return [UIColor class];
+    return [UIImage class];
 }
-
-- (NSArray*)storeValuesWithValue:(UIColor*)value attribute:(BZObjectStoreRuntimeProperty*)attribute
+- (NSArray*)storeValuesWithValue:(UIImage*)value attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    if ([[value class] isSubclassOfClass:[UIColor class]]) {
-        return @[[value stringHEXValue]];
+    if (value) {
+        return @[[NSData dataWithData:UIImagePNGRepresentation(value)]];
     }
     return @[[NSNull null]];
 }
 
 - (id)valueWithResultSet:(FMResultSet*)resultSet attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    NSString *value = [resultSet stringForColumn:attribute.columnName];
-    if (value) {
-        return [UIColor colorWithString:value];
+    NSData *data = [resultSet dataForColumn:attribute.columnName];
+    if (data) {
+        return [[UIImage alloc] initWithData:data];
     }
     return nil;
 }
 
 #elif TARGET_OS_MAC && !TARGET_OS_IPHONE
+
 - (Class)superClazz
 {
-    return [NSColor class];
+    return [NSImage class];
 }
 
-- (NSArray*)storeValuesWithValue:(NSColor*)value attribute:(BZObjectStoreRuntimeProperty*)attribute
+- (NSArray*)storeValuesWithValue:(NSImage*)value attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    if ([[value class] isSubclassOfClass:[NSColor class]]) {
-//        return @[[value stringHEXValue]];
+    if (value) {
+        return @[[NSData dataWithData:[self PNGDataWithImage:value]]];
     }
     return @[[NSNull null]];
 }
 
 - (id)valueWithResultSet:(FMResultSet*)resultSet attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    NSString *value = [resultSet stringForColumn:attribute.columnName];
-    if (value) {
-//        return [NSColor colorWithString:value];
+    NSData *data = [resultSet dataForColumn:attribute.columnName];
+    if (data) {
+        return [[NSImage alloc] initWithData:data];
     }
     return nil;
 }
 
-#endif
+- (NSData*)PNGDataWithImage:(NSImage *)image
+{
+    CGImageRef cgRef = [image CGImageForProposedRect:NULL
+                                             context:nil
+                                               hints:nil];
+    NSBitmapImageRep *newRep = [[NSBitmapImageRep alloc] initWithCGImage:cgRef];
+    [newRep setSize:[image size]];
+    NSData *pngData = [newRep representationUsingType:NSPNGFileType properties:nil];
+    return pngData;
+}
 
+#endif
 
 - (BOOL)isSimpleValueClazz
 {
     return YES;
 }
-- (BOOL)isStringNumberClazz
-{
-    return YES;
-}
-- (NSString*)attributeType
-{
-    return NSStringFromClass([self superClazz]);
-}
 
 - (NSString*)sqliteDataTypeName
 {
-    return SQLITE_DATA_TYPE_TEXT;
+    return SQLITE_DATA_TYPE_BLOB;
 }
 
 @end

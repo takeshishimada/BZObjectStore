@@ -427,6 +427,9 @@
 
 - (BOOL)saveObject:(NSObject*)object error:(NSError**)error
 {
+    if (!object) {
+        return NO;
+    }
     __block NSError *err = nil;
     __block BOOL ret = NO;
     [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
@@ -477,6 +480,9 @@
 
 - (BOOL)deleteObject:(NSObject*)object error:(NSError**)error
 {
+    if (!object) {
+        return NO;
+    }
     __block NSError *err = nil;
     __block BOOL ret = NO;
     [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {

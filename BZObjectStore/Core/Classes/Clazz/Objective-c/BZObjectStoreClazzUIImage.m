@@ -22,46 +22,12 @@
 // THE SOFTWARE.
 
 #import "BZObjectStoreClazzUIImage.h"
-#import "FMResultSet.h"
-#import "BZObjectStoreConst.h"
-#import "BZObjectStoreRuntimeProperty.h"
 
 @implementation BZObjectStoreClazzUIImage
 
-- (Class)superClazz
-{
-    return [UIImage class];
-}
 - (NSString*)attributeType
 {
-    return NSStringFromClass([self superClazz]);
-}
-- (BOOL)isSimpleValueClazz
-{
-    return YES;
-}
-
-- (NSArray*)storeValuesWithValue:(UIImage*)value attribute:(BZObjectStoreRuntimeProperty*)attribute
-{
-    if (value) {
-        return @[[NSData dataWithData:UIImagePNGRepresentation(value)]];
-    }
-    return @[[NSNull null]];
-}
-
-- (id)valueWithResultSet:(FMResultSet*)resultSet attribute:(BZObjectStoreRuntimeProperty*)attribute
-{
-    NSData *data = [resultSet dataForColumn:attribute.columnName];
-    if (data) {
-        return [[UIImage alloc] initWithData:data];
-    }
-    return nil;
-}
-
-
-- (NSString*)sqliteDataTypeName
-{
-    return SQLITE_DATA_TYPE_BLOB;
+    return @"UIImage";
 }
 
 @end
