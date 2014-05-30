@@ -5,18 +5,20 @@ BZObjectStore
 BZObjectStore automatically stores your models to SQLite tables and provides useful options to your application.
 
 ## Requirements
-Targeting either iOS 5.0 and above and ARC.
+- iOS 5.0 or later
+- OS X 10.8 or later
+- ARC
 
 ## Features
 - Easy to use
 - Mapping Models to SQLite tables
 - Relationship in NSObject, NSArray, NSDictionary, NSSet, NSOrderedSet support
-- [Parse.com](https://parse.com/docs/ios/api/index.html "Parse.com") support
 - Automatic Schema Creating
 - Thread Safety
 - Lazy fetching,One time Update and other useful options
 - Any super class in your model not required
 - ActiveRecord support
+- [Parse.com](https://parse.com/docs/ios/api/index.html "Parse.com") support
 
 ## Installation
 BZObjectStore can be installed using [CocoaPods](http://cocoapods.org/).
