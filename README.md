@@ -1,6 +1,9 @@
 BZObjectStore
 =============
 [![Build Status](https://travis-ci.org/expensivegasprices/BZObjectStore.svg?branch=master)](https://travis-ci.org/expensivegasprices/BZObjectStore)
+[![Version](https://img.shields.io/cocoapods/v/BZObjectStore.svg?style=flat)](http://cocoadocs.org/docsets/BZObjectStore)
+[![License](https://img.shields.io/cocoapods/l/BZObjectStore.svg?style=flat)](http://cocoadocs.org/docsets/BZObjectStore)
+[![Platform](https://img.shields.io/cocoapods/p/BZObjectStore.svg?style=flat)](http://cocoadocs.org/docsets/BZObjectStore)
 
 BZObjectStore automatically stores your models to SQLite tables and provides useful options to your application.
 
