@@ -5,8 +5,9 @@ BZObjectStore
 BZObjectStore automatically stores your models to SQLite tables and provides useful options to your application.
 
 ## Requirements
-Minimum iOS Target  : iOS 5.0  
-Minimum OS X Target : OS X 10.8
+- iOS 5.0 or later
+- OS X 10.8 or later
+- ARC
 
 ## Features
 - Easy to use
