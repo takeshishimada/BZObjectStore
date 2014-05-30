@@ -30,21 +30,10 @@
 
 @implementation BZObjectStoreClazzUIColor
 
+#if TARGET_OS_IPHONE
 - (Class)superClazz
 {
     return [UIColor class];
-}
-- (NSString*)attributeType
-{
-    return NSStringFromClass([self superClazz]);
-}
-- (BOOL)isSimpleValueClazz
-{
-    return YES;
-}
-- (BOOL)isStringNumberClazz
-{
-    return YES;
 }
 
 - (NSArray*)storeValuesWithValue:(UIColor*)value attribute:(BZObjectStoreRuntimeProperty*)attribute
@@ -62,6 +51,45 @@
         return [UIColor colorWithString:value];
     }
     return nil;
+}
+
+#elif TARGET_OS_MAC && !TARGET_OS_IPHONE
+- (Class)superClazz
+{
+    return [NSColor class];
+}
+
+- (NSArray*)storeValuesWithValue:(NSColor*)value attribute:(BZObjectStoreRuntimeProperty*)attribute
+{
+    if ([[value class] isSubclassOfClass:[NSColor class]]) {
+//        return @[[value stringHEXValue]];
+    }
+    return @[[NSNull null]];
+}
+
+- (id)valueWithResultSet:(FMResultSet*)resultSet attribute:(BZObjectStoreRuntimeProperty*)attribute
+{
+    NSString *value = [resultSet stringForColumn:attribute.columnName];
+    if (value) {
+//        return [NSColor colorWithString:value];
+    }
+    return nil;
+}
+
+#endif
+
+
+- (BOOL)isSimpleValueClazz
+{
+    return YES;
+}
+- (BOOL)isStringNumberClazz
+{
+    return YES;
+}
+- (NSString*)attributeType
+{
+    return NSStringFromClass([self superClazz]);
 }
 
 - (NSString*)sqliteDataTypeName

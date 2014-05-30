@@ -21,8 +21,18 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <UIKit/UIKit.h>
+#if TARGET_OS_IPHONE
 
+#import <UIKit/UIKit.h>
 @interface UIColor (BZObjectStore)
 - (NSString *)stringHEXValue;
 @end
+
+#elif TARGET_OS_MAC && !TARGET_OS_IPHONE
+
+#import <AppKit/AppKit.h>
+@interface NSColor (BZObjectStore)
+- (NSString *)stringHEXValue;
+@end
+
+#endif

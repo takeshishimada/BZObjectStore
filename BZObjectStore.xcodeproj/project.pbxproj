@@ -150,6 +150,8 @@
 		72ED67A61917DFA200457F1E /* BZParseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72ED67A51917DFA200457F1E /* BZParseModel.m */; };
 		821F19AA1906511C00E7F96C /* BZBackgroundModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 821F19A91906511C00E7F96C /* BZBackgroundModel.m */; };
 		8296BB57193738CD00622F99 /* ColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8296BB56193738CD00622F99 /* ColorUtils.m */; };
+		8296BC241938286300622F99 /* BZObjectStoreClazzImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8296BC231938286300622F99 /* BZObjectStoreClazzImage.m */; };
+		8296BC27193828DB00622F99 /* BZObjectStoreClazzNSImage.m in Sources */ = {isa = PBXBuildFile; fileRef = 8296BC26193828DB00622F99 /* BZObjectStoreClazzNSImage.m */; };
 		82D029EC19051DE2003B7246 /* BZArrayInArrayModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D029EB19051DE2003B7246 /* BZArrayInArrayModel.m */; };
 		82D029EF19064602003B7246 /* BZOSIdenticalForthModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 82D029EE19064602003B7246 /* BZOSIdenticalForthModel.m */; };
 		82F55B5F18F63E49003A1136 /* AppleLogo.png in Resources */ = {isa = PBXBuildFile; fileRef = 7259F8AC18F45014002A3416 /* AppleLogo.png */; };
@@ -444,6 +446,10 @@
 		821F19A91906511C00E7F96C /* BZBackgroundModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZBackgroundModel.m; sourceTree = "<group>"; };
 		8296BB55193738CD00622F99 /* ColorUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorUtils.h; sourceTree = "<group>"; };
 		8296BB56193738CD00622F99 /* ColorUtils.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ColorUtils.m; sourceTree = "<group>"; };
+		8296BC221938286300622F99 /* BZObjectStoreClazzImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzImage.h; sourceTree = "<group>"; };
+		8296BC231938286300622F99 /* BZObjectStoreClazzImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzImage.m; sourceTree = "<group>"; };
+		8296BC25193828DB00622F99 /* BZObjectStoreClazzNSImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzNSImage.h; sourceTree = "<group>"; };
+		8296BC26193828DB00622F99 /* BZObjectStoreClazzNSImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzNSImage.m; sourceTree = "<group>"; };
 		82D029EA19051DE2003B7246 /* BZArrayInArrayModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZArrayInArrayModel.h; sourceTree = "<group>"; };
 		82D029EB19051DE2003B7246 /* BZArrayInArrayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZArrayInArrayModel.m; sourceTree = "<group>"; };
 		82D029ED19064602003B7246 /* BZOSIdenticalForthModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZOSIdenticalForthModel.h; sourceTree = "<group>"; };
@@ -759,8 +765,12 @@
 				724A0D0D1923B22A00AF177D /* BZObjectStoreClazzSerialize.m */,
 				724A0D0E1923B22A00AF177D /* BZObjectStoreClazzUIColor.h */,
 				724A0D0F1923B22A00AF177D /* BZObjectStoreClazzUIColor.m */,
+				8296BC221938286300622F99 /* BZObjectStoreClazzImage.h */,
+				8296BC231938286300622F99 /* BZObjectStoreClazzImage.m */,
 				724A0D101923B22A00AF177D /* BZObjectStoreClazzUIImage.h */,
 				724A0D111923B22A00AF177D /* BZObjectStoreClazzUIImage.m */,
+				8296BC25193828DB00622F99 /* BZObjectStoreClazzNSImage.h */,
+				8296BC26193828DB00622F99 /* BZObjectStoreClazzNSImage.m */,
 			);
 			path = "Objective-c";
 			sourceTree = "<group>";
@@ -1297,9 +1307,11 @@
 				724A0D411923B22B00AF177D /* BZObjectStoreBackground.m in Sources */,
 				724A0D701923B22B00AF177D /* BZObjectStoreModelMapper.m in Sources */,
 				724A0D721923B22B00AF177D /* BZObjectStoreAttributeModel.m in Sources */,
+				8296BC27193828DB00622F99 /* BZObjectStoreClazzNSImage.m in Sources */,
 				724A0D791923B22B00AF177D /* BZObjectStoreRuntimeProperty.m in Sources */,
 				8296BB57193738CD00622F99 /* ColorUtils.m in Sources */,
 				724A0D4E1923B22B00AF177D /* BZObjectStoreClazzLong.m in Sources */,
+				8296BC241938286300622F99 /* BZObjectStoreClazzImage.m in Sources */,
 				724A0D631923B22B00AF177D /* BZObjectStoreClazzSerialize.m in Sources */,
 				724A0D441923B22B00AF177D /* BZObjectStoreSQLiteConditionModel.m in Sources */,
 				724A0D9D1923BA2000AF177D /* BZObjectStoreCoreLocation.m in Sources */,

@@ -53,7 +53,11 @@
 
 - (NSArray*)storeValuesWithValue:(NSValue*)value attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
+#if TARGET_OS_IPHONE
     CGPoint point = [value CGPointValue];
+#elif TARGET_OS_MAC && !TARGET_OS_IPHONE
+    NSPoint point = [value pointValue];
+#endif
     NSNumber *x = nil;
     NSNumber *y = nil;
 #if CGFLOAT_IS_DOUBLE
@@ -70,10 +74,18 @@
 {
     NSString *columnNameX = [NSString stringWithFormat:@"%@_x",attribute.columnName];
     NSString *columnNameY = [NSString stringWithFormat:@"%@_y",attribute.columnName];
+#if TARGET_OS_IPHONE
     CGPoint point;
+#elif TARGET_OS_MAC && !TARGET_OS_IPHONE
+    NSPoint point;
+#endif
     point.x = [resultSet doubleForColumn:columnNameX];
     point.y = [resultSet doubleForColumn:columnNameY];
+#if TARGET_OS_IPHONE
     return [NSValue valueWithCGPoint:point];
+#elif TARGET_OS_MAC && !TARGET_OS_IPHONE
+    return [NSValue valueWithPoint:point];
+#endif
     
 }
 

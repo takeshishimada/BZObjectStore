@@ -44,8 +44,15 @@
 #error This class requires automatic reference counting
 #endif
 
+#if TARGET_OS_IPHONE
+#elif TARGET_OS_MAC && !TARGET_OS_IPHONE
+#endif
 
+#if TARGET_OS_IPHONE
 @implementation UIColor (ColorUtils)
+#elif TARGET_OS_MAC && !TARGET_OS_IPHONE
+@implementation NSColor (ColorUtils)
+#endif
 
 + (NSMutableDictionary *)standardColors
 {
@@ -117,7 +124,11 @@
     }
 }
 
+#if TARGET_OS_IPHONE
 + (void)registerColor:(UIColor *)color forName:(NSString *)name
+#elif TARGET_OS_MAC && !TARGET_OS_IPHONE
++ (void)registerColor:(NSColor *)color forName:(NSString *)name
+#endif
 {
     name = [name lowercaseString];
     
@@ -138,7 +149,11 @@
     string = [string lowercaseString];
     
     //try standard colors first
+#if TARGET_OS_IPHONE
     UIColor *color = [self standardColors][string];
+#elif TARGET_OS_MAC && !TARGET_OS_IPHONE
+    NSColor *color = [self standardColors][string];
+#endif
     if (color)
     {
         return color;
@@ -164,7 +179,11 @@
     string = [string lowercaseString];
     
     //try standard colors
+#if TARGET_OS_IPHONE
     UIColor *color = [[self class] standardColors][string];
+#elif TARGET_OS_MAC && !TARGET_OS_IPHONE
+    NSColor *color = [[self class] standardColors][string];
+#endif
     if (color)
     {
         return ((self = color));
@@ -220,7 +239,11 @@
     CGFloat red = ((rgb & 0xFF0000) >> 16) / 255.0f;
 	CGFloat green = ((rgb & 0x00FF00) >> 8) / 255.0f;
 	CGFloat blue = (rgb & 0x0000FF) / 255.0f;
+#if TARGET_OS_IPHONE
 	return [self initWithRed:red green:green blue:blue alpha:1.0f];
+#elif TARGET_OS_MAC && !TARGET_OS_IPHONE
+	return [NSColor colorWithRed:red green:green blue:blue alpha:1.0f];
+#endif
 }
 
 - (instancetype)initWithRGBAValue:(uint32_t)rgba
@@ -229,7 +252,11 @@
     CGFloat green = ((rgba & 0x00FF0000) >> 16) / 255.0f;
 	CGFloat blue = ((rgba & 0x0000FF00) >> 8) / 255.0f;
 	CGFloat alpha = (rgba & 0x000000FF) / 255.0f;
+#if TARGET_OS_IPHONE
 	return [self initWithRed:red green:green blue:blue alpha:alpha];
+#elif TARGET_OS_MAC && !TARGET_OS_IPHONE
+	return [NSColor colorWithRed:red green:green blue:blue alpha:alpha];
+#endif
 }
 
 - (uint32_t)RGBValue
@@ -316,7 +343,11 @@
     return NO;
 }
 
+#if TARGET_OS_IPHONE
 - (BOOL)isEquivalentToColor:(UIColor *)color
+#elif TARGET_OS_MAC && !TARGET_OS_IPHONE
+- (BOOL)isEquivalentToColor:(NSColor *)color
+#endif
 {
     if ([self isMonochromeOrRGB] && [color isMonochromeOrRGB])
     {
@@ -338,7 +369,11 @@
                                 alpha:rgba[3]];
 }
 
+#if TARGET_OS_IPHONE
 - (instancetype)colorBlendedWithColor:(UIColor *)color factor:(CGFloat)factor
+#elif TARGET_OS_MAC && !TARGET_OS_IPHONE
+- (instancetype)colorBlendedWithColor:(NSColor *)color factor:(CGFloat)factor
+#endif
 {
     factor = MIN(MAX(factor, 0.0f), 1.0f);
     

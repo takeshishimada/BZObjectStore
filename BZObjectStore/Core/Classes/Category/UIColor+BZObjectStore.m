@@ -24,7 +24,11 @@
 #import "UIColor+BZObjectStore.h"
 #import "ColorUtils.h"
 
+#if TARGET_OS_IPHONE
 @implementation UIColor (BZObjectStore)
+#elif TARGET_OS_MAC && !TARGET_OS_IPHONE
+@implementation NSColor (BZObjectStore)
+#endif
 
 - (NSString *)stringHEXValue
 {

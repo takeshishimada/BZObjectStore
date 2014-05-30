@@ -53,7 +53,11 @@
 
 - (NSArray*)storeValuesWithValue:(NSValue*)value attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
+#if TARGET_OS_IPHONE
     CGSize size = [value CGSizeValue];
+#elif TARGET_OS_MAC && !TARGET_OS_IPHONE
+    NSSize size = [value sizeValue];
+#endif
     NSNumber *width = nil;
     NSNumber *height = nil;
 #if CGFLOAT_IS_DOUBLE
@@ -70,10 +74,18 @@
 {
     NSString *columnNameWidth = [NSString stringWithFormat:@"%@_width",attribute.columnName];
     NSString *columnNameHeight = [NSString stringWithFormat:@"%@_height",attribute.columnName];
+#if TARGET_OS_IPHONE
     CGSize size;
+#elif TARGET_OS_MAC && !TARGET_OS_IPHONE
+    NSSize size;
+#endif
     size.width = [resultSet doubleForColumn:columnNameWidth];
     size.height = [resultSet doubleForColumn:columnNameHeight];
+#if TARGET_OS_IPHONE
     return [NSValue valueWithCGSize:size];
+#elif TARGET_OS_MAC && !TARGET_OS_IPHONE
+    return [NSValue valueWithSize:size];
+#endif
 }
 
 - (NSString*)sqliteDataTypeName
