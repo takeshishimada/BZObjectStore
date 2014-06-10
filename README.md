@@ -16,7 +16,7 @@ BZObjectStore automatically stores your models to SQLite tables and provides use
 - Automatic Schema Creating
 - Thread Safety
 - Lazy fetching,One time Update and other useful options
-- Any super class in your model not required
+- Any super class not required in your model
 - ActiveRecord support
 - [Parse.com](https://parse.com/docs/ios/api/index.html "Parse.com") support
 
