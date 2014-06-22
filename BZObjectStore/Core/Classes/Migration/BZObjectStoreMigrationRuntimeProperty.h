@@ -21,7 +21,15 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "BZObjectStoreModelMapper.h"
+#import <Foundation/Foundation.h>
 
-@interface BZObjectStoreReferenceMapper : BZObjectStoreModelMapper
+@class BZObjectStoreRuntimeProperty;
+
+@interface BZObjectStoreMigrationRuntimeProperty : NSObject
+@property (nonatomic,strong) NSString *name;
+@property (nonatomic,strong) BZObjectStoreRuntimeProperty *previousAttribute;
+@property (nonatomic,strong) BZObjectStoreRuntimeProperty *latestAttbiute;
+@property (nonatomic,assign) BOOL added;
+@property (nonatomic,assign) BOOL deleted;
+@property (nonatomic,assign) BOOL typeChanged;
 @end

@@ -21,28 +21,17 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "BZObjectStoreAttributeModel.h"
-#import "BZObjectStoreRuntime.h"
-#import "BZObjectStoreRuntimeProperty.h"
+#import <Foundation/Foundation.h>
+#import "BZObjectStoreMigrationRuntime.h"
 
-@implementation BZObjectStoreAttributeModel
-
-- (instancetype)initWithRuntime:(BZObjectStoreRuntime*)runtime attribute:(BZObjectStoreRuntimeProperty*)attribute
-{
-    if (self = [super init]) {
-        self.tableName = runtime.tableName;
-        self.className = runtime.clazzName;
-        self.attributeName = attribute.name;
-        self.attributeType = attribute.attributeType;
-        self.identicalAttribute = attribute.identicalAttribute;
-        self.weakReferenceAttribute = attribute.weakReferenceAttribute;
-    }
-    return self;
-}
-
-+ (NSString*)OSTableName
-{
-    return @"__ObjectStoreAttribute__";
-}
-
+@interface BZObjectStoreMigrationTable : NSObject
+@property (nonatomic,assign) BOOL deletedTarget;
+@property (nonatomic,strong) NSString *tableName;
+@property (nonatomic,strong) NSString *temporaryTableName;
+@property (nonatomic,assign) BOOL fullTextSearch3;
+@property (nonatomic,assign) BOOL fullTextSearch4;
+@property (nonatomic,strong) NSMutableDictionary *columns;
+@property (nonatomic,strong) NSMutableDictionary *migrateColumns;
+@property (nonatomic,strong) NSMutableDictionary *identicalColumns;
+@property (nonatomic,strong) NSMutableDictionary *previousTables;
 @end

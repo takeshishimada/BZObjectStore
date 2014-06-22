@@ -25,44 +25,20 @@
 #import "BZObjectStoreConditionModel.h"
 #import "BZObjectStoreModelInterface.h"
 #import "BZObjectStoreRelationshipModel.h"
-#import "BZObjectStoreAttributeModel.h"
 #import "BZObjectStoreRuntime.h"
 #import "BZObjectStoreRuntimeProperty.h"
 #import "BZObjectStoreNameBuilder.h"
 #import "BZObjectStoreSQLiteColumnModel.h"
-#import "FMDatabaseQueue.h"
-#import "FMDatabase.h"
-#import "FMResultSet.h"
-#import "FMDatabaseAdditions.h"
+#import <FMDatabaseQueue.h>
+#import <FMDatabase.h>
+#import <FMResultSet.h>
+#import <FMDatabaseAdditions.h>
 #import "FMDatabase+indexInfo.h"
 #import "NSObject+BZObjectStore.h"
 
 @implementation BZObjectStoreModelMapper
 
-- (BOOL)createAtributeTable:(BZObjectStoreRuntime*)runtime attributeRuntime:(BZObjectStoreRuntime*)attributeRuntime db:(FMDatabase*)db
-{
-    BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
-    condition.sqlite.where = @"className = ?";
-    condition.sqlite.parameters = @[runtime.clazzName];
-    NSString *deletesql = [attributeRuntime deleteFromStatementWithCondition:condition];
-    [db executeUpdate:deletesql withArgumentsInArray:condition.sqlite.parameters];
-    if ([self hadError:db]) {
-        return NO;
-    }
-    
-    NSString *insertsql = [attributeRuntime insertIntoStatement];
-    for (BZObjectStoreRuntimeProperty *attribute in runtime.insertAttributes) {
-        BZObjectStoreAttributeModel *object = [[BZObjectStoreAttributeModel alloc]initWithRuntime:runtime attribute:attribute];
-        NSArray *parameters = [attributeRuntime insertAttributesParameters:object];
-        [db executeUpdate:insertsql withArgumentsInArray:parameters];
-        if ([self hadError:db]) {
-            return NO;
-        }
-    }
-    return YES;
-}
-
-- (BOOL)createTable:(BZObjectStoreRuntime*)runtime attributeRuntime:(BZObjectStoreRuntime*)attributeRuntime db:(FMDatabase*)db
+- (BOOL)createTable:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db
 {
     BOOL tableExists = [db tableExists:runtime.tableName];
     if (!tableExists) {
@@ -76,12 +52,7 @@
                 return NO;
             }
         }
-        [self createAtributeTable:runtime attributeRuntime:attributeRuntime db:db];
-        if ([self hadError:db]) {
-            return NO;
-        }
     } else {
-        BOOL addedColumns = NO;
         for (BZObjectStoreRuntimeProperty *attribute in runtime.insertAttributes) {
             for (BZObjectStoreSQLiteColumnModel *sqliteColumn in attribute.sqliteColumns) {
                 if (![db columnExists:sqliteColumn.columnName inTableWithName:runtime.tableName]) {
@@ -90,16 +61,9 @@
                     if ([self hadError:db]) {
                         return NO;
                     }
-                    addedColumns = YES;
                 }
             }
             
-        }
-        if ( addedColumns ) {
-            [self createAtributeTable:runtime attributeRuntime:attributeRuntime db:db];
-            if ([self hadError:db]) {
-                return NO;
-            }
         }
         if (!runtime.hasIdentificationAttributes || runtime.fullTextSearch3 || runtime.fullTextSearch4) {
             BOOL indexExists = [db indexExists:runtime.uniqueIndexName];
@@ -257,6 +221,9 @@
     
     NSMutableArray *list = [NSMutableArray array];
     FMResultSet *rs = [db executeQuery:sql withArgumentsInArray:condition.sqlite.parameters];
+    if ([self hadError:db]) {
+        return nil;
+    }
     while ([rs next]) {
         NSObject *targetObject = [runtime object];
         targetObject.runtime = runtime;
@@ -282,7 +249,6 @@
         if ([self hadError:db]) {
             return NO;
         }
-        return YES;
     }
 
     if (object.runtime.hasIdentificationAttributes && !object.rowid) {
@@ -494,6 +460,19 @@
     return YES;
 }
 
+- (BOOL)deleteRelationshipObjectsWithClazzName:(NSString*)className attribute:(BZObjectStoreRuntimeProperty*)attribute relationshipRuntime:(BZObjectStoreRuntime*)relationshipRuntime db:(FMDatabase*)db
+{
+    NSString *attributeName = attribute.name;
+    BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
+    condition.sqlite.where = @"fromClassName = ? and fromAttributeName = ?";
+    condition.sqlite.parameters = @[className,attributeName];
+    [self deleteFrom:relationshipRuntime condition:condition db:db];
+    if ([self hadError:db]) {
+        return NO;
+    }
+    return YES;
+}
+
 - (BOOL)deleteRelationshipObjectsWithRelationshipObject:(BZObjectStoreRelationshipModel*)relationshipObject db:(FMDatabase*)db
 {
     BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
@@ -505,6 +484,7 @@
     }
     return YES;
 }
+
 
 - (BOOL)deleteRelationshipObjectsWithObject:(NSObject*)object relationshipRuntime:(BZObjectStoreRuntime*)relationshipRuntime db:(FMDatabase*)db
 {
@@ -529,4 +509,26 @@
     }
 }
 
+
+//- (BOOL)createAtributeTable:(BZObjectStoreRuntime*)runtime attributeRuntime:(BZObjectStoreRuntime*)attributeRuntime db:(FMDatabase*)db
+//{
+//    BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
+//    condition.sqlite.where = @"clazzName = ?";
+//    condition.sqlite.parameters = @[runtime.clazzName];
+//    NSString *deletesql = [attributeRuntime deleteFromStatementWithCondition:condition];
+//    [db executeUpdate:deletesql withArgumentsInArray:condition.sqlite.parameters];
+//    if ([self hadError:db]) {
+//        return NO;
+//    }
+//
+//    NSString *insertsql = [attributeRuntime insertIntoStatement];
+//    for (BZObjectStoreRuntimeProperty *attribute in runtime.insertAttributes) {
+//        NSArray *parameters = [attributeRuntime insertAttributesParameters:attribute];
+//        [db executeUpdate:insertsql withArgumentsInArray:parameters];
+//        if ([self hadError:db]) {
+//            return NO;
+//        }
+//    }
+//    return YES;
+//}
 @end

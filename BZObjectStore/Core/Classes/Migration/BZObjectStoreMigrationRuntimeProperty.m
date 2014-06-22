@@ -21,19 +21,9 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
-#import "BZObjectStoreModelInterface.h"
+#import "BZObjectStoreMigrationRuntimeProperty.h"
 
-@class BZObjectStoreRuntime;
-@class BZObjectStoreRuntimeProperty;
+@implementation BZObjectStoreMigrationRuntimeProperty
 
-@interface BZObjectStoreAttributeModel : NSObject<OSModelInterface>
-- (instancetype)initWithRuntime:(BZObjectStoreRuntime*)runtime attribute:(BZObjectStoreRuntimeProperty*)attribute;
-@property (nonatomic,strong) NSString *tableName;
-@property (nonatomic,strong) NSString *className;
-@property (nonatomic,strong) NSString *attributeName;
-@property (nonatomic,strong) NSString *attributeType;
-@property (nonatomic,assign) BOOL identicalAttribute;
-@property (nonatomic,assign) BOOL weakReferenceAttribute;
-+ (NSString*)OSTableName;
+
 @end

@@ -30,52 +30,7 @@
 #import "BZObjectStoreReferenceModel.h"
 #import "BZRuntime.h"
 
-@interface BZObjectStoreRuntime ()
-@property (nonatomic,strong) BZObjectStoreClazz *osclazz;
-@property (nonatomic,strong) NSString *selectTemplateStatement;
-@property (nonatomic,strong) NSString *updateTemplateStatement;
-@property (nonatomic,strong) NSString *selectRowidTemplateStatement;
-@property (nonatomic,strong) NSString *insertIntoTemplateStatement;
-@property (nonatomic,strong) NSString *insertOrIgnoreIntoTemplateStatement;
-@property (nonatomic,strong) NSString *deleteFromTemplateStatement;
-@property (nonatomic,strong) NSString *createTableTemplateStatement;
-@property (nonatomic,strong) NSString *dropTableTemplateStatement;
-@property (nonatomic,strong) NSString *createUniqueIndexTemplateStatement;
-@property (nonatomic,strong) NSString *dropIndexTemplateStatement;
-@property (nonatomic,strong) NSString *countTemplateStatement;
-@property (nonatomic,strong) NSString *referencedCountTemplateStatement;
-@property (nonatomic,strong) NSString *uniqueIndexNameTemplateStatement;
-@property (nonatomic,assign) BOOL hasNotUpdateIfValueIsNullAttribute;
-@end
-
 @implementation BZObjectStoreRuntime
-
-+ (instancetype)runtimeWithClazz:(Class)clazz nameBuilder:(BZObjectStoreNameBuilder*)nameBuilder
-{
-    @synchronized(self) {
-        static id _runtimes = nil;
-        if (!_runtimes) {
-            _runtimes = [NSMutableDictionary dictionary];
-        }
-        if (!clazz) {
-            return nil;
-        }
-        Class targetClazz = NULL;
-        BZObjectStoreClazz *osclazz = [BZObjectStoreClazz osclazzWithClazz:clazz];
-        if (osclazz.isObjectClazz) {
-            targetClazz = clazz;
-        } else {
-            targetClazz = osclazz.superClazz;
-        }
-        BZObjectStoreRuntime *runtime = [_runtimes objectForKey:NSStringFromClass(targetClazz)];
-        if (!runtime) {
-            runtime = [[self alloc]initWithClazz:targetClazz osclazz:osclazz nameBuilder:nameBuilder];
-            [_runtimes setObject:runtime forKey:NSStringFromClass(targetClazz)];
-        }
-        return runtime;
-    }
-}
-
 
 - (instancetype)initWithClazz:(Class)clazz osclazz:(BZObjectStoreClazz*)osclazz nameBuilder:(BZObjectStoreNameBuilder*)nameBuilder
 {
@@ -103,8 +58,7 @@
     }
     
     // table name and column name for query builder
-    self.nameBuilder = nameBuilder;
-    self.tableName = [self.nameBuilder tableName:self.clazz];
+    self.tableName = [nameBuilder tableName:self.clazz];
 
     // class options
     self.fullTextSearch3 =  [self.clazz conformsToProtocol:@protocol(OSFullTextSearch3)];
@@ -156,7 +110,7 @@
     NSMutableArray *relationshipAttributes = [NSMutableArray array];
     NSMutableArray *simpleValueAttributes = [NSMutableArray array];
     for (BZRuntimeProperty *property in propertyList) {
-        BZObjectStoreRuntimeProperty *objectStoreAttribute = [BZObjectStoreRuntimeProperty propertyWithBZProperty:property runtime:self];
+        BZObjectStoreRuntimeProperty *objectStoreAttribute = [BZObjectStoreRuntimeProperty propertyWithBZProperty:property runtime:self nameBuilder:nameBuilder];
         if (objectStoreAttribute.isValid) {
             if (!objectStoreAttribute.ignoreAttribute && !property.propertyType.isReadonly) {
                 [insertAttributes addObject:objectStoreAttribute];
@@ -181,7 +135,7 @@
     }
     
     BZRuntime *referenceRuntime = [BZRuntime runtimeWithClass:[BZObjectStoreReferenceModel class]];
-    BZObjectStoreRuntimeProperty *rowidAttribute = [BZObjectStoreRuntimeProperty propertyWithBZProperty:referenceRuntime.propertyList.firstObject runtime:self];
+    BZObjectStoreRuntimeProperty *rowidAttribute = [BZObjectStoreRuntimeProperty propertyWithBZProperty:referenceRuntime.propertyList.firstObject runtime:self nameBuilder:nameBuilder];
     NSMutableArray *attributes = [NSMutableArray array];
     [attributes addObject:rowidAttribute];
     [attributes addObjectsFromArray:insertAttributes];
@@ -456,4 +410,12 @@
 {
     return [self.osclazz objectWithObjects:objects keys:keys initializingOptions:initializingOptions];
 }
+
+#
+
++ (NSString*)OSTableName
+{
+    return @"__ObjectStoreRuntime__";
+}
+
 @end

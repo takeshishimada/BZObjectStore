@@ -22,7 +22,7 @@
 // THE SOFTWARE.
 
 #import "BZObjectStoreClazzPFObject.h"
-#import "FMResultSet.h"
+#import <FMResultSet.h>
 #import "BZObjectStoreConst.h"
 #import "BZObjectStoreRuntimeProperty.h"
 #import "BZObjectStoreModelInterface.h"

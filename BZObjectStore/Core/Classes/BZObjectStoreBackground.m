@@ -228,6 +228,19 @@
     }];
 }
 
+- (void)migrateInBackground:(void(^)(NSError *error))completionBlock
+{
+    NSOperationQueue *queue = [[NSOperationQueue alloc]init];
+    [queue addOperationWithBlock:^{
+        NSError *error = nil;
+        [self migrate:&error];
+        NSOperationQueue *mainQueue = [NSOperationQueue mainQueue];
+        [mainQueue addOperationWithBlock:^{
+            completionBlock(error);
+        }];
+    }];
+}
+
 - (void)registerClassInBackground:(Class)clazz completionBlock:(void(^)(NSError *error))completionBlock
 {
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];

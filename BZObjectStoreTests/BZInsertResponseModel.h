@@ -30,4 +30,5 @@
 @property (nonatomic,strong) NSString *name;
 @property (nonatomic,strong) NSString *address;
 @property (nonatomic,strong) NSDate *birthday;
+@property (nonatomic,strong) NSString *addedAttribute1;
 @end

@@ -26,9 +26,9 @@
 #import <limits.h>
 #import <Parse/Parse.h>
 #import "ColorUtils.h"
-#import "FMDatabase.h"
-#import "FMDatabaseQueue.h"
-#import "FMDatabaseAdditions.h"
+#import <FMDatabase.h>
+#import <FMDatabaseQueue.h>
+#import <FMDatabaseAdditions.h>
 #import "BZObjectStoreOnDisk.h"
 #import "BZObjectStoreOnMemory.h"
 #import "BZVarietyValuesModel.h"
@@ -146,8 +146,20 @@
     [super tearDown];
 }
 
+- (void)testMigration
+{
+    [BZObjectStoreClazz addClazz:[BZObjectStoreClazzBZImage class]];
+    
+    BZObjectStore *_disk;
+    _disk = [BZObjectStoreOnDisk openWithPath:@"database.sqlite" error:nil];
+
+    [_disk migrate:nil];
+
+}
+
 - (void)testOnDisk
 {
+    return;
     NSString *path = @"database.sqlite";
     if (path && ![path isEqualToString:@""]) {
         if ([path isEqualToString:[path lastPathComponent]]) {
@@ -203,7 +215,6 @@
     _disk = nil;
 }
 
-
 - (void)testOnMemory
 {
     BZObjectStore *_memory;
@@ -252,6 +263,8 @@
 
 - (void)testBZVarietyValuesModel:(BZObjectStore*)os
 {
+    return;
+    
     // setup models
     BZVarietyValuesItemModel *item1 = [[BZVarietyValuesItemModel alloc]init];
     item1.code = @"01";

@@ -22,7 +22,7 @@
 // THE SOFTWARE.
 
 #import "BZObjectStoreClazzPFFile.h"
-#import "FMResultSet.h"
+#import <FMResultSet.h>
 #import "BZObjectStoreConst.h"
 #import "BZObjectStoreRuntimeProperty.h"
 #import "BZObjectStoreSQLiteColumnModel.h"
@@ -39,10 +39,6 @@
     return NSStringFromClass([self superClazz]);
 }
 - (BOOL)isSimpleValueClazz
-{
-    return YES;
-}
-- (BOOL)isStringNumberClazz
 {
     return YES;
 }
