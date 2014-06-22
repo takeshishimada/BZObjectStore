@@ -66,7 +66,7 @@
 #import "BZObjectStoreConst.h"
 #import "BZObjectStoreRuntimeProperty.h"
 #import "BZObjectStoreSQLiteColumnModel.h"
-#import "FMResultSet.h"
+#import <FMResultSet.h>
 
 @implementation BZObjectStoreClazz
 
@@ -99,7 +99,7 @@
 {
     return NO;
 }
-- (BOOL)isStringNumberClazz
+- (BOOL)isPrimaryClazz
 {
     return NO;
 }

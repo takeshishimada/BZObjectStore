@@ -22,7 +22,7 @@
 // THE SOFTWARE.
 
 #import "BZObjectStoreClazzNSMutableString.h"
-#import "FMResultSet.h"
+#import <FMResultSet.h>
 #import "BZObjectStoreConst.h"
 #import "BZObjectStoreRuntimeProperty.h"
 
@@ -40,7 +40,7 @@
 {
     return YES;
 }
-- (BOOL)isStringNumberClazz
+- (BOOL)isPrimaryClazz
 {
     return YES;
 }

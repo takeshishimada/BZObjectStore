@@ -22,7 +22,7 @@
 // THE SOFTWARE.
 
 #import "BZObjectStoreClazzUIColor.h"
-#import "FMResultSet.h"
+#import <FMResultSet.h>
 #import "ColorUtils.h"
 #import "UIColor+BZObjectStore.h"
 #import "BZObjectStoreConst.h"
@@ -34,6 +34,18 @@
 - (Class)superClazz
 {
     return [UIColor class];
+}
+- (NSString*)attributeType
+{
+    return NSStringFromClass([self superClazz]);
+}
+- (BOOL)isSimpleValueClazz
+{
+    return YES;
+}
+- (BOOL)isPrimaryClazz
+{
+    return YES;
 }
 
 - (NSArray*)storeValuesWithValue:(UIColor*)value attribute:(BZObjectStoreRuntimeProperty*)attribute
@@ -62,7 +74,7 @@
 - (NSArray*)storeValuesWithValue:(NSColor*)value attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
     if ([[value class] isSubclassOfClass:[NSColor class]]) {
-//        return @[[value stringHEXValue]];
+        return @[[value stringHEXValue]];
     }
     return @[[NSNull null]];
 }
@@ -71,26 +83,13 @@
 {
     NSString *value = [resultSet stringForColumn:attribute.columnName];
     if (value) {
-//        return [NSColor colorWithString:value];
+        return [NSColor colorWithString:value];
     }
     return nil;
 }
 
 #endif
 
-
-- (BOOL)isSimpleValueClazz
-{
-    return YES;
-}
-- (BOOL)isStringNumberClazz
-{
-    return YES;
-}
-- (NSString*)attributeType
-{
-    return NSStringFromClass([self superClazz]);
-}
 
 - (NSString*)sqliteDataTypeName
 {
