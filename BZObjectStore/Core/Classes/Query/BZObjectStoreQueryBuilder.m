@@ -238,11 +238,6 @@
     return [self createUniqueIndexStatement:runtime.tableName sqliteColumns:sqliteColumns];
 }
 
-+ (NSString*)createUniqueIndexStatementWithMigrationTable:(BZObjectStoreMigrationTable*)migrationTable
-{
-    return [self createUniqueIndexStatement:migrationTable.temporaryTableName sqliteColumns:migrationTable.identicalColumns.allValues];
-}
-
 + (NSString*)createUniqueIndexStatement:(NSString*)tableName sqliteColumns:(NSArray*)sqliteColumns
 {
     NSMutableString *sql = [NSMutableString string];
@@ -428,7 +423,7 @@
             }
             NSString *relationshipTableName = @"__ObjectStoreRelationship__";
             NSString *toTableName = runtime.tableName;
-            NSString *fromTableName = condition.reference.from.runtime.tableName;
+            NSString *fromTableName = condition.reference.from.OSRuntime.tableName;
             NSString *fromRowid = [condition.reference.from.rowid stringValue];
             if ([NSNull null] == condition.reference.from) {
                 [sql appendString:[NSString stringWithFormat:@" NOT EXISTS (SELECT * FROM %@ r1 WHERE r1.toRowid = %@.rowid AND r1.toTableName = '%@' )",relationshipTableName,toTableName,toTableName]];
@@ -442,7 +437,7 @@
             }
             NSString *relationshipTableName = @"__ObjectStoreRelationship__";
             NSString *fromTableName = runtime.tableName;
-            NSString *toTableName = condition.reference.to.runtime.tableName;;
+            NSString *toTableName = condition.reference.to.OSRuntime.tableName;;
             NSString *toRowid = [condition.reference.to.rowid stringValue];
             if ([NSNull null] == condition.reference.to) {
                 [sql appendString:[NSString stringWithFormat:@" NOT EXISTS (SELECT * FROM %@ r1 WHERE r1.fromRowid = %@.rowid AND r1.fromTableName = '%@' )",relationshipTableName,fromTableName,fromTableName]];

@@ -197,8 +197,8 @@
     }
     BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
     condition.sqlite.where = @"toTableName = ? and toRowid = ?";
-    condition.sqlite.parameters = @[object.runtime.tableName,object.rowid];
-    NSString *sql = [object.runtime referencedCountStatementWithCondition:condition];
+    condition.sqlite.parameters = @[object.OSRuntime.tableName,object.rowid];
+    NSString *sql = [object.OSRuntime referencedCountStatementWithCondition:condition];
     FMResultSet *rs = [db executeQuery:sql withArgumentsInArray:condition.sqlite.parameters];
     if ([self hadError:db]) {
         return nil;
@@ -226,8 +226,8 @@
     }
     while ([rs next]) {
         NSObject *targetObject = [runtime object];
-        targetObject.runtime = runtime;
-        for (BZObjectStoreRuntimeProperty *attribute in targetObject.runtime.simpleValueAttributes) {
+        targetObject.OSRuntime = runtime;
+        for (BZObjectStoreRuntimeProperty *attribute in targetObject.OSRuntime.simpleValueAttributes) {
             NSObject *value = [attribute valueWithResultSet:rs];
             [targetObject setValue:value forKey:attribute.name];
         }
@@ -240,10 +240,10 @@
 - (BOOL)insertOrUpdate:(NSObject*)object db:(FMDatabase*)db
 {
     if (object.rowid) {
-        BZObjectStoreConditionModel *condition = [object.runtime rowidCondition:object];
-        NSString *sql = [object.runtime updateStatementWithObject:object condition:condition];
+        BZObjectStoreConditionModel *condition = [object.OSRuntime rowidCondition:object];
+        NSString *sql = [object.OSRuntime updateStatementWithObject:object condition:condition];
         NSMutableArray *parameters = [NSMutableArray array];
-        [parameters addObjectsFromArray:[object.runtime updateAttributesParameters:object]];
+        [parameters addObjectsFromArray:[object.OSRuntime updateAttributesParameters:object]];
         [parameters addObjectsFromArray:condition.sqlite.parameters];
         [db executeUpdate:sql withArgumentsInArray:parameters];
         if ([self hadError:db]) {
@@ -251,8 +251,8 @@
         }
     }
 
-    if (object.runtime.hasIdentificationAttributes && !object.rowid) {
-        if (object.runtime.insertPerformance) {
+    if (object.OSRuntime.hasIdentificationAttributes && !object.rowid) {
+        if (object.OSRuntime.insertPerformance) {
             [self insert:object db:db];
             if ([self changes:object db:db] > 0) {
                 return YES;
@@ -274,8 +274,8 @@
     }
     
     if (!object.rowid) {
-        NSString *sql = [object.runtime insertIntoStatement];
-        NSMutableArray *parameters = [object.runtime insertAttributesParameters:object];
+        NSString *sql = [object.OSRuntime insertIntoStatement];
+        NSMutableArray *parameters = [object.OSRuntime insertAttributesParameters:object];
         [db executeUpdate:sql withArgumentsInArray:parameters];
         if ([self hadError:db]) {
             return NO;
@@ -289,8 +289,8 @@
 
 - (BOOL)insert:(NSObject*)object db:(FMDatabase*)db
 {
-    NSString *sql = [object.runtime insertOrIgnoreIntoStatement];
-    NSMutableArray *parameters = [object.runtime insertOrIgnoreAttributesParameters:object];
+    NSString *sql = [object.OSRuntime insertOrIgnoreIntoStatement];
+    NSMutableArray *parameters = [object.OSRuntime insertOrIgnoreAttributesParameters:object];
     [db executeUpdate:sql withArgumentsInArray:parameters];
     if ([self hadError:db]) {
         return NO;
@@ -300,10 +300,10 @@
 
 - (BOOL)update:(NSObject*)object db:(FMDatabase*)db
 {
-    BZObjectStoreConditionModel *condition = [object.runtime uniqueCondition:object];
-    NSString *sql = [object.runtime updateStatementWithObject:object condition:condition];
+    BZObjectStoreConditionModel *condition = [object.OSRuntime uniqueCondition:object];
+    NSString *sql = [object.OSRuntime updateStatementWithObject:object condition:condition];
     NSMutableArray *parameters = [NSMutableArray array];
-    [parameters addObjectsFromArray:[object.runtime updateAttributesParameters:object]];
+    [parameters addObjectsFromArray:[object.OSRuntime updateAttributesParameters:object]];
     [parameters addObjectsFromArray:condition.sqlite.parameters];
     [db executeUpdate:sql withArgumentsInArray:parameters];
     if ([self hadError:db]) {
@@ -327,10 +327,10 @@
 
 - (BOOL)deleteFrom:(NSObject*)object db:(FMDatabase*)db
 {
-    BZObjectStoreConditionModel *condition = [object.runtime rowidCondition:object];
+    BZObjectStoreConditionModel *condition = [object.OSRuntime rowidCondition:object];
     NSMutableArray *parameters = [NSMutableArray array];
     [parameters addObjectsFromArray:condition.sqlite.parameters];
-    NSString *sql = [object.runtime deleteFromStatementWithCondition:condition];
+    NSString *sql = [object.OSRuntime deleteFromStatementWithCondition:condition];
     [db executeUpdate:sql withArgumentsInArray:parameters];
     if ([self hadError:db]) {
         return NO;
@@ -357,14 +357,14 @@
 {
     if (object.rowid) {
         return;
-    } else if (!object.runtime.hasIdentificationAttributes) {
+    } else if (!object.OSRuntime.hasIdentificationAttributes) {
         return;
     }
-    BZObjectStoreConditionModel *condition = [object.runtime uniqueCondition:object];
-    NSString *sql = [object.runtime selectRowidStatement:condition];
+    BZObjectStoreConditionModel *condition = [object.OSRuntime uniqueCondition:object];
+    NSString *sql = [object.OSRuntime selectRowidStatement:condition];
     FMResultSet *rs = [db executeQuery:sql withArgumentsInArray:condition.sqlite.parameters];
     while (rs.next) {
-        object.rowid = [object.runtime.rowidAttribute valueWithResultSet:rs];
+        object.rowid = [object.OSRuntime.rowidAttribute valueWithResultSet:rs];
         break;
     }
     [rs close];
@@ -380,16 +380,16 @@
 
 - (void)updateSimpleValueWithObject:(NSObject*)object db:(FMDatabase*)db
 {
-    BZObjectStoreConditionModel *condition = [object.runtime rowidCondition:object];
+    BZObjectStoreConditionModel *condition = [object.OSRuntime rowidCondition:object];
     NSMutableArray *parameters = [NSMutableArray array];
     [parameters addObjectsFromArray:condition.sqlite.parameters];
-    NSString *sql = [object.runtime selectStatementWithCondition:condition];
+    NSString *sql = [object.OSRuntime selectStatementWithCondition:condition];
     FMResultSet *rs = [db executeQuery:sql withArgumentsInArray:condition.sqlite.parameters];
     if ([self hadError:db]) {
         return;
     }
     while ([rs next]) {
-        for (BZObjectStoreRuntimeProperty *attribute in object.runtime.simpleValueAttributes) {
+        for (BZObjectStoreRuntimeProperty *attribute in object.OSRuntime.simpleValueAttributes) {
             if (!attribute.isRelationshipClazz) {
                 NSObject *value = [attribute valueWithResultSet:rs];
                 [object setValue:value forKey:attribute.name];
@@ -473,12 +473,24 @@
     return YES;
 }
 
+- (BOOL)deleteRelationshipObjectsWithClazzName:(NSString*)className relationshipRuntime:(BZObjectStoreRuntime*)relationshipRuntime db:(FMDatabase*)db
+{
+    BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
+    condition.sqlite.where = @"fromClassName = ?";
+    condition.sqlite.parameters = @[className];
+    [self deleteFrom:relationshipRuntime condition:condition db:db];
+    if ([self hadError:db]) {
+        return NO;
+    }
+    return YES;
+}
+
 - (BOOL)deleteRelationshipObjectsWithRelationshipObject:(BZObjectStoreRelationshipModel*)relationshipObject db:(FMDatabase*)db
 {
     BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
     condition.sqlite.where = @"fromClassName = ? and fromAttributeName = ? and fromRowid = ? and toClassName = ? and toRowid = ?";
     condition.sqlite.parameters = @[relationshipObject.fromClassName,relationshipObject.fromAttributeName,relationshipObject.fromRowid,relationshipObject.toClassName,relationshipObject.toRowid];
-    [self deleteFrom:relationshipObject.runtime condition:condition db:db];
+    [self deleteFrom:relationshipObject.OSRuntime condition:condition db:db];
     if ([self hadError:db]) {
         return NO;
     }
@@ -509,26 +521,4 @@
     }
 }
 
-
-//- (BOOL)createAtributeTable:(BZObjectStoreRuntime*)runtime attributeRuntime:(BZObjectStoreRuntime*)attributeRuntime db:(FMDatabase*)db
-//{
-//    BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
-//    condition.sqlite.where = @"clazzName = ?";
-//    condition.sqlite.parameters = @[runtime.clazzName];
-//    NSString *deletesql = [attributeRuntime deleteFromStatementWithCondition:condition];
-//    [db executeUpdate:deletesql withArgumentsInArray:condition.sqlite.parameters];
-//    if ([self hadError:db]) {
-//        return NO;
-//    }
-//
-//    NSString *insertsql = [attributeRuntime insertIntoStatement];
-//    for (BZObjectStoreRuntimeProperty *attribute in runtime.insertAttributes) {
-//        NSArray *parameters = [attributeRuntime insertAttributesParameters:attribute];
-//        [db executeUpdate:insertsql withArgumentsInArray:parameters];
-//        if ([self hadError:db]) {
-//            return NO;
-//        }
-//    }
-//    return YES;
-//}
 @end

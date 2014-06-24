@@ -13,6 +13,7 @@
 @interface BZObjectStoreMigrationQueryBuilder : NSObject
 
 + (NSString*)createTableStatementWithMigrationTable:(BZObjectStoreMigrationTable*)migrationTable;
++ (NSString*)createTemporaryUniqueIndexStatementWithMigrationTable:(BZObjectStoreMigrationTable*)migrationTable;
 + (NSString*)createUniqueIndexStatementWithMigrationTable:(BZObjectStoreMigrationTable*)migrationTable;
 + (NSString*)selectInsertStatementWithToMigrationTable:(BZObjectStoreMigrationTable*)toMigrationTable fromMigrationTable:(BZObjectStoreMigrationTable*)fromMigrationTable;
 + (NSString*)deleteFromStatementWithMigrationTable:(BZObjectStoreMigrationTable*)migrationTable;

@@ -25,7 +25,7 @@
 #import "BZObjectStoreMigrationRuntime.h"
 
 @interface BZObjectStoreMigrationTable : NSObject
-@property (nonatomic,assign) BOOL deletedTarget;
+@property (nonatomic,assign) BOOL deleted;
 @property (nonatomic,strong) NSString *tableName;
 @property (nonatomic,strong) NSString *temporaryTableName;
 @property (nonatomic,assign) BOOL fullTextSearch3;
