@@ -28,6 +28,7 @@
 #import "BZObjectStoreRelationshipModel.h"
 #import "BZObjectStoreConditionModel.h"
 #import "BZObjectStoreSQLiteColumnModel.h"
+#import "BZObjectStoreMigrationTable.h"
 #import "NSObject+BZObjectStore.h"
 
 @implementation BZObjectStoreQueryBuilder
@@ -173,22 +174,30 @@
 
 + (NSString*)createTableStatement:(BZObjectStoreRuntime*)runtime
 {
-    NSString *tableName = runtime.tableName;
-    NSArray *attributes = runtime.insertAttributes;
+    NSArray *sqliteColumns = [self sqliteColumnsWithAttributes:runtime.insertAttributes];
+    return [self createTableStatement:runtime.tableName fullTextSearch3:runtime.fullTextSearch3 fullTextSearch4:runtime.fullTextSearch4 sqliteColumns:sqliteColumns];
+}
+
++ (NSString*)createTableStatementWithMigrationTable:(BZObjectStoreMigrationTable*)migrationTable
+{
+    return [self createTableStatement:migrationTable.temporaryTableName fullTextSearch3:migrationTable.fullTextSearch3 fullTextSearch4:migrationTable.fullTextSearch4 sqliteColumns:migrationTable.columns.allValues];
+}
+
++ (NSString*)createTableStatement:(NSString*)tableName fullTextSearch3:(BOOL)fullTextSearch3 fullTextSearch4:(BOOL)fullTextSearch4 sqliteColumns:(NSArray*)sqliteColumns
+{
     NSMutableString *sql = [NSMutableString string];
-    if (runtime.fullTextSearch3 || runtime.fullTextSearch4) {
+    if (fullTextSearch3 || fullTextSearch4) {
         [sql appendString:@"CREATE VIRTUAL TABLE IF NOT EXISTS "];
     } else {
         [sql appendString:@"CREATE TABLE IF NOT EXISTS "];
     }
     [sql appendString:tableName];
-    if (runtime.fullTextSearch3) {
+    if (fullTextSearch3) {
         [sql appendString:@" USING fts3 "];
-    } else if (runtime.fullTextSearch4) {
+    } else if (fullTextSearch4) {
         [sql appendString:@" USING fts4 "];
     }
     [sql appendString:@" ("];
-    NSArray *sqliteColumns = [self sqliteColumnsWithAttributes:attributes];
     for (BZObjectStoreSQLiteColumnModel *sqliteColumn in sqliteColumns) {
         [sql appendString:sqliteColumn.columnName];
         [sql appendString:@" "];
@@ -214,29 +223,31 @@
 
 + (NSString*)uniqueIndexName:(BZObjectStoreRuntime*)runtime
 {
-    return [NSString stringWithFormat:@"%@_IDX",runtime.tableName];
+    return [self uniqueIndexNameWithTableName:runtime.tableName];
 }
+
++ (NSString*)uniqueIndexNameWithTableName:(NSString*)tableName
+{
+    return [NSString stringWithFormat:@"%@_IDX",tableName];
+}
+
 
 + (NSString*)createUniqueIndexStatement:(BZObjectStoreRuntime*)runtime
 {
-    NSMutableString *sql = [self createIndexStatementSub:runtime unique:YES attributes:runtime.identificationAttributes];
-    return [NSString stringWithString:sql];
+    NSArray *sqliteColumns = [self sqliteColumnsWithAttributes:runtime.identificationAttributes];
+    return [self createUniqueIndexStatement:runtime.tableName sqliteColumns:sqliteColumns];
 }
 
-+ (NSMutableString*)createIndexStatementSub:(BZObjectStoreRuntime*)runtime unique:(BOOL)unique attributes:(NSArray*)attributes
++ (NSString*)createUniqueIndexStatement:(NSString*)tableName sqliteColumns:(NSArray*)sqliteColumns
 {
-    NSString *tableName = runtime.tableName;
     NSMutableString *sql = [NSMutableString string];
     [sql appendString:@"CREATE "];
-    if (unique) {
-        [sql appendString:@"UNIQUE "];
-    }
+    [sql appendString:@"UNIQUE "];
     [sql appendString:@"INDEX "];
-    [sql appendString:[self uniqueIndexName:runtime]];
+    [sql appendString:[self uniqueIndexNameWithTableName:tableName]];
     [sql appendString:@" ON "];
     [sql appendString:tableName];
     [sql appendString:@" ("];
-    NSArray *sqliteColumns = [self sqliteColumnsWithAttributes:attributes];
     for (BZObjectStoreSQLiteColumnModel *sqliteColumn in sqliteColumns) {
         [sql appendString:sqliteColumn.columnName];
         if (sqliteColumns.lastObject != sqliteColumn) {
@@ -259,7 +270,7 @@
 
 + (NSString*)referencedCountStatement:(BZObjectStoreRuntime*)runtime
 {
-    NSString *tableName = [runtime.nameBuilder tableName:[BZObjectStoreRelationshipModel class]];
+    NSString *tableName = @"__ObjectStoreRelationship__";
     NSMutableString *sql = [NSMutableString string];
     [sql appendString:@"SELECT COUNT(*) FROM ("];
     [sql appendString:@"SELECT DISTINCT fromTableName,fromRowid FROM "];
@@ -282,11 +293,11 @@
 
 #pragma mark per attribute
 
-+ (NSString*)alterTableAddColumnStatement:(BZObjectStoreRuntime*)runtime sqliteColumn:(BZObjectStoreSQLiteColumnModel*)sqliteColumn
++ (NSString*)alterTableAddColumnStatement:(NSString*)tableName sqliteColumn:(BZObjectStoreSQLiteColumnModel*)sqliteColumn
 {
     NSMutableString *sql = [NSMutableString string];
     [sql appendString:@"ALTER TABLE "];
-    [sql appendString:runtime.tableName];
+    [sql appendString:tableName];
     [sql appendString:@" ADD COLUMN "];
     [sql appendString:sqliteColumn.columnName];
     [sql appendString:@" "];
@@ -405,15 +416,14 @@
             [sql appendString:@" )"];
             firstCondition = NO;
         }
-        BZObjectStoreRelationshipModel *relationship = [[BZObjectStoreRelationshipModel alloc]init];
         if (condition.reference.from) {
             if (!firstCondition) {
                 [sql appendString:@" AND "];
                 firstCondition = NO;
             }
-            NSString *relationshipTableName = [runtime.nameBuilder tableName:[BZObjectStoreRelationshipModel class]];
+            NSString *relationshipTableName = @"__ObjectStoreRelationship__";
             NSString *toTableName = runtime.tableName;
-            NSString *fromTableName = [runtime.nameBuilder tableName:[condition.reference.from class]];
+            NSString *fromTableName = condition.reference.from.OSRuntime.tableName;
             NSString *fromRowid = [condition.reference.from.rowid stringValue];
             if ([NSNull null] == condition.reference.from) {
                 [sql appendString:[NSString stringWithFormat:@" NOT EXISTS (SELECT * FROM %@ r1 WHERE r1.toRowid = %@.rowid AND r1.toTableName = '%@' )",relationshipTableName,toTableName,toTableName]];
@@ -425,9 +435,9 @@
             if (!firstCondition) {
                 [sql appendString:@" AND "];
             }
-            NSString *relationshipTableName = [runtime.nameBuilder tableName:[relationship class]];
+            NSString *relationshipTableName = @"__ObjectStoreRelationship__";
             NSString *fromTableName = runtime.tableName;
-            NSString *toTableName = [runtime.nameBuilder tableName:[condition.reference.to class]];
+            NSString *toTableName = condition.reference.to.OSRuntime.tableName;;
             NSString *toRowid = [condition.reference.to.rowid stringValue];
             if ([NSNull null] == condition.reference.to) {
                 [sql appendString:[NSString stringWithFormat:@" NOT EXISTS (SELECT * FROM %@ r1 WHERE r1.fromRowid = %@.rowid AND r1.fromTableName = '%@' )",relationshipTableName,fromTableName,fromTableName]];

@@ -55,12 +55,16 @@
 + (NSString*)rowidConditionStatement;
 + (NSString*)uniqueConditionStatement:(BZObjectStoreRuntime*)runtime;
 
-+ (NSString*)alterTableAddColumnStatement:(BZObjectStoreRuntime*)runtime sqliteColumn:(BZObjectStoreSQLiteColumnModel*)sqliteColumn;
++ (NSString*)alterTableAddColumnStatement:(NSString*)tableName sqliteColumn:(BZObjectStoreSQLiteColumnModel*)sqliteColumn;
 + (NSString*)maxStatement:(BZObjectStoreRuntime*)runtime columnName:(NSString*)columnName;
 + (NSString*)minStatement:(BZObjectStoreRuntime*)runtime columnName:(NSString*)columnName;
 + (NSString*)avgStatement:(BZObjectStoreRuntime*)runtime columnName:(NSString*)columnName;
 + (NSString*)totalStatement:(BZObjectStoreRuntime*)runtime columnName:(NSString*)columnName;
 + (NSString*)sumStatement:(BZObjectStoreRuntime*)runtime columnName:(NSString*)columnName;
 
+
++ (NSString*)createTableStatement:(NSString*)tableName fullTextSearch3:(BOOL)fullTextSearch3 fullTextSearch4:(BOOL)fullTextSearch4 sqliteColumns:(NSArray*)sqliteColumns;
++ (NSString*)createUniqueIndexStatement:(NSString*)tableName sqliteColumns:(NSArray*)sqliteColumns;
++ (NSString*)uniqueIndexNameWithTableName:(NSString*)tableName;
 
 @end

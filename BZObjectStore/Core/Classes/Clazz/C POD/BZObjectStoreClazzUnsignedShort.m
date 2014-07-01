@@ -22,7 +22,7 @@
 // THE SOFTWARE.
 
 #import "BZObjectStoreClazzUnsignedShort.h"
-#import "FMResultSet.h"
+#import <FMResultSet.h>
 #import "BZObjectStoreConst.h"
 #import "BZObjectStoreRuntimeProperty.h"
 

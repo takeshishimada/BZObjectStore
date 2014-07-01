@@ -22,6 +22,7 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import "BZObjectStoreModelInterface.h"
 
 @class BZObjectStoreClazzUtil;
 @class BZObjectStoreNameBuilder;
@@ -30,17 +31,14 @@
 @class BZObjectStoreClazz;
 @class FMResultSet;
 
-@interface BZObjectStoreRuntime : NSObject
+@interface BZObjectStoreRuntime : NSObject<OSModelInterface>
 
-+ (instancetype)runtimeWithClazz:(Class)clazz nameBuilder:(BZObjectStoreNameBuilder*)nameBuilder;
-
-// name information
-@property (nonatomic,strong) BZObjectStoreNameBuilder *nameBuilder;
-@property (atomic,strong) NSString *tableName;
+//
+- (instancetype)initWithClazz:(Class)clazz osclazz:(BZObjectStoreClazz*)osclazz nameBuilder:(BZObjectStoreNameBuilder*)nameBuilder;
 
 // class information
 @property (nonatomic,assign) Class clazz;
-@property (nonatomic,strong) NSString *clazzName;
+@property (nonatomic,strong) NSString<OSIdenticalAttribute> *clazzName;
 @property (nonatomic,assign) BOOL isArrayClazz;
 @property (nonatomic,assign) BOOL isSimpleValueClazz;
 @property (nonatomic,assign) BOOL isObjectClazz;
@@ -49,11 +47,11 @@
 // attribute inforamtion
 @property (nonatomic,strong) BZObjectStoreRuntimeProperty *rowidAttribute;
 @property (nonatomic,strong) NSArray *attributes;
-@property (nonatomic,strong) NSArray *identificationAttributes;
-@property (nonatomic,strong) NSArray *insertAttributes;
-@property (nonatomic,strong) NSArray *updateAttributes;
-@property (nonatomic,strong) NSArray *relationshipAttributes;
-@property (nonatomic,strong) NSArray *simpleValueAttributes;
+@property (nonatomic,strong) NSArray<OSIgnoreAttribute> *identificationAttributes;
+@property (nonatomic,strong) NSArray<OSIgnoreAttribute> *insertAttributes; // all attriburtes
+@property (nonatomic,strong) NSArray<OSIgnoreAttribute> *updateAttributes; // all attributes without identical  attributes
+@property (nonatomic,strong) NSArray<OSIgnoreAttribute> *relationshipAttributes;
+@property (nonatomic,strong) NSArray<OSIgnoreAttribute> *simpleValueAttributes;
 
 // class options
 @property (nonatomic,assign) BOOL fullTextSearch3;
@@ -67,6 +65,26 @@
 @property (nonatomic,assign) BOOL hasRelationshipAttributes;
 @property (nonatomic,assign) BOOL insertPerformance;
 @property (nonatomic,assign) BOOL updatePerformance;
+
+//
+@property (nonatomic,strong) BZObjectStoreClazz<OSSerializableAttribute> *osclazz;
+
+// for response
+@property (atomic,strong) NSString *tableName;
+@property (nonatomic,strong) NSString *selectTemplateStatement;
+@property (nonatomic,strong) NSString *updateTemplateStatement;
+@property (nonatomic,strong) NSString *selectRowidTemplateStatement;
+@property (nonatomic,strong) NSString *insertIntoTemplateStatement;
+@property (nonatomic,strong) NSString *insertOrIgnoreIntoTemplateStatement;
+@property (nonatomic,strong) NSString *deleteFromTemplateStatement;
+@property (nonatomic,strong) NSString *createTableTemplateStatement;
+@property (nonatomic,strong) NSString *dropTableTemplateStatement;
+@property (nonatomic,strong) NSString *createUniqueIndexTemplateStatement;
+@property (nonatomic,strong) NSString *dropIndexTemplateStatement;
+@property (nonatomic,strong) NSString *countTemplateStatement;
+@property (nonatomic,strong) NSString *referencedCountTemplateStatement;
+@property (nonatomic,strong) NSString *uniqueIndexNameTemplateStatement;
+@property (nonatomic,assign) BOOL hasNotUpdateIfValueIsNullAttribute;
 
 // statement methods
 - (NSString*)createTableStatement;

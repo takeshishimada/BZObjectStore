@@ -46,6 +46,8 @@
 - (void)totalInBackground:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock;
 - (void)avgInBackground:(NSString*)attributeName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock;
 
+- (void)migrateInBackground:(void(^)(NSError *error))completionBlock;
+
 - (void)registerClassInBackground:(Class)clazz completionBlock:(void(^)(NSError *error))completionBlock;
 - (void)unRegisterClassInBackground:(Class)clazz completionBlock:(void(^)(NSError *error))completionBlock;
 

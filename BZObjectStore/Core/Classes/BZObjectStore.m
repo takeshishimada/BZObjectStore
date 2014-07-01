@@ -24,16 +24,20 @@
 #import "BZObjectStore.h"
 #import "BZObjectStoreModelInterface.h"
 #import "BZObjectStoreRelationshipModel.h"
-#import "BZObjectStoreAttributeModel.h"
 #import "BZObjectStoreConditionModel.h"
 #import "BZObjectStoreRuntime.h"
 #import "BZObjectStoreRuntimeProperty.h"
 #import "BZObjectStoreNameBuilder.h"
-#import "FMDatabaseQueue.h"
-#import "FMDatabase.h"
-#import "FMResultSet.h"
-#import "FMDatabaseAdditions.h"
+#import "BZObjectStoreMigration.h"
+#import <FMDatabaseQueue.h>
+#import <FMDatabase.h>
+#import <FMResultSet.h>
+#import <FMDatabaseAdditions.h>
 #import "NSObject+BZObjectStore.h"
+
+@interface BZObjectStoreMigration (Protected)
+- (void)migrate:(FMDatabase*)db error:(NSError**)error;
+@end
 
 @interface BZObjectStoreReferenceMapper (Protected)
 - (NSNumber*)existsObject:(NSObject*)object db:(FMDatabase*)db error:(NSError**)error;
@@ -54,7 +58,7 @@
 - (BZObjectStoreRuntime*)runtime:(Class)clazz;
 - (BOOL)registerRuntime:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db error:(NSError**)error;
 - (BOOL)unRegisterRuntime:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db error:(NSError**)error;
-- (void)setRegistedAllRuntimeFlag;
+- (void)setUnRegistedAllRuntimeFlag;
 - (void)setRegistedRuntimeFlag:(BZObjectStoreRuntime*)runtime;
 - (void)setUnRegistedRuntimeFlag:(BZObjectStoreRuntime*)runtime;
 @end
@@ -93,18 +97,22 @@
     os.dbQueue = dbQueue;
     os.db = nil;
     os.weakSelf = os;
-    
+
     NSError *err = nil;
-    [os registerClass:[BZObjectStoreAttributeModel class] error:&err];
-    if (err) {
-        return nil;
-    }
     [os registerClass:[BZObjectStoreRelationshipModel class] error:&err];
     if (err) {
+        *error = err;
         return nil;
     }
-    if (error) {
+    [os registerClass:[BZObjectStoreRuntime class] error:&err];
+    if (err) {
         *error = err;
+        return nil;
+    }
+    [os registerClass:[BZObjectStoreRuntimeProperty class] error:&err];
+    if (err) {
+        *error = err;
+        return nil;
     }
     return os;
 }
@@ -134,9 +142,9 @@
             _weakSelf.db = db;
             [db setShouldCacheStatements:YES];
             block(db,rollback);
-        }];
-        [self.dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
-            [_weakSelf setRegistedAllRuntimeFlag];
+            if (*rollback) {
+                [_weakSelf setUnRegistedAllRuntimeFlag];
+            }
         }];
         [self transactionDidEnd:self.db];
         self.db = nil;
@@ -561,6 +569,20 @@
             *rollback = YES;
         }
         [self setUnRegistedRuntimeFlag:runtime];
+        return;
+    }];
+    if (error) {
+        *error = err;
+    }
+    return ret;
+}
+
+- (BOOL)migrate:(NSError**)error
+{
+    __block NSError *err = nil;
+    __block BOOL ret = NO;
+    [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
+        [self migrate:db error:&err];
         return;
     }];
     if (error) {

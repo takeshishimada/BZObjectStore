@@ -36,23 +36,23 @@
     objc_setAssociatedObject(self, _cmd, rowid, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
--(BZObjectStoreRuntime*)runtime {
-    return objc_getAssociatedObject(self, @selector(setRuntime:));
+-(BZObjectStoreRuntime*)OSRuntime {
+    return objc_getAssociatedObject(self, @selector(setOSRuntime:));
 }
 
--(void)setRuntime:(BZObjectStoreRuntime *)runtime
+-(void)setOSRuntime:(BZObjectStoreRuntime *)runtime
 {
     objc_setAssociatedObject(self, _cmd, runtime, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
 }
 
-- (NSString*)objectStoreHashForSave
+- (NSString*)OSHashForSave
 {
     NSNumber *number = [NSNumber numberWithUnsignedInteger:[self hash]];
     NSString *hash = [NSString stringWithFormat:@"%@",[number stringValue]];
     return hash;
 }
 
-- (NSString*)objectStoreHashForFetch
+- (NSString*)OSHashForFetch
 {
     NSString *hash = [NSString stringWithFormat:@"%@-%@",NSStringFromClass([self class]),[self.rowid stringValue]];
     return hash;

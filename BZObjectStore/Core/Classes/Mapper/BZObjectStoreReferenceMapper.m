@@ -24,14 +24,14 @@
 #import "BZObjectStoreReferenceMapper.h"
 #import "BZObjectStoreModelInterface.h"
 #import "BZObjectStoreRelationshipModel.h"
-#import "BZObjectStoreAttributeModel.h"
 #import "BZObjectStoreConditionModel.h"
 #import "BZObjectStoreRuntime.h"
 #import "BZObjectStoreRuntimeProperty.h"
 #import "BZObjectStoreNameBuilder.h"
-#import "FMDatabaseQueue.h"
-#import "FMDatabase.h"
-#import "FMResultSet.h"
+#import "BZObjectStoreClazz.h"
+#import <FMDatabaseQueue.h>
+#import <FMDatabase.h>
+#import <FMResultSet.h>
 #import "FMDatabaseAdditions.h"
 #import "NSObject+BZObjectStore.h"
 
@@ -58,17 +58,12 @@
 - (void)updateObjectRowid:(NSObject*)object db:(FMDatabase*)db;
 - (void)updateRowidWithObjects:(NSArray*)objects db:(FMDatabase*)db;
 
-//- (BOOL)existsTable:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
-//- (BOOL)existsIndex:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
-//- (BOOL)createTable:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
-//- (BOOL)createUniqueIndex:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
 - (BOOL)dropTable:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
-//- (BOOL)dropUniqueIndex:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
 - (NSArray*)selectAttributes:(BZObjectStoreRuntime*)runtime attributeRuntime:(BZObjectStoreRuntime*)attributeRuntime db:(FMDatabase*)db;
 - (BOOL)createAttribute:(BZObjectStoreRuntime*)runtime attributeRuntime:(BZObjectStoreRuntime*)attributeRuntime db:(FMDatabase*)db;
 - (BOOL)deleteAttribute:(BZObjectStoreRuntime*)runtime attributeRuntime:(BZObjectStoreRuntime*)attributeRuntime db:(FMDatabase*)db;
 
-- (BOOL)createTable:(BZObjectStoreRuntime*)runtime attributeRuntime:(BZObjectStoreRuntime*)attributeRuntime db:(FMDatabase*)db;
+- (BOOL)createTable:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
 
 @end
 
@@ -91,6 +86,7 @@
 @interface BZObjectStoreReferenceMapper ()
 @property (nonatomic,strong) BZObjectStoreNameBuilder *nameBuilder;
 @property (nonatomic,strong) NSMutableDictionary *registedClazzes;
+@property (nonatomic,strong) NSMutableDictionary *registedRuntimes;
 @end
 
 @implementation BZObjectStoreReferenceMapper
@@ -108,6 +104,7 @@
 - (instancetype)init
 {
     if (self = [super init]) {
+        self.registedRuntimes = [NSMutableDictionary dictionary];
         self.registedClazzes = [NSMutableDictionary dictionary];
         BZObjectStoreNameBuilder *nameBuilder = [[BZObjectStoreNameBuilder alloc]init];
         Class clazz = self.class;
@@ -122,6 +119,9 @@
 
 - (NSNumber*)max:(NSString*)columnName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error
 {
+    if (![self updateConditionRuntime:condition db:db error:error]) {
+        return nil;
+    }
     BZObjectStoreRuntime *runtime = [self runtimeWithClazz:clazz db:db error:error];
     NSNumber *value = [self max:runtime columnName:columnName condition:condition db:db];
     if ([self hadError:db error:error]) {
@@ -132,6 +132,9 @@
 
 - (NSNumber*)min:(NSString*)columnName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error
 {
+    if (![self updateConditionRuntime:condition db:db error:error]) {
+        return nil;
+    }
     BZObjectStoreRuntime *runtime = [self runtimeWithClazz:clazz db:db error:error];
     NSNumber *value = [self min:runtime columnName:columnName condition:condition db:db];
     if ([self hadError:db error:error]) {
@@ -142,6 +145,9 @@
 
 - (NSNumber*)avg:(NSString*)columnName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error
 {
+    if (![self updateConditionRuntime:condition db:db error:error]) {
+        return nil;
+    }
     BZObjectStoreRuntime *runtime = [self runtimeWithClazz:clazz db:db error:error];
     NSNumber *value = [self avg:runtime columnName:columnName condition:condition db:db];
     if ([self hadError:db error:error]) {
@@ -152,6 +158,9 @@
 
 - (NSNumber*)total:(NSString*)columnName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error
 {
+    if (![self updateConditionRuntime:condition db:db error:error]) {
+        return nil;
+    }
     BZObjectStoreRuntime *runtime = [self runtimeWithClazz:clazz db:db error:error];
     NSNumber *value = [self total:runtime columnName:columnName condition:condition db:db];
     if ([self hadError:db error:error]) {
@@ -162,6 +171,9 @@
 
 - (NSNumber*)sum:(NSString*)columnName class:(Class)clazz condition:(BZObjectStoreConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error
 {
+    if (![self updateConditionRuntime:condition db:db error:error]) {
+        return nil;
+    }
     BZObjectStoreRuntime *runtime = [self runtimeWithClazz:clazz db:db error:error];
     NSNumber *value = [self sum:runtime columnName:columnName condition:condition db:db];
     if ([self hadError:db error:error]) {
@@ -180,13 +192,13 @@
     }
     BZObjectStoreConditionModel *condition = nil;
     if (object.rowid) {
-        condition = [object.runtime rowidCondition:object];
-    } else if (object.runtime.hasIdentificationAttributes) {
-        condition = [object.runtime uniqueCondition:object];
+        condition = [object.OSRuntime rowidCondition:object];
+    } else if (object.OSRuntime.hasIdentificationAttributes) {
+        condition = [object.OSRuntime uniqueCondition:object];
     } else {
         return nil;
     }
-    NSNumber *count = [self count:object.runtime condition:condition db:db];
+    NSNumber *count = [self count:object.OSRuntime condition:condition db:db];
     if ([self hadError:db error:error]) {
         return nil;
     }
@@ -204,6 +216,9 @@
 
 - (NSNumber*)count:(Class)clazz condition:(BZObjectStoreConditionModel*)condition  db:(FMDatabase*)db error:(NSError**)error
 {
+    if (![self updateConditionRuntime:condition db:db error:error]) {
+        return nil;
+    }
     BZObjectStoreRuntime *runtime = [self runtimeWithClazz:clazz db:db error:error];
     NSNumber *count = [self count:runtime condition:condition db:db];
     if ([self hadError:db error:error]) {
@@ -242,14 +257,16 @@
 {
     BZObjectStoreConditionModel *condition = nil;
     if (object.rowid) {
-        condition = [object.runtime rowidCondition:object];
-    } else if (object.runtime.hasIdentificationAttributes) {
-        condition = [object.runtime uniqueCondition:object];
+        condition = [object.OSRuntime rowidCondition:object];
+    } else if (object.OSRuntime.hasIdentificationAttributes) {
+        condition = [object.OSRuntime uniqueCondition:object];
     } else {
-        // toerror
         return nil;
     }
-    NSMutableArray *list = [self select:object.runtime condition:condition db:db];
+    if (![self updateConditionRuntime:condition db:db error:error]) {
+        return nil;
+    }
+    NSMutableArray *list = [self select:object.OSRuntime condition:condition db:db];
     if ([self hadError:db error:error]) {
         return nil;
     }
@@ -262,6 +279,9 @@
 
 - (NSMutableArray*)fetchObjects:(Class)clazz condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db error:(NSError**)error
 {
+    if (![self updateConditionRuntime:condition db:db error:error]) {
+        return nil;
+    }
     BZObjectStoreRuntime *runtime = [self runtimeWithClazz:clazz db:db error:error];
     NSMutableArray *list = [self select:runtime condition:condition db:db];
     if ([self hadError:db error:error]) {
@@ -304,7 +324,7 @@
             }
             if (runtime.isObjectClazz) {
                 NSObject *targetObject = [runtime object];
-                targetObject.runtime = runtime;
+                targetObject.OSRuntime = runtime;
                 targetObject.rowid = relationshipObject.fromRowid;
                 targetObject = [self refreshObjectSub:targetObject db:db error:error];
                 if ([self hadError:db error:error]) {
@@ -327,9 +347,9 @@
     NSMutableDictionary *processedObjects = [NSMutableDictionary dictionary];
     NSMutableArray *targetObjects = [NSMutableArray array];
     for (NSObject *object in objects) {
-        if (![processedObjects valueForKey:object.objectStoreHashForSave]) {
-            [processedObjects setValue:object forKey:object.objectStoreHashForSave];
-            if (object.runtime.hasRelationshipAttributes) {
+        if (![processedObjects valueForKey:object.OSHashForSave]) {
+            [processedObjects setValue:object forKey:object.OSHashForSave];
+            if (object.OSRuntime.hasRelationshipAttributes) {
                 [targetObjects addObject:object];
             }
         }
@@ -343,7 +363,7 @@
         // each object
         NSObject *targetObject = [targetObjects lastObject];
         // each object-attribute
-        for (BZObjectStoreRuntimeProperty *attribute in targetObject.runtime.relationshipAttributes) {
+        for (BZObjectStoreRuntimeProperty *attribute in targetObject.OSRuntime.relationshipAttributes) {
             BOOL ignoreFetch = NO;
             if (attribute.fetchOnRefreshingAttribute) {
                 if (!(refreshing && [objects containsObject:targetObject])) {
@@ -364,18 +384,18 @@
                     if (runtime.isObjectClazz) {
                         NSObject *object = [runtime object];
                         object.rowid = relationshipObject.toRowid;
-                        NSObject *processedObject = [processedObjects valueForKey:object.objectStoreHashForFetch];
+                        NSObject *processedObject = [processedObjects valueForKey:object.OSHashForFetch];
                         if (processedObject) {
                             relationshipObject.attributeFromObject = targetObject;
                             relationshipObject.attributeValue = processedObject;
                         } else {
                             relationshipObject.attributeFromObject = targetObject;
                             relationshipObject.attributeValue = object;
-                            object.runtime = runtime;
-                            if (object.runtime.hasRelationshipAttributes) {
+                            object.OSRuntime = runtime;
+                            if (object.OSRuntime.hasRelationshipAttributes) {
                                 [targetObjects addObject:object];
                             }
-                            [processedObjects setValue:object forKey:object.objectStoreHashForFetch];
+                            [processedObjects setValue:object forKey:object.OSHashForFetch];
                         }
                         
                     } else if (runtime.isArrayClazz) {
@@ -427,7 +447,7 @@
     }
     
     for (NSObject *targetObject in allValues) {
-        if (targetObject.runtime.modelDidLoad) {
+        if (targetObject.OSRuntime.modelDidLoad) {
             [targetObject performSelector:@selector(OSModelDidLoad) withObject:nil];
         }
     }
@@ -455,19 +475,19 @@
     NSMutableDictionary *processedObjects = [NSMutableDictionary dictionary];
     NSMutableArray *targetObjects = [NSMutableArray array];
     for (NSObject *object in objects) {
-        if (object.runtime.hasRelationshipAttributes) {
+        if (object.OSRuntime.hasRelationshipAttributes) {
             [targetObjects addObjectsFromArray:objects];
         } else {
-            if (![processedObjects valueForKey:object.objectStoreHashForSave]) {
-                [processedObjects setValue:object forKey:object.objectStoreHashForSave];
+            if (![processedObjects valueForKey:object.OSHashForSave]) {
+                [processedObjects setValue:object forKey:object.OSHashForSave];
             }
         }
     }
     while (targetObjects.count > 0) {
         NSObject *targetObject = [targetObjects lastObject];
-        if (![processedObjects valueForKey:targetObject.objectStoreHashForSave]) {
-            [processedObjects setValue:targetObject forKey:targetObject.objectStoreHashForSave];
-            for (BZObjectStoreRuntimeProperty *attribute in targetObject.runtime.relationshipAttributes) {
+        if (![processedObjects valueForKey:targetObject.OSHashForSave]) {
+            [processedObjects setValue:targetObject forKey:targetObject.OSHashForSave];
+            for (BZObjectStoreRuntimeProperty *attribute in targetObject.OSRuntime.relationshipAttributes) {
                 NSObject *targetObjectInAttribute = [targetObject valueForKey:attribute.name];
                 BZProcessingModel *processingObject = [[BZProcessingModel alloc]init];
                 processingObject.targetObject = targetObject;
@@ -491,8 +511,8 @@
                     }
                     if (runtime.isArrayClazz) {
                         BZObjectStoreRelationshipModel *topRelationshipObject = [[BZObjectStoreRelationshipModel alloc]init];
-                        topRelationshipObject.fromClassName = targetObject.runtime.clazzName;
-                        topRelationshipObject.fromTableName = targetObject.runtime.tableName;
+                        topRelationshipObject.fromClassName = targetObject.OSRuntime.clazzName;
+                        topRelationshipObject.fromTableName = targetObject.OSRuntime.tableName;
                         topRelationshipObject.fromAttributeName = attribute.name;
                         topRelationshipObject.fromRowid = @0;
                         topRelationshipObject.toClassName = attribute.clazzName;
@@ -505,7 +525,7 @@
                         topRelationshipObject.attributeParentSequence = @0;
                         topRelationshipObject.attributeFromObject = targetObject;
                         topRelationshipObject.attributeToObject = [targetObject valueForKey:attribute.name];
-                        topRelationshipObject.attributeToObject.runtime = runtime;
+                        topRelationshipObject.attributeToObject.OSRuntime = runtime;
                         topRelationshipObject.attributeKey = nil;
                         [allRelationshipObjects addObject:topRelationshipObject];
                         
@@ -545,9 +565,9 @@
                             return NO;
                         }
                         if (runtime.isRelationshipClazz) {
-                            processingInAttributeObject.targetObjectInAttribute.runtime = runtime;
-                            enumerator = [processingInAttributeObject.targetObjectInAttribute.runtime objectEnumeratorWithObject:processingInAttributeObject.targetObjectInAttribute];
-                            keys = [processingInAttributeObject.targetObjectInAttribute.runtime keysWithObject:processingInAttributeObject.targetObjectInAttribute];
+                            processingInAttributeObject.targetObjectInAttribute.OSRuntime = runtime;
+                            enumerator = [processingInAttributeObject.targetObjectInAttribute.OSRuntime objectEnumeratorWithObject:processingInAttributeObject.targetObjectInAttribute];
+                            keys = [processingInAttributeObject.targetObjectInAttribute.OSRuntime keysWithObject:processingInAttributeObject.targetObjectInAttribute];
                         }
                         for (NSObject *attributeObjectInEnumerator in enumerator) {
                             Class attributeClazzInEnumerator = [attributeObjectInEnumerator class];
@@ -557,7 +577,7 @@
                             }
                             if (attributeRuntimeInEnumerator) {
                                 if (attributeRuntimeInEnumerator.isRelationshipClazz) {
-                                    attributeObjectInEnumerator.runtime = attributeRuntimeInEnumerator;
+                                    attributeObjectInEnumerator.OSRuntime = attributeRuntimeInEnumerator;
                                 }
                                 NSString *attributeObjectClassName = nil;
                                 NSString *attributeObjectTableName = nil;
@@ -576,8 +596,8 @@
                                     attributeValue = attributeObjectInEnumerator;
                                 }
                                 BZObjectStoreRelationshipModel *relationshipObject = [[BZObjectStoreRelationshipModel alloc]init];
-                                relationshipObject.fromClassName = targetObject.runtime.clazzName;
-                                relationshipObject.fromTableName = targetObject.runtime.tableName;
+                                relationshipObject.fromClassName = targetObject.OSRuntime.clazzName;
+                                relationshipObject.fromTableName = targetObject.OSRuntime.tableName;
                                 relationshipObject.fromAttributeName = attribute.name;
                                 relationshipObject.fromRowid = @0;
                                 relationshipObject.toClassName = attributeObjectClassName;
@@ -596,7 +616,7 @@
                                     relationshipObject.attributeKey = nil;
                                 }
                                 if (attributeRuntimeInEnumerator.isRelationshipClazz) {
-                                    relationshipObject.attributeToObject.runtime = attributeRuntimeInEnumerator;
+                                    relationshipObject.attributeToObject.OSRuntime = attributeRuntimeInEnumerator;
                                 }
                                 [relationshipObjects addObject:relationshipObject];
                                 [allRelationshipObjects addObject:relationshipObject];
@@ -604,13 +624,13 @@
                             }
                         }
                         for (BZObjectStoreRelationshipModel *relationshipObject in relationshipObjects) {
-                            if (relationshipObject.attributeToObject.runtime.isArrayClazz) {
+                            if (relationshipObject.attributeToObject.OSRuntime.isArrayClazz) {
                                 BZProcessingInAttributeModel *processingInAttributeObject = [[BZProcessingInAttributeModel alloc]init];
                                 processingInAttributeObject.parentRelationship = relationshipObject;
                                 processingInAttributeObject.targetObjectInAttribute = relationshipObject.attributeToObject;
                                 [processingInAttributeObjects addObject:processingInAttributeObject];
                                 
-                            } else if (relationshipObject.attributeToObject.runtime.isObjectClazz) {
+                            } else if (relationshipObject.attributeToObject.OSRuntime.isObjectClazz) {
                                 [targetObjects addObject:relationshipObject.attributeToObject];
                             }
                         }
@@ -641,7 +661,7 @@
     }
     for (BZProcessingModel *processingObject in processingObjects) {
         for (BZObjectStoreRelationshipModel *relationshipObject in processingObject.relationshipObjects) {
-            relationshipObject.runtime = relationshipRuntime;
+            relationshipObject.OSRuntime = relationshipRuntime;
             relationshipObject.fromRowid = relationshipObject.attributeFromObject.rowid;
             if (relationshipObject.attributeToObject) {
                 if (relationshipObject.toTableName) {
@@ -671,7 +691,7 @@
                     }
                     if (targetRuntime.isObjectClazz) {
                         NSObject *object = [targetRuntime object];
-                        object.runtime = targetRuntime;
+                        object.OSRuntime = targetRuntime;
                         object.rowid = relationshipObject.toRowid;
                         object = [self refreshObjectSub:object db:db error:error];
                         if ([self hadError:db error:error]) {
@@ -698,7 +718,7 @@
     }
     
     for (NSObject *targetObject in allValues) {
-        if (targetObject.runtime.modelDidSave) {
+        if (targetObject.OSRuntime.modelDidSave) {
             [targetObject performSelector:@selector(OSModelDidSave) withObject:nil];
         }
     }
@@ -712,6 +732,9 @@
 
 - (BOOL)deleteObjects:(Class)clazz condition:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db error:(NSError**)error
 {
+    if (![self updateConditionRuntime:condition db:db error:error]) {
+        return NO;
+    }
     NSArray *objects = [self fetchObjects:clazz condition:condition db:db error:error];
     if ([self hadError:db error:error]) {
         return NO;
@@ -749,20 +772,20 @@
     NSMutableArray *targetObjects = [NSMutableArray array];
     for (NSObject *targetObject in objects) {
         if (targetObject.rowid) {
-            if (targetObject.runtime.hasRelationshipAttributes) {
+            if (targetObject.OSRuntime.hasRelationshipAttributes) {
                 [targetObjects addObject:targetObject];
             } else {
-                if (![processedObjects valueForKey:targetObject.objectStoreHashForSave]) {
-                    [processedObjects setValue:targetObject forKey:targetObject.objectStoreHashForSave];
+                if (![processedObjects valueForKey:targetObject.OSHashForSave]) {
+                    [processedObjects setValue:targetObject forKey:targetObject.OSHashForSave];
                 }
             }
         }
     }
     while (targetObjects.count > 0) {
         NSObject *targetObject = [targetObjects lastObject];
-        if (![processedObjects valueForKey:targetObject.objectStoreHashForSave]) {
-            [processedObjects setValue:targetObject forKey:targetObject.objectStoreHashForSave];
-            for (BZObjectStoreRuntimeProperty *attribute in targetObject.runtime.relationshipAttributes) {
+        if (![processedObjects valueForKey:targetObject.OSHashForSave]) {
+            [processedObjects setValue:targetObject forKey:targetObject.OSHashForSave];
+            for (BZObjectStoreRuntimeProperty *attribute in targetObject.OSRuntime.relationshipAttributes) {
                 if (!attribute.weakReferenceAttribute) {
                     NSObject *tagetObjectInAttribute = [targetObject valueForKey:attribute.name];
                     if (tagetObjectInAttribute) {
@@ -776,12 +799,12 @@
                             if ([self hadError:db error:error]) {
                                 return NO;
                             }
-                            if (tagetObjectInAttribute.runtime.isRelationshipClazz) {
-                                NSEnumerator *enumerator = [tagetObjectInAttribute.runtime objectEnumeratorWithObject:tagetObjectInAttribute];
+                            if (tagetObjectInAttribute.OSRuntime.isRelationshipClazz) {
+                                NSEnumerator *enumerator = [tagetObjectInAttribute.OSRuntime objectEnumeratorWithObject:tagetObjectInAttribute];
                                 for (NSObject *tagetObjectInEnumeratorInAttribute in enumerator) {
                                     BZObjectStoreRuntime *runtime = [self runtimeWithClazz:[tagetObjectInEnumeratorInAttribute class] db:db error:error];
                                     if (runtime.isObjectClazz) {
-                                        tagetObjectInEnumeratorInAttribute.runtime = runtime;
+                                        tagetObjectInEnumeratorInAttribute.OSRuntime = runtime;
                                         [targetObjects addObject:tagetObjectInEnumeratorInAttribute];
                                     } else if (runtime.isArrayClazz) {
                                         [tagetObjectsInAttribute addObject:tagetObjectInEnumeratorInAttribute];
@@ -819,7 +842,7 @@
     }
     
     for (NSObject *targetObject in allValues) {
-        if (targetObject.runtime.modelDidDelete) {
+        if (targetObject.OSRuntime.modelDidDelete) {
             [targetObject performSelector:@selector(OSModelDidDelete) withObject:nil];
         }
     }
@@ -835,6 +858,21 @@
 
 #pragma mark common
 
+- (BOOL)updateConditionRuntime:(BZObjectStoreConditionModel*)condition db:(FMDatabase*)db error:(NSError**)error
+{
+    if (condition.reference.from) {
+        if (![self updateRuntime:condition.reference.from db:db error:error]) {
+            return NO;
+        }
+    }
+    if (condition.reference.to) {
+        if (![self updateRuntime:condition.reference.to db:db error:error]) {
+            return NO;
+        }
+    }
+    return YES;
+}
+
 - (BOOL)updateRuntimes:(NSArray*)objects db:(FMDatabase*)db error:(NSError**)error
 {
     for (NSObject *object in objects) {
@@ -847,14 +885,14 @@
 
 - (BOOL)updateRuntime:(NSObject*)object db:(FMDatabase*)db error:(NSError**)error
 {
-    if (object.runtime) {
+    if (object.OSRuntime) {
         return YES;
     }
     BZObjectStoreRuntime *runtime = [self runtimeWithClazz:[object class] db:db error:error];
     if (!runtime) {
         return NO;
     }
-    object.runtime = runtime;
+    object.OSRuntime = runtime;
     return YES;
 }
 
@@ -892,8 +930,22 @@
     if (clazz == NULL) {
         return nil;
     }
-    BZObjectStoreRuntime *runtime = [BZObjectStoreRuntime runtimeWithClazz:clazz nameBuilder:self.nameBuilder];
+    
+    Class targetClazz = NULL;
+    BZObjectStoreClazz *osclazz = [BZObjectStoreClazz osclazzWithClazz:clazz];
+    if (osclazz.isObjectClazz) {
+        targetClazz = clazz;
+    } else {
+        targetClazz = osclazz.superClazz;
+    }
+   
+    BZObjectStoreRuntime *runtime = [self.registedRuntimes objectForKey:NSStringFromClass(targetClazz)];
+    if (!runtime) {
+        runtime = [[BZObjectStoreRuntime alloc]initWithClazz:targetClazz osclazz:osclazz nameBuilder:self.nameBuilder];
+        [self.registedRuntimes setObject:runtime forKey:NSStringFromClass(targetClazz)];
+    }
     return runtime;
+    
 }
 
 - (void)setRegistedRuntimeFlag:(BZObjectStoreRuntime*)runtime
@@ -906,29 +958,41 @@
     [self.registedClazzes removeObjectForKey:runtime.clazzName];
 }
 
-- (void)setRegistedAllRuntimeFlag
+- (void)setUnRegistedAllRuntimeFlag
 {
     for (NSString *key in self.registedClazzes.allKeys) {
-        [self.registedClazzes setObject:@YES forKey:key];
+        [self.registedClazzes removeObjectForKey:key];
     }
 }
 
 - (BOOL)registerRuntime:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db error:(NSError**)error
 {
     NSNumber *registed = [self.registedClazzes objectForKey:runtime.clazzName];
-    if (registed.boolValue) {
+    if (registed) {
         return YES;
     }
 
-    BZObjectStoreRuntime *attributeRuntime = [self runtime:[BZObjectStoreAttributeModel class]];
     if (runtime.isObjectClazz) {
-        [self createTable:runtime attributeRuntime:attributeRuntime db:db];
+        [self createTable:runtime db:db];
+        if ([self hadError:db error:error]) {
+            return NO;
+        }
+        if (runtime.clazz == [BZObjectStoreRelationshipModel class]) {
+            return YES;
+        }
+        if (runtime.clazz == [BZObjectStoreRuntime class]) {
+            return YES;
+        }
+        if (runtime.clazz == [BZObjectStoreRuntimeProperty class]) {
+            return YES;
+        }
+        [self saveObjects:@[runtime] db:db error:error];
         if ([self hadError:db error:error]) {
             return NO;
         }
     }
     
-    [self.registedClazzes setObject:@NO forKey:runtime.clazzName];
+    [self.registedClazzes setObject:@YES forKey:runtime.clazzName];
     return YES;
 }
 

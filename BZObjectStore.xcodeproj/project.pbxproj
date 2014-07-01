@@ -19,6 +19,7 @@
 		72170C0018F83C2800C9A4C1 /* BZIgnoreExtendModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72170BFF18F83C2800C9A4C1 /* BZIgnoreExtendModel.m */; };
 		72170C0318F8CEBD00C9A4C1 /* BZUpdateAttributeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72170C0218F8CEBD00C9A4C1 /* BZUpdateAttributeModel.m */; };
 		72170C1818F8DA1400C9A4C1 /* BZIgnoreAttribute.m in Sources */ = {isa = PBXBuildFile; fileRef = 72170C1718F8DA1400C9A4C1 /* BZIgnoreAttribute.m */; };
+		722443CB195680B40014AEDF /* BZObjectStoreMigrationQueryBuilder.m in Sources */ = {isa = PBXBuildFile; fileRef = 722443CA195680B40014AEDF /* BZObjectStoreMigrationQueryBuilder.m */; };
 		724A0CB019210AEC00AF177D /* BZActiveRecordModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 724A0CAF19210AEC00AF177D /* BZActiveRecordModel.m */; };
 		724A0CBB1923B11300AF177D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 724A0CBA1923B11300AF177D /* CoreLocation.framework */; };
 		724A0D401923B22B00AF177D /* BZObjectStore.m in Sources */ = {isa = PBXBuildFile; fileRef = 724A0CC51923B22A00AF177D /* BZObjectStore.m */; };
@@ -71,7 +72,6 @@
 		724A0D6F1923B22B00AF177D /* BZObjectStoreClazzNSObject.m in Sources */ = {isa = PBXBuildFile; fileRef = 724A0D271923B22B00AF177D /* BZObjectStoreClazzNSObject.m */; };
 		724A0D701923B22B00AF177D /* BZObjectStoreModelMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 724A0D2A1923B22B00AF177D /* BZObjectStoreModelMapper.m */; };
 		724A0D711923B22B00AF177D /* BZObjectStoreReferenceMapper.m in Sources */ = {isa = PBXBuildFile; fileRef = 724A0D2C1923B22B00AF177D /* BZObjectStoreReferenceMapper.m */; };
-		724A0D721923B22B00AF177D /* BZObjectStoreAttributeModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 724A0D2F1923B22B00AF177D /* BZObjectStoreAttributeModel.m */; };
 		724A0D731923B22B00AF177D /* BZObjectStoreReferenceModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 724A0D311923B22B00AF177D /* BZObjectStoreReferenceModel.m */; };
 		724A0D741923B22B00AF177D /* BZObjectStoreRelationshipModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 724A0D331923B22B00AF177D /* BZObjectStoreRelationshipModel.m */; };
 		724A0D751923B22B00AF177D /* BZObjectStoreSQLiteColumnModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 724A0D351923B22B00AF177D /* BZObjectStoreSQLiteColumnModel.m */; };
@@ -120,6 +120,9 @@
 		727926B018FA265C00A564AA /* BZTypeMissMatchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 727926AF18FA265C00A564AA /* BZTypeMissMatchModel.m */; };
 		727926B318FA268C00A564AA /* BZTypeMissMatchMissMatchModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 727926B218FA268C00A564AA /* BZTypeMissMatchMissMatchModel.m */; };
 		727926B618FA26F200A564AA /* BZTypeMissMatchItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 727926B518FA26F200A564AA /* BZTypeMissMatchItemModel.m */; };
+		727B48C6194D89D200D17C4D /* BZObjectStoreMigrationRuntime.m in Sources */ = {isa = PBXBuildFile; fileRef = 727B48C5194D89D200D17C4D /* BZObjectStoreMigrationRuntime.m */; };
+		727B48C9194D89ED00D17C4D /* BZObjectStoreMigrationRuntimeProperty.m in Sources */ = {isa = PBXBuildFile; fileRef = 727B48C8194D89ED00D17C4D /* BZObjectStoreMigrationRuntimeProperty.m */; };
+		727B48CC1955464300D17C4D /* BZObjectStoreMigrationTable.m in Sources */ = {isa = PBXBuildFile; fileRef = 727B48CB1955464300D17C4D /* BZObjectStoreMigrationTable.m */; };
 		7292AB331902E3D000FCF778 /* BZOSIdenticalFirstModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7292AB321902E3D000FCF778 /* BZOSIdenticalFirstModel.m */; };
 		7292AB361902E41E00FCF778 /* BZOSIdenticalSecondModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7292AB351902E41E00FCF778 /* BZOSIdenticalSecondModel.m */; };
 		7292AB391902E47A00FCF778 /* BZOSIdenticalThirdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 7292AB381902E47A00FCF778 /* BZOSIdenticalThirdModel.m */; };
@@ -147,6 +150,7 @@
 		72C2685418F9FDF20070C2E5 /* BZOSIdenticalItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2685318F9FDF20070C2E5 /* BZOSIdenticalItemModel.m */; };
 		72C2685818FA09A50070C2E5 /* BZWeakPropertyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2685718FA09A50070C2E5 /* BZWeakPropertyModel.m */; };
 		72EC847B190D5669001AE1F7 /* BZTransactionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72EC847A190D5669001AE1F7 /* BZTransactionModel.m */; };
+		72ED0D1A193AA2E100045830 /* BZObjectStoreMigration.m in Sources */ = {isa = PBXBuildFile; fileRef = 72ED0D19193AA2E100045830 /* BZObjectStoreMigration.m */; };
 		72ED67A61917DFA200457F1E /* BZParseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72ED67A51917DFA200457F1E /* BZParseModel.m */; };
 		821F19AA1906511C00E7F96C /* BZBackgroundModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 821F19A91906511C00E7F96C /* BZBackgroundModel.m */; };
 		8296BB57193738CD00622F99 /* ColorUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 8296BB56193738CD00622F99 /* ColorUtils.m */; };
@@ -192,6 +196,8 @@
 		72170C0218F8CEBD00C9A4C1 /* BZUpdateAttributeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZUpdateAttributeModel.m; sourceTree = "<group>"; };
 		72170C1618F8DA1400C9A4C1 /* BZIgnoreAttribute.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZIgnoreAttribute.h; sourceTree = "<group>"; };
 		72170C1718F8DA1400C9A4C1 /* BZIgnoreAttribute.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZIgnoreAttribute.m; sourceTree = "<group>"; };
+		722443C9195680B40014AEDF /* BZObjectStoreMigrationQueryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreMigrationQueryBuilder.h; sourceTree = "<group>"; };
+		722443CA195680B40014AEDF /* BZObjectStoreMigrationQueryBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreMigrationQueryBuilder.m; sourceTree = "<group>"; };
 		724A0CAE19210AEC00AF177D /* BZActiveRecordModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZActiveRecordModel.h; sourceTree = "<group>"; };
 		724A0CAF19210AEC00AF177D /* BZActiveRecordModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZActiveRecordModel.m; sourceTree = "<group>"; };
 		724A0CBA1923B11300AF177D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
@@ -297,8 +303,6 @@
 		724A0D2A1923B22B00AF177D /* BZObjectStoreModelMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreModelMapper.m; sourceTree = "<group>"; };
 		724A0D2B1923B22B00AF177D /* BZObjectStoreReferenceMapper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreReferenceMapper.h; sourceTree = "<group>"; };
 		724A0D2C1923B22B00AF177D /* BZObjectStoreReferenceMapper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreReferenceMapper.m; sourceTree = "<group>"; };
-		724A0D2E1923B22B00AF177D /* BZObjectStoreAttributeModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreAttributeModel.h; sourceTree = "<group>"; };
-		724A0D2F1923B22B00AF177D /* BZObjectStoreAttributeModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreAttributeModel.m; sourceTree = "<group>"; };
 		724A0D301923B22B00AF177D /* BZObjectStoreReferenceModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreReferenceModel.h; sourceTree = "<group>"; };
 		724A0D311923B22B00AF177D /* BZObjectStoreReferenceModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreReferenceModel.m; sourceTree = "<group>"; };
 		724A0D321923B22B00AF177D /* BZObjectStoreRelationshipModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreRelationshipModel.h; sourceTree = "<group>"; };
@@ -309,10 +313,10 @@
 		724A0D381923B22B00AF177D /* BZObjectStoreNameBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreNameBuilder.m; sourceTree = "<group>"; };
 		724A0D391923B22B00AF177D /* BZObjectStoreQueryBuilder.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreQueryBuilder.h; sourceTree = "<group>"; };
 		724A0D3A1923B22B00AF177D /* BZObjectStoreQueryBuilder.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreQueryBuilder.m; sourceTree = "<group>"; };
-		724A0D3C1923B22B00AF177D /* BZObjectStoreRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreRuntime.h; sourceTree = "<group>"; };
-		724A0D3D1923B22B00AF177D /* BZObjectStoreRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreRuntime.m; sourceTree = "<group>"; };
-		724A0D3E1923B22B00AF177D /* BZObjectStoreRuntimeProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreRuntimeProperty.h; sourceTree = "<group>"; };
-		724A0D3F1923B22B00AF177D /* BZObjectStoreRuntimeProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreRuntimeProperty.m; sourceTree = "<group>"; };
+		724A0D3C1923B22B00AF177D /* BZObjectStoreRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BZObjectStoreRuntime.h; path = ../Runtime/BZObjectStoreRuntime.h; sourceTree = "<group>"; };
+		724A0D3D1923B22B00AF177D /* BZObjectStoreRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BZObjectStoreRuntime.m; path = ../Runtime/BZObjectStoreRuntime.m; sourceTree = "<group>"; };
+		724A0D3E1923B22B00AF177D /* BZObjectStoreRuntimeProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BZObjectStoreRuntimeProperty.h; path = ../Runtime/BZObjectStoreRuntimeProperty.h; sourceTree = "<group>"; };
+		724A0D3F1923B22B00AF177D /* BZObjectStoreRuntimeProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BZObjectStoreRuntimeProperty.m; path = ../Runtime/BZObjectStoreRuntimeProperty.m; sourceTree = "<group>"; };
 		724A0D7C1923B26A00AF177D /* BZObjectStoreClazzPFFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzPFFile.h; sourceTree = "<group>"; };
 		724A0D7D1923B26A00AF177D /* BZObjectStoreClazzPFFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzPFFile.m; sourceTree = "<group>"; };
 		724A0D7E1923B26A00AF177D /* BZObjectStoreClazzPFGeoPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzPFGeoPoint.h; sourceTree = "<group>"; };
@@ -385,6 +389,12 @@
 		727926B218FA268C00A564AA /* BZTypeMissMatchMissMatchModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZTypeMissMatchMissMatchModel.m; sourceTree = "<group>"; };
 		727926B418FA26F200A564AA /* BZTypeMissMatchItemModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZTypeMissMatchItemModel.h; sourceTree = "<group>"; };
 		727926B518FA26F200A564AA /* BZTypeMissMatchItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZTypeMissMatchItemModel.m; sourceTree = "<group>"; };
+		727B48C4194D89D200D17C4D /* BZObjectStoreMigrationRuntime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreMigrationRuntime.h; sourceTree = "<group>"; };
+		727B48C5194D89D200D17C4D /* BZObjectStoreMigrationRuntime.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreMigrationRuntime.m; sourceTree = "<group>"; };
+		727B48C7194D89ED00D17C4D /* BZObjectStoreMigrationRuntimeProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreMigrationRuntimeProperty.h; sourceTree = "<group>"; };
+		727B48C8194D89ED00D17C4D /* BZObjectStoreMigrationRuntimeProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreMigrationRuntimeProperty.m; sourceTree = "<group>"; };
+		727B48CA1955464300D17C4D /* BZObjectStoreMigrationTable.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreMigrationTable.h; sourceTree = "<group>"; };
+		727B48CB1955464300D17C4D /* BZObjectStoreMigrationTable.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreMigrationTable.m; sourceTree = "<group>"; };
 		7292AB311902E3D000FCF778 /* BZOSIdenticalFirstModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZOSIdenticalFirstModel.h; sourceTree = "<group>"; };
 		7292AB321902E3D000FCF778 /* BZOSIdenticalFirstModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZOSIdenticalFirstModel.m; sourceTree = "<group>"; };
 		7292AB341902E41E00FCF778 /* BZOSIdenticalSecondModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZOSIdenticalSecondModel.h; sourceTree = "<group>"; };
@@ -439,6 +449,8 @@
 		72C2685718FA09A50070C2E5 /* BZWeakPropertyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZWeakPropertyModel.m; sourceTree = "<group>"; };
 		72EC8479190D5669001AE1F7 /* BZTransactionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZTransactionModel.h; sourceTree = "<group>"; };
 		72EC847A190D5669001AE1F7 /* BZTransactionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZTransactionModel.m; sourceTree = "<group>"; };
+		72ED0D18193AA2E100045830 /* BZObjectStoreMigration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreMigration.h; sourceTree = "<group>"; };
+		72ED0D19193AA2E100045830 /* BZObjectStoreMigration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreMigration.m; sourceTree = "<group>"; };
 		72ED67A41917DFA200457F1E /* BZParseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZParseModel.h; sourceTree = "<group>"; };
 		72ED67A51917DFA200457F1E /* BZParseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZParseModel.m; sourceTree = "<group>"; };
 		73A736836B224E7BB841BEB0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
@@ -655,9 +667,9 @@
 				724A0CCA1923B22A00AF177D /* Category */,
 				724A0CD11923B22A00AF177D /* Clazz */,
 				724A0D281923B22B00AF177D /* Mapper */,
+				72ED0D17193AA28400045830 /* Migration */,
 				724A0D2D1923B22B00AF177D /* Model */,
 				724A0D361923B22B00AF177D /* Query */,
-				724A0D3B1923B22B00AF177D /* Runtime */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -823,14 +835,16 @@
 		724A0D2D1923B22B00AF177D /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				724A0D2E1923B22B00AF177D /* BZObjectStoreAttributeModel.h */,
-				724A0D2F1923B22B00AF177D /* BZObjectStoreAttributeModel.m */,
-				724A0D301923B22B00AF177D /* BZObjectStoreReferenceModel.h */,
-				724A0D311923B22B00AF177D /* BZObjectStoreReferenceModel.m */,
-				724A0D321923B22B00AF177D /* BZObjectStoreRelationshipModel.h */,
-				724A0D331923B22B00AF177D /* BZObjectStoreRelationshipModel.m */,
+				724A0D3C1923B22B00AF177D /* BZObjectStoreRuntime.h */,
+				724A0D3D1923B22B00AF177D /* BZObjectStoreRuntime.m */,
+				724A0D3E1923B22B00AF177D /* BZObjectStoreRuntimeProperty.h */,
+				724A0D3F1923B22B00AF177D /* BZObjectStoreRuntimeProperty.m */,
 				724A0D341923B22B00AF177D /* BZObjectStoreSQLiteColumnModel.h */,
 				724A0D351923B22B00AF177D /* BZObjectStoreSQLiteColumnModel.m */,
+				724A0D321923B22B00AF177D /* BZObjectStoreRelationshipModel.h */,
+				724A0D331923B22B00AF177D /* BZObjectStoreRelationshipModel.m */,
+				724A0D301923B22B00AF177D /* BZObjectStoreReferenceModel.h */,
+				724A0D311923B22B00AF177D /* BZObjectStoreReferenceModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -844,17 +858,6 @@
 				724A0D3A1923B22B00AF177D /* BZObjectStoreQueryBuilder.m */,
 			);
 			path = Query;
-			sourceTree = "<group>";
-		};
-		724A0D3B1923B22B00AF177D /* Runtime */ = {
-			isa = PBXGroup;
-			children = (
-				724A0D3C1923B22B00AF177D /* BZObjectStoreRuntime.h */,
-				724A0D3D1923B22B00AF177D /* BZObjectStoreRuntime.m */,
-				724A0D3E1923B22B00AF177D /* BZObjectStoreRuntimeProperty.h */,
-				724A0D3F1923B22B00AF177D /* BZObjectStoreRuntimeProperty.m */,
-			);
-			path = Runtime;
 			sourceTree = "<group>";
 		};
 		724A0D7A1923B24600AF177D /* CoreLocation */ = {
@@ -1114,6 +1117,23 @@
 			name = Transaction;
 			sourceTree = "<group>";
 		};
+		72ED0D17193AA28400045830 /* Migration */ = {
+			isa = PBXGroup;
+			children = (
+				72ED0D18193AA2E100045830 /* BZObjectStoreMigration.h */,
+				72ED0D19193AA2E100045830 /* BZObjectStoreMigration.m */,
+				727B48C4194D89D200D17C4D /* BZObjectStoreMigrationRuntime.h */,
+				727B48C5194D89D200D17C4D /* BZObjectStoreMigrationRuntime.m */,
+				727B48C7194D89ED00D17C4D /* BZObjectStoreMigrationRuntimeProperty.h */,
+				727B48C8194D89ED00D17C4D /* BZObjectStoreMigrationRuntimeProperty.m */,
+				727B48CA1955464300D17C4D /* BZObjectStoreMigrationTable.h */,
+				727B48CB1955464300D17C4D /* BZObjectStoreMigrationTable.m */,
+				722443C9195680B40014AEDF /* BZObjectStoreMigrationQueryBuilder.h */,
+				722443CA195680B40014AEDF /* BZObjectStoreMigrationQueryBuilder.m */,
+			);
+			path = Migration;
+			sourceTree = "<group>";
+		};
 		72ED67A31917DF7E00457F1E /* Parse */ = {
 			isa = PBXGroup;
 			children = (
@@ -1270,6 +1290,7 @@
 				724A0D561923B22B00AF177D /* BZObjectStoreClazzCGPoint.m in Sources */,
 				724A0D541923B22B00AF177D /* BZObjectStoreClazzUnsignedLongLong.m in Sources */,
 				724A0D6B1923B22B00AF177D /* BZObjectStoreClazzNSMutableSet.m in Sources */,
+				727B48C9194D89ED00D17C4D /* BZObjectStoreMigrationRuntimeProperty.m in Sources */,
 				724A0D9A1923B2D100AF177D /* BZObjectStoreClazzCLLocation.m in Sources */,
 				724A0D771923B22B00AF177D /* BZObjectStoreQueryBuilder.m in Sources */,
 				724A0D611923B22B00AF177D /* BZObjectStoreClazzNSURL.m in Sources */,
@@ -1281,6 +1302,7 @@
 				724A0D781923B22B00AF177D /* BZObjectStoreRuntime.m in Sources */,
 				724A0D731923B22B00AF177D /* BZObjectStoreReferenceModel.m in Sources */,
 				724A0D621923B22B00AF177D /* BZObjectStoreClazzNSValue.m in Sources */,
+				727B48C6194D89D200D17C4D /* BZObjectStoreMigrationRuntime.m in Sources */,
 				724A0D521923B22B00AF177D /* BZObjectStoreClazzUnsignedInt.m in Sources */,
 				724A0D861923B26A00AF177D /* BZObjectStoreClazzPFFile.m in Sources */,
 				724A0D6C1923B22B00AF177D /* BZObjectStoreClazzNSOrderedSet.m in Sources */,
@@ -1291,6 +1313,7 @@
 				724A0D5E1923B22B00AF177D /* BZObjectStoreClazzNSNull.m in Sources */,
 				724A0D6F1923B22B00AF177D /* BZObjectStoreClazzNSObject.m in Sources */,
 				724A0DA01923BC0F00AF177D /* BZObjectStoreClazzCLLocationCoordinate2D.m in Sources */,
+				727B48CC1955464300D17C4D /* BZObjectStoreMigrationTable.m in Sources */,
 				724A0D531923B22B00AF177D /* BZObjectStoreClazzUnsignedLong.m in Sources */,
 				724A0D661923B22B00AF177D /* BZObjectStoreClazzNSArray.m in Sources */,
 				724A0D581923B22B00AF177D /* BZObjectStoreClazzCGSize.m in Sources */,
@@ -1306,7 +1329,6 @@
 				724A0D451923B22B00AF177D /* FMDatabase+indexInfo.m in Sources */,
 				724A0D411923B22B00AF177D /* BZObjectStoreBackground.m in Sources */,
 				724A0D701923B22B00AF177D /* BZObjectStoreModelMapper.m in Sources */,
-				724A0D721923B22B00AF177D /* BZObjectStoreAttributeModel.m in Sources */,
 				8296BC27193828DB00622F99 /* BZObjectStoreClazzNSImage.m in Sources */,
 				724A0D791923B22B00AF177D /* BZObjectStoreRuntimeProperty.m in Sources */,
 				8296BB57193738CD00622F99 /* ColorUtils.m in Sources */,
@@ -1320,8 +1342,10 @@
 				724A0D481923B22B00AF177D /* BZObjectStoreClazz.m in Sources */,
 				724A0D6A1923B22B00AF177D /* BZObjectStoreClazzNSMutableOrderedSet.m in Sources */,
 				724A0D511923B22B00AF177D /* BZObjectStoreClazzUnsignedChar.m in Sources */,
+				72ED0D1A193AA2E100045830 /* BZObjectStoreMigration.m in Sources */,
 				724A0D5B1923B22B00AF177D /* BZObjectStoreClazzNSDate.m in Sources */,
 				724A0D401923B22B00AF177D /* BZObjectStore.m in Sources */,
+				722443CB195680B40014AEDF /* BZObjectStoreMigrationQueryBuilder.m in Sources */,
 				724A0D571923B22B00AF177D /* BZObjectStoreClazzCGRect.m in Sources */,
 				724A0D871923B26A00AF177D /* BZObjectStoreClazzPFGeoPoint.m in Sources */,
 				724A0D921923B28300AF177D /* BZActiveRecord.m in Sources */,

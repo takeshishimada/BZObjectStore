@@ -21,13 +21,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "BZObjectStoreReferenceMapper.h"
+#import "BZObjectStoreMigration.h"
 #import "BZObjectStoreConditionModel.h"
+#import "BZObjectStoreMigration.h"
 
 @class FMDatabaseQueue;
 @class FMDatabase;
 
-@interface BZObjectStore : BZObjectStoreReferenceMapper
+@interface BZObjectStore : BZObjectStoreMigration
 
 + (instancetype)openWithPath:(NSString*)path error:(NSError**)error;
 
@@ -56,6 +57,8 @@
 
 - (BOOL)registerClass:(Class)clazz error:(NSError**)error;
 - (BOOL)unRegisterClass:(Class)clazz error:(NSError**)error;
+
+- (BOOL)migrate:(NSError**)error;
 
 - (void)close;
 

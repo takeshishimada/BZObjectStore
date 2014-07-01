@@ -24,6 +24,4 @@
 #import "BZObjectStoreModelMapper.h"
 
 @interface BZObjectStoreReferenceMapper : BZObjectStoreModelMapper
-+ (NSString*)ignorePrefixName;
-+ (NSString*)ignoreSuffixName;
 @end

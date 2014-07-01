@@ -21,36 +21,15 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import "BZObjectStoreClazzDouble.h"
-#import <FMResultSet.h>
-#import "BZObjectStoreConst.h"
-#import "BZObjectStoreRuntimeProperty.h"
+#import <Foundation/Foundation.h>
 
-@implementation BZObjectStoreClazzDouble
+@class BZObjectStoreRuntimeProperty;
 
-- (NSString*)attributeType
-{
-    return [NSString stringWithFormat:@"%s",@encode(double)];
-}
-- (BOOL)isSimpleValueClazz
-{
-    return YES;
-}
-
-- (NSArray*)storeValuesWithValue:(NSNumber*)value attribute:(BZObjectStoreRuntimeProperty*)attribute
-{
-    return @[value];
-}
-
-- (id)valueWithResultSet:(FMResultSet*)resultSet attribute:(BZObjectStoreRuntimeProperty*)attribute
-{
-    double value = [resultSet doubleForColumn:attribute.columnName];
-    return [NSNumber numberWithDouble:value];
-}
-
-- (NSString*)sqliteDataTypeName
-{
-    return SQLITE_DATA_TYPE_REAL;
-}
-
+@interface BZObjectStoreMigrationRuntimeProperty : NSObject
+@property (nonatomic,strong) NSString *name;
+@property (nonatomic,strong) BZObjectStoreRuntimeProperty *previousAttribute;
+@property (nonatomic,strong) BZObjectStoreRuntimeProperty *latestAttbiute;
+@property (nonatomic,assign) BOOL added;
+@property (nonatomic,assign) BOOL deleted;
+@property (nonatomic,assign) BOOL typeChanged;
 @end

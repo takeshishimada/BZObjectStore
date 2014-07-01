@@ -22,6 +22,7 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
+#import "BZObjectStoreModelInterface.h"
 
 @class BZObjectStoreConditionModel;
 @class BZObjectStoreRuntime;
@@ -32,13 +33,18 @@
 @class BZRuntimeProperty;
 @class FMResultSet;
 
-@interface BZObjectStoreRuntimeProperty : NSObject
+@interface BZObjectStoreRuntimeProperty : NSObject<OSModelInterface>
 
-+ (instancetype)propertyWithBZProperty:(BZRuntimeProperty*)bzproperty runtime:(BZObjectStoreRuntime*)runtime;
++ (instancetype)propertyWithBZProperty:(BZRuntimeProperty*)bzproperty runtime:(BZObjectStoreRuntime*)runtime nameBuilder:(BZObjectStoreNameBuilder*)nameBuilder;
+
+// sqlite information
+@property (nonatomic,strong) NSString *tableName;
+@property (nonatomic,strong) NSString *columnName;
+@property (nonatomic,strong) NSArray<OSSerializableAttribute> *sqliteColumns;
 
 // name informations
-@property (nonatomic,strong) NSString *name;
 @property (nonatomic,strong) NSString *clazzName;
+@property (nonatomic,strong) NSString *name;
 @property (nonatomic,strong) NSString *attributeType;
 
 // class type information
@@ -46,7 +52,7 @@
 @property (nonatomic,assign) BOOL isSimpleValueClazz;
 @property (nonatomic,assign) BOOL isArrayClazz;
 @property (nonatomic,assign) BOOL isObjectClazz;
-@property (nonatomic,assign) BOOL isStringNumberClazz;
+@property (nonatomic,assign) BOOL isPrimaryClazz;
 @property (nonatomic,assign) BOOL isValid;
 
 // attribute informations
@@ -59,12 +65,10 @@
 @property (nonatomic,assign) BOOL onceUpdateAttribute;
 
 // data type information
-@property (nonatomic,assign) BOOL isGroupFunctionClazz;
 @property (nonatomic,assign) BOOL isRelationshipClazz;
 
-// sqlite information
-@property (nonatomic,strong) NSString *columnName;
-@property (nonatomic,strong) NSArray *sqliteColumns;
+//
+@property (nonatomic,strong) BZObjectStoreClazz<OSSerializableAttribute> *osclazz;
 
 // mapper methods
 - (NSArray*)storeValuesWithObject:(NSObject*)object;

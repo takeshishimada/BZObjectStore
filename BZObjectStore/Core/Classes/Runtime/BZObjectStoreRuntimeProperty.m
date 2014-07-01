@@ -31,60 +31,57 @@
 #import "BZRuntimePropertyEncoding.h"
 #import "BZObjectStoreSQLiteColumnModel.h"
 
-@interface BZObjectStoreRuntimeProperty ()
-@property (nonatomic,strong) BZObjectStoreClazz *osclazz;
-@property (nonatomic,weak) BZObjectStoreRuntime *osruntime;
-@property (nonatomic,assign) BOOL isPrimitive;
-@property (nonatomic,assign) BOOL isStructure;
-@property (nonatomic,assign) BOOL isObject;
-@property (nonatomic,strong) NSString *structureName;
-@end
 
 @implementation BZObjectStoreRuntimeProperty
 
-+ (instancetype)propertyWithBZProperty:(BZRuntimeProperty*)bzproperty runtime:(BZObjectStoreRuntime*)runtime;
++ (instancetype)propertyWithBZProperty:(BZRuntimeProperty*)bzproperty runtime:(BZObjectStoreRuntime*)runtime nameBuilder:(BZObjectStoreNameBuilder*)nameBuilder
 {
-    return [[self alloc]initWithBZProperty:bzproperty runtime:runtime];
+    return [[self alloc]initWithBZProperty:bzproperty runtime:runtime nameBuilder:nameBuilder];
 }
 
-- (instancetype)initWithBZProperty:(BZRuntimeProperty*)bzproperty runtime:(BZObjectStoreRuntime*)runtime
+- (instancetype)initWithBZProperty:(BZRuntimeProperty*)bzproperty runtime:(BZObjectStoreRuntime*)runtime nameBuilder:(BZObjectStoreNameBuilder*)nameBuilder
 {
     if (self = [super init]) {
-        [self setupWithBZProperty:bzproperty runtime:runtime];
+        [self setupWithBZProperty:bzproperty runtime:runtime nameBuilder:nameBuilder];
     }
     return self;
 }
 
-- (void)setupWithBZProperty:(BZRuntimeProperty*)bzproperty runtime:(BZObjectStoreRuntime*)runtime;
+- (void)setupWithBZProperty:(BZRuntimeProperty*)bzproperty runtime:(BZObjectStoreRuntime*)runtime nameBuilder:(BZObjectStoreNameBuilder*)nameBuilder
 {
+    BOOL isPrimitive = NO;
+    BOOL isStructure = NO;
+    BOOL isObject = NO;
+    NSString *structureName = nil;
+    
     // name
     self.name  = bzproperty.name;
-    self.osruntime = runtime;
+    self.tableName = runtime.tableName;
     
     // data type
     if (bzproperty.propertyEncoding.isObject) {
         self.clazz = bzproperty.clazz;
         self.clazzName = NSStringFromClass(bzproperty.clazz);
-        self.isObject = YES;
-        self.isStructure = NO;
-        self.isPrimitive = NO;
         self.isValid = YES;
+        isObject = YES;
+        isStructure = NO;
+        isPrimitive = NO;
     } else if (bzproperty.propertyEncoding.isStructure) {
-        self.isObject = NO;
-        self.isStructure = YES;
-        self.isPrimitive = NO;
         self.isValid = YES;
+        isObject = NO;
+        isStructure = YES;
+        isPrimitive = NO;
     } else if (bzproperty.propertyEncoding) {
         if ([self isPrimitiveWithBZPropertyEncoding:bzproperty.propertyEncoding]) {
-            self.isObject = NO;
-            self.isStructure = NO;
-            self.isPrimitive = YES;
             self.isValid = YES;
+            isObject = NO;
+            isStructure = NO;
+            isPrimitive = YES;
         } else {
-            self.isObject = NO;
-            self.isStructure = NO;
-            self.isPrimitive = NO;
             self.isValid = NO;
+            isObject = NO;
+            isStructure = NO;
+            isPrimitive = NO;
         }
     }
 
@@ -97,9 +94,9 @@
     self.fetchOnRefreshingAttribute = [self boolWithProtocol:@protocol(OSFetchOnRefreshingAttribute) bzproperty:bzproperty];
     self.onceUpdateAttribute = [self boolWithProtocol:@protocol(OSOnceUpdateAttribute) bzproperty:bzproperty];
     
-    if ([self.osruntime.clazz conformsToProtocol:@protocol(OSModelInterface)]) {
+    if ([runtime.clazz conformsToProtocol:@protocol(OSModelInterface)]) {
 
-        Class clazz = self.osruntime.clazz;
+        Class clazz = runtime.clazz;
         if ([clazz respondsToSelector:@selector(attributeIsOSIdenticalAttribute:)]) {
             self.identicalAttribute = (BOOL)[clazz performSelector:@selector(attributeIsOSIdenticalAttribute:)withObject:self.name];
         }
@@ -129,39 +126,30 @@
     }
     
     // structureName
-    if (self.isStructure) {
-        self.structureName = [self structureNameWithAttributes:bzproperty.attributes];
+    if (isStructure) {
+        structureName = [self structureNameWithAttributes:bzproperty.attributes];
     }
 
     // clazz
     if (self.serializableAttribute) {
         self.osclazz = [BZObjectStoreClazz osclazzWithPrimitiveEncodingCode:@"Serialize"];
-    } else if (self.isStructure) {
-        self.osclazz = [BZObjectStoreClazz osclazzWithStructureName:self.structureName];
-    } else if (self.isPrimitive) {
+    } else if (isStructure) {
+        self.osclazz = [BZObjectStoreClazz osclazzWithStructureName:structureName];
+    } else if (isPrimitive) {
         self.osclazz = [BZObjectStoreClazz osclazzWithPrimitiveEncodingCode:bzproperty.propertyEncoding.code];
-    } else if (self.isObject) {
+    } else if (isObject) {
         self.osclazz = [BZObjectStoreClazz osclazzWithClazz:self.clazz];
     }
     self.isSimpleValueClazz = self.osclazz.isSimpleValueClazz;
     self.isArrayClazz = self.osclazz.isArrayClazz;
     self.isObjectClazz = self.osclazz.isObjectClazz;
     self.isRelationshipClazz = self.osclazz.isRelationshipClazz;
-    self.isStringNumberClazz = self.osclazz.isStringNumberClazz;
+    self.isPrimaryClazz = self.osclazz.isPrimaryClazz;
     self.attributeType = self.osclazz.attributeType;
-
+    
     // identicalAttribute
-    if (!self.isStringNumberClazz) {
+    if (!self.isPrimaryClazz) {
         self.identicalAttribute = NO;
-    }
-
-    // group function attribute
-    if (self.isPrimitive) {
-        self.isGroupFunctionClazz = YES;
-    } else if (self.isStringNumberClazz) {
-        self.isGroupFunctionClazz = YES;
-    } else {
-        self.isGroupFunctionClazz = NO;
     }
 
     // relationship attribute
@@ -175,7 +163,7 @@
     }
     
     // sqlite
-    self.columnName = [self.osruntime.nameBuilder columnName:bzproperty.name clazz:self.osruntime.clazz];
+    self.columnName = [nameBuilder columnName:bzproperty.name clazz:runtime.clazz];
     self.sqliteColumns = [self.osclazz sqliteColumnsWithAttribute:self];
     
 }
@@ -227,7 +215,7 @@
 
 - (NSString*)alterTableAddColumnStatement:(BZObjectStoreSQLiteColumnModel*)sqliteColumn
 {
-    return [BZObjectStoreQueryBuilder alterTableAddColumnStatement:self.osruntime sqliteColumn:sqliteColumn];
+    return [BZObjectStoreQueryBuilder alterTableAddColumnStatement:self.tableName sqliteColumn:sqliteColumn];
 }
 
 
@@ -243,5 +231,11 @@
     return [self.osclazz valueWithResultSet:resultSet attribute:self];
 }
 
+#pragma mark 
+
++ (NSString*)OSTableName
+{
+    return @"__ObjectStoreRuntimeProperty__";
+}
 
 @end
