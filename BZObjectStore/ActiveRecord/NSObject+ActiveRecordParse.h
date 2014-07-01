@@ -65,7 +65,7 @@
 - (void)OSSaveInBackground:(void(^)(NSError *error))completionBlock;
 - (void)OSDeleteInBackground:(void(^)(NSError *error))completionBlock;
 - (void)OSReferencedCountInBackground:(void(^)(NSNumber *value,NSError *error))completionBlock;
-+ (void)OSFetchObjectsInBackground:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSArray *objects,NSError *error))completionBlock;
++ (void)OSFetchInBackground:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSArray *objects,NSError *error))completionBlock;
 + (void)OSDeleteAllInBackground:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSError *error))completionBlock;
 + (void)OSCountInBackground:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock;
 + (void)OSMaxInBackground:(NSString*)attributeName condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock;

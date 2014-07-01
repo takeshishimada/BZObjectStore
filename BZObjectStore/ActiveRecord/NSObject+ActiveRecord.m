@@ -244,6 +244,14 @@
     [os deleteObjectsInBackground:[self class] condition:condition completionBlock:completionBlock];
 }
 
+- (void)refreshInBackground:(void(^)(NSObject *object, NSError *error))completionBlock
+{
+    BZObjectStore *os = [BZActiveRecord objectStore];
+    [os refreshObjectInBackground:self completionBlock:^(NSObject *object, NSError *error) {
+        completionBlock(object,error);
+    }];
+}
+
 + (void)countInBackground:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock
 {
     BZObjectStore *os = [BZActiveRecord objectStore];

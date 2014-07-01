@@ -65,8 +65,9 @@
 - (void)saveInBackground:(void(^)(NSError *error))completionBlock;
 - (void)deleteInBackground:(void(^)(NSError *error))completionBlock;
 - (void)referencedCountInBackground:(void(^)(NSNumber *value,NSError *error))completionBlock;
-+ (void)fetchObjectsInBackground:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSArray *objects,NSError *error))completionBlock;
++ (void)fetchInBackground:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSArray *objects,NSError *error))completionBlock;
 + (void)deleteAllInBackground:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSError *error))completionBlock;
+- (void)refreshInBackground:(void(^)(NSObject *object, NSError *error))completionBlock;
 + (void)countInBackground:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock;
 + (void)maxInBackground:(NSString*)attributeName condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock;
 + (void)minInBackground:(NSString*)attributeName condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock;
