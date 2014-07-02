@@ -34,7 +34,7 @@
 - (void)deleteObjectsInBackground:(NSArray*)objects completionBlock:(void(^)(NSError *error))completionBlock;
 - (void)deleteObjectsInBackground:(Class)clazz condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSError *error))completionBlock;
 
-- (void)refreshObjectInBackground:(NSObject*)object completionBlock:(void(^)(NSObject *object,NSError *error))completionBlock;
+- (void)refreshObjectInBackground:(NSObject*)object completionBlock:(void(^)(id object,NSError *error))completionBlock;
 - (void)fetchObjectsInBackground:(Class)clazz condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSArray *objects,NSError *error))completionBlock;
 - (void)fetchReferencingObjectsToInBackground:(NSObject*)object completionBlock:(void(^)(NSArray *objects,NSError *error))completionBlock;
 - (void)countInBackground:(Class)clazz condition:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSNumber *value,NSError *error))completionBlock;

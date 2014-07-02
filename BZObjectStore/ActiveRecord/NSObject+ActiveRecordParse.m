@@ -232,7 +232,7 @@
     [os referencedCountInBackground:self completionBlock:completionBlock];
 }
 
-+ (void)OSFetchObjectsInBackground:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSArray *objects,NSError *error))completionBlock
++ (void)OSFetchInBackground:(BZObjectStoreConditionModel*)condition completionBlock:(void(^)(NSArray *objects,NSError *error))completionBlock
 {
     BZObjectStore *os = [BZActiveRecord objectStore];
     [os fetchObjectsInBackground:[self class] condition:condition completionBlock:completionBlock];

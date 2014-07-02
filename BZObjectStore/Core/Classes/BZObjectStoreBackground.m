@@ -90,7 +90,7 @@
     }];
 }
 
-- (void)refreshObjectInBackground:(NSObject*)object completionBlock:(void(^)(NSObject *object,NSError *error))completionBlock;
+- (void)refreshObjectInBackground:(NSObject*)object completionBlock:(void(^)(id object,NSError *error))completionBlock;
 {
     NSOperationQueue *queue = [[NSOperationQueue alloc]init];
     [queue addOperationWithBlock:^{
