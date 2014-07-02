@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name     = 'BZObjectStore'
-  s.version  = '1.2.2'
+  s.version  = '1.2.3'
   s.license  = 'MIT'
   s.summary  = 'ORM library wrapped FMDB'
   s.homepage = 'https://github.com/expensivegasprices/BZObjectStore'
@@ -15,6 +15,7 @@ Pod::Spec.new do |s|
   s.subspec 'Core' do |cs|
     cs.dependency 'FMDB'
     cs.dependency 'BZRuntime'
+    cs.dependency 'AutoCoding'
     cs.source_files = 'BZObjectStore/Core/**/*.{h,m}'
   end
 
