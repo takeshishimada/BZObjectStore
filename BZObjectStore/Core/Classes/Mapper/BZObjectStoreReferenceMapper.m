@@ -986,6 +986,9 @@
         if (runtime.clazz == [BZObjectStoreRuntimeProperty class]) {
             return YES;
         }
+        if (![self updateRuntime:runtime db:db error:error]) {
+            return NO;
+        }
         [self updateObjectRowid:runtime db:db];
         if ([self hadError:db error:error]) {
             return NO;
