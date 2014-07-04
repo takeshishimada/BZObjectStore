@@ -27,6 +27,8 @@
 #import "BZObjectStoreBackground.h"
 #import "BZObjectStoreModelInterface.h"
 #import "BZObjectStoreConditionModel.h"
+#import "BZObjectStoreNotificationCenter.h"
+#import "BZObjectStoreNotificationObserver.h"
 
 @interface NSObject (ActiveRecord)
 
@@ -77,5 +79,7 @@
 + (void)inTransactionInBackground:(void(^)(BZObjectStore *os,BOOL *rollback))block;
 + (void)registerClassInBackground:(Class)clazz completionBlock:(void(^)(NSError *error))completionBlock;
 + (void)unRegisterClassInBackground:(Class)clazz completionBlock:(void(^)(NSError *error))completionBlock;
+
+- (BZObjectStoreNotificationObserver*)observerWithCompletionBlock:(void(^)(NSObject*object,BOOL removed))completionBlock;
 
 @end

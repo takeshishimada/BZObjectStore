@@ -90,6 +90,8 @@
 #import "BZParseModel.h"
 #import "BZObjectStoreParse.h"
 #import "BZActiveRecordModel.h"
+#import "BZNotificationModel.h"
+
 #import <Parse/Parse.h>
 
 @interface BZObjectStoreTests : XCTestCase {
@@ -146,20 +148,17 @@
     [super tearDown];
 }
 
-- (void)testMigration
-{
-    [BZObjectStoreClazz addClazz:[BZObjectStoreClazzBZImage class]];
-    
-    BZObjectStore *_disk;
-    _disk = [BZObjectStoreOnDisk openWithPath:@"database.sqlite" error:nil];
-
-    [_disk migrate:nil];
-
-}
+//- (void)testMigration
+//{
+//    [BZObjectStoreClazz addClazz:[BZObjectStoreClazzBZImage class]];
+//    BZObjectStore *_disk;
+//    _disk = [BZObjectStoreOnDisk openWithPath:@"database.sqlite" error:nil];
+//    [_disk migrate:nil];
+//
+//}
 
 - (void)testOnDisk
 {
-    return;
     NSString *path = @"database.sqlite";
     if (path && ![path isEqualToString:@""]) {
         if ([path isEqualToString:[path lastPathComponent]]) {
@@ -175,6 +174,7 @@
     BZObjectStore *_disk;
     _disk = [BZObjectStoreOnDisk openWithPath:@"database.sqlite" error:nil];
 
+    [self testNotification:_disk];
     [self testBZActiveRecordModel:_disk];
     [self testBZParseModel:_disk];
     [self testBZVarietyValuesModel:_disk];
@@ -219,6 +219,8 @@
 {
     BZObjectStore *_memory;
     _memory = [BZObjectStoreOnMemory openWithPath:nil error:nil];
+    
+    [self testNotification:_memory];
     [self testBZActiveRecordModel:_memory];
     [self testBZParseModel:_memory];
     [self testBZVarietyValuesModel:_memory];
@@ -259,12 +261,26 @@
     _memory = nil;
 }
 
-
+- (void)testNotification:(BZObjectStore*)os
+{
+    BZNotificationModel *model = [[BZNotificationModel alloc]init];
+    model.objectId = @"test";
+    
+    [BZObjectStoreNotificationCenter observerForObject:model completionBlock:^(NSObject *object, BOOL deleted) {
+        if (!deleted) {
+            NSLog(@"saved!!");
+        } else {
+            NSLog(@"deleted!!");
+        }
+    }];
+    
+    [os saveObject:model error:nil];
+    [os deleteObject:model error:nil];
+    
+}
 
 - (void)testBZVarietyValuesModel:(BZObjectStore*)os
 {
-    return;
-    
     // setup models
     BZVarietyValuesItemModel *item1 = [[BZVarietyValuesItemModel alloc]init];
     item1.code = @"01";

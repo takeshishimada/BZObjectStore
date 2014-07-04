@@ -77,4 +77,6 @@
 + (void)OSRegisterClassInBackground:(Class)clazz completionBlock:(void(^)(NSError *error))completionBlock;
 + (void)OSUnRegisterClassInBackground:(Class)clazz completionBlock:(void(^)(NSError *error))completionBlock;
 
+- (BZObjectStoreNotificationObserver*)OSObserverWithCompletionBlock:(void(^)(NSObject*object,BOOL removed))completionBlock;
+
 @end

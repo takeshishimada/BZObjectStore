@@ -23,6 +23,9 @@
 
 #import <Foundation/Foundation.h>
 
+@protocol OSNotification
+@end
+
 @protocol OSIgnoreSuperClass
 @end
 
@@ -78,7 +81,8 @@
 @end
 
 @interface NSObject (OSAttributeProtocol)
-<OSIdenticalAttribute,OSIgnoreAttribute,OSSerializableAttribute,OSWeakReferenceAttribute,OSFetchOnRefreshingAttribute,OSNotUpdateIfValueIsNullAttribute,OSOnceUpdateAttribute>
+<OSNotification,OSIgnoreSuperClass,OSFullTextSearch3,OSFullTextSearch4,OSInsertPerformance,OSUpdatePerformance,OSIdenticalAttribute,OSIgnoreAttribute,OSWeakReferenceAttribute,OSFetchOnRefreshingAttribute,OSNotUpdateIfValueIsNullAttribute,OSSerializableAttribute,OSOnceUpdateAttribute
+>
 @end
 @implementation NSString (OSAttributeProtocol)
 @end

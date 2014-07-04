@@ -29,6 +29,7 @@
 #import "BZObjectStoreRuntimeProperty.h"
 #import "BZObjectStoreNameBuilder.h"
 #import "BZObjectStoreClazz.h"
+#import "BZObjectStoreNotificationCenter.h"
 #import <FMDatabaseQueue.h>
 #import <FMDatabase.h>
 #import <FMResultSet.h>
@@ -448,7 +449,9 @@
     
     for (NSObject *targetObject in allValues) {
         if (targetObject.OSRuntime.modelDidLoad) {
-            [targetObject performSelector:@selector(OSModelDidLoad) withObject:nil];
+            if ([targetObject respondsToSelector:@selector(OSModelDidLoad)]) {
+                [targetObject performSelector:@selector(OSModelDidLoad) withObject:nil];
+            }
         }
     }
 
@@ -719,7 +722,12 @@
     
     for (NSObject *targetObject in allValues) {
         if (targetObject.OSRuntime.modelDidSave) {
-            [targetObject performSelector:@selector(OSModelDidSave) withObject:nil];
+            if ([targetObject respondsToSelector:@selector(OSModelDidSave)]) {
+                [targetObject performSelector:@selector(OSModelDidSave) withObject:nil];
+            }
+        }
+        if (targetObject.OSRuntime.notification) {
+            [BZObjectStoreNotificationCenter postNotificateForObject:targetObject deleted:NO];
         }
     }
 
@@ -843,7 +851,12 @@
     
     for (NSObject *targetObject in allValues) {
         if (targetObject.OSRuntime.modelDidDelete) {
-            [targetObject performSelector:@selector(OSModelDidDelete) withObject:nil];
+            if ([targetObject respondsToSelector:@selector(OSModelDidDelete)]) {
+                [targetObject performSelector:@selector(OSModelDidDelete) withObject:nil];
+            }
+        }
+        if (targetObject.OSRuntime.notification) {
+            [BZObjectStoreNotificationCenter postNotificateForObject:targetObject deleted:YES];
         }
     }
 

@@ -162,6 +162,7 @@
     }
     self.insertPerformance = [self.clazz conformsToProtocol:@protocol(OSInsertPerformance)];
     self.updatePerformance = [self.clazz conformsToProtocol:@protocol(OSUpdatePerformance)];
+    self.notification = [self.clazz conformsToProtocol:@protocol(OSNotification)];
     
     if (self.insertPerformance == NO && self.updatePerformance == NO) {
         self.insertPerformance = YES;

@@ -298,5 +298,13 @@
     [os unRegisterClassInBackground:[self class] completionBlock:completionBlock];
 }
 
+- (BZObjectStoreNotificationObserver*)OSObserverWithCompletionBlock:(void(^)(NSObject*object,BOOL removed))completionBlock
+{
+    BZObjectStoreNotificationObserver *osObserver = [BZObjectStoreNotificationCenter observerForObject:self completionBlock:^(NSObject *object, BOOL removed) {
+        completionBlock(object,removed);
+    }];
+    return osObserver;
+}
+
 
 @end
