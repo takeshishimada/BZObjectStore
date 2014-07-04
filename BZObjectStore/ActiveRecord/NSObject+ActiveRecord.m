@@ -306,12 +306,11 @@
     [os unRegisterClassInBackground:[self class] completionBlock:completionBlock];
 }
 
-- (BZObjectStoreNotificationObserver*)observerWithCompletionBlock:(void(^)(NSObject*object,BOOL removed))completionBlock
+- (BZObjectStoreNotificationObserver*)observerWithTarget:(id)target completionBlock:(void (^)(id target,id object))completionBlock immediately:(BOOL)immediately
 {
-    BZObjectStoreNotificationObserver *osObserver = [BZObjectStoreNotificationCenter observerForObject:self completionBlock:^(NSObject *object, BOOL removed) {
-        completionBlock(object,removed);
-    }];
+    BZObjectStoreNotificationObserver *osObserver = [BZObjectStoreNotificationCenter observerForObject:self target:target completionBlock:completionBlock immediately:immediately];
     return osObserver;
 }
+
 
 @end

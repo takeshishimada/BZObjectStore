@@ -265,14 +265,18 @@
 {
     BZNotificationModel *model = [[BZNotificationModel alloc]init];
     model.objectId = @"test";
-    
-    [BZObjectStoreNotificationCenter observerForObject:model completionBlock:^(NSObject *object, BOOL deleted) {
-        if (!deleted) {
+
+    [BZObjectStoreNotificationCenter observerForObject:model target:self completionBlock:^(id target, BZNotificationModel *object) {
+        
+        if (object) {
             NSLog(@"saved!!");
         } else {
             NSLog(@"deleted!!");
         }
-    }];
+        
+        
+    } immediately:NO];
+    
     
     [os saveObject:model error:nil];
     [os deleteObject:model error:nil];

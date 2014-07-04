@@ -37,30 +37,44 @@
     [center postNotification:note];
 }
 
-+ (BZObjectStoreNotificationObserver*)observerForObject:(NSObject*)object completionBlock:(void(^)(NSObject*object,BOOL deleted))completionBlock
++ (BZObjectStoreNotificationObserver*)observerForObject:(id)object target:(id)target completionBlock:(void(^)(id target,id object))completionBlock immediately:(BOOL)immediately
 {
-    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    id observer = [center addObserverForName:@"ObjectStoreNotification" object:nil queue:nil usingBlock:^(NSNotification *note) {
-        NSObject *notificatedObject = note.object;
+    __weak NSObject * weakTarget = target;
+    __weak NSObject *weakObject = object;
+    void (^block)(NSNotification *note) = ^(NSNotification *note) {
         NSNumber *deleted = note.userInfo[@"deleted"];
-        NSString *notificatedObjectClazzName = NSStringFromClass([notificatedObject class]);
-        NSNumber *notificatedObjectRowid = notificatedObject.rowid;
-        NSString *observedObjectClazzName = NSStringFromClass([object class]);
-        NSNumber *observedObjectRowid = object.rowid;
-        if ([notificatedObjectClazzName isEqualToString:observedObjectClazzName]) {
-            if (notificatedObjectRowid && observedObjectRowid) {
-                if ([notificatedObjectRowid isEqualToNumber:observedObjectRowid]) {
-                    if (completionBlock) {
-                        completionBlock(notificatedObject,deleted.boolValue);
+        if (deleted.boolValue) {
+            if (completionBlock) {
+                completionBlock(weakTarget,nil);
+            }
+        } else {
+            NSObject *notificatedObject = note.object;
+            NSString *notificatedObjectClazzName = NSStringFromClass([notificatedObject class]);
+            NSNumber *notificatedObjectRowid = notificatedObject.rowid;
+            NSString *observedObjectClazzName = NSStringFromClass([weakObject class]);
+            NSNumber *observedObjectRowid = weakObject.rowid;
+            if ([notificatedObjectClazzName isEqualToString:observedObjectClazzName]) {
+                if (notificatedObjectRowid && observedObjectRowid) {
+                    if ([notificatedObjectRowid isEqualToNumber:observedObjectRowid]) {
+                        if (completionBlock) {
+                            completionBlock(weakTarget,notificatedObject);
+                        }
                     }
                 }
             }
         }
-        
-    }];
+    };
+    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+    id observer = [center addObserverForName:@"ObjectStoreNotification" object:nil queue:nil usingBlock:block];
     BZObjectStoreNotificationObserver *osObserver = [BZObjectStoreNotificationObserver observerWithObserver:observer];
+    if (immediately) {
+        if (completionBlock) {
+            completionBlock(weakTarget,weakObject);
+        }
+    }
     return osObserver;
 }
+
 
 
 @end

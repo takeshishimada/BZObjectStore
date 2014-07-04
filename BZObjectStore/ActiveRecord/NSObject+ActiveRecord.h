@@ -80,6 +80,6 @@
 + (void)registerClassInBackground:(Class)clazz completionBlock:(void(^)(NSError *error))completionBlock;
 + (void)unRegisterClassInBackground:(Class)clazz completionBlock:(void(^)(NSError *error))completionBlock;
 
-- (BZObjectStoreNotificationObserver*)observerWithCompletionBlock:(void(^)(NSObject*object,BOOL removed))completionBlock;
+- (BZObjectStoreNotificationObserver*)observerWithTarget:(id)target completionBlock:(void (^)(id target,id object))completionBlock immediately:(BOOL)immediately;
 
 @end

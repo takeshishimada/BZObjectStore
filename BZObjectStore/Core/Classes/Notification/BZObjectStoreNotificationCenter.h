@@ -28,5 +28,5 @@
 
 @interface BZObjectStoreNotificationCenter : NSObject
 + (void)postNotificateForObject:(NSObject*)object deleted:(BOOL)deleted;
-+ (BZObjectStoreNotificationObserver*)observerForObject:(NSObject*)object completionBlock:(void(^)(NSObject*object,BOOL deleted))completionBlock;
++ (BZObjectStoreNotificationObserver*)observerForObject:(id)object target:(id)target completionBlock:(void(^)(id target,id object))completionBlock immediately:(BOOL)immediately;
 @end
