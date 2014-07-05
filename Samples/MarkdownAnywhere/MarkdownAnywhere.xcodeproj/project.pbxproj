@@ -1,0 +1,643 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		60275DC7BB924F4CBFA06570 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4EFD3523A924363822DE75A /* libPods.a */; };
+		721B2D971965A0C1003DDB79 /* MAJSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 721B2D961965A0C1003DDB79 /* MAJSONModel.m */; };
+		72465C281963E55F007C77A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72465C271963E55F007C77A1 /* Foundation.framework */; };
+		72465C2A1963E55F007C77A1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72465C291963E55F007C77A1 /* CoreGraphics.framework */; };
+		72465C2C1963E55F007C77A1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72465C2B1963E55F007C77A1 /* UIKit.framework */; };
+		72465C321963E55F007C77A1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 72465C301963E55F007C77A1 /* InfoPlist.strings */; };
+		72465C341963E55F007C77A1 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 72465C331963E55F007C77A1 /* main.m */; };
+		72465C381963E55F007C77A1 /* MAAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 72465C371963E55F007C77A1 /* MAAppDelegate.m */; };
+		72465C3B1963E55F007C77A1 /* Main_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72465C391963E55F007C77A1 /* Main_iPhone.storyboard */; };
+		72465C3E1963E55F007C77A1 /* Main_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 72465C3C1963E55F007C77A1 /* Main_iPad.storyboard */; };
+		72465C411963E55F007C77A1 /* MANotebookTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72465C401963E55F007C77A1 /* MANotebookTableViewController.m */; };
+		72465C441963E55F007C77A1 /* MANoteEditViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72465C431963E55F007C77A1 /* MANoteEditViewController.m */; };
+		72465C461963E55F007C77A1 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 72465C451963E55F007C77A1 /* Images.xcassets */; };
+		72465C4D1963E55F007C77A1 /* XCTest.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72465C4C1963E55F007C77A1 /* XCTest.framework */; };
+		72465C4E1963E55F007C77A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72465C271963E55F007C77A1 /* Foundation.framework */; };
+		72465C4F1963E55F007C77A1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72465C2B1963E55F007C77A1 /* UIKit.framework */; };
+		72465C571963E55F007C77A1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 72465C551963E55F007C77A1 /* InfoPlist.strings */; };
+		72465C591963E55F007C77A1 /* MarkdownAnywhereTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 72465C581963E55F007C77A1 /* MarkdownAnywhereTests.m */; };
+		72465C6D1963E58E007C77A1 /* MABookshelf.m in Sources */ = {isa = PBXBuildFile; fileRef = 72465C641963E58E007C77A1 /* MABookshelf.m */; };
+		72465C6E1963E58E007C77A1 /* MAGarbageBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 72465C661963E58E007C77A1 /* MAGarbageBox.m */; };
+		72465C6F1963E58E007C77A1 /* MANote.m in Sources */ = {isa = PBXBuildFile; fileRef = 72465C681963E58E007C77A1 /* MANote.m */; };
+		72465C701963E58E007C77A1 /* MANotebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 72465C6A1963E58E007C77A1 /* MANotebook.m */; };
+		72465C781963FF0C007C77A1 /* MANoteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72465C771963FF0C007C77A1 /* MANoteTableViewController.m */; };
+		72465C7B196400A9007C77A1 /* MANoteTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 72465C7A196400A9007C77A1 /* MANoteTableViewCell.m */; };
+		72465C7E19640479007C77A1 /* MANotebookTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 72465C7D19640479007C77A1 /* MANotebookTableViewCell.m */; };
+		72465D5E19644100007C77A1 /* MANotebookTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72465D5D19644100007C77A1 /* MANotebookTableViewCell.xib */; };
+		72465D601964410C007C77A1 /* MANoteTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 72465D5F1964410C007C77A1 /* MANoteTableViewCell.xib */; };
+		72465DAB19644D3E007C77A1 /* MANoteViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72465DAA19644D3E007C77A1 /* MANoteViewController.m */; };
+		72465DAD196458C9007C77A1 /* sample.md in Resources */ = {isa = PBXBuildFile; fileRef = 72465DAC196458C9007C77A1 /* sample.md */; };
+		72CBC7851966D47D009B9399 /* MATableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72CBC7841966D47D009B9399 /* MATableViewController.m */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		72465C501963E55F007C77A1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 72465C1C1963E55F007C77A1 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 72465C231963E55F007C77A1;
+			remoteInfo = MarkdownAnywhere;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		031EAD2643EF4D7E9FC96B84 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
+		721B2D951965A0C1003DDB79 /* MAJSONModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAJSONModel.h; sourceTree = "<group>"; };
+		721B2D961965A0C1003DDB79 /* MAJSONModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAJSONModel.m; sourceTree = "<group>"; };
+		72465C241963E55F007C77A1 /* MarkdownAnywhere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarkdownAnywhere.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		72465C271963E55F007C77A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		72465C291963E55F007C77A1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		72465C2B1963E55F007C77A1 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
+		72465C2F1963E55F007C77A1 /* MarkdownAnywhere-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MarkdownAnywhere-Info.plist"; sourceTree = "<group>"; };
+		72465C311963E55F007C77A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		72465C331963E55F007C77A1 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		72465C351963E55F007C77A1 /* MarkdownAnywhere-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "MarkdownAnywhere-Prefix.pch"; sourceTree = "<group>"; };
+		72465C361963E55F007C77A1 /* MAAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MAAppDelegate.h; sourceTree = "<group>"; };
+		72465C371963E55F007C77A1 /* MAAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MAAppDelegate.m; sourceTree = "<group>"; };
+		72465C3A1963E55F007C77A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPhone.storyboard; sourceTree = "<group>"; };
+		72465C3D1963E55F007C77A1 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main_iPad.storyboard; sourceTree = "<group>"; };
+		72465C3F1963E55F007C77A1 /* MANotebookTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MANotebookTableViewController.h; sourceTree = "<group>"; };
+		72465C401963E55F007C77A1 /* MANotebookTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MANotebookTableViewController.m; sourceTree = "<group>"; };
+		72465C421963E55F007C77A1 /* MANoteEditViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MANoteEditViewController.h; sourceTree = "<group>"; };
+		72465C431963E55F007C77A1 /* MANoteEditViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MANoteEditViewController.m; sourceTree = "<group>"; };
+		72465C451963E55F007C77A1 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
+		72465C4B1963E55F007C77A1 /* MarkdownAnywhereTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = MarkdownAnywhereTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		72465C4C1963E55F007C77A1 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
+		72465C541963E55F007C77A1 /* MarkdownAnywhereTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "MarkdownAnywhereTests-Info.plist"; sourceTree = "<group>"; };
+		72465C561963E55F007C77A1 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		72465C581963E55F007C77A1 /* MarkdownAnywhereTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MarkdownAnywhereTests.m; sourceTree = "<group>"; };
+		72465C631963E58E007C77A1 /* MABookshelf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MABookshelf.h; sourceTree = "<group>"; };
+		72465C641963E58E007C77A1 /* MABookshelf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MABookshelf.m; sourceTree = "<group>"; };
+		72465C651963E58E007C77A1 /* MAGarbageBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAGarbageBox.h; sourceTree = "<group>"; };
+		72465C661963E58E007C77A1 /* MAGarbageBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGarbageBox.m; sourceTree = "<group>"; };
+		72465C671963E58E007C77A1 /* MANote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MANote.h; sourceTree = "<group>"; };
+		72465C681963E58E007C77A1 /* MANote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MANote.m; sourceTree = "<group>"; };
+		72465C691963E58E007C77A1 /* MANotebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MANotebook.h; sourceTree = "<group>"; };
+		72465C6A1963E58E007C77A1 /* MANotebook.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MANotebook.m; sourceTree = "<group>"; };
+		72465C761963FF0C007C77A1 /* MANoteTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MANoteTableViewController.h; sourceTree = "<group>"; };
+		72465C771963FF0C007C77A1 /* MANoteTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MANoteTableViewController.m; sourceTree = "<group>"; };
+		72465C79196400A9007C77A1 /* MANoteTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MANoteTableViewCell.h; sourceTree = "<group>"; };
+		72465C7A196400A9007C77A1 /* MANoteTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MANoteTableViewCell.m; sourceTree = "<group>"; };
+		72465C7C19640479007C77A1 /* MANotebookTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MANotebookTableViewCell.h; sourceTree = "<group>"; };
+		72465C7D19640479007C77A1 /* MANotebookTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MANotebookTableViewCell.m; sourceTree = "<group>"; };
+		72465D5D19644100007C77A1 /* MANotebookTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MANotebookTableViewCell.xib; sourceTree = "<group>"; };
+		72465D5F1964410C007C77A1 /* MANoteTableViewCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MANoteTableViewCell.xib; sourceTree = "<group>"; };
+		72465DA919644D3E007C77A1 /* MANoteViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MANoteViewController.h; sourceTree = "<group>"; };
+		72465DAA19644D3E007C77A1 /* MANoteViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MANoteViewController.m; sourceTree = "<group>"; };
+		72465DAC196458C9007C77A1 /* sample.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = sample.md; sourceTree = "<group>"; };
+		72CBC7831966D47D009B9399 /* MATableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MATableViewController.h; sourceTree = "<group>"; };
+		72CBC7841966D47D009B9399 /* MATableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MATableViewController.m; sourceTree = "<group>"; };
+		D4EFD3523A924363822DE75A /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		72465C211963E55F007C77A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				72465C2A1963E55F007C77A1 /* CoreGraphics.framework in Frameworks */,
+				72465C2C1963E55F007C77A1 /* UIKit.framework in Frameworks */,
+				72465C281963E55F007C77A1 /* Foundation.framework in Frameworks */,
+				60275DC7BB924F4CBFA06570 /* libPods.a in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		72465C481963E55F007C77A1 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				72465C4D1963E55F007C77A1 /* XCTest.framework in Frameworks */,
+				72465C4F1963E55F007C77A1 /* UIKit.framework in Frameworks */,
+				72465C4E1963E55F007C77A1 /* Foundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		72465C1B1963E55F007C77A1 = {
+			isa = PBXGroup;
+			children = (
+				72465C2D1963E55F007C77A1 /* MarkdownAnywhere */,
+				72465C521963E55F007C77A1 /* MarkdownAnywhereTests */,
+				72465C261963E55F007C77A1 /* Frameworks */,
+				72465C251963E55F007C77A1 /* Products */,
+				031EAD2643EF4D7E9FC96B84 /* Pods.xcconfig */,
+			);
+			sourceTree = "<group>";
+		};
+		72465C251963E55F007C77A1 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				72465C241963E55F007C77A1 /* MarkdownAnywhere.app */,
+				72465C4B1963E55F007C77A1 /* MarkdownAnywhereTests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		72465C261963E55F007C77A1 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				72465C271963E55F007C77A1 /* Foundation.framework */,
+				72465C291963E55F007C77A1 /* CoreGraphics.framework */,
+				72465C2B1963E55F007C77A1 /* UIKit.framework */,
+				72465C4C1963E55F007C77A1 /* XCTest.framework */,
+				D4EFD3523A924363822DE75A /* libPods.a */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		72465C2D1963E55F007C77A1 /* MarkdownAnywhere */ = {
+			isa = PBXGroup;
+			children = (
+				72465C361963E55F007C77A1 /* MAAppDelegate.h */,
+				72465C371963E55F007C77A1 /* MAAppDelegate.m */,
+				72465C751963FEAA007C77A1 /* Views */,
+				72465C621963E566007C77A1 /* Models */,
+				72465C451963E55F007C77A1 /* Images.xcassets */,
+				72465C2E1963E55F007C77A1 /* Supporting Files */,
+			);
+			path = MarkdownAnywhere;
+			sourceTree = "<group>";
+		};
+		72465C2E1963E55F007C77A1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				72465DAC196458C9007C77A1 /* sample.md */,
+				72465C2F1963E55F007C77A1 /* MarkdownAnywhere-Info.plist */,
+				72465C301963E55F007C77A1 /* InfoPlist.strings */,
+				72465C331963E55F007C77A1 /* main.m */,
+				72465C351963E55F007C77A1 /* MarkdownAnywhere-Prefix.pch */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		72465C521963E55F007C77A1 /* MarkdownAnywhereTests */ = {
+			isa = PBXGroup;
+			children = (
+				72465C581963E55F007C77A1 /* MarkdownAnywhereTests.m */,
+				72465C531963E55F007C77A1 /* Supporting Files */,
+			);
+			path = MarkdownAnywhereTests;
+			sourceTree = "<group>";
+		};
+		72465C531963E55F007C77A1 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				72465C541963E55F007C77A1 /* MarkdownAnywhereTests-Info.plist */,
+				72465C551963E55F007C77A1 /* InfoPlist.strings */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		72465C621963E566007C77A1 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				721B2D951965A0C1003DDB79 /* MAJSONModel.h */,
+				721B2D961965A0C1003DDB79 /* MAJSONModel.m */,
+				72465C651963E58E007C77A1 /* MAGarbageBox.h */,
+				72465C661963E58E007C77A1 /* MAGarbageBox.m */,
+				72465C631963E58E007C77A1 /* MABookshelf.h */,
+				72465C641963E58E007C77A1 /* MABookshelf.m */,
+				72465C691963E58E007C77A1 /* MANotebook.h */,
+				72465C6A1963E58E007C77A1 /* MANotebook.m */,
+				72465C671963E58E007C77A1 /* MANote.h */,
+				72465C681963E58E007C77A1 /* MANote.m */,
+			);
+			name = Models;
+			sourceTree = "<group>";
+		};
+		72465C751963FEAA007C77A1 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				72465C391963E55F007C77A1 /* Main_iPhone.storyboard */,
+				72465C3C1963E55F007C77A1 /* Main_iPad.storyboard */,
+				72CBC7821966D439009B9399 /* TableViewCells */,
+				72CBC7811966D412009B9399 /* ViewControllers */,
+			);
+			name = Views;
+			sourceTree = "<group>";
+		};
+		72CBC7811966D412009B9399 /* ViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				72CBC7831966D47D009B9399 /* MATableViewController.h */,
+				72CBC7841966D47D009B9399 /* MATableViewController.m */,
+				72465C3F1963E55F007C77A1 /* MANotebookTableViewController.h */,
+				72465C401963E55F007C77A1 /* MANotebookTableViewController.m */,
+				72465C761963FF0C007C77A1 /* MANoteTableViewController.h */,
+				72465C771963FF0C007C77A1 /* MANoteTableViewController.m */,
+				72465DA919644D3E007C77A1 /* MANoteViewController.h */,
+				72465DAA19644D3E007C77A1 /* MANoteViewController.m */,
+				72465C421963E55F007C77A1 /* MANoteEditViewController.h */,
+				72465C431963E55F007C77A1 /* MANoteEditViewController.m */,
+			);
+			name = ViewControllers;
+			sourceTree = "<group>";
+		};
+		72CBC7821966D439009B9399 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				72465C7C19640479007C77A1 /* MANotebookTableViewCell.h */,
+				72465C7D19640479007C77A1 /* MANotebookTableViewCell.m */,
+				72465D5D19644100007C77A1 /* MANotebookTableViewCell.xib */,
+				72465C79196400A9007C77A1 /* MANoteTableViewCell.h */,
+				72465C7A196400A9007C77A1 /* MANoteTableViewCell.m */,
+				72465D5F1964410C007C77A1 /* MANoteTableViewCell.xib */,
+			);
+			name = TableViewCells;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		72465C231963E55F007C77A1 /* MarkdownAnywhere */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 72465C5C1963E55F007C77A1 /* Build configuration list for PBXNativeTarget "MarkdownAnywhere" */;
+			buildPhases = (
+				38F2617067004009ACBB8F0F /* Check Pods Manifest.lock */,
+				72465C201963E55F007C77A1 /* Sources */,
+				72465C211963E55F007C77A1 /* Frameworks */,
+				72465C221963E55F007C77A1 /* Resources */,
+				AE112EF0CC584508BC13DA23 /* Copy Pods Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MarkdownAnywhere;
+			productName = MarkdownAnywhere;
+			productReference = 72465C241963E55F007C77A1 /* MarkdownAnywhere.app */;
+			productType = "com.apple.product-type.application";
+		};
+		72465C4A1963E55F007C77A1 /* MarkdownAnywhereTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 72465C5F1963E55F007C77A1 /* Build configuration list for PBXNativeTarget "MarkdownAnywhereTests" */;
+			buildPhases = (
+				72465C471963E55F007C77A1 /* Sources */,
+				72465C481963E55F007C77A1 /* Frameworks */,
+				72465C491963E55F007C77A1 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				72465C511963E55F007C77A1 /* PBXTargetDependency */,
+			);
+			name = MarkdownAnywhereTests;
+			productName = MarkdownAnywhereTests;
+			productReference = 72465C4B1963E55F007C77A1 /* MarkdownAnywhereTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		72465C1C1963E55F007C77A1 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = MA;
+				LastUpgradeCheck = 0510;
+				ORGANIZATIONNAME = "BONZOO INC.";
+				TargetAttributes = {
+					72465C4A1963E55F007C77A1 = {
+						TestTargetID = 72465C231963E55F007C77A1;
+					};
+				};
+			};
+			buildConfigurationList = 72465C1F1963E55F007C77A1 /* Build configuration list for PBXProject "MarkdownAnywhere" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 72465C1B1963E55F007C77A1;
+			productRefGroup = 72465C251963E55F007C77A1 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				72465C231963E55F007C77A1 /* MarkdownAnywhere */,
+				72465C4A1963E55F007C77A1 /* MarkdownAnywhereTests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		72465C221963E55F007C77A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				72465C3E1963E55F007C77A1 /* Main_iPad.storyboard in Resources */,
+				72465C461963E55F007C77A1 /* Images.xcassets in Resources */,
+				72465C3B1963E55F007C77A1 /* Main_iPhone.storyboard in Resources */,
+				72465DAD196458C9007C77A1 /* sample.md in Resources */,
+				72465C321963E55F007C77A1 /* InfoPlist.strings in Resources */,
+				72465D5E19644100007C77A1 /* MANotebookTableViewCell.xib in Resources */,
+				72465D601964410C007C77A1 /* MANoteTableViewCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		72465C491963E55F007C77A1 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				72465C571963E55F007C77A1 /* InfoPlist.strings in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		38F2617067004009ACBB8F0F /* Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Check Pods Manifest.lock";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_ROOT}/../Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [[ $? != 0 ]] ; then\n    cat << EOM\nerror: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\nEOM\n    exit 1\nfi\n";
+			showEnvVarsInLog = 0;
+		};
+		AE112EF0CC584508BC13DA23 /* Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		72465C201963E55F007C77A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				72465C381963E55F007C77A1 /* MAAppDelegate.m in Sources */,
+				72465C6E1963E58E007C77A1 /* MAGarbageBox.m in Sources */,
+				72465C781963FF0C007C77A1 /* MANoteTableViewController.m in Sources */,
+				72465C6F1963E58E007C77A1 /* MANote.m in Sources */,
+				72465C411963E55F007C77A1 /* MANotebookTableViewController.m in Sources */,
+				72465C6D1963E58E007C77A1 /* MABookshelf.m in Sources */,
+				72465C341963E55F007C77A1 /* main.m in Sources */,
+				72465DAB19644D3E007C77A1 /* MANoteViewController.m in Sources */,
+				72465C701963E58E007C77A1 /* MANotebook.m in Sources */,
+				72CBC7851966D47D009B9399 /* MATableViewController.m in Sources */,
+				72465C7B196400A9007C77A1 /* MANoteTableViewCell.m in Sources */,
+				721B2D971965A0C1003DDB79 /* MAJSONModel.m in Sources */,
+				72465C7E19640479007C77A1 /* MANotebookTableViewCell.m in Sources */,
+				72465C441963E55F007C77A1 /* MANoteEditViewController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		72465C471963E55F007C77A1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				72465C591963E55F007C77A1 /* MarkdownAnywhereTests.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		72465C511963E55F007C77A1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 72465C231963E55F007C77A1 /* MarkdownAnywhere */;
+			targetProxy = 72465C501963E55F007C77A1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		72465C301963E55F007C77A1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				72465C311963E55F007C77A1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		72465C391963E55F007C77A1 /* Main_iPhone.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				72465C3A1963E55F007C77A1 /* Base */,
+			);
+			name = Main_iPhone.storyboard;
+			sourceTree = "<group>";
+		};
+		72465C3C1963E55F007C77A1 /* Main_iPad.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				72465C3D1963E55F007C77A1 /* Base */,
+			);
+			name = Main_iPad.storyboard;
+			sourceTree = "<group>";
+		};
+		72465C551963E55F007C77A1 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				72465C561963E55F007C77A1 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		72465C5A1963E55F007C77A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		72465C5B1963E55F007C77A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		72465C5D1963E55F007C77A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 031EAD2643EF4D7E9FC96B84 /* Pods.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MarkdownAnywhere/MarkdownAnywhere-Prefix.pch";
+				INFOPLIST_FILE = "MarkdownAnywhere/MarkdownAnywhere-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		72465C5E1963E55F007C77A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 031EAD2643EF4D7E9FC96B84 /* Pods.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MarkdownAnywhere/MarkdownAnywhere-Prefix.pch";
+				INFOPLIST_FILE = "MarkdownAnywhere/MarkdownAnywhere-Info.plist";
+				IPHONEOS_DEPLOYMENT_TARGET = 7.1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+		72465C601963E55F007C77A1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MarkdownAnywhere.app/MarkdownAnywhere";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MarkdownAnywhere/MarkdownAnywhere-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = "MarkdownAnywhereTests/MarkdownAnywhereTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Debug;
+		};
+		72465C611963E55F007C77A1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/MarkdownAnywhere.app/MarkdownAnywhere";
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(SDKROOT)/Developer/Library/Frameworks",
+					"$(inherited)",
+					"$(DEVELOPER_FRAMEWORKS_DIR)",
+				);
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "MarkdownAnywhere/MarkdownAnywhere-Prefix.pch";
+				INFOPLIST_FILE = "MarkdownAnywhereTests/MarkdownAnywhereTests-Info.plist";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TEST_HOST = "$(BUNDLE_LOADER)";
+				WRAPPER_EXTENSION = xctest;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		72465C1F1963E55F007C77A1 /* Build configuration list for PBXProject "MarkdownAnywhere" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				72465C5A1963E55F007C77A1 /* Debug */,
+				72465C5B1963E55F007C77A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		72465C5C1963E55F007C77A1 /* Build configuration list for PBXNativeTarget "MarkdownAnywhere" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				72465C5D1963E55F007C77A1 /* Debug */,
+				72465C5E1963E55F007C77A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		72465C5F1963E55F007C77A1 /* Build configuration list for PBXNativeTarget "MarkdownAnywhereTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				72465C601963E55F007C77A1 /* Debug */,
+				72465C611963E55F007C77A1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 72465C1C1963E55F007C77A1 /* Project object */;
+}

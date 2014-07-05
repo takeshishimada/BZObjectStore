@@ -1,0 +1,6 @@
+platform :ios,'6.0'
+pod 'BZObjectStore'
+pod 'BZObjectStore/ActiveRecord'
+pod 'AFNetworking'
+pod 'JSONModel'
+pod 'GHMarkdownParser'
