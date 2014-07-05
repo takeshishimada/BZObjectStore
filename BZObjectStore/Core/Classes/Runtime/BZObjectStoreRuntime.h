@@ -66,6 +66,7 @@
 @property (nonatomic,assign) BOOL insertPerformance;
 @property (nonatomic,assign) BOOL updatePerformance;
 @property (nonatomic,assign) BOOL notification;
+@property (nonatomic,assign) BOOL cascadeNotification;
 
 //
 @property (nonatomic,strong) BZObjectStoreClazz<OSSerializableAttribute> *osclazz;

@@ -26,6 +26,9 @@
 @protocol OSNotification
 @end
 
+@protocol OSCascadeNotification
+@end
+
 @protocol OSIgnoreSuperClass
 @end
 
@@ -81,7 +84,7 @@
 @end
 
 @interface NSObject (OSAttributeProtocol)
-<OSNotification,OSIgnoreSuperClass,OSFullTextSearch3,OSFullTextSearch4,OSInsertPerformance,OSUpdatePerformance,OSIdenticalAttribute,OSIgnoreAttribute,OSWeakReferenceAttribute,OSFetchOnRefreshingAttribute,OSNotUpdateIfValueIsNullAttribute,OSSerializableAttribute,OSOnceUpdateAttribute
+<OSCascadeNotification,OSNotification,OSIgnoreSuperClass,OSFullTextSearch3,OSFullTextSearch4,OSInsertPerformance,OSUpdatePerformance,OSIdenticalAttribute,OSIgnoreAttribute,OSWeakReferenceAttribute,OSFetchOnRefreshingAttribute,OSNotUpdateIfValueIsNullAttribute,OSSerializableAttribute,OSOnceUpdateAttribute
 >
 @end
 @implementation NSString (OSAttributeProtocol)

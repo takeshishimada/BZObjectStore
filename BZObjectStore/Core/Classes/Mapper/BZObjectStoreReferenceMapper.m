@@ -727,7 +727,15 @@
             }
         }
         if (!self.disableNotifications) {
-            if (targetObject.OSRuntime.notification) {
+            if (targetObject.OSRuntime.cascadeNotification) {
+                [BZObjectStoreNotificationCenter postNotificateForObject:targetObject deleted:NO];
+            }
+        }
+    }
+
+    for (NSObject *targetObject in objects) {
+        if (!self.disableNotifications) {
+            if (targetObject.OSRuntime.notification && !targetObject.OSRuntime.cascadeNotification) {
                 [BZObjectStoreNotificationCenter postNotificateForObject:targetObject deleted:NO];
             }
         }
@@ -858,7 +866,15 @@
             }
         }
         if (!self.disableNotifications) {
-            if (targetObject.OSRuntime.notification) {
+            if (targetObject.OSRuntime.cascadeNotification) {
+                [BZObjectStoreNotificationCenter postNotificateForObject:targetObject deleted:YES];
+            }
+        }
+    }
+
+    for (NSObject *targetObject in objects) {
+        if (!self.disableNotifications) {
+            if (targetObject.OSRuntime.notification && !targetObject.OSRuntime.cascadeNotification) {
                 [BZObjectStoreNotificationCenter postNotificateForObject:targetObject deleted:YES];
             }
         }
