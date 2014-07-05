@@ -42,9 +42,6 @@
         if (note) {
             weakSelf.titleLabel.text = note.title;
             weakSelf.lastUpdatedTimeLabel.text = [note.updatedAt description];
-//        } else {
-//            weakSelf.titleLabel.text = @"";
-//            weakSelf.lastUpdatedTimeLabel.text = @"";
         }
     } immediately:YES];
 }
