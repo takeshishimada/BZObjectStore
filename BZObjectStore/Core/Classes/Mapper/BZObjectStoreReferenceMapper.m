@@ -726,8 +726,10 @@
                 [targetObject performSelector:@selector(OSModelDidSave) withObject:nil];
             }
         }
-        if (targetObject.OSRuntime.notification) {
-            [BZObjectStoreNotificationCenter postNotificateForObject:targetObject deleted:NO];
+        if (!self.disableNotifications) {
+            if (targetObject.OSRuntime.notification) {
+                [BZObjectStoreNotificationCenter postNotificateForObject:targetObject deleted:NO];
+            }
         }
     }
 
@@ -856,8 +858,10 @@
                 [targetObject performSelector:@selector(OSModelDidDelete) withObject:nil];
             }
         }
-        if (targetObject.OSRuntime.notification) {
-            [BZObjectStoreNotificationCenter postNotificateForObject:targetObject deleted:YES];
+        if (!self.disableNotifications) {
+            if (targetObject.OSRuntime.notification) {
+                [BZObjectStoreNotificationCenter postNotificateForObject:targetObject deleted:YES];
+            }
         }
     }
 

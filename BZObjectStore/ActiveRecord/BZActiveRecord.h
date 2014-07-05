@@ -29,4 +29,5 @@
 @interface BZActiveRecord : NSObject
 + (void)setupWithObjectStore:(BZObjectStore*)os;
 + (BZObjectStore*)objectStore;
++ (void)setDisableNotifications:(BOOL)disableNotifications;
 @end

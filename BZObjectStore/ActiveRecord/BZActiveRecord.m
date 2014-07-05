@@ -37,4 +37,9 @@ static BZObjectStore *_os;
     return _os;
 }
 
++ (void)setDisableNotifications:(BOOL)disableNotifications
+{
+    _os.disableNotifications = disableNotifications;
+}
+
 @end

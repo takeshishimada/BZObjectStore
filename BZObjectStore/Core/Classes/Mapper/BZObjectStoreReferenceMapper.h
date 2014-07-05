@@ -24,4 +24,5 @@
 #import "BZObjectStoreModelMapper.h"
 
 @interface BZObjectStoreReferenceMapper : BZObjectStoreModelMapper
+@property (nonatomic,assign) BOOL disableNotifications;
 @end
