@@ -43,26 +43,21 @@
     __weak NSObject *weakObject = object;
     void (^block)(NSNotification *note) = ^(NSNotification *note) {
         NSNumber *deleted = note.userInfo[@"deleted"];
-        if (deleted.boolValue) {
-            if (completionBlock) {
-                [[NSOperationQueue mainQueue]addOperationWithBlock:^{
-                    completionBlock(weakTarget,nil);
-                }];
-            }
-        } else {
-            NSObject *notificatedObject = note.object;
-            NSString *notificatedObjectClazzName = NSStringFromClass([notificatedObject class]);
-            NSNumber *notificatedObjectRowid = notificatedObject.rowid;
-            NSString *observedObjectClazzName = NSStringFromClass([weakObject class]);
-            NSNumber *observedObjectRowid = weakObject.rowid;
-            if ([notificatedObjectClazzName isEqualToString:observedObjectClazzName]) {
-                if (notificatedObjectRowid && observedObjectRowid) {
-                    if ([notificatedObjectRowid isEqualToNumber:observedObjectRowid]) {
-                        if (completionBlock) {
-                            [[NSOperationQueue mainQueue]addOperationWithBlock:^{
-                                completionBlock(weakTarget,notificatedObject);
-                            }];
+        NSObject *notificatedObject = note.object;
+        NSString *notificatedObjectClazzName = NSStringFromClass([notificatedObject class]);
+        NSNumber *notificatedObjectRowid = notificatedObject.rowid;
+        NSString *observedObjectClazzName = NSStringFromClass([weakObject class]);
+        NSNumber *observedObjectRowid = weakObject.rowid;
+        if ([notificatedObjectClazzName isEqualToString:observedObjectClazzName]) {
+            if (notificatedObjectRowid && observedObjectRowid) {
+                if ([notificatedObjectRowid isEqualToNumber:observedObjectRowid]) {
+                    if (completionBlock) {
+                        if (deleted.boolValue) {
+                            notificatedObject = nil;
                         }
+                        [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+                            completionBlock(weakTarget,notificatedObject);
+                        }];
                     }
                 }
             }
