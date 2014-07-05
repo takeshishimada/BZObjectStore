@@ -852,7 +852,6 @@
     }
     
     for (NSObject *targetObject in allValues) {
-        targetObject.rowid = nil;
         if (targetObject.OSRuntime.modelDidDelete) {
             if ([targetObject respondsToSelector:@selector(OSModelDidDelete)]) {
                 [targetObject performSelector:@selector(OSModelDidDelete) withObject:nil];
@@ -864,7 +863,11 @@
             }
         }
     }
-
+    
+    for (NSObject *targetObject in allValues) {
+        targetObject.rowid = nil;
+    }
+    
     return YES;
 }
 
