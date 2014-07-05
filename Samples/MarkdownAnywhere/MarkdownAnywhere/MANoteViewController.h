@@ -25,8 +25,10 @@
 #import "MANoteEditViewController.h"
 
 @class MANote;
+@class MANotebook;
 
 @interface MANoteViewController : UIViewController
+@property (nonatomic,weak) MANotebook *notebook;
 @property (nonatomic,weak) MANote *note;
 @property (strong, nonatomic) IBOutlet UIWebView *webView;
 - (void)show;

@@ -28,11 +28,15 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    NSLog(@"test1");
+    
     // setup activerecord database
     NSError *error = nil;
     BZObjectStore *os = [BZObjectStore openWithPath:@"MarkdownAnywhere.sqlite" error:&error];
     [BZActiveRecord setupWithObjectStore:os];
     
+    NSLog(@"test2");
+
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;

@@ -24,6 +24,7 @@
 #import "MANoteViewController.h"
 #import "MANoteEditViewController.h"
 #import "MANote.h"
+#import "MANotebook.h"
 #import <GHMarkdownParser.h>
 #import <BZObjectStoreNotificationCenter.h>
 #import <BZObjectStoreNotificationObserver.h>
@@ -39,9 +40,18 @@
 {
     [super viewDidLoad];
 
+    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc]
+                                   initWithTitle:@"Delete"
+                                   style:UIBarButtonItemStyleBordered
+                                   target:self
+                                   action:@selector(deleteNote:)];
+    
+    deleteButton.enabled = NO;
+    
     UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editNote:)];
-    self.navigationItem.rightBarButtonItem = editButton;
-    self.navigationItem.rightBarButtonItem.enabled = NO;
+    editButton.enabled = NO;
+
+    self.navigationItem.rightBarButtonItems = @[editButton,deleteButton];
 
     [self show];
 }
@@ -52,16 +62,34 @@
         
         self.observer = [BZObjectStoreNotificationCenter observerForObject:self.note target:self completionBlock:^(MANoteViewController *weakSelf, MANote *note) {
             
-            weakSelf.title = note.title;
-            weakSelf.navigationItem.rightBarButtonItem.enabled = YES;
-            
-            GHMarkdownParser *parser = [[GHMarkdownParser alloc] init];
-            parser.options = kGHMarkdownAutoLink;
-            parser.githubFlavored = YES;
-            NSString *html = [parser HTMLStringFromMarkdownString:note.contentAsMarkdown];
-            
-            weakSelf.webView.scalesPageToFit = YES;
-            [weakSelf.webView loadData:[html dataUsingEncoding:NSUTF8StringEncoding] MIMEType:@"text/html"textEncodingName:@"utf-8"baseURL:nil];
+            if (note) {
+                // saved
+                weakSelf.title = note.title;
+                for (UIBarButtonItem *item in weakSelf.navigationItem.rightBarButtonItems) {
+                    item.enabled = YES;
+                }
+                
+                GHMarkdownParser *parser = [[GHMarkdownParser alloc] init];
+                parser.options = kGHMarkdownAutoLink;
+                parser.githubFlavored = YES;
+                NSString *html = [parser HTMLStringFromMarkdownString:note.contentAsMarkdown];
+                
+                weakSelf.webView.scalesPageToFit = YES;
+                [weakSelf.webView loadData:[html dataUsingEncoding:NSUTF8StringEncoding] MIMEType:@"text/html"textEncodingName:@"utf-8"baseURL:nil];
+                
+            } else {
+                // removed
+                weakSelf.title = @"note";
+                for (UIBarButtonItem *item in weakSelf.navigationItem.rightBarButtonItems) {
+                    item.enabled = NO;
+                }
+                [weakSelf.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
+                
+                if ([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPad) {
+                    [weakSelf.navigationController popViewControllerAnimated:YES];
+                }
+
+            }
 
         } immediately:YES];
         
@@ -80,6 +108,12 @@
     if (self.note) {
         [self performSegueWithIdentifier:NSStringFromClass([MANoteEditViewController class]) sender:self];
     }
+}
+
+- (void)deleteNote:(id)sender
+{
+    [self.notebook removeNote:self.note];
+    
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

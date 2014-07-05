@@ -26,6 +26,10 @@
 #import "MABookshelf.h"
 #import "MANoteViewController.h"
 
+@interface MANoteTableViewController()
+@property (nonatomic,strong) BZObjectStoreNotificationObserver *observer;
+@end
+
 @implementation MANoteTableViewController
 
 - (void)viewDidLoad
@@ -37,14 +41,21 @@
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         self.noteViewController = (MANoteViewController*)[[self.splitViewController.viewControllers lastObject] topViewController];
     }
+    
+    self.observer = [self.notebook observerWithTarget:self completionBlock:^(MANoteTableViewController *weakSelf, MANotebook *notebook) {
+        [weakSelf.tableView reloadData];
+    } immediately:NO];
+    
     [self.tableView registerNib:[MANoteTableViewCell nib] forCellReuseIdentifier:NSStringFromClass([MANoteTableViewCell class])];
 }
 
 - (void)add:(id)sender
 {
+    self.observer.enabled = NO;
     [self.notebook addNote];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
+    self.observer.enabled = YES;
 }
 
 #pragma mark - Table View
@@ -92,6 +103,7 @@
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         MANote *note = self.notebook.notes[indexPath.row];
+        self.noteViewController.notebook = self.notebook;
         self.noteViewController.note = note;
         [self.noteViewController show];
     } else {
@@ -103,9 +115,9 @@
 {
     if ([[segue identifier] isEqualToString:NSStringFromClass([MANoteViewController class])]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        MANote *note = self.notebook.notes[indexPath.row];
         MANoteViewController *vc = [segue destinationViewController];
-        vc.note = note;
+        vc.notebook = self.notebook;
+        vc.note = self.notebook.notes[indexPath.row];;
     }
 }
 

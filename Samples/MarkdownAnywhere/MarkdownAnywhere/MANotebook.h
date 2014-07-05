@@ -38,7 +38,7 @@
 @property (nonatomic,assign) NSUInteger updateSequence;
 @property (nonatomic,strong) NSString *title;
 @property (nonatomic,assign) BOOL synchronized;
-@property (nonatomic,strong) NSMutableArray<OSNotUpdateIfValueIsNullAttribute,OSWeakReferenceAttribute> *notes;
+@property (nonatomic,strong) NSMutableArray<OSNotUpdateIfValueIsNullAttribute> *notes;
 @property (nonatomic,weak) MABookshelf<Ignore> *bookshelf;
 - (MANote*)addNote;
 - (void)removeNote:(MANote*)note;
