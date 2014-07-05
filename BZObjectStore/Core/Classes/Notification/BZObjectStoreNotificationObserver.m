@@ -24,22 +24,46 @@
 #import "BZObjectStoreNotificationObserver.h"
 
 @interface BZObjectStoreNotificationObserver()
+@property (nonatomic,strong) NSString *name;
+@property (nonatomic,copy) void(^usingBlock)(NSNotification *note);
 @property (nonatomic,strong) id observer;
 @end
 
 @implementation BZObjectStoreNotificationObserver
 
-+ (instancetype)observerWithObserver:(id)observer
++ (instancetype)observerForName:(NSString*)name usingBlock:(void(^)(NSNotification *note))usingBlock
 {
     BZObjectStoreNotificationObserver *osObserver = [[self alloc]init];
-    osObserver.observer = observer;
+    osObserver.name = name;
+    osObserver.usingBlock = usingBlock;
+    osObserver.enabled = YES;
     return osObserver;
+}
+
+
+- (void)setEnabled:(BOOL)enabled
+{
+    if (enabled) {
+        if (self.observer) {
+            return;
+        } else {
+            NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+            self.observer = [center addObserverForName:self.name object:nil queue:nil usingBlock:self.usingBlock];
+        }
+    } else {
+        if (!self.observer) {
+            return;
+        } else {
+            NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
+            [center removeObserver:self.observer];
+            self.observer = nil;
+        }
+    }
 }
 
 - (void)dealloc
 {
-    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    [center removeObserver:self.observer];
+    self.enabled = NO;
 }
 
 @end

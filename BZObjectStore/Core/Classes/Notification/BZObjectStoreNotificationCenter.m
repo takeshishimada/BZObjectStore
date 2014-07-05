@@ -45,7 +45,9 @@
         NSNumber *deleted = note.userInfo[@"deleted"];
         if (deleted.boolValue) {
             if (completionBlock) {
-                completionBlock(weakTarget,nil);
+                [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+                    completionBlock(weakTarget,nil);
+                }];
             }
         } else {
             NSObject *notificatedObject = note.object;
@@ -57,16 +59,16 @@
                 if (notificatedObjectRowid && observedObjectRowid) {
                     if ([notificatedObjectRowid isEqualToNumber:observedObjectRowid]) {
                         if (completionBlock) {
-                            completionBlock(weakTarget,notificatedObject);
+                            [[NSOperationQueue mainQueue]addOperationWithBlock:^{
+                                completionBlock(weakTarget,notificatedObject);
+                            }];
                         }
                     }
                 }
             }
         }
     };
-    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    id observer = [center addObserverForName:@"ObjectStoreNotification" object:nil queue:nil usingBlock:block];
-    BZObjectStoreNotificationObserver *osObserver = [BZObjectStoreNotificationObserver observerWithObserver:observer];
+    BZObjectStoreNotificationObserver *osObserver = [BZObjectStoreNotificationObserver observerForName:@"ObjectStoreNotification" usingBlock:block];
     if (immediately) {
         if (completionBlock) {
             completionBlock(weakTarget,weakObject);
