@@ -26,6 +26,7 @@
 @class MANote;
 
 @interface MANoteEditViewController : UIViewController
-@property (strong, nonatomic) IBOutlet UITextView *textView;
+@property (weak, nonatomic) IBOutlet UITextField *titleTextField;
+@property (weak, nonatomic) IBOutlet UITextView *markdownTextView;
 @property (nonatomic,strong) MANote *note;
 @end

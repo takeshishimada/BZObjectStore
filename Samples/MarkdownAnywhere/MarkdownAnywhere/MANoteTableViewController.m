@@ -44,6 +44,7 @@
     
     self.observer = [self.notebook observerWithTarget:self completionBlock:^(MANoteTableViewController *weakSelf, MANotebook *notebook) {
         if (notebook) {
+            weakSelf.notebook = notebook;
             [weakSelf.tableView reloadData];
         }
     } immediately:NO];
