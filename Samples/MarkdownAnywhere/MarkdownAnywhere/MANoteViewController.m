@@ -84,7 +84,7 @@
                     item.enabled = NO;
                 }
                 [weakSelf.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
-                
+
                 if ([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPad) {
                     [weakSelf.navigationController popViewControllerAnimated:YES];
                 }

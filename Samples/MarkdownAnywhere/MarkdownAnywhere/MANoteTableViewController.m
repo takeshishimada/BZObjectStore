@@ -43,7 +43,9 @@
     }
     
     self.observer = [self.notebook observerWithTarget:self completionBlock:^(MANoteTableViewController *weakSelf, MANotebook *notebook) {
-        [weakSelf.tableView reloadData];
+        if (notebook) {
+            [weakSelf.tableView reloadData];
+        }
     } immediately:NO];
     
     [self.tableView registerNib:[MANoteTableViewCell nib] forCellReuseIdentifier:NSStringFromClass([MANoteTableViewCell class])];
@@ -86,10 +88,12 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        self.observer.enabled = NO;
         MANote *note = self.notebook.notes[indexPath.row];
         [self.notebook removeNote:note];
         [self.garbageBox addNote:note];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        self.observer.enabled = YES;
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
     }
 }
