@@ -29,5 +29,6 @@
 + (UINib*)nib;
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *lastUpdatedTimeLabel;
+@property (weak, nonatomic) IBOutlet UILabel *countOfNotesLabel;
 - (void)showNotebook:(MANotebook*)notebook;
 @end

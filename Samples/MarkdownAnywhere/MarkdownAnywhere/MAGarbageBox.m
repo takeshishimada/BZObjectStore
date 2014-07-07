@@ -51,18 +51,14 @@
 
 - (void)addNotebook:(MANotebook*)notebook
 {
-    [BZActiveRecord setDisableNotifications:YES];
     [self.notebooks addObject:notebook];
     [self save];
-    [BZActiveRecord setDisableNotifications:NO];
 }
 
 - (void)addNote:(MANote*)note
 {
-    [BZActiveRecord setDisableNotifications:YES];
     [self.notes addObject:note];
     [self save];
-    [BZActiveRecord setDisableNotifications:NO];
 }
 
 @end

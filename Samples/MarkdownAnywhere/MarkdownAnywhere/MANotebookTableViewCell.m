@@ -41,6 +41,7 @@
     self.observer = [notebook observerWithTarget:self completionBlock:^(MANotebookTableViewCell *weakSelf,MANotebook  *notebook) {
         if (notebook) {
             weakSelf.titleLabel.text = notebook.title;
+            weakSelf.countOfNotesLabel.text = [NSString stringWithFormat:@"%ld notes",(long)notebook.notes.count];
             weakSelf.lastUpdatedTimeLabel.text = [notebook.updatedAt description];
         }
     } immediately:YES];

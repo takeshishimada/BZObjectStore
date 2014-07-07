@@ -230,8 +230,6 @@
 		72CBC7811966D412009B9399 /* ViewControllers */ = {
 			isa = PBXGroup;
 			children = (
-				72CBC7831966D47D009B9399 /* MATableViewController.h */,
-				72CBC7841966D47D009B9399 /* MATableViewController.m */,
 				72465C3F1963E55F007C77A1 /* MANotebookTableViewController.h */,
 				72465C401963E55F007C77A1 /* MANotebookTableViewController.m */,
 				72465C761963FF0C007C77A1 /* MANoteTableViewController.h */,
@@ -240,6 +238,8 @@
 				72465DAA19644D3E007C77A1 /* MANoteViewController.m */,
 				72465C421963E55F007C77A1 /* MANoteEditViewController.h */,
 				72465C431963E55F007C77A1 /* MANoteEditViewController.m */,
+				72CBC7831966D47D009B9399 /* MATableViewController.h */,
+				72CBC7841966D47D009B9399 /* MATableViewController.m */,
 			);
 			name = ViewControllers;
 			sourceTree = "<group>";
