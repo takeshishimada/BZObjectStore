@@ -35,9 +35,8 @@
 @property (nonatomic,strong) NSString<OSIdenticalAttribute> *objectId;
 @property (nonatomic,strong) NSDate<OSOnceUpdateAttribute> *createdAt;
 @property (nonatomic,strong) NSDate *updatedAt;
-@property (nonatomic,assign) NSUInteger updateSequence;
-@property (nonatomic,strong) NSString *title;
 @property (nonatomic,assign) BOOL synchronized;
+@property (nonatomic,strong) NSString *title;
 @property (nonatomic,strong) NSMutableArray<OSNotUpdateIfValueIsNullAttribute> *notes;
 @property (nonatomic,weak) MABookshelf<Ignore> *bookshelf;
 - (MANote*)addNote;

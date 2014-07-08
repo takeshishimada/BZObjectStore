@@ -34,7 +34,6 @@
         self.objectId = nil;
         self.createdAt = [NSDate date];
         self.updatedAt = [NSDate date];
-        self.updateSequence = 0;
         self.title = [NSString stringWithFormat:@"New notebook (%ld)",(long)bookshelf.notebooks.count + 1];
         self.notes = [NSMutableArray array];
         self.synchronized = NO;
@@ -61,7 +60,6 @@
 {
     self.updatedAt = [NSDate date];
     if (self.synchronized) {
-        self.updateSequence = self.updateSequence + 1;
         self.synchronized = NO;
     }
     return [super save];

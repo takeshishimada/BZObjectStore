@@ -35,10 +35,9 @@
 @property (nonatomic,strong) NSString<OSIdenticalAttribute> *objectId;
 @property (nonatomic,strong) NSDate<OSOnceUpdateAttribute> *createdAt;
 @property (nonatomic,strong) NSDate *updatedAt;
-@property (nonatomic,assign) NSUInteger updateSequence;
+@property (nonatomic,assign) BOOL synchronized;
 @property (nonatomic,strong) NSString *title;
 @property (nonatomic,strong) NSString *contentAsMarkdown;
 @property (nonatomic,weak) MANotebook<Ignore> *notebook;
-@property (nonatomic,assign) BOOL synchronized;
 - (BOOL)save;
 @end

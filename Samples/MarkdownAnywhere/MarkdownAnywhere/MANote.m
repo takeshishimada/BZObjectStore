@@ -33,7 +33,6 @@
         self.objectId = nil;
         self.createdAt = [NSDate date];
         self.updatedAt = [NSDate date];
-        self.updateSequence = 0;
         self.title = [NSString stringWithFormat:@"New note (%ld)",(long)notebook.notes.count + 1];
         NSString *path = [[NSBundle mainBundle] pathForResource:@"sample" ofType:@"md"];
         NSData *data = [NSData dataWithContentsOfFile:path];
@@ -50,7 +49,6 @@
 {
     self.updatedAt = [NSDate date];
     if (self.synchronized) {
-        self.updateSequence = self.updateSequence + 1;
         self.synchronized = NO;
     }
     return [super save];
