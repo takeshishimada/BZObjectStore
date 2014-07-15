@@ -1,7 +1,7 @@
 //
 // The MIT License (MIT)
 //
-// Copyright (c) 2014 BZObjectStore
+// Copyright (c) 2014 BONZOO.LLC
 //
 // Permission is hereby granted, free of charge, to any person obtaining a copy
 // of this software and associated documentation files (the "Software"), to deal
@@ -250,26 +250,34 @@
             return NO;
         }
     }
-
+    
     if (object.OSRuntime.hasIdentificationAttributes && !object.rowid) {
         if (object.OSRuntime.insertPerformance) {
             [self insert:object db:db];
-            if ([self changes:object db:db] > 0) {
-                return YES;
+            int changes = [db changes];
+            if (changes > 0) {
+                sqlite_int64 lastInsertRowid = [db lastInsertRowId];
+                object.rowid = [NSNumber numberWithLongLong:lastInsertRowid];
+            } else {
+                [self update:object db:db];
+                [self updateObjectRowid:object db:db];
             }
-            [self update:object db:db];
-            if ([self changes:object db:db] > 0) {
-                return YES;
-            }
+            return YES;
+            
         } else {
             [self update:object db:db];
-            if ([self changes:object db:db] > 0) {
-                return YES;
+            int changes = [db changes];
+            if (changes > 0) {
+                [self updateObjectRowid:object db:db];
+            } else {
+                [self insert:object db:db];
+                changes = [db changes];
+                if (changes > 0) {
+                    sqlite_int64 lastInsertRowid = [db lastInsertRowId];
+                    object.rowid = [NSNumber numberWithLongLong:lastInsertRowid];
+                }
             }
-            [self insert:object db:db];
-            if ([self changes:object db:db] > 0) {
-                return YES;
-            }
+            return YES;
         }
     }
     
@@ -312,18 +320,6 @@
     return YES;
 }
 
-- (int)changes:(NSObject*)object db:(FMDatabase*)db
-{
-    int changes = [db changes];
-    if (changes > 0) {
-        sqlite_int64 lastInsertRowid = [db lastInsertRowId];
-        if (lastInsertRowid != 0) {
-            sqlite_int64 lastInsertRowid = [db lastInsertRowId];
-            object.rowid = [NSNumber numberWithLongLong:lastInsertRowid];
-        }
-    }
-    return changes;
-}
 
 - (BOOL)deleteFrom:(NSObject*)object db:(FMDatabase*)db
 {
