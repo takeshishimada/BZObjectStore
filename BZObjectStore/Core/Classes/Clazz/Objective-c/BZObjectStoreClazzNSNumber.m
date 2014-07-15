@@ -56,7 +56,10 @@
 - (id)valueWithResultSet:(FMResultSet*)resultSet attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
     NSNumber *value = [resultSet objectForColumnName:attribute.columnName];
-    return value;
+    if ([[value class] isSubclassOfClass:[NSNumber class]]) {
+        return value;
+    }
+    return nil;
 }
 
 - (NSString*)sqliteDataTypeName
