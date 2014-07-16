@@ -58,17 +58,15 @@
     return YES;
 }
 
-- (NSArray*)storeValuesWithValue:(NSOrderedSet*)value attribute:(BZObjectStoreRuntimeProperty*)attribute
+- (NSArray*)storeValuesWithValue:(NSArray*)value attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    if ([[value class] isSubclassOfClass:[NSOrderedSet class]]) {
-        return @[[NSNumber numberWithUnsignedInteger:value.count]];
-    }
-    return @[[NSNumber numberWithUnsignedInteger:0]];
+    return @[[NSNull null]];
 }
 
 - (NSString*)sqliteDataTypeName
 {
-    return SQLITE_DATA_TYPE_INTEGER;
+    return SQLITE_DATA_TYPE_TEXT;
 }
+
 
 @end

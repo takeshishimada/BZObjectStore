@@ -60,15 +60,12 @@
 
 - (NSArray*)storeValuesWithValue:(NSArray*)value attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    if ([[value class] isSubclassOfClass:[NSArray class]]) {
-        return @[[NSNumber numberWithUnsignedInteger:((NSArray*)value).count]];
-    }
-    return @[[NSNumber numberWithUnsignedInteger:0]];
+    return @[[NSNull null]];
 }
 
 - (NSString*)sqliteDataTypeName
 {
-    return SQLITE_DATA_TYPE_INTEGER;
+    return SQLITE_DATA_TYPE_TEXT;
 }
 
 @end
