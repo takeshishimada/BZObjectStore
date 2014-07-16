@@ -268,11 +268,6 @@
 
     [BZObjectStoreNotificationCenter observerForObject:model target:self completionBlock:^(id target, BZNotificationModel *object) {
         
-        if (object) {
-            NSLog(@"saved!!");
-        } else {
-            NSLog(@"deleted!!");
-        }
         
         
     } immediately:NO];
@@ -1112,6 +1107,7 @@
     BZAttributeIsSerializeModel *serializeObject = [[BZAttributeIsSerializeModel alloc]init];
     BZAttributeIsWeakReferenceModel *weakReferenceObject = [[BZAttributeIsWeakReferenceModel alloc]init];
     BZAttributeIsfetchOnRefreshingModel *fetchOnRefreshingModel = [[BZAttributeIsfetchOnRefreshingModel alloc]init];
+    fetchOnRefreshingModel.no = @"test";
     
     BZAttributeIsModel *saveObject1 = [[BZAttributeIsModel alloc]init];
     saveObject1.identicalAttribute = @"01";
@@ -1131,9 +1127,10 @@
     saveObject2.name = @"name2";
     saveObject2.notUpdateIfValueIsNullAttribute = nil;
     saveObject2.onceUpdateAttribute = @"02";
+    saveObject2.fetchOnRefreshingAttribute = fetchOnRefreshingModel;
     [os saveObject:saveObject2 error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
-    
+
     NSArray *objects = [os fetchObjects:[BZAttributeIsModel class] condition:nil error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     XCTAssertTrue(objects.count == 1,"object error");

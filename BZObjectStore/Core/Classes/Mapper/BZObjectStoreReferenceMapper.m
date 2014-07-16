@@ -834,11 +834,8 @@
                 }
             }
             [targetObjects removeObject:targetObject];
-            // the following code is not needed
-            //  because of fetching processed before this delete method
-            //} else {
-            //  [objectStuck removeObject:targetObject];
-            //}
+        } else {
+            [targetObjects removeObject:targetObject];
         }
     }
     

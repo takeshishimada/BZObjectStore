@@ -36,6 +36,7 @@
 + (NSString*)updateStatement:(BZObjectStoreRuntime*)runtime;
 + (NSString*)updateStatement:(BZObjectStoreRuntime*)runtime attributes:(NSArray*)attributes;
 + (NSString*)insertIntoStatement:(BZObjectStoreRuntime*)runtime;
++ (NSString*)insertOrReplaceIntoStatement:(BZObjectStoreRuntime*)runtime;
 + (NSString*)insertOrIgnoreIntoStatement:(BZObjectStoreRuntime*)runtime;
 + (NSString*)deleteFromStatement:(BZObjectStoreRuntime*)runtime;
 + (NSString*)createTableStatement:(BZObjectStoreRuntime*)runtime;

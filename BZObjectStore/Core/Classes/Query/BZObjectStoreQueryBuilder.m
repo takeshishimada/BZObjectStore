@@ -135,6 +135,36 @@
     return [NSString stringWithString:sql];
 }
 
++ (NSString*)insertOrReplaceIntoStatement:(BZObjectStoreRuntime*)runtime
+{
+    NSString *tableName = runtime.tableName;
+    NSMutableString *sql = [NSMutableString string];
+    [sql appendString:@"INSERT OR REPLACE INTO "];
+    [sql appendString:tableName];
+    NSMutableString *sqlNames = [NSMutableString stringWithFormat:@" ("];
+    NSMutableString *sqlValues = [NSMutableString stringWithFormat:@" ("];
+    NSArray *attributes = runtime.attributes;
+    NSArray *sqliteColumns = [self sqliteColumnsWithAttributes:attributes];
+    for (BZObjectStoreSQLiteColumnModel *sqliteColumn in sqliteColumns) {
+        [sqlNames appendString:@""];
+        [sqlNames appendString:sqliteColumn.columnName];
+        [sqlNames appendString:@""];
+        [sqlValues appendString:@"?"];
+        [sqlNames appendString:@","];
+        [sqlValues appendString:@","];
+    }
+    [sqlNames appendString:@"__createdAt__"];
+    [sqlNames appendString:@",__updatedAt__"];
+    [sqlValues appendString:@"datetime('now')"];
+    [sqlValues appendString:@",datetime('now')"];
+    [sqlNames appendString:@")"];
+    [sqlValues appendString:@")"];
+    [sql appendString:sqlNames];
+    [sql appendString:@" VALUES "];
+    [sql appendString:sqlValues];
+    return [NSString stringWithString:sql];
+}
+
 + (NSString*)insertOrIgnoreIntoStatement:(BZObjectStoreRuntime*)runtime
 {
     NSString *tableName = runtime.tableName;

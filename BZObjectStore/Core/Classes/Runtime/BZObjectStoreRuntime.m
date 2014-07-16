@@ -175,6 +175,7 @@
     self.selectRowidTemplateStatement = [BZObjectStoreQueryBuilder selectRowidStatement:self];
     self.insertIntoTemplateStatement = [BZObjectStoreQueryBuilder insertIntoStatement:self];
     self.insertOrIgnoreIntoTemplateStatement = [BZObjectStoreQueryBuilder insertOrIgnoreIntoStatement:self];
+    self.insertOrReplaceIntoTemplateStatement = [BZObjectStoreQueryBuilder insertOrReplaceIntoStatement:self];
     self.deleteFromTemplateStatement = [BZObjectStoreQueryBuilder deleteFromStatement:self];
     self.createTableTemplateStatement = [BZObjectStoreQueryBuilder createTableStatement:self];
     self.dropTableTemplateStatement = [BZObjectStoreQueryBuilder dropTableStatement:self];
@@ -215,6 +216,10 @@
 - (NSString*)insertOrIgnoreIntoStatement
 {
     return self.insertOrIgnoreIntoTemplateStatement;
+}
+- (NSString*)insertOrReplaceIntoStatement
+{
+    return self.insertOrReplaceIntoTemplateStatement;
 }
 - (NSString*)updateStatementWithObject:(NSObject*)object condition:(BZObjectStoreConditionModel*)condition
 {
@@ -352,6 +357,15 @@
 {
     NSMutableArray *parameters = [NSMutableArray array];
     for (BZObjectStoreRuntimeProperty *attribute in self.insertAttributes) {
+        [parameters addObjectsFromArray:[attribute storeValuesWithObject:object]];
+    }
+    return parameters;
+}
+
+- (NSMutableArray*)insertOrReplaceAttributesParameters:(NSObject*)object
+{
+    NSMutableArray *parameters = [NSMutableArray array];
+    for (BZObjectStoreRuntimeProperty *attribute in self.attributes) {
         [parameters addObjectsFromArray:[attribute storeValuesWithObject:object]];
     }
     return parameters;
