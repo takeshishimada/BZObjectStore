@@ -350,7 +350,7 @@
     for (NSObject *object in objects) {
         if (![processedObjects valueForKey:object.OSHashForSave]) {
             [processedObjects setValue:object forKey:object.OSHashForSave];
-            if (object.OSRuntime.hasRelationshipAttributes) {
+            if (object.rowid && object.OSRuntime.hasRelationshipAttributes) {
                 [targetObjects addObject:object];
             }
         }
