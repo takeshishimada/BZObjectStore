@@ -22,7 +22,6 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import "BZActiveRecord.h"
 #import "BZObjectStore.h"
 #import "BZObjectStoreBackground.h"
 #import "BZObjectStoreModelInterface.h"

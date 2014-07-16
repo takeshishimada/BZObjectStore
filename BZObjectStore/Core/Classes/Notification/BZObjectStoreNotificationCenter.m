@@ -64,6 +64,7 @@
         }
     };
     BZObjectStoreNotificationObserver *osObserver = [BZObjectStoreNotificationObserver observerForName:@"ObjectStoreNotification" usingBlock:block];
+    osObserver.targetObject = object;
     if (immediately) {
         if (completionBlock) {
             completionBlock(weakTarget,weakObject);

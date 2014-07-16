@@ -25,5 +25,6 @@
 
 @interface BZObjectStoreNotificationObserver : NSObject
 + (instancetype)observerForName:(NSString*)name usingBlock:(void(^)(NSNotification *note))usingBlock;
+@property (nonatomic,strong) NSObject *targetObject;
 @property (nonatomic,assign) BOOL enabled;
 @end

@@ -58,4 +58,18 @@
     return hash;
 }
 
+- (BOOL)isEqualToOSObject:(NSObject*)object
+{
+    if (self == object) {
+        return YES;
+    } else if ([self class] == [object class]) {
+        if (self.rowid && object.rowid) {
+            if ([self.rowid isEqualToNumber:object.rowid]) {
+                return YES;
+            }
+        }
+    }
+    return NO;
+}
+
 @end

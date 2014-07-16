@@ -22,6 +22,7 @@
 // THE SOFTWARE.
 
 #import "NSObject+ActiveRecord.h"
+#import "BZActiveRecord.h"
 
 @implementation NSObject (ActiveRecord)
 

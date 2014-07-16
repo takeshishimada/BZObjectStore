@@ -30,4 +30,5 @@
 @property (nonatomic,strong) BZObjectStoreRuntime *OSRuntime;
 @property (nonatomic,readonly) NSString *OSHashForSave;
 @property (nonatomic,readonly) NSString *OSHashForFetch;
+- (BOOL)isEqualToOSObject:(NSObject*)object;
 @end
