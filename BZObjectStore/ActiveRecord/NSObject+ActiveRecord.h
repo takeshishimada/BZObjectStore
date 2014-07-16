@@ -28,6 +28,7 @@
 #import "BZObjectStoreConditionModel.h"
 #import "BZObjectStoreNotificationCenter.h"
 #import "BZObjectStoreNotificationObserver.h"
+#import "NSObject+BZObjectStore.h"
 
 @interface NSObject (ActiveRecord)
 
