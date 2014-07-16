@@ -59,7 +59,7 @@
 
 - (NSArray*)storeValuesWithValue:(NSArray*)value attribute:(BZObjectStoreRuntimeProperty*)attribute
 {
-    return @[[NSNull null]];
+    return @[@"__ObjectStoreRelationship__"];
 }
 
 - (NSString*)sqliteDataTypeName
