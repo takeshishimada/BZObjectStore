@@ -40,14 +40,14 @@
 + (BZObjectStoreNotificationObserver*)observerForObject:(id)object target:(id)target completionBlock:(void(^)(id target,id object))completionBlock immediately:(BOOL)immediately
 {
     __weak NSObject * weakTarget = target;
-    __weak NSObject *weakObject = object;
+    NSObject *targetObject = object;
     void (^block)(NSNotification *note) = ^(NSNotification *note) {
         NSNumber *deleted = note.userInfo[@"deleted"];
         NSObject *notificatedObject = note.object;
         NSString *notificatedObjectClazzName = NSStringFromClass([notificatedObject class]);
         NSNumber *notificatedObjectRowid = notificatedObject.rowid;
-        NSString *observedObjectClazzName = NSStringFromClass([weakObject class]);
-        NSNumber *observedObjectRowid = weakObject.rowid;
+        NSString *observedObjectClazzName = NSStringFromClass([targetObject class]);
+        NSNumber *observedObjectRowid = targetObject.rowid;
         if ([notificatedObjectClazzName isEqualToString:observedObjectClazzName]) {
             if (notificatedObjectRowid && observedObjectRowid) {
                 if ([notificatedObjectRowid isEqualToNumber:observedObjectRowid]) {
@@ -67,7 +67,7 @@
     osObserver.targetObject = object;
     if (immediately) {
         if (completionBlock) {
-            completionBlock(weakTarget,weakObject);
+            completionBlock(weakTarget,object);
         }
     }
     return osObserver;
