@@ -56,7 +56,7 @@
 - (BOOL)deleteRelationshipObjectsWithRelationshipObject:(BZObjectStoreRelationshipModel*)relationshipObject db:(FMDatabase*)db;
 - (BOOL)deleteRelationshipObjectsWithObject:(NSObject*)object relationshipRuntime:(BZObjectStoreRuntime*)relationshipRuntime db:(FMDatabase*)db;
 - (NSMutableArray*)relationshipObjectsWithToObject:(NSObject*)toObject relationshipRuntime:(BZObjectStoreRuntime*)relationshipRuntime db:(FMDatabase*)db;
-- (void)updateObjectRowid:(NSObject*)object db:(FMDatabase*)db;
+- (void)updateRowid:(NSObject*)object db:(FMDatabase*)db;
 - (void)updateRowidWithObjects:(NSArray*)objects db:(FMDatabase*)db;
 
 - (BOOL)dropTable:(BZObjectStoreRuntime*)runtime db:(FMDatabase*)db;
@@ -300,7 +300,7 @@
     if (![self updateRuntime:object db:db error:error]) {
         return nil;
     }
-    [self updateObjectRowid:object db:db];
+    [self updateRowid:object db:db];
     if ([db hadError]) {
         return nil;
     }
@@ -1023,7 +1023,7 @@
         if (![self updateRuntime:runtime db:db error:error]) {
             return NO;
         }
-        [self updateObjectRowid:runtime db:db];
+        [self updateRowid:runtime db:db];
         if ([self hadError:db error:error]) {
             return NO;
         }

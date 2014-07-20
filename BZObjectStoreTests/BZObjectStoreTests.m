@@ -1976,7 +1976,7 @@
     
     NSArray *objects = [os fetchObjects:[BZImageHolderModel class] condition:nil error:&error];
     BZImageHolderModel *object = objects.firstObject;
-    XCTAssertTrue([object.code isEqualToString:@"10"],@"testBZObjectStoreClazzBZImage error");
+    XCTAssertTrue([object.code isEqualToString:@"20"],@"testBZObjectStoreClazzBZImage error");
     XCTAssertTrue([object.image.url isEqualToString:@"http://www.google.com/"],@"testBZObjectStoreClazzBZImage error");
     
     

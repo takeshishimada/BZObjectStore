@@ -45,11 +45,11 @@
 @property (nonatomic,assign) BOOL isRelationshipClazz;
 
 // attribute inforamtion
-@property (nonatomic,strong) BZObjectStoreRuntimeProperty *rowidAttribute;
+@property (nonatomic,strong) BZObjectStoreRuntimeProperty<OSIgnoreAttribute> *rowidAttribute;
 @property (nonatomic,strong) NSArray *attributes;
 @property (nonatomic,strong) NSArray<OSIgnoreAttribute> *identificationAttributes;
-@property (nonatomic,strong) NSArray<OSIgnoreAttribute> *insertAttributes; // all attriburtes
-@property (nonatomic,strong) NSArray<OSIgnoreAttribute> *updateAttributes; // all attributes without identical  attributes
+@property (nonatomic,strong) NSArray<OSIgnoreAttribute> *insertAttributes;
+@property (nonatomic,strong) NSArray<OSIgnoreAttribute> *updateAttributes;
 @property (nonatomic,strong) NSArray<OSIgnoreAttribute> *relationshipAttributes;
 @property (nonatomic,strong) NSArray<OSIgnoreAttribute> *simpleValueAttributes;
 

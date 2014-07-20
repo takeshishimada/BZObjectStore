@@ -191,7 +191,7 @@
 
 - (NSNumber*)referencedCount:(NSObject*)object db:(FMDatabase*)db
 {
-    [self updateObjectRowid:object db:db];
+    [self updateRowid:object db:db];
     if (!object.rowid) {
         return nil;
     }
@@ -315,7 +315,7 @@
     if ([self hadError:db]) {
         return NO;
     }
-    [self updateObjectRowid:object db:db];
+    [self updateRowid:object db:db];
     return YES;
 }
 
@@ -363,7 +363,7 @@
 
 #pragma mark object update methods
 
-- (void)updateObjectRowid:(NSObject*)object db:(FMDatabase*)db
+- (void)updateRowid:(NSObject*)object db:(FMDatabase*)db
 {
     if (object.rowid) {
         return;
@@ -383,7 +383,7 @@
 - (void)updateRowidWithObjects:(NSArray*)objects db:(FMDatabase*)db
 {
     for (NSObject *object in objects) {
-        [self updateObjectRowid:object db:db];
+        [self updateRowid:object db:db];
     }
     return;
 }

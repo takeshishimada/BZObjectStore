@@ -116,10 +116,9 @@
                 [insertAttributes addObject:objectStoreAttribute];
                 if (objectStoreAttribute.identicalAttribute) {
                     [identicalAttributes addObject:objectStoreAttribute];
-                } else {
-                    if (!objectStoreAttribute.onceUpdateAttribute) {
-                        [updateAttributes addObject:objectStoreAttribute];
-                    }
+                }
+                if (!objectStoreAttribute.onceUpdateAttribute) {
+                    [updateAttributes addObject:objectStoreAttribute];
                 }
                 if (objectStoreAttribute.notUpdateIfValueIsNullAttribute) {
                     self.hasNotUpdateIfValueIsNullAttribute = YES;
