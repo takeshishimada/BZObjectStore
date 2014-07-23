@@ -135,8 +135,8 @@
     
     [BZParseModel registerSubclass];
     
-    [Parse setApplicationId:@"qNMDT4gO06FhoPafaFOr6iM17FL5MoX2Idd00Mhr"
-                  clientKey:@"S3yt2lFSZNHOPE7Z0a6oa451tpecGJ5ysXfR92uO"];
+//    [Parse setApplicationId:@""
+//                  clientKey:@""];
     
     
     // Put setup code here. This method is called before the invocation of each test method in the class.
@@ -176,7 +176,7 @@
 
     [self testNotification:_disk];
     [self testBZActiveRecordModel:_disk];
-    [self testBZParseModel:_disk];
+//    [self testBZParseModel:_disk];
     [self testBZVarietyValuesModel:_disk];
     [self testBZInvalidValuesModel:_disk];
     [self testBZRelationshipHeaderModel:_disk];
@@ -222,7 +222,7 @@
     
     [self testNotification:_memory];
     [self testBZActiveRecordModel:_memory];
-    [self testBZParseModel:_memory];
+//    [self testBZParseModel:_memory];
     [self testBZVarietyValuesModel:_memory];
     [self testBZInvalidValuesModel:_memory];
     [self testBZRelationshipHeaderModel:_memory];
@@ -2272,66 +2272,66 @@
 
 }
 
-- (void)testBZParseModel:(BZObjectStore*)os
-{
-    NSError *error = nil;
-
-    PFUser *user = [PFUser user];
-    user.username = @"my name";
-    user.password = @"my pass";
-    user.email = @"email@example.com";
-    BOOL ret = [user signUp];
-    if (ret) {
-        [user save];
-    }
-    [os saveObject:user error:&error];
-
-    for (NSInteger i = 0; i < 10; i++) {
-        BZParseModel *parseModel = [[BZParseModel alloc]init];
-        parseModel.code = [NSString stringWithFormat:@"%ld",(long)i];
-        parseModel.price = i * 10;
-        parseModel.string = @"string";
-        parseModel.mutableString = [NSMutableString stringWithString:@"mutableString"];
-        parseModel.date = [NSDate date];
-        PFGeoPoint *point = [PFGeoPoint geoPointWithLatitude:1.23456789f longitude:9.87654321f];
-        [parseModel setValue:point forKeyPath:@"point"];
-        [os saveObject:parseModel error:&error];
-    }
-    NSArray *objects = [os fetchObjects:[BZParseModel class] condition:nil error:&error];
-    XCTAssertTrue(objects.count == 10,@"count error");
-    
-    for (BZParseModel *object in objects) {
-        [object save:&error];
-        XCTAssert(!error, @"parse \"%s\"", __PRETTY_FUNCTION__);
-        [os saveObject:object error:&error];
-        XCTAssert(!error, @"parse \"%s\"", __PRETTY_FUNCTION__);
-    }
-    NSNumber *count = [os count:[BZParseModel class] condition:nil error:&error];
-    XCTAssertTrue(count.integerValue == 10,@"count error");
-
-    BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
-    condition.sqlite.where = @"code IN ( ?,? )";
-    condition.sqlite.parameters = @[@"1",@"2"];
-    
-    NSNumber *count2 = [BZParseModel OSCount:condition error:&error];
-    XCTAssertTrue(count2.integerValue == 2,@"activerecord count error");
-    
-    NSNumber *total = [BZParseModel OSTotal:@"price" condition:condition error:&error];
-    XCTAssertTrue(total.integerValue == 30,@"activerecord total error");
-    
-    NSNumber *sum = [BZParseModel OSSum:@"price" condition:condition error:&error];
-    XCTAssertTrue(sum.integerValue == 30,@"activerecord sum error");
-    
-    NSNumber *avg = [BZParseModel OSAvg:@"price" condition:condition error:&error];
-    XCTAssertTrue(avg.integerValue == 15,@"activerecord avg error");
-    
-    NSNumber *max = [BZParseModel OSMax:@"price" condition:nil error:&error];
-    XCTAssertTrue(max.integerValue ==90,@"activerecord max error");
-    
-    NSNumber *min = [BZParseModel OSMin:@"price" condition:nil error:&error];
-    XCTAssertTrue(min.integerValue ==0,@"activerecord max error");
-
-    
-}
+//- (void)testBZParseModel:(BZObjectStore*)os
+//{
+//    NSError *error = nil;
+//
+//    PFUser *user = [PFUser user];
+//    user.username = @"my name";
+//    user.password = @"my pass";
+//    user.email = @"email@example.com";
+//    BOOL ret = [user signUp];
+//    if (ret) {
+//        [user save];
+//    }
+//    [os saveObject:user error:&error];
+//
+//    for (NSInteger i = 0; i < 10; i++) {
+//        BZParseModel *parseModel = [[BZParseModel alloc]init];
+//        parseModel.code = [NSString stringWithFormat:@"%ld",(long)i];
+//        parseModel.price = i * 10;
+//        parseModel.string = @"string";
+//        parseModel.mutableString = [NSMutableString stringWithString:@"mutableString"];
+//        parseModel.date = [NSDate date];
+//        PFGeoPoint *point = [PFGeoPoint geoPointWithLatitude:1.23456789f longitude:9.87654321f];
+//        [parseModel setValue:point forKeyPath:@"point"];
+//        [os saveObject:parseModel error:&error];
+//    }
+//    NSArray *objects = [os fetchObjects:[BZParseModel class] condition:nil error:&error];
+//    XCTAssertTrue(objects.count == 10,@"count error");
+//    
+//    for (BZParseModel *object in objects) {
+//        [object save:&error];
+//        XCTAssert(!error, @"parse \"%s\"", __PRETTY_FUNCTION__);
+//        [os saveObject:object error:&error];
+//        XCTAssert(!error, @"parse \"%s\"", __PRETTY_FUNCTION__);
+//    }
+//    NSNumber *count = [os count:[BZParseModel class] condition:nil error:&error];
+//    XCTAssertTrue(count.integerValue == 10,@"count error");
+//
+//    BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
+//    condition.sqlite.where = @"code IN ( ?,? )";
+//    condition.sqlite.parameters = @[@"1",@"2"];
+//    
+//    NSNumber *count2 = [BZParseModel OSCount:condition error:&error];
+//    XCTAssertTrue(count2.integerValue == 2,@"activerecord count error");
+//    
+//    NSNumber *total = [BZParseModel OSTotal:@"price" condition:condition error:&error];
+//    XCTAssertTrue(total.integerValue == 30,@"activerecord total error");
+//    
+//    NSNumber *sum = [BZParseModel OSSum:@"price" condition:condition error:&error];
+//    XCTAssertTrue(sum.integerValue == 30,@"activerecord sum error");
+//    
+//    NSNumber *avg = [BZParseModel OSAvg:@"price" condition:condition error:&error];
+//    XCTAssertTrue(avg.integerValue == 15,@"activerecord avg error");
+//    
+//    NSNumber *max = [BZParseModel OSMax:@"price" condition:nil error:&error];
+//    XCTAssertTrue(max.integerValue ==90,@"activerecord max error");
+//    
+//    NSNumber *min = [BZParseModel OSMin:@"price" condition:nil error:&error];
+//    XCTAssertTrue(min.integerValue ==0,@"activerecord max error");
+//
+//    
+//}
 
 @end
