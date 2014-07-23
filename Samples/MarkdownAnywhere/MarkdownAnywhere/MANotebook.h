@@ -32,7 +32,7 @@
 
 @interface MANotebook : MAJSONModel<OSIgnoreSuperClass,OSNotification>
 - (instancetype)initWithBookshelf:(MABookshelf*)bookshelf;
-@property (nonatomic,strong) NSString<OSIdenticalAttribute> *objectId;
+@property (nonatomic,strong) NSNumber<OSIdenticalAttribute> *objectId;
 @property (nonatomic,strong) NSDate<OSOnceUpdateAttribute> *createdAt;
 @property (nonatomic,strong) NSDate *updatedAt;
 @property (nonatomic,assign) BOOL synchronized;
