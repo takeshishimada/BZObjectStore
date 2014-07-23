@@ -47,20 +47,5 @@
     return YES;
 }
 
-#ifdef DEBUG
-+ (void)initialize {
-    [[NSUserDefaults standardUserDefaults] setValue:@"XCTestLog,GcovTestObserver"
-                                             forKey:@"XCTestObserverClass"];
-}
-#endif
-
-- (void)applicationWillTerminate:(UIApplication *)application
-{
-#ifdef DEBUG
-    extern void __gcov_flush(void);
-    __gcov_flush();
-#endif
-}
-
 
 @end
