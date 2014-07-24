@@ -15,3 +15,7 @@ test:
 		-sdk iphonesimulator \
 		OBJROOT=build \
 		-configuration Debug
+
+send-coverage:
+  coveralls \
+      -e BZObjectStoreTest/Tests
