@@ -7,10 +7,9 @@ clean:
 test:
 	xcodebuild \
 		clean \
-		build \
 		test \
 		-workspace BZobjectStore.xcworkspace \
-		-scheme BZObjectStore \
+		-scheme BZObjectStoreTest \
 		-destination "platform=iOS Simulator,name=iPhone Retina (4-inch),OS=7.1" \
 		-sdk iphonesimulator \
 		-configuration Debug
