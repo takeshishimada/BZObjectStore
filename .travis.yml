@@ -9,4 +9,4 @@ script:
   - make test
 
 after_success:
-  - ./scripts/coveralls.sh -r ./ -e Pods -e Tests
+  - ./coveralls.sh -r ./ -e Pods -e Tests
