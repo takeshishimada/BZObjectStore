@@ -6,7 +6,6 @@ clean:
 
 test:
 	xcodebuild \
-		clean \
 		test \
 		-workspace BZobjectStore.xcworkspace \
 		-scheme BZObjectStoreTests \
