@@ -17,5 +17,5 @@ test:
 		-configuration Debug
 
 send-coverage:
-  coveralls \
-      -e BZObjectStoreTest/Tests
+	coveralls \
+		-e BZObjectStoreTest/Tests
