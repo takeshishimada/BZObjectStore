@@ -9,4 +9,5 @@ script:
   - make test
 
 after_success:
-  - coveralls
+  - cd build
+  - coveralls -x '.m'
