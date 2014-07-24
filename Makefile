@@ -1,18 +1,20 @@
-WORKSPACE = BZObjectStore.xcworkspace
-SCHEME = BZObjectStore
-
 clean:
 	xcodebuild \
-		-workspace $(WORKSPACE) \
-		-scheme $(SCHEME) \
+		-workspace BZObjectStore.xcworkspace \
+		-scheme BZObjectStore \
 		clean
 
 test:
 	xcodebuild \
-		-workspace $(WORKSPACE) \
-		-scheme $(SCHEME) \
+		clean \
+		build \
+		test \
+		-workspace BZobjectStore.xcworkspace \
+		-scheme BZObjectStore \
+		-destination "platform=iOS Simulator,name=iPhone Retina (4-inch),OS=7.1" \
 		-sdk iphonesimulator \
-		-configuration Debug \
-		TEST_AFTER_BUILD=YES \
-		TEST_HOST= 
+		OBJROOT=build \
+		-configuration Debug
 
+send-coverage:
+  coveralls
