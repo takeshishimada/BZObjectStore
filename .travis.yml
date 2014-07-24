@@ -10,4 +10,4 @@ script:
 
 after_success:
   - cd build
-  - coveralls -x '.m'
+  - coveralls
