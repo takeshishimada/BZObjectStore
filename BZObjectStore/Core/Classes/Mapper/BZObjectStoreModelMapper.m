@@ -508,11 +508,24 @@
 }
 
 
-- (BOOL)deleteRelationshipObjectsWithObject:(NSObject*)object relationshipRuntime:(BZObjectStoreRuntime*)relationshipRuntime db:(FMDatabase*)db
+- (BOOL)deleteRelationshipObjectsWithFromObject:(NSObject*)object relationshipRuntime:(BZObjectStoreRuntime*)relationshipRuntime db:(FMDatabase*)db
 {
     NSString *className = NSStringFromClass([object class]);
     BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
-    condition.sqlite.where = @"(fromClassName = ? and fromRowid = ?) or (toClassName = ? and toRowid = ?)";
+    condition.sqlite.where = @"(fromClassName = ? and fromRowid = ?)";
+    condition.sqlite.parameters = @[className,object.rowid,className,object.rowid];
+    [self deleteFrom:relationshipRuntime condition:condition db:db];
+    if ([self hadError:db]) {
+        return NO;
+    }
+    return YES;
+}
+
+- (BOOL)deleteRelationshipObjectsWithToObject:(NSObject*)object relationshipRuntime:(BZObjectStoreRuntime*)relationshipRuntime db:(FMDatabase*)db
+{
+    NSString *className = NSStringFromClass([object class]);
+    BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
+    condition.sqlite.where = @"(toClassName = ? and toRowid = ?)";
     condition.sqlite.parameters = @[className,object.rowid,className,object.rowid];
     [self deleteFrom:relationshipRuntime condition:condition db:db];
     if ([self hadError:db]) {

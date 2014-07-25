@@ -54,7 +54,8 @@
 - (BOOL)insertRelationshipObjectsWithRelationshipObjects:(NSArray*)relationshipObjects db:(FMDatabase*)db;
 - (BOOL)deleteRelationshipObjectsWithObject:(NSObject*)object attribute:(BZObjectStoreRuntimeProperty*)attribute relationshipRuntime:(BZObjectStoreRuntime*)relationshipRuntime db:(FMDatabase*)db;
 - (BOOL)deleteRelationshipObjectsWithRelationshipObject:(BZObjectStoreRelationshipModel*)relationshipObject db:(FMDatabase*)db;
-- (BOOL)deleteRelationshipObjectsWithObject:(NSObject*)object relationshipRuntime:(BZObjectStoreRuntime*)relationshipRuntime db:(FMDatabase*)db;
+- (BOOL)deleteRelationshipObjectsWithFromObject:(NSObject*)object relationshipRuntime:(BZObjectStoreRuntime*)relationshipRuntime db:(FMDatabase*)db;
+- (BOOL)deleteRelationshipObjectsWithToObject:(NSObject*)object relationshipRuntime:(BZObjectStoreRuntime*)relationshipRuntime db:(FMDatabase*)db;
 - (NSMutableArray*)relationshipObjectsWithToObject:(NSObject*)toObject relationshipRuntime:(BZObjectStoreRuntime*)relationshipRuntime db:(FMDatabase*)db;
 - (void)updateRowid:(NSObject*)object db:(FMDatabase*)db;
 - (void)updateRowidWithObjects:(NSArray*)objects db:(FMDatabase*)db;
@@ -844,18 +845,48 @@
     if ([self hadError:db error:error]) {
         return NO;
     }
+    // delete objects
     NSArray *allValues = processedObjects.allValues;
     for (NSObject *targetObject in allValues) {
         [self deleteFrom:targetObject db:db];
         if ([self hadError:db error:error]) {
             return NO;
         }
-        [self deleteRelationshipObjectsWithObject:targetObject relationshipRuntime:relationshipRuntime db:db];
+        [self deleteRelationshipObjectsWithFromObject:targetObject relationshipRuntime:relationshipRuntime db:db];
         if ([self hadError:db error:error]) {
             return NO;
         }
     }
     
+    // referencing objects
+    NSMutableDictionary *referencingObjects = [NSMutableDictionary dictionary];
+    for (NSObject *targetObject in allValues) {
+        NSMutableArray *relationshipObjects = [self relationshipObjectsWithToObject:targetObject relationshipRuntime:relationshipRuntime db:db];
+        if ([self hadError:db error:error]) {
+            return NO;
+        }
+        for (BZObjectStoreRelationshipModel *relationshipObject in relationshipObjects) {
+            Class targetClazz = NSClassFromString(relationshipObject.fromClassName);
+            if (targetClazz) {
+                BZObjectStoreRuntime *runtime = [self runtimeWithClazz:targetClazz db:db error:error];
+                if ([self hadError:db error:error]) {
+                    return NO;
+                }
+                if (runtime.isObjectClazz && runtime.cascadeNotification) {
+                    NSObject *referencingObject = [runtime object];
+                    referencingObject.OSRuntime = runtime;
+                    referencingObject.rowid = relationshipObject.fromRowid;
+                    [referencingObjects setValue:referencingObject forKey:referencingObject.OSHashForSave];
+                }
+            }
+        }
+        [self deleteRelationshipObjectsWithToObject:targetObject relationshipRuntime:relationshipRuntime db:db];
+        if ([self hadError:db error:error]) {
+            return NO;
+        }
+    }
+    
+    // delete events and notifications
     for (NSObject *targetObject in allValues) {
         if (targetObject.OSRuntime.modelDidDelete) {
             if ([targetObject respondsToSelector:@selector(OSModelDidDelete)]) {
@@ -868,7 +899,8 @@
             }
         }
     }
-
+    
+    // delete cascade notifications
     for (NSObject *targetObject in objects) {
         if (!self.disableNotifications) {
             if (targetObject.OSRuntime.notification && !targetObject.OSRuntime.cascadeNotification) {
@@ -877,9 +909,20 @@
         }
     }
     
+    // save cascade notifications
+    for (NSObject *targetObject in referencingObjects.allValues) {
+        NSObject *latestObject = [self refreshObjectSub:targetObject db:db error:error];
+        if ([self hadError:db error:error]) {
+            return NO;
+        }
+        [BZObjectStoreNotificationCenter postNotificateForObject:latestObject deleted:NO];
+    }
+    
+    
     for (NSObject *targetObject in allValues) {
         targetObject.rowid = nil;
     }
+
     
     return YES;
 }
