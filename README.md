@@ -1,6 +1,7 @@
 BZObjectStore
 =============
 [![Build Status](https://travis-ci.org/expensivegasprices/BZObjectStore.svg?branch=master)](https://travis-ci.org/expensivegasprices/BZObjectStore)
+[![Coverage Status](https://coveralls.io/repos/expensivegasprices/BZObjectStore/badge.png?branch=master)](https://coveralls.io/r/expensivegasprices/BZObjectStore?branch=master)
 
 BZObjectStore automatically stores your models to SQLite tables and provides useful options to your application.
 
