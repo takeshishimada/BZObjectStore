@@ -24,10 +24,6 @@
 #import "MANotebookTableViewCell.h"
 #import "MANotebook.h"
 
-@interface MANotebookTableViewCell ()
-@property (nonatomic,strong) BZObjectStoreNotificationObserver *observer;
-@end
-
 @implementation MANotebookTableViewCell
 
 + (UINib*)nib
@@ -38,14 +34,35 @@
 
 - (void)showNotebook:(MANotebook*)notebook
 {
-    self.observer = [notebook observerWithTarget:self completionBlock:^(MANotebookTableViewCell *weakSelf,MANotebook  *notebook) {
-        if (notebook) {
-            weakSelf.titleLabel.text = notebook.title;
-            weakSelf.countOfNotesLabel.text = [NSString stringWithFormat:@"%ld notes",(long)notebook.notes.count];
-            weakSelf.lastUpdatedTimeLabel.text = [notebook.updatedAt description];
-        }
-    } immediately:YES];
+    [notebook addOSObserver:self selector:@selector(savedNotebook:latest:) notificationType:BZObjectStoreNotificationTypeSaved];
+    [notebook addOSObserver:self selector:@selector(deletedNotebook:) notificationType:BZObjectStoreNotificationTypeDeleted];
+    
+    [self savedNotebook:nil latest:notebook];
 }
+
+- (void)savedNotebook:(MANotebook*)current latest:(MANotebook*)latest
+{
+    self.titleLabel.text = latest.title;
+    self.countOfNotesLabel.text = [NSString stringWithFormat:@"%ld notes",(long)latest.notes.count];
+    self.lastUpdatedTimeLabel.text = [self ISO8601FormatString:latest.updatedAt];
+}
+
+- (void)deletedNotebook:(MANotebook*)current
+{
+    self.titleLabel.text = @"";
+    self.countOfNotesLabel.text = @"";
+    self.lastUpdatedTimeLabel.text = @"";
+}
+
+
+- (NSString*)ISO8601FormatString:(NSDate*)date
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSSZZZ"];
+    NSString *string = [formatter stringFromDate:date];
+    return string;
+}
+
 
 @end
 

@@ -26,76 +26,71 @@
 #import "MANote.h"
 #import "MANotebook.h"
 #import <GHMarkdownParser.h>
-#import <BZObjectStoreNotificationCenter.h>
-#import <BZObjectStoreNotificationObserver.h>
+#import "MAGarbageBox.h"
 
 @interface MANoteViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
-@property (strong, nonatomic) BZObjectStoreNotificationObserver *observer;
+@property (readonly,nonatomic) MAGarbageBox *garbageBox;
 @end
 
 @implementation MANoteViewController
+
+- (MAGarbageBox*)garbageBox
+{
+    return [MAGarbageBox garbageBox];
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 
-    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc]
-                                   initWithTitle:@"Delete"
-                                   style:UIBarButtonItemStyleBordered
-                                   target:self
-                                   action:@selector(deleteNote:)];
-    
+    UIBarButtonItem *deleteButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemTrash target:self action:@selector(deleteNote:)];
     deleteButton.enabled = NO;
     
-    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemEdit target:self action:@selector(editNote:)];
+    UIBarButtonItem *editButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCompose target:self action:@selector(editNote:)];
     editButton.enabled = NO;
 
     self.navigationItem.rightBarButtonItems = @[editButton,deleteButton];
+    
+    [self.note addOSObserver:self selector:@selector(savedNote:latest:) notificationType:BZObjectStoreNotificationTypeSaved];
+    
+    [self.note addOSObserver:self selector:@selector(deletedNote:) notificationType:BZObjectStoreNotificationTypeDeleted];
 
     [self show];
 }
 
 - (void)show
 {
-    if (self.note) {
-        
-        self.observer = [BZObjectStoreNotificationCenter observerForObject:self.note target:self completionBlock:^(MANoteViewController *weakSelf, MANote *note) {
-            
-            if (note) {
-                // saved
-                weakSelf.title = note.title;
-                for (UIBarButtonItem *item in weakSelf.navigationItem.rightBarButtonItems) {
-                    item.enabled = YES;
-                }
-                
-                GHMarkdownParser *parser = [[GHMarkdownParser alloc] init];
-                parser.options = kGHMarkdownAutoLink;
-                parser.githubFlavored = YES;
-                NSString *html = [parser HTMLStringFromMarkdownString:note.contentAsMarkdown];
-                
-                weakSelf.webView.scalesPageToFit = YES;
-                [weakSelf.webView loadData:[html dataUsingEncoding:NSUTF8StringEncoding] MIMEType:@"text/html"textEncodingName:@"utf-8"baseURL:nil];
-                
-            } else {
-                // removed
-                weakSelf.title = @"note";
-                for (UIBarButtonItem *item in weakSelf.navigationItem.rightBarButtonItems) {
-                    item.enabled = NO;
-                }
-                [weakSelf.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
+    [self savedNote:nil latest:self.note];
+}
 
-                if ([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPad) {
-                    [weakSelf.navigationController popViewControllerAnimated:YES];
-                }
-
-            }
-
-        } immediately:YES];
-        
-        
+- (void)savedNote:(MANote*)current latest:(MANote*)latest
+{
+    self.title = latest.title;
+    for (UIBarButtonItem *item in self.navigationItem.rightBarButtonItems) {
+        item.enabled = YES;
     }
+    GHMarkdownParser *parser = [[GHMarkdownParser alloc] init];
+    parser.options = kGHMarkdownAutoLink;
+    parser.githubFlavored = YES;
+    NSString *html = [parser HTMLStringFromMarkdownString:latest.contentAsMarkdown];
+    self.webView.scalesPageToFit = YES;
+    [self.webView loadData:[html dataUsingEncoding:NSUTF8StringEncoding] MIMEType:@"text/html"textEncodingName:@"utf-8"baseURL:nil];
     
+    self.note = latest;
+}
+
+- (void)deletedNote:(MANote*)current
+{
+    self.title = @"note";
+    for (UIBarButtonItem *item in self.navigationItem.rightBarButtonItems) {
+        item.enabled = NO;
+    }
+    [self.webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:@"about:blank"]]];
+    
+    if ([[UIDevice currentDevice] userInterfaceIdiom] != UIUserInterfaceIdiomPad) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }
     if (self.masterPopoverController != nil) {
         [self.masterPopoverController dismissPopoverAnimated:YES];
     }
@@ -113,7 +108,7 @@
 - (void)deleteNote:(id)sender
 {
     [self.notebook removeNote:self.note];
-    
+    [self.garbageBox addNote:self.note];
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender

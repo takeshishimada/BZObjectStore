@@ -23,11 +23,37 @@
 
 #import "MAJSONModel.h"
 
+@implementation JSONValueTransformer (ISO8601)
+
+- (NSDate *)NSDateFromNSString:(NSString*)string {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZZZ"];
+    NSDate *date = [formatter dateFromString:string];
+    return date;
+}
+
+- (NSString *)JSONObjectFromNSDate:(NSDate *)date {
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd'T'HH:mm:ss.SSSZZZ"];
+    NSString *string = [formatter stringFromDate:date];
+    return string;
+}
+
+@end
+
 @implementation MAJSONModel
 
 + (BOOL)propertyIsOptional:(NSString *)propertyName
 {
     return YES;
+}
+
++ (BOOL)propertyIsIgnored:(NSString*)propertyName
+{
+    if ([propertyName isEqualToString:@"synchronized"]) {
+        return YES;
+    }
+    return NO;
 }
 
 @end

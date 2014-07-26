@@ -25,6 +25,10 @@
 #import "MANoteTableViewController.h"
 #import "MANotebookTableViewCell.h"
 
+@interface MANotebookTableViewController()
+@property (nonatomic,assign) BOOL stopObserving;
+@end
+
 @implementation MANotebookTableViewController
 
 - (void)viewDidLoad
@@ -32,19 +36,29 @@
     [super viewDidLoad];
 
     [self.tableView registerNib:[MANotebookTableViewCell nib] forCellReuseIdentifier:NSStringFromClass([MANotebookTableViewCell class])];
+
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(add:)];
+    self.navigationItem.rightBarButtonItems = @[addButton];
+    
+    [self.bookshelf addOSObserver:self selector:@selector(savedBookshelf:latest:) notificationType:BZObjectStoreNotificationTypeSaved];
+    
+}
+
+- (void)savedBookshelf:(MABookshelf*)current latest:(MABookshelf*)latest
+{
+    if (self.stopObserving) {
+        return;
+    }
+    [self.tableView reloadData];
 }
 
 - (void)add:(id)sender
 {
+    self.stopObserving = YES;
     [self.bookshelf addNotebook];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-}
-
-- (void)removeNotebook:(MANotebook*)notebook
-{
-    [self.bookshelf removeNotebook:notebook];
-    [self.garbageBox addNotebook:notebook];
+    self.stopObserving = NO;
 }
 
 #pragma mark - Table View
@@ -77,9 +91,12 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
+        self.stopObserving = YES;
         MANotebook *notebook = self.bookshelf.notebooks[indexPath.row];
-        [self removeNotebook:notebook];
+        [self.bookshelf removeNotebook:notebook];
+        [self.garbageBox addNotebook:notebook];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        self.stopObserving = NO;
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
     }
 }

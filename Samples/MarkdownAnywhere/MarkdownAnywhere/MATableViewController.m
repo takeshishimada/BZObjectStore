@@ -33,19 +33,6 @@
     [super awakeFromNib];
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-    
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(add:)];
-    self.navigationItem.rightBarButtonItem = addButton;
-}
-
-- (void)add:(id)sender
-{
-    
-}
-
 - (MABookshelf*)bookshelf
 {
     return [MABookshelf bookshelf];

@@ -23,8 +23,10 @@
 
 #import "MANotebook.h"
 #import "MANote.h"
-#import "MAGarbageBox.h"
 #import "MABookshelf.h"
+
+@interface NSMutableArray(JSON) <MANote>
+@end
 
 @implementation MANotebook
 
@@ -37,7 +39,6 @@
         self.title = [NSString stringWithFormat:@"New notebook (%ld)",(long)bookshelf.notebooks.count + 1];
         self.notes = [NSMutableArray array];
         self.synchronized = NO;
-        self.bookshelf = bookshelf;
     }
     return self;
 }
@@ -58,10 +59,15 @@
 
 - (BOOL)save
 {
-    self.updatedAt = [NSDate date];
-    if (self.synchronized) {
-        self.synchronized = NO;
+    return [self save:NO];
+}
+
+- (BOOL)save:(BOOL)synchronized
+{
+    if (!synchronized) {
+        self.updatedAt = [NSDate date];
     }
+    self.synchronized = synchronized;
     return [super save];
 }
 

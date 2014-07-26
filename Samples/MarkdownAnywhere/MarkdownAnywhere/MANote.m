@@ -38,21 +38,42 @@
         NSData *data = [NSData dataWithContentsOfFile:path];
         self.contentAsMarkdown = [[NSString alloc] initWithData:data
                                          encoding:NSShiftJISStringEncoding];
-        self.notebook = notebook;
         self.synchronized = NO;
+        self.notebook = notebook;
     }
     return self;
+}
+
+- (instancetype)initWithNotebook:(MANotebook*)notebook dictionary:(NSDictionary*)dictionary error:(NSError**)error
+{
+    if (self = [super initWithDictionary:dictionary error:error]) {
+        self.notebook = notebook;
+    }
+    return self;
+}
+
++ (NSMutableArray*)arrayOfDictionariesFromModels:(NSArray*)array notebook:(MANotebook*)notebook error:(NSError**)error
+{
+    NSMutableArray *resutls = [super arrayOfModelsFromDictionaries:array error:error];
+    for (MANote *note in resutls) {
+        note.notebook = notebook;
+    }
+    return resutls;
 }
 
 
 - (BOOL)save
 {
-    self.updatedAt = [NSDate date];
-    if (self.synchronized) {
-        self.synchronized = NO;
-    }
-    return [super save];
+    return [self save:NO];
 }
 
+- (BOOL)save:(BOOL)synchronized
+{
+    if (!synchronized) {
+        self.updatedAt = [NSDate date];
+    }
+    self.synchronized = synchronized;
+    return [super save];
+}
 
 @end

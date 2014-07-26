@@ -24,7 +24,6 @@
 #import "MAJSONModel.h"
 #import <BZObjectStoreModelInterface.h>
 #import <BZObjectStoreNotificationCenter.h>
-#import <BZObjectStoreNotificationObserver.h>
 
 @class MANotebook;
 @class MANote;

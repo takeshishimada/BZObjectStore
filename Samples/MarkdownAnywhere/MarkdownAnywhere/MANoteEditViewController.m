@@ -31,7 +31,6 @@
     [super viewDidLoad];
 
     self.title = self.note.title;
-    self.titleTextField.text = self.note.title;
     self.markdownTextView.text = self.note.contentAsMarkdown;
     
     UIBarButtonItem *cancelButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemCancel target:self action:@selector(cancelEditing:)];
@@ -50,7 +49,6 @@
 
 - (void)saveNote:(id)sender
 {
-    self.note.title = self.titleTextField.text;
     self.note.contentAsMarkdown = self.markdownTextView.text;
     [self.note save];
     [self.navigationController dismissViewControllerAnimated:YES completion:^{

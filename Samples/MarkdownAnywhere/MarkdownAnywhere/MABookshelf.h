@@ -24,16 +24,12 @@
 #import "MAJSONModel.h"
 #import <BZObjectStoreModelInterface.h>
 #import <BZObjectStoreNotificationCenter.h>
-#import <BZObjectStoreNotificationObserver.h>
-
-#import "MAGarbageBox.h"
-#import "MABookshelf.h"
 #import "MANotebook.h"
 #import "MANote.h"
 
-@interface MABookshelf : MAJSONModel<OSIgnoreSuperClass>
+@interface MABookshelf : MAJSONModel<OSIgnoreSuperClass,OSNotification>
 + (instancetype)bookshelf;
-@property (nonatomic,strong) NSMutableArray<OSWeakReferenceAttribute> *notebooks;
+@property (nonatomic,strong) NSMutableArray *notebooks;
 - (MANotebook*)addNotebook;
 - (void)removeNotebook:(MANotebook*)notebook;
 @end

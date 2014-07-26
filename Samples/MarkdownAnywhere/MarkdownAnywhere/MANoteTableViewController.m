@@ -26,8 +26,8 @@
 #import "MABookshelf.h"
 #import "MANoteViewController.h"
 
-@interface MANoteTableViewController()
-@property (nonatomic,strong) BZObjectStoreNotificationObserver *observer;
+@interface MANoteTableViewController ()
+@property (nonatomic,assign) BOOL stopObserving;
 @end
 
 @implementation MANoteTableViewController
@@ -38,27 +38,44 @@
 
     self.title = self.notebook.title;
 
+    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(add:)];
+    self.navigationItem.rightBarButtonItems = @[addButton];
+
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         self.noteViewController = (MANoteViewController*)[[self.splitViewController.viewControllers lastObject] topViewController];
     }
-    
-    self.observer = [self.notebook observerWithTarget:self completionBlock:^(MANoteTableViewController *weakSelf, MANotebook *notebook) {
-        if (notebook) {
-            weakSelf.notebook = notebook;
-            [weakSelf.tableView reloadData];
-        }
-    } immediately:NO];
-    
+
     [self.tableView registerNib:[MANoteTableViewCell nib] forCellReuseIdentifier:NSStringFromClass([MANoteTableViewCell class])];
+
+    [self.notebook addOSObserver:self selector:@selector(savedNotebook:latest:) notificationType:BZObjectStoreNotificationTypeSaved];
+
+    [self.notebook addOSObserver:self selector:@selector(deletedNotebook:) notificationType:BZObjectStoreNotificationTypeDeleted];
+}
+
+- (void)savedNotebook:(MANotebook*)current latest:(MANotebook*)latest
+{
+    if (self.stopObserving) {
+        return;
+    }
+    self.notebook = latest;
+    [self.tableView reloadData];
+}
+
+- (void)deletedNotebook:(MANotebook*)current
+{
+    if (self.stopObserving) {
+        return;
+    }
+    [self.navigationController popViewControllerAnimated:YES];
 }
 
 - (void)add:(id)sender
 {
-    self.observer.enabled = NO;
+    self.stopObserving = YES;
     [self.notebook addNote];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-    self.observer.enabled = YES;
+    self.stopObserving = NO;
 }
 
 #pragma mark - Table View
@@ -89,12 +106,12 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        self.observer.enabled = NO;
+        self.stopObserving = YES;
         MANote *note = self.notebook.notes[indexPath.row];
         [self.notebook removeNote:note];
         [self.garbageBox addNote:note];
         [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-        self.observer.enabled = YES;
+        self.stopObserving = NO;
     } else if (editingStyle == UITableViewCellEditingStyleInsert) {
     }
 }

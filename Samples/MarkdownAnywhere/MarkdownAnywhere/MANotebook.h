@@ -22,23 +22,24 @@
 // THE SOFTWARE.
 
 #import "MAJSONModel.h"
+#import "MANote.h"
 #import <BZObjectStoreModelInterface.h>
-#import <BZObjectStoreNotificationCenter.h>
-#import <BZObjectStoreNotificationObserver.h>
 
 @class MABookshelf;
-@class MANotebook;
-@class MANote;
 
-@interface MANotebook : MAJSONModel<OSIgnoreSuperClass,OSNotification>
+@protocol MANotebook
+@end
+
+@interface MANotebook : MAJSONModel<OSIgnoreSuperClass,OSNotification,OSUpdatePerformance>
 - (instancetype)initWithBookshelf:(MABookshelf*)bookshelf;
 @property (nonatomic,strong) NSNumber<OSIdenticalAttribute> *objectId;
 @property (nonatomic,strong) NSDate<OSOnceUpdateAttribute> *createdAt;
 @property (nonatomic,strong) NSDate *updatedAt;
-@property (nonatomic,assign) BOOL synchronized;
 @property (nonatomic,strong) NSString *title;
-@property (nonatomic,strong) NSMutableArray<OSNotUpdateIfValueIsNullAttribute> *notes;
-@property (nonatomic,weak) MABookshelf<Ignore> *bookshelf;
+@property (nonatomic,strong) NSMutableArray<MANote> *notes;
+@property (nonatomic,assign) BOOL synchronized;
 - (MANote*)addNote;
 - (void)removeNote:(MANote*)note;
+- (BOOL)save;
+- (BOOL)save:(BOOL)synchronized;
 @end

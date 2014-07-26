@@ -23,19 +23,29 @@
 
 #import "MAAppDelegate.h"
 #import <BZActiveRecord.h>
+#import <AFNetworking.h>
+#import <AFNetworkActivityLogger.h>
+#import "MANotebook.h"
+#import "MANote.h"
 
 @implementation MAAppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    NSLog(@"test1");
-    
     // setup activerecord database
     NSError *error = nil;
     BZObjectStore *os = [BZObjectStore openWithPath:@"MarkdownAnywhere.sqlite" error:&error];
     [BZActiveRecord setupWithObjectStore:os];
+
+    [[AFNetworkActivityLogger sharedLogger] startLogging];
+    [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelDebug];
+    [MANotebook registClass:nil];
+    [MANote registClass:nil];
     
-    NSLog(@"test2");
+    NSURLCache *sharedCache = [[NSURLCache alloc] initWithMemoryCapacity:0
+                                                            diskCapacity:0
+                                                                diskPath:nil];
+    [NSURLCache setSharedURLCache:sharedCache];
 
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
@@ -43,6 +53,7 @@
         UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
         splitViewController.delegate = (id)navigationController.topViewController;
     }
+
     return YES;
 }
 							

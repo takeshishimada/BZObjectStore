@@ -24,10 +24,6 @@
 #import "MANoteTableViewCell.h"
 #import "MANote.h"
 
-@interface MANoteTableViewCell ()
-@property (nonatomic,strong) BZObjectStoreNotificationObserver *observer;
-@end
-
 @implementation MANoteTableViewCell
 
 + (UINib*)nib
@@ -38,12 +34,30 @@
 
 - (void)showNote:(MANote*)note
 {
-    self.observer = [note observerWithTarget:self completionBlock:^(MANoteTableViewCell *weakSelf,MANote *note) {
-        if (note) {
-            weakSelf.titleLabel.text = note.title;
-            weakSelf.lastUpdatedTimeLabel.text = [note.updatedAt description];
-        }
-    } immediately:YES];
+    [note addOSObserver:self selector:@selector(savedNote:latest:) notificationType:BZObjectStoreNotificationTypeSaved];
+    [note addOSObserver:self selector:@selector(deletedNote:) notificationType:BZObjectStoreNotificationTypeDeleted];
+    
+    [self savedNote:nil latest:note];
+}
+
+- (void)savedNote:(MANote*)current latest:(MANote*)latest
+{
+    self.titleLabel.text = latest.title;
+    self.lastUpdatedTimeLabel.text = [self ISO8601FormatString:latest.updatedAt];
+}
+
+- (void)deletedNote:(MANote*)current
+{
+    self.titleLabel.text = @"";
+    self.lastUpdatedTimeLabel.text = @"";
+}
+
+- (NSString*)ISO8601FormatString:(NSDate*)date
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"yyyy-MM-dd HH:mm:ss.SSSZZZ"];
+    NSString *string = [formatter stringFromDate:date];
+    return string;
 }
 
 @end

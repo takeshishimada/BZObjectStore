@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		60275DC7BB924F4CBFA06570 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = D4EFD3523A924363822DE75A /* libPods.a */; };
 		721B2D971965A0C1003DDB79 /* MAJSONModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 721B2D961965A0C1003DDB79 /* MAJSONModel.m */; };
+		723CD7191975695B006797F4 /* MAGarbageBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 723CD7181975695B006797F4 /* MAGarbageBox.m */; };
 		72465C281963E55F007C77A1 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72465C271963E55F007C77A1 /* Foundation.framework */; };
 		72465C2A1963E55F007C77A1 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72465C291963E55F007C77A1 /* CoreGraphics.framework */; };
 		72465C2C1963E55F007C77A1 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 72465C2B1963E55F007C77A1 /* UIKit.framework */; };
@@ -26,7 +27,6 @@
 		72465C571963E55F007C77A1 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 72465C551963E55F007C77A1 /* InfoPlist.strings */; };
 		72465C591963E55F007C77A1 /* MarkdownAnywhereTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 72465C581963E55F007C77A1 /* MarkdownAnywhereTests.m */; };
 		72465C6D1963E58E007C77A1 /* MABookshelf.m in Sources */ = {isa = PBXBuildFile; fileRef = 72465C641963E58E007C77A1 /* MABookshelf.m */; };
-		72465C6E1963E58E007C77A1 /* MAGarbageBox.m in Sources */ = {isa = PBXBuildFile; fileRef = 72465C661963E58E007C77A1 /* MAGarbageBox.m */; };
 		72465C6F1963E58E007C77A1 /* MANote.m in Sources */ = {isa = PBXBuildFile; fileRef = 72465C681963E58E007C77A1 /* MANote.m */; };
 		72465C701963E58E007C77A1 /* MANotebook.m in Sources */ = {isa = PBXBuildFile; fileRef = 72465C6A1963E58E007C77A1 /* MANotebook.m */; };
 		72465C781963FF0C007C77A1 /* MANoteTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 72465C771963FF0C007C77A1 /* MANoteTableViewController.m */; };
@@ -53,6 +53,8 @@
 		031EAD2643EF4D7E9FC96B84 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		721B2D951965A0C1003DDB79 /* MAJSONModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAJSONModel.h; sourceTree = "<group>"; };
 		721B2D961965A0C1003DDB79 /* MAJSONModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAJSONModel.m; sourceTree = "<group>"; };
+		723CD7171975695B006797F4 /* MAGarbageBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAGarbageBox.h; sourceTree = "<group>"; };
+		723CD7181975695B006797F4 /* MAGarbageBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGarbageBox.m; sourceTree = "<group>"; };
 		72465C241963E55F007C77A1 /* MarkdownAnywhere.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MarkdownAnywhere.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		72465C271963E55F007C77A1 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		72465C291963E55F007C77A1 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -77,8 +79,6 @@
 		72465C581963E55F007C77A1 /* MarkdownAnywhereTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MarkdownAnywhereTests.m; sourceTree = "<group>"; };
 		72465C631963E58E007C77A1 /* MABookshelf.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MABookshelf.h; sourceTree = "<group>"; };
 		72465C641963E58E007C77A1 /* MABookshelf.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MABookshelf.m; sourceTree = "<group>"; };
-		72465C651963E58E007C77A1 /* MAGarbageBox.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MAGarbageBox.h; sourceTree = "<group>"; };
-		72465C661963E58E007C77A1 /* MAGarbageBox.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MAGarbageBox.m; sourceTree = "<group>"; };
 		72465C671963E58E007C77A1 /* MANote.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MANote.h; sourceTree = "<group>"; };
 		72465C681963E58E007C77A1 /* MANote.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MANote.m; sourceTree = "<group>"; };
 		72465C691963E58E007C77A1 /* MANotebook.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MANotebook.h; sourceTree = "<group>"; };
@@ -124,6 +124,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		723CD71B19759DBD006797F4 /* Entity */ = {
+			isa = PBXGroup;
+			children = (
+				72465C631963E58E007C77A1 /* MABookshelf.h */,
+				72465C641963E58E007C77A1 /* MABookshelf.m */,
+				723CD7171975695B006797F4 /* MAGarbageBox.h */,
+				723CD7181975695B006797F4 /* MAGarbageBox.m */,
+				72465C691963E58E007C77A1 /* MANotebook.h */,
+				72465C6A1963E58E007C77A1 /* MANotebook.m */,
+				72465C671963E58E007C77A1 /* MANote.h */,
+				72465C681963E58E007C77A1 /* MANote.m */,
+				721B2D951965A0C1003DDB79 /* MAJSONModel.h */,
+				721B2D961965A0C1003DDB79 /* MAJSONModel.m */,
+			);
+			name = Entity;
+			sourceTree = "<group>";
+		};
 		72465C1B1963E55F007C77A1 = {
 			isa = PBXGroup;
 			children = (
@@ -202,16 +219,7 @@
 		72465C621963E566007C77A1 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				721B2D951965A0C1003DDB79 /* MAJSONModel.h */,
-				721B2D961965A0C1003DDB79 /* MAJSONModel.m */,
-				72465C651963E58E007C77A1 /* MAGarbageBox.h */,
-				72465C661963E58E007C77A1 /* MAGarbageBox.m */,
-				72465C631963E58E007C77A1 /* MABookshelf.h */,
-				72465C641963E58E007C77A1 /* MABookshelf.m */,
-				72465C691963E58E007C77A1 /* MANotebook.h */,
-				72465C6A1963E58E007C77A1 /* MANotebook.m */,
-				72465C671963E58E007C77A1 /* MANote.h */,
-				72465C681963E58E007C77A1 /* MANote.m */,
+				723CD71B19759DBD006797F4 /* Entity */,
 			);
 			name = Models;
 			sourceTree = "<group>";
@@ -221,7 +229,7 @@
 			children = (
 				72465C391963E55F007C77A1 /* Main_iPhone.storyboard */,
 				72465C3C1963E55F007C77A1 /* Main_iPad.storyboard */,
-				72CBC7821966D439009B9399 /* TableViewCells */,
+				72CBC7821966D439009B9399 /* Cells */,
 				72CBC7811966D412009B9399 /* ViewControllers */,
 			);
 			name = Views;
@@ -244,7 +252,7 @@
 			name = ViewControllers;
 			sourceTree = "<group>";
 		};
-		72CBC7821966D439009B9399 /* TableViewCells */ = {
+		72CBC7821966D439009B9399 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
 				72465C7C19640479007C77A1 /* MANotebookTableViewCell.h */,
@@ -254,7 +262,7 @@
 				72465C7A196400A9007C77A1 /* MANoteTableViewCell.m */,
 				72465D5F1964410C007C77A1 /* MANoteTableViewCell.xib */,
 			);
-			name = TableViewCells;
+			name = Cells;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -395,7 +403,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				72465C381963E55F007C77A1 /* MAAppDelegate.m in Sources */,
-				72465C6E1963E58E007C77A1 /* MAGarbageBox.m in Sources */,
 				72465C781963FF0C007C77A1 /* MANoteTableViewController.m in Sources */,
 				72465C6F1963E58E007C77A1 /* MANote.m in Sources */,
 				72465C411963E55F007C77A1 /* MANotebookTableViewController.m in Sources */,
@@ -406,6 +413,7 @@
 				72CBC7851966D47D009B9399 /* MATableViewController.m in Sources */,
 				72465C7B196400A9007C77A1 /* MANoteTableViewCell.m in Sources */,
 				721B2D971965A0C1003DDB79 /* MAJSONModel.m in Sources */,
+				723CD7191975695B006797F4 /* MAGarbageBox.m in Sources */,
 				72465C7E19640479007C77A1 /* MANotebookTableViewCell.m in Sources */,
 				72465C441963E55F007C77A1 /* MANoteEditViewController.m in Sources */,
 			);

@@ -24,6 +24,10 @@
 #import "JSONModel.h"
 #import <NSObject+ActiveRecord.h>
 
+
+@interface JSONValueTransformer (ISO8601)
+@end
+
 @interface MAJSONModel : JSONModel
 
 @end

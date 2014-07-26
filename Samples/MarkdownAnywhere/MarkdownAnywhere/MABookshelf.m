@@ -22,11 +22,7 @@
 // THE SOFTWARE.
 
 #import "MABookshelf.h"
-#import "MAGarbageBox.h"
 #import "MABookshelf.h"
-#import "MANotebook.h"
-#import "MANote.h"
-#import <NSObject+ActiveRecord.h>
 
 @implementation MABookshelf
 
@@ -52,6 +48,8 @@
     return self;
 }
 
+#pragma mark public mehtods
+
 - (MANotebook*)addNotebook
 {
     MANotebook *notebook = [[MANotebook alloc]initWithBookshelf:self];
@@ -65,5 +63,7 @@
     [self.notebooks removeObject:notebook];
     [self save];
 }
+
+
 
 @end

@@ -23,21 +23,26 @@
 
 #import "MAJSONModel.h"
 #import <BZObjectStoreModelInterface.h>
-#import <BZObjectStoreNotificationCenter.h>
-#import <BZObjectStoreNotificationObserver.h>
 
 @class MAShelfModel;
 @class MANotebook;
 @class MANote;
 
-@interface MANote : MAJSONModel<OSIgnoreSuperClass,OSNotification>
+@protocol MANote
+@end
+
+@interface MANote : MAJSONModel<OSIgnoreSuperClass,OSNotification,OSUpdatePerformance>
 - (instancetype)initWithNotebook:(MANotebook*)notebook;
+- (instancetype)initWithNotebook:(MANotebook*)notebook dictionary:(NSDictionary*)dictionary error:(NSError**)error;
++ (NSMutableArray*)arrayOfDictionariesFromModels:(NSArray*)array notebook:(MANotebook*)notebook error:(NSError**)error;
 @property (nonatomic,strong) NSNumber<OSIdenticalAttribute> *objectId;
 @property (nonatomic,strong) NSDate<OSOnceUpdateAttribute> *createdAt;
 @property (nonatomic,strong) NSDate *updatedAt;
-@property (nonatomic,assign) BOOL synchronized;
 @property (nonatomic,strong) NSString *title;
 @property (nonatomic,strong) NSString *contentAsMarkdown;
+@property (nonatomic,assign) BOOL synchronized;
 @property (nonatomic,weak) MANotebook<Ignore> *notebook;
 - (BOOL)save;
+- (BOOL)save:(BOOL)synchronized;
 @end
+

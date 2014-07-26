@@ -23,6 +23,7 @@
 
 #import <UIKit/UIKit.h>
 #import "MABookshelf.h"
+#import "MAGarbageBox.h"
 
 @interface MATableViewController : UITableViewController
 @property (nonatomic,readonly) MABookshelf *bookshelf;
