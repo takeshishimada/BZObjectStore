@@ -9,4 +9,4 @@ script:
   - make test
 
 after_success:
-  - coveralls -extension ".m"　-E ".*/pods/.*"
+  - coveralls -e Pods -e Tests
