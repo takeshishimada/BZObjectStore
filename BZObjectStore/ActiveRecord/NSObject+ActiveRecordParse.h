@@ -77,6 +77,6 @@
 + (void)OSRegisterClassInBackground:(Class)clazz completionBlock:(void(^)(NSError *error))completionBlock;
 + (void)OSUnRegisterClassInBackground:(Class)clazz completionBlock:(void(^)(NSError *error))completionBlock;
 
-- (BZObjectStoreNotificationObserver*)OSObserverWithTarget:(id)target completionBlock:(void (^)(id target,id object))completionBlock immediately:(BOOL)immediately;
+- (void)OSAddObserver:(id)target selector:(SEL)selector notificationType:(BZObjectStoreNotificationType)notificationType;
 
 @end

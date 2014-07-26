@@ -266,16 +266,24 @@
     BZNotificationModel *model = [[BZNotificationModel alloc]init];
     model.objectId = @"test";
 
-    [BZObjectStoreNotificationCenter observerForObject:model target:self completionBlock:^(id target, BZNotificationModel *object) {
-        
-        
-        
-    } immediately:NO];
+    BZObjectStoreNotificationCenter *center = [BZObjectStoreNotificationCenter defaultCenter];
+    [center addOSObserver:self selector:@selector(saved:latest:) object:model notificationType:BZObjectStoreNotificationTypeSaved];
+    
+    [center addOSObserver:self selector:@selector(deleted:) object:model notificationType:BZObjectStoreNotificationTypeDeleted];
     
     
     [os saveObject:model error:nil];
     [os deleteObject:model error:nil];
-    
+}
+
+- (void)saved:(NSObject*)object latest:(NSObject*)latest
+{
+    NSLog(@"saved");
+}
+
+- (void)deleted:(NSObject*)object
+{
+    NSLog(@"deleted");
 }
 
 - (void)testBZVarietyValuesModel:(BZObjectStore*)os

@@ -21,13 +21,34 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
 #import "BZObjectStoreObserver.h"
+#import "BZObjectStoreNotificationCenter.h"
+#import "NSObject+BZObjectStore.h"
 
-@interface BZObjectStoreNotificationCenter : NSNotificationCenter
+@implementation BZObjectStoreObserver
 
-- (void)postOSNotification:(NSObject*)object notificationType:(BZObjectStoreNotificationType)notificationType;
+- (void)received:(NSNotification*)notification
+{
+    NSDictionary *dic = notification.userInfo;
+    NSObject *object = [dic valueForKey:@"object"];
+    if (object.rowid && self.object.rowid) {
+        if ([object.rowid isEqualToNumber:self.object.rowid]) {
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+            if (self.notificationType == BZObjectStoreNotificationTypeSaved) {
+                [self.target performSelector:self.selector withObject:self.object withObject:object];
+            } else if (self.notificationType == BZObjectStoreNotificationTypeDeleted) {
+                [self.target performSelector:self.selector withObject:object];
+            }
+#pragma clang diagnostic pop
+        }
+    }
+}
 
-- (void)addOSObserver:(id)target selector:(SEL)selector object:(NSObject*)object notificationType:(BZObjectStoreNotificationType)notificationType;
+- (void)dealloc
+{
+    BZObjectStoreNotificationCenter *center = [BZObjectStoreNotificationCenter defaultCenter];
+    [center removeObserver:self];
+}
 
 @end

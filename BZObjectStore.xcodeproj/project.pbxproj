@@ -150,8 +150,9 @@
 		72C2685118F9FC400070C2E5 /* BZOSIdenticalModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2685018F9FC400070C2E5 /* BZOSIdenticalModel.m */; };
 		72C2685418F9FDF20070C2E5 /* BZOSIdenticalItemModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2685318F9FDF20070C2E5 /* BZOSIdenticalItemModel.m */; };
 		72C2685818FA09A50070C2E5 /* BZWeakPropertyModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C2685718FA09A50070C2E5 /* BZWeakPropertyModel.m */; };
+		72C688391983AE23004940D5 /* BZObjectStoreObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C688381983AE23004940D5 /* BZObjectStoreObserver.m */; };
+		72C6883F1983C326004940D5 /* NSObject+BZObjectStoreObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 72C6883E1983C326004940D5 /* NSObject+BZObjectStoreObserver.m */; };
 		72CBC77F1966CD02009B9399 /* BZObjectStoreNotificationCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 72CBC77C1966CD02009B9399 /* BZObjectStoreNotificationCenter.m */; };
-		72CBC7801966CD02009B9399 /* BZObjectStoreNotificationObserver.m in Sources */ = {isa = PBXBuildFile; fileRef = 72CBC77E1966CD02009B9399 /* BZObjectStoreNotificationObserver.m */; };
 		72EC847B190D5669001AE1F7 /* BZTransactionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72EC847A190D5669001AE1F7 /* BZTransactionModel.m */; };
 		72ED0D1A193AA2E100045830 /* BZObjectStoreMigration.m in Sources */ = {isa = PBXBuildFile; fileRef = 72ED0D19193AA2E100045830 /* BZObjectStoreMigration.m */; };
 		72ED67A61917DFA200457F1E /* BZParseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72ED67A51917DFA200457F1E /* BZParseModel.m */; };
@@ -452,10 +453,12 @@
 		72C2685318F9FDF20070C2E5 /* BZOSIdenticalItemModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZOSIdenticalItemModel.m; sourceTree = "<group>"; };
 		72C2685618FA09A50070C2E5 /* BZWeakPropertyModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZWeakPropertyModel.h; sourceTree = "<group>"; };
 		72C2685718FA09A50070C2E5 /* BZWeakPropertyModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZWeakPropertyModel.m; sourceTree = "<group>"; };
+		72C688371983AE23004940D5 /* BZObjectStoreObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreObserver.h; sourceTree = "<group>"; };
+		72C688381983AE23004940D5 /* BZObjectStoreObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreObserver.m; sourceTree = "<group>"; };
+		72C6883D1983C326004940D5 /* NSObject+BZObjectStoreObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSObject+BZObjectStoreObserver.h"; sourceTree = "<group>"; };
+		72C6883E1983C326004940D5 /* NSObject+BZObjectStoreObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSObject+BZObjectStoreObserver.m"; sourceTree = "<group>"; };
 		72CBC77B1966CD02009B9399 /* BZObjectStoreNotificationCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreNotificationCenter.h; sourceTree = "<group>"; };
 		72CBC77C1966CD02009B9399 /* BZObjectStoreNotificationCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreNotificationCenter.m; sourceTree = "<group>"; };
-		72CBC77D1966CD02009B9399 /* BZObjectStoreNotificationObserver.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreNotificationObserver.h; sourceTree = "<group>"; };
-		72CBC77E1966CD02009B9399 /* BZObjectStoreNotificationObserver.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreNotificationObserver.m; sourceTree = "<group>"; };
 		72EC8479190D5669001AE1F7 /* BZTransactionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZTransactionModel.h; sourceTree = "<group>"; };
 		72EC847A190D5669001AE1F7 /* BZTransactionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZTransactionModel.m; sourceTree = "<group>"; };
 		72ED0D18193AA2E100045830 /* BZObjectStoreMigration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreMigration.h; sourceTree = "<group>"; };
@@ -1133,8 +1136,10 @@
 			children = (
 				72CBC77B1966CD02009B9399 /* BZObjectStoreNotificationCenter.h */,
 				72CBC77C1966CD02009B9399 /* BZObjectStoreNotificationCenter.m */,
-				72CBC77D1966CD02009B9399 /* BZObjectStoreNotificationObserver.h */,
-				72CBC77E1966CD02009B9399 /* BZObjectStoreNotificationObserver.m */,
+				72C688371983AE23004940D5 /* BZObjectStoreObserver.h */,
+				72C688381983AE23004940D5 /* BZObjectStoreObserver.m */,
+				72C6883D1983C326004940D5 /* NSObject+BZObjectStoreObserver.h */,
+				72C6883E1983C326004940D5 /* NSObject+BZObjectStoreObserver.m */,
 			);
 			path = Notification;
 			sourceTree = "<group>";
@@ -1346,6 +1351,7 @@
 				724A0DA01923BC0F00AF177D /* BZObjectStoreClazzCLLocationCoordinate2D.m in Sources */,
 				727B48CC1955464300D17C4D /* BZObjectStoreMigrationTable.m in Sources */,
 				724A0D531923B22B00AF177D /* BZObjectStoreClazzUnsignedLong.m in Sources */,
+				72C688391983AE23004940D5 /* BZObjectStoreObserver.m in Sources */,
 				724A0D661923B22B00AF177D /* BZObjectStoreClazzNSArray.m in Sources */,
 				724A0D581923B22B00AF177D /* BZObjectStoreClazzCGSize.m in Sources */,
 				724A0D931923B28300AF177D /* NSObject+ActiveRecord.m in Sources */,
@@ -1358,11 +1364,11 @@
 				7259F80418F44F04002A3416 /* BZObjectStoreAppDelegate.m in Sources */,
 				724A0D461923B22B00AF177D /* NSObject+BZObjectStore.m in Sources */,
 				724A0D451923B22B00AF177D /* FMDatabase+indexInfo.m in Sources */,
+				72C6883F1983C326004940D5 /* NSObject+BZObjectStoreObserver.m in Sources */,
 				724A0D411923B22B00AF177D /* BZObjectStoreBackground.m in Sources */,
 				724A0D701923B22B00AF177D /* BZObjectStoreModelMapper.m in Sources */,
 				8296BC27193828DB00622F99 /* BZObjectStoreClazzNSImage.m in Sources */,
 				724A0D791923B22B00AF177D /* BZObjectStoreRuntimeProperty.m in Sources */,
-				72CBC7801966CD02009B9399 /* BZObjectStoreNotificationObserver.m in Sources */,
 				8296BB57193738CD00622F99 /* ColorUtils.m in Sources */,
 				724A0D4E1923B22B00AF177D /* BZObjectStoreClazzLong.m in Sources */,
 				8296BC241938286300622F99 /* BZObjectStoreClazzImage.m in Sources */,

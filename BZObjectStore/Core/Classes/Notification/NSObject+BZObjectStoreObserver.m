@@ -21,13 +21,18 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
-#import "BZObjectStoreObserver.h"
+#import "NSObject+BZObjectStoreObserver.h"
+#import <objc/runtime.h>
 
-@interface BZObjectStoreNotificationCenter : NSNotificationCenter
+@implementation NSObject (BZObjectStoreObserver)
 
-- (void)postOSNotification:(NSObject*)object notificationType:(BZObjectStoreNotificationType)notificationType;
+-(NSNumber*)OSObservers {
+    return objc_getAssociatedObject(self, @selector(setOSObservers:));
+}
 
-- (void)addOSObserver:(id)target selector:(SEL)selector object:(NSObject*)object notificationType:(BZObjectStoreNotificationType)notificationType;
+-(void)setOSObservers:(NSArray *)OSObservers
+{
+    objc_setAssociatedObject(self, _cmd, OSObservers, OBJC_ASSOCIATION_RETAIN_NONATOMIC);
+}
 
 @end

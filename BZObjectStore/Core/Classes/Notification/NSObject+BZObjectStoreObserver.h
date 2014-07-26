@@ -23,8 +23,6 @@
 
 #import <Foundation/Foundation.h>
 
-@interface BZObjectStoreNotificationObserver : NSObject
-+ (instancetype)observerForName:(NSString*)name usingBlock:(void(^)(NSNotification *note))usingBlock;
-@property (nonatomic,strong) NSObject *targetObject;
-@property (nonatomic,assign) BOOL enabled;
+@interface NSObject (BZObjectStoreObserver)
+@property (nonatomic,strong) NSArray *OSObservers;
 @end

@@ -22,12 +22,18 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import "BZObjectStoreObserver.h"
 
-@interface BZObjectStoreNotificationCenter : NSNotificationCenter
 
-- (void)postOSNotification:(NSObject*)object notificationType:(BZObjectStoreNotificationType)notificationType;
+typedef NS_ENUM(NSInteger,BZObjectStoreNotificationType) {
+    BZObjectStoreNotificationTypeSaved,
+    BZObjectStoreNotificationTypeDeleted
+};
 
-- (void)addOSObserver:(id)target selector:(SEL)selector object:(NSObject*)object notificationType:(BZObjectStoreNotificationType)notificationType;
-
+@interface BZObjectStoreObserver : NSObject
+@property (nonatomic,strong) NSObject *object;
+@property (nonatomic,strong) NSObject *target;
+@property (nonatomic,assign) SEL selector;
+@property (nonatomic,assign) BZObjectStoreNotificationType notificationType;
+- (void)received:(NSNotification*)notification;
 @end
+

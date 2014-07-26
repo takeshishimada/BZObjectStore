@@ -22,57 +22,46 @@
 // THE SOFTWARE.
 
 #import "BZObjectStoreNotificationCenter.h"
-#import "BZObjectStoreNotificationObserver.h"
 #import "BZObjectStore.h"
 #import "NSObject+BZObjectStore.h"
+#import "NSObject+BZObjectStoreObserver.h"
 
 @implementation BZObjectStoreNotificationCenter
 
-+ (void)postNotificateForObject:(NSObject*)object deleted:(BOOL)deleted
+- (void)postOSNotification:(NSObject*)object notificationType:(BZObjectStoreNotificationType)notificationType
 {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
-    [dic setObject:[NSNumber numberWithBool:deleted] forKey:@"deleted"];
-    NSNotificationCenter *center = [NSNotificationCenter defaultCenter];
-    NSNotification *note = [NSNotification notificationWithName:@"ObjectStoreNotification" object:object userInfo:dic];
-    [center postNotification:note];
+    [dic setObject:object forKey:@"object"];
+    NSString *name = [self nameWithObject:object notificationType:notificationType];
+    NSNotification *notification = [NSNotification notificationWithName:name object:nil userInfo:dic];
+    [self postNotification:notification];
 }
 
-+ (BZObjectStoreNotificationObserver*)observerForObject:(id)object target:(id)target completionBlock:(void(^)(id target,id object))completionBlock immediately:(BOOL)immediately
+- (void)addOSObserver:(id)target selector:(SEL)selector object:(NSObject*)object notificationType:(BZObjectStoreNotificationType)notificationType
 {
-    __weak NSObject * weakTarget = target;
-    NSObject *targetObject = object;
-    void (^block)(NSNotification *note) = ^(NSNotification *note) {
-        NSNumber *deleted = note.userInfo[@"deleted"];
-        NSObject *notificatedObject = note.object;
-        NSString *notificatedObjectClazzName = NSStringFromClass([notificatedObject class]);
-        NSNumber *notificatedObjectRowid = notificatedObject.rowid;
-        NSString *observedObjectClazzName = NSStringFromClass([targetObject class]);
-        NSNumber *observedObjectRowid = targetObject.rowid;
-        if ([notificatedObjectClazzName isEqualToString:observedObjectClazzName]) {
-            if (notificatedObjectRowid && observedObjectRowid) {
-                if ([notificatedObjectRowid isEqualToNumber:observedObjectRowid]) {
-                    if (completionBlock) {
-                        if (deleted.boolValue) {
-                            notificatedObject = nil;
-                        }
-                        [[NSOperationQueue mainQueue]addOperationWithBlock:^{
-                            completionBlock(weakTarget,notificatedObject);
-                        }];
-                    }
-                }
-            }
-        }
-    };
-    BZObjectStoreNotificationObserver *osObserver = [BZObjectStoreNotificationObserver observerForName:@"ObjectStoreNotification" usingBlock:block];
-    osObserver.targetObject = object;
-    if (immediately) {
-        if (completionBlock) {
-            completionBlock(weakTarget,object);
-        }
+    if (!object) {
+        return;
     }
-    return osObserver;
+    BZObjectStoreObserver *observer = [[BZObjectStoreObserver alloc]init];
+    observer.object = object;
+    observer.target = target;
+    observer.selector = selector;
+    observer.notificationType = notificationType;
+    
+    NSString *name = [self nameWithObject:object notificationType:notificationType];
+    [self addObserver:observer selector:@selector(received:) name:name object:nil];
+    
+    if (!self.OSObservers) {
+        self.OSObservers = [NSArray arrayWithObject:observer];
+    } else {
+        self.OSObservers = [self.OSObservers arrayByAddingObject:observer];
+    }
 }
 
-
+- (NSString*)nameWithObject:(NSObject*)object notificationType:(BZObjectStoreNotificationType)notificationType
+{
+    NSString *name = [NSString stringWithFormat:@"ObjectStoreNotification_%@_%ld",NSStringFromClass([object class]),(long)notificationType];
+    return name;
+}
 
 @end

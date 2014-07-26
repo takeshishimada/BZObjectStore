@@ -27,7 +27,6 @@
 #import "BZObjectStoreModelInterface.h"
 #import "BZObjectStoreConditionModel.h"
 #import "BZObjectStoreNotificationCenter.h"
-#import "BZObjectStoreNotificationObserver.h"
 #import "NSObject+BZObjectStore.h"
 
 @interface NSObject (ActiveRecord)
@@ -80,6 +79,6 @@
 + (void)registerClassInBackground:(Class)clazz completionBlock:(void(^)(NSError *error))completionBlock;
 + (void)unRegisterClassInBackground:(Class)clazz completionBlock:(void(^)(NSError *error))completionBlock;
 
-- (BZObjectStoreNotificationObserver*)observerWithTarget:(id)target completionBlock:(void (^)(id target,id object))completionBlock immediately:(BOOL)immediately;
+- (void)addOSObserver:(id)target selector:(SEL)selector notificationType:(BZObjectStoreNotificationType)notificationType;
 
 @end

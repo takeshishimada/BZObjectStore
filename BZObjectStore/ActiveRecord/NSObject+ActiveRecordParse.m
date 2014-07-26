@@ -298,11 +298,10 @@
     [os unRegisterClassInBackground:[self class] completionBlock:completionBlock];
 }
 
-- (BZObjectStoreNotificationObserver*)OSObserverWithTarget:(id)target completionBlock:(void (^)(id target,id object))completionBlock immediately:(BOOL)immediately
+- (void)OSAddObserver:(id)target selector:(SEL)selector notificationType:(BZObjectStoreNotificationType)notificationType
 {
-    BZObjectStoreNotificationObserver *osObserver = [BZObjectStoreNotificationCenter observerForObject:self target:target completionBlock:completionBlock immediately:immediately];
-    return osObserver;
+    BZObjectStoreNotificationCenter *center = [BZObjectStoreNotificationCenter defaultCenter];
+    [center addOSObserver:target selector:selector object:self notificationType:notificationType];
 }
-
 
 @end
