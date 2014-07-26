@@ -51,11 +51,11 @@
     NSString *name = [self nameWithObject:object notificationType:notificationType];
     [self addObserver:observer selector:@selector(received:) name:name object:nil];
     
-    if (!self.OSObservers) {
-        self.OSObservers = [NSArray arrayWithObject:observer];
-    } else {
-        self.OSObservers = [self.OSObservers arrayByAddingObject:observer];
+    NSObject *targetObject = target;
+    if (!targetObject.OSObservers) {
+        targetObject.OSObservers = [NSMutableArray array];
     }
+    [targetObject.OSObservers addObject:observer];
 }
 
 - (NSString*)nameWithObject:(NSObject*)object notificationType:(BZObjectStoreNotificationType)notificationType

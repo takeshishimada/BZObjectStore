@@ -24,5 +24,5 @@
 #import <Foundation/Foundation.h>
 
 @interface NSObject (BZObjectStoreObserver)
-@property (nonatomic,strong) NSArray *OSObservers;
+@property (nonatomic,strong) NSMutableArray *OSObservers;
 @end
