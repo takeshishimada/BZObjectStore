@@ -23,8 +23,6 @@
 
 #import "MAAppDelegate.h"
 #import <BZActiveRecord.h>
-#import <AFNetworking.h>
-#import <AFNetworkActivityLogger.h>
 #import "MANotebook.h"
 #import "MANote.h"
 
@@ -37,8 +35,6 @@
     BZObjectStore *os = [BZObjectStore openWithPath:@"MarkdownAnywhere.sqlite" error:&error];
     [BZActiveRecord setupWithObjectStore:os];
 
-    [[AFNetworkActivityLogger sharedLogger] startLogging];
-    [[AFNetworkActivityLogger sharedLogger] setLevel:AFLoggerLevelDebug];
     [MANotebook registClass:nil];
     [MANote registClass:nil];
     
