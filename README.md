@@ -39,13 +39,13 @@ NSError *error = nil;
 // open datbase
 BZObjectStore *os = [BZObjectStore openWithPath:@"database.sqlite" error:&error];
 
-// save object
+// save a object
 [os saveObject:YOUROBJECT error:&error];
 
 // close database
 [os close];
 ```
-After processing, you can find 'database path=/XXXX/database.sqlite' in console.  
+After processing, you can find 'database path=/XXXX/database.sqlite' in the console.  
 Open this file with your SQLite tool and check tables.
 
 
