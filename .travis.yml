@@ -9,4 +9,4 @@ script:
   - make test
 
 after_success:
-  - coveralls -e Pods -e Tests
+  - coveralls -e Pods -e Tests -e Parse
