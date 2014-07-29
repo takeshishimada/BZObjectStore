@@ -27,13 +27,16 @@
 
 @interface BZObjectStoreMigrationQueryBuilder : NSObject
 
-+ (NSString*)createTableStatementWithMigrationTable:(BZObjectStoreMigrationTable*)migrationTable;
++ (NSString*)updateRelationshipToTableName:(NSString*)tableName clazzName:(NSString*)clazzName;
++ (NSString*)updateRelationshipFromTableName:(NSString*)tableName clazzName:(NSString*)clazzName;
+
++ (NSString*)createTempTableStatementWithMigrationTable:(BZObjectStoreMigrationTable*)migrationTable;
 + (NSString*)createTemporaryUniqueIndexStatementWithMigrationTable:(BZObjectStoreMigrationTable*)migrationTable;
 + (NSString*)createUniqueIndexStatementWithMigrationTable:(BZObjectStoreMigrationTable*)migrationTable;
 + (NSString*)selectInsertStatementWithToMigrationTable:(BZObjectStoreMigrationTable*)toMigrationTable fromMigrationTable:(BZObjectStoreMigrationTable*)fromMigrationTable;
 + (NSString*)deleteFromStatementWithMigrationTable:(BZObjectStoreMigrationTable*)migrationTable;
 + (NSString*)dropTableStatementWithMigrationTable:(BZObjectStoreMigrationTable*)migrationTable;
-+ (NSString*)dropIndexStatementWithMigrationTable:(BZObjectStoreMigrationTable*)migrationTable;
++ (NSString*)dropTempIndexStatementWithMigrationTable:(BZObjectStoreMigrationTable*)migrationTable;
 + (NSString*)alterTableRenameStatementWithMigrationTable:(BZObjectStoreMigrationTable*)migrationTable;
 
 @end

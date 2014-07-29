@@ -25,10 +25,40 @@
 #import "BZObjectStoreSQLiteColumnModel.h"
 #import "BZObjectStoreMigrationTable.h"
 #import "BZObjectStoreQueryBuilder.h"
+#import "BZObjectStoreMigrationRuntimeProperty.h"
+#import "BZObjectStoreRuntimeProperty.h"
 
 @implementation BZObjectStoreMigrationQueryBuilder
 
 #pragma mark migration
+
++ (NSString*)updateRelationshipFromTableName:(NSString*)tableName clazzName:(NSString*)clazzName
+{
+    NSMutableString *sql = [NSMutableString string];
+    [sql appendString:@"UPDATE __ObjectStoreRelationship__ SET fromTableName = "];
+    [sql appendString:@"'"];
+    [sql appendString:tableName];
+    [sql appendString:@"'"];
+    [sql appendString:@" WHERE fromClassName = "];
+    [sql appendString:@"'"];
+    [sql appendString:clazzName];
+    [sql appendString:@"'"];
+    return [NSString stringWithString:sql];
+}
+
++ (NSString*)updateRelationshipToTableName:(NSString*)tableName clazzName:(NSString*)clazzName
+{
+    NSMutableString *sql = [NSMutableString string];
+    [sql appendString:@"UPDATE __ObjectStoreRelationship__ SET toTableName = "];
+    [sql appendString:@"'"];
+    [sql appendString:tableName];
+    [sql appendString:@"'"];
+    [sql appendString:@"WHERE toClassName = "];
+    [sql appendString:@"'"];
+    [sql appendString:clazzName];
+    [sql appendString:@"'"];
+    return [NSString stringWithString:sql];
+}
 
 + (NSString*)selectInsertStatementWithToMigrationTable:(BZObjectStoreMigrationTable*)toMigrationTable fromMigrationTable:(BZObjectStoreMigrationTable*)fromMigrationTable
 {
@@ -36,20 +66,26 @@
     [sqlInsert appendString:@"INSERT INTO "];
     [sqlInsert appendString:toMigrationTable.temporaryTableName];
     [sqlInsert appendString:@"("];
-    for (BZObjectStoreSQLiteColumnModel *sqliteColumn in fromMigrationTable.migrateColumns.allValues) {
-        [sqlInsert appendString:sqliteColumn.columnName];
-        [sqlInsert appendString:@","];
+    for (BZObjectStoreMigrationRuntimeProperty *attribute in fromMigrationTable.migrateAttributes.allValues) {
+        for (BZObjectStoreSQLiteColumnModel *sqliteColumn in attribute.latestAttbiute.sqliteColumns) {
+            [sqlInsert appendString:sqliteColumn.columnName];
+            [sqlInsert appendString:@","];
+        }
     }
     [sqlInsert appendString:@"__createdAt__"];
     [sqlInsert appendString:@",__updatedAt__"];
     [sqlInsert appendString:@")"];
-    
     NSMutableString *sqlSelect = [NSMutableString string];
     [sqlSelect appendString:@" "];
     [sqlSelect appendString:@"SELECT "];
-    for (BZObjectStoreSQLiteColumnModel *sqliteColumn in fromMigrationTable.migrateColumns.allValues) {
-        [sqlSelect appendString:sqliteColumn.columnName];
-        [sqlSelect appendString:@","];
+    for (BZObjectStoreMigrationRuntimeProperty *attribute in fromMigrationTable.migrateAttributes.allValues) {
+        [attribute.previousAttribute.sqliteColumns enumerateObjectsUsingBlock:^(BZObjectStoreSQLiteColumnModel *previousSQLiteColumn, NSUInteger idx, BOOL *stop) {
+            BZObjectStoreSQLiteColumnModel *latestSQLiteColumn = attribute.latestAttbiute.sqliteColumns[idx];
+            [sqlSelect appendString:previousSQLiteColumn.columnName];
+            [sqlSelect appendString:@" as "];
+            [sqlSelect appendString:latestSQLiteColumn.columnName];
+            [sqlSelect appendString:@","];
+        }];
     }
     [sqlSelect appendString:@"__createdAt__"];
     [sqlSelect appendString:@",__updatedAt__"];
@@ -66,9 +102,9 @@
 
 + (NSString*)dropTableStatementWithMigrationTable:(BZObjectStoreMigrationTable*)migrationTable
 {
-    NSString *tableName = migrationTable.temporaryTableName;
+    NSString *tableName = migrationTable.tableName;
     NSMutableString *sql = [NSMutableString string];
-    [sql appendString:@"DROP TABLE "];
+    [sql appendString:@"DROP TABLE IF EXISTS "];
     [sql appendString:tableName];
     return [NSString stringWithString:sql];
 }
@@ -80,19 +116,39 @@
     return [NSString stringWithString:sql];
 }
 
-+ (NSString*)createTableStatementWithMigrationTable:(BZObjectStoreMigrationTable*)migrationTable
++ (NSString*)createTempTableStatementWithMigrationTable:(BZObjectStoreMigrationTable*)migrationTable
 {
-    return [BZObjectStoreQueryBuilder createTableStatement:migrationTable.temporaryTableName fullTextSearch3:migrationTable.fullTextSearch3 fullTextSearch4:migrationTable.fullTextSearch4 sqliteColumns:migrationTable.columns.allValues];
+    NSMutableArray *sqliteColumns = [NSMutableArray array];
+    for (BZObjectStoreMigrationRuntimeProperty *attribute in migrationTable.attributes.allValues) {
+        if (![attribute.name isEqualToString:@"rowid"]) {
+            for (BZObjectStoreSQLiteColumnModel *sqliteColumn in attribute.latestAttbiute.sqliteColumns) {
+                [sqliteColumns addObject:sqliteColumn];
+            }
+        }
+    }
+    return [BZObjectStoreQueryBuilder createTableStatement:migrationTable.temporaryTableName fullTextSearch3:migrationTable.fullTextSearch3 fullTextSearch4:migrationTable.fullTextSearch4 sqliteColumns:sqliteColumns];
 }
 
 + (NSString*)createTemporaryUniqueIndexStatementWithMigrationTable:(BZObjectStoreMigrationTable*)migrationTable
 {
-    return [BZObjectStoreQueryBuilder createUniqueIndexStatement:migrationTable.temporaryTableName sqliteColumns:migrationTable.identicalColumns.allValues];
+    NSMutableArray *sqliteColumns = [NSMutableArray array];
+    for (BZObjectStoreMigrationRuntimeProperty *attribute in migrationTable.identicalAttributes.allValues) {
+        for (BZObjectStoreSQLiteColumnModel *sqliteColumn in attribute.latestAttbiute.sqliteColumns) {
+            [sqliteColumns addObject:sqliteColumn];
+        }
+    }
+    return [BZObjectStoreQueryBuilder createUniqueIndexStatement:migrationTable.temporaryTableName sqliteColumns:sqliteColumns];
 }
 
 + (NSString*)createUniqueIndexStatementWithMigrationTable:(BZObjectStoreMigrationTable*)migrationTable
 {
-    return [BZObjectStoreQueryBuilder createUniqueIndexStatement:migrationTable.temporaryTableName sqliteColumns:migrationTable.identicalColumns.allValues];
+    NSMutableArray *sqliteColumns = [NSMutableArray array];
+    for (BZObjectStoreMigrationRuntimeProperty *attribute in migrationTable.identicalAttributes.allValues) {
+        for (BZObjectStoreSQLiteColumnModel *sqliteColumn in attribute.latestAttbiute.sqliteColumns) {
+            [sqliteColumns addObject:sqliteColumn];
+        }
+    }
+    return [BZObjectStoreQueryBuilder createUniqueIndexStatement:migrationTable.tableName sqliteColumns:sqliteColumns];
 }
 
 + (NSString*)alterTableRenameStatementWithMigrationTable:(BZObjectStoreMigrationTable*)migrationTable
@@ -108,7 +164,7 @@
     return [NSString stringWithString:sql];
 }
 
-+ (NSString*)dropIndexStatementWithMigrationTable:(BZObjectStoreMigrationTable*)migrationTable
++ (NSString*)dropTempIndexStatementWithMigrationTable:(BZObjectStoreMigrationTable*)migrationTable
 {
     NSString *tableName = migrationTable.temporaryTableName;
     NSMutableString *sql = [NSMutableString string];

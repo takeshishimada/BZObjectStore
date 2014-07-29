@@ -21,17 +21,14 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
-#import "BZObjectStoreMigrationRuntime.h"
+#import "BZObjectStoreConst.h"
 
-@interface BZObjectStoreMigrationTable : NSObject
-@property (nonatomic,assign) BOOL deleted;
-@property (nonatomic,strong) NSString *tableName;
-@property (nonatomic,strong) NSString *temporaryTableName;
-@property (nonatomic,assign) BOOL fullTextSearch3;
-@property (nonatomic,assign) BOOL fullTextSearch4;
-@property (nonatomic,strong) NSMutableDictionary *attributes;
-@property (nonatomic,strong) NSMutableDictionary *migrateAttributes;
-@property (nonatomic,strong) NSMutableDictionary *identicalAttributes;
-@property (nonatomic,strong) NSMutableDictionary *previousTables;
-@end
+NSString *const SQLITE_DATA_TYPE_NONE       = @"NONE";
+NSString *const SQLITE_DATA_TYPE_BLOB       = @"BLOB";
+NSString *const SQLITE_DATA_TYPE_REAL       = @"REAL";
+NSString *const SQLITE_DATA_TYPE_INTEGER    = @"INTEGER";
+NSString *const SQLITE_DATA_TYPE_NUMERIC    = @"NUMERIC";
+NSString *const SQLITE_DATA_TYPE_DATETIME   = @"DATE";
+NSString *const SQLITE_DATA_TYPE_BOOL       = @"INTEGER";
+NSString *const SQLITE_DATA_TYPE_TEXT       = @"TEXT";
+

@@ -22,16 +22,17 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import "BZObjectStoreMigrationRuntime.h"
+#import "BZObjectStoreModelInterface.h"
 
-@interface BZObjectStoreMigrationTable : NSObject
-@property (nonatomic,assign) BOOL deleted;
-@property (nonatomic,strong) NSString *tableName;
-@property (nonatomic,strong) NSString *temporaryTableName;
-@property (nonatomic,assign) BOOL fullTextSearch3;
-@property (nonatomic,assign) BOOL fullTextSearch4;
-@property (nonatomic,strong) NSMutableDictionary *attributes;
-@property (nonatomic,strong) NSMutableDictionary *migrateAttributes;
-@property (nonatomic,strong) NSMutableDictionary *identicalAttributes;
-@property (nonatomic,strong) NSMutableDictionary *previousTables;
+@interface BZMigrationModel : NSObject<OSModelInterface>
+@property (nonatomic,strong) NSString<OSIdenticalAttribute> *objectId1;
+@property (nonatomic,strong) NSString<OSIdenticalAttribute> *willRemovedObjectId2;
+@property (nonatomic,strong) NSString<OSIdenticalAttribute> *willAddedObjectId3;
+@property (nonatomic,strong) NSArray *details1;
+@property (nonatomic,strong) NSArray *details2;
++ (void)setIgnoreDetails1:(BOOL)value;
++ (void)setIgnoreWillRemovedObjectId2:(BOOL)value;
++ (void)setWillAddedObjectId3:(BOOL)value;
++ (void)setTableNameChange:(BOOL)value;
++ (void)setColumnNameChange:(BOOL)value;
 @end

@@ -22,16 +22,9 @@
 // THE SOFTWARE.
 
 #import <Foundation/Foundation.h>
-#import "BZObjectStoreMigrationRuntime.h"
+#import "BZObjectStoreModelInterface.h"
 
-@interface BZObjectStoreMigrationTable : NSObject
-@property (nonatomic,assign) BOOL deleted;
-@property (nonatomic,strong) NSString *tableName;
-@property (nonatomic,strong) NSString *temporaryTableName;
-@property (nonatomic,assign) BOOL fullTextSearch3;
-@property (nonatomic,assign) BOOL fullTextSearch4;
-@property (nonatomic,strong) NSMutableDictionary *attributes;
-@property (nonatomic,strong) NSMutableDictionary *migrateAttributes;
-@property (nonatomic,strong) NSMutableDictionary *identicalAttributes;
-@property (nonatomic,strong) NSMutableDictionary *previousTables;
+@interface BZMigrationDetailModel : NSObject<OSModelInterface>
+@property (nonatomic,strong) NSString<OSIdenticalAttribute> *objectId;
++ (void)setTableNameChange:(BOOL)value;
 @end

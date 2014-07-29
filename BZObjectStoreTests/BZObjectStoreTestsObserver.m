@@ -25,13 +25,11 @@
 
 @implementation BZObjectStoreTestsObserver
 
-#ifdef DEBUG
 + (void)load {
     [[NSUserDefaults standardUserDefaults] setValue:@"XCTestLog,GcovTestObserver"
                                              forKey:@"XCTestObserverClass"];
     [[NSUserDefaults standardUserDefaults]synchronize];
 }
-#endif
 
 - (void)stopObserving
 {

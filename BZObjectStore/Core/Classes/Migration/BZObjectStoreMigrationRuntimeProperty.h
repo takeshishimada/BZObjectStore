@@ -32,4 +32,5 @@
 @property (nonatomic,assign) BOOL added;
 @property (nonatomic,assign) BOOL deleted;
 @property (nonatomic,assign) BOOL typeChanged;
+@property (nonatomic,assign) BOOL columnNameChanged;
 @end

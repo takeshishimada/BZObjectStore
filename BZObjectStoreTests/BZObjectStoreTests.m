@@ -91,6 +91,9 @@
 #import "BZObjectStoreParse.h"
 #import "BZActiveRecordModel.h"
 #import "BZNotificationModel.h"
+#import "BZMigrationModel.h"
+#import "BZMigrationModel2.h"
+#import "BZMigrationDetailModel.h"
 
 #import <Parse/Parse.h>
 
@@ -133,8 +136,7 @@
 {
     [super setUp];
     
-    [BZParseModel registerSubclass];
-    
+//    [BZParseModel registerSubclass];
 //    [Parse setApplicationId:@""
 //                  clientKey:@""];
     
@@ -148,14 +150,66 @@
     [super tearDown];
 }
 
-//- (void)testMigration
-//{
-//    [BZObjectStoreClazz addClazz:[BZObjectStoreClazzBZImage class]];
-//    BZObjectStore *_disk;
-//    _disk = [BZObjectStoreOnDisk openWithPath:@"database.sqlite" error:nil];
-//    [_disk migrate:nil];
-//
-//}
+- (void)testMigration
+{
+    NSError *error = nil;
+    NSString *db = @"migration.sqlite";
+
+    if (db && ![db isEqualToString:@""]) {
+        if ([db isEqualToString:[db lastPathComponent]]) {
+            NSArray *paths = NSSearchPathForDirectoriesInDomains(NSLibraryDirectory, NSUserDomainMask, YES);
+            NSString *dir = [paths objectAtIndex:0];
+            db = [dir stringByAppendingPathComponent:db];
+        }
+    }
+    NSFileManager *manager = [NSFileManager defaultManager];
+    if ([manager removeItemAtPath:db error:nil]) {
+        NSLog(@"%@",db);
+    }
+
+    BZObjectStore *_disk;
+    _disk = [BZObjectStoreOnDisk openWithPath:db error:nil];
+    
+    BZMigrationDetailModel *detail1 = [[BZMigrationDetailModel alloc]init];
+    detail1.objectId = @"test1";
+
+    BZMigrationModel2 *obj2 = [[BZMigrationModel2 alloc]init];
+    obj2.objectId1 = @"id2";
+    [_disk saveObject:obj2 error:nil];
+    
+    BZMigrationModel *obj = [[BZMigrationModel alloc]init];
+    obj.objectId1 = @"id1";
+    obj.willRemovedObjectId2 = @"id2";
+    obj.willAddedObjectId3 = @"id3";
+    obj.details1 = @[detail1];
+    obj.details2 = @[detail1];
+    
+    // store data
+    [BZMigrationModel setTableNameChange:NO];
+    [BZMigrationModel setIgnoreWillRemovedObjectId2:NO];
+    [BZMigrationModel setWillAddedObjectId3:YES];
+    [BZMigrationModel setColumnNameChange:NO];
+    [BZMigrationModel setIgnoreDetails1:NO];
+    [BZMigrationDetailModel setTableNameChange:NO];
+    
+    [_disk saveObject:obj error:&error];
+    [_disk close];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    
+    // added and removed columns
+    [BZMigrationModel setTableNameChange:YES];
+    [BZMigrationModel setIgnoreWillRemovedObjectId2:YES];
+    [BZMigrationModel setWillAddedObjectId3:NO];
+    [BZMigrationModel setColumnNameChange:YES];
+    [BZMigrationModel setIgnoreDetails1:YES];
+    [BZMigrationDetailModel setTableNameChange:YES];
+    
+    _disk = [BZObjectStoreOnDisk openWithPath:db error:nil];
+    [_disk migrate:&error];
+    XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    
+    
+}
 
 - (void)testOnDisk
 {
@@ -170,7 +224,7 @@
     NSFileManager *manager = [NSFileManager defaultManager];
     if ([manager removeItemAtPath:path error:nil]) {
     }
-    
+
     BZObjectStore *_disk;
     _disk = [BZObjectStoreOnDisk openWithPath:@"database.sqlite" error:nil];
 
@@ -273,7 +327,15 @@
     
     
     [os saveObject:model error:nil];
+    NSArray *list = [os fetchObjects:[BZNotificationModel class] condition:nil error:nil];
+    BZNotificationModel *fetch = list.firstObject;
+    
+    XCTAssert([model isEqualToOSObject:model], @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    XCTAssert([model isEqualToOSObject:fetch], @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
+    
     [os deleteObject:model error:nil];
+    
+    
 }
 
 - (void)saved:(NSObject*)object latest:(NSObject*)latest
@@ -742,7 +804,7 @@
     
     NSDate *fetchnow = [NSDate date];
     NSArray *fetchObjects = [os fetchObjects:[BZInsertResponseModel class] condition:nil error:&error];
-    XCTAssertTrue(fetchObjects.count == 20000, @"fetch error");
+    XCTAssertTrue(fetchObjects.count == list.count, @"fetch error");
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     NSDate *fetchthen = [NSDate date];
     NSLog(@"fetch reponse then - now: %1.3fsec", [fetchthen timeIntervalSinceDate:fetchnow]);
@@ -768,14 +830,6 @@
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     
     NSMutableArray *list = [NSMutableArray array];
-    for (NSInteger i = 0; i < 1; i++ ) {
-        BZUpdateResponseModel *model = [[BZUpdateResponseModel alloc]init];
-        model.code = [NSString stringWithFormat:@"%ld",(long)i];
-        model.name = [NSString stringWithFormat:@"name %ld",(long)i];
-        model.address = [NSString stringWithFormat:@"address %ld",(long)i];
-        model.birthday = [NSDate date];
-        [list addObject:model];
-    }
     for (NSInteger i = 0; i < 20000; i++ ) {
         BZUpdateResponseModel *model = [[BZUpdateResponseModel alloc]init];
         model.code = [NSString stringWithFormat:@"%ld",(long)i];
@@ -793,13 +847,13 @@
     
     NSDate *fetchnow = [NSDate date];
     NSArray *fetchObjects = [os fetchObjects:[BZUpdateResponseModel class] condition:nil error:&error];
-    XCTAssertTrue(fetchObjects.count == 20000, @"fetch error");
+    XCTAssertTrue(fetchObjects.count == list.count, @"fetch error");
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     NSDate *fetchthen = [NSDate date];
     NSLog(@"fetch reponse then - now: %1.3fsec", [fetchthen timeIntervalSinceDate:fetchnow]);
     
     NSDate *removenow = [NSDate date];
-    [os deleteObjects:[BZUpdateResponseModel class] condition:nil error:&error];
+    [os deleteObjects:[BZUpdateResponseModel class] where:nil parameters:nil error:&error];
     XCTAssert(!error, @"No implementation for \"%s\"", __PRETTY_FUNCTION__);
     NSDate *removethen = [NSDate date];
     NSLog(@"remove reponse then - now: %1.3fsec", [removethen timeIntervalSinceDate:removenow]);
@@ -2246,6 +2300,7 @@
 - (void)testBZActiveRecordModel:(BZObjectStore*)os
 {
     [BZActiveRecord setupWithObjectStore:os];
+    [BZActiveRecord setDisableNotifications:YES];
     
     NSError *error = nil;
     for (NSInteger i = 0; i < 10; i++) {
@@ -2278,68 +2333,70 @@
     NSNumber *min = [BZActiveRecordModel min:@"price" condition:nil error:&error];
     XCTAssertTrue(min.integerValue ==0,@"activerecord max error");
 
+    XCTAssertTrue([[BZActiveRecord objectStore] disableNotifications],@"disable notification");
+
 }
 
-//- (void)testBZParseModel:(BZObjectStore*)os
-//{
-//    NSError *error = nil;
-//
-//    PFUser *user = [PFUser user];
-//    user.username = @"my name";
-//    user.password = @"my pass";
-//    user.email = @"email@example.com";
-//    BOOL ret = [user signUp];
-//    if (ret) {
-//        [user save];
-//    }
-//    [os saveObject:user error:&error];
-//
-//    for (NSInteger i = 0; i < 10; i++) {
-//        BZParseModel *parseModel = [[BZParseModel alloc]init];
-//        parseModel.code = [NSString stringWithFormat:@"%ld",(long)i];
-//        parseModel.price = i * 10;
-//        parseModel.string = @"string";
-//        parseModel.mutableString = [NSMutableString stringWithString:@"mutableString"];
-//        parseModel.date = [NSDate date];
-//        PFGeoPoint *point = [PFGeoPoint geoPointWithLatitude:1.23456789f longitude:9.87654321f];
-//        [parseModel setValue:point forKeyPath:@"point"];
-//        [os saveObject:parseModel error:&error];
-//    }
-//    NSArray *objects = [os fetchObjects:[BZParseModel class] condition:nil error:&error];
-//    XCTAssertTrue(objects.count == 10,@"count error");
-//    
-//    for (BZParseModel *object in objects) {
-//        [object save:&error];
-//        XCTAssert(!error, @"parse \"%s\"", __PRETTY_FUNCTION__);
-//        [os saveObject:object error:&error];
-//        XCTAssert(!error, @"parse \"%s\"", __PRETTY_FUNCTION__);
-//    }
-//    NSNumber *count = [os count:[BZParseModel class] condition:nil error:&error];
-//    XCTAssertTrue(count.integerValue == 10,@"count error");
-//
-//    BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
-//    condition.sqlite.where = @"code IN ( ?,? )";
-//    condition.sqlite.parameters = @[@"1",@"2"];
-//    
-//    NSNumber *count2 = [BZParseModel OSCount:condition error:&error];
-//    XCTAssertTrue(count2.integerValue == 2,@"activerecord count error");
-//    
-//    NSNumber *total = [BZParseModel OSTotal:@"price" condition:condition error:&error];
-//    XCTAssertTrue(total.integerValue == 30,@"activerecord total error");
-//    
-//    NSNumber *sum = [BZParseModel OSSum:@"price" condition:condition error:&error];
-//    XCTAssertTrue(sum.integerValue == 30,@"activerecord sum error");
-//    
-//    NSNumber *avg = [BZParseModel OSAvg:@"price" condition:condition error:&error];
-//    XCTAssertTrue(avg.integerValue == 15,@"activerecord avg error");
-//    
-//    NSNumber *max = [BZParseModel OSMax:@"price" condition:nil error:&error];
-//    XCTAssertTrue(max.integerValue ==90,@"activerecord max error");
-//    
-//    NSNumber *min = [BZParseModel OSMin:@"price" condition:nil error:&error];
-//    XCTAssertTrue(min.integerValue ==0,@"activerecord max error");
-//
-//    
-//}
+- (void)testBZParseModel:(BZObjectStore*)os
+{
+    NSError *error = nil;
+
+    PFUser *user = [PFUser user];
+    user.username = @"my name";
+    user.password = @"my pass";
+    user.email = @"email@example.com";
+    BOOL ret = [user signUp];
+    if (ret) {
+        [user save];
+    }
+    [os saveObject:user error:&error];
+
+    for (NSInteger i = 0; i < 10; i++) {
+        BZParseModel *parseModel = [[BZParseModel alloc]init];
+        parseModel.code = [NSString stringWithFormat:@"%ld",(long)i];
+        parseModel.price = i * 10;
+        parseModel.string = @"string";
+        parseModel.mutableString = [NSMutableString stringWithString:@"mutableString"];
+        parseModel.date = [NSDate date];
+        PFGeoPoint *point = [PFGeoPoint geoPointWithLatitude:1.23456789f longitude:9.87654321f];
+        [parseModel setValue:point forKeyPath:@"point"];
+        [os saveObject:parseModel error:&error];
+    }
+    NSArray *objects = [os fetchObjects:[BZParseModel class] condition:nil error:&error];
+    XCTAssertTrue(objects.count == 10,@"count error");
+    
+    for (BZParseModel *object in objects) {
+        [object save:&error];
+        XCTAssert(!error, @"parse \"%s\"", __PRETTY_FUNCTION__);
+        [os saveObject:object error:&error];
+        XCTAssert(!error, @"parse \"%s\"", __PRETTY_FUNCTION__);
+    }
+    NSNumber *count = [os count:[BZParseModel class] condition:nil error:&error];
+    XCTAssertTrue(count.integerValue == 10,@"count error");
+
+    BZObjectStoreConditionModel *condition = [BZObjectStoreConditionModel condition];
+    condition.sqlite.where = @"code IN ( ?,? )";
+    condition.sqlite.parameters = @[@"1",@"2"];
+    
+    NSNumber *count2 = [BZParseModel OSCount:condition error:&error];
+    XCTAssertTrue(count2.integerValue == 2,@"activerecord count error");
+    
+    NSNumber *total = [BZParseModel OSTotal:@"price" condition:condition error:&error];
+    XCTAssertTrue(total.integerValue == 30,@"activerecord total error");
+    
+    NSNumber *sum = [BZParseModel OSSum:@"price" condition:condition error:&error];
+    XCTAssertTrue(sum.integerValue == 30,@"activerecord sum error");
+    
+    NSNumber *avg = [BZParseModel OSAvg:@"price" condition:condition error:&error];
+    XCTAssertTrue(avg.integerValue == 15,@"activerecord avg error");
+    
+    NSNumber *max = [BZParseModel OSMax:@"price" condition:nil error:&error];
+    XCTAssertTrue(max.integerValue ==90,@"activerecord max error");
+    
+    NSNumber *min = [BZParseModel OSMin:@"price" condition:nil error:&error];
+    XCTAssertTrue(min.integerValue ==0,@"activerecord max error");
+
+    
+}
 
 @end

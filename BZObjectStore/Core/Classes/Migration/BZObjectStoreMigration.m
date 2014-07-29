@@ -107,11 +107,14 @@
             migrationAttribute.added = migrationAttribute.latestAttbiute && !migrationAttribute.previousAttribute;
             migrationAttribute.deleted = !migrationAttribute.latestAttbiute && migrationAttribute.previousAttribute;
             migrationAttribute.typeChanged = ![migrationAttribute.latestAttbiute.attributeType isEqualToString:migrationAttribute.previousAttribute.attributeType];
+            migrationAttribute.columnNameChanged = ![migrationAttribute.latestAttbiute.columnName isEqualToString:migrationAttribute.previousAttribute.columnName];
             if (migrationAttribute.deleted) {
                 migrationRuntime.changed = YES;
             } else if (migrationAttribute.added) {
                 migrationRuntime.changed = YES;
             } else if (migrationAttribute.typeChanged) {
+                migrationRuntime.changed = YES;
+            } else if (migrationAttribute.columnNameChanged) {
                 migrationRuntime.changed = YES;
             }
         }
@@ -120,8 +123,6 @@
                 migrationRuntime.tableNameChanged = YES;
                 migrationRuntime.changed = YES;
             }
-        } else if (migrationRuntime.latestRuntime && !migrationRuntime.previousRuntime) {
-            migrationRuntime.added = YES;
         } else if (!migrationRuntime.latestRuntime && migrationRuntime.previousRuntime) {
             migrationRuntime.deleted = YES;
         }
@@ -132,7 +133,7 @@
     NSMutableDictionary *previousMigrationTables = [NSMutableDictionary dictionary];
     NSMutableDictionary *migrationTables = [NSMutableDictionary dictionary];
     for (BZObjectStoreMigrationRuntime *migrationRuntime in migrationRuntimes.allValues) {
-        if (migrationRuntime.changed || migrationRuntime.added) {
+        if (migrationRuntime.changed) {
             
             BZObjectStoreMigrationTable *migrationTable = nil;
             if (migrationRuntime.latestRuntime) {
@@ -143,18 +144,16 @@
                     migrationTable.tableName = migrationRuntime.latestRuntime.tableName;
                     migrationTable.temporaryTableName = [NSString stringWithFormat:@"__%@__",migrationRuntime.latestRuntime.tableName];
                     migrationTable.previousTables = [NSMutableDictionary dictionary];
-                    migrationTable.columns = [NSMutableDictionary dictionary];
-                    migrationTable.identicalColumns = [NSMutableDictionary dictionary];
+                    migrationTable.attributes = [NSMutableDictionary dictionary];
+                    migrationTable.identicalAttributes = [NSMutableDictionary dictionary];
                 }
                 migrationTable.fullTextSearch3 = migrationRuntime.latestRuntime.fullTextSearch3;
                 migrationTable.fullTextSearch4 = migrationRuntime.latestRuntime.fullTextSearch4;
                 [migrationTables setObject:migrationTable forKey:migrationTable.tableName];
                 for (BZObjectStoreMigrationRuntimeProperty *migrationAttribute in migrationRuntime.attributes.allValues) {
-                    for (BZObjectStoreSQLiteColumnModel *sqlColumn in migrationAttribute.latestAttbiute.sqliteColumns) {
-                        [migrationTable.columns setObject:sqlColumn forKey:sqlColumn.columnName];
-                        if (migrationAttribute.latestAttbiute.identicalAttribute) {
-                            [migrationTable.identicalColumns setObject:sqlColumn forKey:sqlColumn.columnName];
-                        }
+                    [migrationTable.attributes setObject:migrationAttribute forKey:migrationAttribute.name];
+                    if (migrationAttribute.latestAttbiute.identicalAttribute) {
+                        [migrationTable.identicalAttributes setObject:migrationAttribute forKey:migrationAttribute.name];
                     }
                 }
             }
@@ -167,16 +166,14 @@
                     previousMigrationTable.tableName = migrationRuntime.previousRuntime.tableName;
                     previousMigrationTable.temporaryTableName = [NSString stringWithFormat:@"__%@__",migrationRuntime.previousRuntime.tableName];
                     previousMigrationTable.previousTables = [NSMutableDictionary dictionary];
-                    previousMigrationTable.columns = [NSMutableDictionary dictionary];
-                    previousMigrationTable.migrateColumns = [NSMutableDictionary dictionary];
-                    previousMigrationTable.identicalColumns = [NSMutableDictionary dictionary];
+                    previousMigrationTable.attributes = [NSMutableDictionary dictionary];
+                    previousMigrationTable.migrateAttributes = [NSMutableDictionary dictionary];
+                    previousMigrationTable.identicalAttributes = [NSMutableDictionary dictionary];
                 }
                 for (BZObjectStoreMigrationRuntimeProperty *migrationAttribute in migrationRuntime.attributes.allValues) {
-                    for (BZObjectStoreSQLiteColumnModel *sqlColumn in migrationAttribute.previousAttribute.sqliteColumns) {
-                        [previousMigrationTable.columns setObject:sqlColumn forKey:sqlColumn.columnName];
-                        if (!migrationAttribute.deleted && !migrationAttribute.typeChanged && !migrationAttribute.added) {
-                            [previousMigrationTable.migrateColumns setObject:sqlColumn forKey:sqlColumn.columnName];
-                        }
+                    [previousMigrationTable.attributes setObject:migrationAttribute forKey:migrationAttribute.name];
+                    if (!migrationAttribute.deleted && !migrationAttribute.typeChanged && !migrationAttribute.added) {
+                        [previousMigrationTable.migrateAttributes setObject:migrationAttribute forKey:migrationAttribute.name];
                     }
                 }
             }
@@ -201,7 +198,7 @@
     }
 
     // start migration
-
+    
     // delete relationship information
     BZObjectStoreRuntime *relationshipRuntime = [self runtime:[BZObjectStoreRelationshipModel class]];
     for (BZObjectStoreMigrationRuntime *migrationRuntime in migrationRuntimes.allValues) {
@@ -209,9 +206,11 @@
             for (BZObjectStoreMigrationRuntimeProperty *attribute in migrationRuntime.attributes.allValues) {
                 BOOL deleteRelashionship = NO;
                 if (attribute.deleted) {
-                    deleteRelashionship = YES;
+                    if (attribute.previousAttribute.isRelationshipClazz ) {
+                        deleteRelashionship = YES;
+                    }
                 } else if (attribute.typeChanged) {
-                    if (attribute.previousAttribute.isRelationshipClazz || attribute.latestAttbiute.isRelationshipClazz ) {
+                    if (attribute.previousAttribute.isRelationshipClazz && !attribute.latestAttbiute.isRelationshipClazz ) {
                         deleteRelashionship = YES;
                     }
                 }
@@ -223,7 +222,6 @@
             [self deleteRelationshipObjectsWithClazzName:migrationRuntime.clazzName relationshipRuntime:relationshipRuntime db:db];
         }
     }
-    
     
     // update runtime information
     for (BZObjectStoreMigrationRuntime *migrationRuntime in migrationRuntimes.allValues) {
@@ -240,29 +238,48 @@
         }
     }
     
-    // todo 追加のみ
+    // update tableName
+    for (BZObjectStoreMigrationRuntime *migrationRuntime in migrationRuntimes.allValues) {
+        if (migrationRuntime.tableNameChanged) {
+
+            // fromTableName
+            NSString *updateFromTableName = [BZObjectStoreMigrationQueryBuilder updateRelationshipFromTableName:migrationRuntime.latestRuntime.tableName clazzName:migrationRuntime.clazzName];
+            [db executeStatements:updateFromTableName];
+            if ([self hadError:db error:error]) {
+                return;
+            }
+
+            // toTableName
+            NSString *updateToTableName = [BZObjectStoreMigrationQueryBuilder updateRelationshipToTableName:migrationRuntime.latestRuntime.tableName clazzName:migrationRuntime.clazzName];
+            [db executeStatements:updateToTableName];
+            if ([self hadError:db error:error]) {
+                return;
+            }
+
+        }
+    }
     
     // migration table
     for (BZObjectStoreMigrationTable *migrationTable in migrationTables.allValues) {
         
         // create temporary table
-        NSString *createTableSql = [BZObjectStoreMigrationQueryBuilder createTableStatementWithMigrationTable:migrationTable];
-        [db executeStatements:createTableSql];
-        if (![self hadError:db error:error]) {
+        NSString *createTempTableSql = [BZObjectStoreMigrationQueryBuilder createTempTableStatementWithMigrationTable:migrationTable];
+        [db executeStatements:createTempTableSql];
+        if ([self hadError:db error:error]) {
             return;
         }
         
         // delte temporary table data
-        NSString *deleteTableSql = [BZObjectStoreMigrationQueryBuilder deleteFromStatementWithMigrationTable:migrationTable];
-        [db executeStatements:deleteTableSql];
-        if (![self hadError:db error:error]) {
+        NSString *deleteTempTableSql = [BZObjectStoreMigrationQueryBuilder deleteFromStatementWithMigrationTable:migrationTable];
+        [db executeStatements:deleteTempTableSql];
+        if ([self hadError:db error:error]) {
             return;
         }
         
         // create temporary index
-        NSString *createTemporaryIndexSql = [BZObjectStoreMigrationQueryBuilder createTemporaryUniqueIndexStatementWithMigrationTable:migrationTable];
-        [db executeStatements:createTemporaryIndexSql];
-        if (![self hadError:db error:error]) {
+        NSString *createTempIndexSql = [BZObjectStoreMigrationQueryBuilder createTemporaryUniqueIndexStatementWithMigrationTable:migrationTable];
+        [db executeStatements:createTempIndexSql];
+        if ([self hadError:db error:error]) {
             return;
         }
         
@@ -271,37 +288,46 @@
             // copy data from previous to current table
             NSString *selectInsertSql = [BZObjectStoreMigrationQueryBuilder selectInsertStatementWithToMigrationTable:migrationTable fromMigrationTable:previousMigrationTable];
             [db executeStatements:selectInsertSql];
-            if (![self hadError:db error:error]) {
+            if ([self hadError:db error:error]) {
                 return;
             }
             
             // drop previous table
-            NSString *dropSql = [BZObjectStoreMigrationQueryBuilder dropTableStatementWithMigrationTable:previousMigrationTable];
-            [db executeStatements:dropSql];
-            if (![self hadError:db error:error]) {
-                return;
+            if (previousMigrationTable.deleted) {
+                NSString *dropSql = [BZObjectStoreMigrationQueryBuilder dropTableStatementWithMigrationTable:previousMigrationTable];
+                [db executeStatements:dropSql];
+                if ([self hadError:db error:error]) {
+                    return;
+                }
             }
             
         }
         
         // drop temporary index
-        NSString *dropIndexSql = [BZObjectStoreMigrationQueryBuilder dropIndexStatementWithMigrationTable:migrationTable];
+        NSString *dropIndexSql = [BZObjectStoreMigrationQueryBuilder dropTempIndexStatementWithMigrationTable:migrationTable];
         [db executeStatements:dropIndexSql];
-        if (![self hadError:db error:error]) {
+        if ([self hadError:db error:error]) {
             return;
         }
         
+        // drop table
+        NSString *dropSql = [BZObjectStoreMigrationQueryBuilder dropTableStatementWithMigrationTable:migrationTable];
+        [db executeStatements:dropSql];
+        if ([self hadError:db error:error]) {
+            return;
+        }
+
         // rename temporary table
         NSString *renameSql = [BZObjectStoreMigrationQueryBuilder alterTableRenameStatementWithMigrationTable:migrationTable];
         [db executeStatements:renameSql];
-        if (![self hadError:db error:error]) {
+        if ([self hadError:db error:error]) {
             return;
         }
         
         // create index
         NSString *createIndexSql = [BZObjectStoreMigrationQueryBuilder createUniqueIndexStatementWithMigrationTable:migrationTable];
         [db executeStatements:createIndexSql];
-        if (![self hadError:db error:error]) {
+        if ([self hadError:db error:error]) {
             return;
         }
     }

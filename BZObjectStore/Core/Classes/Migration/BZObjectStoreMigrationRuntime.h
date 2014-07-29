@@ -30,7 +30,6 @@
 @property (nonatomic,strong) NSMutableDictionary *attributes;
 @property (nonatomic,strong) BZObjectStoreRuntime *previousRuntime;
 @property (nonatomic,strong) BZObjectStoreRuntime *latestRuntime;
-@property (nonatomic,assign) BOOL added;
 @property (nonatomic,assign) BOOL deleted;
 @property (nonatomic,assign) BOOL changed;
 @property (nonatomic,assign) BOOL tableNameChanged;

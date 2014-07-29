@@ -21,17 +21,24 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-#import <Foundation/Foundation.h>
-#import "BZObjectStoreMigrationRuntime.h"
+#import "BZMigrationDetailModel.h"
 
-@interface BZObjectStoreMigrationTable : NSObject
-@property (nonatomic,assign) BOOL deleted;
-@property (nonatomic,strong) NSString *tableName;
-@property (nonatomic,strong) NSString *temporaryTableName;
-@property (nonatomic,assign) BOOL fullTextSearch3;
-@property (nonatomic,assign) BOOL fullTextSearch4;
-@property (nonatomic,strong) NSMutableDictionary *attributes;
-@property (nonatomic,strong) NSMutableDictionary *migrateAttributes;
-@property (nonatomic,strong) NSMutableDictionary *identicalAttributes;
-@property (nonatomic,strong) NSMutableDictionary *previousTables;
+@implementation BZMigrationDetailModel
+
+static BOOL tableNameChange;
+
++ (void)setTableNameChange:(BOOL)value
+{
+    tableNameChange = value;
+}
+
++ (NSString*)OSTableName
+{
+    if (!tableNameChange) {
+        return @"MigrationDetail";
+    } else {
+        return @"MigrationDetail2";
+    }
+}
+
 @end

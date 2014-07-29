@@ -208,11 +208,6 @@
     return [self createTableStatement:runtime.tableName fullTextSearch3:runtime.fullTextSearch3 fullTextSearch4:runtime.fullTextSearch4 sqliteColumns:sqliteColumns];
 }
 
-+ (NSString*)createTableStatementWithMigrationTable:(BZObjectStoreMigrationTable*)migrationTable
-{
-    return [self createTableStatement:migrationTable.temporaryTableName fullTextSearch3:migrationTable.fullTextSearch3 fullTextSearch4:migrationTable.fullTextSearch4 sqliteColumns:migrationTable.columns.allValues];
-}
-
 + (NSString*)createTableStatement:(NSString*)tableName fullTextSearch3:(BOOL)fullTextSearch3 fullTextSearch4:(BOOL)fullTextSearch4 sqliteColumns:(NSArray*)sqliteColumns
 {
     NSMutableString *sql = [NSMutableString string];
