@@ -51,7 +51,7 @@
 
 @implementation BZObjectStoreMigration
 
-- (void)migrate:(FMDatabase*)db error:(NSError**)error
+- (BOOL)migrate:(FMDatabase*)db error:(NSError**)error
 {
     
     // Get previous class and current class information
@@ -64,7 +64,7 @@
             [currentRuntimes setObject:currentRuntime forKey:currentRuntime.clazzName];
         }
     }
-
+	
     // create migration list
     NSMutableDictionary *migrationRuntimes = [NSMutableDictionary dictionary];
     for (BZObjectStoreRuntime *runtime in previousRuntimes) {
@@ -76,7 +76,7 @@
         migrationRuntime.attributes = [NSMutableDictionary dictionary];
         [migrationRuntimes setObject:migrationRuntime forKey:migrationRuntime.clazzName];
     }
-
+	
     // create migration property list
     for (BZObjectStoreMigrationRuntime *migrationRuntime in migrationRuntimes.allValues) {
         BZObjectStoreRuntime *latestRuntime = migrationRuntime.latestRuntime;
@@ -100,7 +100,7 @@
             migrationAttribute.previousAttribute = attribute;
         }
     }
-
+	
     // get migration type
     for (BZObjectStoreMigrationRuntime *migrationRuntime in migrationRuntimes.allValues) {
         for (BZObjectStoreMigrationRuntimeProperty *migrationAttribute in migrationRuntime.attributes.allValues) {
@@ -128,7 +128,7 @@
         }
         
     }
-
+	
     // get table list
     NSMutableDictionary *previousMigrationTables = [NSMutableDictionary dictionary];
     NSMutableDictionary *migrationTables = [NSMutableDictionary dictionary];
@@ -196,7 +196,7 @@
             }
         }
     }
-
+	
     // start migration
     
     // delete relationship information
@@ -228,12 +228,12 @@
         if (migrationRuntime.changed) {
             [self saveObjects:@[migrationRuntime.latestRuntime] db:db error:error];
             if ([self hadError:db error:error]) {
-                return;
+                return NO;
             }
         } else if (migrationRuntime.deleted) {
             [self deleteObjects:@[migrationRuntime.latestRuntime] db:db error:error];
             if ([self hadError:db error:error]) {
-                return;
+                return NO;
             }
         }
     }
@@ -241,21 +241,21 @@
     // update tableName
     for (BZObjectStoreMigrationRuntime *migrationRuntime in migrationRuntimes.allValues) {
         if (migrationRuntime.tableNameChanged) {
-
+			
             // fromTableName
             NSString *updateFromTableName = [BZObjectStoreMigrationQueryBuilder updateRelationshipFromTableName:migrationRuntime.latestRuntime.tableName clazzName:migrationRuntime.clazzName];
             [db executeStatements:updateFromTableName];
             if ([self hadError:db error:error]) {
-                return;
+                return NO;
             }
-
+			
             // toTableName
             NSString *updateToTableName = [BZObjectStoreMigrationQueryBuilder updateRelationshipToTableName:migrationRuntime.latestRuntime.tableName clazzName:migrationRuntime.clazzName];
             [db executeStatements:updateToTableName];
             if ([self hadError:db error:error]) {
-                return;
+                return NO;
             }
-
+			
         }
     }
     
@@ -266,21 +266,21 @@
         NSString *createTempTableSql = [BZObjectStoreMigrationQueryBuilder createTempTableStatementWithMigrationTable:migrationTable];
         [db executeStatements:createTempTableSql];
         if ([self hadError:db error:error]) {
-            return;
+            return NO;
         }
         
         // delte temporary table data
         NSString *deleteTempTableSql = [BZObjectStoreMigrationQueryBuilder deleteFromStatementWithMigrationTable:migrationTable];
         [db executeStatements:deleteTempTableSql];
         if ([self hadError:db error:error]) {
-            return;
+            return NO;
         }
         
         // create temporary index
         NSString *createTempIndexSql = [BZObjectStoreMigrationQueryBuilder createTemporaryUniqueIndexStatementWithMigrationTable:migrationTable];
         [db executeStatements:createTempIndexSql];
         if ([self hadError:db error:error]) {
-            return;
+            return NO;
         }
         
         for (BZObjectStoreMigrationTable *previousMigrationTable in migrationTable.previousTables.allValues) {
@@ -289,7 +289,7 @@
             NSString *selectInsertSql = [BZObjectStoreMigrationQueryBuilder selectInsertStatementWithToMigrationTable:migrationTable fromMigrationTable:previousMigrationTable];
             [db executeStatements:selectInsertSql];
             if ([self hadError:db error:error]) {
-                return;
+                return NO;
             }
             
             // drop previous table
@@ -297,7 +297,7 @@
                 NSString *dropSql = [BZObjectStoreMigrationQueryBuilder dropTableStatementWithMigrationTable:previousMigrationTable];
                 [db executeStatements:dropSql];
                 if ([self hadError:db error:error]) {
-                    return;
+                    return NO;
                 }
             }
             
@@ -307,33 +307,33 @@
         NSString *dropIndexSql = [BZObjectStoreMigrationQueryBuilder dropTempIndexStatementWithMigrationTable:migrationTable];
         [db executeStatements:dropIndexSql];
         if ([self hadError:db error:error]) {
-            return;
+            return NO;
         }
         
         // drop table
         NSString *dropSql = [BZObjectStoreMigrationQueryBuilder dropTableStatementWithMigrationTable:migrationTable];
         [db executeStatements:dropSql];
         if ([self hadError:db error:error]) {
-            return;
+            return NO;
         }
-
+		
         // rename temporary table
         NSString *renameSql = [BZObjectStoreMigrationQueryBuilder alterTableRenameStatementWithMigrationTable:migrationTable];
         [db executeStatements:renameSql];
         if ([self hadError:db error:error]) {
-            return;
+            return NO;
         }
         
         // create index
         NSString *createIndexSql = [BZObjectStoreMigrationQueryBuilder createUniqueIndexStatementWithMigrationTable:migrationTable];
         [db executeStatements:createIndexSql];
         if ([self hadError:db error:error]) {
-            return;
+            return NO;
         }
     }
     
-
-
+	return YES;
+	
 }
 
 - (BOOL)hadError:(FMDatabase*)db error:(NSError**)error
