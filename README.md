@@ -622,10 +622,17 @@ BZObjectStore supports the following Parse objects.
 ## Others
 
 #### Migration
-BZObjectStore supports adding attributes and deleting attributes which dose not implements OSIdenticalAttribute only.  
-Please use FMDatabaseQueue and FMDatabase directly.
+
+```objective-c
+// migrate database
+[os migrate error:&error];
+```
+
+When models are added attributes only, migration will be run automatically. so do not run 'migrate' method.
+
 
 #### FMDatabaseQueue and FMDatabase
+
 ##### In order to use FMDatabaseQueue, use dbQueue property.
 ```objective-c
 #import "BZObjectStore.h"
