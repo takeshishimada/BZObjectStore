@@ -1,5 +1,6 @@
 BZObjectStore
 =============
+[![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/expensivegasprices/BZObjectStore?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 [![Build Status](https://travis-ci.org/expensivegasprices/BZObjectStore.svg?branch=master)](https://travis-ci.org/expensivegasprices/BZObjectStore)
 
 BZObjectStore automatically stores your models to SQLite tables and provides useful options to your application.
