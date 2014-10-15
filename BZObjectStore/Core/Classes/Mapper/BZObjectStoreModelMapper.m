@@ -439,7 +439,7 @@
 {
     NSMutableArray *list = [self select:relationshipRuntime condition:condition db:db];
     if ([self hadError:db]) {
-        return NO;
+        return nil;
     }
     return list;
 }

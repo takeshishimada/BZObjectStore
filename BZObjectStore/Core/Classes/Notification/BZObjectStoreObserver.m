@@ -47,7 +47,7 @@
 
 - (void)dealloc
 {
-    BZObjectStoreNotificationCenter *center = [BZObjectStoreNotificationCenter defaultCenter];
+    NSNotificationCenter *center = [BZObjectStoreNotificationCenter defaultCenter];
     [center removeObserver:self];
 }
 

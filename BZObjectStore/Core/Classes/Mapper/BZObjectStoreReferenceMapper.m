@@ -729,7 +729,7 @@
         }
         if (!self.disableNotifications) {
             if (targetObject.OSRuntime.cascadeNotification) {
-                BZObjectStoreNotificationCenter *center  = [BZObjectStoreNotificationCenter defaultCenter];
+                BZObjectStoreNotificationCenter *center  = [[BZObjectStoreNotificationCenter alloc]init];
                 [center postOSNotification:targetObject notificationType:BZObjectStoreNotificationTypeSaved];
             }
         }
@@ -738,7 +738,7 @@
     for (NSObject *targetObject in objects) {
         if (!self.disableNotifications) {
             if (targetObject.OSRuntime.notification && !targetObject.OSRuntime.cascadeNotification) {
-                BZObjectStoreNotificationCenter *center  = [BZObjectStoreNotificationCenter defaultCenter];
+                BZObjectStoreNotificationCenter *center  = [[BZObjectStoreNotificationCenter alloc]init];
                 [center postOSNotification:targetObject notificationType:BZObjectStoreNotificationTypeSaved];
             }
         }
@@ -897,7 +897,7 @@
         }
         if (!self.disableNotifications) {
             if (targetObject.OSRuntime.cascadeNotification) {
-                BZObjectStoreNotificationCenter *center  = [BZObjectStoreNotificationCenter defaultCenter];
+                BZObjectStoreNotificationCenter *center  = [[BZObjectStoreNotificationCenter alloc]init];
                 [center postOSNotification:targetObject notificationType:BZObjectStoreNotificationTypeDeleted];
             }
         }
@@ -907,7 +907,7 @@
     for (NSObject *targetObject in objects) {
         if (!self.disableNotifications) {
             if (targetObject.OSRuntime.notification && !targetObject.OSRuntime.cascadeNotification) {
-                BZObjectStoreNotificationCenter *center  = [BZObjectStoreNotificationCenter defaultCenter];
+                BZObjectStoreNotificationCenter *center  = [[BZObjectStoreNotificationCenter alloc]init];
                 [center postOSNotification:targetObject notificationType:BZObjectStoreNotificationTypeDeleted];
             }
         }
@@ -919,7 +919,7 @@
         if ([self hadError:db error:error]) {
             return NO;
         }
-        BZObjectStoreNotificationCenter *center  = [BZObjectStoreNotificationCenter defaultCenter];
+        BZObjectStoreNotificationCenter *center  = [[BZObjectStoreNotificationCenter alloc]init];
         [center postOSNotification:latestObject notificationType:BZObjectStoreNotificationTypeSaved];
     }
     
