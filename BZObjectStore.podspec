@@ -6,7 +6,7 @@ Pod::Spec.new do |s|
   s.homepage = 'https://github.com/expensivegasprices/BZObjectStore'
   s.author   = { "BONZOO LLC" => "expensivegasprices@gmail.com" }
   s.source   = { :git => 'https://github.com/expensivegasprices/BZObjectStore.git', :tag => s.version.to_s }
-  s.ios.deployment_target = '5.0'
+  s.ios.deployment_target = '6.0'
   s.osx.deployment_target = '10.8'
   s.requires_arc = true
 
