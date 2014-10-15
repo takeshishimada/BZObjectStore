@@ -4,8 +4,6 @@ BZObjectStore
 
 BZObjectStore automatically stores your models to SQLite tables and provides useful options to your application.
 
-## Notice
-
 16/10/2014 iOS 8 supported
 
 ## Requirements
