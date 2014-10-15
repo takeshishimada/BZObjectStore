@@ -22,7 +22,7 @@
 // THE SOFTWARE.
 
 #import "BZExtendBaseModel.h"
-#import "AutoCoding.h"
+#import <AutoCoding.h>
 
 @interface BZExtendModel : BZExtendBaseModel
 @property (nonatomic,strong) NSString *name;

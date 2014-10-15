@@ -23,7 +23,7 @@
 
 #import "BZExtendBaseModel.h"
 #import "BZObjectStoreModelInterface.h"
-#import "AutoCoding.h"
+#import <AutoCoding.h>
 
 @interface BZIgnoreExtendModel : BZExtendBaseModel<OSIgnoreSuperClass>
 @property (nonatomic,strong) NSString *name;

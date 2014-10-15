@@ -23,7 +23,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BZObjectStoreModelInterface.h"
-#import "AutoCoding.h"
+#import <AutoCoding.h>
 
 @interface BZCircularReferenceModel : NSObject<OSModelInterface>
 - (instancetype)initWithId:(NSString*)id name:(NSString*)name birthday:(NSDate*)birthday;

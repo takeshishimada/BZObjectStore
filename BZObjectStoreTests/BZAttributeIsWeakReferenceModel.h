@@ -23,7 +23,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BZObjectStoreModelInterface.h"
-#import "AutoCoding.h"
+#import <AutoCoding.h>
 
 @interface BZAttributeIsWeakReferenceModel : NSObject
 @property (nonatomic,strong) NSString<OSIdenticalAttribute> *no;
