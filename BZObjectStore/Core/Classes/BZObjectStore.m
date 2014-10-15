@@ -36,7 +36,7 @@
 #import "NSObject+BZObjectStore.h"
 
 @interface BZObjectStoreMigration (Protected)
-- (void)migrate:(FMDatabase*)db error:(NSError**)error;
+- (BOOL)migrate:(FMDatabase*)db error:(NSError**)error;
 @end
 
 @interface BZObjectStoreReferenceMapper (Protected)
@@ -97,7 +97,7 @@
     os.dbQueue = dbQueue;
     os.db = nil;
     os.weakSelf = os;
-
+	
     NSError *err = nil;
     [os registerClass:[BZObjectStoreRelationshipModel class] error:&err];
     if (err) {
@@ -582,10 +582,10 @@
     __block NSError *err = nil;
     __block BOOL ret = NO;
     [self inTransactionWithBlock:^(FMDatabase *db, BOOL *rollback) {
-        [self migrate:db error:&err];
+        ret = [self migrate:db error:&err];
         return;
     }];
-    if (error) {
+    if (!ret) {
         *error = err;
     }
     return ret;
