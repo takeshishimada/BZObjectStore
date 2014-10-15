@@ -31,7 +31,7 @@ Pod::Spec.new do |s|
   end
 
   s.subspec 'Parse' do |ps|
-    ps.ios.deployment_target = '5.0'
+    ps.ios.deployment_target = '6.0'
     ps.ios.dependency 'BZObjectStore/Core'
     ps.ios.dependency 'Parse-iOS-SDK'
     ps.ios.framework    = 'Parse'
