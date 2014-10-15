@@ -320,7 +320,7 @@
     BZNotificationModel *model = [[BZNotificationModel alloc]init];
     model.objectId = @"test";
 
-    BZObjectStoreNotificationCenter *center = [BZObjectStoreNotificationCenter defaultCenter];
+    BZObjectStoreNotificationCenter *center = [[BZObjectStoreNotificationCenter alloc]init];
     [center addOSObserver:self selector:@selector(saved:latest:) object:model notificationType:BZObjectStoreNotificationTypeSaved];
     
     [center addOSObserver:self selector:@selector(deleted:) object:model notificationType:BZObjectStoreNotificationTypeDeleted];
