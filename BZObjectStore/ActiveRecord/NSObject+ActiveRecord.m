@@ -307,4 +307,10 @@
     [os unRegisterClassInBackground:[self class] completionBlock:completionBlock];
 }
 
+- (void)addOSObserver:(id)target selector:(SEL)selector notificationType:(BZObjectStoreNotificationType)notificationType
+{
+    BZObjectStoreNotificationCenter *center = [BZObjectStoreNotificationCenter sharedInstance];
+    [center addOSObserver:target selector:selector object:self notificationType:notificationType];
+}
+
 @end

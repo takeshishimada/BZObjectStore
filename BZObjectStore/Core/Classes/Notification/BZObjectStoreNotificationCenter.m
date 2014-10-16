@@ -28,6 +28,17 @@
 
 @implementation BZObjectStoreNotificationCenter
 
++ (instancetype)sharedInstance
+{
+    @synchronized(self) {
+        static id _sharedInstance = nil;
+        if (!_sharedInstance) {
+            _sharedInstance = [[BZObjectStoreNotificationCenter alloc]init];
+        }
+        return _sharedInstance;
+    }
+}
+
 - (void)postOSNotification:(NSObject*)object notificationType:(BZObjectStoreNotificationType)notificationType
 {
     NSMutableDictionary *dic = [NSMutableDictionary dictionary];
@@ -52,10 +63,12 @@
     [self addObserver:observer selector:@selector(received:) name:name object:nil];
     
     NSObject *targetObject = target;
-    if (!targetObject.OSObservers) {
-        targetObject.OSObservers = [NSMutableArray array];
+    @synchronized(targetObject) {
+        if (!targetObject.OSObservers) {
+            targetObject.OSObservers = [NSMutableArray array];
+        }
+        [targetObject.OSObservers addObject:observer];
     }
-    [targetObject.OSObservers addObject:observer];
 }
 
 - (NSString*)nameWithObject:(NSObject*)object notificationType:(BZObjectStoreNotificationType)notificationType

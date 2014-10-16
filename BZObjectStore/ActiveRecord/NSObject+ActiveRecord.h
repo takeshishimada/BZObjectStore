@@ -79,4 +79,6 @@
 + (void)registerClassInBackground:(Class)clazz completionBlock:(void(^)(NSError *error))completionBlock;
 + (void)unRegisterClassInBackground:(Class)clazz completionBlock:(void(^)(NSError *error))completionBlock;
 
+- (void)addOSObserver:(id)target selector:(SEL)selector notificationType:(BZObjectStoreNotificationType)notificationType;
+
 @end

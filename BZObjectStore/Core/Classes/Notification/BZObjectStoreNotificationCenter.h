@@ -26,6 +26,8 @@
 
 @interface BZObjectStoreNotificationCenter : NSNotificationCenter
 
++ (instancetype)sharedInstance;
+
 - (void)postOSNotification:(NSObject*)object notificationType:(BZObjectStoreNotificationType)notificationType;
 
 - (void)addOSObserver:(id)target selector:(SEL)selector object:(NSObject*)object notificationType:(BZObjectStoreNotificationType)notificationType;
