@@ -89,7 +89,7 @@ BZObjectStore *os = [BZObjectStore openWithPath:nil error:&error];
 #### Save Objects
 ```objective-c
 // save a object
-[os saveObject:sample1 error:&error];
+[os saveObject:sample2 error:&error]; // sample1 and sample2 are both saved.
 
 // save objects in array
 [os saveObjects:@[sample1,sample2] error:&error];
