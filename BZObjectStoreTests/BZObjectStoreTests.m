@@ -26,9 +26,9 @@
 #import <limits.h>
 #import <Parse/Parse.h>
 #import "ColorUtils.h"
-#import <FMDatabase.h>
-#import <FMDatabaseQueue.h>
-#import <FMDatabaseAdditions.h>
+#import <FMDB/FMDatabase.h>
+#import <FMDB/FMDatabaseQueue.h>
+#import <FMDB/FMDatabaseAdditions.h>
 #import "BZObjectStoreOnDisk.h"
 #import "BZObjectStoreOnMemory.h"
 #import "BZVarietyValuesModel.h"

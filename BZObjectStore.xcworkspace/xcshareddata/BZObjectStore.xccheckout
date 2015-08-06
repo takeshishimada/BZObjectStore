@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>IDESourceControlProjectFavoriteDictionaryKey</key>
+	<false/>
+	<key>IDESourceControlProjectIdentifier</key>
+	<string>C26A88CE-82D2-447A-86E9-79B814EC6693</string>
+	<key>IDESourceControlProjectName</key>
+	<string>BZObjectStore</string>
+	<key>IDESourceControlProjectOriginsDictionary</key>
+	<dict>
+		<key>2358E1524E8F6B1C462B8C170F5CA59EB5D38471</key>
+		<string>https://github.com/expensivegasprices/BZObjectStore.git</string>
+	</dict>
+	<key>IDESourceControlProjectPath</key>
+	<string>BZObjectStore.xcworkspace</string>
+	<key>IDESourceControlProjectRelativeInstallPathDictionary</key>
+	<dict>
+		<key>2358E1524E8F6B1C462B8C170F5CA59EB5D38471</key>
+		<string>..</string>
+	</dict>
+	<key>IDESourceControlProjectURL</key>
+	<string>https://github.com/expensivegasprices/BZObjectStore.git</string>
+	<key>IDESourceControlProjectVersion</key>
+	<integer>111</integer>
+	<key>IDESourceControlProjectWCCIdentifier</key>
+	<string>2358E1524E8F6B1C462B8C170F5CA59EB5D38471</string>
+	<key>IDESourceControlProjectWCConfigurations</key>
+	<array>
+		<dict>
+			<key>IDESourceControlRepositoryExtensionIdentifierKey</key>
+			<string>public.vcs.git</string>
+			<key>IDESourceControlWCCIdentifierKey</key>
+			<string>2358E1524E8F6B1C462B8C170F5CA59EB5D38471</string>
+			<key>IDESourceControlWCCName</key>
+			<string>BZObjectStore</string>
+		</dict>
+	</array>
+</dict>
+</plist>

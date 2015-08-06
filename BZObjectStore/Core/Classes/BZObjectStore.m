@@ -29,10 +29,10 @@
 #import "BZObjectStoreRuntimeProperty.h"
 #import "BZObjectStoreNameBuilder.h"
 #import "BZObjectStoreMigration.h"
-#import <FMDatabaseQueue.h>
-#import <FMDatabase.h>
-#import <FMResultSet.h>
-#import <FMDatabaseAdditions.h>
+#import <FMDB/FMDatabaseQueue.h>
+#import <FMDB/FMDatabase.h>
+#import <FMDB/FMResultSet.h>
+#import <FMDB/FMDatabaseAdditions.h>
 #import "NSObject+BZObjectStore.h"
 
 @interface BZObjectStoreMigration (Protected)

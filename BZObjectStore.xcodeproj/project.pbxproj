@@ -181,6 +181,7 @@
 
 /* Begin PBXFileReference section */
 		11CB3F3E43BB4976B6E3EF2E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		1385BFADDE0D6F66790C2034 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		7202AC271918014B009C24C1 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		72170BE618F5950D00C9A4C1 /* BZSQLiteGroupFunctionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZSQLiteGroupFunctionModel.h; sourceTree = "<group>"; };
 		72170BE718F5950D00C9A4C1 /* BZSQLiteGroupFunctionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZSQLiteGroupFunctionModel.m; sourceTree = "<group>"; };
@@ -476,7 +477,6 @@
 		72ED0D19193AA2E100045830 /* BZObjectStoreMigration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreMigration.m; sourceTree = "<group>"; };
 		72ED67A41917DFA200457F1E /* BZParseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZParseModel.h; sourceTree = "<group>"; };
 		72ED67A51917DFA200457F1E /* BZParseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZParseModel.m; sourceTree = "<group>"; };
-		73A736836B224E7BB841BEB0 /* Pods.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.xcconfig; path = Pods/Pods.xcconfig; sourceTree = "<group>"; };
 		821F19A81906511C00E7F96C /* BZBackgroundModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZBackgroundModel.h; sourceTree = "<group>"; };
 		821F19A91906511C00E7F96C /* BZBackgroundModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZBackgroundModel.m; sourceTree = "<group>"; };
 		8296BB55193738CD00622F99 /* ColorUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorUtils.h; sourceTree = "<group>"; };
@@ -489,6 +489,7 @@
 		82D029EB19051DE2003B7246 /* BZArrayInArrayModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZArrayInArrayModel.m; sourceTree = "<group>"; };
 		82D029ED19064602003B7246 /* BZOSIdenticalForthModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZOSIdenticalForthModel.h; sourceTree = "<group>"; };
 		82D029EE19064602003B7246 /* BZOSIdenticalForthModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZOSIdenticalForthModel.m; sourceTree = "<group>"; };
+		91C237E9FF3DD9B6E404E464 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -944,7 +945,7 @@
 				7259F81218F44F04002A3416 /* BZObjectStoreTests */,
 				7259F7F218F44F04002A3416 /* Frameworks */,
 				7259F7F118F44F04002A3416 /* Products */,
-				73A736836B224E7BB841BEB0 /* Pods.xcconfig */,
+				D29E0258DBB82AADB9B11F20 /* Pods */,
 			);
 			sourceTree = "<group>";
 		};
@@ -1216,6 +1217,15 @@
 			name = Background;
 			sourceTree = "<group>";
 		};
+		D29E0258DBB82AADB9B11F20 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				1385BFADDE0D6F66790C2034 /* Pods.debug.xcconfig */,
+				91C237E9FF3DD9B6E404E464 /* Pods.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -1324,7 +1334,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Pods-resources.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-resources.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 		F43F16C3E45944D18F58713E /* Check Pods Manifest.lock */ = {
@@ -1616,7 +1626,7 @@
 		};
 		7259F81D18F44F04002A3416 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 73A736836B224E7BB841BEB0 /* Pods.xcconfig */;
+			baseConfigurationReference = 1385BFADDE0D6F66790C2034 /* Pods.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1630,7 +1640,7 @@
 		};
 		7259F81E18F44F04002A3416 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 73A736836B224E7BB841BEB0 /* Pods.xcconfig */;
+			baseConfigurationReference = 91C237E9FF3DD9B6E404E464 /* Pods.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
@@ -1644,7 +1654,6 @@
 		};
 		7259F82018F44F04002A3416 /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 73A736836B224E7BB841BEB0 /* Pods.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BZObjectStore.app/BZObjectStore";
 				FRAMEWORK_SEARCH_PATHS = (
@@ -1671,7 +1680,6 @@
 		};
 		7259F82118F44F04002A3416 /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 73A736836B224E7BB841BEB0 /* Pods.xcconfig */;
 			buildSettings = {
 				BUNDLE_LOADER = "$(BUILT_PRODUCTS_DIR)/BZObjectStore.app/BZObjectStore";
 				FRAMEWORK_SEARCH_PATHS = (

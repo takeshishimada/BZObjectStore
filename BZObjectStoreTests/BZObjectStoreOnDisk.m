@@ -22,7 +22,7 @@
 // THE SOFTWARE.
 
 #import "BZObjectStoreOnDisk.h"
-#import <FMDatabase.h>
+#import <FMDB/FMDatabase.h>
 
 @implementation BZObjectStoreOnDisk
 

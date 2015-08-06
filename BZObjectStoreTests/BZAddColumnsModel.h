@@ -23,7 +23,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BZObjectStoreModelInterface.h"
-#import <AutoCoding.h>
+#import <AutoCoding/AutoCoding.h>
 
 @interface BZAddColumnsModel : NSObject
 @property (nonatomic,strong) NSString<OSIdenticalAttribute> *code;

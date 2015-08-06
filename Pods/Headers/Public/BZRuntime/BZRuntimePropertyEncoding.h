@@ -1,0 +1,1 @@
+../../../BZRuntime/BZRuntime/BZRuntimePropertyEncoding.h

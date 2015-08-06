@@ -31,9 +31,9 @@
 #import "BZObjectStoreMigrationRuntimeProperty.h"
 #import "BZObjectStoreMigrationTable.h"
 #import "BZObjectStoreMigrationQueryBuilder.h"
-#import <FMDatabase.h>
-#import <FMDatabaseQueue.h>
-#import <FMDatabaseAdditions.h>
+#import <FMDB/FMDatabase.h>
+#import <FMDB/FMDatabaseQueue.h>
+#import <FMDB/FMDatabaseAdditions.h>
 #import "FMDatabase+indexInfo.h"
 
 @interface BZObjectStoreReferenceMapper (Protected)
