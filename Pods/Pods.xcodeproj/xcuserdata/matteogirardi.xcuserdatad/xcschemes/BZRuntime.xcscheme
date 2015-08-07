@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "7BFE898E26E7FA88362B5EBA"
-               BuildableName = "libBZRuntime.a"
+               BlueprintIdentifier = "2BEEF2B272902CA914C50C03"
+               BuildableName = "BZRuntime.framework"
                BlueprintName = "BZRuntime"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>

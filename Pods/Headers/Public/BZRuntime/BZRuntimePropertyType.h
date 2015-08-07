@@ -1,1 +1,0 @@
-../../../BZRuntime/BZRuntime/BZRuntimePropertyType.h

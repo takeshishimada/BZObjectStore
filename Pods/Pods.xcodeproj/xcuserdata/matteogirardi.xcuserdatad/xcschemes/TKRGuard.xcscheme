@@ -14,8 +14,8 @@
             buildForAnalyzing = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "0302E95218682A48265C4CA7"
-               BuildableName = "libTKRGuard.a"
+               BlueprintIdentifier = "73FAA6C2784CD5AE11CB0181"
+               BuildableName = "TKRGuard.framework"
                BlueprintName = "TKRGuard"
                ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
