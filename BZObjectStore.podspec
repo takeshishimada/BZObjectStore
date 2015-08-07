@@ -5,7 +5,7 @@ Pod::Spec.new do |s|
   s.summary  = 'ORM library wrapped FMDB'
   s.homepage = 'https://github.com/expensivegasprices/BZObjectStore'
   s.author   = { "BONZOO LLC" => "expensivegasprices@gmail.com" }
-  s.source   = { :git => 'https://github.com/expensivegasprices/BZObjectStore.git', :tag => s.version.to_s }
+  s.source   = { :git => 'https://github.com/matteogirardi/BZObjectStore.git', :tag => s.version.to_s }
   s.ios.deployment_target = '6.0'
   s.osx.deployment_target = '10.8'
   s.requires_arc = true
@@ -36,13 +36,13 @@ Pod::Spec.new do |s|
     ps.ios.dependency 'Parse-iOS-SDK'
     ps.ios.framework    = 'Parse'
     ps.ios.xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '"$(PODS_ROOT)/Parse"' }
-    ps.ios.source_files = 'BZObjectStore/BZObjectStoreParse/*.{h,m}'
+    ps.ios.source_files = 'BZObjectStore/Parse/*.{h,m}'
     ps.osx.deployment_target = '10.8'
     ps.osx.dependency 'BZObjectStore/Core'
     ps.osx.dependency 'Parse-OSX-SDK'
     ps.osx.framework    = 'ParseOSX'
     ps.osx.xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '"$(PODS_ROOT)/Parse"' }
-    ps.osx.source_files = 'BZObjectStore/BZObjectStoreParse/*.{h,m}'
+    ps.osx.source_files = 'BZObjectStore/Parse/*.{h,m}'
  end
 
 end
