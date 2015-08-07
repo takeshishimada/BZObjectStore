@@ -40,7 +40,7 @@ Pod::Spec.new do |s|
     ps.osx.deployment_target = '10.8'
     ps.osx.dependency 'BZObjectStore/Core'
     ps.osx.dependency 'Parse-OSX'
-    ps.osx.framework    = 'ParseOSX'
+    ps.osx.framework    = 'Parse'
     ps.osx.xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '"$(PODS_ROOT)/Parse"' }
     ps.osx.source_files = 'BZObjectStore/Parse/*.{h,m}'
  end
