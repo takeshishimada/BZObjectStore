@@ -26,7 +26,7 @@
 #import "BZObjectStoreConst.h"
 #import "BZObjectStoreRuntimeProperty.h"
 #import "BZObjectStoreModelInterface.h"
-#import <Parse/Parse.h>
+#import "BZObjectStoreParseImport.h"
 #import "BZRuntime.h"
 
 @interface BZObjectStoreClazzPFObjectRequiredAttributesModel : NSObject

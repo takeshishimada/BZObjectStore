@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		3C01BC65477147389CF16CB0 /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 11CB3F3E43BB4976B6E3EF2E /* libPods.a */; };
+		1F61B7F4C6F1D68A238AF46E /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75D61ED91CB384C4F1F3B941 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		72170BE818F5950D00C9A4C1 /* BZSQLiteGroupFunctionModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72170BE718F5950D00C9A4C1 /* BZSQLiteGroupFunctionModel.m */; };
 		72170BEB18F6E9D200C9A4C1 /* BZUpdateExistsObjectWithNoRowIdModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72170BEA18F6E9D200C9A4C1 /* BZUpdateExistsObjectWithNoRowIdModel.m */; };
 		72170BEE18F8327700C9A4C1 /* BZUpdateResponseModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 72170BED18F8327700C9A4C1 /* BZUpdateResponseModel.m */; };
@@ -180,7 +180,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		11CB3F3E43BB4976B6E3EF2E /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
+		00B140011B74A7D5009EF6C6 /* BZObjectStoreParseImport.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BZObjectStoreParseImport.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		1385BFADDE0D6F66790C2034 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 		7202AC271918014B009C24C1 /* libPods.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; name = libPods.a; path = "Pods/build/Debug-iphoneos/libPods.a"; sourceTree = "<group>"; };
 		72170BE618F5950D00C9A4C1 /* BZSQLiteGroupFunctionModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZSQLiteGroupFunctionModel.h; sourceTree = "<group>"; };
@@ -329,13 +329,13 @@
 		724A0D3E1923B22B00AF177D /* BZObjectStoreRuntimeProperty.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = BZObjectStoreRuntimeProperty.h; path = ../Runtime/BZObjectStoreRuntimeProperty.h; sourceTree = "<group>"; };
 		724A0D3F1923B22B00AF177D /* BZObjectStoreRuntimeProperty.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = BZObjectStoreRuntimeProperty.m; path = ../Runtime/BZObjectStoreRuntimeProperty.m; sourceTree = "<group>"; };
 		724A0D7C1923B26A00AF177D /* BZObjectStoreClazzPFFile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzPFFile.h; sourceTree = "<group>"; };
-		724A0D7D1923B26A00AF177D /* BZObjectStoreClazzPFFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzPFFile.m; sourceTree = "<group>"; };
+		724A0D7D1923B26A00AF177D /* BZObjectStoreClazzPFFile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BZObjectStoreClazzPFFile.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		724A0D7E1923B26A00AF177D /* BZObjectStoreClazzPFGeoPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzPFGeoPoint.h; sourceTree = "<group>"; };
-		724A0D7F1923B26A00AF177D /* BZObjectStoreClazzPFGeoPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzPFGeoPoint.m; sourceTree = "<group>"; };
+		724A0D7F1923B26A00AF177D /* BZObjectStoreClazzPFGeoPoint.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BZObjectStoreClazzPFGeoPoint.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		724A0D801923B26A00AF177D /* BZObjectStoreClazzPFObject.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzPFObject.h; sourceTree = "<group>"; };
-		724A0D811923B26A00AF177D /* BZObjectStoreClazzPFObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzPFObject.m; sourceTree = "<group>"; };
+		724A0D811923B26A00AF177D /* BZObjectStoreClazzPFObject.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BZObjectStoreClazzPFObject.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		724A0D821923B26A00AF177D /* BZObjectStoreClazzPFUser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreClazzPFUser.h; sourceTree = "<group>"; };
-		724A0D831923B26A00AF177D /* BZObjectStoreClazzPFUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreClazzPFUser.m; sourceTree = "<group>"; };
+		724A0D831923B26A00AF177D /* BZObjectStoreClazzPFUser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BZObjectStoreClazzPFUser.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		724A0D841923B26A00AF177D /* BZObjectStoreParse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreParse.h; sourceTree = "<group>"; };
 		724A0D851923B26A00AF177D /* BZObjectStoreParse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreParse.m; sourceTree = "<group>"; };
 		724A0D8C1923B28300AF177D /* BZActiveRecord.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZActiveRecord.h; sourceTree = "<group>"; };
@@ -359,7 +359,7 @@
 		7259F7FF18F44F04002A3416 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		7259F80118F44F04002A3416 /* BZObjectStore-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "BZObjectStore-Prefix.pch"; sourceTree = "<group>"; };
 		7259F80218F44F04002A3416 /* BZObjectStoreAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreAppDelegate.h; sourceTree = "<group>"; };
-		7259F80318F44F04002A3416 /* BZObjectStoreAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreAppDelegate.m; sourceTree = "<group>"; };
+		7259F80318F44F04002A3416 /* BZObjectStoreAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BZObjectStoreAppDelegate.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		7259F80518F44F04002A3416 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		7259F80B18F44F04002A3416 /* BZObjectStoreTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = BZObjectStoreTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7259F80C18F44F04002A3416 /* XCTest.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = XCTest.framework; path = Library/Frameworks/XCTest.framework; sourceTree = DEVELOPER_DIR; };
@@ -374,7 +374,7 @@
 		7259F8B218F45014002A3416 /* BZObjectStoreOnDisk.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreOnDisk.m; sourceTree = "<group>"; };
 		7259F8B318F45014002A3416 /* BZObjectStoreOnMemory.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreOnMemory.h; sourceTree = "<group>"; };
 		7259F8B418F45014002A3416 /* BZObjectStoreOnMemory.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreOnMemory.m; sourceTree = "<group>"; };
-		7259F8B518F45014002A3416 /* BZObjectStoreTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreTests.m; sourceTree = "<group>"; };
+		7259F8B518F45014002A3416 /* BZObjectStoreTests.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; lineEnding = 0; path = BZObjectStoreTests.m; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objc; };
 		7259F8B618F45014002A3416 /* BZRelationshipDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZRelationshipDetailModel.h; sourceTree = "<group>"; };
 		7259F8B718F45014002A3416 /* BZRelationshipDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZRelationshipDetailModel.m; sourceTree = "<group>"; };
 		7259F8B818F45014002A3416 /* BZRelationshipHeaderModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZRelationshipHeaderModel.h; sourceTree = "<group>"; };
@@ -475,8 +475,9 @@
 		72EC847A190D5669001AE1F7 /* BZTransactionModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZTransactionModel.m; sourceTree = "<group>"; };
 		72ED0D18193AA2E100045830 /* BZObjectStoreMigration.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZObjectStoreMigration.h; sourceTree = "<group>"; };
 		72ED0D19193AA2E100045830 /* BZObjectStoreMigration.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZObjectStoreMigration.m; sourceTree = "<group>"; };
-		72ED67A41917DFA200457F1E /* BZParseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZParseModel.h; sourceTree = "<group>"; };
+		72ED67A41917DFA200457F1E /* BZParseModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; lineEnding = 0; path = BZParseModel.h; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.objcpp; };
 		72ED67A51917DFA200457F1E /* BZParseModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZParseModel.m; sourceTree = "<group>"; };
+		75D61ED91CB384C4F1F3B941 /* Pods.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		821F19A81906511C00E7F96C /* BZBackgroundModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BZBackgroundModel.h; sourceTree = "<group>"; };
 		821F19A91906511C00E7F96C /* BZBackgroundModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BZBackgroundModel.m; sourceTree = "<group>"; };
 		8296BB55193738CD00622F99 /* ColorUtils.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ColorUtils.h; sourceTree = "<group>"; };
@@ -501,7 +502,7 @@
 				7259F7F618F44F04002A3416 /* CoreGraphics.framework in Frameworks */,
 				7259F7F818F44F04002A3416 /* UIKit.framework in Frameworks */,
 				7259F7F418F44F04002A3416 /* Foundation.framework in Frameworks */,
-				3C01BC65477147389CF16CB0 /* libPods.a in Frameworks */,
+				1F61B7F4C6F1D68A238AF46E /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -911,6 +912,7 @@
 		724A0D7B1923B26A00AF177D /* Parse */ = {
 			isa = PBXGroup;
 			children = (
+				00B140011B74A7D5009EF6C6 /* BZObjectStoreParseImport.h */,
 				724A0D841923B26A00AF177D /* BZObjectStoreParse.h */,
 				724A0D851923B26A00AF177D /* BZObjectStoreParse.m */,
 				724A0D7C1923B26A00AF177D /* BZObjectStoreClazzPFFile.h */,
@@ -968,7 +970,7 @@
 				7259F7F518F44F04002A3416 /* CoreGraphics.framework */,
 				7259F7F718F44F04002A3416 /* UIKit.framework */,
 				7259F80C18F44F04002A3416 /* XCTest.framework */,
-				11CB3F3E43BB4976B6E3EF2E /* libPods.a */,
+				75D61ED91CB384C4F1F3B941 /* Pods.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -1238,6 +1240,7 @@
 				7259F7ED18F44F04002A3416 /* Frameworks */,
 				7259F7EE18F44F04002A3416 /* Resources */,
 				898E04CE3BCA4DD6AD3B90DE /* Copy Pods Resources */,
+				202984EEF4DC0CE898C315C7 /* Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -1322,6 +1325,21 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
+		202984EEF4DC0CE898C315C7 /* Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Embed Pods Frameworks";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods/Pods-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
 		898E04CE3BCA4DD6AD3B90DE /* Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
 			buildActionMask = 2147483647;
@@ -1630,6 +1648,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BZObjectStore/BZObjectStore-Prefix.pch";
 				INFOPLIST_FILE = "BZObjectStore/BZObjectStore-Info.plist";
@@ -1644,6 +1663,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "BZObjectStore/BZObjectStore-Prefix.pch";
 				INFOPLIST_FILE = "BZObjectStore/BZObjectStore-Info.plist";

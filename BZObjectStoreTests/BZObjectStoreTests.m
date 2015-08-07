@@ -83,7 +83,7 @@
 #import "BZObjectStoreClazzBZImage.h"
 #import "BZImageHolderModel.h"
 #import "BZArrayInArrayModel.h"
-#import "TKRGuard.h"
+#import <TKRGuard/TKRGuard.h>
 #import "BZObjectStoreBackground.h"
 #import "BZBackgroundModel.h"
 #import "BZTransactionModel.h"
@@ -94,8 +94,6 @@
 #import "BZMigrationModel.h"
 #import "BZMigrationModel2.h"
 #import "BZMigrationDetailModel.h"
-
-#import <Parse/Parse.h>
 
 @interface BZObjectStoreTests : XCTestCase {
 }

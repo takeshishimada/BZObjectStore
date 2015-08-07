@@ -22,7 +22,6 @@
 // THE SOFTWARE.
 
 #import "BZObjectStoreAppDelegate.h"
-#import <Parse/Parse.h>
 #import "BZObjectStore.h"
 #import "BZObjectStoreClazz.h"
 #import "BZObjectStoreParse.h"
