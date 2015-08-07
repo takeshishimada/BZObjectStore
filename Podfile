@@ -1,8 +1,24 @@
-platform :ios,'7.0'
-pod 'FMDB'
-pod 'BZRuntime'
-pod 'AutoCoding'
-pod 'Bolts', :inhibit_warnings => true
-pod 'Facebook-iOS-SDK', :inhibit_warnings => true
-pod 'Parse'
-pod 'TKRGuard'
+source 'https://github.com/CocoaPods/Specs.git'
+
+link_with 'BZObjectStore', 'BZObjectStoreTests'
+inhibit_all_warnings!
+
+def import_pods
+	pod 'FMDB'
+	pod 'BZRuntime'
+	pod 'AutoCoding'
+	pod 'Bolts', :inhibit_warnings => true
+	pod 'TKRGuard'
+end
+
+target :ios do
+	platform :ios, '6.0'
+	import_pods
+	pod 'Parse'
+end
+
+target :osx do
+	platform :osx, '10.8'
+	import_pods
+	pod 'Parse-OSX'
+end

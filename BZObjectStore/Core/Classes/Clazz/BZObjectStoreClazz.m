@@ -66,8 +66,8 @@
 #import "BZObjectStoreConst.h"
 #import "BZObjectStoreRuntimeProperty.h"
 #import "BZObjectStoreSQLiteColumnModel.h"
-#import <FMResultSet.h>
-#import <AutoCoding.h>
+#import <FMDB/FMResultSet.h>
+#import <AutoCoding/AutoCoding.h>
 
 @implementation BZObjectStoreClazz
 

@@ -22,11 +22,11 @@
 // THE SOFTWARE.
 
 #import "BZObjectStoreClazzPFGeoPoint.h"
-#import <FMResultSet.h>
+#import <FMDB/FMResultSet.h>
 #import "BZObjectStoreConst.h"
 #import "BZObjectStoreRuntimeProperty.h"
 #import "BZObjectStoreSQLiteColumnModel.h"
-#import <Parse/Parse.h>
+#import "BZObjectStoreParseImport.h"
 
 @implementation BZObjectStoreClazzPFGeoPoint
 

@@ -1,0 +1,35 @@
+PODS:
+  - AutoCoding (2.2.1)
+  - Bolts (1.2.0):
+    - Bolts/AppLinks (= 1.2.0)
+    - Bolts/Tasks (= 1.2.0)
+  - Bolts/AppLinks (1.2.0):
+    - Bolts/Tasks
+  - Bolts/Tasks (1.2.0)
+  - BZRuntime (1.0.5)
+  - FMDB (2.5):
+    - FMDB/standard (= 2.5)
+  - FMDB/common (2.5)
+  - FMDB/standard (2.5):
+    - FMDB/common
+  - Parse (1.7.5.3):
+    - Bolts/Tasks (>= 1.2.0)
+  - TKRGuard (1.0.2)
+
+DEPENDENCIES:
+  - AutoCoding
+  - Bolts
+  - BZRuntime
+  - FMDB
+  - Parse
+  - TKRGuard
+
+SPEC CHECKSUMS:
+  AutoCoding: b47e528426c84346371dd532b8e6458929e4da34
+  Bolts: d176cb1e0012175589e389a9db49b85e27787576
+  BZRuntime: fa585da7f0c2e478591bc2c57038c7ac23f46b4f
+  FMDB: 96e8f1bcc1329e269330f99770ad4285d9003e52
+  Parse: 373adbb1ad2e34d383542c3b28f678c49ebe4881
+  TKRGuard: ca6c06e54143928953174a66092fa80d27369ad6
+
+COCOAPODS: 0.38.2

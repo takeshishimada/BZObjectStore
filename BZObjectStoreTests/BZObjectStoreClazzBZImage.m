@@ -22,7 +22,7 @@
 // THE SOFTWARE.
 
 #import "BZObjectStoreClazzBZImage.h"
-#import <FMResultSet.h>
+#import <FMDB/FMResultSet.h>
 #import "BZObjectStoreConst.h"
 #import "BZObjectStoreRuntimeProperty.h"
 #import "BZObjectStoreSQLiteColumnModel.h"

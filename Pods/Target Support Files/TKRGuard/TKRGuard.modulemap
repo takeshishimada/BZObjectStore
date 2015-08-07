@@ -1,0 +1,6 @@
+framework module TKRGuard {
+  umbrella header "TKRGuard-umbrella.h"
+
+  export *
+  module * { export * }
+}

@@ -30,9 +30,9 @@
 #import "BZObjectStoreNameBuilder.h"
 #import "BZObjectStoreClazz.h"
 #import "BZObjectStoreNotificationCenter.h"
-#import <FMDatabaseQueue.h>
-#import <FMDatabase.h>
-#import <FMResultSet.h>
+#import <FMDB/FMDatabaseQueue.h>
+#import <FMDB/FMDatabase.h>
+#import <FMDB/FMResultSet.h>
 #import "FMDatabaseAdditions.h"
 #import "NSObject+BZObjectStore.h"
 

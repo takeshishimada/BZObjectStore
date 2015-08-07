@@ -24,7 +24,7 @@
 #import <Foundation/Foundation.h>
 #import "BZObjectStoreModelInterface.h"
 #import "BZVarietyValuesItemModel.h"
-#import <AutoCoding.h>
+#import <AutoCoding/AutoCoding.h>
 #import <CoreLocation/CoreLocation.h>
 
 typedef struct {

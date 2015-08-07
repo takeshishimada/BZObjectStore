@@ -22,7 +22,7 @@
 // THE SOFTWARE.
 
 #import "BZObjectStoreClazzUIColor.h"
-#import <FMResultSet.h>
+#import <FMDB/FMResultSet.h>
 #import "ColorUtils.h"
 #import "UIColor+BZObjectStore.h"
 #import "BZObjectStoreConst.h"

@@ -26,9 +26,9 @@
 #import <limits.h>
 #import <Parse/Parse.h>
 #import "ColorUtils.h"
-#import <FMDatabase.h>
-#import <FMDatabaseQueue.h>
-#import <FMDatabaseAdditions.h>
+#import <FMDB/FMDatabase.h>
+#import <FMDB/FMDatabaseQueue.h>
+#import <FMDB/FMDatabaseAdditions.h>
 #import "BZObjectStoreOnDisk.h"
 #import "BZObjectStoreOnMemory.h"
 #import "BZVarietyValuesModel.h"
@@ -83,7 +83,7 @@
 #import "BZObjectStoreClazzBZImage.h"
 #import "BZImageHolderModel.h"
 #import "BZArrayInArrayModel.h"
-#import "TKRGuard.h"
+#import <TKRGuard/TKRGuard.h>
 #import "BZObjectStoreBackground.h"
 #import "BZBackgroundModel.h"
 #import "BZTransactionModel.h"
@@ -94,8 +94,6 @@
 #import "BZMigrationModel.h"
 #import "BZMigrationModel2.h"
 #import "BZMigrationDetailModel.h"
-
-#import <Parse/Parse.h>
 
 @interface BZObjectStoreTests : XCTestCase {
 }

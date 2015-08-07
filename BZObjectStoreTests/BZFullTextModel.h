@@ -23,7 +23,7 @@
 
 #import <Foundation/Foundation.h>
 #import "BZObjectStoreModelInterface.h"
-#import <AutoCoding.h>
+#import <AutoCoding/AutoCoding.h>
 
 @interface BZFullTextModel : NSObject<OSFullTextSearch3>
 @property (nonatomic,strong) NSString *address;

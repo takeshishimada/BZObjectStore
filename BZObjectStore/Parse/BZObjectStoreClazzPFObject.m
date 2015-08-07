@@ -22,11 +22,11 @@
 // THE SOFTWARE.
 
 #import "BZObjectStoreClazzPFObject.h"
-#import <FMResultSet.h>
+#import <FMDB/FMResultSet.h>
 #import "BZObjectStoreConst.h"
 #import "BZObjectStoreRuntimeProperty.h"
 #import "BZObjectStoreModelInterface.h"
-#import <Parse/Parse.h>
+#import "BZObjectStoreParseImport.h"
 #import "BZRuntime.h"
 
 @interface BZObjectStoreClazzPFObjectRequiredAttributesModel : NSObject

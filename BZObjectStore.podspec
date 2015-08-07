@@ -1,13 +1,13 @@
 Pod::Spec.new do |s|
   s.name     = 'BZObjectStore'
-  s.version  = '1.3.14'
+  s.version  = '1.3.15'
   s.license  = 'MIT'
   s.summary  = 'ORM library wrapped FMDB'
   s.homepage = 'https://github.com/expensivegasprices/BZObjectStore'
   s.author   = { "BONZOO LLC" => "expensivegasprices@gmail.com" }
-  s.source   = { :git => 'https://github.com/expensivegasprices/BZObjectStore.git', :tag => s.version.to_s }
+  s.source   = { :git => 'https://github.com/matteogirardi/BZObjectStore.git', :tag => s.version.to_s }
   s.ios.deployment_target = '6.0'
-  s.osx.deployment_target = '10.8'
+  //s.osx.deployment_target = '10.8'
   s.requires_arc = true
 
   s.default_subspec = 'Core'
@@ -33,16 +33,18 @@ Pod::Spec.new do |s|
   s.subspec 'Parse' do |ps|
     ps.ios.deployment_target = '6.0'
     ps.ios.dependency 'BZObjectStore/Core'
-    ps.ios.dependency 'Parse-iOS-SDK'
+    ps.ios.dependency 'Parse'
     ps.ios.framework    = 'Parse'
     ps.ios.xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '"$(PODS_ROOT)/Parse"' }
-    ps.ios.source_files = 'BZObjectStore/BZObjectStoreParse/*.{h,m}'
+    ps.ios.source_files = 'BZObjectStore/Parse/*.{h,m}'
+    /*
     ps.osx.deployment_target = '10.8'
     ps.osx.dependency 'BZObjectStore/Core'
-    ps.osx.dependency 'Parse-OSX-SDK'
+    ps.osx.dependency 'Parse-OSX'
     ps.osx.framework    = 'ParseOSX'
-    ps.osx.xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '"$(PODS_ROOT)/Parse"' }
-    ps.osx.source_files = 'BZObjectStore/BZObjectStoreParse/*.{h,m}'
+    ps.osx.xcconfig = { 'FRAMEWORK_SEARCH_PATHS' => '"$(PODS_ROOT)/ParseOSX"' }
+    ps.osx.source_files = 'BZObjectStore/Parse/*.{h,m}'
+    */
  end
 
 end
