@@ -1,9 +1,15 @@
-platform :ios,'7.0'
-use_frameworks!
 pod 'FMDB'
 pod 'BZRuntime'
 pod 'AutoCoding'
 pod 'Bolts', :inhibit_warnings => true
-#pod 'Facebook-iOS-SDK', :inhibit_warnings => true
-pod 'Parse'
 pod 'TKRGuard'
+
+target 'BZObjectStore.iOS' do
+	platform :ios, '7.0'
+	pod 'Parse'
+end
+
+target 'BZObjectStore.Mac' do
+  platform :osx, '10.8'
+  pod 'Parse-OSX'
+end
