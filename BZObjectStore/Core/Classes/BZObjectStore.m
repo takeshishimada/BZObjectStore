@@ -132,23 +132,25 @@
 
 - (void)inTransactionWithBlock:(void(^)(FMDatabase *db,BOOL *rollback))block
 {
-    if (self.db) {
-        if (block) {
-            block(self.db,&_rollback);
-        }
-    } else {
-        [self.dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
-            [_weakSelf transactionDidBegin:db];
-            _weakSelf.db = db;
-            [db setShouldCacheStatements:YES];
-            block(db,rollback);
-            if (*rollback) {
-                [_weakSelf setUnRegistedAllRuntimeFlag];
-            }
-        }];
-        [self transactionDidEnd:self.db];
-        self.db = nil;
-    }
+	@synchronized(self) {
+		if (self.db) {
+			if (block) {
+				block(self.db,&_rollback);
+			}
+		} else {
+			[self.dbQueue inTransaction:^(FMDatabase *db, BOOL *rollback) {
+				[_weakSelf transactionDidBegin:db];
+				_weakSelf.db = db;
+				[db setShouldCacheStatements:YES];
+				block(db,rollback);
+				if (*rollback) {
+					[_weakSelf setUnRegistedAllRuntimeFlag];
+				}
+			}];
+			[self transactionDidEnd:self.db];
+			self.db = nil;
+		}
+	}
 }
 
 - (void)transactionDidBegin:(FMDatabase*)db
