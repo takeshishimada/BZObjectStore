@@ -1,7 +1,7 @@
 //
 //  ColorUtils.h
 //
-//  Version 1.1.2
+//  Version 1.1.3
 //
 //  Created by Nick Lockwood on 19/11/2011.
 //  Copyright (c) 2011 Charcoal Design
@@ -36,23 +36,17 @@
 #pragma GCC diagnostic ignored "-Wobjc-missing-property-synthesis"
 
 
-#if TARGET_OS_IPHONE
-@interface UIColor (ColorUtils)
-#elif TARGET_OS_MAC && !TARGET_OS_IPHONE
-@interface NSColor (ColorUtils)
-#endif
+#import <UIKit/UIKit.h>
 
+
+@interface UIColor (ColorUtils)
 
 @property (nonatomic, readonly) CGFloat red;
 @property (nonatomic, readonly) CGFloat green;
 @property (nonatomic, readonly) CGFloat blue;
 @property (nonatomic, readonly) CGFloat alpha;
 
-#if TARGET_OS_IPHONE
 + (void)registerColor:(UIColor *)color forName:(NSString *)name;
-#elif TARGET_OS_MAC && !TARGET_OS_IPHONE
-+ (void)registerColor:(NSColor *)color forName:(NSString *)name;
-#endif
 
 + (instancetype)colorWithString:(NSString *)string;
 + (instancetype)colorWithRGBValue:(uint32_t)rgb;
@@ -67,19 +61,10 @@
 
 - (BOOL)isMonochromeOrRGB;
 - (BOOL)isEquivalent:(id)object;
-
-#if TARGET_OS_IPHONE
 - (BOOL)isEquivalentToColor:(UIColor *)color;
-#elif TARGET_OS_MAC && !TARGET_OS_IPHONE
-- (BOOL)isEquivalentToColor:(NSColor *)color;
-#endif
 
 - (instancetype)colorWithBrightness:(CGFloat)brightness;
-#if TARGET_OS_IPHONE
 - (instancetype)colorBlendedWithColor:(UIColor *)color factor:(CGFloat)factor;
-#elif TARGET_OS_MAC && !TARGET_OS_IPHONE
-- (instancetype)colorBlendedWithColor:(NSColor *)color factor:(CGFloat)factor;
-#endif
 
 @end
 
