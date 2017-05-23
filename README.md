@@ -2,7 +2,7 @@ BZObjectStore
 =============
 [![Build Status](https://travis-ci.org/expensivegasprices/BZObjectStore.svg?branch=master)](https://travis-ci.org/expensivegasprices/BZObjectStore)
 
-BZObjectStore automatically stores your models to SQLite tables and provides useful options to your application.
+BZObjectStore automatically stores your models into SQLite and provides other useful options to your application.
 
 16/10/2014 iOS 8 supported
 
