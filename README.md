@@ -6,6 +6,10 @@ BZObjectStore automatically stores your models into SQLite and provides other us
 
 16/10/2014 iOS 8 supported
 
+## Status
+
+This project is inactive. 
+
 ## Requirements
 - iOS ~~5.0~~ 6.0 or later
 - OS X 10.8 or later
